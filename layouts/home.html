@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+{{> head }}
+</head>
+
+<body>
+<div class="wrapper">
+
+<!-- MENU -->
+
+{{> menu menuItemId ='home'}}
+
+<!-- SIDENAV -->
+
+<nav id="sidenav" class="home">
+
+<p>Select from top menu</p>
+
+</nav>
+
+<!-- CONTENT  -->
+
+<div id="content">
+
+<div class="title">{{ title }}</div>
+<hr/>
+
+{{{ contents }}}
+
+</div>
+
+<!-- JAVASCRIPT -->
+
+{{> js }}
+
+</div>
+</body>
+</html>
