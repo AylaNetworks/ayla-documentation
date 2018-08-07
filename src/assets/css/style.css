@@ -1,0 +1,143 @@
+/******************************************
+ site
+******************************************/
+
+/*
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+  font-family: 'Poppins', sans-serif;
+}
+*/
+
+p, li {
+  /*font-family: 'Poppins', sans-serif;*/
+  font-size: 1.0em;
+  font-weight: 300;
+  line-height: 1.5em;
+}
+
+#content div.title {
+  font-size: 1.75rem;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  box-sizing: border-box;
+  display: block;
+}
+
+h1 {font-size: 1.50rem;}
+h2 {font-size: 1.25rem;}
+h3 {font-size: 1.00rem;}
+h4 {font-size: 1.00rem;}
+h5 {font-size: 1.00rem;}
+h6 {font-size: 1.00rem;}
+
+a, a:hover, a:focus {text-decoration: none;}
+
+.container-fluid {padding-right: 0px; padding-left: 0px;}
+
+/******************************************
+ Colors
+******************************************/
+
+body {background: #ffffff;}
+strong {color: #000000;}
+p, li, #sidenav a {color: #0d0d0d;}
+a {color: DodgerBlue;}
+a:hover, #sidenav a:hover {color: #0059b3;}
+#sidenav ul > li > span {color: #333333;}
+#sidenav a.active {color: #0059b3;}
+
+/******************************************
+ menu
+******************************************/
+
+.navbar {
+  padding: 10px 10px 10px 5px;
+  margin-bottom: 0px;
+}
+
+/******************************************
+ sidenav (generic)
+******************************************/
+
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+#sidenav {
+  width: 250px;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  height: calc(100% - 60px);
+  z-index: 999;
+  padding: 10px;
+  border: none;
+  border-radius: 0;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#sidenav li {
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+  overflow: hidden; 
+  list-style-position:inside; 
+  font-size: 95%;
+}
+
+#sidenav ul {padding-left: 0px; list-style-type: none;}
+
+#sidenav ul > li > ol {padding-left: 3px; list-style-type: "1";}
+#sidenav ul > li > span:hover {cursor: pointer;}
+#sidenav ul > li {margin-bottom: 12px;}
+#sidenav ul > li > ol > li {line-height: 1.8em;}
+#sidenav ul > li > ol > li > a.active {font-weight: bold;}
+
+.nav-icon {padding-right: 3px; padding-bottom: 5px; width: 20px;}
+
+/******************************************
+ content
+******************************************/
+
+#content {
+  width: calc(100% - 250px);
+  padding: 10px 40px;
+  min-height: calc(100% - 60px);
+  transition: all 0.3s;
+  position: absolute;
+  top: 60px;
+  right: 0;
+}
+
+#content.active {
+  width: 100%;
+}
+
+#content img {margin-bottom: 12px;}
+
+/******************************************
+ media
+******************************************/
+
+@media (min-width: 768px) {
+  #sidenavCollapse {display:none;}
+}
+
+@media (max-width: 768px) {
+  #sidenav {margin-left: -250px;}
+  #sidenav.active {margin-left: 0;}
+  #content {width: 100%;}
+  #content.active {width: calc(100% - 250px);}
+  #sidenavCollapse {display:block;}
+  .navbar-brand img {display:none;}
+  .navbar-brand {margin: 0 auto;}
+  .ml-auto, .mx-auto {margin-left: 0 !important;}
+}
+
+.mr-sm-2, .mx-sm-2 {
+  margin-right: 0rem!important;
+
