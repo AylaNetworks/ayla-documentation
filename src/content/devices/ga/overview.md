@@ -1,7 +1,6 @@
 ---
 title: Overview
-root: ../../../.
-layout: devices.html
+layout: devices-ga.html
 ---
 
 This is the device-ga-overview content.

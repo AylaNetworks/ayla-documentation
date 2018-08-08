@@ -1,7 +1,6 @@
 ---
 title: Host Applications
-root: ../../../.
-layout: devices.html
+layout: devices-pm.html
 ---
 
 This is the device-pm-host-applications content.

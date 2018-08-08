@@ -1,6 +1,5 @@
 ---
 title: Devices
-root: ../../.
 layout: devices.html
 ---
 

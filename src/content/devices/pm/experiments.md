@@ -1,7 +1,6 @@
 ---
 title: Experiments
-root: ../../../.
-layout: devices.html
+layout: devices-pm.html
 ---
 
 This is the device-pm-experiments content.

@@ -1,7 +1,6 @@
 ---
 title: IDE
-root: ../../../.
-layout: devices.html
+layout: devices-pm.html
 ---
 
 This is the device-pm-ide content.

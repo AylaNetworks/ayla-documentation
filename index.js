@@ -19,9 +19,11 @@ Metalsmith(__dirname)
   .use(layouts({
     engine: 'handlebars',
     partials: {
+      apps_sn: 'partials/apps_sn',
+      devices_sn: 'partials/devices_sn',
       head: 'partials/head',
-      menu: 'partials/menu',
-      js: 'partials/js'
+      js: 'partials/js',
+      menu: 'partials/menu'
     }
   }))
 

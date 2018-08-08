@@ -1,7 +1,6 @@
 ---
 title: Metadata
-root: ../../../.
-layout: devices.html
+layout: devices-pm.html
 ---
 
 This is the device-pm-metadata content.

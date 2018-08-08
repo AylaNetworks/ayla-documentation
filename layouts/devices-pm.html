@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+{{> head }}
+</head>
+
+<body>
+<div class="wrapper">
+
+<!-- MENU -->
+
+{{> menu devices='active'}}
+
+<!-- SIDENAV -->
+
+{{> devices_sn pm='block' sa='none' ga='none'}}
+
+<!-- CONTENT  -->
+
+<div id="content">
+
+<div class="title">{{ title }}</div>
+<hr/>
+
+{{{ contents }}}
+
+</div>
+
+<!-- JAVASCRIPT -->
+
+{{> js }}
+
+</div>
+</body>
+</html>

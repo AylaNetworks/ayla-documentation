@@ -6,61 +6,15 @@
 </head>
 
 <body>
-<div class="wrapper">z
+<div class="wrapper">
 
 <!-- MENU -->
 
-{{> menu menuItemId ='devices'}}
+{{> menu devices='active'}}
 
 <!-- SIDENAV -->
 
-<nav id="sidenav" class="devices">
-
-<ul>
-<li><span><img class="nav-icon" src="{{root}}/assets/images/book-blue-icon.png">Production Modules</span>
-<ol style="display:none;">
-<li id="devices-pm-overview"><a href="{{root}}/content/devices/pm/overview.html">Overview</a></li>
-<li id="devices-pm-design-kit"><a href="{{root}}/content/devices/pm/design-kit.html">Design Kit</a></li>
-<li id="devices-pm-experiments"><a href="{{root}}/content/devices/pm/experiments.html">Experiments</a></li>
-<li id="devices-pm-ide"><a href="{{root}}/content/devices/pm/ide.html">IDE</a></li>
-<li id="devices-pm-host-applications"><a href="{{root}}/content/devices/pm/host-applications.html">Host applications</a></li>
-<li id="devices-pm-debugging"><a href="{{root}}/content/devices/pm/debugging.html">Debugging</a></li>
-<li id="devices-pm-properties"><a href="{{root}}/content/devices/pm/properties.html">Properties</a></li>
-<li id="devices-pm-templates"><a href="{{root}}/content/devices/pm/templates.html">Templates</a></li>
-<li id="devices-pm-schedules"><a href="{{root}}/content/devices/pm/schedules.html">Schedules</a></li>
-<li id="devices-pm-metadata"><a href="{{root}}/content/devices/pm/metadata.html">Metadata</a></li>
-<li id="devices-pm-file-properties"><a href="{{root}}/content/devices/pm/file-properties.html">File properties</a></li>
-<li id="devices-pm-synchronization"><a href="{{root}}/content/devices/pm/synchronization.html">Synchronization</a></li>
-<li id="devices-pm-boot-loaders"><a href="{{root}}/content/devices/pm/boot-loaders.html">Boot loaders</a></li>
-<li id="devices-pm-ota-updates"><a href="{{root}}/content/devices/pm/ota-updates.html">OTA updates</a></li>
-<li id="devices-pm-oem-accounts"><a href="{{root}}/content/devices/pm/oem-accounts.html">OEM accounts</a></li>
-<li id="devices-pm-porting"><a href="{{root}}/content/devices/pm/porting.html">Porting</a></li>
-</ol>
-</li>
-<li><span><img class="nav-icon" src="{{root}}/assets/images/book-blue-icon.png" width="20px">Software Agents</span>
-<ol style="display:none;">
-<li id="devices-sa-overview"><a href="{{root}}/content/devices/sa/overview.html">Overview</a></li>
-<li><span>Page Title</span></li>
-<li><span>Page Title</span></li>
-<li><span>Page Title</span></li>
-<li><span>Page Title</span></li>
-<li><span>Page Title</span></li>
-</ol>
-</li>
-<li><span><img class="nav-icon" src="{{root}}/assets/images/book-blue-icon.png" width="20px">Gateway Agents</span>
-<ol style="display:none;">
-<li id="devices-ga-overview"><a href="{{root}}/content/devices/ga/overview.html">Overview</a></li> 
-<li><span>Page Title</span></li>
-<li><span>Page Title</span></li>
-<li><span>Page Title</span></li>
-<li><span>Page Title</span></li>
-<li><span>Page Title</span></li>
-<li><span>Page Title</span></li>
-</ol>
-</li>
-</ul>
-
-</nav>
+{{> devices_sn pm='none' sa='none' ga='none'}}
 
 <!-- CONTENT  -->
 

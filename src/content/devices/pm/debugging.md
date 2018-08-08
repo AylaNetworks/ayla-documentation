@@ -1,7 +1,6 @@
 ---
 title: Debugging
-root: ../../../.
-layout: devices.html
+layout: devices-pm.html
 ---
 
 This is the device-pm-debugging content.

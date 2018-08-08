@@ -1,7 +1,6 @@
 ---
 title: Porting
-root: ../../../.
-layout: devices.html
+layout: devices-pm.html
 ---
 
 This is the device-pm-porting content.

@@ -1,7 +1,6 @@
 ---
 title: Boot Loaders
-root: ../../../.
-layout: devices.html
+layout: devices-pm.html
 ---
 
 This is the device-pm-boot-loaders content.

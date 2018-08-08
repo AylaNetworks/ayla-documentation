@@ -1,6 +1,5 @@
 ---
 title: Home
-root: .
 layout: home.html
 ---
 

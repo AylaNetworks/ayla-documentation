@@ -1,6 +1,5 @@
 ---
 title: Apps
-root: ../../.
 layout: apps.html
 ---
 

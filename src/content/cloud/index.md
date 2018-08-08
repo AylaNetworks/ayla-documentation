@@ -1,6 +1,5 @@
 ---
 title: Cloud
-root: ../../.
 layout: cloud.html
 ---
 

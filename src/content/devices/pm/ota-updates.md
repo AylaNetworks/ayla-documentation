@@ -1,7 +1,6 @@
 ---
 title: OTA Updates
-root: ../../../.
-layout: devices.html
+layout: devices-pm.html
 ---
 
 This is the device-pm-ota-updates content.

@@ -1,7 +1,6 @@
 ---
 title: Overview
-root: ../../../.
-layout: devices.html
+layout: devices-sa.html
 ---
 
 This is the device-sa-overview content.

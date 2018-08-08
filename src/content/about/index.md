@@ -1,6 +1,5 @@
 ---
 title: About
-root: ../../.
 layout: about.html
 ---
 

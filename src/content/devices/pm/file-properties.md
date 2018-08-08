@@ -1,7 +1,6 @@
 ---
 title: File Properties
-root: ../../../.
-layout: devices.html
+layout: devices-pm.html
 ---
 
 This is the device-pm-file-properties content.

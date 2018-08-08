@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+{{> head }}
+</head>
+
+<body>
+<div class="wrapper">
+
+<!-- MENU -->
+
+{{> menu apps='active'}}
+
+<!-- SIDENAV -->
+
+{{> apps_sn amap-android='none' amap-ios='block'}}
+
+<!-- CONTENT  -->
+
+<div id="content">
+
+<div class="title">{{ title }}</div>
+<hr/>
+
+{{{ contents }}}
+
+</div>
+
+<!-- JAVASCRIPT -->
+
+{{> js }}
+
+</div>
+</body>
+</html>

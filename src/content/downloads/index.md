@@ -1,6 +1,5 @@
 ---
 title: Downloads
-root: ../../.
 layout: downloads.html
 ---
 

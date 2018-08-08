@@ -1,6 +1,5 @@
 ---
 title: Style Guide
-root: ../../.
 layout: about.html
 ---
 
