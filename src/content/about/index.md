@@ -29,7 +29,7 @@ All other information repositories should be deprecated including Ayla Universit
 
 ## Implement a statically generated website from MD files on github
 
-Many companies use static-site generators to publish technical documentation (see [Particle](https://docs.particle.io/guide/getting-started/intro/photon/) and [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/).  
+Many companies use static-site generators to publish technical documentation (see [Particle](https://docs.particle.io/guide/getting-started/intro/photon/) and [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)).  
 
 Metalsmith is one example of a static website generator. Essentially, it is a configurable data-transformation pipeline. It inputs files (e.g. Github Markdown and html templates), converts them to html, passes them through a series of [pluggable transformation modules](https://github.com/metalsmith/awesome-metalsmith/blob/master/PLUGINS.md), and outputs a static website (complete with html, css, js, and image files) which can be zipped into an archive file, uploaded to a web-hosting site, and deployed.
 
