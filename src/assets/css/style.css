@@ -13,7 +13,7 @@ body {
 p, li {
   /*font-family: 'Poppins', sans-serif;*/
   font-size: 1.0em;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5em;
 }
 
@@ -28,9 +28,9 @@ p, li {
   display: block;
 }
 
-h1 {font-size: 1.50rem;}
-h2 {font-size: 1.25rem;}
-h3 {font-size: 1.00rem;}
+h1 {font-size: 1.50rem; margin-top: 2rem;}
+h2 {font-size: 1.25rem; margin-top: 2rem;}
+h3 {font-size: 1.00rem; margin-top: 2rem;}
 h4 {font-size: 1.00rem;}
 h5 {font-size: 1.00rem;}
 h6 {font-size: 1.00rem;}
@@ -44,8 +44,8 @@ a, a:hover, a:focus {text-decoration: none;}
 ******************************************/
 
 body {background: #ffffff;}
-strong {color: #000000;}
-p, li, #sidenav a {color: #000000;}
+strong {color: #1a1a1a;}
+p, li, #sidenav a {color: #1a1a1a;}
 a {color: DodgerBlue;}
 a:hover, #sidenav a:hover {color: #0059b3;}
 #sidenav ul > li > span {color: #333333;}
@@ -61,7 +61,7 @@ a:hover, #sidenav a:hover {color: #0059b3;}
 }
 
 /******************************************
- sidenav (generic)
+ sidenav
 ******************************************/
 
 .wrapper {
@@ -102,6 +102,9 @@ a:hover, #sidenav a:hover {color: #0059b3;}
 
 .nav-icon {padding-right: 3px; padding-bottom: 5px; width: 20px;}
 
+#sidenav.devices ul li span,
+#sidenav.apps ul li span {font-weight: bold;}
+
 /******************************************
  content
 ******************************************/
@@ -122,11 +125,47 @@ a:hover, #sidenav a:hover {color: #0059b3;}
 
 #content img {margin-bottom: 12px;}
 
-#content li {margin-bottom: 12px;}
+#content li {margin-bottom: 8px;}
 
 #content pre {
-  background: #f0f8ff;
-  padding: 12px;
+  background: #f2f2f2;
+  padding: 6px;
+  border: 1px solid e6e6e6;
+}
+
+/******************************************
+ tables
+******************************************/
+
+#content table {
+  width: auto;
+}
+
+#content table tr, #content table th, #content table td {
+}
+
+#content table, #content th, #content td {
+  border: 1px solid #e6e6e6;
+  border-collapse: collapse;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding: 6px 6px;
+  vertical-align:top;
+}
+
+#content table th {background: #e6e6e6; font-weight: normal;}
+
+#content table .center {text-align: center;}
+
+/******************************************
+ img
+******************************************/
+
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 /******************************************

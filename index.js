@@ -1,9 +1,10 @@
-var Metalsmith = require('metalsmith');
-var markdown = require('metalsmith-markdown');
-var layouts = require('metalsmith-layouts');
-var handlebars = require('handlebars');
+const metalsmith = require('metalsmith');
+const markdown = require('metalsmith-markdown');
+const layouts = require('metalsmith-layouts');
+const handlebars = require('handlebars');
+const auth = require('metalsmith-basic-auth');
 
-Metalsmith(__dirname)
+metalsmith(__dirname)
   .metadata({
     title: "sss",
     description: "sss"
@@ -15,6 +16,11 @@ Metalsmith(__dirname)
   .clean(true)
 
   .use(markdown())
+
+  .use(auth({
+    serverPath: '/home/hagenhau/public_html',
+    authName: 'My Protected Area'
+  }))
 
   .use(layouts({
     engine: 'handlebars',

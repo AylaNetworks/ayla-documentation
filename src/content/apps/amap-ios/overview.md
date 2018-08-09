@@ -17,3 +17,5 @@ The [Podfile](https://github.com/AylaNetworks/AMAP_iOS_Public/blob/master/Podfil
 conditional_assign("ayla_sdk_branch", "release/5.8.04")
 conditional_assign("ayla_amap_core_branch", "release/5.8.01")
 ```
+
+The above code tells release/5.8.04 branch of Ayla Sdk and release/5.8.01 of AMAP_Core_Framework were used to build the current release.
