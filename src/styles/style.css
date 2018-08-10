@@ -111,6 +111,14 @@ a:hover, #sidenav a:hover {color: #0059b3;}
 
 #content {
   width: calc(100% - 250px);
+}
+
+#content.home{
+  width: 100%;
+  padding: 40px;
+}
+
+#content {
   padding: 10px 40px;
   min-height: calc(100% - 60px);
   transition: all 0.3s;
@@ -179,14 +187,12 @@ img.center {
 @media (max-width: 768px) {
   #sidenav {margin-left: -250px;}
   #sidenav.active {margin-left: 0;}
-  #content {width: 100%;}
-  #content.active {width: calc(100% - 250px);}
+  #content, #content.home {width: 100%; padding: 6px 6px;}
   #sidenavCollapse {display:block;}
   .navbar-brand img {display:none;}
   .navbar-brand {margin: 0 auto;}
   .ml-auto, .mx-auto {margin-left: 0 !important;}
 }
 
-.mr-sm-2, .mx-sm-2 {
-  margin-right: 0rem!important;
+.mr-sm-2, .mx-sm-2 {margin-right: 0rem!important;}
 
