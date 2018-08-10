@@ -133,7 +133,9 @@ a:hover, #sidenav a:hover {color: #0059b3;}
 
 #content img {margin-bottom: 12px;}
 
-.spaceAfterRow {margin-bottom: 18px;}
+#content.home img, #content.home iframe {margin-bottom: 12px;}
+
+#content.home h3 {margin-top: 0px;}
 
 #content li {margin-bottom: 8px;}
 
