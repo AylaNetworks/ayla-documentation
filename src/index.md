@@ -2,8 +2,8 @@
 title: Home
 layout: home.html
 auth:
-    user: guest
-    pass: acc3000
+    user: matt
+    pass: Ayla3000
 ---
 
 

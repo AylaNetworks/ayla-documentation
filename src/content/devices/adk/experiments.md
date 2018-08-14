@@ -3,11 +3,8 @@ title: Experiments
 layout: devices-adk.html
 ---
 
-# Installing serial drivers
+# Accessing the module via CLI
 
-# Accessing the module with CLI
+# Updating firmware
 
-# Updating the Ayla Agent firmware
-
-# Updating the host application
-
+# Testing features

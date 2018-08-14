@@ -3,6 +3,37 @@ title: Setup
 layout: devices-adk.html
 ---
 
+This chapter shows you how to connect an off-the-shelf Ayla Design Kit to a default Ayla account. 
+
+Here are the specific goals of the chapter:
+
+<div class="image"><img src="images/sss.jpg" width=500></div>
+
+
+
+
+
+, taking into consideration that you may not have either yet, or the design kit you have is currently registered to another Ayla account, or the design kit you have is running incompatible agent and/or host firmware (from prior experimentation). In any case, by the end of this chapter you should have the following:
+
+1. A default Ayla account.
+1. An Ayla Design Kit with compatible agent/host firmware registered to your account.
+1. A USB 2.0 A-Male to Micro B cable which is included in the design kit.
+1. A FTDI TTL-232R-3V3 cable which is not included in the kit.
+1. A computer with a browser, an iOS or Android device, and access to a Wi-Fi network.
+
+In addition, you should be able to perform the following tests:
+
+<ol style="list-style-type: upper-alpha;">
+<li>When you push the Blue Button on your design kit, the Ayla Developer Portal, the Ayla OEM Dashboard, and the AMAP and Aura mobile apps sense the action. </li>
+<li>When you turn the Blue and Green LEDs on/off in DevPortal, OEMDash, AMAP, and Aura, the LEDS turn on/off on your design kit. </li>
+</ol>
+
+
+
+
+
+
+
 Note to author: The reader is in one of the several dissimilar situations listed below, and the goal of this chapter is to get all readers to the same point so that all readers can follow the instructions in the next chapter (Experiments).
 
 <table>

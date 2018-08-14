@@ -93,9 +93,9 @@ a:hover {color: #0059b3;}
 
 #sidenav ul {padding-left: 0px; list-style-type: none;}
 
-#sidenav ul > li > ol {padding-left: 3px; list-style-type: "1";}
+#sidenav ul > li > ol {padding-left: 3px; /*list-style-type: "1";*/}
 #sidenav ul > li > span:hover {cursor: pointer;}
-#sidenav ul > li {margin-bottom: 12px;}
+#sidenav ul > li {margin-bottom: 9px;}
 #sidenav ul > li > ol > li {line-height: 1.8em;}
 
 #sidenav ul > li > a.active,
@@ -136,7 +136,7 @@ a:hover {color: #0059b3;}
 
 #content.home h3 {margin-top: 0px;}
 
-#content li {margin-bottom: 8px;}
+#content li {margin-bottom: 6px;}
 
 #content pre {
   background: #f2f2f2;
@@ -168,6 +168,8 @@ a:hover {color: #0059b3;}
 
 #content table .center {text-align: center;}
 
+#content .note {padding: 12px; margin: 24px 0px; background: linen;}
+
 /******************************************
  img
 ******************************************/
@@ -181,7 +183,7 @@ img.center {
 
 #content figure.figure {margin: 30px 0px;}
 
-#content img {margin-bottom: 0px;}
+#content div.image {margin: 30px 30px;}
 
 /******************************************
  media
