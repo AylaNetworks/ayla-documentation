@@ -1,5 +1,7 @@
 $(function() {
 
+  // Change this to simply determine which page.
+
   var sideNavClass = $('#sidenav').attr("class").split(' ')[0];
   var itemId = '';
 
@@ -35,8 +37,48 @@ $(function() {
     }
   }
 
+  else if(sideNavClass === 'feedback') {
+    var category = getParameterByName('category');
+    var item = getParameterByName('item');
+    $('#category').val(category);
+    $('#item').val(item);
+  }
+
   //alert(sideNavClass);
   //alert(itemId);
+});
+
+$(function() {
+  $('#feedback').click(function(event) {
+
+    event.preventDefault();
+
+    var curr = $('#top-menu').children('li.active').first().children('a').first().html();
+    var category = curr.toLowerCase();
+    var item = 'none';
+
+    if (curr === 'Home') {
+      category = 'general';
+    }
+
+    else if(curr === 'Devices' || curr === 'Cloud' || curr === 'Apps') {
+      var chapter = $('a.active').html();
+      if(chapter) {
+        var book = $('a.active').closest('ol').closest('li').children('span').first().html();
+        item = book + ' > ' + chapter;
+      }
+    }
+
+    else if(curr === 'Glossary') {
+      var term = $('a.active').html();
+      if(term) {
+        item = term;
+      }
+    }
+
+    window.location.href = '/content/feedback/?category=' + category + '&item=' + item;
+
+  });
 });
 
 $(function() {
@@ -59,7 +101,7 @@ $(function() {
   $('#sidenavCollapse').on('click', function () {
     $('#sidenav, #content').toggleClass('active');
     $('.collapse.in').toggleClass('in');
-    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    /* $('a[aria-expanded=true]').attr('aria-expanded', 'false'); */
     });
   });
 });
@@ -78,4 +120,14 @@ function closeBook(ol) {
   //var path = src.substring(0, src.lastIndexOf("/"));
   //$(img).attr('src', path + '/book-blue-icon.png');
   $(ol).hide();
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }

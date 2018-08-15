@@ -1,14 +1,22 @@
-const metalsmith = require('metalsmith');
-const markdown = require('metalsmith-markdown');
-const layouts = require('metalsmith-layouts');
-const handlebars = require('handlebars');
 const auth = require('metalsmith-basic-auth');
+const fileMetadata = require('metalsmith-filemetadata');
+const handlebars = require('handlebars');
+const layouts = require('metalsmith-layouts');
+const lunr = require('metalsmith-lunr');
+const lunr_ = require('lunr');
+const markdown = require('metalsmith-markdown');
+const metalsmith = require('metalsmith');
+const msIf = require('metalsmith-if');
+
+var environment;
 
 metalsmith(__dirname)
+
   .metadata({
     title: "sss",
     description: "sss"
   })
+
   .source('./src')
 
   .destination('./build')
@@ -16,6 +24,8 @@ metalsmith(__dirname)
   .clean(true)
 
   .use(markdown())
+
+  .use(lunr())
 
   .use(auth({
     serverPath: '/home/hagenhau/public_html',

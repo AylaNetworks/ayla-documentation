@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+{{> head }}
+</head>
+
+<body>
+<div class="wrapper">
+
+<!-- MENU -->
+
+{{> menu feedback='active'}}
+
+<!-- SIDENAV -->
+
+<nav id="sidenav" class="feedback" style="display:none;">
+
+<p>This is the sidenav.</p>
+
+</nav>
+
+<!-- CONTENT  -->
+
+<div id="content" class="feedback">
+
+<div class="title">{{ title }}</div>
+<hr/>
+
+<div class="row">
+
+<div class="col-lg-6 col-md-12 col-sm-12 col-12">
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="first-name">First Name</label>
+      <input type="text" class="form-control" id="first-name" placeholder="" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="last-name">Last Name</label>
+      <input type="text" class="form-control" id="last-name" placeholder="" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" placeholder="" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="company">Company</label>
+      <input type="text" class="form-control" id="company" placeholder="" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="category">Category</label>
+      <select id="category" class="form-control" required>
+        <option value="">Choose</option> 
+        <option value="apps">Apps</option> 
+        <option value="certification">Certification</option>
+        <option value="cloud">Cloud</option>
+        <option value="devices">Devices</option>
+        <option value="feedback">Feedback</option>
+        <option value="general">General</option>
+        <option value="glossary">Glossary</option>
+        <option value="training">Training</option>
+      </select>
+    </div>
+    <div class="form-group col-md-8">
+      <label for="text">Item</label>
+      <input type="text" class="form-control" id="item" placeholder="">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" rows="5" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+<div class="col-lg-6 col-md-12 col-sm-12 col-12">
+<p>Ayla Networks keeps your information confidential.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+
+{{> js }}
+
+</div>
+</body>
+</html>

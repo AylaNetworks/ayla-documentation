@@ -123,18 +123,21 @@ a:hover {color: #0059b3;}
   right: 0;
 }
 
-#content.home{
+#content.home, #content.feedback{
   width: 100%;
   padding: 30px 40px;
 }
 
+#content.home img,
+#content.home iframe,
+#content.feedback img
+ {margin-bottom: 12px;}
+
+#content.home h3, #content.feedback h3 {margin-top: 0px;}
+
 #content.active {
   width: 100%;
 }
-
-#content.home img, #content.home iframe {margin-bottom: 12px;}
-
-#content.home h3 {margin-top: 0px;}
 
 #content li {margin-bottom: 6px;}
 
