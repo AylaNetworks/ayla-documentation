@@ -1,5 +1,5 @@
 ---
-title: App Developer Guides
+title: Apps
 layout: apps.html
 ---
 
