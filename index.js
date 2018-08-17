@@ -35,12 +35,15 @@ metalsmith(__dirname)
   .use(layouts({
     engine: 'handlebars',
     partials: {
+      head: 'partials/head',
+      menu: 'partials/menu',
       apps_sn: 'partials/apps_sn',
+      certification_sn: 'partials/certification_sn',
       cloud_sn: 'partials/cloud_sn',
       devices_sn: 'partials/devices_sn',
-      head: 'partials/head',
-      js: 'partials/js',
-      menu: 'partials/menu'
+      glossary_sn: 'partials/glossary_sn',
+      training_sn: 'partials/training_sn',
+      js: 'partials/js'
     }
   }))
 

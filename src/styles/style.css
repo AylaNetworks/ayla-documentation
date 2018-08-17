@@ -126,7 +126,7 @@ a:hover {color: #0059b3;}
 
 #content.home {
   width: 100%;
-  padding: 30px 40px;
+  padding: 50px 40px 0 40px;
 }
 
 #content.feedback {
@@ -134,8 +134,8 @@ a:hover {color: #0059b3;}
   padding: 10px 15%;
 }
 
-#content.home img,
-#content.home iframe,
+/* #content.home img,
+#content.home iframe, */
 #content.feedback img
  {margin-bottom: 12px;}
 
@@ -154,6 +154,16 @@ a:hover {color: #0059b3;}
 }
 
 label {font-weight: bold; font-size: 90%;}
+
+span.a {
+    display: inline-block;
+    width: 180px;
+   /* height: 50px; */
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow; 
+}
+
 /******************************************
  tables
 ******************************************/
@@ -213,6 +223,7 @@ img.center {
 
 @media (min-width: 768px) {
   #sidenavCollapse {display:none;}
+  #home-small {display:none;}
 }
 
 @media (max-width: 768px) {
@@ -223,6 +234,7 @@ img.center {
   .navbar-brand img {display:none;}
   .navbar-brand {margin: 0 auto;}
   .ml-auto, .mx-auto {margin-left: 0 !important;}
+  #home-big {display:none;}
 }
 
 .mr-sm-2, .mx-sm-2 {margin-right: 0rem!important;}

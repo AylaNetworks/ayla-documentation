@@ -3,4 +3,6 @@ title: Training
 layout: training.html
 ---
 
-This is the training homepage.
+Ayla offers formal training in the delivery modes listed in the sidebar.
+
+Click on a mode to learn more.

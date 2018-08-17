@@ -1,14 +1,12 @@
 $(function() {
 
-  // Change this to simply determine which page.
+  if($('#sidenav').length != 0) {
+    var sideNavClass = $('#sidenav').attr("class").split(' ')[0];
+    var itemId = '';
 
-  var sideNavClass = $('#sidenav').attr("class").split(' ')[0];
-  var itemId = '';
-
-  if(sideNavClass === 'devices' || sideNavClass === 'cloud' || sideNavClass === 'apps') {
     var a = window.location.pathname.replace('.html', '').split("/");
-    if(a.length >= 5) {
-      itemId = '#' + a[a.length-3] + '-' + a[a.length-2] + '-' + a[a.length-1];
+    if(a.length >= 4) {
+      itemId = '#' + a[a.length-2] + '-' + a[a.length-1];
       if($(itemId).length) {
         openBook($(itemId).parent('ol'));
         $(itemId).children('a').first().addClass('active');
@@ -16,25 +14,13 @@ $(function() {
     }
   }
 
-  else if(sideNavClass === 'glossary' || sideNavClass === 'certification') {
-    var a = window.location.pathname.replace('.html', '').split("/");
-    if(a.length >= 4) {
-      itemId = '#' + a[a.length-2] + '-' + a[a.length-1];
-      if($(itemId).length) {
-        $(itemId).children('a').first().addClass('active');
-      }
-    }
-  }
-
-  else if(sideNavClass === 'feedback') {
+  if($('#content').attr("class").split(' ')[0] === 'feedback') {
     var category = getParameterByName('category');
     var item = getParameterByName('item');
     $('#category').val(category);
     $('#item').val(item);
   }
 
-  //alert(sideNavClass);
-  //alert(itemId);
 });
 
 $(function() {
@@ -42,7 +28,7 @@ $(function() {
 
     event.preventDefault();
 
-    var category = $('#sidenav').attr("class").split(' ')[0];
+    var category = $('#content').attr("class").split(' ')[0];
     var item = 'none';
 
     if (category === 'home') {
@@ -110,11 +96,11 @@ function closeBook(ol) {
 }
 
 function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
