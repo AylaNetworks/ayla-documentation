@@ -2,7 +2,7 @@
 title: Home
 layout: home.html
 auth:
-    user: matt
+    user: guest
     pass: Ayla3000
 ---
 

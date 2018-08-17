@@ -1,5 +1,5 @@
 ---
-title: Cloud
+title: Cloud Integrator Guides
 layout: cloud.html
 ---
 

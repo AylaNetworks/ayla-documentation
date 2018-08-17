@@ -5,7 +5,7 @@ $(function() {
   var sideNavClass = $('#sidenav').attr("class").split(' ')[0];
   var itemId = '';
 
-  if(sideNavClass === 'devices') {
+  if(sideNavClass === 'devices' || sideNavClass === 'cloud' || sideNavClass === 'apps') {
     var a = window.location.pathname.replace('.html', '').split("/");
     if(a.length >= 5) {
       itemId = '#' + a[a.length-3] + '-' + a[a.length-2] + '-' + a[a.length-1];
@@ -16,18 +16,7 @@ $(function() {
     }
   }
 
-  else if(sideNavClass === 'apps') {
-    var a = window.location.pathname.replace('.html', '').split("/");
-    if(a.length >= 5) {
-      itemId = '#' + a[a.length-3] + '-' + a[a.length-2] + '-' + a[a.length-1];
-      if($(itemId).length) {
-        openBook($(itemId).parent('ol'));
-        $(itemId).children('a').first().addClass('active');
-      }
-    }
-  }
-
-  else if(sideNavClass === 'glossary') {
+  else if(sideNavClass === 'glossary' || sideNavClass === 'certification') {
     var a = window.location.pathname.replace('.html', '').split("/");
     if(a.length >= 4) {
       itemId = '#' + a[a.length-2] + '-' + a[a.length-1];
@@ -53,15 +42,14 @@ $(function() {
 
     event.preventDefault();
 
-    var curr = $('#top-menu').children('li.active').first().children('a').first().html();
-    var category = curr.toLowerCase();
+    var category = $('#sidenav').attr("class").split(' ')[0];
     var item = 'none';
 
-    if (curr === 'Home') {
+    if (category === 'home') {
       category = 'general';
     }
 
-    else if(curr === 'Devices' || curr === 'Cloud' || curr === 'Apps') {
+    else if(category === 'devices' || category === 'cloud' || category === 'apps') {
       var chapter = $('a.active').html();
       if(chapter) {
         var book = $('a.active').closest('ol').closest('li').children('span').first().html();
@@ -69,7 +57,7 @@ $(function() {
       }
     }
 
-    else if(curr === 'Glossary') {
+    else if(category === 'glossary' || category === 'certification') {
       var term = $('a.active').html();
       if(term) {
         item = term;
@@ -77,7 +65,6 @@ $(function() {
     }
 
     window.location.href = '/content/feedback/?category=' + category + '&item=' + item;
-
   });
 });
 

@@ -104,6 +104,7 @@ a:hover {color: #0059b3;}
 .nav-icon {padding-right: 3px; padding-bottom: 5px; width: 20px;}
 
 #sidenav.devices ul li span,
+#sidenav.cloud ul li span,
 #sidenav.apps ul li span {font-weight: bold;}
 
 /******************************************
@@ -123,9 +124,14 @@ a:hover {color: #0059b3;}
   right: 0;
 }
 
-#content.home, #content.feedback{
+#content.home {
   width: 100%;
   padding: 30px 40px;
+}
+
+#content.feedback {
+  width: 100%;
+  padding: 10px 15%;
 }
 
 #content.home img,
@@ -147,6 +153,7 @@ a:hover {color: #0059b3;}
   border: 1px solid #e6e6e6;
 }
 
+label {font-weight: bold; font-size: 90%;}
 /******************************************
  tables
 ******************************************/
@@ -191,6 +198,18 @@ img.center {
 /******************************************
  media
 ******************************************/
+
+@media (max-width: 1200px) {
+  #content.feedback {
+    padding: 10px 10%;
+  }
+}
+
+@media (max-width: 1000px) {
+  #content.feedback {
+    padding: 10px 6%;
+  }
+}
 
 @media (min-width: 768px) {
   #sidenavCollapse {display:none;}

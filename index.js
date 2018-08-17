@@ -36,6 +36,7 @@ metalsmith(__dirname)
     engine: 'handlebars',
     partials: {
       apps_sn: 'partials/apps_sn',
+      cloud_sn: 'partials/cloud_sn',
       devices_sn: 'partials/devices_sn',
       head: 'partials/head',
       js: 'partials/js',

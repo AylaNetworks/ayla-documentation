@@ -1,5 +1,5 @@
 ---
-title: Devices
+title: Device Developer Guides
 layout: devices.html
 ---
 
