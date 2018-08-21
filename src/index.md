@@ -11,27 +11,14 @@ layout: page-full-width-no-title.html
 </div>
 
 <div class="row">
-<div class="col-md-4 text-center cat-tile" style="background: thistle;">
-<a href="/devices/">Devices</a>
+<div class="col-md-4 text-center"><a href="/devices/"><div class="cat-tile" style="background: thistle;">Devices</div></a></div>
+<div class="col-md-4 text-center"><a href="/cloud/"><div class="cat-tile" style="background: palegoldenrod;">Cloud</div></a></div>
+<div class="col-md-4 text-center"><a href="/apps/"><div class="cat-tile" style="background: beige;">Apps</div></a></div>
 </div>
-<div class="col-md-4 text-center cat-tile" style="background: palegoldenrod;">
-<a href="/cloud/">Cloud</a>
-</div>
-<div class="col-md-4 text-center cat-tile" style="background: beige;">
-<a href="/apps/">Apps</a>
-</div>
-</div>
-
 <div class="row">
-<div class="col-md-4 text-center cat-tile" style="background: lightsteelblue;">
-<a href="/glossary/">Glossary</a>
-</div>
-<div class="col-md-4 text-center cat-tile" style="background: Khaki;">
-<a href="/training/">Training</a>
-</div>
-<div class="col-md-4 text-center cat-tile" style="background: lightblue;">
-<a href="/certification/">Certification</a>
-</div>
+<div class="col-md-4 text-center"><a href="/glossary/"><div class="cat-tile" style="background: lightsteelblue;">Glossary</div></a></div>
+<div class="col-md-4 text-center"><a href="/training/"><div class="cat-tile" style="background: Khaki;">Training</div></a></div>
+<div class="col-md-4 text-center"><a href="/certification/"><div class="cat-tile" style="background: lightblue;">Certification</div></a></div>
 </div>
 
 <div class="row" style="margin-top: 36px;">

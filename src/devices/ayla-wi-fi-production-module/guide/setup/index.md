@@ -7,10 +7,6 @@ This chapter shows you how to connect an off-the-shelf Ayla Design Kit to a defa
 
 Here are the specific goals of the chapter:
 
-<div class="image"><img src="images/sss.jpg" width=500></div>
-
-
-
 
 
 , taking into consideration that you may not have either yet, or the design kit you have is currently registered to another Ayla account, or the design kit you have is running incompatible agent and/or host firmware (from prior experimentation). In any case, by the end of this chapter you should have the following:
