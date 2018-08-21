@@ -1,36 +1,13 @@
-<!DOCTYPE html>
-<html>
+{{> top }}
 
-<head>
-{{> head }}
-</head>
+<!-- BEGIN SIDENAV -->
+<nav id="sidenav">
+<ul>
+<li id="training-classroom"><a href="/training/classroom/">Classroom</a></li>
+<li id="training-custom"><a href="/training/custom/">Custom</a></li>
+<li id="training-online"><a href="/training/online/">Online</a></li>
+<li id="training-webinar"><a href="/training/webinar/">Webinar</a></li></ul>
+</nav>
+<!-- END SIDENAV -->
 
-<body>
-<div class="wrapper">
-
-<!-- MENU -->
-
-{{> menu training='active'}}
-
-<!-- SIDENAV -->
-
-{{> training_sn}}
-
-<!-- CONTENT  -->
-
-<div id="content" class="training">
-
-<div class="title">{{ title }}</div>
-<hr/>
-
-{{{ contents }}}
-
-</div>
-
-<!-- JAVASCRIPT -->
-
-{{> js }}
-
-</div>
-</body>
-</html>
+{{> bottom pageType='page-with-sidebar' }}

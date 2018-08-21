@@ -1,4 +1,4 @@
-const auth = require('metalsmith-basic-auth');
+const breadcrumbs = require('breadcrumbs');
 const fileMetadata = require('metalsmith-filemetadata');
 const handlebars = require('handlebars');
 const layouts = require('metalsmith-layouts');
@@ -7,14 +7,18 @@ const lunr_ = require('lunr');
 const markdown = require('metalsmith-markdown');
 const metalsmith = require('metalsmith');
 const msIf = require('metalsmith-if');
+const path = require('metalsmith-path')
+const writemetadata = require('metalsmith-writemetadata');
 
 var environment;
 
 metalsmith(__dirname)
 
   .metadata({
-    title: "sss",
-    description: "sss"
+    description: "",
+    title: "",
+    nav: "",
+    titleDisplay: "block"
   })
 
   .source('./src')
@@ -25,26 +29,31 @@ metalsmith(__dirname)
 
   .use(markdown())
 
-  .use(lunr())
-
-  .use(auth({
-    serverPath: '/home/hagenhau/public_html',
-    authName: 'My Protected Area'
+  .use(path({
+    directoryIndex: 'index.html'
   }))
 
+  .use(breadcrumbs())
+
+  .use(lunr())
+
   .use(layouts({
+    default: "page-full-width.html",
+    pattern: "**/*.html",
     engine: 'handlebars',
     partials: {
+      top: 'partials/top',
       head: 'partials/head',
       menu: 'partials/menu',
-      apps_sn: 'partials/apps_sn',
-      certification_sn: 'partials/certification_sn',
-      cloud_sn: 'partials/cloud_sn',
-      devices_sn: 'partials/devices_sn',
-      glossary_sn: 'partials/glossary_sn',
-      training_sn: 'partials/training_sn',
-      js: 'partials/js'
+      breadcrumbs: 'partials/breadcrumbs',
+      js: 'partials/js',
+      bottom: 'partials/bottom'
     }
+  }))
+
+  .use(writemetadata({
+    pattern: ['**/*.html']/*,
+    ignorekeys: ['contents']*/
   }))
 
   .build(function(err, files) {

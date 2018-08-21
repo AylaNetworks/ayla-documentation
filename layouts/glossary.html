@@ -1,36 +1,54 @@
-<!DOCTYPE html>
-<html>
+{{> top }}
 
-<head>
-{{> head }}
-</head>
+<!-- BEGIN SIDENAV -->
+<nav id="sidenav">
+<ul>
+<li id="glossary-agent"><a href="/glossary/agent/">Agent</a></li>
+<li id="glossary-alexa-integration-framework"><a href="/glossary/alexa-integration-framework/">Alexa Integration Framework</a></li>
+<li id="glossary-aura"><a href="/glossary/aura/">Aura</a></li>
+<li id="glossary-auto-sync"><a href="/glossary/auto-sync/">Auto Sync</a></li>
+<li id="glossary-ayla-android-agent"><a href="/glossary/ayla-android-agent/">Ayla Android Agent</a></li>
+<li id="glossary-ayla-cellular-production-module"><a href="/glossary/ayla-cellular-production-module/">Ayla Cellular Production Module</a></li>
+<li id="glossary-ayla-cloud"><a href="/glossary/ayla-cloud/">Ayla Cloud</a></li>
+<li id="glossary-ayla-cloud-agent"><a href="/glossary/ayla-cloud-agent/">Ayla Cloud Agent</a></li>
+<li id="glossary-ayla-cloud-service"><a href="/glossary/ayla-cloud-service/">Ayla Cloud Service (ACS)</a></li>
+<li id="glossary-ayla-design-kit"><a href="/glossary/ayla-design-kit/">Ayla Design Kit</a></li>
+<li id="glossary-ayla-device-agent"><a href="/glossary/ayla-device-agent/">Ayla Device Agent (ADA)</a></li>
+<li id="glossary-ayla-device-service"><a href="/glossary/ayla-device-service/">Ayla Device Service (ADS)</a></li>
+<li id="glossary-ayla-dynamic-gateway-agent"><a href="/glossary/ayla-dynamic-gateway-agent/">Ayla Dynamic Gateway Agent</a></li>
+<li id="glossary-ayla-evaluation-board"><a href="/glossary/ayla-evaluation-board/">Ayla Evaluation Board (Ayla EVB)</a></li>
+<li id="glossary-ayla-integrated-agent"><a href="/glossary/ayla-integrated-agent/">Ayla Integrated Agent</a></li>
+<li id="glossary-ayla-linux-agent"><a href="/glossary/ayla-linux-agent/">Ayla Linux Agent</a></li>
+<li id="glossary-ayla-notification-service"><a href="/glossary/ayla-notification-service/">Ayla Notification Service (ANS)</a></li>
+<li id="glossary-ayla-oem-dashboard"><a href="/glossary/ayla-oem-dashboard/">Ayla OEM Dashboard</a></li>
+<li id="glossary-ayla-portable-agent"><a href="/glossary/ayla-portable-agent/">Ayla Portable Agent</a></li>
+<li id="glossary-ayla-static-gateway-agent"><a href="/glossary/ayla-static-gateway-agent/">Ayla Static Gateway Agent</a></li>
+<li id="glossary-ayla-web-portal"><a href="/glossary/ayla-web-portal/">Ayla Web Portal (AWEB)</a></li>
+<li id="glossary-ayla-wi-fi-production-module"><a href="/glossary/ayla-wi-fi-production-module/">Ayla Wi-Fi Production Module</a></li>
+<li id="glossary-base-type"><a href="/glossary/base-type/">Base Type</a></li> 
+<li id="glossary-cloud"><a href="/glossary/cloud/">Cloud</a></li>
+<li id="glossary-configuration"><a href="/glossary/configuration/">Configuration</a></li>
+<li id="glossary-connectivity"><a href="/glossary/connectivity/">Connectivity</a></li>
+<li id="glossary-datapoint"><a href="/glossary/datapoint/">Datapoint</a></li>
+<li id="glossary-datapoint-echo"><a href="/glossary/datapoint-echo/">Datapoint Echo</a></li>
+<li id="glossary-datastream"><a href="/glossary/datastream/">DataStream</a></li>
+<li id="glossary-device"><a href="/glossary/device/">Device</a></li>
+<li id="glossary-driver"><a href="/glossary/driver/">Driver</a></li>
+<li id="glossary-end-device"><a href="/glossary/end-device/">End Device</a></li>
+<li id="glossary-factory-action"><a href="/glossary/factory-action/">Factory Action</a></li>
+<li id="glossary-field-unit"><a href="/glossary/field-unit/">Field Unit</a></li>
+<li id="glossary-gateway"><a href="/glossary/gateway/">Gateway</a></li>
+<li id="glossary-gateway-agent"><a href="/glossary/gateway-agent/">Gateway Agent</a></li>
+<li id="glossary-group"><a href="/glossary/group/">Group</a></li>
+<li id="glossary-host-image"><a href="/glossary/host-image/">Host Image</a></li>
+<li id="glossary-host-software-version"><a href="/glossary/host-software-version/">Host Software Version</a></li>
+<li id="glossary-insights"><a href="/glossary/insights/">Insights</a></li>
+<li id="glossary-lan-key"><a href="/glossary/lan-key/">LAN Key</a></li>
+<li id="glossary-lan-mode"><a href="/glossary/lan-mode/">LAN Mode</a></li>
+<li id="glossary-production-module"><a href="/glossary/production-module/">Production Module</a></li>
+<li id="glossary-software-agent"><a href="/glossary/software-agent/">Software Agent</a></li>
+</ul>
+</nav>
+<!-- END SIDENAV -->
 
-<body>
-<div class="wrapper">
-
-<!-- MENU -->
-
-{{> menu glossary='active'}}
-
-<!-- SIDENAV -->
-
-{{> glossary_sn}}
-
-<!-- CONTENT  -->
-
-<div id="content" class="glossary">
-
-<div class="title">{{ title }}</div>
-<hr/>
-
-{{{ contents }}}
-
-</div>
-
-<!-- JAVASCRIPT -->
-
-{{> js }}
-
-</div>
-</body>
-</html>
+{{> bottom pageType='page-with-sidebar' }}

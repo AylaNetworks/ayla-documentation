@@ -1,36 +1,15 @@
-<!DOCTYPE html>
-<html>
+{{> top }}
 
-<head>
-{{> head }}
-</head>
+<!-- BEGIN SIDENAV -->
+<nav id="sidenav">
+<ul>
+<li id="certification-architect"><a href="/certification/architect/">Architect</a></li>
+<li id="certification-cloud-integrator"><a href="/certification/cloud-integrator/">Cloud Integrator</a></li>
+<li id="certification-device-developer"><a href="/certification/device-developer/">Device Developer</a></li>
+<li id="certification-mobile-app-developer-android"><a href="/certification/mobile-app-developer-android/">Mobile App Developer (Android)</a></li>
+<li id="certification-mobile-app-developer-ios"><a href="/certification/mobile-app-developer-ios/">Mobile App Developer (iOS)</a></li>
+</ul>
+</nav>
+<!-- END SIDENAV -->
 
-<body>
-<div class="wrapper">
-
-<!-- MENU -->
-
-{{> menu certification='active'}}
-
-<!-- SIDENAV -->
-
-{{> certification_sn}}
-
-<!-- CONTENT  -->
-
-<div id="content" class="certification">
-
-<div class="title">{{ title }}</div>
-<hr/>
-
-{{{ contents }}}
-
-</div>
-
-<!-- JAVASCRIPT -->
-
-{{> js }}
-
-</div>
-</body>
-</html>
+{{> bottom pageType='page-with-sidebar' }}
