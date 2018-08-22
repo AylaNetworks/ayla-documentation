@@ -18,7 +18,10 @@ metalsmith(__dirname)
     description: "",
     title: "",
     nav: "",
-    titleDisplay: "block"
+    titleDisplay: "block",
+    guideUrl: "",
+    tutorialUrl: "",
+    referenceUrl: ""
   })
 
   .source('./src')

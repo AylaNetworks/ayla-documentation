@@ -2,7 +2,9 @@
 title: Devices
 ---
 
-<table>
+This table categorizes **Ayla Connectivity Solutions**. Click a link to find the Guide, Tutorial, and Reference for each solution.
+
+<table style="width: 100%;">
 <tr>
 <th class="center">Platform</th>
 <th class="center">Type</th>
@@ -18,13 +20,13 @@ title: Devices
 </tr>
 <tr>
 <td rowspan="4">Software Agent</td>
-<td colspan="1"><a href="">Ayla Integrated Agent</a></td>
+<td colspan="1"><a href="/devices/ayla-integrated-agent/">Ayla Integrated Agent</a></td>
 </tr>
 <tr>
 <td colspan="1"><a href="">Ayla Portable Agent</a></td>
 </tr>
 <tr>
-<td colspan="1"><a href="/devices/ayla-linux-agent">Ayla Linux Agent</a></td>
+<td colspan="1"><a href="/devices/ayla-linux-agent/">Ayla Linux Agent</a></td>
 </tr>
 <tr>
 <td colspan="1"><a href="">Ayla Android Agent</a></td>

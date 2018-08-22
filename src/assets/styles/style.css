@@ -43,7 +43,7 @@ strong {color: #1a1a1a;}
   .ml-auto, .mx-auto {margin-left: 0 !important;}
 }
 
-#version {font-size: 80%; color: white;}
+#version {font-size: 70% !important; color: white;}
 
 /******************************************
  #breadcrumbs
@@ -176,7 +176,7 @@ strong {color: #1a1a1a;}
 @media (max-width: 1000px) {
   #content.page-full-width {
     width: 100%;
-    padding: 10px 6%;
+    padding: 10px 3%;
   }
 }
 
@@ -208,6 +208,9 @@ span.a {
     background-color: yellow; 
 }
 
+#content-title {padding-top: 9px;}
+#content-title span {font-weight: bold; font-size: 110%;}
+
 /******************************************
  Tiles
 ******************************************/
@@ -221,12 +224,19 @@ span.a {
 }
 
 .book-tile {
-  height: 200px;
-  line-height: 200px;
-  font-size: 120%;
+  height: 120px;
+  line-height: 120px;
+  font-size: 160%;
+  font-weight: 300;
   margin-bottom: 20px;
   color: white;
 }
+
+.background-ocean {background-image: url("/assets/images/ocean.jpg");}
+.background-forest-green {background-image: url("/assets/images/forest-green.jpg");}
+.background-leather {background-image: url("/assets/images/leather.jpg");}
+
+.book-tile img {margin-right: 12px; height: 75px;}
 
 /******************************************
  tables

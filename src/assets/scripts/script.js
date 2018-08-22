@@ -8,31 +8,32 @@ $(function() {
 });
 
 $(function() {
-    let breadcrumbs = '<a href="/">Home</a>';
-    if(window.location.pathname != '/') {
-      let path = window.location.pathname.substr(1).slice(0, -1);
-      let arr = path.split('/').map(s => {
-        let arr2 = s.split('-').map(s2 => {
-          return s2.charAt(0).toUpperCase() + s2.slice(1);
-        });
-        let r = '';
-        arr2.forEach((t) => {
-          r = r + ' ' + t;
-        });
-        return r;
+  let breadcrumbs = '<a href="/">Home</a>';
+  if(window.location.pathname != '/') {
+    let path = window.location.pathname.substr(1).slice(0, -1);
+    let arr = path.split('/').map(s => {
+      let arr2 = s.split('-').map(s2 => {
+        return s2.charAt(0).toUpperCase() + s2.slice(1);
       });
-      arr.forEach((x, index) => {
-        var p = window.location.pathname;
-        var i = nthIndex(window.location.pathname, '/', index+2);
-        var url = p.slice(0, i) + '/';
-        breadcrumbs = breadcrumbs + ' ▸ ' + '<a href="' + url + ' ">' + x.trim() + '</a>';
+      let r = '';
+      arr2.forEach((t) => {
+        r = r + ' ' + t;
       });
-    }
-    $('#breadcrumbs').html(breadcrumbs);
+      return r;
+    });
+    arr.forEach((x, index) => {
+      var p = window.location.pathname;
+      var i = nthIndex(window.location.pathname, '/', index+2);
+      var url = p.slice(0, i) + '/';
+      breadcrumbs = breadcrumbs + ' ▸ ' + '<a href="' + url + ' ">' + x.trim() + '</a>';
+    });
+  }
+  $('#breadcrumbs').html(breadcrumbs);
 });
 
 $(function() {
   if($('title').html().toLowerCase() === 'feedback') {
+    $('#feedback').addClass('active');
     $('#page').val(getParameterByName('page'));
   }
 });
@@ -65,10 +66,10 @@ function getParameterByName(name, url) {
 }
 
 function nthIndex(str, pat, n){
-    var L= str.length, i= -1;
-    while(n-- && i++<L){
-        i= str.indexOf(pat, i);
-        if (i < 0) break;
-    }
-    return i;
+  var L= str.length, i= -1;
+  while(n-- && i++<L){
+    i= str.indexOf(pat, i);
+    if (i < 0) break;
+  }
+  return i;
 }

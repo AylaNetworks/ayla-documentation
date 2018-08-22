@@ -3,7 +3,7 @@ title: Home
 layout: page-full-width-no-title.html
 ---
 
-<div class="row" style="margin: 20px 0;">
+<div class="row" style="margin: 20px 0 36px 0;">
 <div class="col-12 text-center">
 <a href="https://www.aylanetworks.com/"><img src="/assets/images/ayla-networks-logo-leaf.jpg" width="220px"></a>
 <div style="color: darkgreen; font-size: 85%;">IoT Platform</div>
@@ -21,7 +21,7 @@ layout: page-full-width-no-title.html
 <div class="col-md-4 text-center"><a href="/certification/"><div class="cat-tile" style="background: lightblue;">Certification</div></a></div>
 </div>
 
-<div class="row" style="margin-top: 36px;">
+<div class="row" style="margin-top: 30px;">
 <div class="col-12 text-center">
 <a href="https://www.linkedin.com/company/ayla-networks" target="_blank"><img src="/assets/images/linkedin.svg" height="16px"></a>
 <a href="https://twitter.com/aylanetworks" target="_blank"><img src="/assets/images/twitter.svg" height="16px"></a>
