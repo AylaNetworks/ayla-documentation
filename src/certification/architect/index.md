@@ -33,7 +33,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 1. [Link to Book]()
 1. [Link to Book]()
 1. [Link to Book]()
-1. [Ayla Design Kit Guide](/content/devices/adk/introduction.html)
 
 ### Assessment
 
