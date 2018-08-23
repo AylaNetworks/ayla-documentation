@@ -38,7 +38,7 @@ metalsmith(__dirname)
 
   .use(breadcrumbs())
 
-  .use(lunr())
+  // .use(lunr())
 
   .use(layouts({
     default: "page-full-width.html",
@@ -54,10 +54,10 @@ metalsmith(__dirname)
     }
   }))
 
-  .use(writemetadata({
-    pattern: ['**/*.html']/*,
-    ignorekeys: ['contents']*/
-  }))
+//  .use(writemetadata({
+//    pattern: ['**/*.html']/*,
+//    ignorekeys: ['contents']*/
+//  }))
 
   .build(function(err, files) {
     if (err) { throw err; }
