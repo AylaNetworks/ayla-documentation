@@ -6,4 +6,4 @@ All website users are invited to share comments, suggestions, corrections, etc.,
 
 The Ayla Core Content Team uses [this Jira project](https://aylanetworks.atlassian.net/browse/ACC) to manage the website and related processes.
 
-The following diagram shows how Ayla uses [Metalsmith](http://www.metalsmith.io/) to transform markdown, html, css, js, and image files into a static website:
+The following diagram shows how the team uses [Metalsmith](http://www.metalsmith.io/) to transform markdown, html, css, js, and image files into a static website:
