@@ -4,8 +4,6 @@ This repository contains source files for the [Ayla Core Content](https://hagenh
 
 Not just a website, Ayla Core Content (ACC) revolutionizes how Ayla creates, publishes, and manages technical documentation. It changes perceptions, attitudes, processes, job descriptions, and company organization. It removes bottlenecks, and enables the flow of information from subject matter experts to information consumers. 
 
-Several features
-
 ## Features
 
 ### Markdown files
