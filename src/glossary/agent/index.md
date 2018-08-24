@@ -3,4 +3,19 @@ title: Agent
 layout: glossary.html
 ---
 
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+A software agent is an piece of software that functions as an agent for a user or another program, working autonomously and continuously in a particular environment. It is inhibited by other processes and agents, but is also able to learn from its experience in functioning in an environment over a long period of time.
+
+Software agents offer various benefits to end users by automating repetitive tasks. The basic concepts related to software agents are:
+
+* They are invoked for a task
+* They reside in "wait" status on hosts
+* They do not require user interaction
+* They run status on hosts upon starting conditions
+* They invoke other tasks including communication
+
+There are a number of different software agents including the following:
+
+1. Buyer Agents or Shopping Bots: These agents revolve around retrieving network information related to good and services.
+1. User or Personal Agents: These agents perform a variety of tasks such as filling out forms, acting as opponents in games, assembling customized reports and checking email, among other tasks.
+1. Monitoring and Surveillance Agents: These agents observe and report on equipment.
+1. Data-Mining Agents: These agents find trends and patterns in many different sources and allow users to sort through the data to find the information they are seeking.
