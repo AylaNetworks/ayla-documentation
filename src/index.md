@@ -13,7 +13,7 @@ layout: page-full-width-no-title.html
 <div class="row">
 <div class="col-md-4 text-center"><a href="/devices/"><div class="cat-tile" style="background: thistle;">Devices</div></a></div>
 <div class="col-md-4 text-center"><a href="/cloud/"><div class="cat-tile" style="background: palegoldenrod;">Cloud</div></a></div>
-<div class="col-md-4 text-center"><a href="/apps/"><div class="cat-tile" style="background: beige;">Apps</div></a></div>
+<div class="col-md-4 text-center"><a href="/apps/"><div class="cat-tile" style="background: #79d2a0;">Apps</div></a></div>
 </div>
 <div class="row">
 <div class="col-md-4 text-center"><a href="/glossary/"><div class="cat-tile" style="background: lightsteelblue;">Glossary</div></a></div>
