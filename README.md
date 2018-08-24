@@ -11,3 +11,7 @@ Not just a website, Ayla Core Content (ACC) revolutionizes how Ayla creates, pub
 The ACC build process uses [Metalsmith](http://www.metalsmith.io/) to transform Github-flavored markdown files, html templates, css, js, and image files into a static website. See the diagram:
 
 ![acc-metalsmith.jpg](acc-metalsmith.jpg)
+
+The ability to source markdown files presents a big opportunity if Ayla is agile enough to make some changes. Technical documentation writers, for example, would create a simple markdown style guide to help engineers and others write markdown that will transform into decent html. Writers would work with engineers to understand the details and importance of the style guide. Writes would do more editing and organizing of text, and less original content production. Engineers would write instructions, descriptions, and definitions in markdown. 
+
+
