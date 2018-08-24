@@ -1,11 +1,15 @@
 # Ayla Core Content
 
-This repository contains source files for the [Ayla Core Content](https://hagenhaus.com/) website where Ayla Networks publishes essential guides, tutorials, references, and terminology, as well as information about training and certification.
+This repository contains source files for the [Ayla Core Content](https://hagenhaus.com/) website where Ayla Networks publishes essential guides, tutorials, references, and terminology, as well as information about training and certification. The site is currently hosted at a temporary location, and password protected. Email matt@aylanetworks.com for access. It will move to a permanent url soon. Click [ACC Jira project](https://aylanetworks.atlassian.net/browse/ACC) to see the associated Jira project.
 
-The site is currently hosted at a temporary location, and password protected. Email matt@aylanetworks.com for access.
+Not just a website, Ayla Core Content (ACC) revolutionizes how Ayla creates, publishes, and manages technical documentation. It changes perceptions, attitudes, processes, job descriptions, and company organization. It removes bottlenecks, and enables the flow of information from subject matter experts to information consumers. 
 
-Click [ACC Jira project](https://aylanetworks.atlassian.net/browse/ACC) to see the associated Jira project.
+Several features
 
-The build process uses [Metalsmith](http://www.metalsmith.io/) to transform Github-flavored markdown, html, css, js, and image files into a static website. See this diagram:
+## Features
+
+### Markdown files
+
+The ACC build process uses [Metalsmith](http://www.metalsmith.io/) transforms Github-flavored markdown files, html, css, js, and image files into a static website. See the diagram:
 
 ![acc-metalsmith.jpg](acc-metalsmith.jpg)
