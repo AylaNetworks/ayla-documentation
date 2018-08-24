@@ -20,4 +20,24 @@ The Ayla Core Content site is designed to be a one-stop shop for Ayla essential 
 
 ![site-structure.jpg](site-structure.jpg)
 
-The content is divided into Devices, Cloud, and Apps. It is further divided into products (e.g. Ayla Wi-Fi Production Agent). The site provides a Guide, Tutorial, and Reference for each product. All pages can refer to the Ayla Glossary. Consumers who want help learning this content may sign up for various forms of training. Consumers who want to be able to verify their competence can pursue certification which is based on ACC content.
+The content is divided into Devices, Cloud, and Apps. It is further divided into products (e.g. Ayla Wi-Fi Production Agent). The site provides a Guide, Tutorial, and Reference for each product. All pages can refer to the Ayla Glossary. Consumers who want help learning this content may sign up for various forms of training. Consumers who want to be able to verify their competence can pursue certification which is based on ACC content. The prominent Feedback form channels comments, suggestions, corrections, etc., to the Jira project which facilitates agile improvements. The breadcrumb bar makes for easy navigation.
+
+### Other
+
+Other features include the following:
+
+* Versioning
+* Search
+* Multi-language
+
+## Processes
+
+### Website build process
+
+### Authoring process
+
+### Editing process
+
+### Publishing process
+
+### Versioning process
