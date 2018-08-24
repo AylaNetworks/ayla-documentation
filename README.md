@@ -8,7 +8,7 @@ Not just a website, Ayla Core Content (ACC) revolutionizes how Ayla creates, pub
 
 ### Authorship
 
-The ACC build process uses [Metalsmith](http://www.metalsmith.io/) to transform Github-flavored markdown files, html templates, css, js, and image files into a static website. See the diagram:
+The ACC build process uses [Metalsmith](http://www.metalsmith.io/) to transform Github-flavored markdown files, html templates, css, js, and image files into a static website. See this diagram:
 
 ![acc-metalsmith.jpg](acc-metalsmith.jpg)
 
@@ -16,6 +16,8 @@ The ability to source markdown files presents a big opportunity. Technical docum
 
 ### Website Organization
 
-The Ayla Core Content site is designed to be a one-stop shop for Ayla essential technical information consumers. It includes 
+The Ayla Core Content site is designed to be a one-stop shop for Ayla essential technical information consumers. See this diagram:
 
 ![site-structure.jpg](site-structure.jpg)
+
+The content is divided into Devices, Cloud, and Apps. It is further divided into products (e.g. Ayla Wi-Fi Production Agent). The site provides a Guide, Tutorial, and Reference for each product. All pages can refer to the Ayla Glossary. Consumers who want help learning this content may sign up for various forms of training. Consumers who want to be able to verify their competence can pursue certification which is based on ACC content.
