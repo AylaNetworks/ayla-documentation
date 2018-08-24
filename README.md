@@ -28,7 +28,9 @@ Other features include the following:
 
 * Versioning
 * Search
+* Usage statistics
 * Multi-language
+* Feedback
 
 ## Processes
 
