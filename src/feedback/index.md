@@ -25,7 +25,7 @@ title: Feedback
   </div>
   <div class="form-row">
     <div class="form-group col-md-12">
-      <label for="text">Page *</label>
+      <label for="text">Page<sup>*</sub></label>
       <input type="text" class="form-control" id="page" placeholder="">
     </div>
   </div>
@@ -61,4 +61,4 @@ title: Feedback
   <button type="submit" class="btn btn-success">Submit</button>
 </form>
 
-<p style="margin-top: 18px;">* Populated with the breadcrumbs of the current page when clicking Feedback.</p>
+<p style="margin-top: 18px;">* Populated with the url of the current page when clicking Feedback.</p>

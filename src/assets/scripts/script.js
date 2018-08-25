@@ -8,6 +8,19 @@ $(function() {
 });
 
 $(function() {
+  $('#sidenav > ul > li > img.toggle').click(function(event) {
+    var ol = $(this).parent('li').children('ol').first();
+    if($(ol).is(":visible")) {
+      $(this).attr('src', '/assets/images/chevron-none-24.png');
+      $(ol).hide();
+    } else {
+      $(this).attr('src', '/assets/images/chevron-block-24.png');
+      $(ol).show();
+    }
+  });
+});
+
+$(function() {
   let breadcrumbs = '<a href="/">Home</a>';
   if(window.location.pathname != '/') {
     let path = window.location.pathname.substr(1).slice(0, -1);
@@ -41,7 +54,7 @@ $(function() {
 $(function() {
   $('#feedback').click(function(event) {
     event.preventDefault();
-    window.location.href = '/feedback/?page=' + $('#breadcrumbs').text();
+    window.location.href = '/feedback/?page=' + window.location.pathname;
   });
 });
 

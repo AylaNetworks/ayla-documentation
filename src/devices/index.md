@@ -16,27 +16,27 @@ This table categorizes **Ayla Connectivity Solutions**. Click a link to find the
 <td><a href="/devices/ayla-wi-fi-production-module/">Ayla Wi-Fi Production Module</td>
 </tr>
 <tr>
-<td><a href="">Ayla Cellular Production Module</td>
+<td>Ayla Cellular Production Module</td>
 </tr>
 <tr>
 <td rowspan="4">Software Agent</td>
-<td colspan="1"><a href="/devices/ayla-integrated-agent/">Ayla Integrated Agent</a></td>
+<td colspan="1">Ayla Integrated Agent</td>
 </tr>
 <tr>
-<td colspan="1"><a href="">Ayla Portable Agent</a></td>
+<td colspan="1">Ayla Portable Agent</td>
 </tr>
 <tr>
 <td colspan="1"><a href="/devices/ayla-linux-agent/">Ayla Linux Agent</a></td>
 </tr>
 <tr>
-<td colspan="1"><a href="">Ayla Android Agent</a></td>
+<td colspan="1">Ayla Android Agent</td>
 </tr>
 <tr>
 <td rowspan="2">Gateway</td>
 <td rowspan="2">Gateway Agent</td>
-<td colspan="1"><a href="">Ayla Dynamic Gateway Agent</a></td>
+<td colspan="1">Ayla Dynamic Gateway Agent</td>
 </tr>
 <tr>
-<td colspan="1"><a href="">Ayla Static Gateway Agent</a></td>
+<td colspan="1">Ayla Static Gateway Agent</td>
 </tr>
 </table>

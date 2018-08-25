@@ -106,22 +106,27 @@ strong {color: #1a1a1a;}
 }
 
 #sidenav ul {padding-left: 0px; list-style-type: none;}
+
+
 #sidenav ol {padding-left: 3px;}
 #sidenav ol > li {line-height: 1.8em;}
 
-
+#sidenav ul > li > a.book {font-weight: bold;}
+#sidenav ul > li > a:hover {cursor: pointer;}
 
 #sidenav ul > li > ol {padding-left: 3px; /*list-style-type: "1";*/}
-#sidenav ul > li > span:hover {cursor: pointer;}
+
 #sidenav ul > li {margin-bottom: 9px;}
 #sidenav ul > li > ol > li {line-height: 1.8em;}
 
 #sidenav ul > li > a.active,
 #sidenav ul > li > ol > li > a.active {font-weight: bold;}
 
+/*
 #sidenav.devices ul li span,
 #sidenav.cloud ul li span,
 #sidenav.apps ul li span {font-weight: bold;}
+*/
 
 @media (min-width: 768px) {
   #sidenavCollapse {display:none;}
@@ -132,6 +137,11 @@ strong {color: #1a1a1a;}
   #sidenav.active {margin-left: 0; background: whitesmoke;}
   #sidenavCollapse {display:block;}
 }
+
+#sidenav img.toggle {float: right;}
+#sidenav ul > li > img:hover {cursor: pointer;}
+#sidenav ul > li > img {width: 18px; display: none;}
+#sidenav ul > li:hover img.toggle {display: block;}
 
 /******************************************
  #content
