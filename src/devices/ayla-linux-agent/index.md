@@ -1,5 +1,5 @@
 ---
-title: Ayla Static Gateway Agent
+title: Ayla Linux Agent
 layout: devices-ayla-linux-agent.html
 ---
 

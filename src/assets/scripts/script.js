@@ -1,6 +1,6 @@
 $(function() {
   if($('#sidenav').length != 0) {
-    var selector = '#' + window.location.pathname.substring(1).slice(0,-1).replace(/\//g, '-') + ' > a';
+    var selector = '#' + window.location.pathname.substring(1).slice(0,-1).replace(/\//g, '-');
     if($(selector).length) {
       $(selector).addClass('active');
     }

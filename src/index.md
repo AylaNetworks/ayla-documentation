@@ -11,14 +11,15 @@ layout: page-full-width-no-title.html
 </div>
 
 <div class="row">
-<div class="col-md-4 text-center"><a href="/devices/"><div class="cat-tile" style="background: thistle;">Devices</div></a></div>
-<div class="col-md-4 text-center"><a href="/cloud/"><div class="cat-tile" style="background: palegoldenrod;">Cloud</div></a></div>
-<div class="col-md-4 text-center"><a href="/apps/"><div class="cat-tile" style="background: #79d2a0;">Apps</div></a></div>
+<div class="col-md-4 text-center cat-tile2"><a href="/devices/"><img class="img-fluid" src="/assets/images/devices-450.jpg"></a></div>
+<div class="col-md-4 text-center cat-tile2"><a href="/cloud/"><img class="img-fluid" src="/assets/images/cloud-450.jpg"></a></div>
+<div class="col-md-4 text-center cat-tile2"><a href="/apps/"><img class="img-fluid" src="/assets/images/apps-450.jpg"></a></div>
 </div>
+
 <div class="row">
-<div class="col-md-4 text-center"><a href="/glossary/"><div class="cat-tile" style="background: lightsteelblue;">Glossary</div></a></div>
-<div class="col-md-4 text-center"><a href="/training/"><div class="cat-tile" style="background: Khaki;">Training</div></a></div>
-<div class="col-md-4 text-center"><a href="/certification/"><div class="cat-tile" style="background: lightblue;">Certification</div></a></div>
+<div class="col-md-4 text-center cat-tile2"><a href="/glossary/"><img class="img-fluid" src="/assets/images/glossary-450.jpg"></a></div>
+<div class="col-md-4 text-center cat-tile2"><a href="/training/"><img class="img-fluid" src="/assets/images/training-450.jpg"></a></div>
+<div class="col-md-4 text-center cat-tile2"><a href="/certification/"><img class="img-fluid" src="/assets/images/certification-450.jpg"></a></div>
 </div>
 
 <div class="row" style="margin-top: 30px;">

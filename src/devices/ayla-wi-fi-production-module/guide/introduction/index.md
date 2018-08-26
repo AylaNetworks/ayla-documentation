@@ -1,6 +1,7 @@
 ---
 title: Introduction to the Guide
-layout: devices-ayla-wi-fi-production-module-guide.html
+layout: devices-ayla-wi-fi-production-module.html
+a: block
 ---
 
 This guide introduces you to the code and concepts needed to connect your device to the Ayla Cloud using an [Ayla Wi-Fi Production Module](/content/glossary/ayla-wi-fi-production-module.html).

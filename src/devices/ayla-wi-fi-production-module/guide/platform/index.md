@@ -1,6 +1,7 @@
 ---
 title: Ayla Platform for Firmware Engineers
-layout: devices-ayla-wi-fi-production-module-guide.html
+layout: devices-ayla-wi-fi-production-module.html
+a: block
 ---
 
 This chapter provides a view of the Ayla Platform from a firmware engineer's perspective. As stated, the Ayla Design Kit consists of a [STM32 Board](https://www.st.com/en/evaluation-tools/stm32f3discovery.html?sc=stm32f3discovery) representing your device, and an Ayla Board with an Ayla Wi-Fi Production Module affixed to provide cloud connectivity. It also includes a 5v USB power cable. The [Setup](/content/devices/adk/setup.html) chapter gives instructions for purchasing and registering the kit. Here is another view of the Discovery Kit:
