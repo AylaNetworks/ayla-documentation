@@ -4,6 +4,12 @@ layout: devices-ayla-linux-agent.html
 a: block
 ---
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+This guide uses a [Raspberry Pi](https://www.raspberrypi.org/) connected via jumper wires to a breadboard (hosting a red LED and a black button) to represent any Linux-based device that you may want to connect to the [Ayla Cloud](/glossary/ayla-cloud). The guide refers to this RPi/breadboard combination as the RPi device. The Setup chapter provides instructions for setting up the RPi and breadboard.
 
-![belts-and-pulleys](belts-and-pulleys.jpg)
+<div class="row hspace">
+<div class="col-lg-6 col-md-8 col-sm-12">
+<img class="img-fluid" src="rpi-button-led-001.jpg">
+</div>
+</div>
+
+The best way to connect the RPi device to the Ayla Cloud is to run an [Ayla Linux Agent](/glossary/ayla-linux-agent) on the device. The Ayla Linux Agent is part of the Ayla Device Platform for Linux (available on Github as [device_linux_public](https://github.com/AylaNetworks/device_linux_public)). 

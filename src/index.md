@@ -24,6 +24,14 @@ layout: page-full-width-no-title.html
 
 <div class="row" style="margin-top: 30px;">
 <div class="col-12 text-center">
+<a href="https://developer.aylanetworks.com/" target="_blank">DevPortal</a>&nbsp;~&nbsp;
+<a href="https://dashboard-dev.aylanetworks.com/" target="_blank">OemDash</a>
+</div>
+</div>
+
+<!--
+<div class="row" style="margin-top: 30px;">
+<div class="col-12 text-center">
 <a href="https://www.linkedin.com/company/ayla-networks" target="_blank"><img src="/assets/images/linkedin.svg" height="16px"></a>
 <a href="https://twitter.com/aylanetworks" target="_blank"><img src="/assets/images/twitter.svg" height="16px"></a>
 <a href="https://www.facebook.com/Ayla-Networks-478621938884489" target="_blank"><img src="/assets/images/facebook.svg" height="16px"></a>
@@ -32,3 +40,4 @@ layout: page-full-width-no-title.html
 <a href="http://weibo.com/aylanetworks" target="_blank"><img src="/assets/images/weibo.svg" height="16px"></a>
 </div>
 </div>
+-->

@@ -3,5 +3,12 @@ title: Ayla Linux Agent
 layout: devices-ayla-linux-agent.html
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This is the homepage for the [Ayla Linux Agent](/glossary/ayla-linux-agent).
 
+The **Guide** shows you how to connect a Raspberry Pi to the Ayla Cloud using an Ayla Linux Agent.
+
+The **Tutorial** provides a series user-level and programmer-level experiments.
+
+The **Reference** provides API documentation and background information.
+
+To open a book without selecting it, click on the chevron that appears to the right of the book title on mouse-over.

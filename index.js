@@ -8,6 +8,7 @@ const markdown = require('metalsmith-markdown');
 const metalsmith = require('metalsmith');
 const msIf = require('metalsmith-if');
 const path = require('metalsmith-path')
+const permalinks = require('metalsmith-permalinks');
 const writemetadata = require('metalsmith-writemetadata');
 
 var environment;
@@ -61,6 +62,10 @@ metalsmith(__dirname)
 //    pattern: ['**/*.html']/*,
 //    ignorekeys: ['contents']*/
 //  }))
+
+//  .use(permalinks({
+//    relative: false
+//  }));
 
   .build(function(err, files) {
     if (err) { throw err; }

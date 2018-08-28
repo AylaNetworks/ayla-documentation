@@ -8,7 +8,7 @@ p, li {font-size: 1.0em; font-weight: 400; line-height: 1.5em;}
 
 p, li, #sidenav a {color: #1a1a1a;}
 
-h1 {font-size: 1.50rem; margin-top: 2rem;}
+h1 {font-size: 110%; margin-top: 16px; font-weight: bold;}
 h2 {font-size: 1.25rem; margin-top: 2rem;}
 h3 {font-size: 1.00rem; margin-top: 2rem;}
 h4 {font-size: 1.00rem;}
@@ -221,6 +221,8 @@ span.a {
 #content-title {padding-top: 9px;}
 #content-title span {font-weight: bold; font-size: 110%;}
 
+#content .hspace {margin-bottom: 12px;}
+
 /******************************************
  Tiles
 ******************************************/
@@ -274,7 +276,7 @@ span.a {
 
 #content table .center {text-align: center;}
 
-#content .note {padding: 12px; margin: 24px 0px; background: linen;}
+#content .note {padding: 12px; margin: 24px 0px; background: azure;}
 
 @media (max-width: 768px) {
   #content table {

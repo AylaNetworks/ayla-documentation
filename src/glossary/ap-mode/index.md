@@ -1,5 +1,5 @@
 ---
-title: Ayla Linux Agent
+title: AP Mode
 layout: glossary.html
 ---
 
