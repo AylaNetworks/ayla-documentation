@@ -221,7 +221,7 @@ span.a {
 #content-title {padding-top: 9px;}
 #content-title span {font-weight: bold; font-size: 110%;}
 
-#content .hspace {margin-bottom: 12px;}
+#content .hspace {margin-top: 20px; margin-bottom: 20px;}
 
 /******************************************
  Tiles

@@ -11,4 +11,4 @@ The **Tutorial** provides a series user-level and programmer-level experiments.
 
 The **Reference** provides API documentation and background information.
 
-To open a book without selecting it, click on the chevron that appears to the right of the book title on mouse-over.
+To open a book without selecting it, click the chevron that appears to the right of the book title on mouse-over.
