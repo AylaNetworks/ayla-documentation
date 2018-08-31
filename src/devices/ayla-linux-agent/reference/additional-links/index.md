@@ -9,3 +9,4 @@ c: block
 * [Wiring Pi: GPIO Interface library for the Raspberry Pi](http://wiringpi.com/)
 * [device_linux_public](https://github.com/AylaNetworks/device_linux_public)
 * [20 Handy Raspberry Pi Terminal Commands](https://www.lifewire.com/raspberry-pi-terminal-commands-4054108)
+* [How to Manage Processes from the Linux Terminal](https://www.howtogeek.com/107217/how-to-manage-processes-from-the-linux-terminal-10-commands-you-need-to-know/)
