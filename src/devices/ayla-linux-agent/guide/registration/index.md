@@ -1,6 +1,6 @@
 ---
-title: Introduction
+title: Registration
 layout: devices-ayla-linux-agent.html
-b: block
+a: block
 ---
 

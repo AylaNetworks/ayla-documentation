@@ -10,6 +10,7 @@ const msIf = require('metalsmith-if');
 const path = require('metalsmith-path')
 const permalinks = require('metalsmith-permalinks');
 const writemetadata = require('metalsmith-writemetadata');
+const highlight = require('metalsmith-code-highlight');
 
 var environment;
 
@@ -57,6 +58,8 @@ metalsmith(__dirname)
       bottom: 'partials/bottom'
     }
   }))
+
+//  .use(highlight())
 
 //  .use(writemetadata({
 //    pattern: ['**/*.html']/*,

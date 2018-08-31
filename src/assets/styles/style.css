@@ -8,9 +8,9 @@ p, li {font-size: 1.0em; font-weight: 400; line-height: 1.5em;}
 
 p, li, #sidenav a {color: #1a1a1a;}
 
-h1 {font-size: 110%; margin-top: 16px; font-weight: bold;}
-h2 {font-size: 1.25rem; margin-top: 2rem;}
-h3 {font-size: 1.00rem; margin-top: 2rem;}
+h1 {font-size: 120%; margin-top: 24px; font-weight: bold; color: black;}
+h2 {font-size: 115%; margin-top: 24px; font-weight: bold; color: #4d4d4d;}
+h3 {font-size: 100%; margin-top: 24px; font-weight: bold; color: #4d4d4d;}
 h4 {font-size: 1.00rem;}
 h5 {font-size: 1.00rem;}
 h6 {font-size: 1.00rem;}
@@ -219,9 +219,13 @@ span.a {
 }
 
 #content-title {padding-top: 9px;}
-#content-title span {font-weight: bold; font-size: 110%;}
+#content-title span {font-weight: bold; font-size: 125%;}
 
 #content .hspace {margin-top: 20px; margin-bottom: 20px;}
+
+#content .img-border {border: 1px solid wheat; padding: 12px;}
+
+#content li pre {margin-top: 12px;}
 
 /******************************************
  Tiles
