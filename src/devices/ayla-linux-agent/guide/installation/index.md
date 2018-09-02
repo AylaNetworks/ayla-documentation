@@ -48,7 +48,9 @@ $ top -c -p $(pgrep -d',' -f devd)
 $ top -c -p $(pgrep -d',' -f appd)
 $ pgrep devd
 $ pgrep appd
-$ htop (and then filter)
+$ htop (and then search with F3)
+$ systemctl status devd.service
 </pre>
+Note that appd and devd reside in <code>/home/pi/ayla/bin</code>.
 </li>
 </ol>
