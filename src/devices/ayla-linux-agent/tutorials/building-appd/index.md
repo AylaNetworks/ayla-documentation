@@ -6,7 +6,7 @@ b: block
 
 This page shows you how to clone and build the Ayla Device Platform for Linux on your RPi, and then modify and run appd to test your build environment. Subsequent chapters in the Tutorial provide you with a more detailed understanding of appd. 
 
-# Clone and build device_linux_public
+### Clone and build device_linux_public
 
 <ol>
 <li>ssh to your RPi.
@@ -50,7 +50,7 @@ Linking appd
 </li>
 </ol>
 
-# Modify and run appd
+### Modify and run appd
 
 The example host application (appd) is composed of three files (main.c, appd.c, and appd.h) located here:
 

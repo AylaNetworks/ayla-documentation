@@ -6,7 +6,7 @@ a: block
 
 This page provides instructions for registering your RPi device with the Ayla Cloud. To learn more about the various ways to register a device, see [Glossary: Device Registration](/glossary/device-registration).
 
-# Register the RPi device (Aura on iPhone)
+### Register the RPi device (Aura on iPhone)
 
 <ol>
 <li>Download the Aura mobile app onto your mobile device, and run it.</li>

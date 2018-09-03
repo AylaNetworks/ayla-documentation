@@ -4,4 +4,44 @@ layout: devices-ayla-linux-agent.html
 a: block
 ---
 
-This guide shows you how to connect a Linux-based host application (appd), running on a Raspberry Pi, to the Ayla Cloud using the Ayla Linux Agent (devd). Both appd and devd are part of the Ayla Device Platform for Linux (see [Glossary: Ayla Device Platform for Linux](/glossary/ayla-device-platform-for-linux)) which is hosted on Github as [device_linux_public](https://github.com/AylaNetworks/device_linux_public). Typically, applications that leverage an Ayla Linux Agent either (1) control devices, or (2) communicate with other applications that control devices.
+The Ayla Linux Agent, a software daemon called devd that connects Linux-based applications to the Ayla Cloud, is part of the Ayla Device Platform for Linux ([Github](https://github.com/AylaNetworks/device_linux_public)) which is composed of the following components:
+
+<dl>
+<dt>devd</dt>
+<dd>The Ayla Linux Agent (devd) provides the following functionality:
+<ul>
+<li>Communicates via HTTPS with the Ayla Device Service (ADS).</li>
+<li>Connects to and receives event notifications from the Ayla Notification Service (ANS).</li>
+<li>Handles HTTP requests from devices on the local network with its internal web server.</li>
+<li>Responds to mDNS address requests for DSN hostnames.</li>
+<li>Supports LAN mode encrypted sessions for communication with Ayla mobile apps.</li>
+<li>Provides an IPC interface for internal messaging with other Ayla daemons.</li>
+</ul>
+</dd>
+
+<dt>appd</dt>
+<dd>The host application (appd) defines and manages device properties, and either directly controls the behavior of a device, or provides an interface to other applications in control of devices. By default, devd launches and monitors appd. If appd crashes or quits, devd re-launches it. To speed development, a demo application daemon is provided.</dd>
+
+<dt>devdwatch</dt>
+<dd>This watchdog software is designed to monitor and re-launch devd in case of failure. If available, Ayla recommends using the system's built-in process-restart functionality.</dd>
+
+<dt>acgi</dt>
+<dd>This CGI utility is executed by the system’s primary web server. Acgi parses each request and forwards valid requests to devd, which handles them using its internal web server. This component is required to support LAN mode, Wi-Fi Setup, and Same-LAN registration. For acgi to work, some device configuration is required.</dd>
+
+<dt>ota_update</dt>
+<dd>This utility is used to download, verify, and apply an over-the-air (OTA) firmware image. This utility is invoked by devd when the service indicates a pending device update. For ota_update to be fully functional, OTA-related platform-specific functions must be implemented in the lib/platform library. Platform-specific functions implement image storage, readback, and apply the downloaded image to the system.</dd>
+
+<dt>cond</dt>
+<dd>Wi-Fi connection manager daemon that enables Ayla Wi-Fi Setup functionality and provides an abstraction layer between Ayla daemons and the Wi-Fi driver. This daemon manages scan results and network profiles, configures AP mode, and establishes connections to Wi-Fi access points. (Optional component and may be omitted if Ayla Wi- Fi Setup solution is not needed.)</dd>
+
+<dt>logd</dt>
+<dd>This is the Ayla logging client. Ayla daemons write specially-tagged log messages to Syslog. This daemon parses syslog output, filters messages based on log config managed by devd, and posts them to Ayla logging service. Can be remotely enabled from the Ayla OEM Dashboard and configured to monitor and debug. (Optional component and may be omitted if remote logging functionality is not needed.)</dd>
+</dl>
+
+All communication between various Ayla modules listed above uses messages sent over Unix domain sockets. To promote maintainability and code reuse, Internal message payloads and protocols are generally defined in lib/ayla or lib/app. Below is a diagram of Ayla Device Platform for Linux components:
+
+<div class="row row justify-content-md-center">
+<div class="col-lg-8 col-md-10 col-sm-12">
+<img class="img-fluid" src="ayla-device-platform-for-linux.jpg">
+</div>
+</div>
