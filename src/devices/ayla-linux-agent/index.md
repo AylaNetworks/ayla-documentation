@@ -3,7 +3,7 @@ title: Ayla Linux Agent
 layout: devices-ayla-linux-agent.html
 ---
 
-The Ayla Linux Agent is a software daemon called devd that connects Linux-based applications to the Ayla Cloud by providing connectivity, security, and other services. 
+The Ayla Linux Agent is a software daemon called devd that connects Linux-based applications to the Ayla Cloud by providing connectivity, security, and other services. It is part of the Ayla Device Platform for Linux.
 
 The [Guide](/devices/ayla-linux-agent/guide) shows you how to install the Ayla Linux Agent on a Raspberry Pi, register it with the Ayla Cloud, and test it with an example host application called appd.
 

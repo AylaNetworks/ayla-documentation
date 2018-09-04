@@ -1,8 +1,8 @@
 <?php
+  ob_start();
   $email_to = "anonz3000@gmail.com";
   $email_subject = "Ayla Core Content Feedback";
 
-/*
   $first_name = $_POST['first_name'];
   $last_name = $_POST['last_name'];
   $email_from = $_POST['email'];
@@ -28,7 +28,10 @@
   'Reply-To: '.$email_from."\r\n" .
   'X-Mailer: PHP/' . phpversion();
   @mail($email_to, $email_subject, $email_message, $headers); 
-*/
+
+  ob_end_clean();
 
   readfile("thank-you/index.html");
 ?>
+
+

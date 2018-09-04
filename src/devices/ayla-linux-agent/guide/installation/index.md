@@ -6,6 +6,26 @@ a: block
 
 ### Create an Ayla Account
 
+<ol>
+<li>Browse to <a href="">Ayla Networks</a>.</li>
+<li>Click Getting Started > Developer Portal > Developer Portal > <a href="https://developer.aylanetworks.com/registrations/new">Sign Up</a>.</li>
+<li>Fill in the form. Leave "Have an Ayla Dev Kit" unchecked. Click OK.</li>
+<li>Open the confirmation email, click the link, and access your Developer Portal Account.
+<div class="row">
+<div class="col-lg-8 col-md-10 col-sm-12">
+<img class="img-fluid" src="dev-portal-001.jpg">
+</div>
+</div>
+</li>
+<li>Click View My Devices. Initially, your Devices list will be empty. After you register your Raspberry Pi, your RPi device will appear in this list as a single row.
+<div class="row">
+<div class="col-lg-8 col-md-10 col-sm-12">
+<img class="img-fluid" src="dev-portal-002.jpg">
+</div>
+</div>
+</li>
+</ol>
+
 ### Set up your Raspberry Pi
 
 To complete the hands-on exercises in the Guide and Tutorial, you will need a functioning Raspberry Pi 2 or 3 with the latest Raspbian image, and Ethernet or Wi-Fi connectivity. To test the exercises, we used the [CanaKit Raspberry Pi Quick Start Guide](https://www.canakit.com/Media/CanaKit-Raspberry-Pi-Quick-Start-Guide-3.2.pdf) to set up a [Raspberry Pi 3 Model B+ 32-bit Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-starter-kit.html). The exercises assume you are accessing your RPi via SSH, so connecting your RPi to a monitor, keyboard, and mouse is optional.  See [Reference: Raspberry Pi](/devices/ayla-linux-agent/reference/raspberry-pi) for details.
