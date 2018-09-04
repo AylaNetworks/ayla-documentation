@@ -4,7 +4,7 @@ layout: devices-ayla-linux-agent.html
 b: block
 ---
 
-The host application (appd) has a property called Green_LED which does not control a real LED:
+The host application (appd) has a property called Green_LED which does not actually control a real LED:
 
 <div class="row align-items-center">
 <div class="col-lg-4 col-md-6 col-sm-12">
@@ -20,7 +20,7 @@ This page shows you how to modify your RPi and your version of appd to control a
 </div>
 </div>
 
-# Wire the LED and test
+# Wire and test the LED
 
 <ol>
 <li>Shutdown your RPi.</li>
@@ -71,16 +71,13 @@ $ chmod +x blink.py
 <pre>
 #include &lt;stdio.h&gt;
 #include &lt;wiringPi.h&gt;
-
 #define GREEN_LED 1
 
-int main(void)
-{
+int main(void) {
   printf("Start of blink program\n");
   wiringPiSetup();
   pinMode(GREEN_LED, OUTPUT);
-  for(;;)
-  {
+  for(;;) {
     digitalWrite(GREEN_LED, HIGH);
     delay(500);
     printf("High\n");
@@ -134,10 +131,7 @@ LIBS = ssl crypto curl jansson wiringPi
 <li>Scroll to the main function, and add the following code just before the call to app_run:
 <pre>
 wiringPiSetup();
-pinMode(BUTTON, INPUT);
-wiringPiISR(BUTTON, INT_EDGE_BOTH, &button_isr);
 </pre>
-Note that you have not defined BUTTON nor button_isr yet.
 </li>
 <li>Save the file.</li>
 </ol>
@@ -149,8 +143,6 @@ Note that you have not defined BUTTON nor button_isr yet.
 <li>Add the following:
 <pre>
 #define GREEN_LED 1
-#define BUTTON 6
-void button_isr(void);
 </pre>
 </li>
 <li>Save the file.</li>
@@ -173,89 +165,36 @@ void button_isr(void);
 },
 </pre>
 </li>
-<li>Modify the set and send fields:
+<li>Modify the set field:
 <pre>
 {
   .name = "Green_LED",
   .type = PROP_BOOLEAN,
   .set = appd_green_led_set,
-  .send = appd_green_led_send,
+  .send = prop_arg_send,
   .arg = &green_led,
   .len = sizeof(green_led),
   .ads_failure_cb = appd_prop_ads_failure_cb,
 },
 </pre>
-You will implement these two functions below. appd_green_led_set will actually set the green LED to on/off via the relevant GPIO pin. appd_green_led_send will read the current state of the actual green LED, and send the state to the agent.
 </li>
-<li>Add the following two functions to the file above <code>app_prop_table</code>:
+<li>Add the following function to the file. Do so before <code>app_prop_table</code>:
 <pre>
-sss
-</pre>
-</li>
-<li>sss</li>
-<li>sss</li>
-<li>sss</li>
-<li>Save the file.</li>
-</ol>
-
-
-<hr/>
-
-<code>~/device_linux_public/app/appd/appd.c</code>
-
-<pre>
-static u8 green_led;
-</pre>
-
-<code>~/device_linux_public/app/appd/appd.c</code>
-
-<pre>
-static struct prop appd_prop_table[] = {
-  {
-    .name = "Green_LED",
-    .type = PROP_BOOLEAN,
-    .set = appd_led_set,
-    .send = prop_arg_send,
-    .arg = &green_led,
-    .len = sizeof(green_led),
-    .ads_failure_cb = appd_prop_ads_failure_cb,
-  }
-}
-</pre>
-
-<code>~/device_linux_public/app/appd/appd.c</code>
-
-<pre>
-static int appd_led_set(struct prop *prop, const void *val, size_t len, const struct op_args *args)
-{
-  if (prop_arg_set(prop, val, len, args) != ERR_OK) {
-    return -1;
-  }
-
-  /*
-   * To test sending properties, use green & blue to toggle blue_button.
-   */
-  if ((blue_led && green_led) != blue_button) {
-    blue_button = blue_led && green_led;
-    prop_send_by_name("Blue_button");
+static int appd_green_led_set(struct prop \*prop, const void \*val, size_t len, const struct op_args \*args) {
+  pinMode(GREEN_LED, OUTPUT);
+  int green_led = \*((uint8_t \*)val);
+  if(green_led == 1) {
+    digitalWrite(GREEN_LED, HIGH);
+  } else {
+    digitalWrite(GREEN_LED, LOW);
   }
   return 0;
 }
 </pre>
+</li>
+<li>Save the file.</li>
+</ol>
 
-<code>~/device_linux_public/lib/app/props.c</code>
+### Build, run, and test appd
 
-<pre>
-inline enum err_t prop_arg_send(struct prop *prop, int req_id, const struct op_options *opts)
-{
-   return prop_val_send(prop, req_id, prop->arg, prop->len, opts);
-}
-</pre>
-
-<code>~/device_linux_public/app/appd/Makefile</code>
-
-<pre>
-LIBS = ssl crypto curl jansson wiringPi
-</pre>
-
-See [Reference: Wiring Pi](/devices/ayla-linux-agent/reference/wiring-pi/).
+Build and run appd according to the instructions in [Building appd](/devices/ayla-linux-agent/tutorials/building-appd/). Test the new functionality by toggling the Green LED property on/off in Aura, and verifying that the actual LED on the breadboard turns on/off.

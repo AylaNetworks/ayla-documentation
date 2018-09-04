@@ -23,7 +23,11 @@ $(function() {
 $(function() {
   let breadcrumbs = '<a href="/">Home</a>';
   if(window.location.pathname != '/') {
-    let path = window.location.pathname.substr(1).slice(0, -1);
+
+    let p1 = window.location.pathname.substr(1);
+    let path = p1.substr(0, p1.lastIndexOf('/')) || p1;
+
+    //let path = window.location.pathname.substr(1).slice(0, -1);
     let arr = path.split('/').map(s => {
       let arr2 = s.split('-').map(s2 => {
         return s2.charAt(0).toUpperCase() + s2.slice(1);

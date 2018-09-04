@@ -9,7 +9,7 @@ c: block
 <a href="/devices/ayla-linux-agent/reference/api/">API</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+This reference provides details about the API available to host applications.
 </div>
 </div>
 
@@ -18,7 +18,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <a href="/devices/ayla-linux-agent/reference/configuration-file/">Configuration File</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+This reference provides details about the factory configuration file that uniquely identifies and authenticates your RPi device with Ayla Device Service (ADS).
 </div>
 </div>
 
@@ -27,7 +27,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <a href="/devices/ayla-linux-agent/reference/raspberry-pi/">Raspberry Pi</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+This reference provides helpful commands that you can use to manage your RPi.
 </div>
 </div>
 
@@ -36,7 +36,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <a href="/devices/ayla-linux-agent/reference/wiring-pi/">Wiring Pi</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+This reference provides information about Gordon Henderson's RPi GPIO C library.
 </div>
 </div>
 
@@ -45,6 +45,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <a href="/devices/ayla-linux-agent/reference/additional-links/">Additional links</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+This page provides additional helpful links.
 </div>
 </div>

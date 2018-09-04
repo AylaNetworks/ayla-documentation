@@ -38,10 +38,24 @@ The Ayla Linux Agent, a software daemon called devd that connects Linux-based ap
 <dd>This is the Ayla logging client. Ayla daemons write specially-tagged log messages to Syslog. This daemon parses syslog output, filters messages based on log config managed by devd, and posts them to Ayla logging service. Can be remotely enabled from the Ayla OEM Dashboard and configured to monitor and debug. (Optional component and may be omitted if remote logging functionality is not needed.)</dd>
 </dl>
 
-All communication between various Ayla modules listed above uses messages sent over Unix domain sockets. To promote maintainability and code reuse, Internal message payloads and protocols are generally defined in lib/ayla or lib/app. Below is a diagram of Ayla Device Platform for Linux components:
+All communication between various Ayla modules listed above uses messages sent over Unix domain sockets. To promote maintainability and code reuse, Internal message payloads and protocols are generally defined in lib/ayla or lib/app. See the diagram:
 
-<div class="row row justify-content-md-center">
+<div class="row hspace justify-content-md-center">
 <div class="col-lg-8 col-md-10 col-sm-12">
 <img class="img-fluid" src="ayla-device-platform-for-linux.jpg">
 </div>
 </div>
+
+Note the following in the diagram:
+
+1. devd is the Ayla Linux Agent.
+1. appd is the host application.
+1. appd communicates with a green LED and a button via the GPIO pins on the RPi.
+1. The Ayla Cloud maintains a digital twin (model) of the RPi device. The digital twin is an instance of a template.
+1. The digital twin is composed of properties representing characteristics of the RPi device.
+1. Each property has a name, type, value, and direction (To Device or From Device). 
+1. As the value of a property changes, the Ayla Cloud maintains a time-stamped history of these datapoints. 
+1. Mobile and web apps interact with the digital twin.
+1. An LED property is a good example of a "To Device" property: Apps send on/off commands to the device.
+1. A button property is a good example of a "From Device" property: Button on/off state comes from the device. 
+1. The Data Streaming Service (DSS) enables the Ayla Cloud to send data to integrated systems for data analysis.
