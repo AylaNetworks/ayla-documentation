@@ -4,6 +4,8 @@ layout: devices-ayla-linux-agent.html
 a: block
 ---
 
+This page shows you how to create an Ayla account, set up your Raspberry Pi, create a factory configuration file, and install the Ayla Device Platform for Linux which includes the Ayla Linux Agent (devd) and a host application (appd).
+
 ### Create an Ayla Account
 
 <ol>

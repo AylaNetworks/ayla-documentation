@@ -24,7 +24,7 @@ This tutorial helps you explore host application structure, and the application'
 
 <div class="row hspace">
 <div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/tutorials/adding-an-led/">Adding an LED</a>
+<a href="/devices/ayla-linux-agent/tutorials/implementing-an-led/">Implementing an LED</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
 This tutorial shows you how to control an LED with your version of the host application.
@@ -33,7 +33,7 @@ This tutorial shows you how to control an LED with your version of the host appl
 
 <div class="row hspace">
 <div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/tutorials/adding-a-button/">Adding a Button</a>
+<a href="/devices/ayla-linux-agent/tutorials/implementing-a-button/">Implementing a Button</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
 This tutorial shows you how to control a button with your version of the host application.
@@ -42,7 +42,7 @@ This tutorial shows you how to control a button with your version of the host ap
 
 <div class="row hspace">
 <div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/tutorials/debugging/">Debugging</a>
+<a href="/devices/ayla-linux-agent/tutorials/adding-a-new-property/">Adding a new Property</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
 This tutorial shows you how to debug host applications.
@@ -58,11 +58,3 @@ This tutorial shows you how to update the host application and Ayla Linux Agent 
 </div>
 </div>
 
-<div class="row hspace">
-<div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/tutorials/using-acli/">Using ACLI</a>
-</div>
-<div class="col-lg-9 col-md-7 col-sm-12">
-This tutorial shows you how to use the Ayla Command-line interface.
-</div>
-</div>

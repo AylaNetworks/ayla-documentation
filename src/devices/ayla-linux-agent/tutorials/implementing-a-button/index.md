@@ -1,5 +1,5 @@
 ---
-title: Adding a Button
+title: Implementing a Button
 layout: devices-ayla-linux-agent.html
 b: block
 ---

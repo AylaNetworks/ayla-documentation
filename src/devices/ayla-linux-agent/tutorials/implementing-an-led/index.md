@@ -1,5 +1,5 @@
 ---
-title: Adding an LED
+title: Implementing an LED
 layout: devices-ayla-linux-agent.html
 b: block
 ---
