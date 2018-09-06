@@ -66,7 +66,7 @@ To verify that you are able to customize, build, and run your own version of app
 </div>
 </div>
 
-The appd code for setting output to the square of input resides in appd.c:
+The code for setting output to input<sup>2</sup> resides in <code>~/device_linux_public/app/appd/appd.c</code>:
 
 <pre>
 static int appd_input_set(struct prop *prop, const void *val, size_t len, const struct op_args *args) {
@@ -76,7 +76,7 @@ static int appd_input_set(struct prop *prop, const void *val, size_t len, const 
 }
 </pre>
 
-Rather than setting output to the square of input, your version of appd will set output to twice input. Here are the steps:
+Rather than setting output to input<sup>2</sup>, your version of appd will set output to input + input. Here are the steps:
 
 <ol>
 <li>Open appd.c for editing:

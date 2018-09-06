@@ -30,11 +30,31 @@ This page shows you how to create an Ayla account, set up your Raspberry Pi, cre
 
 ### Set up your Raspberry Pi
 
-To complete the hands-on exercises in the Guide and Tutorial, you will need a functioning Raspberry Pi 2 or 3 with the latest Raspbian image, and Ethernet or Wi-Fi connectivity. To test the exercises, we used the [CanaKit Raspberry Pi Quick Start Guide](https://www.canakit.com/Media/CanaKit-Raspberry-Pi-Quick-Start-Guide-3.2.pdf) to set up a [Raspberry Pi 3 Model B+ 32-bit Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-starter-kit.html). The exercises assume you are accessing your RPi via SSH, so connecting your RPi to a monitor, keyboard, and mouse is optional.  See [Reference: Raspberry Pi](/devices/ayla-linux-agent/reference/raspberry-pi) for details.
+To complete the hands-on exercises in the Guide and Tutorial, you will need a functioning Raspberry Pi 2 or 3 with the latest Raspbian image, and Ethernet or Wi-Fi connectivity. To test the exercises, we used the [CanaKit Raspberry Pi Quick Start Guide](https://www.canakit.com/Media/CanaKit-Raspberry-Pi-Quick-Start-Guide-3.2.pdf) to set up a [Raspberry Pi 3 Model B+ 32-bit Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-starter-kit.html). The exercises assume you are accessing your RPi via SSH, so connecting your RPi to a monitor, keyboard, and mouse is optional.  See also [Reference: Raspberry Pi](/devices/ayla-linux-agent/reference/raspberry-pi).
 
 ### Create a Factory Configuration File
 
-The Ayla Linux Agent (devd) requires a factory configuration file to uniquely identify and authenticate the Raspberry Pi with the Ayla Device Service (ADS). For instructions explaining how to generate a configuration file, see [Reference: Configuration File](/devices/ayla-linux-agent/reference/configuration-file).
+The Ayla Linux Agent (devd) requires a factory configuration file to uniquely identify and authenticate the Raspberry Pi with the Ayla Device Service (ADS). The JSON file has the following format:
+
+<pre>
+{
+  "config": {
+    "id": {
+      "rsa_pub_key": "-----BEGIN RSA PUBLIC KEY-----\n...\n-----END RSA PUBLIC KEY-----\n",
+      "dsn": "AC000W001234567"
+    },
+    "sys": {"factory": 1},
+    "client": {"region": "US"},
+    "oem": {
+      "oem": "0dfc1234",
+      "model": "linuxevb",
+      "key": "Qrt2...H9IrjbZi18u3RFGXbBH=="
+    }
+  }
+}
+</pre>
+
+Contact your Ayla representative to obtain an Ayla Device Platform for Linux Configuration File. You will need access to the Ayla Device Platform for Linux [Github Repository](https://github.com/AylaNetworks/device_linux_public), too. See also [Reference: Configuration File](/devices/ayla-linux-agent/reference/configuration-file).
 
 ### Install the Ayla Device Platform for Linux
 <ol>
@@ -79,7 +99,7 @@ $ ssh pi@192.168.1.7
 $ sudo ./ayla_install.sh -g     // Wi-Fi
 $ sudo ./ayla_install.sh ­-g -n  // Ethernet
 </pre>
-If you are installing over a previous installation, include the <code>-u</code> flag. The <code>-g</code> flag installs the [Wiring Pi library](http://wiringpi.com/) in your run environment which is necessary when connecting your RPi to an actual LED and a button.
+If you are installing over a previous installation, include the <code>-u</code> flag. The <code>-g</code> flag installs the [Wiring Pi library](http://wiringpi.com/) in your run environment which is necessary when connecting your RPi via the GPIO pins to an LED and a button on a breadboard.
 </li>
 <li>Reboot the RPi.
 <pre>
@@ -99,6 +119,6 @@ $ pgrep appd
 $ htop (and then search with F3)
 $ systemctl status devd.service
 </pre>
-Note that appd and devd reside in <code>/home/pi/ayla/bin</code>.
+Note that appd and devd reside on disk in <code>/home/pi/ayla/bin</code>.
 </li>
 </ol>

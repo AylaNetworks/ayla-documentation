@@ -11,3 +11,4 @@ c: block
 * [20 Handy Raspberry Pi Terminal Commands](https://www.lifewire.com/raspberry-pi-terminal-commands-4054108)
 * [How to Manage Processes from the Linux Terminal](https://www.howtogeek.com/107217/how-to-manage-processes-from-the-linux-terminal-10-commands-you-need-to-know/)
 * [Five Ways To Run a Program On Your Raspberry Pi At Startup](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/)
+* [Fritzing: Electronics Made Easy](http://fritzing.org/home/)

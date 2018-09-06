@@ -31,6 +31,12 @@ The <code>pinout</code> utility is useful for visualizing the GPIO layout:
 $ pinout
 </pre>
 
+The <code>gpio readall</code> command is useful for visualizing all GPIO identification schemes:
+
+<pre>
+$ gpio readall
+</pre>
+
 The <code>gcc</code> GNU Compiler is installed on the RPi by default:
 
 <pre>

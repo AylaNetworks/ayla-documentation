@@ -24,28 +24,28 @@ This tutorial helps you explore host application structure, and the application'
 
 <div class="row hspace">
 <div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/tutorials/implementing-an-led/">Implementing an LED</a>
+<a href="/devices/ayla-linux-agent/tutorials/green-led/">Green_LED</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-This tutorial shows you how to control an LED with your version of the host application.
+This tutorial shows you how to control an LED with your version of the host application using an existing property called Green_LED.
 </div>
 </div>
 
 <div class="row hspace">
 <div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/tutorials/implementing-a-button/">Implementing a Button</a>
+<a href="/devices/ayla-linux-agent/tutorials/blue-button/">Blue_button</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-This tutorial shows you how to control a button with your version of the host application.
+This tutorial shows you how to control a button with your version of the host application using an existing property called Blue_button.
 </div>
 </div>
 
 <div class="row hspace">
 <div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/tutorials/adding-a-new-property/">Adding a new Property</a>
+<a href="/devices/ayla-linux-agent/tutorials/red-button/">Red_button</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-This tutorial shows you how to debug host applications.
+This tutorial shows you how to control a button with your version of the host application using a new property called Red_button.
 </div>
 </div>
 

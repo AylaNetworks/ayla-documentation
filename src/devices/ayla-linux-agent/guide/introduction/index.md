@@ -23,7 +23,7 @@ Ayla architecture is divided into three parts: device, cloud, and apps:
 
 <a class="btn btn-link" data-toggle="collapse" href="#transcript" role="button">Click to view the video transcript.</a>
 <div class="collapse" id="transcript">
-<div class="card card-body">
+<div class="card card-body hspace">
 <p>The Internet of Things, or IoT, is here, and it is connecting everything around us to the internet. From ceiling fans to thermostats, this network is enabling everyday devices to communicate for the very first time.</p>
 
 <p>But, suppose you are a manufacturer, and you want to IoT-enable your products to provide consumers with a better user experience, or even just to learn how users are actually using your devices. Where do you start? Well, first you would need to wirelessly connect your device to the cloud by designing the necessary networking hardware and networking stack into your product. Then, you would need to develop an application, writing the software to establish and manage the communication with the cloud. And finally, to make it all work, you would also need to build a cloud that has the capabilities to support all your users and devices as you scale.</p>
@@ -40,7 +40,7 @@ Ayla architecture is divided into three parts: device, cloud, and apps:
 
 Fundamentally, putting aside data collection and analytics, the Ayla Platform enables applications to interact with a cloud-based model of a device, controlling various aspects of the device, and responding to device events. Consider, for example, a simple Linux-based device composed of a host application, green LED, and button:
 
-<div class="row hspace justify-content-md-center">
+<div class="row hspace">
 <div class="col-lg-6 col-md-9 col-sm-12">
 <img class="img-fluid" src="ayla-platform-led-button.jpg">
 </div>
