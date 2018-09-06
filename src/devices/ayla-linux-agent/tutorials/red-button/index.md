@@ -176,4 +176,14 @@ Sep  6 06:17:19 rpi appd: [debug-app] data_recv: {"cmd":{"proto":"data","id":9,"
 </div>
 </li>
 <li>Click the Red Button on the breadboard. The new cloud-based property should reflect the button state.</li>
+<li>To see the Red_button property on your iPhone, navigate to the Devices page, tap the gear in the top-right corner, tap Fetch All Properties, click Cancel, and scroll to find the property.
+<div class="row">
+<div class="col-lg-4 col-md-6 col-sm-12">
+<img class="img-fluid" src="aura-025.jpg">
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12">
+<img class="img-fluid" src="aura-026.jpg">
+</div>
+</div>
+</li>
 </ol>
