@@ -3,8 +3,8 @@
   $email_to = "anonz3000@gmail.com";
   $email_subject = "Ayla Core Content Feedback";
 
-  $first_name = $_POST['first_name'];
-  $last_name = $_POST['last_name'];
+  $first_name = $_POST['first-name'];
+  $last_name = $_POST['last-name'];
   $email_from = $_POST['email'];
   $company = $_POST['company'];
   $page = $_POST['page'];
@@ -24,10 +24,10 @@
   $email_message .= "Page: ".clean_string($page)."\n";
   $email_message .= "Description: ".clean_string($description)."\n";
 
-  $headers = 'From: '.$email_from."\r\n".
-  'Reply-To: '.$email_from."\r\n" .
-  'X-Mailer: PHP/' . phpversion();
-  @mail($email_to, $email_subject, $email_message, $headers); 
+$headers = 'From: '.$email_from."\r\n".
+'Reply-To: '.$email_from."\r\n" .
+'X-Mailer: PHP/' . phpversion();
+@mail($email_to, $email_subject, $email_message, $headers); 
 
   ob_end_clean();
 

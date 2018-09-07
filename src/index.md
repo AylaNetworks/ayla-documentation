@@ -24,9 +24,12 @@ layout: page-full-width-no-title.html
 
 <div class="row" style="margin-top: 30px;">
 <div class="col-12 text-center">
-<a href="https://developer.aylanetworks.com/" target="_blank">DevPortal</a>
+<a href="https://developer.aylanetworks.com/" target="_blank">Developer Portal</a>
 <span>&nbsp;~&nbsp;</span>
-<a href="https://dashboard-dev.aylanetworks.com/" target="_blank">OemDash</a>
+<a href="https://dashboard-dev.aylanetworks.com/" target="_blank">Dashboard Portal</a>
+</div>
+<div class="col-12 text-center">
+<p class="last-updated">Last updated on September 7, 2018</p>
 </div>
 </div>
 

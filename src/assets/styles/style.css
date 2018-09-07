@@ -43,7 +43,7 @@ strong {color: #1a1a1a;}
   .ml-auto, .mx-auto {margin-left: 0 !important;}
 }
 
-#version {font-size: 70% !important; color: white;}
+.last-updated {font-size: 80% !important; color: gray; margin-top: 16px;}
 
 /******************************************
  #breadcrumbs
