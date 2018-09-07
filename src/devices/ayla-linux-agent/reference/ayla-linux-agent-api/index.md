@@ -1,5 +1,5 @@
 ---
-title: API
+title: Ayla Linux Agent API
 layout: devices-ayla-linux-agent.html
 c: block
 ---
@@ -40,7 +40,7 @@ These functions provide a queue for commands sent to devd, and are primarily use
 <a href="https://github.com/AylaNetworks/device_linux_public/blob/master/lib/app/include/app/props.h">props.h</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-These functions enable the application to transfer data items to and from the Ayla Agent. A data item is called a [property](/glossary/property) which is defined by the prop struct. The Ayla Agent, in turn, transfers properties to and from the Ayla Cloud on behalf of the customer application.
+These functions enable the application to transfer data items to and from the Ayla Agent. A data item is called a property which is defined by the prop struct. The Ayla Agent, in turn, transfers properties to and from the Ayla Cloud on behalf of the customer application.
 </div>
 </div>
 
@@ -71,7 +71,7 @@ These functions enable the application to schedule callbacks.
 <a href="https://github.com/AylaNetworks/device_linux_public/blob/master/lib/platform/include/platform/conf.h">conf.h</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-sss
+These two functions, platform_conf_read and platform_conf_write, are used to read/write platform-specific configuration information.
 </div>
 </div>
 
@@ -80,7 +80,7 @@ sss
 <a href="https://github.com/AylaNetworks/device_linux_public/blob/master/lib/platform/include/platform/crypto.h">crypto.h</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-sss
+This file contains functions to optionally configure crypto_state structures with custom encryption and decryption routines.  If implemented, these will be called by ayla/crypto.h and override the default Openssl routines.
 </div>
 </div>
 
@@ -89,7 +89,7 @@ sss
 <a href="https://github.com/AylaNetworks/device_linux_public/blob/master/lib/platform/include/platform/ota.h">ota.h</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-sss
+These functions control over-the-air updates.
 </div>
 </div>
 
@@ -98,7 +98,7 @@ sss
 <a href="https://github.com/AylaNetworks/device_linux_public/blob/master/lib/platform/include/platform/system.h">system.h</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
-sss
+These functions implement platform-specific ways to perform resets and get information like a mac address.
 </div>
 </div>
 

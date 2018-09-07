@@ -80,9 +80,11 @@ appd has two string properties: cmd and log. When you set cmd to a value, the Ay
 <div class="col-lg-4 col-md-6 col-sm-12">
 <img class="img-fluid" src="aura-020.jpg">
 </div>
+<!---
 <div class="col-lg-4 col-md-6 col-sm-12">
-<img class="img-fluid" src="monarch-butterfly.jpg">
+<img width="150" src="monarch-bw.png">
 </div>
+-->
 </div>
 
 ### Test decimal properties
@@ -110,14 +112,15 @@ appd has two file properties: file_up and file_down. Useful for large data blobs
 
 <h1>Test the version property</h1>
 
-appd has a version property where it stores the current appd software version. The Ayla Cloud reads and display this version to users who may initiate OTA updates. 
+appd has a version property where it stores the current appd software version. The Ayla Cloud reads and display this version. A user who needs to initiate an OTA update may find the version property useful.
 
 <div class="row align-items-center">
 <div class="col-lg-4 col-md-6 col-sm-12">
-<img class="img-fluid" src="version.jpg">
+<img class="img-fluid" src="aura-027.jpg">
 </div>
+<!---
+<div class="col-lg-4 col-md-6 col-sm-12">
+<img width="150" src="nautilus.png">
 </div>
-
-### Test the batch_hold property
-
-appd has a batch_hold property enabling you to test the batch update feature. When you set the batch_hold property to 1, all subsequent property updates from the device are added to a batch, but are not sent to the Ayla Cloud. When you set the batch_hold property back to 0, all accumulated property updates are sent to the Ayla Cloud. [Note: This does not seem to work.]
+-->
+</div>

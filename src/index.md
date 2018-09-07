@@ -24,7 +24,8 @@ layout: page-full-width-no-title.html
 
 <div class="row" style="margin-top: 30px;">
 <div class="col-12 text-center">
-<a href="https://developer.aylanetworks.com/" target="_blank">DevPortal</a>&nbsp;~&nbsp;
+<a href="https://developer.aylanetworks.com/" target="_blank">DevPortal</a>
+<span>&nbsp;~&nbsp;</span>
 <a href="https://dashboard-dev.aylanetworks.com/" target="_blank">OemDash</a>
 </div>
 </div>

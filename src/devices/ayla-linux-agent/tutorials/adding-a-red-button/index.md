@@ -1,5 +1,5 @@
 ---
-title: Red_button
+title: Adding a Red Button
 layout: devices-ayla-linux-agent.html
 b: block
 ---
@@ -134,7 +134,7 @@ void red_button_isr(void) {
 
 ### Make and run appd
 
-Make and run appd according to the instructions in [Building appd](/devices/ayla-linux-agent/tutorials/building-appd/), but don't push the button yet.
+Make and run appd according to the instructions in [Building the Host App](/devices/ayla-linux-agent/tutorials/building-the-host-app/), but don't push the button yet.
 
 ### Test appd (causing an error)
 

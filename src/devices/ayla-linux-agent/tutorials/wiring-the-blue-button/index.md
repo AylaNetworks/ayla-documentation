@@ -1,26 +1,20 @@
 ---
-title: Blue_button
+title: Wiring the Blue Button
 layout: devices-ayla-linux-agent.html
 b: block
 ---
 
-Be sure to complete [Green_LED](/devices/ayla-linux-agent/tutorials/green-led/) before starting this tutorial.
+Be sure to complete [Wiring the Green LED](/devices/ayla-linux-agent/tutorials/wiring-the-green-led/) before starting this tutorial.
 
 The host application (appd) has a property called Blue_button which does not actually respond to a real button:
 
-<div class="row align-items-center">
+<div class="row">
 <div class="col-lg-4 col-md-6 col-sm-12">
 <img class="img-fluid" src="../../guide/tests/aura-013.jpg">
 </div>
 </div>
 
 This page shows you how to modify your RPi and your version of appd to respond to a button.
-
-<div class="row align-items-center hspace">
-<div class="col-lg-6 col-md-8 col-sm-12">
-<img class="img-fluid" src="rpi-led-button-iphone.jpg">
-</div>
-</div>
 
 # Wire and test the Blue Button
 
@@ -187,5 +181,5 @@ void blue_button_isr(void) {
 
 ### Make, run, and test appd
 
-Make and run appd according to the instructions in [Building appd](/devices/ayla-linux-agent/tutorials/building-appd/). Test the new functionality by pressing and releasing the button. The Blue_button property in Aura should indicate the button state.
+Make and run appd according to the instructions in [Building the Host App](/devices/ayla-linux-agent/tutorials/building-the-host-app/). Test the new functionality by pressing and releasing the button. The Blue_button property in Aura should indicate the button state.
 

@@ -1,24 +1,18 @@
 ---
-title: Green_LED
+title: Wiring the Green LED
 layout: devices-ayla-linux-agent.html
 b: block
 ---
 
 The host application (appd) has a property called Green_LED which does not actually control a real LED:
 
-<div class="row align-items-center">
+<div class="row">
 <div class="col-lg-4 col-md-6 col-sm-12">
 <img class="img-fluid" src="../../guide/tests/aura-013.jpg">
 </div>
 </div>
 
 This page shows you how to modify your RPi and your version of appd to control an LED.
-
-<div class="row align-items-center hspace">
-<div class="col-lg-6 col-md-8 col-sm-12">
-<img class="img-fluid" src="rpi-led-iphone.jpg">
-</div>
-</div>
 
 # Wire and test a Green LED
 
@@ -199,4 +193,4 @@ static int appd_green_led_set(struct prop \*prop, const void \*val, size_t len, 
 
 ### Make, run, and test appd
 
-Make and run appd according to the instructions in [Building appd](/devices/ayla-linux-agent/tutorials/building-appd/). Test the new functionality by toggling the Green LED property on/off in Aura, and verifying that the actual LED on the breadboard turns on/off.
+Make and run appd according to the instructions in [Building the Host App](/devices/ayla-linux-agent/tutorials/building-the-host-app/). Test the new functionality by toggling the Green LED property on/off in Aura, and verifying that the actual LED on the breadboard turns on/off.

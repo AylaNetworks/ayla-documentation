@@ -8,10 +8,11 @@ This page provides a brief description of both the Ayla Platform and the Ayla De
 
 # Ayla Platform
 
-Ayla architecture is divided into three parts: device, cloud, and apps:
+Ayla architecture is divided into three parts: Devices, Cloud, and Apps. To view a brief, thorough overview, watch the video below.
 
+<div class="row hspace">
+<div class="col-lg-12">
 <iframe 
-  class="hspace"
   width="560" 
   height="315" 
   src="https://www.youtube.com/embed/qmMH4I_RVno?rel=0&amp;showinfo=0" 
@@ -20,9 +21,12 @@ Ayla architecture is divided into three parts: device, cloud, and apps:
   encrypted-media" 
   allowfullscreen>
 </iframe>
+</div>
+</div>
 
-<a class="btn btn-link" data-toggle="collapse" href="#transcript" role="button">Click to view the video transcript.</a>
-<div class="collapse" id="transcript">
+<a class="btn-link" data-toggle="collapse" href="#overview-transcript" role="button">Click to view a transcript of the video.</a>
+
+<div class="collapse" id="overview-transcript">
 <div class="card card-body hspace">
 <p>The Internet of Things, or IoT, is here, and it is connecting everything around us to the internet. From ceiling fans to thermostats, this network is enabling everyday devices to communicate for the very first time.</p>
 
@@ -38,31 +42,48 @@ Ayla architecture is divided into three parts: device, cloud, and apps:
 </div>
 </div>
 
-Fundamentally, putting aside data collection and analytics, the Ayla Platform enables applications to interact with a cloud-based model of a device, controlling various aspects of the device, and responding to device events. Consider, for example, a simple Linux-based device composed of a host application, green LED, and button:
+Fundamentally, putting aside data collection and analytics, the Ayla Platform enables applications to interact with a cloud-based model of a device, controlling various aspects of the device, and responding to device events. Consider, for example, a simple Linux-based device composed of a host application, green LED, blue button, and red button:
 
-<div class="row hspace">
+<div class="row justify-content-center hspace">
 <div class="col-lg-6 col-md-9 col-sm-12">
 <img class="img-fluid" src="ayla-platform-led-button.jpg">
 </div>
 </div>
 
-The central character in this diagram is the digital twin (red box) composed of properties representing various aspects of the device. The digital twin is how web and mobile apps see the device. These applications send commands to the device via "To Device" properties like the green LED. They remain aware of device state via "From Device" properties like the button. The Ayla software agent enables the device to connect to the Ayla Cloud.
+The central character in this diagram is the digital twin (red box) composed of properties representing various aspects of the device. The digital twin is how web and mobile apps see the device. These applications send commands to the device via "To Device" properties like the green LED. They remain aware of device state via "From Device" properties like the buttons. The Ayla software agent enables the device to connect to the Ayla Cloud.
 
 
 # Ayla Device Platform for Linux
 
-The Ayla Device Platform for Linux ([Github](https://github.com/AylaNetworks/device_linux_public)), which includes two software daemons, the Ayla Linux Agent (devd) and an example host application (appd), is simply a device-based environment that enables a Linux device (e.g. Raspberry Pi) to stay in sync with a digital twin in the Ayla Cloud. The following video shows appd and devd in action on a Raspbery Pi:
+The Ayla Device Platform for Linux ([Github](https://github.com/AylaNetworks/device_linux_public)), which includes the Ayla Linux Agent (devd) and an example host application (appd), enables a Linux device (e.g. Raspberry Pi) to stay in sync with a digital twin in the Ayla Cloud. The video below shows devd and appd in action on a Raspbery Pi. 
 
+<div class="row hspace">
+<div class="col-lg-12">
 <iframe 
-  class="hspace"
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/yMBrq3hoCd4?rel=0&amp;showinfo=0" 
+  src="https://www.youtube.com/embed/aDdyFeo2A5E?rel=0&amp;showinfo=0" 
   frameborder="0" 
   allow="autoplay; 
   encrypted-media" 
   allowfullscreen>
 </iframe>
+</div>
+</div>
+
+<a class="btn-link" data-toggle="collapse" href="#rpi-transcript" role="button">Click to view a transcript of the video.</a>
+
+<div class="collapse" id="rpi-transcript">
+<div class="card card-body hspace">
+<p>A Host Application called appd (written in C) is running on the CPU of this Raspberry Pi 3, and it is controlling this green LED, this blue button, and this red button. Together, the Raspberry Pi, the host application, the LED, and the buttons form our Raspberry Pi Device.</p>
+
+<p>An Ayla Linux Agent called devd (also written in C) is also running on this CPU.</p>
+
+<p>Now, appd uses devd to talk to the Ayla Cloud which maintains a digital twin of our Raspberry Pi Device that includes a Green_LED property, a Blue_button property, and a Red-button property.</p>
+
+<p>Mobile and web applications (like the Aura Mobile App shown here) send commands to, and receive events from, our Raspberry Pi Device by interacting with the digital twin in the cloud. So, for example, we can send a command, via the digital twin, to illumindate the LED, and we can receive press and release events from the blue and red buttons. </p>
+</div>
+</div>
 
 The Ayla Device Platform for Linux is composed of the components below. Communication among Ayla daemons takes place over Unix domain sockets.
 

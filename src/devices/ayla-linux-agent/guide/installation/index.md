@@ -30,7 +30,82 @@ This page shows you how to create an Ayla account, set up your Raspberry Pi, cre
 
 ### Set up your Raspberry Pi
 
-To complete the hands-on exercises in the Guide and Tutorial, you will need a functioning Raspberry Pi 2 or 3 with the latest Raspbian image, and Ethernet or Wi-Fi connectivity. To test the exercises, we used the [CanaKit Raspberry Pi Quick Start Guide](https://www.canakit.com/Media/CanaKit-Raspberry-Pi-Quick-Start-Guide-3.2.pdf) to set up a [Raspberry Pi 3 Model B+ 32-bit Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-starter-kit.html). The exercises assume you are accessing your RPi via SSH, so connecting your RPi to a monitor, keyboard, and mouse is optional.  See also [Reference: Raspberry Pi](/devices/ayla-linux-agent/reference/raspberry-pi).
+To complete the hands-on exercises in the Guide and Tutorial, you will need a functioning Raspberry Pi 2 or 3 with the latest Raspbian image, and Ethernet or Wi-Fi connectivity. To test the exercises, we used the [CanaKit Raspberry Pi Quick Start Guide](https://www.canakit.com/Media/CanaKit-Raspberry-Pi-Quick-Start-Guide-3.2.pdf) to set up a [Raspberry Pi 3 Model B+ 32-bit Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-starter-kit.html). The exercises assume you are accessing your RPi via SSH, so connecting your RPi to a monitor, keyboard, and mouse is optional. 
+
+<a class="btn btn-primary" data-toggle="collapse" href="#rpi-help" role="button">Click here for helpful hints regarding your Raspberry Pi.</a>
+
+<div class="collapse" id="rpi-help">
+<div class="card card-body hspace">
+<p>Useful Links:</p>
+<ul>
+<li><a href="https://www.raspberrypi.org/">Raspberry Pi Homepage</a></li>
+<li><a href="https://www.canakit.com/Media/CanaKit-Raspberry-Pi-Quick-Start-Guide-3.2.pdf">CanaKit Raspberry Pi Quick Start Guide</a></li>
+<li><a href="http://wiringpi.com/">Wiring Pi: GPIO Interface library for the Raspberry Pi</a></li>
+<li><a href="https://www.lifewire.com/raspberry-pi-terminal-commands-4054108">20 Handy Raspberry Pi Terminal Commands</a></li>
+<li><a href="https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/">Five Ways To Run a Program On Your Raspberry Pi At Startup</a></li>
+</ul>
+
+<p>Use <code>scp</code> to copy files between a computer and an RPi.</p>
+<ul>
+<li>Use this to copy hello.c from the current directory on your computer to <code>/home/pi/ayla</code> on the RPi:
+<pre>
+$ scp hello.c pi@192.168.1.7:ayla
+</pre>
+</li>
+<li>Use this to copy hello.c from <code>/home/pi/ayla</code> on the RPi to the current directory on your computer:
+<pre>
+$ scp pi@192.168.1.7:ayla/hello.c .
+</pre>
+</li>
+</ul>
+
+<p>Use <code>ssh</code> to remotely access an RPi:</p>
+<pre>
+$ ssh pi@192.168.1.7
+</pre>
+
+<p>Use <code>pinout</code> to visualize the GPIO layout:</p>
+<pre>
+$ pinout
+</pre>
+
+<p>Use <code>gpio readall</code> to visualize all GPIO identification schemes:</p>
+<pre>
+$ gpio readall
+</pre>
+
+<p>Use <code>gcc</code> to compile C code:</p>
+<pre>
+$ gcc hello.c -o hello
+</pre>
+
+<p>Use <code>shutdown</code>  to remotely shutdown the RPi:</p>
+<pre>
+$ sudo shutdown -h now
+</pre>
+
+<p>Check the Raspbian version with this command:</p>
+<pre>
+$ cat /etc/os-release
+</pre>
+
+<p>Use <code>df</code> to determine free space:</p>
+<pre>
+$ df -h
+</pre>
+
+<p>Update your package manager like this:</p>
+<pre>
+$ sudo apt-get update
+</pre>
+
+<p>Update your Raspbian distribution like this:</p>
+<pre>
+$ sudo apt-get dist-upgrade
+</pre>
+
+</div>
+</div>
 
 ### Create a Factory Configuration File
 
@@ -54,7 +129,7 @@ The Ayla Linux Agent (devd) requires a factory configuration file to uniquely id
 }
 </pre>
 
-Contact your Ayla representative to obtain an Ayla Device Platform for Linux Configuration File. You will need access to the Ayla Device Platform for Linux [Github Repository](https://github.com/AylaNetworks/device_linux_public), too. See also [Reference: Configuration File](/devices/ayla-linux-agent/reference/configuration-file).
+Contact your Ayla representative to obtain an Ayla Device Platform for Linux Configuration File. Ask for access to the Ayla Device Platform for Linux [Github Repository](https://github.com/AylaNetworks/device_linux_public), too.
 
 ### Install the Ayla Device Platform for Linux
 <ol>

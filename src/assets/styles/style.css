@@ -237,6 +237,13 @@ span.a {
 
 #content dd {margin-left: 24px;}
 
+#content iframe {
+  display:block; 
+  margin: 0 auto;
+}
+
+#content div.card-body {background: ghostwhite;}
+
 /******************************************
  Tiles
 ******************************************/
