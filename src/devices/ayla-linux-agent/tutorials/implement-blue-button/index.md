@@ -4,8 +4,6 @@ layout: devices-ayla-linux-agent.html
 b: block
 ---
 
-Be sure to complete [Wiring the Green LED](/devices/ayla-linux-agent/tutorials/wiring-the-green-led/) before starting this tutorial.
-
 The host application (appd) has a property called Blue_button which does not actually respond to a real button:
 
 <div class="row">
