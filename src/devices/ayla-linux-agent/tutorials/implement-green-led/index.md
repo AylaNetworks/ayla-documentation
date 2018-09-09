@@ -1,5 +1,5 @@
 ---
-title: Wiring the Green LED
+title: Implement the Green_LED Property
 layout: devices-ayla-linux-agent.html
 b: block
 ---
@@ -193,4 +193,4 @@ static int appd_green_led_set(struct prop \*prop, const void \*val, size_t len, 
 
 ### Make, run, and test appd
 
-Make and run appd according to the instructions in [Building the Host App](/devices/ayla-linux-agent/tutorials/building-the-host-app/). Test the new functionality by toggling the Green LED property on/off in Aura, and verifying that the actual LED on the breadboard turns on/off.
+Make and run the host app. Test the new functionality by toggling the Green LED property on/off in Aura, and verifying that the actual LED on the breadboard turns on/off.

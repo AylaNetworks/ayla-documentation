@@ -1,5 +1,5 @@
 ---
-title: Adding a Red Button
+title: Add a Red_button Property
 layout: devices-ayla-linux-agent.html
 b: block
 ---
@@ -134,7 +134,7 @@ void red_button_isr(void) {
 
 ### Make and run appd
 
-Make and run appd according to the instructions in [Building the Host App](/devices/ayla-linux-agent/tutorials/building-the-host-app/), but don't push the button yet.
+Make and run the host app, but don't push the button yet.
 
 ### Test appd (causing an error)
 
@@ -171,7 +171,7 @@ Sep  6 06:17:19 rpi appd: [debug-app] data_recv: {"cmd":{"proto":"data","id":9,"
 <li>Click Add, define the new Red_property, and click Save:
 <div class="row hspace">
 <div class="col-lg-4 col-md-8 col-sm-12">
-<img class="img-fluid img-border" src="create-red-button.jpg">
+<img class="img-fluid img-border" src="create-red-button.jpg" style="padding:12px; border: 1px solid lightgray;">
 </div>
 </div>
 </li>

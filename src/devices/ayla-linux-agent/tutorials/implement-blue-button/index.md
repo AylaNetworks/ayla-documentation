@@ -1,5 +1,5 @@
 ---
-title: Wiring the Blue Button
+title: Implement the Blue_button Property
 layout: devices-ayla-linux-agent.html
 b: block
 ---
@@ -181,5 +181,5 @@ void blue_button_isr(void) {
 
 ### Make, run, and test appd
 
-Make and run appd according to the instructions in [Building the Host App](/devices/ayla-linux-agent/tutorials/building-the-host-app/). Test the new functionality by pressing and releasing the button. The Blue_button property in Aura should indicate the button state.
+Make and run the host app. Test the new functionality by pressing and releasing the button. The Blue_button property in Aura should indicate the button state.
 
