@@ -204,10 +204,11 @@ strong {color: #1a1a1a;}
 #content dd ul li {margin-bottom: 0px;}
 
 #content pre {
-  background: #f2f2f2;
+  background: #0d0d0d;
   padding: 6px;
   border: 1px solid #e6e6e6;
   line-height: 1rem;
+  color: white;
 }
 
 #content label {font-weight: bold; font-size: 90%;}
