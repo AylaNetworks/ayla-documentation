@@ -236,6 +236,7 @@ span.a {
 */
 #content li pre {margin-top: 12px;}
 
+#content dt {font-size: 100%; font-weight: normal; color: steelblue;}
 #content dd {margin-left: 24px;}
 
 #content iframe {
@@ -244,6 +245,8 @@ span.a {
 }
 
 #content div.card-body {background: ghostwhite;}
+
+
 
 /******************************************
  Tiles
