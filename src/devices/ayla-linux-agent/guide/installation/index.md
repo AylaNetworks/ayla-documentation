@@ -174,13 +174,13 @@ $ ssh pi@192.168.1.7
 $ sudo ./ayla_install.sh -g     // Wi-Fi
 $ sudo ./ayla_install.sh ­-g -n  // Ethernet
 </pre>
-If you are installing over a previous installation, include the <code>-u</code> flag. The <code>-g</code> flag installs the [Wiring Pi library](http://wiringpi.com/) in your run environment which is necessary when connecting your RPi via the GPIO pins to an LED and a button on a breadboard.
+If you are installing over a previous installation, include the <code>-u</code> flag. The <code>-g</code> flag installs the [Wiring Pi library](http://wiringpi.com/) in your run environment which is required by the tutorials for connecting your RPi via the GPIO pins to an LED and a button on a breadboard.
 </li>
 <li>Reboot the RPi.
 <pre>
 $ sudo reboot
 </pre>
-On reboot, the Ayla Linux Agent daemon (devd) and the Customer Application daemon (appd) will start.
+On reboot, the Ayla Linux Agent daemon (devd) and the Host Application daemon (appd) will start.
 </li>
 <li>Verify that both are running. Here are a few ways to do this:
 <pre>

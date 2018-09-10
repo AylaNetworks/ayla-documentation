@@ -4,7 +4,7 @@ layout: devices-ayla-linux-agent.html
 b: block
 ---
 
-This tutorial shows you how to add a new button to your RPi device. It also shows you how to add a new property, Red_button, to the host application (appd), and to the corresponding digital twin in the Ayla Cloud.
+This tutorial shows you how to control a red button with your version of the host application using a new property called Red_button which you will add to the Host Application and to the digital twin in the Ayla Cloud.
 
 # Wire and test the Red Button
 

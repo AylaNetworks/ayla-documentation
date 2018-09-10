@@ -4,15 +4,13 @@ layout: devices-ayla-linux-agent.html
 b: block
 ---
 
-The host application (appd) has a property called Blue_button which does not actually respond to a real button:
+This tutorial shows you how to control a blue button with your version of the host application using an existing property called Blue_button. By default, the Blue_button does not actually respond to a real button:
 
 <div class="row">
 <div class="col-lg-4 col-md-6 col-sm-12">
 <img class="img-fluid" src="../../guide/tests/aura-013.jpg">
 </div>
 </div>
-
-This page shows you how to modify your RPi and your version of appd to respond to a button.
 
 # Wire and test the Blue Button
 

@@ -4,15 +4,13 @@ layout: devices-ayla-linux-agent.html
 b: block
 ---
 
-The host application (appd) has a property called Green_LED which does not actually control a real LED:
+This tutorial shows you how to control a green LED with your version of the host application using an existing property called Green_LED. By default, the Green_LED property does not actually control a real LED:
 
 <div class="row">
 <div class="col-lg-4 col-md-6 col-sm-12">
 <img class="img-fluid" src="../../guide/tests/aura-013.jpg">
 </div>
 </div>
-
-This page shows you how to modify your RPi and your version of appd to control an LED.
 
 # Wire and test a Green LED
 

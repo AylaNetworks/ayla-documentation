@@ -1,10 +1,10 @@
 ---
-title: Make the Host Application
+title: Make the Ayla Linux Agent and the Host Application
 layout: devices-ayla-linux-agent.html
 b: block
 ---
 
-This page shows you how to clone and build the Ayla Device Platform for Linux on your RPi.
+This tutorial shows you how to clone and build the Ayla Device Platform for Linux, including the Ayla Linux Agent (devd) and the Host Application (appd), on your Raspberry Pi.
 
 <ol>
 <li>ssh to your RPi.
