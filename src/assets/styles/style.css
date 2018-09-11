@@ -290,7 +290,6 @@ span.a {
 }
 
 #content table, #content th, #content td {
-  border: 1px solid #e6e6e6;
   border-collapse: collapse;
   margin-top: 12px;
   margin-bottom: 12px;
@@ -298,9 +297,10 @@ span.a {
   vertical-align:top;
 }
 
-#content table th {background: #e6e6e6; font-weight: normal;}
+#content table, #content th {border: 1px solid steelblue;}
+#content td {border: 1px solid #e6e6e6;}
 
-#content table .center {text-align: center;}
+#content table th {background: steelblue; font-weight: normal; text-align: left; color: white;}
 
 #content .note {padding: 12px; margin: 24px 0px; background: azure;}
 
