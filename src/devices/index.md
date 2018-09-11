@@ -11,7 +11,7 @@ This table categorizes **Ayla Connectivity Solutions**. Click a link to find the
 <th class="center">Solution</th>
 </tr>
 <tr>
-<td rowspan="6">End Device</td>
+<td rowspan="6">Device</td>
 <td rowspan="2">Production Module</td>
 <td>Ayla Wi-Fi Production Module</td>
 </tr>
