@@ -1,3 +1,13 @@
+/*
+$(function() {
+  $("#search").keyup(function (e) {
+   if (e.keyCode == 13) {
+    alert("Search");  
+   }
+  });
+});
+*/
+
 $(function() {
   if($('#sidenav').length != 0) {
     var selector = '#' + window.location.pathname.substring(1).slice(0,-1).replace(/\//g, '-');

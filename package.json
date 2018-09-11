@@ -13,6 +13,7 @@
     "metalsmith-if": "^0.1.1",
     "metalsmith-layouts": "^1.4.1",
     "metalsmith-lunr": "^0.2.1",
+    "metalsmith-lunr-index": "^0.2.0",
     "metalsmith-markdown": "^0.2.1",
     "metalsmith-path": "^0.3.1",
     "metalsmith-permalinks": "^0.5.0",

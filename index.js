@@ -2,8 +2,7 @@ const breadcrumbs = require('breadcrumbs');
 const fileMetadata = require('metalsmith-filemetadata');
 const handlebars = require('handlebars');
 const layouts = require('metalsmith-layouts');
-const lunr = require('metalsmith-lunr');
-const lunr_ = require('lunr');
+// const lunr = require('metalsmith-lunr-index');
 const markdown = require('metalsmith-markdown');
 const metalsmith = require('metalsmith');
 const msIf = require('metalsmith-if');
@@ -43,7 +42,9 @@ metalsmith(__dirname)
 
   .use(breadcrumbs())
 
-  // .use(lunr())
+//  .use(lunr({
+//    fields: {title: 1}
+//  }))
 
   .use(layouts({
     default: "page-full-width.html",
