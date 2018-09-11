@@ -11,6 +11,17 @@ $company = $_POST['company'];
 $page = $_POST['page'];
 $description = $_POST['description'];
 
+if(
+  $firstname === NULL || 
+  $lastname === NULL ||
+  $email === NULL ||
+  $company === NULL ||
+  $page === NULL ||
+  $description === NULL) {
+  echo "One or more fields are missing.";  
+  return;
+}
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
