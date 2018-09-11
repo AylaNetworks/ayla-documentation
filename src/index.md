@@ -29,7 +29,7 @@ layout: page-full-width-no-title.html
 <a href="https://dashboard-dev.aylanetworks.com/" target="_blank">Dashboard Portal</a>
 </div>
 <div class="col-12 text-center">
-<p class="last-updated">Last updated on September 10, 2018</p>
+<span class="last-updated">Last updated on September 11, 2018</span>
 </div>
 </div>
 

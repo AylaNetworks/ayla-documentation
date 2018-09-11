@@ -13,7 +13,7 @@ CREATE TABLE Feedback(
   email varchar(128),
   company varchar(64),
   page varchar(128),
-  description varchar(512),
+  description varchar(4096),
   PRIMARY KEY (feedbackId)
 );
 </pre>
