@@ -9,16 +9,14 @@ This tutorial shows you how to associate the following metadata with the Blue_bu
 * buttonSize: small
 * buttonDistributer: Elego
 
-Property metadata is information in the form of key:value pairs associated with properties. Limits are defined here:
+Property metadata is information in the form of key:value pairs associated with properties. 
 
-<pre>~/device_linux_public/lib/app/props_internal.h</pre>
-
-Limits include the following:
+Limits, defined in <code>~/device_linux_public/lib/app/props_internal.h.</code>, include the following:
 
 * PROP_METADATA_MAX_ENTRIES - The maximum number of key/value pairs is 10.
 * PROP_METADATA_KEY_MAX_LEN - The maximum key length is 255 bytes.
 
-Here are the directions:
+Here are the directions for implementing metadata:
 
 <ol>
 <li>Browse to the Developer Portal.</li>
