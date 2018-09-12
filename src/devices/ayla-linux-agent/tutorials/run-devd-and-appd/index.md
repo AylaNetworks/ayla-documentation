@@ -148,7 +148,7 @@ Linking appd
 </li>
 </ol>
 
-The directions below show you how to run your version of appd in background, foreground, and debug modes. When you do, you can verify that your are, indeed, running your version in several ways:
+The sections below show you how to run your version of appd in background, foreground, and debug modes. When you do, you can verify that your are, indeed, running your version in several ways:
 
 <ol>
 <li>View the results in Aura:
