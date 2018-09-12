@@ -10,7 +10,7 @@ p, li, #sidenav a {color: #1a1a1a;}
 
 h1 {font-size: 120%; margin-top: 24px; font-weight: bold; color: black;}
 h2 {font-size: 110%; margin-top: 24px; font-weight: bold; color: #396a93;}
-h3 {font-size: 100%; margin-top: 24px; font-weight: bold; color: #4d4d4d;}
+h3 {font-size: 100%; margin-top: 24px; font-weight: bold; color: maroon;}
 h4 {font-size: 1.00rem;}
 h5 {font-size: 1.00rem;}
 h6 {font-size: 1.00rem;}
@@ -204,11 +204,12 @@ strong {color: #1a1a1a;}
 #content dd ul li {margin-bottom: 0px;}
 
 #content pre {
-  background: #0d0d0d;
+  background: #333333;
   padding: 6px;
   border: 1px solid #e6e6e6;
   line-height: 1rem;
   color: white;
+  font-weight: normal;
 }
 
 #content label {font-weight: bold; font-size: 90%;}

@@ -184,4 +184,5 @@ Sep  6 06:17:19 rpi appd: [debug-app] data_recv: {"cmd":{"proto":"data","id":9,"
 </div>
 </div>
 </li>
+<li>Tap the Red_button property to see the Red LED illuminate.</li>
 </ol>
