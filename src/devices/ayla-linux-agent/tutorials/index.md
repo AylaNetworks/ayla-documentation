@@ -60,6 +60,15 @@ This tutorial shows you how to control a red button with your version of the hos
 
 <div class="row hspace">
 <div class="col-lg-3 col-md-5 col-sm-12">
+<a href="/devices/ayla-linux-agent/tutorials/add-metadata/">Add Metadata</a>
+</div>
+<div class="col-lg-9 col-md-7 col-sm-12">
+This tutorial shows you how to add metadata to a property.
+</div>
+</div>
+
+<div class="row hspace">
+<div class="col-lg-3 col-md-5 col-sm-12">
 <a href="/devices/ayla-linux-agent/tutorials/perform-ota-updates/">Performing OTA Updates</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">

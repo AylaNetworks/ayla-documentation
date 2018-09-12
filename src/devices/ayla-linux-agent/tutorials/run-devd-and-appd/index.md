@@ -53,7 +53,7 @@ OPTIONS:
 </li>
 <li>Tell appd to show command-line options:
 <pre>
-$ $ ~/ayla/bin/appd ?
+$ ~/ayla/bin/appd ?
 </pre>
 The following options appear:
 <pre>
@@ -74,19 +74,19 @@ Usage: appd
 Stop/start or restart the Installed Set like this:
 
 <ol>
-<li>Stop the devd daemon. This also stops appd. Raspbian will ask for authentication.
+<li>Stop the devd daemon. This also stops appd.
 <pre>
-$ /etc/init.d/devd stop
+$ sudo systemctl stop devd
 </pre>
 </li>
-<li>Start the devd daemon. This also starts appd. Raspbian will ask for authentication.
+<li>Start the devd daemon. This also starts appd.
 <pre>
-$ /etc/init.d/devd start
+$ sudo systemctl start devd
 </pre>
 </li>
-<li>Restart the devd daemon. This also restarts appd. Raspbian will ask for authentication.
+<li>Restart the devd daemon. This also restarts appd.
 <pre>
-$ /etc/init.d/devd restart
+$ sudo systemctl restart devd
 </pre>
 </li>
 </ol>
@@ -148,7 +148,7 @@ Linking appd
 </li>
 </ol>
 
-The sections below show you how to run your version of appd in background, foreground, and debug modes. When you do, you can verify that your are, indeed, running your version in several ways:
+IMPORTANT: The sections below show you how to run your version of appd in background, foreground, and debug modes. When you do, you can verify that your are, indeed, running your version in several ways:
 
 <ol>
 <li>View the results in Aura:
@@ -184,17 +184,17 @@ Here are two ways to run your version of appd instead of the default version:
 Overwrite the installed appd with your version, and restart devd which launches your version of appd. Do this repeatedly as you make modifications to your version of appd.
 
 <ol>
+<li>Modify and make your version of appd.</li>
 <li>Stop devd and appd:
 <pre>
-$ /etc/init.d/devd stop
+$ sudo systemctl stop devd
 </pre>
 </li>
-<li>Make a copy of the original appd:
+<li>Optionally, make a copy of the original appd:
 <pre>
 $ sudo cp ~/ayla/bin/appd ~/ayla/bin/appd.original
 </pre>
 </li>
-<li>Modify and make your version of appd.</li>
 <li>Copy your version of appd to the directory where devd expects to find it:
 <pre>
 $ sudo cp ~/device_linux_public/build/native/obj/app/appd/appd ~/ayla/bin/appd
@@ -202,7 +202,7 @@ $ sudo cp ~/device_linux_public/build/native/obj/app/appd/appd ~/ayla/bin/appd
 </li>
 <li>Start devd:
 <pre>
-$ /etc/init.d/devd start
+$ sudo systemctl start devd
 </pre>
 </li>
 <li>Test your modifications.</li>
@@ -215,7 +215,7 @@ $ /etc/init.d/devd start
 <ol>
 <li>Stop devd and appd:
 <pre>
-$ /etc/init.d/devd stop
+$ sudo systemctl stop devd
 </pre>
 </li>
 <li>Open <code>/etc/init.d/devd</code> for editing.
@@ -230,7 +230,8 @@ OPTIONS="--debug -n -c /home/pi/ayla/config/devd.conf"
 </li>
 <li>Start devd:
 <pre>
-$ /etc/init.d/devd start
+$ sudo systemctl start devd
+$ sudo systemctl daemon-reload
 </pre>
 </li>
 <li>Verify that devd is running:
@@ -252,40 +253,35 @@ IMPORTANT: The sections below show you how to start/stop your version of appd re
 ### Run your version of appd in background mode
 
 <ol>
-<li>Restart devd:
+<li>Modify and make your version of appd.</li>
+<li>If running, stop appd:
 <pre>
-$ /etc/init.d/devd restart
+$ sudo killall appd
 </pre>
 </li>
-<li>Modify and make your version of appd.</li>
+<li>Restart devd:
+<pre>
+$ sudo systemctl restart devd
+</pre>
+</li>
 <li>Run appd:
 <pre>
 $ sudo ~/device_linux_public/build/native/obj/app/appd/appd -c /home/pi/ayla/config/appd.conf
 </pre>
 </li>
-<li>Verify that appd is running:
-<pre>
-$ ps -A | grep appd
- 2147 ?        00:00:00 appd
-</pre>
-</li>
 <li>Test your modifications.</li>
-<li>Stop appd:
-<pre>
-$ sudo killall appd
-</pre>
-</li>
 </ol>
 
 ### Run your version of appd in foreground mode
 
 <ol>
+<li>Modify and make your version of appd.</li>
+<li>If running, stop appd with <code>Ctl-C</code>.</li>
 <li>Restart devd:
 <pre>
-$ /etc/init.d/devd restart
+$ sudo systemctl restart devd
 </pre>
 </li>
-<li>Modify and make your version of appd.</li>
 <li>Run appd:
 <pre>
 $ sudo ~/device_linux_public/build/native/obj/app/appd/appd -f -c /home/pi/ayla/config/appd.conf
@@ -300,32 +296,19 @@ Terminal output will look similar to this:
 [INF] appd::appd_prop_confirm_cb()  output = 0 send at 1536580478336 to dests 1 succeeded
 </pre>
 </li>
-<li>In another terminal, verify that appd is running:
-<pre>
-$ ps -A | grep appd
- 2244 pts/0    00:00:00 appd
-</pre>
-</li>
 <li>Test your modifications.</li>
-<li>Stop appd with <code>Ctl-C</code>. 
-<pre>
-[WRN] appd::file_event_poll()  poll failed: Interrupted system call
-[INF] appd::appd_exit()  application exiting with status: 2
-[INF] appd::msg_client_event_handler()  disconnected from cloud client
-[INF] appd::appd_connectivity_event()  Cloud connection DOWN
-[WRN] appd::app_client_connection_status_handler()  set connect_timer 1000 ms
-</pre>
 </ol>
 
 ### Run your version of appd in foreground/debug mode
 
 <ol>
+<li>Modify and make your version of appd.</li>
+<li>If running, stop appd with <code>Ctl-C</code>.</li>
 <li>Restart devd:
 <pre>
-$ /etc/init.d/devd restart
+$ sudo systemctl restart devd
 </pre>
 </li>
-<li>Modify and make your version of appd.</li>
 <li>Run appd:
 <pre>
 $ sudo ~/device_linux_public/build/native/obj/app/appd/appd -f -d -c /home/pi/ayla/config/appd.conf
@@ -346,5 +329,4 @@ Terminal output will look similar to this:
 </pre>
 </li>
 <li>Test your modifications.</li>
-<li>Stop appd with <code>Ctl-C</code>.</li>
 </ol>
