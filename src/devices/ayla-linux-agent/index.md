@@ -12,3 +12,5 @@ The [Tutorials](/devices/ayla-linux-agent/tutorials) help you explore appd in mo
 The [Reference](/devices/ayla-linux-agent/reference) provides API documentation and background information. 
 
 To open a book without closing other books, mouse-over a title in the sidebar, and click the chevron that appears.
+
+After you complete the tutorials, click [Assessment](assessment) to assess your learning about the Ayla Linux Agent.
