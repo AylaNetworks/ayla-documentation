@@ -69,6 +69,7 @@ This optional section shows you how to control both the green and blue LEDs with
 </div>
 </div>
 </li>
+<li>Start your RPi</li>
 <li>Determine the GPIO pin:
 <pre>
 $ gpio readall
