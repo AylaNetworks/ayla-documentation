@@ -44,15 +44,6 @@ These functions enable the application to transfer data items to and from the Ay
 </div>
 </div>
 
-<div class="row hspace">
-<div class="col-lg-3 col-md-5 col-sm-12">
-<a href="https://github.com/AylaNetworks/device_linux_public/blob/master/lib/app/include/app/sched.h">sched.h</a>
-</div>
-<div class="col-lg-9 col-md-7 col-sm-12">
-These functions enable the application to initialize, start, and destroy the schedule subsystem.
-</div>
-</div>
-
 # libayla.a
 
 <div class="row hspace">

@@ -84,6 +84,11 @@ $ gcc hello.c -o hello
 $ sudo shutdown -h now
 </pre>
 
+<p>Use <code>reboot</code>  to reboot the RPi:</p>
+<pre>
+$ sudo reboot
+</pre>
+
 <p>Check the Raspbian version with this command:</p>
 <pre>
 $ cat /etc/os-release
