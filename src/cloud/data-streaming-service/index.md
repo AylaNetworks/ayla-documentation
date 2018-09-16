@@ -1,5 +1,5 @@
 ---
 title: Data Streaming Service
-layout: page-with-sidebar.html
+layout: cloud-data-streaming-service.html
 ---
 

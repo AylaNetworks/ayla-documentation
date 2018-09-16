@@ -1,5 +1,6 @@
 ---
 title: Reference
-layout: page-with-sidebar.html
+layout: cloud-data-streaming-service.html
+c: block
 ---
 

@@ -1,6 +1,7 @@
 ---
-title: Introduction to the Guide
-layout: page-with-sidebar.html
+title: Introduction
+layout: cloud-data-streaming-service.html
+a: block
 ---
 
 
