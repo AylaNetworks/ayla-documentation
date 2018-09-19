@@ -27,7 +27,7 @@ Here are directions for creating a schedule:
 </div>
 </div>
 </li>
-The 2-second interval means this schedule will wake up every 2 seconds. The 1-second duration means that actions (as yet unspecified) can take place during a 1 second window.
+<p>The 2-second interval means this schedule will wake up every 2 seconds. The 1-second duration means that actions (as yet unspecified) can take place during a 1 second window.</p>
 <li>Click the new schedule:
 <div class="row hspace">
 <div class="col-lg-4 col-md-6 col-sm-12">
@@ -54,6 +54,13 @@ The 2-second interval means this schedule will wake up every 2 seconds. The 1-se
 </li>
 <li>Click the Settings tab, and click OK. If devd and appd are running, the Green LED on your RPi should begin to blink on/off every 1 second.</li>
 <li>Run appd in debug mode to see on/off messages.</li>
+<li>Verify datapoints in Aura, or in the Developer Portal:
+<div class="row">
+<div class="col-lg-4 col-md-6 col-sm-12">
+<img class="img-fluid" src="aura-028.jpg">
+</div>
+</div>
+</li>
 </ol>
 
 ### Implement Blue_LED

@@ -182,6 +182,9 @@ static int appd_green_led_set(struct prop \*prop, const void \*val, size_t len, 
   } else {
     digitalWrite(GREEN_LED, LOW);
   }
+  if (prop_arg_set(prop, val, len, args) != ERR_OK) {
+    return -1;
+  }
   return 0;
 }
 </pre>

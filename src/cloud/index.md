@@ -2,4 +2,4 @@
 title: Cloud
 ---
 
-[Data Streaming Service (DSS)](/cloud/data-streaming-service)
+[Ayla Datastream Service (DSS)](/cloud/ayla-datastream-service)

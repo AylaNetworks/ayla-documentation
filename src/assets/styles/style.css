@@ -345,3 +345,7 @@ img.center {
 .nav-icon {padding-right: 3px; padding-bottom: 5px; width: 20px;}
 
 .mr-sm-2, .mx-sm-2 {margin-right: 0rem!important;}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}

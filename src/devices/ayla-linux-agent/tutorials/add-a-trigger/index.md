@@ -4,6 +4,8 @@ layout: devices-ayla-linux-agent.html
 b: block
 ---
 
+<span style="color: red;">Important: Triggers are deprecated, and will be replaced with the Ayla Rules Engine soon.</span>
+
 This tutorial shows you how to add a trigger to the Red_button property. A trigger is a response (initiated in the Ayla Cloud) to the change in a property value. Adding a trigger requires no coding.
 
 Here are the steps:
