@@ -33,7 +33,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param('ssssss', $firstname, $lastname, $email, $company, $page, $description);
 
 if ($stmt->execute() === TRUE) {
-  echo readfile("thank-you/index.html");
+  echo readfile("../../feedback/thank-you/index.html");
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }

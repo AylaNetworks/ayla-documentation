@@ -2,7 +2,7 @@
 title: Feedback
 ---
 
-<form action="thank-you.php" method="post">
+<form action="/assets/server/thank-you.php" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="first-name">First Name</label>

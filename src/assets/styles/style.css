@@ -349,3 +349,8 @@ img.center {
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px white inset;
 }
+
+#login-form, #logout-form {padding: 1.0rem 1.0rem 0 1.0rem;}
+#login-required {font-size: 85%;}
+#connect-form {margin-top: 0px;}
+#connect-form label {font-weight: bold; font-size:85%;}

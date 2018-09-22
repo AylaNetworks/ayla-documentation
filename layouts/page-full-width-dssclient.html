@@ -3,88 +3,39 @@
 <!-- BEGIN SIDENAV -->
 <nav id="sidenav">
 
-<div style="color:steelblue; margin-bottom: 6px;">Ayla Account Credentials</div>
-<form id="login-form" style="margin-top: 6px;">
-
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <input type="email" class="form-control" id="email" placeholder="email" required>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <input type="password" class="form-control" id="password" placeholder="password" required>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <button id="login" type="submit" class="btn btn-secondary btn-sm">Login</button>
-    </div>
-  </div>
-
-</form>
-
-<div style="color:steelblue; margin: 12px 0 6px 0;">DSS Parameters</div>
 <form id="connect-form">
 
   <div class="form-row">
     <div class="form-group col-md-12">
-      <select id="region" class="form-control" required>
-        <option value="">Region</option> 
-        <option  value="cn">China</option>
-        <option  value="eu">Europe</option>
-        <option  value="us">United States</option>
+      <label for="service">Service</label>
+      <select id="service" class="form-control form-control-sm" required>
+        <option value=''>Select</option> 
+        <option value='{"region":"cn","deployment":"dev"}'>China : Dev</option> 
+        <option value='{"region":"cn","deployment":"field"}'>China : Field</option> 
+        <option value='{"region":"eu","deployment":"field"}'>Europe : Field</option> 
+        <option value='{"region":"us","deployment":"dev"}'>United States : Dev</option> 
+        <option value='{"region":"us","deployment":"staging"}'>United States : Staging</option> 
+        <option value='{"region":"us","deployment":"field"}'>United States : Field</option> 
       </select>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-12">
-      <select id="deployment" class="form-control" required>
-        <option value="">Deployment</option> 
-        <option  value="dev">Development</option>
-        <option  value="field">Field</option>
-        <option  value="staging">Staging</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <select id="client-type" class="form-control" required>
-        <option value="">Client Type</option> 
+      <label for="client-type">Client Type</label>
+      <select id="client-type" class="form-control form-control-sm" required>
+        <option value="">Select</option> 
         <option  value="cloud">Cloud</option>
         <option  value="mobile">Mobile</option>
       </select>
     </div>
   </div>
-<!--
+
   <div class="form-row">
     <div class="form-group col-md-12">
-      <select id="service" class="form-control" required>
-        <option value="">Service</option> 
-        <option  value="wss://stream.aylanetworks.com/stream">US-Dev</option>
-        <option  value="wss://stream-field.aylanetworks.com/stream">US-Field</option>
-        <option  value="wss://staging-dss.ayladev.com/stream">US-Staging</option>
-        <option  value="wss://stream.ayla.com.cn/stream/stream">CN-Dev</option>
-        <option  value="wss://stream-field.ayla.com.cn/stream">CN-Field</option>
-        <option  value="wss://stream-field-eu.aylanetworks.com/stream">EU-Field</option>
-        <option  value="wss://mstream-dev.aylanetworks.com/stream">Mobile|US-Dev</option>
-        <option  value="wss://mstream-field.aylanetworks.com/stream">Mobile|US-Field</option>
-        <option  value="wss://staging-mstream.ayladev.com/stream">Mobile|US-Staging</option>
-        <option  value="wss://mstream.ayla.com.cn/stream">Mobile|CN-Dev</option>
-        <option  value="wss://mstream-field.ayla.com.cn/stream">Mobile|CN-Field</option>
-        <option  value="wss://mstream-field-eu.aylanetworks.com/stream">Mobile|EU-Field</option>
-      </select>
-    </div>
-  </div>
--->
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <select id="event-type" class="form-control" required>
-        <option value="">Event Type</option> 
+      <label for="event-type">Event Type</label>
+      <select id="event-type" class="form-control form-control-sm" required>
+        <option value="">Select</option> 
         <option  value="connectivity">Connectivity</option>
         <option  value="registration">Registration</option>
         <option  value="datapoint">Datapoint</option>
@@ -96,7 +47,31 @@
 
   <div class="form-row">
     <div class="form-group col-md-12">
-      <button id="connect" type="submit" class="btn btn-secondary btn-sm">Connect</button>
+      <label for="event-type">OEM Model</label>
+      <input type="text" class="form-control form-control-sm" id="oem-model" value="*" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="event-type">DSN</label>
+      <input type="text" class="form-control form-control-sm" id="dsn" placeholder="Leave blank for all devices">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="event-type">Property Name</label>
+      <input type="text" class="form-control form-control-sm" id="property-name" value="*" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <button id="connect-submit" type="submit" class="btn btn-secondary btn-sm btn-block">Connect</button>
+    </div>
+    <div class="form-group col-md-6">
+      <button id="connect-disconnect" type="button" class="btn btn-secondary btn-sm btn-block">Disconnect</button>
     </div>
   </div>
 
