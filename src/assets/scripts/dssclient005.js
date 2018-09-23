@@ -43,8 +43,9 @@ urls["us"]["field"]["mobile"] = 'wss://mstream-field.aylanetworks.com/stream';
 //*********************************************
 
 $(function() {
-  window.addEventListener('beforeunload', function(event) {
-    alert('Unloading');
+  window.addEventListener("beforeunload", function (event) {
+    event.preventDefault();
+    event.returnValue = ''; // required by chrome.
   });
 });
 
@@ -59,21 +60,17 @@ $(function() {
 
     var aToken = Cookies.get('access_token');
 
-    //var service = $('#service').val();
-    //var serviceObj = JSON.parse(service);
-    var serviceObj = JSON.parse($('#service').val());
-    var region = serviceObj.region;
-    var deployment = serviceObj.deployment;
+    var srv = JSON.parse($('#service').val());
     var clientType = $('#client-type').val();
-    var url = urls[region][deployment][clientType];
+    var url = urls[srv.region][srv.deployment][clientType];
     var eventType = $('#event-type').val();
     var oemModel = $('#oem-model').val();
     var dsn = $('#dsn').val();
     var propertyName = $('#property-name').val();
 
     /*
-    console.log('Region:       ' + region);
-    console.log('Deployment:   ' + deployment);
+    console.log('Region:       ' + srv.region);
+    console.log('Deployment:   ' + srv.deployment);
     console.log('clientType:   ' + clientType);
     console.log('eventType:    ' + eventType);
     console.log('oemMmodel:    ' + oemModel);
@@ -83,7 +80,7 @@ $(function() {
     */
 
     if(!url.length) {
-      displayString('Service at ' + region + ' + ' + deployment + ' + ' + clientType + ' not available.');
+      displayString('Service at ' + srv.region + ' + ' + srv.deployment + ' + ' + clientType + ' not available.');
       return;
     }
 
