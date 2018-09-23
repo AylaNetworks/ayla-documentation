@@ -1,4 +1,12 @@
-var webSocket = null;
+var webSocket1 = null;
+var webSocket2 = null;
+
+var webSockets = [];
+webSockets['connectivity'] = null;
+webSockets['registration'] = null;
+webSockets['datapoint'] = null;
+webSockets['datapointack'] = null;
+webSockets['location'] = null;
 
 var urls = [];
 urls["cn"] = [];
@@ -46,6 +54,24 @@ $(function() {
   window.addEventListener("beforeunload", function (event) {
     event.preventDefault();
     event.returnValue = ''; // required by chrome.
+  });
+});
+
+//*********************************************
+// 
+//*********************************************
+
+$(function() {
+  $(":checkbox").change(function() {
+
+    $(this).blur();
+    var eventType = $(this).val();
+    if($(this).is( ":checked")) {
+      start(eventType);
+    } else {
+      stop(eventType);
+    }
+
   });
 });
 
@@ -111,17 +137,23 @@ $(function() {
 
       if("subscription" in obj) {
         try {
-          var urlKey = url + '?stream_key=' + obj.subscription.stream_key;
 
           //var subscriptionKey = 'e8865a268fcc49a8bf2437a37f85f7ab';
           //urlKey = urlKey + '&' + subscriptionKey;
 
-        	webSocket = new WebSocket(urlKey);
           $('#connect').parent().hide();
           $('#disconnect').parent().show();
-        	run(url, obj.subscription.stream_key, eventType);
+
+          var urlKey1 = url + '?stream_key=' + obj.subscription.stream_key;
+          webSocket1 = new WebSocket(urlKey1);
+        	run(url, obj.subscription.stream_key, eventType, webSocket1);
+
+          var urlKey2 = url + '?stream_key=156e7ad213cd496dad1f58d9efb587b0';
+          webSocket2 = new WebSocket(urlKey2);
+          run(url, '156e7ad213cd496dad1f58d9efb587b0', 'connectivity', webSocket2);
+
         } catch (exception) {
-          displayString('WebSocket Exception');
+          displayString(exception);
         }
 
       } else {
@@ -141,28 +173,129 @@ $(function() {
 
 $(function() {
   $('#disconnect').click(function(event) {
-      webSocket.close();
-      $('#connect').parent().show();
-      $('#disconnect').parent().hide();
+    //webSocket2.close();
+    //webSocket1.close();
+    //$('#disconnect').parent().hide();
+    //$('#connect').parent().show();
   });
 });
+
+//*********************************************
+// heartbeats-button
+//*********************************************
+
+$(function() {
+  $('#heartbeats-button').click(function(event) {
+    $('#heartbeats-button').parent().hide();
+    $('#messages-button').parent().show();
+    $('#messages').hide();
+    $('#heartbeats').show();
+  });
+});
+
+//*********************************************
+// messages-button
+//*********************************************
+
+$(function() {
+  $('#messages-button').click(function(event) {
+    $('#messages-button').parent().hide();
+    $('#heartbeats-button').parent().show();
+    $('#heartbeats').hide();
+    $('#messages').show();
+  });
+});
+
+//*********************************************
+// 
+//*********************************************
+
+function start(eventType) {
+
+  var aToken = Cookies.get('access_token');
+
+  var srv = JSON.parse($('#service').val());
+  var clientType = $('#client-type').val();
+  var url = urls[srv.region][srv.deployment][clientType];
+  var oemModel = $('#oem-model').val();
+  var dsn = $('#dsn').val();
+  var propertyName = $('#property-name').val();
+
+  /*
+  console.log('Region:       ' + srv.region);
+  console.log('Deployment:   ' + srv.deployment);
+  console.log('clientType:   ' + clientType);
+  console.log('eventType:    ' + eventType);
+  console.log('oemMmodel:    ' + oemModel);
+  console.log('dsn:          ' + dsn);
+  console.log('propertyName: ' + propertyName);
+  console.log(url);
+  */
+
+  var data = JSON.stringify({
+    "oem_model": oemModel,
+    "client_type": clientType,
+    "subscription_type": eventType,
+    "property_name": propertyName,
+    "access_token": aToken
+  });
+
+  var jqxhr = $.ajax({
+    method: "POST",
+    url: "/assets/server/subscription.php",
+    contentType: 'application/json',
+    data: data,
+    dataType: 'json'
+  })
+
+  .done(function(msg) {
+
+    try {
+      var obj = JSON.parse(msg);
+    } catch(e) {
+      displayString(msg);
+      return;
+    }
+
+    if("subscription" in obj) {
+
+      try {
+        webSockets[eventType] = new WebSocket(url + '?stream_key=' + obj.subscription.stream_key);
+        run(url, obj.subscription.stream_key, eventType, webSockets[eventType]);
+      } catch (exception) {
+        displayString(exception);
+      }
+
+    } else {
+      displayString(msg);
+    }
+  })
+
+  .fail(function(jqXHR, textStatus) {
+    displayString(textStatus);
+  })
+}
+
+//*********************************************
+// 
+//*********************************************
+
+function stop(eventType) {
+  webSockets[eventType].close();
+  webSockets[eventType] = null;
+}
 
 //*********************************************
 // run
 //*********************************************
 
-function run(url, streamKey, eventType) {
-  /*
-  var p1 = createPair('url', url);
-  var p2 = createPair('stream_key', streamKey);
-  displayCollapse('Listening for ' + eventType + ' events', p1 + p2);
-  */
+function run(url, streamKey, eventType, webSocket) {
 
   webSocket.onopen = function(event) {
   	console.log('webSocket.onopen');
     var p1 = createPair('url', url);
     var p2 = createPair('stream_key', streamKey);
-    displayCollapse('Listening for ' + eventType + ' events', p1 + p2);
+    displayCollapse('Connecting to ' + eventType + ' event stream', p1 + p2);
   }
 
   webSocket.onerror = function(error) {
@@ -172,14 +305,14 @@ function run(url, streamKey, eventType) {
   webSocket.onmessage = function(event) {
     if(event.data.includes("|Z")) {
       webSocket.send("Z");
-      displayString('Heartbeat');
+      displayString('Heartbeat: ' + eventType + ' event stream', 'heartbeats');
     } else {
       displayEvent(event);
     }
   }
 
   webSocket.onclose = function(event) {
-    displayString('Disconnected');
+    displayString('Disconnecting from ' + eventType + ' event stream');
   }
 }
 
@@ -187,10 +320,10 @@ function run(url, streamKey, eventType) {
 // displayString
 //*********************************************
 
-function displayString(str) {
+function displayString(str, id = 'messages') {
   var s = toDateTime(new Date()) + ' ' + str;
   var p = '<p class="terminal-font">' + s + '</p>';
-  $('#messages').prepend(p);
+  $('#' + id).prepend(p);
 }
 
 //*********************************************

@@ -33,20 +33,6 @@
 
   <div class="form-row">
     <div class="form-group col-md-12">
-      <label for="event-type">Event Type</label>
-      <select id="event-type" class="form-control form-control-sm" required>
-        <option value="">Select</option> 
-        <option  value="connectivity">Connectivity</option>
-        <option  value="registration">Registration</option>
-        <option  value="datapoint">Datapoint</option>
-        <option  value="datapointack">Datapoint Ack</option>
-        <option  value="location">Location</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col-md-12">
       <label for="event-type">OEM Model</label>
       <input type="text" class="form-control form-control-sm" id="oem-model" value="*" required>
     </div>
@@ -65,6 +51,46 @@
       <input type="text" class="form-control form-control-sm" id="property-name" value="*" required>
     </div>
   </div>
+<!--
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="event-type">Event Type</label>
+      <select id="event-type" class="form-control form-control-sm" required>
+        <option value="">Select</option> 
+        <option  value="connectivity">Connectivity</option>
+        <option  value="registration">Registration</option>
+        <option  value="datapoint">Datapoint</option>
+        <option  value="datapointack">Datapoint Ack</option>
+        <option  value="location">Location</option>
+      </select>
+    </div>
+  </div>
+-->
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="event-type">Event Type</label>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" value="connectivity" id="connectivity-checkbox">
+        <label class="custom-control-label" for="connectivity-checkbox">Connectivity</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" value="registration" id="registration-checkbox">
+        <label class="custom-control-label" for="registration-checkbox">Registration</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" value="datapoint" id="datapoint-checkbox">
+        <label class="custom-control-label" for="datapoint-checkbox">Datapoint</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" value="datapointack" id="datapointack-checkbox">
+        <label class="custom-control-label" for="datapointack-checkbox">Datapoint Ack</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" value="location" id="location-checkbox">
+        <label class="custom-control-label" for="location-checkbox">Location</label>
+      </div>
+    </div>
+  </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -74,7 +100,10 @@
       <button id="disconnect" type="button" class="btn btn-warning btn-sm btn-block">Disconnect</button>
     </div>
     <div class="form-group col-md-6">
-      <button id="clear" type="button" class="btn btn-secondary btn-sm btn-block">Clear</button>
+      <button id="heartbeats-button" type="button" class="btn btn-outline-primary btn-sm btn-block">Heartbeats</button>
+    </div>
+    <div class="form-group col-md-6" style="display:none;">
+      <button id="messages-button" type="button" class="btn btn-outline-info btn-sm btn-block">Messages</button>
     </div>
   </div>
 </form>
@@ -97,7 +126,7 @@
 
 <!-- BEGIN JAVASCRIPT -->
 {{> js }}
-<script src="/assets/scripts/dssclient006.js"></script>
+<script src="/assets/scripts/dssclient008.js"></script>
 <!-- END JAVASCRIPT -->
 
 </div>

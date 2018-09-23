@@ -1,4 +1,5 @@
-var webSocket = null;
+var webSocket1 = null;
+var webSocket2 = null;
 
 var urls = [];
 urls["cn"] = [];
@@ -111,17 +112,23 @@ $(function() {
 
       if("subscription" in obj) {
         try {
-          var urlKey = url + '?stream_key=' + obj.subscription.stream_key;
 
           //var subscriptionKey = 'e8865a268fcc49a8bf2437a37f85f7ab';
           //urlKey = urlKey + '&' + subscriptionKey;
 
-        	webSocket = new WebSocket(urlKey);
           $('#connect').parent().hide();
           $('#disconnect').parent().show();
-        	run(url, obj.subscription.stream_key, eventType);
+
+          var urlKey1 = url + '?stream_key=' + obj.subscription.stream_key;
+          webSocket1 = new WebSocket(urlKey1);
+        	run(url, obj.subscription.stream_key, eventType, webSocket1);
+
+          var urlKey2 = url + '?stream_key=6823032d3b7a436bb341066d8c3e7cfa';
+          webSocket2 = new WebSocket(urlKey2);
+          run(url, '6823032d3b7a436bb341066d8c3e7cfa', 'connectivity', webSocket2);
+
         } catch (exception) {
-          displayString('WebSocket Exception');
+          displayString(exception);
         }
 
       } else {
@@ -141,9 +148,32 @@ $(function() {
 
 $(function() {
   $('#disconnect').click(function(event) {
-      webSocket.close();
-      $('#connect').parent().show();
-      $('#disconnect').parent().hide();
+    webSocket2.close();
+    webSocket1.close();
+    $('#disconnect').parent().hide();
+    $('#connect').parent().show();
+  });
+});
+
+//*********************************************
+// heartbeats-button
+//*********************************************
+
+$(function() {
+  $('#heartbeats-button').click(function(event) {
+    $('#heartbeats-button').parent().hide();
+    $('#messages-button').parent().show();
+  });
+});
+
+//*********************************************
+// messages-button
+//*********************************************
+
+$(function() {
+  $('#messages-button').click(function(event) {
+    $('#messages-button').parent().hide();
+    $('#heartbeats-button').parent().show();
   });
 });
 
@@ -151,12 +181,7 @@ $(function() {
 // run
 //*********************************************
 
-function run(url, streamKey, eventType) {
-  /*
-  var p1 = createPair('url', url);
-  var p2 = createPair('stream_key', streamKey);
-  displayCollapse('Listening for ' + eventType + ' events', p1 + p2);
-  */
+function run(url, streamKey, eventType, webSocket) {
 
   webSocket.onopen = function(event) {
   	console.log('webSocket.onopen');
@@ -172,7 +197,7 @@ function run(url, streamKey, eventType) {
   webSocket.onmessage = function(event) {
     if(event.data.includes("|Z")) {
       webSocket.send("Z");
-      displayString('Heartbeat');
+      displayString(eventType + ' stream heartbeat');
     } else {
       displayEvent(event);
     }
@@ -187,10 +212,10 @@ function run(url, streamKey, eventType) {
 // displayString
 //*********************************************
 
-function displayString(str) {
+function displayString(str, id = 'messages') {
   var s = toDateTime(new Date()) + ' ' + str;
   var p = '<p class="terminal-font">' + s + '</p>';
-  $('#messages').prepend(p);
+  $('#' + id).prepend(p);
 }
 
 //*********************************************

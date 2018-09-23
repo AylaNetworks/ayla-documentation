@@ -355,3 +355,4 @@ input:-webkit-autofill {
 #connect-form {margin-top: 0px;}
 #connect-form label {font-weight: bold; font-size:85%;}
 .terminal-font {font-size:95%; font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;}
+.custom-control-label {font-weight: normal !important;}
