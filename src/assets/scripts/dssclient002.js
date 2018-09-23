@@ -107,7 +107,7 @@ $(function() {
         	webSocket = new WebSocket(url + '?stream_key=' + obj.subscription.stream_key);
           $('#connect').parent().hide();
           $('#disconnect').parent().show();
-        	run(eventType);
+        	run(url, obj.subscription.stream_key, eventType);
         } catch (exception) {
           displayString('WebSocket Exception');
         }
@@ -139,11 +139,11 @@ $(function() {
 // run
 //*********************************************
 
-function run(eventType) {
-  displayString('Listening for ' + eventType + ' events.');
+function run(url, streamKey, eventType) {
+  displayString('Listening for ' + eventType + ' events');
 
   webSocket.onopen = function(event) {
-  	console.log("Connecting to " + event.currentTarget.url);
+  	console.log('webSocket.onopen');
   }
 
   webSocket.onerror = function(error) {
@@ -160,9 +160,7 @@ function run(eventType) {
   }
 
   webSocket.onclose = function(event) {
-    displayEvent(event);
-    // displayString('Disconnected.');
-    $('#messages').prepend(typeof event);
+    displayString('Disconnected');
   }
 }
 
@@ -181,7 +179,6 @@ function displayString(str) {
 //*********************************************
 
 function displayEvent(event) {
-  var now = new Date();
 
   var a = event.data.split('|');
   if(a.length != 2) {
@@ -193,16 +190,33 @@ function displayEvent(event) {
   //var i = event.data.indexOf('|') + 1;
   //var data = JSON.parse(event.data.slice(i));
 
-  var arr = [];
-  arr.push(createPair('origin', event.origin));
-  arr = arr.concat(createPairs(data));
+  var arr = createPairs(data);
 
+  displayCollapse('Event: ' + data.metadata.event_type, arr.join(''));
+
+  /*
+  var now = new Date();
   var s = toDateTime(now) + ' Event: ' + data.metadata.event_type;
   var id = 'ID' + now.getTime();
   var p = '<p><a data-toggle="collapse" href="#' + id + '" class="terminal-font">' + s + '</a></p>';
   var b = '<div id="' + id + '" class="collapse"><div class="card card-body" style="margin-bottom:16px;">';
   var e = '</div></div>';
   $('#messages').prepend(p + b + arr.join('') + e);
+  */
+}
+
+//*********************************************
+// displayCollapse
+//*********************************************
+
+function displayCollapse(title, body) {
+  var now = new Date();
+  var s = toDateTime(now) + ' ' + title;
+  var id = 'ID' + now.getTime();
+  var p = '<p><a data-toggle="collapse" href="#' + id + '" class="terminal-font">' + s + '</a></p>';
+  var b = '<div id="' + id + '" class="collapse"><div class="card card-body" style="margin-bottom:16px;">';
+  var e = '</div></div>';
+  $('#messages').prepend(p + b + body + e);
 }
 
 //*********************************************

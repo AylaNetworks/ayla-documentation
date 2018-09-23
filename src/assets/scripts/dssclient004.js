@@ -1,5 +1,39 @@
 var webSocket = null;
 
+var urls = [];
+urls["cn"] = [];
+urls["cn"]["dev"] = [];
+urls["cn"]["dev"]["cloud"] = 'wss://stream.ayla.com.cn/stream/stream';
+urls["cn"]["dev"]["mobile"] = 'wss://mstream.ayla.com.cn/stream';
+urls["cn"]["staging"] = [];
+urls["cn"]["staging"]["cloud"] = '';
+urls["cn"]["staging"]["mobile"] = '';
+urls["cn"]["field"] = [];
+urls["cn"]["field"]["cloud"] = 'wss://stream-field.ayla.com.cn/stream';
+urls["cn"]["field"]["mobile"] = 'wss://mstream-field.ayla.com.cn/stream';
+
+urls["eu"] = [];
+urls["eu"]["dev"] = [];
+urls["eu"]["dev"]["cloud"] = '';
+urls["eu"]["dev"]["mobile"] = '';
+urls["eu"]["staging"] = [];
+urls["eu"]["staging"]["cloud"] = '';
+urls["eu"]["staging"]["mobile"] = '';
+urls["eu"]["field"] = [];
+urls["eu"]["field"]["cloud"] = 'wss://stream-field-eu.aylanetworks.com/stream';
+urls["eu"]["field"]["mobile"] = 'wss://mstream-field-eu.aylanetworks.com/stream';
+
+urls["us"] = [];
+urls["us"]["dev"] = [];
+urls["us"]["dev"]["cloud"] = 'wss://stream.aylanetworks.com/stream';
+urls["us"]["dev"]["mobile"] = 'wss://mstream-dev.aylanetworks.com/stream';
+urls["us"]["staging"] = [];
+urls["us"]["staging"]["cloud"] = 'wss://staging-dss.ayladev.com/stream';
+urls["us"]["staging"]["mobile"] = 'wss://staging-mstream.ayladev.com/stream';
+urls["us"]["field"] = [];
+urls["us"]["field"]["cloud"] = 'wss://stream-field.aylanetworks.com/stream';
+urls["us"]["field"]["mobile"] = 'wss://mstream-field.aylanetworks.com/stream';
+
 //*********************************************
 // On Load
 //*********************************************
@@ -15,43 +49,9 @@ $(function() {
 
     var aToken = Cookies.get('access_token');
 
-    var urls = [];
-    urls["cn"] = [];
-    urls["cn"]["dev"] = [];
-    urls["cn"]["dev"]["cloud"] = 'wss://stream.ayla.com.cn/stream/stream';
-    urls["cn"]["dev"]["mobile"] = 'wss://mstream.ayla.com.cn/stream';
-    urls["cn"]["staging"] = [];
-    urls["cn"]["staging"]["cloud"] = '';
-    urls["cn"]["staging"]["mobile"] = '';
-    urls["cn"]["field"] = [];
-    urls["cn"]["field"]["cloud"] = 'wss://stream-field.ayla.com.cn/stream';
-    urls["cn"]["field"]["mobile"] = 'wss://mstream-field.ayla.com.cn/stream';
-
-    urls["eu"] = [];
-    urls["eu"]["dev"] = [];
-    urls["eu"]["dev"]["cloud"] = '';
-    urls["eu"]["dev"]["mobile"] = '';
-    urls["eu"]["staging"] = [];
-    urls["eu"]["staging"]["cloud"] = '';
-    urls["eu"]["staging"]["mobile"] = '';
-    urls["eu"]["field"] = [];
-    urls["eu"]["field"]["cloud"] = 'wss://stream-field-eu.aylanetworks.com/stream';
-    urls["eu"]["field"]["mobile"] = 'wss://mstream-field-eu.aylanetworks.com/stream';
-
-    urls["us"] = [];
-    urls["us"]["dev"] = [];
-    urls["us"]["dev"]["cloud"] = 'wss://stream.aylanetworks.com/stream';
-    urls["us"]["dev"]["mobile"] = 'wss://mstream-dev.aylanetworks.com/stream';
-    urls["us"]["staging"] = [];
-    urls["us"]["staging"]["cloud"] = 'wss://staging-dss.ayladev.com/stream';
-    urls["us"]["staging"]["mobile"] = 'wss://staging-mstream.ayladev.com/stream';
-    urls["us"]["field"] = [];
-    urls["us"]["field"]["cloud"] = 'wss://stream-field.aylanetworks.com/stream';
-    urls["us"]["field"]["mobile"] = 'wss://mstream-field.aylanetworks.com/stream';
-
-
-    var service = $('#service').val();
-    var serviceObj = JSON.parse(service);
+    //var service = $('#service').val();
+    //var serviceObj = JSON.parse(service);
+    var serviceObj = JSON.parse($('#service').val());
     var region = serviceObj.region;
     var deployment = serviceObj.deployment;
     var clientType = $('#client-type').val();
@@ -107,7 +107,7 @@ $(function() {
         	webSocket = new WebSocket(url + '?stream_key=' + obj.subscription.stream_key);
           $('#connect').parent().hide();
           $('#disconnect').parent().show();
-        	run(eventType);
+        	run(url, obj.subscription.stream_key, eventType);
         } catch (exception) {
           displayString('WebSocket Exception');
         }
@@ -139,11 +139,17 @@ $(function() {
 // run
 //*********************************************
 
-function run(eventType) {
-  displayString('Listening for ' + eventType + ' events.');
+function run(url, streamKey, eventType) {
+  var p1 = createPair('url', url);
+  var p2 = createPair('stream_key', streamKey);
+  displayCollapse('Listening for ' + eventType + ' events', p1 + p2);
+
+  // displayString('Listening for ' + eventType + ' events');
+
+
 
   webSocket.onopen = function(event) {
-  	console.log("Connecting to " + event.currentTarget.url);
+  	console.log('webSocket.onopen');
   }
 
   webSocket.onerror = function(error) {
@@ -160,9 +166,7 @@ function run(eventType) {
   }
 
   webSocket.onclose = function(event) {
-    displayEvent(event);
-    // displayString('Disconnected.');
-    $('#messages').prepend(typeof event);
+    displayString('Disconnected');
   }
 }
 
@@ -181,7 +185,6 @@ function displayString(str) {
 //*********************************************
 
 function displayEvent(event) {
-  var now = new Date();
 
   var a = event.data.split('|');
   if(a.length != 2) {
@@ -189,20 +192,22 @@ function displayEvent(event) {
     return;
   }
   var data = JSON.parse(a[1]);
+  var arr = createPairs(data);
+  displayCollapse('Event: ' + data.metadata.event_type, arr.join(''));
+}
 
-  //var i = event.data.indexOf('|') + 1;
-  //var data = JSON.parse(event.data.slice(i));
+//*********************************************
+// displayCollapse
+//*********************************************
 
-  var arr = [];
-  arr.push(createPair('origin', event.origin));
-  arr = arr.concat(createPairs(data));
-
-  var s = toDateTime(now) + ' Event: ' + data.metadata.event_type;
+function displayCollapse(title, body) {
+  var now = new Date();
+  var t = toDateTime(now) + ' ' + title;
   var id = 'ID' + now.getTime();
-  var p = '<p><a data-toggle="collapse" href="#' + id + '" class="terminal-font">' + s + '</a></p>';
+  var p = '<p><a data-toggle="collapse" href="#' + id + '" class="terminal-font">' + t + '</a></p>';
   var b = '<div id="' + id + '" class="collapse"><div class="card card-body" style="margin-bottom:16px;">';
   var e = '</div></div>';
-  $('#messages').prepend(p + b + arr.join('') + e);
+  $('#messages').prepend(p + b + body + e);
 }
 
 //*********************************************
@@ -233,7 +238,7 @@ function createPair(key, value) {
 }
 
 //*********************************************
-// now
+// toDateTime
 //*********************************************
 
 function toDateTime(date) {
