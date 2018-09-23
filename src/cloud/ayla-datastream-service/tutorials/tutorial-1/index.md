@@ -81,37 +81,6 @@ Postman-Token: d941242f-dc16-4c4d-9925-0ce1ffebc12c
 }
 </pre>
 </li>
-
-<li>sss
-<pre>
-sss
-</pre>
-</li>
-
-<li>sss
-<pre>
-sss
-</pre>
-</li>
-
-<li>sss
-<pre>
-sss
-</pre>
-</li>
-
-<li>sss
-<pre>
-sss
-</pre>
-</li>
-
-<li>sss
-<pre>
-sss
-</pre>
-</li>
-
 </ol>
 
 POST HTTP//<Stream Service URL>/api/v1/subscriptions.json
@@ -120,6 +89,42 @@ http://stream.aylanetworks.com
 
 http://stream.aylanetworks.com -k eaa2c7ea8fa44ae1bdc0b2da0b07a8a8
 
-
-
 https://user-dev.aylanetworks.com/api/v1/subscriptions.json
+
+Keys in connectivity response: isTrusted data origin lastEventId source ports initMessageEvent NONE CAPTURING_PHASE AT_TARGET BUBBLING_PHASE type target currentTarget eventPhase bubbles cancelable defaultPrevented composed timeStamp srcElement returnValue cancelBubble path composedPath stopPropagation stopImmediatePropagation preventDefault initEvent
+
+isTrusted: true data: 256|{"seq":"1","metadata":{"oem_id":"0dfc7900","oem_model":"ledevb","dsn":"AC000W000340779","resource_tags":[],"event_type":"connectivity"},"connection":{"event_time":"2018-09-22T18:56:55Z","user_uuid":"40e45b84-690c-11e8-acf3-12f911dcfe40","status":"Online"}} origin: wss://mstream-dev.aylanetworks.com lastEventId: source: null ports: initMessageEvent: function initMessageEvent() { [native code] } NONE: 0 CAPTURING_PHASE: 1 AT_TARGET: 2 BUBBLING_PHASE: 3 type: message target: [object WebSocket] currentTarget: [object WebSocket] eventPhase: 2 bubbles: false cancelable: false defaultPrevented: false composed: false timeStamp: 1089290.0000000081 srcElement: [object WebSocket] returnValue: true cancelBubble: false path: composedPath: function composedPath() { [native code] } stopPropagation: function stopPropagation() { [native code] } stopImmediatePropagation: function stopImmediatePropagation() { [native code] } preventDefault: function preventDefault() { [native code] } initEvent: function initEvent() { [native code] }
+
+Keys in datapoint response: 
+isTrusted 
+data 
+origin 
+lastEventId 
+source 
+ports 
+initMessageEvent 
+NONE 
+CAPTURING_PHASE 
+AT_TARGET 
+BUBBLING_PHASE 
+type 
+target 
+currentTarget 
+eventPhase 
+bubbles 
+cancelable 
+defaultPrevented 
+composed 
+timeStamp number
+srcElement 
+returnValue 
+cancelBubble 
+path 
+composedPath 
+stopPropagation 
+stopImmediatePropagation 
+preventDefault 
+initEvent
+
+isTrusted: true data: 472|{"seq":"1","metadata":{"oem_id":"0dfc7900","oem_model":"linuxevb","dsn":"AC000W005606115","property_name":"Blue_LED","display_name":"Blue_LED","base_type":"boolean","resource_tags":[],"event_type":"datapoint"},"datapoint":{"id":"a4f6c2c6-be96-11e8-dd99-5dfe02e238a9","created_at_from_device":null,"updated_at":"2018-09-22T18:38:05Z","created_at":"2018-09-22T18:38:05Z","user_uuid":"40e45b84-690c-11e8-acf3-12f911dcfe40","echo":true,"closed":false,"value":0,"metadata":{}}} origin: wss://mstream-dev.aylanetworks.com lastEventId: source: null ports: initMessageEvent: function initMessageEvent() { [native code] } NONE: 0 CAPTURING_PHASE: 1 AT_TARGET: 2 BUBBLING_PHASE: 3 type: message target: [object WebSocket] currentTarget: [object WebSocket] eventPhase: 2 bubbles: false cancelable: false defaultPrevented: false composed: false timeStamp: 42114.80000001029 srcElement: [object WebSocket] returnValue: true cancelBubble: false path: composedPath: function composedPath() { [native code] } stopPropagation: function stopPropagation() { [native code] } stopImmediatePropagation: function stopImmediatePropagation() { [native code] } preventDefault: function preventDefault() { [native code] } initEvent: function initEvent() { [native code] }
+

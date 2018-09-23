@@ -112,6 +112,8 @@ $(function() {
       } else if("subscription" in obj) {
         try {
         	webSocket = new WebSocket(url + '?stream_key=' + obj.subscription.stream_key);
+          $('#connect').parent().hide();
+          $('#disconnect').parent().show();
         	run();
         } catch (exception) {
           console.log('WebSocket Exception');
@@ -129,13 +131,14 @@ $(function() {
 });
 
 //*********************************************
-// connect-disconnect
+// disconnect
 //*********************************************
 
 $(function() {
-  $('#connect-disconnect').click(function(event) {
-      console.log('disconnect');
+  $('#disconnect').click(function(event) {
       webSocket.close();
+      $('#connect').parent().show();
+      $('#disconnect').parent().hide();
   });
 });
 
@@ -144,6 +147,8 @@ $(function() {
 //*********************************************
 
 function run() {
+  displayString('Connected');
+
   webSocket.onopen = function(event) {
   	console.log("Connecting to " + event.currentTarget.url);
   }
@@ -153,17 +158,90 @@ function run() {
   }
 
   webSocket.onmessage = function(event) {
-  	var message = event.data;
-    if(message.includes("|Z")) {
-      $('#messages').prepend('<li>Heartbeat received</li>');
+    if(event.data.includes("|Z")) {
       webSocket.send("Z");
-      $('#messages').prepend('<li>Heartbeat sent</li>');
+      displayString('Heartbeat');
     } else {
-    	$('#messages').prepend('<li>' + message + '</li>');
+      displayEvent(event);
     }
   }
 
   webSocket.onclose = function(event) {
+    displayString('Disconnected');
   	console.log('Closing socket.');
   }
+}
+
+//*********************************************
+// displayString
+//*********************************************
+
+function displayString(str) {
+  var s = toDateTime(new Date()) + ' Event: ' + str;
+  var p = '<p class="terminal-font">' + s + '</p>';
+  $('#messages').prepend(p);
+}
+
+//*********************************************
+// displayEvent
+//*********************************************
+
+function displayEvent(event) {
+  var now = new Date();
+
+  var a = event.data.split('|');
+  if(a.length != 2) {
+    console.log('ERROR: Event split into ' + a.length + 'substrings.');
+    return;
+  }
+  var data = JSON.parse(a[1]);
+
+  //var i = event.data.indexOf('|') + 1;
+  //var data = JSON.parse(event.data.slice(i));
+
+  var arr = [];
+  arr.push(createPair('origin', event.origin));
+  arr = arr.concat(createPairs(data));
+
+  var s = toDateTime(now) + ' Event: ' + data.metadata.event_type;
+  var id = 'ID' + now.getTime();
+  var p = '<p><a data-toggle="collapse" href="#' + id + '" class="terminal-font">' + s + '</a></p>';
+  var b = '<div id="' + id + '" class="collapse"><div class="card card-body" style="margin-bottom:16px;">';
+  var e = '</div></div>';
+  $('#messages').prepend(p + b + arr.join('') + e);
+}
+
+//*********************************************
+// createPairs
+//*********************************************
+
+function createPairs(obj) {
+  var arr = [];
+  for(var key in obj) {
+    arr.push(createPair(key, obj[key]));
+    if(typeof obj[key] === 'object') {
+      arr = arr.concat(createPairs(obj[key]));
+    }
+  }
+  return arr;
+}
+
+//*********************************************
+// createPair
+//*********************************************
+
+function createPair(key, value) {
+  return ''
+    + '<div class="row">'
+    + '<div class="col-md-3 terminal-font">' + key + '</div>'
+    + '<div class="col-md-9 terminal-font">' + value + '</div>'
+    + '</div>';
+}
+
+//*********************************************
+// now
+//*********************************************
+
+function toDateTime(date) {
+  return date.toISOString().slice(0,19).replace('T', ' ');
 }
