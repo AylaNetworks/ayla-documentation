@@ -1,6 +1,3 @@
-var webSocket1 = null;
-var webSocket2 = null;
-
 var webSockets = [];
 webSockets['connectivity'] = null;
 webSockets['registration'] = null;
@@ -49,14 +46,39 @@ urls["us"]["field"]["mobile"] = 'wss://mstream-field.aylanetworks.com/stream';
 //*********************************************
 // On Unload
 //*********************************************
-
+/*
 $(function() {
   window.addEventListener("beforeunload", function (event) {
     event.preventDefault();
     event.returnValue = ''; // required by chrome.
   });
 });
+*/
+//*********************************************
+// 
+//*********************************************
+/*
+$(function() {
+  $("#view").change(function() {
+    $(this).blur();
+    var id = $(this).val();
+    $('#' + id).show();
+    $('#' + id).siblings().hide();
 
+    if(id === 'devices') {
+      $('#' + id).trigger('isVisible');
+    }
+  });
+});
+
+$(function() {
+  $('#devices').bind('isVisible', initDevicePage);
+});
+
+function initDevicePage() {
+  console.log('initDevicePage');
+}
+*/
 //*********************************************
 // 
 //*********************************************
@@ -76,138 +98,7 @@ $(function() {
 });
 
 //*********************************************
-// Connect Button Event Handler
-//*********************************************
-
-$(function() {
-  $("#connect-form" ).submit(function( event ) {
-    event.preventDefault();
-    console.log('Submitted connect form.');
-
-    var aToken = Cookies.get('access_token');
-
-    var srv = JSON.parse($('#service').val());
-    var clientType = $('#client-type').val();
-    var url = urls[srv.region][srv.deployment][clientType];
-    var eventType = $('#event-type').val();
-    var oemModel = $('#oem-model').val();
-    var dsn = $('#dsn').val();
-    var propertyName = $('#property-name').val();
-
-    /*
-    console.log('Region:       ' + srv.region);
-    console.log('Deployment:   ' + srv.deployment);
-    console.log('clientType:   ' + clientType);
-    console.log('eventType:    ' + eventType);
-    console.log('oemMmodel:    ' + oemModel);
-    console.log('dsn:          ' + dsn);
-    console.log('propertyName: ' + propertyName);
-    console.log(url);
-    */
-
-    if(!url.length) {
-      displayString('Service at ' + srv.region + ' + ' + srv.deployment + ' + ' + clientType + ' not available.');
-      return;
-    }
-
-    var data = JSON.stringify({
-      "oem_model": oemModel,
-      "client_type": clientType,
-      "subscription_type": eventType,
-      "property_name": propertyName,
-      "access_token": aToken
-    });
-
-    var jqxhr = $.ajax({
-      method: "POST",
-      url: "/assets/server/subscription.php",
-      contentType: 'application/json',
-      data: data,
-      dataType: 'json'
-    })
-
-    .done(function(msg) {
-
-      try {
-        var obj = JSON.parse(msg);
-      } catch(e) {
-        displayString(msg);
-        return;
-      }
-
-      if("subscription" in obj) {
-        try {
-
-          //var subscriptionKey = 'e8865a268fcc49a8bf2437a37f85f7ab';
-          //urlKey = urlKey + '&' + subscriptionKey;
-
-          $('#connect').parent().hide();
-          $('#disconnect').parent().show();
-
-          var urlKey1 = url + '?stream_key=' + obj.subscription.stream_key;
-          webSocket1 = new WebSocket(urlKey1);
-        	run(url, obj.subscription.stream_key, eventType, webSocket1);
-
-          var urlKey2 = url + '?stream_key=156e7ad213cd496dad1f58d9efb587b0';
-          webSocket2 = new WebSocket(urlKey2);
-          run(url, '156e7ad213cd496dad1f58d9efb587b0', 'connectivity', webSocket2);
-
-        } catch (exception) {
-          displayString(exception);
-        }
-
-      } else {
-        displayString(msg);
-      }
-    })
-
-    .fail(function(jqXHR, textStatus) {
-      displayString(textStatus);
-    })
-  });
-});
-
-//*********************************************
-// disconnect
-//*********************************************
-
-$(function() {
-  $('#disconnect').click(function(event) {
-    //webSocket2.close();
-    //webSocket1.close();
-    //$('#disconnect').parent().hide();
-    //$('#connect').parent().show();
-  });
-});
-
-//*********************************************
-// heartbeats-button
-//*********************************************
-
-$(function() {
-  $('#heartbeats-button').click(function(event) {
-    $('#heartbeats-button').parent().hide();
-    $('#messages-button').parent().show();
-    $('#messages').hide();
-    $('#heartbeats').show();
-  });
-});
-
-//*********************************************
-// messages-button
-//*********************************************
-
-$(function() {
-  $('#messages-button').click(function(event) {
-    $('#messages-button').parent().hide();
-    $('#heartbeats-button').parent().show();
-    $('#heartbeats').hide();
-    $('#messages').show();
-  });
-});
-
-//*********************************************
-// 
+// start
 //*********************************************
 
 function start(eventType) {
@@ -261,7 +152,7 @@ function start(eventType) {
 
       try {
         webSockets[eventType] = new WebSocket(url + '?stream_key=' + obj.subscription.stream_key);
-        run(url, obj.subscription.stream_key, eventType, webSockets[eventType]);
+        run(url, obj, eventType, webSockets[eventType]);
       } catch (exception) {
         displayString(exception);
       }
@@ -277,7 +168,7 @@ function start(eventType) {
 }
 
 //*********************************************
-// 
+// stop
 //*********************************************
 
 function stop(eventType) {
@@ -289,30 +180,28 @@ function stop(eventType) {
 // run
 //*********************************************
 
-function run(url, streamKey, eventType, webSocket) {
+function run(url, data, eventType, webSocket) {
 
   webSocket.onopen = function(event) {
-  	console.log('webSocket.onopen');
-    var p1 = createPair('url', url);
-    var p2 = createPair('stream_key', streamKey);
-    displayCollapse('Connecting to ' + eventType + ' event stream', p1 + p2);
+    var json = JSON.stringify(data, null, 2);
+    displayCollapse('Open ' + toInitialCaps(eventType) + ' Event Stream', 'URL: ' + url + '\n' + json);
   }
 
   webSocket.onerror = function(error) {
-  	console.log('WebSocket Error: ' + error);
+  	displayString('error is ' + error);
   }
 
   webSocket.onmessage = function(event) {
     if(event.data.includes("|Z")) {
       webSocket.send("Z");
-      displayString('Heartbeat: ' + eventType + ' event stream', 'heartbeats');
+      displayString('Heartbeat on ' + toInitialCaps(eventType) + ' Event Stream', 'heartbeats');
     } else {
       displayEvent(event);
     }
   }
 
   webSocket.onclose = function(event) {
-    displayString('Disconnecting from ' + eventType + ' event stream');
+    displayString('Close ' + toInitialCaps(eventType) + ' Event Stream');
   }
 }
 
@@ -322,7 +211,7 @@ function run(url, streamKey, eventType, webSocket) {
 
 function displayString(str, id = 'messages') {
   var s = toDateTime(new Date()) + ' ' + str;
-  var p = '<p class="terminal-font">' + s + '</p>';
+  var p = '<div class="terminal-font">' + s + '</div>';
   $('#' + id).prepend(p);
 }
 
@@ -331,7 +220,49 @@ function displayString(str, id = 'messages') {
 //*********************************************
 
 function displayEvent(event) {
+  var a = event.data.split('|');
+  if(a.length != 2) {
+    console.log('ERROR: Event split into ' + a.length + 'substrings.');
+    return;
+  }
+  var data = JSON.parse(a[1]);
+  var json = JSON.stringify(data, null, 2);
 
+  var title = toInitialCaps(data.metadata.event_type);
+
+  switch(data.metadata.event_type) {
+    case 'connectivity':
+    title = title + ' for ' + data.metadata.dsn + ': ' + data.connection.status;
+    break;
+
+    case 'datapoint':
+    title = title + ' for ' + data.metadata.dsn + ': ' + data.metadata.display_name + ' = ' + data.datapoint.value;
+    break;
+
+    case 'datapointack':
+    title = title + ' for ' + data.metadata.dsn + ': ' + data.metadata.display_name + ' = ' + data.datapoint.value;
+    break;
+
+    case 'location':
+    title = title + ' for ' + data.metadata.dsn + ': lat = ' + data.location_event.lat + ', long = ' + data.location_event.long
+    break;
+
+    case 'registration':
+    title = title + ' for ' + data.metadata.dsn + ': registered = ' + data.registration_event.registered;
+    break;
+
+    default:
+    break;
+  }
+
+  displayCollapse(title, json);
+}
+
+//*********************************************
+// displayEventCard
+//*********************************************
+
+function displayEventCard(event) {
   var a = event.data.split('|');
   if(a.length != 2) {
     console.log('ERROR: Event split into ' + a.length + 'substrings.');
@@ -339,7 +270,7 @@ function displayEvent(event) {
   }
   var data = JSON.parse(a[1]);
   var arr = createPairs(data);
-  displayCollapse('Event: ' + data.metadata.event_type, arr.join(''));
+  displayCollapseCard('Event: ' + data.metadata.event_type, arr.join(''));
 }
 
 //*********************************************
@@ -347,6 +278,20 @@ function displayEvent(event) {
 //*********************************************
 
 function displayCollapse(title, body) {
+  var now = new Date();
+  var t = toDateTime(now) + ' ' + title;
+  var id = 'ID' + now.getTime();
+  var p = '<div><a data-toggle="collapse" href="#' + id + '" class="terminal-font">' + t + '</a></div>';
+  var b = '<div id="' + id + '" class="collapse"><pre style="margin-bottom:16px;">';
+  var e = '</pre></div>';
+  $('#messages').prepend(p + b + body + e);
+}
+
+//*********************************************
+// displayCollapseCard
+//*********************************************
+
+function displayCollapseCard(title, body) {
   var now = new Date();
   var t = toDateTime(now) + ' ' + title;
   var id = 'ID' + now.getTime();
@@ -389,5 +334,13 @@ function createPair(key, value) {
 
 function toDateTime(date) {
   return date.toISOString().slice(0,19).replace('T', ' ');
+}
+
+//*********************************************
+// toInitialCaps
+//*********************************************
+
+function toInitialCaps(s) {
+  return s.substring(0,1).toUpperCase() + s.substring(1);
 }
 

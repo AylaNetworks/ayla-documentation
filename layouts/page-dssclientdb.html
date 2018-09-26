@@ -1,0 +1,106 @@
+{{> top }}
+
+<!-- BEGIN SIDENAV -->
+<nav id="sidenav">
+  <div id="controls">
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="service">Service</label>
+        <select id="service" class="form-control form-control-sm" required>
+          <option value='{"region":"cn","deployment":"dev"}'>China : Dev</option> 
+          <option value='{"region":"cn","deployment":"field"}'>China : Field</option> 
+          <option value='{"region":"eu","deployment":"field"}'>Europe : Field</option> 
+          <option value='{"region":"us","deployment":"dev"}' selected>United States : Dev</option> 
+          <option value='{"region":"us","deployment":"staging"}'>United States : Staging</option> 
+          <option value='{"region":"us","deployment":"field"}'>United States : Field</option> 
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="client-type">Client Type</label>
+        <select id="client-type" class="form-control form-control-sm" required>
+          <option  value="cloud">Cloud</option>
+          <option  value="mobile" selected>Mobile</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="oem-model">OEM Model</label>
+        <input id="oem-model" type="text" class="form-control form-control-sm" value="*" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="dsn">DSN</label>
+        <input id="dsn" type="text" class="form-control form-control-sm" placeholder="Leave blank for all devices">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="property-name">Property Name</label>
+        <input id="property-name" type="text" class="form-control form-control-sm" value="*" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label>Event Type</label>
+        <div class="border rounded" style="padding:6px;">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" value="connectivity" id="connectivity-checkbox">
+          <label class="custom-control-label" for="connectivity-checkbox">Connectivity</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" value="datapoint" id="datapoint-checkbox">
+          <label class="custom-control-label" for="datapoint-checkbox">Datapoint</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" value="datapointack" id="datapointack-checkbox">
+          <label class="custom-control-label" for="datapointack-checkbox">Datapoint Ack</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" value="location" id="location-checkbox">
+          <label class="custom-control-label" for="location-checkbox">Location</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" value="registration" id="registration-checkbox">
+          <label class="custom-control-label" for="registration-checkbox">Registration</label>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- END SIDENAV -->
+
+<!-- BEGIN CONTENT  -->
+<div id="content" class="page-with-sidebar">
+
+<!-- BEGIN CONTENT TITLE -->
+<div id="content-title" style="display: {{titleDisplay}};">
+<span>{{ title }}</span>
+<hr/>
+</div>
+<!-- END CONTENT TITLE -->
+{{{ contents }}}
+</div>
+<!-- END CONTENT  -->
+
+<!-- BEGIN JAVASCRIPT -->
+{{> js }}
+<script src="/assets/scripts/ayla.js"></script>
+<!-- END JAVASCRIPT -->
+
+</div>
+<!-- END WRAPPER -->
+
+</body>
+<!-- END BODY -->
+
+</html>

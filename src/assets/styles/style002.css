@@ -298,9 +298,9 @@ span.a {
   vertical-align:top;
 }
 
-/* #content table {border: 1px solid #e6e6e6;} */
-#content th {border: 1px solid steelblue;}
-#content td {border: 1px solid #e6e6e6;}
+#content table {border: 2px solid steelblue;}
+#content th {border: 2px solid steelblue;}
+#content td {border: 1px solid steelblue;}
 
 #content table th {background: steelblue; font-weight: normal; text-align: left; color: white;}
 

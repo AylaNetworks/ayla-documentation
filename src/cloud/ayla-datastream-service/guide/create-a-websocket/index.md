@@ -1,7 +1,7 @@
 ---
-title: Reference 1
+title: Create a WebSocket
 layout: cloud-ayla-datastream-service.html
-c: block
+a: block
 ---
 
 

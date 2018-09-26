@@ -109,3 +109,5 @@ isTrusted: true data: 472|{"seq":"1","metadata":{"oem_id":"0dfc7900","oem_model"
 Keys in onclose response: isTrusted, wasClean, code, reason, NONE, CAPTURING_PHASE, AT_TARGET, BUBBLING_PHASE, type, target, currentTarget, eventPhase, bubbles, cancelable, defaultPrevented, composed, timeStamp, srcElement, returnValue, cancelBubble, path, composedPath, stopPropagation, stopImmediatePropagation, preventDefault, initEvent
 
 isTrusted: true wasClean: true code: 1005 reason: NONE: 0 CAPTURING_PHASE: 1 AT_TARGET: 2 BUBBLING_PHASE: 3 type: close target: [object WebSocket] currentTarget: [object WebSocket] eventPhase: 2 bubbles: false cancelable: false defaultPrevented: false composed: false timeStamp: 19825.500000006286 srcElement: [object WebSocket] returnValue: true cancelBubble: false path: composedPath: function composedPath() { [native code] } stopPropagation: function stopPropagation() { [native code] } stopImmediatePropagation: function stopImmediatePropagation() { [native code] } preventDefault: function preventDefault() { [native code] } initEvent: function initEvent() { [native code] }
+
+
