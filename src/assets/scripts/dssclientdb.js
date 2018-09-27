@@ -3,7 +3,7 @@
 //*********************************************
 
 $(function() {
-  getDevices(getDevicesDoneCB, getDevicesFailCB);
+  getDevices(getDevicesDoneCB, failCB);
 });
 
 //*********************************************
@@ -41,25 +41,57 @@ $(function() {
 
 var getDevicesDoneCB = function (devices) {
   $('#select-devices').empty();
-  $.each(devices, function(index, device) {
-    var option = $('<option/>');
-    option.text(device.device.product_name);
-    option.data("details", device.device);
-    $('#select-devices').append(option);
-  });
 
-  var selected = $('#select-devices option:selected');
-  var details = $(selected).data("details");
-  displayDevice(details);
-  getProperties(details.dsn, getPropertiesDoneCB, getPropertiesFailCB);
+  if(devices.length) {
+    var details = devices[0].device;
+
+    $.each(devices, function(index, device) {
+      var option = $('<option/>');
+      option.text(device.device.product_name);
+      option.data("details", device.device);
+      $('#select-devices').append(option);
+    });
+
+    displayDevice(details);
+    getProperties(details.key, getPropertiesDoneCB, failCB);
+  }
 }
 
 //*********************************************
-// getDevicesFailCB
+// getPropertiesDoneCB
 //*********************************************
 
-var getDevicesFailCB = function (jqXHR, textStatus) {
-  console.log('getDevicesFailCB: ' + textStatus);
+var getPropertiesDoneCB = function (properties) {
+  $('#select-properties').empty();
+
+  if(properties.length) {
+    var details = properties[0].property;
+
+    $.each(properties, function(index, property) {
+      var option = $('<option/>');
+      option.text(property.property.display_name);
+      option.data("details", property.property);
+      $('#select-properties').append(option);
+    });
+
+    displayProperty(details);
+  }
+}
+
+//*********************************************
+// getPropertyDoneCB
+//*********************************************
+
+var getPropertyDoneCB = function(property) {
+  displayProperty(property.property);
+}
+
+//*********************************************
+// failCB
+//*********************************************
+
+var failCB = function (jqXHR, textStatus) {
+  console.log(textStatus);
 }
 
 //*********************************************
@@ -71,7 +103,29 @@ $( "#select-devices" ).change(function() {
   var selected = $('#select-devices option:selected');
   var details = $(selected).data("details");
   displayDevice(details);
-  getProperties(details.dsn, getPropertiesDoneCB, getPropertiesFailCB);
+  getProperties(details.key, getPropertiesDoneCB, failCB);
+});
+
+//*********************************************
+// On Select Property
+//*********************************************
+
+$( "#select-properties" ).change(function() {
+  $(this).blur();
+  var selected = $('#select-properties option:selected');
+  var details = $(selected).data("details");
+  getProperty(details.device_key, details.key, getPropertyDoneCB, failCB);
+});
+
+//*********************************************
+// On Set Property Value
+//*********************************************
+
+$(function() {
+  $('#set-property-value').click(function(event) {
+    event.preventDefault();
+    console.log('set-property-value');
+  });
 });
 
 //*********************************************
@@ -94,52 +148,11 @@ function displayDevice(details) {
   $('#device-connection-status').val(details.connection_status);
   $('#device-latitude').val(details.lat);
   $('#device-longitude').val(details.lng);
+  $('#device-product-name').val(details.product_name);
   $('#device-locality').val(details.locality);
   $('#device-type').val(details.device_type);
-
-  $('#device-details').html(JSON.stringify(details, null, 2));
   console.log(JSON.stringify(details, null, 2));
 }
-
-//*********************************************
-// getPropertiesDoneCB
-//*********************************************
-
-var getPropertiesDoneCB = function (properties) {
-  $('#select-properties').empty();
-  console.log("getPropertiesDoneCB");
-  $.each(properties, function(index, property) {
-    var option = $('<option/>');
-    option.text(property.property.display_name);
-    option.data("details", property.property);
-    $('#select-properties').append(option);
-  });
-
-  var selected = $('#select-properties option:selected');
-  var details = $(selected).data("details");
-  displayProperty(details);
-  // displayValue(details.direction, details.base_type, details.value);
-}
-
-//*********************************************
-// getPropertiesFailCB
-//*********************************************
-
-var getPropertiesFailCB = function (jqXHR, textStatus) {
-  console.log('getPropertiesFailCB: ' + textStatus);
-}
-
-//*********************************************
-// On Select Property
-//*********************************************
-
-$( "#select-properties" ).change(function() {
-  $(this).blur();
-  var selected = $('#select-properties option:selected');
-  var details = $(selected).data("details");
-  displayProperty(details);
-  // displayValue(details.direction, details.base_type, details.value);
-});
 
 //*********************************************
 // displayProperty
@@ -176,8 +189,6 @@ function displayProperty(details) {
   $('#property-derived').val(details.derived);
   $('#property-retention-days').val(details.retention_days);
   $('#property-ack-enabled').val(details.ack_enabled);
-
-  $('#property-details').html(JSON.stringify(details, null, 2));
   console.log(JSON.stringify(details, null, 2));
 }
 
@@ -205,17 +216,6 @@ function displayValue(direction, type, value) {
   $('#property-direction').val(direction);
   $('#property-value').val(value);
 }
-
-//*********************************************
-// On Set Property Value
-//*********************************************
-
-$(function() {
-  $('#set-property-value').click(function(event) {
-    event.preventDefault();
-    console.log('set-property-value');
-  });
-});
 
 //*********************************************
 // DSS Event Checkboxes

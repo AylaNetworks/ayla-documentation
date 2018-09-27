@@ -121,6 +121,12 @@ layout: page-dssclientdb.html
       </div>
       <div class="row">
         <div class="col-md-12">
+          <label>Product Name</label>
+          <input type="text" class="form-control form-control-sm" id="device-product-name" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <label>Locality</label>
           <input type="text" class="form-control form-control-sm" id="device-locality" disabled="true">
         </div>
@@ -141,19 +147,19 @@ layout: page-dssclientdb.html
       </div>
       <div class="row">
         <div class="col-md-12">
-          <label>Property ID</label>
-          <input type="text" class="form-control form-control-sm" id="property-id" disabled="true">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
           <label>Device ID</label>
           <input type="text" class="form-control form-control-sm" id="property-device-id" disabled="true">
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <label>Value</label>&nbsp;&nbsp;<span id="set-property-value"><a href="">(Click to set new value)</a></span>
+          <label>Property ID</label>
+          <input type="text" class="form-control form-control-sm" id="property-id" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label style="color:red;">Value</label>&nbsp;&nbsp;<span id="set-property-value"><a href="">(Click to set new value)</a></span>
           <input type="text" class="form-control form-control-sm" id="property-value" disabled="true">
         </div>
       </div>

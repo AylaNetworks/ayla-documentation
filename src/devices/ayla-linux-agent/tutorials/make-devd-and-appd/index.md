@@ -33,7 +33,7 @@ Resolving deltas: 100% (1509/1509), done.
 $ cd device_linux_public/
 $ make
 </pre>
-Output should begin and end like this:
+Be sure to <code>cd ~/device_linux_public/</code> in subsequent tutorials before executing <code>make</code>. Output will be similar to this:
 <pre>
 make -s -C lib/ayla all
 CC ../../ext/hashmap/src/hashmap.c
