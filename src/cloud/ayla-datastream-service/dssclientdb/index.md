@@ -1,5 +1,5 @@
 ---
-title: DSS Client (with database)
+title: DSS Client
 layout: page-dssclientdb.html
 ---
 
@@ -25,50 +25,220 @@ layout: page-dssclientdb.html
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-12">
-          <label>Devices</label>&nbsp;-&nbsp;<a class="label-note" data-toggle="collapse" href="#device-details-pre">Details</a>
+          <label style="font-size: 120% !important;color:tomato;">Devices</label>
           <select id="select-devices" class="form-control form-control-sm"></select>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="collapse" id="device-details-pre" style="margin-top: 12px;">
-            <pre id="device-details" style="height:300px;"></pre>
-          </div>
+          <label>Device ID</label>
+          <input type="text" class="form-control form-control-sm" id="device-id" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>DSN</label>
+          <input type="text" class="form-control form-control-sm" id="device-dsn" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Model</label>
+          <input type="text" class="form-control form-control-sm" id="device-model" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>OEM Model</label>
+          <input type="text" class="form-control form-control-sm" id="device-oem-model" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Software Version</label>
+          <input type="text" class="form-control form-control-sm" id="device-software-version" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Template ID</label>
+          <input type="text" class="form-control form-control-sm" id="device-template-id" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>MAC Address</label>
+          <input type="text" class="form-control form-control-sm" id="device-mac-address" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>LAN IP</label>
+          <input type="text" class="form-control form-control-sm" id="device-lan-ip" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Connection Time</label>
+          <input type="text" class="form-control form-control-sm" id="device-connection-time" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>LAN Enabled</label>
+          <input type="text" class="form-control form-control-sm" id="device-lan-enabled" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Has Properties</label>
+          <input type="text" class="form-control form-control-sm" id="device-has-properties" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Product Class</label>
+          <input type="text" class="form-control form-control-sm" id="device-product-class" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Connection Status</label>
+          <input type="text" class="form-control form-control-sm" id="device-connection-status" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Latitude</label>
+          <input type="text" class="form-control form-control-sm" id="device-latitude" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Longitude</label>
+          <input type="text" class="form-control form-control-sm" id="device-longitude" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Locality</label>
+          <input type="text" class="form-control form-control-sm" id="device-locality" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Device Type</label>
+          <input type="text" class="form-control form-control-sm" id="device-type" disabled="true">
         </div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-12">
-          <label>Properties</label>&nbsp;-&nbsp;<a class="label-note" data-toggle="collapse" href="#property-details-pre">Details</a>
+          <label style="font-size: 120% !important;color:tomato;">Properties</label>
           <select id="select-properties" class="form-control form-control-sm"></select>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="collapse" id="property-details-pre" style="margin-top: 12px;">
-            <pre id="property-details" style="height:300px;"></pre>
-          </div>
+          <label>Property ID</label>
+          <input type="text" class="form-control form-control-sm" id="property-id" disabled="true">
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
+          <label>Device ID</label>
+          <input type="text" class="form-control form-control-sm" id="property-device-id" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Value</label>&nbsp;&nbsp;<span id="set-property-value"><a href="">(Click to set new value)</a></span>
+          <input type="text" class="form-control form-control-sm" id="property-value" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <label>Value Type</label>
           <input type="text" class="form-control form-control-sm" id="property-value-type" disabled="true">
         </div>
-        <div class="col-md-6">
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <label>Direction</label>
           <input type="text" class="form-control form-control-sm" id="property-direction" disabled="true">
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
-          <label>Value</label>
-          <input type="text" class="form-control form-control-sm" id="property-value" placeholder="null">
+        <div class="col-md-12">
+          <label>Name</label>
+          <input type="text" class="form-control form-control-sm" id="property-db-name" disabled="true">
         </div>
-        <div class="col-md-6">
-          <label>&nbsp;</label>
-          <button type="button" class="btn btn-primary btn-sm btn-block" id="get-set-value">Original</button>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Display Name</label>
+          <input type="text" class="form-control form-control-sm" id="property-display-name" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Read Only</label>
+          <input type="text" class="form-control form-control-sm" id="property-read-only" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Scope</label>
+          <input type="text" class="form-control form-control-sm" id="property-scope" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Last Update Time</label>
+          <input type="text" class="form-control form-control-sm" id="property-last-update-time" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Product Name</label>
+          <input type="text" class="form-control form-control-sm" id="property-product-name" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Track Only Changes</label>
+          <input type="text" class="form-control form-control-sm" id="property-track-only-changes" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Host Software Version</label>
+          <input type="text" class="form-control form-control-sm" id="property-host-software-version" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Time Series</label>
+          <input type="text" class="form-control form-control-sm" id="property-time-series" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Derived</label>
+          <input type="text" class="form-control form-control-sm" id="property-derived" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Retention Days</label>
+          <input type="text" class="form-control form-control-sm" id="property-retention-days" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Ack Enabled</label>
+          <input type="text" class="form-control form-control-sm" id="property-ack-enabled" disabled="true">
         </div>
       </div>
     </div>

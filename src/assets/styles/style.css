@@ -298,9 +298,9 @@ span.a {
   vertical-align:top;
 }
 
-#content table {border: 2px solid steelblue;}
-#content th {border: 2px solid steelblue;}
-#content td {border: 1px solid steelblue;}
+/* #content table {border: 1px solid steelblue;} */
+#content th {border: 1px solid steelblue;}
+#content td {border: 1px solid #c8daea;}
 
 #content table th {background: steelblue; font-weight: normal; text-align: left; color: white;}
 
@@ -372,4 +372,4 @@ input:checked + .slider:before {-webkit-transform: translateX(26px);-ms-transfor
 .slider.round:before {border-radius: 50%;}
 .collapse-label {margin: 12px 0 3px 0;}
 .collapse-label a {font-size:85%; }
-.label-note {font-size:85%;}
+#set-property-value a {font-size:85%;}

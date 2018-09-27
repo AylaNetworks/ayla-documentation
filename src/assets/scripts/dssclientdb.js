@@ -50,8 +50,7 @@ var getDevicesDoneCB = function (devices) {
 
   var selected = $('#select-devices option:selected');
   var details = $(selected).data("details");
-  $('#device-details').html(JSON.stringify(details, null, 2));
-
+  displayDevice(details);
   getProperties(details.dsn, getPropertiesDoneCB, getPropertiesFailCB);
 }
 
@@ -68,13 +67,39 @@ var getDevicesFailCB = function (jqXHR, textStatus) {
 //*********************************************
 
 $( "#select-devices" ).change(function() {
+  $(this).blur();
   var selected = $('#select-devices option:selected');
   var details = $(selected).data("details");
-  $('#device-details').html(JSON.stringify(details, null, 2));
-  $('#select-devices').blur();
-
+  displayDevice(details);
   getProperties(details.dsn, getPropertiesDoneCB, getPropertiesFailCB);
 });
+
+//*********************************************
+// displayDevice
+//*********************************************
+
+function displayDevice(details) {
+  $('#device-id').val(details.key);
+  $('#device-dsn').val(details.dsn);
+  $('#device-model').val(details.model);
+  $('#device-oem-model').val(details.oem_model);
+  $('#device-software-version').val(details.sw_version);
+  $('#device-template-id').val(details.template_id);
+  $('#device-mac-address').val(details.mac);
+  $('#device-lan-ip').val(details.lan_ip);
+  $('#device-connection-time').val(details.connected_at);
+  $('#device-lan-enabled').val(details.lan_enabled);
+  $('#device-has-properties').val(details.has_properties);
+  $('#device-product-class').val(details.product_class);
+  $('#device-connection-status').val(details.connection_status);
+  $('#device-latitude').val(details.lat);
+  $('#device-longitude').val(details.lng);
+  $('#device-locality').val(details.locality);
+  $('#device-type').val(details.device_type);
+
+  $('#device-details').html(JSON.stringify(details, null, 2));
+  console.log(JSON.stringify(details, null, 2));
+}
 
 //*********************************************
 // getPropertiesDoneCB
@@ -92,9 +117,8 @@ var getPropertiesDoneCB = function (properties) {
 
   var selected = $('#select-properties option:selected');
   var details = $(selected).data("details");
-  $('#property-details').html(JSON.stringify(details, null, 2));
-
-  displayValue(details.direction, details.base_type, details.value);
+  displayProperty(details);
+  // displayValue(details.direction, details.base_type, details.value);
 }
 
 //*********************************************
@@ -110,13 +134,52 @@ var getPropertiesFailCB = function (jqXHR, textStatus) {
 //*********************************************
 
 $( "#select-properties" ).change(function() {
+  $(this).blur();
   var selected = $('#select-properties option:selected');
   var details = $(selected).data("details");
-  $('#property-details').html(JSON.stringify(details, null, 2));
-  $('#select-properties').blur();
-
-  displayValue(details.direction, details.base_type, details.value);
+  displayProperty(details);
+  // displayValue(details.direction, details.base_type, details.value);
 });
+
+//*********************************************
+// displayProperty
+//*********************************************
+
+function displayProperty(details) {
+
+  var direction = '';
+  if(details.direction === 'output') {
+    direction = 'Device to Cloud';
+    $('#property-value').prop('disabled', true);
+    $('#set-property-value').hide();
+  }
+  else {
+    direction = 'Cloud to Device';
+    $('#property-value').prop('disabled', false);
+    $('#set-property-value').show();
+  }
+
+  $('#property-id').val(details.key);
+  $('#property-device-id').val(details.device_key);
+  $('#property-value').val(details.value);
+  $('#property-value-type').val(details.base_type);
+  $('#property-direction').val(direction);
+  $('#property-db-name').val(details.name);
+  $('#property-display-name').val(details.display_name);
+  $('#property-read-only').val(details.read_only);
+  $('#property-scope').val(details.scope);
+  $('#property-last-update-time').val(details.data_updated_at);
+  $('#property-product-name').val(details.product_name);
+  $('#property-track-only-changes').val(details.track_only_changes);
+  $('#property-host-software-version').val(details.host_sw_version);
+  $('#property-time-series').val(details.time_series);
+  $('#property-derived').val(details.derived);
+  $('#property-retention-days').val(details.retention_days);
+  $('#property-ack-enabled').val(details.ack_enabled);
+
+  $('#property-details').html(JSON.stringify(details, null, 2));
+  console.log(JSON.stringify(details, null, 2));
+}
 
 //*********************************************
 // displayValue
@@ -144,13 +207,13 @@ function displayValue(direction, type, value) {
 }
 
 //*********************************************
-// On Get/Set Value
+// On Set Property Value
 //*********************************************
 
 $(function() {
-  $('#get-set-value').click(function(event) {
-    console.log($(this).val());
-    $(this).blur();
+  $('#set-property-value').click(function(event) {
+    event.preventDefault();
+    console.log('set-property-value');
   });
 });
 
