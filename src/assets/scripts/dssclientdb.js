@@ -58,6 +58,15 @@ var getDevicesDoneCB = function (devices) {
 }
 
 //*********************************************
+// getDeviceDoneCB
+//*********************************************
+
+var getDeviceDoneCB = function (device) {
+  displayDevice(device.device);
+  getProperties(device.device.key, getPropertiesDoneCB, failCB);
+}
+
+//*********************************************
 // getPropertiesDoneCB
 //*********************************************
 
@@ -87,6 +96,14 @@ var getPropertyDoneCB = function(property) {
 }
 
 //*********************************************
+// createDatapointDoneCB
+//*********************************************
+
+var createDatapointDoneCB = function(datapoint) {
+  console.log('datapoint value = ' + datapoint.datapoint.value);
+}
+
+//*********************************************
 // failCB
 //*********************************************
 
@@ -102,8 +119,7 @@ $( "#select-devices" ).change(function() {
   $(this).blur();
   var selected = $('#select-devices option:selected');
   var details = $(selected).data("details");
-  displayDevice(details);
-  getProperties(details.key, getPropertiesDoneCB, failCB);
+  getDevice(details.key, getDeviceDoneCB, failCB);
 });
 
 //*********************************************
@@ -114,7 +130,7 @@ $( "#select-properties" ).change(function() {
   $(this).blur();
   var selected = $('#select-properties option:selected');
   var details = $(selected).data("details");
-  getProperty(details.device_key, details.key, getPropertyDoneCB, failCB);
+  getProperty(details.key, getPropertyDoneCB, failCB);
 });
 
 //*********************************************
@@ -124,7 +140,14 @@ $( "#select-properties" ).change(function() {
 $(function() {
   $('#set-property-value').click(function(event) {
     event.preventDefault();
-    console.log('set-property-value');
+
+    var selected = $('#select-properties option:selected');
+    var details = $(selected).data("details");
+    var propertyId = details.key;
+    var value = $('#property-value').val();
+    createDatapoint(propertyId, value, createDatapointDoneCB, failCB);
+
+    console.log('propertyId = ' + propertyId + ', value = ' + value);
   });
 });
 
@@ -171,7 +194,17 @@ function displayProperty(details) {
     $('#property-value').prop('disabled', false);
     $('#set-property-value').show();
   }
-
+/*
+  switch(details.base_type) {
+    case 'boolean':
+    case 'decimal':
+    case 'number':
+    case 'string':
+    default:
+      $('#value-wrapper').empty().append('<input type="text" class="form-control form-control-sm" id="property-value">');
+    break;
+  }
+*/
   $('#property-id').val(details.key);
   $('#property-device-id').val(details.device_key);
   $('#property-value').val(details.value);

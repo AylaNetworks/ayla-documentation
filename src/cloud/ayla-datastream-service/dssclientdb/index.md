@@ -31,14 +31,38 @@ layout: page-dssclientdb.html
       </div>
       <div class="row">
         <div class="col-md-12">
-          <label>Device ID</label>
-          <input type="text" class="form-control form-control-sm" id="device-id" disabled="true">
+          <label>Connection Status</label>
+          <input type="text" class="form-control form-control-sm" id="device-connection-status" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Software Version</label>
+          <input type="text" class="form-control form-control-sm" id="device-software-version" disabled="true">
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <label>DSN</label>
           <input type="text" class="form-control form-control-sm" id="device-dsn" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Device Type</label>
+          <input type="text" class="form-control form-control-sm" id="device-type" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Device ID</label>
+          <input type="text" class="form-control form-control-sm" id="device-id" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Product Name</label>
+          <input type="text" class="form-control form-control-sm" id="device-product-name" disabled="true">
         </div>
       </div>
       <div class="row">
@@ -51,12 +75,6 @@ layout: page-dssclientdb.html
         <div class="col-md-12">
           <label>OEM Model</label>
           <input type="text" class="form-control form-control-sm" id="device-oem-model" disabled="true">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label>Software Version</label>
-          <input type="text" class="form-control form-control-sm" id="device-software-version" disabled="true">
         </div>
       </div>
       <div class="row">
@@ -79,12 +97,6 @@ layout: page-dssclientdb.html
       </div>
       <div class="row">
         <div class="col-md-12">
-          <label>Connection Time</label>
-          <input type="text" class="form-control form-control-sm" id="device-connection-time" disabled="true">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
           <label>LAN Enabled</label>
           <input type="text" class="form-control form-control-sm" id="device-lan-enabled" disabled="true">
         </div>
@@ -103,8 +115,8 @@ layout: page-dssclientdb.html
       </div>
       <div class="row">
         <div class="col-md-12">
-          <label>Connection Status</label>
-          <input type="text" class="form-control form-control-sm" id="device-connection-status" disabled="true">
+          <label>Connection Time</label>
+          <input type="text" class="form-control form-control-sm" id="device-connection-time" disabled="true">
         </div>
       </div>
       <div class="row">
@@ -121,20 +133,8 @@ layout: page-dssclientdb.html
       </div>
       <div class="row">
         <div class="col-md-12">
-          <label>Product Name</label>
-          <input type="text" class="form-control form-control-sm" id="device-product-name" disabled="true">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
           <label>Locality</label>
           <input type="text" class="form-control form-control-sm" id="device-locality" disabled="true">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label>Device Type</label>
-          <input type="text" class="form-control form-control-sm" id="device-type" disabled="true">
         </div>
       </div>
     </div>
@@ -147,20 +147,8 @@ layout: page-dssclientdb.html
       </div>
       <div class="row">
         <div class="col-md-12">
-          <label>Device ID</label>
-          <input type="text" class="form-control form-control-sm" id="property-device-id" disabled="true">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label>Property ID</label>
-          <input type="text" class="form-control form-control-sm" id="property-id" disabled="true">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label style="color:red;">Value</label>&nbsp;&nbsp;<span id="set-property-value"><a href="">(Click to set new value)</a></span>
-          <input type="text" class="form-control form-control-sm" id="property-value" disabled="true">
+          <label>Value</label>&nbsp;&nbsp;<span id="set-property-value"><a href="">(Click to set new value)</a></span>
+          <div id="value-wrapper"><input type="text" class="form-control form-control-sm" id="property-value" disabled="true"></div>
         </div>
       </div>
       <div class="row">
@@ -173,6 +161,18 @@ layout: page-dssclientdb.html
         <div class="col-md-12">
           <label>Direction</label>
           <input type="text" class="form-control form-control-sm" id="property-direction" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Property ID</label>
+          <input type="text" class="form-control form-control-sm" id="property-id" disabled="true">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Device ID</label>
+          <input type="text" class="form-control form-control-sm" id="property-device-id" disabled="true">
         </div>
       </div>
       <div class="row">

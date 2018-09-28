@@ -373,3 +373,5 @@ input:checked + .slider:before {-webkit-transform: translateX(26px);-ms-transfor
 .collapse-label {margin: 12px 0 3px 0;}
 .collapse-label a {font-size:85%; }
 #set-property-value a {font-size:85%;}
+/*#devices-page input:disabled {border-color:#0d0d0d; background: #0d0d0d; color: white;}*/
+#devices-page input:disabled {border-color:slategray; background: slategray; color: white;}
