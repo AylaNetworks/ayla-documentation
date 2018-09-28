@@ -36,6 +36,68 @@ $(function() {
 });
 
 //*********************************************
+// On Select Device
+//*********************************************
+
+$(function() {
+  $( "#select-devices" ).change(function() {
+    $(this).blur();
+    var selected = $('#select-devices option:selected');
+    var details = $(selected).data("details");
+    getDevice(details.key, getDeviceDoneCB, failCB);
+  });
+});
+
+//*********************************************
+// On Select Property
+//*********************************************
+
+$(function() {
+  $( "#select-properties" ).change(function() {
+    $(this).blur();
+    var selected = $('#select-properties option:selected');
+    var details = $(selected).data("details");
+    getProperty(details.key, getPropertyDoneCB, failCB);
+  });
+});
+
+//*********************************************
+// On Set Property Value
+//*********************************************
+
+$(function() {
+  $('#value-wrapper').delegate('#save-property-value', "click", function(event) {
+    $(this).blur();
+    var selected = $('#select-properties option:selected');
+    var details = $(selected).data("details");
+    var propertyId = details.key;
+    var value = $('#property-value').val();
+    createDatapoint(propertyId, value, createDatapointDoneCB, failCB);
+
+    console.log('propertyId = ' + propertyId + ', value = ' + value);
+  });
+});
+
+//*********************************************
+// On Property Value Checkbox Change
+//*********************************************
+
+$(function() {
+  $('#value-wrapper').delegate('input:checkbox', "change", function(event) {
+    $(this).blur();
+
+    var selected = $('#select-properties option:selected');
+    var details = $(selected).data("details");
+    var propertyId = details.key;
+    var value = 0;
+    if($(this).prop('checked')) {value = 1;}
+    createDatapoint(propertyId, value, createDatapointDoneCB, failCB);
+
+    console.log('propertyId = ' + propertyId + ', value = ' + value);
+  });
+});
+
+//*********************************************
 // getDevicesDoneCB
 //*********************************************
 
@@ -109,47 +171,8 @@ var createDatapointDoneCB = function(datapoint) {
 
 var failCB = function (jqXHR, textStatus) {
   console.log(textStatus);
+  console.log(JSON.stringify(jqXHR, null, 2));
 }
-
-//*********************************************
-// On Select Device
-//*********************************************
-
-$( "#select-devices" ).change(function() {
-  $(this).blur();
-  var selected = $('#select-devices option:selected');
-  var details = $(selected).data("details");
-  getDevice(details.key, getDeviceDoneCB, failCB);
-});
-
-//*********************************************
-// On Select Property
-//*********************************************
-
-$( "#select-properties" ).change(function() {
-  $(this).blur();
-  var selected = $('#select-properties option:selected');
-  var details = $(selected).data("details");
-  getProperty(details.key, getPropertyDoneCB, failCB);
-});
-
-//*********************************************
-// On Set Property Value
-//*********************************************
-
-$(function() {
-  $('#set-property-value').click(function(event) {
-    event.preventDefault();
-
-    var selected = $('#select-properties option:selected');
-    var details = $(selected).data("details");
-    var propertyId = details.key;
-    var value = $('#property-value').val();
-    createDatapoint(propertyId, value, createDatapointDoneCB, failCB);
-
-    console.log('propertyId = ' + propertyId + ', value = ' + value);
-  });
-});
 
 //*********************************************
 // displayDevice
@@ -183,31 +206,48 @@ function displayDevice(details) {
 
 function displayProperty(details) {
 
-  var direction = '';
-  if(details.direction === 'output') {
-    direction = 'Device to Cloud';
-    $('#property-value').prop('disabled', true);
-    $('#set-property-value').hide();
-  }
-  else {
-    direction = 'Cloud to Device';
-    $('#property-value').prop('disabled', false);
-    $('#set-property-value').show();
-  }
-/*
   switch(details.base_type) {
+
     case 'boolean':
+    // $('#value-wrapper').empty().append('<input type="checkbox" id="property-value">');
+    $('#value-wrapper').empty().append('<label class="switch"><input id="property-value" type="checkbox"><span class="slider round"></span></label>');
+    break;
+
     case 'decimal':
     case 'number':
     case 'string':
     default:
-      $('#value-wrapper').empty().append('<input type="text" class="form-control form-control-sm" id="property-value">');
+    if(details.direction === 'output') {
+      $('#value-wrapper').empty().append(''
+        + '<input type="text" class="form-control form-control-sm" id="property-value">');
+    } else {
+      $('#value-wrapper').empty().append(''
+        + '<div class="row">'
+        + '<div class="form-group col-md-12">'
+        + '<input type="text" class="form-control form-control-sm" id="property-value">'
+        + '</div>'
+        + '<div class="form-group col-md-12">'
+        + '<button id="save-property-value" type="button" class="btn btn-success btn-sm btn-block">Save</button>'
+        + '</div>'
+        + '</div>');
+    }
     break;
   }
-*/
+
+  displayValue(details.base_type, details.value);
+
+  var direction = '';
+  if(details.direction === 'output') {
+    direction = 'Device to Cloud';
+    $('#property-value').prop('disabled', true);
+  }
+  else {
+    direction = 'Cloud to Device';
+    $('#property-value').prop('disabled', false);
+  }
+
   $('#property-id').val(details.key);
   $('#property-device-id').val(details.device_key);
-  $('#property-value').val(details.value);
   $('#property-value-type').val(details.base_type);
   $('#property-direction').val(direction);
   $('#property-db-name').val(details.name);
@@ -229,57 +269,14 @@ function displayProperty(details) {
 // displayValue
 //*********************************************
 
-function displayValue(direction, type, value) {
-  console.log(type + ' = ' + value);
-
-  if(direction === 'output') {
-    direction = 'Device to Cloud';
-    $('#property-value').prop('disabled', true);
-    $('#get-set-value').val('get').text('Get');
-    $('#get-set-value').removeClass('btn-warning').addClass('btn-success');
-  }
-  else {
-    direction = 'Cloud to Device';
-    $('#property-value').prop('disabled', false);
-    $('#get-set-value').val('set').text('Set');
-    $('#get-set-value').removeClass('btn-success').addClass('btn-warning');
-  }
-
-  $('#property-value-type').val(type);
-  $('#property-direction').val(direction);
-  $('#property-value').val(value);
-}
-
-//*********************************************
-// DSS Event Checkboxes
-//*********************************************
-
-$(function() {
-  $(":checkbox").change(function() {
-
-    $(this).blur();
-    var eventType = $(this).val();
-    if($(this).is( ":checked")) {
-      start(eventType);
+function displayValue(type, value) {
+  if(type === 'boolean') {
+    if(value === 1) {
+      $('#property-value').prop('checked', true);
     } else {
-      stop(eventType);
+      $('#property-value').prop('checked', false);
     }
-
-  });
-});
-
-//*********************************************
-// start
-//*********************************************
-
-function start(eventType) {
-  console.log('Starting ' + eventType);
-}
-
-//*********************************************
-// stop
-//*********************************************
-
-function stop(eventType) {
-  console.log('Stopping ' + eventType);
+  } else {
+    $('#property-value').val(value);
+  }
 }

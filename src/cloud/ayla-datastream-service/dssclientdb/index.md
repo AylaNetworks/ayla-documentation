@@ -6,9 +6,9 @@ layout: page-dssclientdb.html
 <nav>
 <div class="nav nav-tabs" id="nav-tab" role="tablist">
 <a class="nav-item nav-link active" data-toggle="tab" href="#events-page" role="tab">Events</a>
+<a class="nav-item nav-link" data-toggle="tab" href="#heartbeats-page" role="tab">Heartbeats</a>
 <a class="nav-item nav-link" data-toggle="tab" href="#devices-page" role="tab">Devices</a>
 <a class="nav-item nav-link" data-toggle="tab" href="#analytics-page" role="tab">Analytics</a>
-<a class="nav-item nav-link" data-toggle="tab" href="#about-page" role="tab">About</a>
 </div>
 </nav>
 
@@ -19,18 +19,18 @@ layout: page-dssclientdb.html
 </div>
 <!-- END EVENTS PAGE -->
 
+<!-- BEGIN HEARTBEATS PAGE -->
+<div class="tab-pane fade show" id="heartbeats-page" role="tabpanel">
+</div>
+<!-- END HEARTBEATS PAGE -->
+
 <!-- BEGIN DEVICES PAGE -->
 <div class="tab-pane fade" id="devices-page" role="tabpanel">
   <div class="row">
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-12">
-          <label style="font-size: 120% !important;color:tomato;">Devices</label>
-          <select id="select-devices" class="form-control form-control-sm"></select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
+          <h3>Device Details</h3>
           <label>Connection Status</label>
           <input type="text" class="form-control form-control-sm" id="device-connection-status" disabled="true">
         </div>
@@ -141,18 +141,7 @@ layout: page-dssclientdb.html
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-12">
-          <label style="font-size: 120% !important;color:tomato;">Properties</label>
-          <select id="select-properties" class="form-control form-control-sm"></select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label>Value</label>&nbsp;&nbsp;<span id="set-property-value"><a href="">(Click to set new value)</a></span>
-          <div id="value-wrapper"><input type="text" class="form-control form-control-sm" id="property-value" disabled="true"></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
+          <h3>Property Details</h3>
           <label>Value Type</label>
           <input type="text" class="form-control form-control-sm" id="property-value-type" disabled="true">
         </div>
@@ -256,10 +245,5 @@ layout: page-dssclientdb.html
 <div class="tab-pane fade" id="analytics-page" role="tabpanel">
 </div>
 <!-- END ANALYTICS PAGE -->
-
-<!-- BEGIN ABOUT PAGE -->
-<div class="tab-pane fade" id="about-page" role="tabpanel">
-</div>
-<!-- END ABOUT PAGE -->
 
 </div>
