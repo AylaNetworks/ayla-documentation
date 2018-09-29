@@ -249,27 +249,31 @@ function displayEvent(event) {
   var data = JSON.parse(a[1]);
   var json = JSON.stringify(data, null, 2);
 
-  var title = toInitialCaps(data.metadata.event_type);
+  var title = toInitialCaps(data.metadata.event_type) + ' for ' + data.metadata.dsn + ': ';
 
   switch(data.metadata.event_type) {
     case 'connectivity':
-    title = title + ' for ' + data.metadata.dsn + ': ' + data.connection.status;
+    title = title + data.connection.status;
     break;
 
     case 'datapoint':
-    title = title + ' for ' + data.metadata.dsn + ': ' + data.metadata.display_name + ' = ' + data.datapoint.value;
+    var value = data.datapoint.value;
+    if(value.length > 30) {value = value.slice(0, 30) + ' ...';}
+    title = title + data.metadata.display_name + ' = ' + value;
     break;
 
     case 'datapointack':
-    title = title + ' for ' + data.metadata.dsn + ': ' + data.metadata.display_name + ' = ' + data.datapoint.value;
+    var value = data.datapointack.value;
+    if(value.length > 30) {value = value.slice(0, 30) + ' ...';}
+    title = title + data.metadata.display_name + ' = ' + value;
     break;
 
     case 'location':
-    title = title + ' for ' + data.metadata.dsn + ': lat = ' + data.location_event.lat + ', long = ' + data.location_event.long
+    title = title + 'lat = ' + data.location_event.lat + ', long = ' + data.location_event.long
     break;
 
     case 'registration':
-    title = title + ' for ' + data.metadata.dsn + ': registered = ' + data.registration_event.registered;
+    title = title + 'registered = ' + data.registration_event.registered;
     break;
 
     default:
