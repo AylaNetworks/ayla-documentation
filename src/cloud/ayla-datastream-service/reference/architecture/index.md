@@ -8,9 +8,8 @@ c: block
 <div class="collapse" id="toc-list">
 <ol>
 <li><a href="#a-overview">Overview</a></li>
-<li><a href="#a-dss-collector">DSS Collector</a></li>
-<li><a href="#a-dss-app">DSS App</a></li>
 <li><a href="#a-ayla-proxy">Ayla Proxy</a></li>
+<li><a href="#a-dss-client">DSS Client</a></li>
 <li><a href="#a-dss-events">DSS Events</a></li>
 </ol>
 </div>
@@ -35,20 +34,13 @@ c: block
 1. The DSS App communicates with the Ayla Cloud via the Ayla Proxy REST API because [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) prevents the DSS App from communicating directly with the Ayla REST API.
 1. DSS sends a heartbeat event on every socket every 30 seconds. Subscribers must respond or DSS will close the socket.
 
-<h1 class="target"><a id="a-dss-collector"></a>DSS Collector</h1>
-
-<h1 class="target"><a id="a-dss-app"></a>DSS App</h1>
-
 <h1 class="target"><a id="a-ayla-proxy"></a>Ayla Proxy</h1>
 
-<pre>
-$ mkdir ayla-proxy
-$ cs ayla-proxy
-$ npm init -y
-$ npm install express
-$ npm install axios
-$ touch server.js
-</pre>
+<h1 class="target"><a id="a-dss-client"></a>DSS Client</h1>
+
+## DSS Collector
+
+## DSS App
 
 <h1 class="target"><a id="a-dss-events"></a>DSS Events</h1>
 
