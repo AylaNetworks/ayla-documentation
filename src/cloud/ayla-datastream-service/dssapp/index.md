@@ -1,6 +1,6 @@
 ---
-title: DSS Client
-layout: page-dssclientdb.html
+title: DSS App
+layout: page-dssapp.html
 ---
 
 <nav>
@@ -8,7 +8,7 @@ layout: page-dssclientdb.html
 <a class="nav-item nav-link active" data-toggle="tab" href="#events-page" role="tab">Events</a>
 <a class="nav-item nav-link" data-toggle="tab" href="#heartbeats-page" role="tab">Heartbeats</a>
 <a class="nav-item nav-link" data-toggle="tab" href="#devices-page" role="tab">Devices</a>
-<a class="nav-item nav-link" data-toggle="tab" href="#analytics-page" role="tab">Analytics</a>
+<a class="nav-item nav-link" data-toggle="tab" href="#collector-page" role="tab">Collector</a>
 </div>
 </nav>
 
@@ -241,9 +241,9 @@ layout: page-dssclientdb.html
 </div>
 <!-- END DEVICES PAGE -->
 
-<!-- BEGIN ANALYTICS PAGE -->
-<div class="tab-pane fade" id="analytics-page" role="tabpanel">
+<!-- BEGIN COLLECTOR PAGE -->
+<div class="tab-pane fade" id="collector-page" role="tabpanel">
 </div>
-<!-- END ANALYTICS PAGE -->
+<!-- END COLLECTOR PAGE -->
 
 </div>

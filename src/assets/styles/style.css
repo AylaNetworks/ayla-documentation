@@ -423,3 +423,9 @@ input:checked + .slider:before {
 /*.sidenav-widget {background:white;padding:9px 6px 0 6px;}*/
 .sidenav-widget label {color:steelblue; !important;font-weight:normal !important;}
 .form-group {margin-bottom: .5rem;}
+
+#toc-list {margin-top: 6px;}
+#toc-list li {font-size: 90%;}
+
+.target {position:relative;}
+.target a {position:absolute; top:-110px;}

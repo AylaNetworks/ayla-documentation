@@ -98,6 +98,59 @@ $(function() {
 });
 
 //*********************************************
+// On Select Collector Events Checkbox Change
+//*********************************************
+
+$(function() {
+  $('#select-collector-events div input:checkbox').change(function() {
+    console.log('select-collector-events');
+    $(this).blur();
+    var eventType = $(this).val();
+    if($(this).is(":checked")) {
+
+      console.log(eventType + ' is checked.');
+
+      var srv = JSON.parse($('#service').val());
+      var clientType = $('#client-type').val();
+      var url = urls[srv.region][srv.deployment][clientType];
+      var oemModel = $('#oem-model').val();
+      var dsn = $('#dsn').val();
+      var propertyName = $('#property-name').val();
+
+      var data = {
+        "url": url,
+        "subscription_type": eventType,
+        "oem_model": propertyName,
+        "client_type": clientType,
+        "property_name": propertyName
+      };
+      createDssStream(data, createDssStreamDoneCB, failCB);
+
+    } else {
+      console.log(eventType + ' is unchecked.');
+      destroyDssStream(eventType, destroyDssStreamDoneCB, failCB);
+    }
+
+  });
+});
+
+//*********************************************
+// createDssStreamDoneCB
+//*********************************************
+
+var createDssStreamDoneCB = function(data) {
+  console.log('createDssStreamDoneCB');
+}
+
+//*********************************************
+// destroyDssStreamDoneCB
+//*********************************************
+
+var destroyDssStreamDoneCB = function(data) {
+  console.log('destroyDssStream');
+}
+
+//*********************************************
 // getDevicesDoneCB
 //*********************************************
 

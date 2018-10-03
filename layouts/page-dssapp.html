@@ -6,26 +6,8 @@
 
     <div class="row">
       <div class="form-group col-md-12">
-        <label><a data-toggle="collapse" href="#configure-event-storage">Configure event storage</a></label>
-        <div class="collapse sidenav-widget" id="configure-event-storage">
-          <div class="row">
-            <div class="form-group col-md-12">
-              <div class="border rounded" style="padding:6px;">
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" value="datapointack" id="activate-server-checkbox">
-                  <label class="form-check-label" for="activate-server-checkbox">Activate Storage</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col-md-12">
-        <label><a data-toggle="collapse" href="#configure-next-event-stream">Configure next event stream</a></label>
-        <div class="collapse sidenav-widget" id="configure-next-event-stream">
+        <label><a data-toggle="collapse" href="#define-event-stream">Define event stream</a></label>
+        <div class="collapse sidenav-widget" id="define-event-stream">
           <div class="row">
             <div class="form-group col-md-12">
               <label for="service">Service</label>
@@ -72,8 +54,8 @@
 
     <div class="row">
       <div class="form-group col-md-12">
-        <label><a data-toggle="collapse" href="#open-close-event-streams">Open/close event streams</a></label>
-        <div class="collapse show sidenav-widget" id="open-close-event-streams">
+        <label><a data-toggle="collapse" href="#create-event-streams">Create app streams</a></label>
+        <div class="collapse show sidenav-widget" id="create-event-streams">
           <div class="row">
             <div class="form-group col-md-12">
               <div id="select-events" class="border rounded" style="padding:6px;">
@@ -96,6 +78,40 @@
                 <div class="form-check">
                   <input type="checkbox" class="form-check-input" value="registration" id="registration-checkbox">
                   <label class="form-check-label" for="registration-checkbox">Registration</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label><a data-toggle="collapse" href="#create-collector-streams">Create collector streams</a></label>
+        <div class="collapse sidenav-widget" id="create-collector-streams">
+          <div class="row">
+            <div class="form-group col-md-12">
+              <div id="select-collector-events" class="border rounded" style="padding:6px;">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" value="connectivity" id="collector-connectivity-checkbox">
+                  <label class="form-check-label">Connectivity</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" value="datapoint" id="collector-datapoint-checkbox">
+                  <label class="form-check-label">Datapoint</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" value="datapointack" id="collector-datapointack-checkbox">
+                  <label class="form-check-label">Datapoint Ack</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" value="location" id="collector-location-checkbox">
+                  <label class="form-check-label">Location</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" value="registration" id="collector-registration-checkbox">
+                  <label class="form-check-label">Registration</label>
                 </div>
               </div>
             </div>

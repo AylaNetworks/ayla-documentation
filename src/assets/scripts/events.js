@@ -78,7 +78,7 @@ $(function() {
     console.log('select-events');
     $(this).blur();
     var eventType = $(this).val();
-    if($(this).is( ":checked")) {
+    if($(this).is(":checked")) {
       openSocket(eventType);
     } else {
       closeSocket(eventType);
