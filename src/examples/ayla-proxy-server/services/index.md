@@ -1,5 +1,6 @@
 ---
-title: Ayla Proxy Server
+title: Services
 layout: examples-ayla-proxy-server.html
+a: block
 ---
 

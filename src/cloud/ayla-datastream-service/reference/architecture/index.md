@@ -29,9 +29,8 @@ c: block
 1. In the diagram, the DSS Collector is subcribed to three types, and the DSS App to two.
 1. The DSS Collector provides a small REST API allowing external apps to open/close sockets, and to access collected data.
 1. The DSS App utilizes this REST API to control the DSS Collector, and to GET data.
-1. The orange box is the DSS Client. It is an example. It includes the DSS Collector and the DSS App.
-1. The blue box is the Ayla Proxy, a Node JS server that uses the [Ayla REST API](https://developer.aylanetworks.com/apibrowser), and offers its own REST API.
-1. The DSS App communicates with the Ayla Cloud via the Ayla Proxy REST API because [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) prevents the DSS App from communicating directly with the Ayla REST API.
+1. The orange box is the DSS Client. It includes the DSS Collector and the DSS App.
+1. The blue box is the [Ayla Proxy Server](/examples/ayla-proxy-server/introduction) which accesses the [Ayla REST API](https://developer.aylanetworks.com/apibrowser) on behalf of apps in your domain limited by [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
 1. DSS sends a heartbeat event on every socket every 30 seconds. Subscribers must respond or DSS will close the socket.
 
 <h1 class="target"><a id="a-ayla-proxy"></a>Ayla Proxy</h1>

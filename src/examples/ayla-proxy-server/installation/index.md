@@ -1,5 +1,5 @@
 ---
-title: Ayla Proxy Server
+title: Installation
 layout: examples-ayla-proxy-server.html
 ---
 
