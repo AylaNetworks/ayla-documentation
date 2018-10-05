@@ -6,8 +6,9 @@ const express = require('express')
 const axios = require('axios')
 
 const app = express()
-
 app.use(express.json())
+
+const appName = 'Ayla Proxy Server'
 
 //------------------------------------------------------
 // /api/v1/session
@@ -15,33 +16,30 @@ app.use(express.json())
 
 app.route('/api/v1/session')
 
-  .post(function (req, res) {
-    console.log('login')
+  //----------------------------------------------------
+  // Login
+  //----------------------------------------------------
 
+  .post(function (req, res) {
     axios({
       method: 'post',
       url: 'https://user-dev.aylanetworks.com/users/sign_in',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: req.headers,
       data: JSON.stringify(req.body)
     })
     .then(function (response) {res.send(response.data)})
     .catch(function (error) {res.send(error.response.statusText)})
   })
 
-  .delete(function (req, res) {
-    console.log('logout')
+  //----------------------------------------------------
+  // Logout
+  //----------------------------------------------------
 
+  .delete(function (req, res) {
     axios({
       method: 'post',
       url: 'https://user-dev.aylanetworks.com/users/sign_out',
-      headers: {
-        'Authorization': 'auth_token ' + authToken(req),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: req.headers,
       data: JSON.stringify(req.body)
     })
     .then(function (response) {res.send(response.data)})
@@ -54,17 +52,30 @@ app.route('/api/v1/session')
 
 app.route('/api/v1/devices')
 
-  .get(function (req, res) {
-    console.log('getDevices')
+  //----------------------------------------------------
+  // Get Devices
+  //----------------------------------------------------
 
+  .get(function (req, res) {
     axios({
       method: 'get',
       url: 'https://user-dev.aylanetworks.com/apiv1/devices',
-      headers: {
-        'Authorization': 'auth_token ' + authToken(req),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      headers: req.headers
+    })
+    .then(function (response) {res.send(response.data)})
+    .catch(function (error) {res.send(error.response.statusText)})
+  })
+
+  //----------------------------------------------------
+  // Create Device
+  //----------------------------------------------------
+
+  .post(function (req, res) {
+    axios({
+      method: 'post',
+      url: 'https://user-dev.aylanetworks.com/apiv1/devices',
+      headers: req.headers,
+      data: JSON.stringify(req.body)
     })
     .then(function (response) {res.send(response.data)})
     .catch(function (error) {res.send(error.response.statusText)})
@@ -76,17 +87,29 @@ app.route('/api/v1/devices')
 
 app.route('/api/v1/devices/:deviceId')
 
-  .get(function (req, res) {
-    console.log('getDevice')
+  //----------------------------------------------------
+  // Get Device
+  //----------------------------------------------------
 
+  .get(function (req, res) {
     axios({
       method: 'get',
       url: 'https://user-dev.aylanetworks.com/apiv1/devices/' + urlStr(req, 1),
-      headers: {
-        'Authorization': 'auth_token ' + authToken(req),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      headers: req.headers
+    })
+    .then(function (response) {res.send(response.data)})
+    .catch(function (error) {res.send(error.response.statusText)})
+  })
+
+  //----------------------------------------------------
+  // Delete Device
+  //----------------------------------------------------
+
+  .delete(function (req, res) {
+    axios({
+      method: 'delete',
+      url: 'https://user-dev.aylanetworks.com/apiv1/devices/' + urlStr(req, 1),
+      headers: req.headers
     })
     .then(function (response) {res.send(response.data)})
     .catch(function (error) {res.send(error.response.statusText)})
@@ -98,17 +121,15 @@ app.route('/api/v1/devices/:deviceId')
 
 app.route('/api/v1/devices/:deviceId/properties')
 
-  .get(function (req, res) {
-    console.log('getProperties')
+  //----------------------------------------------------
+  // Get Properties
+  //----------------------------------------------------
 
+  .get(function (req, res) {
     axios({
       method: 'get',
       url: 'https://user-dev.aylanetworks.com/apiv1/devices/' + urlStr(req, 2) + '/properties',
-      headers: {
-        'Authorization': 'auth_token ' + authToken(req),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      headers: req.headers
     })
     .then(function (response) {res.send(response.data)})
     .catch(function (error) {res.send(error.response.statusText)})
@@ -120,17 +141,15 @@ app.route('/api/v1/devices/:deviceId/properties')
 
 app.route('/api/v1/properties/:propertyId')
 
-  .get(function (req, res) {
-    console.log('getProperty')
+  //----------------------------------------------------
+  // Get Property
+  //----------------------------------------------------
 
+  .get(function (req, res) {
     axios({
       method: 'get',
       url: 'https://user-dev.aylanetworks.com/apiv1/properties/' + urlStr(req, 1),
-      headers: {
-        'Authorization': 'auth_token ' + authToken(req),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      headers: req.headers
     })
     .then(function (response) {res.send(response.data)})
     .catch(function (error) {res.send(error.response.statusText)})
@@ -142,17 +161,15 @@ app.route('/api/v1/properties/:propertyId')
 
 app.route('/api/v1/properties/:propertyId/datapoints')
 
-  .post(function (req, res) {
-    console.log('createDatapoint')
+  //----------------------------------------------------
+  // Create Datapoint
+  //----------------------------------------------------
 
+  .post(function (req, res) {
     axios({
       method: 'post',
       url: 'https://user-dev.aylanetworks.com/apiv1/properties/' + urlStr(req, 2) + '/datapoints',
-      headers: {
-        'Authorization': 'auth_token ' + authToken(req),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: req.headers,
       data: JSON.stringify(req.body)
     })
     .then(function (response) {res.send(response.data)})
@@ -165,31 +182,20 @@ app.route('/api/v1/properties/:propertyId/datapoints')
 
 app.route('/api/v1/dss/subscriptions')
 
-  .post(function (req, res) {
-    console.log('createDssSubscription')
+  //----------------------------------------------------
+  // Create DSS Subscription
+  //----------------------------------------------------
 
+  .post(function (req, res) {
     axios({
       method: 'post',
       url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions.json',
-      headers: {
-        'Authorization': 'auth_token ' + authToken(req),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: req.headers,
       data: JSON.stringify(req.body)
     })
     .then(function (response) {res.send(response.data)})
     .catch(function (error) {res.send(error.response.statusText)})
   })
-
-//------------------------------------------------------
-// authToken
-//------------------------------------------------------
-
-function authToken(req) {
-  const fields = req.headers.authorization.split(' ')
-  return fields[fields.length-1]
-}
 
 //------------------------------------------------------
 // urlStr
@@ -205,4 +211,4 @@ function urlStr(req, index) {
 //------------------------------------------------------
 
 app.listen(8080)
-console.log('Running server')
+console.log('Running ' + appName)

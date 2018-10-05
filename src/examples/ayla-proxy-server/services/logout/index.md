@@ -5,6 +5,7 @@ a: block
 ---
 
 ### Request
+
 <pre>
 DELETE /api/v1/session
 

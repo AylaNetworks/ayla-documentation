@@ -5,6 +5,7 @@ a: block
 ---
 
 ### Request
+
 <pre>
 GET /api/v1/devices/:deviceId/properties
 </pre>

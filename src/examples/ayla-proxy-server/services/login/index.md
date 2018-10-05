@@ -5,6 +5,7 @@ a: block
 ---
 
 ### Request
+
 <pre>
 POST /api/v1/session
 
