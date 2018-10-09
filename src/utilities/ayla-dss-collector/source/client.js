@@ -33,56 +33,19 @@ urls["us"]["field"]["cloud"] = 'wss://stream-field.aylanetworks.com/stream'
 urls["us"]["field"]["mobile"] = 'wss://mstream-field.aylanetworks.com/stream'
 
 //------------------------------------------------------
-// 
+// On Load
 //------------------------------------------------------
 
 $(function() {
-  synchWithServer()
-})
 
-//------------------------------------------------------
-// synchWithServer
-//------------------------------------------------------
-
-function synchWithServer() {
   if(Cookies.get('auth_token')) {
-    AylaDssCollector.getSubscriptions(Cookies.get('auth_token'), function (data) {
-      data = data.sort(function(a, b) {
-        let rvalue = 0
-        if(a.created_at < b.created_at) {rvalue = -1}
-          else if(a.created_at > b.created_at) {rvalue = 1}
-            return rvalue
-        })
-
-      $('#subscribe-checkboxes').find(':checkbox').prop('checked', false)
-
-      for(let i=0; i<data.length; i++) {
-        $('#' + data[i].subscription_type + '-checkbox').prop('checked', true)
-        displaySubscribe(data[i])
-      }
-    }, displayError)
+    $('#account-link').html('Logout')
+  } else {
+    $('#account-link').html('Login')
   }
-}
 
-//------------------------------------------------------
-// 
-//------------------------------------------------------
-
-var displaySubscriptions = function (data) {
-  data = data.sort(function(a, b) {
-    let rvalue = 0
-    if(a.created_at < b.created_at) {rvalue = -1}
-    else if(a.created_at > b.created_at) {rvalue = 1}
-    return rvalue
-  })
-
-  $('#subscribe-checkboxes').find(':checkbox').prop('checked', false)
-
-  for(let i=0; i<data.length; i++) {
-    $('#' + data[i].subscription_type + '-checkbox').prop('checked', true)
-    displaySubscribe(data[i])
-  }
-}
+  // synchWithServer()
+})
 
 //------------------------------------------------------
 // Show login or logout form?
@@ -111,8 +74,9 @@ $(function() {
     var email = $('#email').val()
     var password = $('#password').val()
     AylaDssCollector.login(email, password, function(data) {
+      $('#account-link').html('Logout')
       createAuthToken(data.access_token)
-      synchWithServer()
+      // synchWithServer()
     }, displayError)
   })
 })
@@ -127,7 +91,9 @@ $(function() {
     $('body').trigger('click')
     let authToken = Cookies.get('auth_token')
     deleteAuthToken()
-    AylaDssCollector.logout(authToken, function (data) {}, displayError)
+    AylaDssCollector.logout(authToken, function (data) {
+      $('#account-link').html('Login')
+    }, displayError)
   })
 })
 
@@ -157,6 +123,103 @@ function deleteAuthToken(authToken) {
 //------------------------------------------------------
 
 $(function() {$('.click-body').click(function(event) {$('body').trigger('click')})})
+
+//------------------------------------------------------
+// 
+//------------------------------------------------------
+
+$(function() {
+  $('#create-event-stream-submit').click(function(event) {
+    console.log('create-event-stream-submit')
+
+    let service = JSON.parse($('#service').val())
+    let client_type = $('#client-type').val()
+
+    let data = {
+      event_stream_name: $('#event-stream-name').val(),
+      subscription_type: $('#subscription-type').val(),
+      initial_state: $('#initial-state').val(),
+      client_type: client_type,
+      service_url: urls[service.region][service.deployment][client_type],
+      oem_model: $('#oem-model').val(),
+      dsn: $('#dsn').val(),
+      property_name: $('#property-name').val()
+    }
+
+    AylaDssCollector.createEventStream(data, Cookies.get('auth_token'), displayEventStream, displayError)
+  })
+})
+
+//------------------------------------------------------
+// 
+//------------------------------------------------------
+
+function displayEventStream(data) {
+
+  let state = data.initial_state + '.png'
+  let id = 'ID' + data.subscription.id
+  let item = ''
+  + '<div class="event-stream" data-id="' + data.subscription.id + '">'
+  + '<img src="' + state + '"><img src="trash.png">'
+  + '<a data-toggle="collapse" href="#' + id + '">' + data.name + '</a>'
+  + '</div>'
+  + '<div id="' + id + '" class="event-stream-collapse collapse">'
+  + '<pre>'
+  + JSON.stringify(data, null, 2)
+  + '</pre>'
+  + '</div>'
+  $('#current-event-streams').prepend(item)
+}
+
+/*
+<div class="event-stream" data-id="152036"><img src="off.png"><img src="trash.png"><a data-toggle="collapse" href="#ID152036">ES 001</a></div>
+<div id="ID152036" class="event-stream-collapse collapse">
+<pre>sss</pre>
+</div>
+*/
+
+//------------------------------------------------------
+// 
+//------------------------------------------------------
+
+$(function() {
+  $("#current-event-streams").delegate('.event-stream img', "click", function(e) {
+    let choice = $(this).attr('src').split('.')[0]
+    let id = $(this).parent().data('id')
+
+    console.log(choice)
+    console.log(id)
+  })
+})
+
+/*
+$(function() {
+  $('.event-stream img').click(function(event) {
+
+    let choice = $(this).attr('src').split('.')[0]
+    let id = $(this).parent().data('id')
+
+    console.log(choice)
+    console.log(id)
+
+  })
+})
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //------------------------------------------------------
 // subscribe/unsubscribe checkbox
@@ -208,17 +271,61 @@ function unsubscribe(subscriptionType) {
 // displayAction
 //------------------------------------------------------
 
-function displaySubscribe(data) {displayAction('Subscribing to', 'subscribe', data)}
-function displayUnsubscribe(data) {displayAction('Unsubscribing from', 'unsubscribe', data)}
+function displaySubscribe(data) {displayAction('Opening the', 'subscribe', data)}
+function displayUnsubscribe(data) {displayAction('Closing the', 'unsubscribe', data)}
 
 function displayAction(title, appearance, data) {
   var dateStr = new Date().toISOString().slice(0,19)
   var id = 'ID' + dateStr.replace(/:/g, '0') + Math.floor(Math.random() * 99) + 10
-  var t = dateStr.replace(/T/g, ' ') + ' ' + title + ' ' + data.subscription_type + ' events'
+  var t = dateStr.replace(/T/g, ' ') + ' ' + title + ' ' + data.subscription.subscription_type + ' event stream'
   var p = '<div><a data-toggle="collapse" href="#' + id + '" class="terminal ' + appearance + '">' + t + '</a></div>'
   var b = '<div id="' + id + '" class="collapse"><pre style="margin-bottom:16px;">'
   var e = '</pre></div>'
   $('#subscription-history').prepend(p + b + JSON.stringify(data, null, 2) + e)
+}
+
+//------------------------------------------------------
+// synchWithServer
+//------------------------------------------------------
+
+function synchWithServer() {
+  if(Cookies.get('auth_token')) {
+    AylaDssCollector.getSubscriptions(Cookies.get('auth_token'), function (data) {
+      data = data.sort(function(a, b) {
+        let rvalue = 0
+        if(a.created_at < b.created_at) {rvalue = -1}
+          else if(a.created_at > b.created_at) {rvalue = 1}
+            return rvalue
+        })
+
+      $('#subscribe-checkboxes').find(':checkbox').prop('checked', false)
+
+      for(let i=0; i<data.length; i++) {
+        $('#' + data[i].subscription_type + '-checkbox').prop('checked', true)
+        displaySubscribe(data[i])
+      }
+    }, displayError)
+  }
+}
+
+//------------------------------------------------------
+// 
+//------------------------------------------------------
+
+var displaySubscriptions = function (data) {
+  data = data.sort(function(a, b) {
+    let rvalue = 0
+    if(a.created_at < b.created_at) {rvalue = -1}
+    else if(a.created_at > b.created_at) {rvalue = 1}
+    return rvalue
+  })
+
+  $('#subscribe-checkboxes').find(':checkbox').prop('checked', false)
+
+  for(let i=0; i<data.length; i++) {
+    $('#' + data[i].subscription_type + '-checkbox').prop('checked', true)
+    displaySubscribe(data[i])
+  }
 }
 
 //------------------------------------------------------

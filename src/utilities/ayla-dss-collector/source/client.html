@@ -76,39 +76,42 @@
 
     <div class="row">
       <div class="form-group col-md-6">
-        <h3 data-toggle="collapse" href="#subscribe-collapsible"><span class="collapsible">Subscribe</span></h3>
-        <div class="collapse show sidenav-widget" id="subscribe-collapsible" style="margin-bottom: 16px;">
-          <div id="subscribe-checkboxes" class="border rounded" style="padding:6px;">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" value="connectivity" id="connectivity-checkbox">
-              <label class="form-check-label">Connectivity</label>
-            </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" value="datapoint" id="datapoint-checkbox">
-              <label class="form-check-label">Datapoint</label>
-            </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" value="datapointack" id="datapointack-checkbox">
-              <label class="form-check-label">Datapoint Ack</label>
-            </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" value="location" id="location-checkbox">
-              <label class="form-check-label">Location</label>
-            </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" value="registration" id="registration-checkbox">
-              <label class="form-check-label">Registration</label>
-            </div>
-          </div>
-        </div>
 
-        <h3 data-toggle="collapse" href="#define-subscription"><span class="collapsible">Define Subscription</span></h3>
-        <div class="collapse show sidenav-widget" id="define-subscription">
+        <h3 data-toggle="collapse" href="#create-event-stream"><span class="collapsible">Create Event Stream</span></h3>
+        <div  id="create-event-stream"class="collapse show sidenav-widget">
 
           <div class="row">
             <div class="form-group col-md-12">
+              <label>Name</label>
+              <input id="event-stream-name" type="text" class="form-control form-control-sm" value="" placeholder="Optional">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Event Type</label>
+              <select id="subscription-type" class="form-control form-control-sm">
+                <option value='connectivity'>Connectivity</option> 
+                <option value='datapoint' selected>Datapoint</option> 
+                <option value='datapointack'>Datapoint Ack</option> 
+                <option value='location'>Location</option> 
+                <option value='registration'>Registration</option> 
+              </select>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Initial State</label>
+              <select id="initial-state" class="form-control form-control-sm">
+                <option value='open' selected>Open</option> 
+                <option value='closed'>Closed</option> 
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6">
               <label>Service</label>
-              <select id="service" class="form-control form-control-sm" required>
+              <select id="service" class="form-control form-control-sm">
                 <option value='{"region":"cn","deployment":"dev"}'>China : Dev</option> 
                 <option value='{"region":"cn","deployment":"field"}'>China : Field</option> 
                 <option value='{"region":"eu","deployment":"field"}'>EU : Field</option> 
@@ -117,12 +120,10 @@
                 <option value='{"region":"us","deployment":"field"}'>US : Field</option> 
               </select>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
               <label>Client Type</label>
-              <select id="client-type" class="form-control form-control-sm" required>
+              <select id="client-type" class="form-control form-control-sm">
                 <option value="cloud">Cloud</option>
                 <option value="mobile" selected>Mobile</option>
               </select>
@@ -131,14 +132,14 @@
 
           <div class="row">
             <div class="form-group col-md-12">
-              <label>OEM Model</label>
-              <input id="oem-model" type="text" class="form-control form-control-sm" value="*" required>
+              <label>OEM Models</label>
+              <input id="oem-model" type="text" class="form-control form-control-sm" value="*">
             </div>
           </div>
 
           <div class="row">
             <div class="form-group col-md-12">
-              <label>DSN</label>
+              <label>Device Serial Numbers</label>
               <input id="dsn" type="text" class="form-control form-control-sm" placeholder="Leave blank for all devices">
             </div>
           </div>
@@ -146,15 +147,59 @@
           <div class="row">
             <div class="form-group col-md-12">
               <label>Property Names</label>
-              <input id="property-name" type="text" class="form-control form-control-sm" value="*" required>
+              <input id="property-name" type="text" class="form-control form-control-sm" value="*">
             </div>
           </div>
         </div>
+        <button id="create-event-stream-submit" type="button" class="btn btn-success btn-sm">Create</button>
       </div>
 
       <div class="form-group col-md-6">
-        <h3><span class="collapsible">Subscription History</span></h3>
+
+        <h3 data-toggle="collapse" href="#current-event-streams"><span class="collapsible">Current Event Streams</span></h3>
+        <div id="current-event-streams" class="collapse show sidenav-widget">
+
+
+
+
+<div class="event-stream" data-id="152036"><img src="closed.png"><img src="trash.png"><a data-toggle="collapse" href="#ID152036">ES 001</a></div>
+<div id="ID152036" class="event-stream-collapse collapse">
+<pre>
+{
+  "name": "ES 001",
+  "subscription": {
+    "id": 152036,
+    "oem": "0dfc7900",
+    "dsn": "AC000W000340779,AC000W005606115",
+    "name": null,
+    "description": null,
+    "property_name": "*",
+    "connection_status": "Offline",
+    "batch_size": 1,
+    "is_suspended": false,
+    "created_at": "2018-10-09T20:45:33Z",
+    "updated_at": "2018-10-09T20:45:33Z",
+    "date_suspended": null,
+    "user_uuid": "40e45b84-690c-11e8-acf3-12f911dcfe40",
+    "oem_model": "*",
+    "stream_key": "8828c39d70334e158998cd8f58903eae",
+    "client_type": "mobile",
+    "subscription_type": "datapoint"
+  },
+  "service_url": "wss://mstream-dev.aylanetworks.com/stream",
+  "socket": null
+}
+</pre>
+</div>
+
+
+
+
+        <!--
+        <h3><span class="collapsible">Event Stream Log</span></h3>
+        <div id="subscription-history-note">The UTC dates and times below represent when the Ayla DSS Collector opened or closed an event stream. Click an entry for details.</div>
         <div id="subscription-history"></div>
+        -->
       </div>
 
     </div>

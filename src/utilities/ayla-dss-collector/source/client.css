@@ -16,14 +16,39 @@ label {font-weight: bold; font-size:85%;}
   font-size: 11px;
 }
 
+#subscription-history-note {font-size: 85%; color: #333333;margin-bottom: 16px;}
+
 .terminal {
   font-size: 90%; 
   font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; 
   text-decoration: none;
 }
 
-.subscribe {color:blue;}
+.subscribe {color:black;}
 .unsubscribe {color:red;}
+.subscribe:hover {color:black;}
+.unsubscribe:hover {color:red;}
 
 #error-msg {background: red;padding:12px;margin-bottom:16px;color:white;}
 #error-msg span {padding-left: 16px;}
+
+.event-stream a {
+  color: black;
+  font-size: 90%; 
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; 
+  text-decoration: none;
+}
+.event-stream a:hover {color: black;}
+.event-stream img {margin-right: 12px;}
+.event-stream img:hover {cursor: pointer;}
+
+.event-stream-collapse pre {
+  background: #333333;
+  padding: 6px;
+  border: 1px solid #e6e6e6;
+  line-height: 1rem;
+  color: white;
+  font-weight: normal;
+  font-size: 11px;
+}
+

@@ -58,6 +58,28 @@ var AylaDssCollector = {
   // 
   //------------------------------------------------------
 
+  createEventStream: function(data, authToken, success=successCb, failure=failureCb) {
+    axios({
+      method: 'post',
+      url: 'https://docs.aylanetworks.com/dss/eventstream',
+      headers: {
+        'Authorization': 'auth_token ' + authToken,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      data: JSON.stringify(data)
+    })
+    .then(function (response) {success(response.data)})
+    .catch(function (error) {
+      console.log(JSON.stringify(error, null, 2))
+      // failure(error.response.status, error.response.statusText)
+    })
+  },
+
+  //------------------------------------------------------
+  // 
+  //------------------------------------------------------
+
   subscribe: function(data, authToken, success=successCb, failure=failureCb) {
     axios({
       method: 'post',

@@ -19,21 +19,56 @@ streams['datapointack'] = null
 streams['location'] = null
 streams['registration'] = null
 
+var eventStreams = {}
+
+//------------------------------------------------------
+// 
+//------------------------------------------------------
+
+class EventStream {
+
+  constructor(name, subscription, initial_state, service_url) {
+
+    this.name = name
+    this.subscription = subscription
+    this.initial_state = initial_state
+    this.service_url = service_url
+    this.socket = null
+  }
+
+  open() {
+    /*
+    if(!this.socket) {
+      this.socket = new WebSocket(this.service_url + '?stream_key=' + this.subscription.stream_key)
+    }
+    */
+  }
+
+  close(code, msg) {
+    /*
+    if(this.socket) {
+      this.socket.close(code, msg)
+      this.socket = null
+    }
+    */
+  }
+}
+
 //------------------------------------------------------
 // 
 //------------------------------------------------------
 
 class Stream {
 
-  constructor(subscriptionId, streamKey, serviceUrl) {
-    this.subscriptionId = subscriptionId
-    this.streamKey = streamKey
-    this.serviceUrl = serviceUrl
+  constructor(subscription, service_url) {
+
+    this.subscription = subscription
+    this.service_url = service_url
     this.socket = null
   }
 
   open() {
-    this.socket = new WebSocket(this.serviceUrl + '?stream_key=' + this.streamKey)
+    this.socket = new WebSocket(this.service_url + '?stream_key=' + this.subscription.stream_key)
   }
 
   close(code, msg) {
@@ -76,13 +111,12 @@ app.route('/dss/session')
       headers: req.headers,
       data: JSON.stringify(req.body)
     })
-    .then(function (response) {res.send(response.data)})
+    .then(function (response) {
+      res.statusCode = response.status
+      res.send(response.data)
+    })
     .catch(function (error) {
-      if(error && error.response && error.response.status) {
-        res.statusCode = error.response.status
-      } else {
-        res.statusCode = 404
-      }
+      if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
       res.end()
     })
   })
@@ -98,13 +132,94 @@ app.route('/dss/session')
       headers: req.headers,
       data: JSON.stringify(req.body)
     })
-    .then(function (response) {res.send(response.data)})
+    .then(function (response) {
+      res.statusCode = response.status
+      res.send(response.data)
+    })
     .catch(function (error) {
-      if(error && error.response && error.response.status) {
-        res.statusCode = error.response.status
+      if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+      res.end()
+    })
+  })
+
+//------------------------------------------------------
+// 
+//------------------------------------------------------
+
+app.route('/dss/eventstream')
+
+  //----------------------------------------------------
+  // createEventStream
+  //----------------------------------------------------
+
+  .post(function (req, res) {
+    var data = {
+      "oem_model": req.body.oem_model,
+      "client_type": req.body.client_type,
+      "subscription_type": req.body.subscription_type,
+      "property_name": req.body.property_name
+    }
+    axios({
+      method: 'post',
+      url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions.json',
+      headers: req.headers,
+      data: JSON.stringify(data)
+    })
+    .then(function (response) {
+
+      let id = response.data.subscription.id
+
+      eventStreams[id] = new EventStream(
+        req.body.event_stream_name,
+        response.data.subscription, 
+        req.body.initial_state,
+        req.body.service_url)
+
+      // Do in constructor?
+      //if(req.body.initial_state === 'open') {
+      //  eventStreams[id].open()
+      //}
+
+      res.statusCode = response.status
+      res.send(eventStreams[id])
+    })
+    .catch(function (error) {
+      if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+      res.end()
+    })
+  })
+
+//------------------------------------------------------
+// 
+//------------------------------------------------------
+
+app.route('/dss/eventstream/:id')
+
+  //----------------------------------------------------
+  // deleteEventStream
+  //----------------------------------------------------
+
+  .delete(function (req, res) {
+    const id = urlStr(req, 1)
+
+    axios({
+      method: 'delete',
+      url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + id + '.json',
+      headers: {'Authorization': req.headers.authorization}
+    })
+    .then(function (response) {
+      var data = eventStreams[id]
+      if(data) {
+        eventStreams[id].close(1000, 'Deleting ' + type + ' event stream.')
+        delete streams[id]
+        res.statusCode = response.status
+        res.send(data)
       } else {
-        res.statusCode = 404
+        res.send('Not on the list')
       }
+    })
+    .catch(function (error) {
+      if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
       res.end()
     })
   })
@@ -129,7 +244,7 @@ app.route('/dss/subscriptions')
       let subscriptions = []
       for(let i=0; i<response.data.length; i++) {
         for(var key in streams) {
-          if(streams[key] != null && streams[key].subscriptionId === response.data[i].subscription.id) {
+          if(streams[key] != null && streams[key].subscription.id === response.data[i].subscription.id) {
             subscriptions.push(response.data[i].subscription)
           }
         }
@@ -137,11 +252,7 @@ app.route('/dss/subscriptions')
       res.send(subscriptions)
     })
     .catch(function (error) {
-      if(error && error.response && error.response.status) {
-        res.statusCode = error.response.status
-      } else {
-        res.statusCode = 404
-      }
+      if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
       res.end()
     })
   })
@@ -156,7 +267,7 @@ app.route('/dss/subscriptions')
     if(streams[type]) {
       axios({
         method: 'get',
-        url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + streams[type].subscriptionId + '.json',
+        url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + streams[type].subscription.id + '.json',
         headers: {
           'Authorization': req.headers.authorization,
           'Accept': req.headers.accept
@@ -167,11 +278,7 @@ app.route('/dss/subscriptions')
         res.end()
       })
       .catch(function (error) {
-        if(error && error.response && error.response.status) {
-          res.statusCode = error.response.status
-        } else {
-          res.statusCode = 404
-        }
+        if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
         res.end()
       })
     } else {
@@ -188,19 +295,11 @@ app.route('/dss/subscriptions')
         data: JSON.stringify(data)
       })
       .then(function (response) {
-        response.data.subscription.service_url = req.body.url
-        streams[type] = new Stream(
-          response.data.subscription.id, 
-          response.data.subscription.stream_key, 
-          response.data.subscription.service_url)
-        res.send(response.data.subscription)
+        streams[type] = new Stream(response.data.subscription, req.body.url)
+        res.send(streams[type])
       })
       .catch(function (error) {
-        if(error && error.response && error.response.status) {
-          res.statusCode = error.response.status
-        } else {
-          res.statusCode = 404
-        }
+        if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
         res.end()
       })
     }
@@ -225,26 +324,17 @@ app.route('/dss/subscriptions/:type')
     } else {
       axios({
         method: 'delete',
-        url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + streams[type].subscriptionId + '.json',
+        url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + streams[type].subscription.id + '.json',
         headers: {'Authorization': req.headers.authorization}
       })
       .then(function (response) {
-        var data = {
-          "id": streams[type].subscriptionId,
-          "stream_key": streams[type].streamKey,
-          "subscription_type": type,
-          "service_url": streams[type].serviceUrl
-        }
+        var data = streams[type]
         streams[type].close(1000, 'Unsubscribed from receiving ' + type + ' events.')
         streams[type] = null;
         res.send(data)
       })
       .catch(function (error) {
-        if(error && error.response && error.response.status) {
-          res.statusCode = error.response.status
-        } else {
-          res.statusCode = 404
-        }
+        if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
         res.end()
       })
     }
