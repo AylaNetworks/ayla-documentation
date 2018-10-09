@@ -48,7 +48,7 @@ metalsmith(__dirname)
 
   .use(layouts({
     default: "page-full-width.html",
-    pattern: "**/*.html",
+    pattern: "**/index.html",
     engine: 'handlebars',
     partials: {
       top: 'partials/top',

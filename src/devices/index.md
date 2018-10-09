@@ -1,5 +1,6 @@
 ---
 title: Devices
+layout: page-full-width.html
 ---
 
 This table categorizes **Ayla Connectivity Solutions**. Click a link to find the Guide, Tutorial, and Reference for each solution.

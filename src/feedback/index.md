@@ -1,5 +1,6 @@
 ---
 title: Feedback
+layout: page-full-width.html
 ---
 
 <form action="/assets/server/thank-you.php" method="post">

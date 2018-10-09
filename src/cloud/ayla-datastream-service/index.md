@@ -3,6 +3,8 @@ title: Ayla Datastream Service (DSS)
 layout: cloud-ayla-datastream-service.html
 ---
 
-<p style="color:red;">UNDER CONSTRUCTION.</p>
-
-Click [DSS Client](dssclient) to experiment with the Ayla Datastream Service.
+<div class="row hspace">
+<div class="col-lg-10 col-md-11 col-sm-12">
+<img class="img-fluid" src="dss.png">
+</div>
+</div>

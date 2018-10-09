@@ -1,5 +1,6 @@
 ---
 title: Client-Server
+layout: page-full-width.html
 ---
 
 ### Client (JS)

@@ -3,7 +3,7 @@
 //*********************************************
 
 $(function() {
-  getDevices(getDevicesDoneCB, failCB);
+  AylaProxyServer.getDevices(getDevicesCB);
 });
 
 //*********************************************
@@ -44,7 +44,7 @@ $(function() {
     $(this).blur();
     var selected = $('#select-devices option:selected');
     var details = $(selected).data("details");
-    getDevice(details.key, getDeviceDoneCB, failCB);
+    AylaProxyServer.getDevice(details.key, getDeviceCB);
   });
 });
 
@@ -57,7 +57,7 @@ $(function() {
     $(this).blur();
     var selected = $('#select-properties option:selected');
     var details = $(selected).data("details");
-    getProperty(details.key, getPropertyDoneCB, failCB);
+    AylaProxyServer.getProperty(details.key, getPropertyCB);
   });
 });
 
@@ -72,7 +72,7 @@ $(function() {
     var details = $(selected).data("details");
     var propertyId = details.key;
     var value = $('#property-value').val();
-    createDatapoint(propertyId, value, createDatapointDoneCB, failCB);
+    AylaProxyServer.createDatapoint(propertyId, value, createDatapointCB);
 
     console.log('propertyId = ' + propertyId + ', value = ' + value);
   });
@@ -91,70 +91,17 @@ $(function() {
     var propertyId = details.key;
     var value = 0;
     if($(this).prop('checked')) {value = 1;}
-    createDatapoint(propertyId, value, createDatapointDoneCB, failCB);
+    AylaProxyServer.createDatapoint(propertyId, value, createDatapointCB);
 
     console.log('propertyId = ' + propertyId + ', value = ' + value);
   });
 });
 
 //*********************************************
-// On Select Collector Events Checkbox Change
+// getDevicesCB
 //*********************************************
 
-$(function() {
-  $('#select-collector-events div input:checkbox').change(function() {
-    console.log('select-collector-events');
-    $(this).blur();
-    var eventType = $(this).val();
-    if($(this).is(":checked")) {
-
-      console.log(eventType + ' is checked.');
-
-      var srv = JSON.parse($('#service').val());
-      var clientType = $('#client-type').val();
-      var url = urls[srv.region][srv.deployment][clientType];
-      var oemModel = $('#oem-model').val();
-      var dsn = $('#dsn').val();
-      var propertyName = $('#property-name').val();
-
-      var data = {
-        "url": url,
-        "subscription_type": eventType,
-        "oem_model": propertyName,
-        "client_type": clientType,
-        "property_name": propertyName
-      };
-      createDssStream(data, createDssStreamDoneCB, failCB);
-
-    } else {
-      console.log(eventType + ' is unchecked.');
-      destroyDssStream(eventType, destroyDssStreamDoneCB, failCB);
-    }
-
-  });
-});
-
-//*********************************************
-// createDssStreamDoneCB
-//*********************************************
-
-var createDssStreamDoneCB = function(data) {
-  console.log('createDssStreamDoneCB');
-}
-
-//*********************************************
-// destroyDssStreamDoneCB
-//*********************************************
-
-var destroyDssStreamDoneCB = function(data) {
-  console.log('destroyDssStream');
-}
-
-//*********************************************
-// getDevicesDoneCB
-//*********************************************
-
-var getDevicesDoneCB = function (devices) {
+var getDevicesCB = function (devices) {
   $('#select-devices').empty();
 
   if(devices.length) {
@@ -168,24 +115,24 @@ var getDevicesDoneCB = function (devices) {
     });
 
     displayDevice(details);
-    getProperties(details.key, getPropertiesDoneCB, failCB);
+    AylaProxyServer.getProperties(details.key, getPropertiesCB);
   }
 }
 
 //*********************************************
-// getDeviceDoneCB
+// getDeviceCB
 //*********************************************
 
-var getDeviceDoneCB = function (device) {
+var getDeviceCB = function (device) {
   displayDevice(device.device);
-  getProperties(device.device.key, getPropertiesDoneCB, failCB);
+  AylaProxyServer.getProperties(device.device.key, getPropertiesCB);
 }
 
 //*********************************************
-// getPropertiesDoneCB
+// getPropertiesCB
 //*********************************************
 
-var getPropertiesDoneCB = function (properties) {
+var getPropertiesCB = function (properties) {
   $('#select-properties').empty();
 
   if(properties.length) {
@@ -203,28 +150,19 @@ var getPropertiesDoneCB = function (properties) {
 }
 
 //*********************************************
-// getPropertyDoneCB
+// getPropertyCB
 //*********************************************
 
-var getPropertyDoneCB = function(property) {
+var getPropertyCB = function(property) {
   displayProperty(property.property);
 }
 
 //*********************************************
-// createDatapointDoneCB
+// createDatapointCB
 //*********************************************
 
-var createDatapointDoneCB = function(datapoint) {
+var createDatapointCB = function(datapoint) {
   console.log('datapoint value = ' + datapoint.datapoint.value);
-}
-
-//*********************************************
-// failCB
-//*********************************************
-
-var failCB = function (jqXHR, textStatus) {
-  console.log(textStatus);
-  console.log(JSON.stringify(jqXHR, null, 2));
 }
 
 //*********************************************

@@ -1,5 +1,6 @@
 ---
 title: Test
+layout: page-full-width.html
 ---
 
 <div class="row hspace">

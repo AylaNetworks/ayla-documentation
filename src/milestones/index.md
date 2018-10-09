@@ -1,5 +1,6 @@
 ---
 title: Milestones
+layout: page-full-width.html
 ---
 
 <table style="width: 100%;">

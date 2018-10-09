@@ -1,5 +1,6 @@
 ---
 title: Style Guide
+layout: page-full-width.html
 ---
 
 # Heading 1

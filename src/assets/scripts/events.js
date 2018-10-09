@@ -92,8 +92,6 @@ $(function() {
 
 function openSocket(eventType) {
 
-  var aToken = Cookies.get('access_token');
-
   var srv = JSON.parse($('#service').val());
   var clientType = $('#client-type').val();
   var url = urls[srv.region][srv.deployment][clientType];
@@ -101,48 +99,32 @@ function openSocket(eventType) {
   var dsn = $('#dsn').val();
   var propertyName = $('#property-name').val();
 
-  var data = JSON.stringify({
+  var data = {
     "oem_model": oemModel,
     "client_type": clientType,
     "subscription_type": eventType,
-    "property_name": propertyName,
-    "access_token": aToken
-  });
+    "property_name": propertyName
+  };
 
-  var jqxhr = $.ajax({
-    method: "POST",
-    url: "/assets/server/subscription.php",
-    contentType: 'application/json',
-    data: data,
-    dataType: 'json'
-  })
+  AylaProxyServer.createDssSubscription(data, url, createDssSubscriptionCB);
+}
 
-  .done(function(msg) {
+//*********************************************
+// createDssSubscriptionCB
+//*********************************************
 
+function createDssSubscriptionCB(data, url) {
+  if("subscription" in data) {
     try {
-      var obj = JSON.parse(msg);
-    } catch(e) {
-      displayString(msg);
-      return;
+      sockets[data.subscription.subscription_type] = new WebSocket(url + '?stream_key=' + data.subscription.stream_key);
+      monitorSocket(url, data, data.subscription.subscription_type, sockets[data.subscription.subscription_type]);
+    } catch (exception) {
+      displayString(exception);
     }
 
-    if("subscription" in obj) {
-
-      try {
-        sockets[eventType] = new WebSocket(url + '?stream_key=' + obj.subscription.stream_key);
-        monitorSocket(url, obj, eventType, sockets[eventType]);
-      } catch (exception) {
-        displayString(exception);
-      }
-
-    } else {
-      displayString(msg);
-    }
-  })
-
-  .fail(function(jqXHR, textStatus) {
-    displayString(textStatus);
-  })
+  } else {
+    displayString(msg);
+  }
 }
 
 //*********************************************

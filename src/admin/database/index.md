@@ -1,5 +1,6 @@
 ---
 title: Database
+layout: page-full-width.html
 ---
 
 # ayla_documentation
