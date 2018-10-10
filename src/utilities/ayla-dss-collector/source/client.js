@@ -173,7 +173,7 @@ function displayEventStream(data) {
   + '</pre>'
   + '</div>'
   + '</div>'
-  $('#current-event-streams').append(item)
+  $('#event-streams').append(item)
 }
 
 //------------------------------------------------------
@@ -181,7 +181,7 @@ function displayEventStream(data) {
 //------------------------------------------------------
 
 $(function() {
-  $("#current-event-streams").delegate('.event-stream img', "click", function(e) {
+  $("#event-streams").delegate('.event-stream img', "click", function(e) {
     let choice = $(this).attr('src').split('.')[0]
     let eventDiv = $(this).parent().parent()
     let streamId = $(this).parent().data('id')
@@ -245,7 +245,7 @@ function deleteEventStream(streamId, eventDiv) {
 function synchWithServer() {
   if(Cookies.get('auth_token')) {
     AylaDssCollector.getEventStreams(Cookies.get('auth_token'), function (data) {
-      $('#current-event-streams').empty()
+      $('#event-streams').empty()
       for(let i=0; i<data.length; i++) {
         displayEventStream(data[i])
       }

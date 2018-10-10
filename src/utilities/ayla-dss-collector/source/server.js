@@ -5,8 +5,8 @@
 
 const express = require('express')
 const axios = require('axios')
-const WebSocket = require('ws')
 const fs = require('fs-extra')
+const EventStream = require('./event-stream')
 
 const app = express()
 app.use(express.json())
@@ -18,135 +18,6 @@ var eventStreams = {} // key is stream_id (using subscription.id)
 const eventStreamKeyFilter = ['stream_id','name','subscription','id','oem','dsn','name','description','property_name',
 'connection_status','batch_size','is_suspended','created_at','updated_at','date_suspended','user_uuid','oem_model',
 'stream_key','client_type','subscription_type','service_url','state']
-
-//------------------------------------------------------
-// 
-//------------------------------------------------------
-
-class EventStream {
-
-  constructor(name, subscription, service_url, state) {
-
-    this.stream_id = subscription.id
-    this.name = name
-    this.subscription = subscription
-    this.service_url = service_url
-    this.state = state
-    this.socket = null
-  }
-
-  open() {
-    if(!this.socket) {
-      this.socket = new WebSocket(this.service_url + '?stream_key=' + this.subscription.stream_key)
-      this.state = 'open'
-      this.monitor(this)
-    } else {
-      console.log('Cannot open socket. It is already open.')
-    }
-  }
-
-  // Closing a socket seems to delete the Ayla DSS subscription.
-  // Instead, call DELETE /stream?stream_key=<stream-key>.
-  // Then, perhaps, close the socket? 
-  close(code, msg) {
-    if(this.socket) {
-      this.socket.close(code, msg)
-      this.socket = null
-      this.state = 'closed'
-    } else {
-      console.log('Cannot close socket. It is already closed.')
-    }
-  }
-
-  monitor(eventStream) {
-
-    eventStream.socket.on('open', function() {
-      console.log('Opening a ' + eventStream.subscription.subscription_type + ' event stream.');
-    });
-
-    eventStream.socket.on('message', function(data) {
-      if(data.indexOf("|Z") !== -1) {
-        eventStream.socket.send("Z");
-        console.log('Heartbeat');
-      } else {
-        var a = data.split('|');
-        if(a.length != 2) {console.log('ERROR: Cannot parse event.');} 
-        else {eventStream.process(JSON.parse(a[1]));}
-      }
-    });
-
-    eventStream.socket.on('close', function(code, reason) {
-      console.log(reason);
-    });
-
-    eventStream.socket.on('error', function(error) {
-      console.log(error);
-    });
-
-    eventStream.socket.on('unexpected-response', function(req, res) {
-      console.log('unexpected');
-    });
-  }
-
-  process(data) {
-
-    let filename = './'
-
-    switch(data.metadata.event_type) {
-
-      case 'connectivity':
-      filename += 'connectivity.log'
-      break
-
-      case 'datapoint':
-      filename += 'datapoint.log'
-      break
-
-      case 'datapointack':
-      filename += 'datapointack.log'
-      break
-
-      case 'location':
-      filename += 'location.log'
-      break
-
-      case 'registration':
-      filename += 'registration.log'
-      break
-
-      default:
-      filename += 'default.log'
-      break
-    }
-
-    fs.appendFile(filename, JSON.stringify(data))
-    .then(() => {
-      console.log(JSON.stringify(data))
-    })
-    .catch(err => {
-      console.error(err)
-    })
-  }
-}
-
-//------------------------------------------------------
-// 
-//------------------------------------------------------
-
-/*
-app.route('/dss')
-
-  .get(function (req, res) {
-    fs.readFile('/home/bitnami/htdocs/utilities/ayla-dss-collector/source/index.html', function (error, page) {
-      res.set('Content-Type', 'text/html')
-      res.send(page)
-    })
-  })
-*/
-
-//------------------------------------------------------
-// 
-//------------------------------------------------------
 
 app.route('/dss/session')
 
@@ -192,10 +63,6 @@ app.route('/dss/session')
     })
   })
 
-//------------------------------------------------------
-// 
-//------------------------------------------------------
-
 app.route('/dss/eventstreams')
 
   //----------------------------------------------------
@@ -224,7 +91,8 @@ app.route('/dss/eventstreams')
         req.body.event_stream_name,
         response.data.subscription, 
         req.body.service_url,
-        req.body.state)
+        req.body.state,
+        processEvent)
 
       console.log('Event Stream count is ' + Object.keys(eventStreams).length)
 
@@ -267,10 +135,6 @@ app.route('/dss/eventstreams')
       res.end()
     })
   })
-
-//------------------------------------------------------
-// 
-//------------------------------------------------------
 
 app.route('/dss/eventstreams/:streamId')
 
@@ -334,7 +198,7 @@ app.route('/dss/eventstreams/:streamId')
       })
       .then(function (response) {
         var data = eventStreams[streamId]
-        eventStreams[streamId].close(1000, 'Closing socket prior to deleting the event stream.')
+        eventStreams[streamId].close(1000, 'Closed event stream: ' + eventStreams[streamId].name)
         console.log('Event Stream count is ' + Object.keys(eventStreams).length)
         delete eventStreams[streamId]
         console.log('Event Stream count is ' + Object.keys(eventStreams).length)
@@ -347,6 +211,46 @@ app.route('/dss/eventstreams/:streamId')
       })
     }
   })
+
+//------------------------------------------------------
+// 
+//------------------------------------------------------
+
+var processEvent = function(data) {
+
+  let filename = './events/'
+
+  switch(data.metadata.event_type) {
+
+    case 'connectivity':
+    filename += 'connectivity.log'
+    break
+
+    case 'datapoint':
+    filename += 'datapoint.log'
+    break
+
+    case 'datapointack':
+    filename += 'datapointack.log'
+    break
+
+    case 'location':
+    filename += 'location.log'
+    break
+
+    case 'registration':
+    filename += 'registration.log'
+    break
+
+    default:
+    filename += 'default.log'
+    break
+  }
+
+  fs.appendFile(filename, JSON.stringify(data))
+  .then(() => {console.log('--> EVENT: ' + JSON.stringify(data))})
+  .catch(err => {console.error(err)})
+}
 
 //------------------------------------------------------
 // 
