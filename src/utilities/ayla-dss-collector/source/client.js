@@ -37,14 +37,12 @@ urls["us"]["field"]["mobile"] = 'wss://mstream-field.aylanetworks.com/stream'
 //------------------------------------------------------
 
 $(function() {
-
   if(Cookies.get('auth_token')) {
     $('#account-link').html('Logout')
   } else {
     $('#account-link').html('Login')
   }
-
-  // synchWithServer()
+  synchWithServer()
 })
 
 //------------------------------------------------------
@@ -76,7 +74,7 @@ $(function() {
     AylaDssCollector.login(email, password, function(data) {
       $('#account-link').html('Logout')
       createAuthToken(data.access_token)
-      // synchWithServer()
+      synchWithServer()
     }, displayError)
   })
 })
@@ -125,7 +123,7 @@ function deleteAuthToken(authToken) {
 $(function() {$('.click-body').click(function(event) {$('body').trigger('click')})})
 
 //------------------------------------------------------
-// 
+// Create Event Stream
 //------------------------------------------------------
 
 $(function() {
@@ -134,11 +132,16 @@ $(function() {
 
     let service = JSON.parse($('#service').val())
     let client_type = $('#client-type').val()
+    let event_stream_name = $('#event-stream-name').val()
+
+    if(!event_stream_name) {
+      event_stream_name = new Date().toISOString() + ' ' + $('#subscription-type').val()
+    }
 
     let data = {
-      event_stream_name: $('#event-stream-name').val(),
+      event_stream_name: event_stream_name,
       subscription_type: $('#subscription-type').val(),
-      initial_state: $('#initial-state').val(),
+      state: $('#initial-state').val(),
       client_type: client_type,
       service_url: urls[service.region][service.deployment][client_type],
       oem_model: $('#oem-model').val(),
@@ -156,11 +159,12 @@ $(function() {
 
 function displayEventStream(data) {
 
-  let state = data.initial_state + '.png'
-  let id = 'ID' + data.subscription.id
+  let state = data.state + '.png'
+  let id = 'ID' + data.stream_id
   let item = ''
-  + '<div class="event-stream" data-id="' + data.subscription.id + '">'
-  + '<img src="' + state + '"><img src="trash.png">'
+  + '<div>'
+  + '<div class="event-stream" data-id="' + data.stream_id + '">'
+  + '<img src="' + state + '"><img src="delete.png">'
   + '<a data-toggle="collapse" href="#' + id + '">' + data.name + '</a>'
   + '</div>'
   + '<div id="' + id + '" class="event-stream-collapse collapse">'
@@ -168,43 +172,92 @@ function displayEventStream(data) {
   + JSON.stringify(data, null, 2)
   + '</pre>'
   + '</div>'
-  $('#current-event-streams').prepend(item)
+  + '</div>'
+  $('#current-event-streams').append(item)
 }
 
-/*
-<div class="event-stream" data-id="152036"><img src="off.png"><img src="trash.png"><a data-toggle="collapse" href="#ID152036">ES 001</a></div>
-<div id="ID152036" class="event-stream-collapse collapse">
-<pre>sss</pre>
-</div>
-*/
-
 //------------------------------------------------------
-// 
+// Open, Close, Delete Event Stream
 //------------------------------------------------------
 
 $(function() {
   $("#current-event-streams").delegate('.event-stream img', "click", function(e) {
     let choice = $(this).attr('src').split('.')[0]
-    let id = $(this).parent().data('id')
+    let eventDiv = $(this).parent().parent()
+    let streamId = $(this).parent().data('id')
+
+    if(choice == 'closed') {
+      //if(confirm('Open the event stream?')) {
+        openEventStream(streamId, $(this))
+      //}
+    } else if (choice == 'open') {
+      //if(confirm('Close the event stream?')) {
+        closeEventStream(streamId, $(this))
+      //}
+    } else {
+      //if(confirm('Delete the event stream?')) {
+        deleteEventStream(streamId, eventDiv)
+      //}
+    }
+
 
     console.log(choice)
-    console.log(id)
+    console.log(streamId)
   })
 })
 
-/*
-$(function() {
-  $('.event-stream img').click(function(event) {
+//------------------------------------------------------
+// openEventStream
+//------------------------------------------------------
 
-    let choice = $(this).attr('src').split('.')[0]
-    let id = $(this).parent().data('id')
+function openEventStream(streamId, imgElement) {
+  AylaDssCollector.openEventStream(streamId, Cookies.get('auth_token'), function(data) {
+    console.log(JSON.stringify(data, null, 2))
+    $(imgElement).attr('src', 'open.png')
+  }, displayError)
+}
 
-    console.log(choice)
-    console.log(id)
+//------------------------------------------------------
+// closeEventStream
+//------------------------------------------------------
 
-  })
-})
-*/
+function closeEventStream(streamId, imgElement) {
+  AylaDssCollector.closeEventStream(streamId, Cookies.get('auth_token'), function(data) {
+    console.log(JSON.stringify(data, null, 2))
+    $(imgElement).attr('src', 'closed.png')
+  }, displayError)
+}
+
+//------------------------------------------------------
+// deleteEventStream
+//------------------------------------------------------
+
+function deleteEventStream(streamId, eventDiv) {
+  AylaDssCollector.deleteEventStream(streamId, Cookies.get('auth_token'), function(data) {
+    $(eventDiv).remove()    
+  }, displayError)
+}
+
+//------------------------------------------------------
+// synchWithServer
+//------------------------------------------------------
+
+function synchWithServer() {
+  if(Cookies.get('auth_token')) {
+    AylaDssCollector.getEventStreams(Cookies.get('auth_token'), function (data) {
+      $('#current-event-streams').empty()
+      for(let i=0; i<data.length; i++) {
+        displayEventStream(data[i])
+      }
+    }, displayError)
+  }
+}
+
+
+
+
+
+
 
 
 
@@ -224,7 +277,7 @@ $(function() {
 //------------------------------------------------------
 // subscribe/unsubscribe checkbox
 //------------------------------------------------------
-
+/*
 $(function() {
   $('#subscribe-checkboxes div input:checkbox').change(function() {
     $(this).blur()
@@ -236,11 +289,11 @@ $(function() {
     }
   })
 })
-
+*/
 //------------------------------------------------------
 // subscribe
 //------------------------------------------------------
-
+/*
 function subscribe(subscriptionType) {
   var srv = JSON.parse($('#service').val())
   var clientType = $('#client-type').val()
@@ -258,19 +311,19 @@ function subscribe(subscriptionType) {
   }
   AylaDssCollector.subscribe(data, Cookies.get('auth_token'), displaySubscribe, displayError)
 }
-
+*/
 //------------------------------------------------------
 // unsubscribe
 //------------------------------------------------------
-
+/*
 function unsubscribe(subscriptionType) {
   AylaDssCollector.unsubscribe(subscriptionType, Cookies.get('auth_token'), displayUnsubscribe, displayError)
 }
-
+*/
 //------------------------------------------------------
 // displayAction
 //------------------------------------------------------
-
+/*
 function displaySubscribe(data) {displayAction('Opening the', 'subscribe', data)}
 function displayUnsubscribe(data) {displayAction('Closing the', 'unsubscribe', data)}
 
@@ -283,11 +336,11 @@ function displayAction(title, appearance, data) {
   var e = '</pre></div>'
   $('#subscription-history').prepend(p + b + JSON.stringify(data, null, 2) + e)
 }
-
+*/
 //------------------------------------------------------
 // synchWithServer
 //------------------------------------------------------
-
+/*
 function synchWithServer() {
   if(Cookies.get('auth_token')) {
     AylaDssCollector.getSubscriptions(Cookies.get('auth_token'), function (data) {
@@ -307,11 +360,11 @@ function synchWithServer() {
     }, displayError)
   }
 }
-
+*/
 //------------------------------------------------------
 // 
 //------------------------------------------------------
-
+/*
 var displaySubscriptions = function (data) {
   data = data.sort(function(a, b) {
     let rvalue = 0
@@ -327,7 +380,7 @@ var displaySubscriptions = function (data) {
     displaySubscribe(data[i])
   }
 }
-
+*/
 //------------------------------------------------------
 // displayError
 //------------------------------------------------------

@@ -5,21 +5,19 @@
 
 const express = require('express')
 const axios = require('axios')
-const fs = require('fs');
+const WebSocket = require('ws')
+const fs = require('fs-extra')
 
 const app = express()
 app.use(express.json())
 
 const appName = 'Ayla DSS Collector'
 
-const streams = []
-streams['connectivity'] = null
-streams['datapoint'] = null
-streams['datapointack'] = null
-streams['location'] = null
-streams['registration'] = null
+var eventStreams = {} // key is stream_id (using subscription.id)
 
-var eventStreams = {}
+const eventStreamKeyFilter = ['stream_id','name','subscription','id','oem','dsn','name','description','property_name',
+'connection_status','batch_size','is_suspended','created_at','updated_at','date_suspended','user_uuid','oem_model',
+'stream_key','client_type','subscription_type','service_url','state']
 
 //------------------------------------------------------
 // 
@@ -27,55 +25,107 @@ var eventStreams = {}
 
 class EventStream {
 
-  constructor(name, subscription, initial_state, service_url) {
+  constructor(name, subscription, service_url, state) {
 
+    this.stream_id = subscription.id
     this.name = name
     this.subscription = subscription
-    this.initial_state = initial_state
     this.service_url = service_url
+    this.state = state
     this.socket = null
   }
 
   open() {
-    /*
     if(!this.socket) {
       this.socket = new WebSocket(this.service_url + '?stream_key=' + this.subscription.stream_key)
+      this.state = 'open'
+      this.monitor(this)
+    } else {
+      console.log('Cannot open socket. It is already open.')
     }
-    */
   }
 
-  close(code, msg) {
-    /*
-    if(this.socket) {
-      this.socket.close(code, msg)
-      this.socket = null
-    }
-    */
-  }
-}
-
-//------------------------------------------------------
-// 
-//------------------------------------------------------
-
-class Stream {
-
-  constructor(subscription, service_url) {
-
-    this.subscription = subscription
-    this.service_url = service_url
-    this.socket = null
-  }
-
-  open() {
-    this.socket = new WebSocket(this.service_url + '?stream_key=' + this.subscription.stream_key)
-  }
-
+  // Closing a socket seems to delete the Ayla DSS subscription.
+  // Instead, call DELETE /stream?stream_key=<stream-key>.
+  // Then, perhaps, close the socket? 
   close(code, msg) {
     if(this.socket) {
       this.socket.close(code, msg)
       this.socket = null
+      this.state = 'closed'
+    } else {
+      console.log('Cannot close socket. It is already closed.')
     }
+  }
+
+  monitor(eventStream) {
+
+    eventStream.socket.on('open', function() {
+      console.log('Opening a ' + eventStream.subscription.subscription_type + ' event stream.');
+    });
+
+    eventStream.socket.on('message', function(data) {
+      if(data.indexOf("|Z") !== -1) {
+        eventStream.socket.send("Z");
+        console.log('Heartbeat');
+      } else {
+        var a = data.split('|');
+        if(a.length != 2) {console.log('ERROR: Cannot parse event.');} 
+        else {eventStream.process(JSON.parse(a[1]));}
+      }
+    });
+
+    eventStream.socket.on('close', function(code, reason) {
+      console.log(reason);
+    });
+
+    eventStream.socket.on('error', function(error) {
+      console.log(error);
+    });
+
+    eventStream.socket.on('unexpected-response', function(req, res) {
+      console.log('unexpected');
+    });
+  }
+
+  process(data) {
+
+    let filename = './'
+
+    switch(data.metadata.event_type) {
+
+      case 'connectivity':
+      filename += 'connectivity.log'
+      break
+
+      case 'datapoint':
+      filename += 'datapoint.log'
+      break
+
+      case 'datapointack':
+      filename += 'datapointack.log'
+      break
+
+      case 'location':
+      filename += 'location.log'
+      break
+
+      case 'registration':
+      filename += 'registration.log'
+      break
+
+      default:
+      filename += 'default.log'
+      break
+    }
+
+    fs.appendFile(filename, JSON.stringify(data))
+    .then(() => {
+      console.log(JSON.stringify(data))
+    })
+    .catch(err => {
+      console.error(err)
+    })
   }
 }
 
@@ -146,7 +196,7 @@ app.route('/dss/session')
 // 
 //------------------------------------------------------
 
-app.route('/dss/eventstream')
+app.route('/dss/eventstreams')
 
   //----------------------------------------------------
   // createEventStream
@@ -167,21 +217,23 @@ app.route('/dss/eventstream')
     })
     .then(function (response) {
 
-      let id = response.data.subscription.id
+      let streamId = response.data.subscription.id
 
-      eventStreams[id] = new EventStream(
+      console.log('Event Stream count is ' + Object.keys(eventStreams).length)
+      eventStreams[streamId] = new EventStream(
         req.body.event_stream_name,
         response.data.subscription, 
-        req.body.initial_state,
-        req.body.service_url)
+        req.body.service_url,
+        req.body.state)
 
-      // Do in constructor?
-      //if(req.body.initial_state === 'open') {
-      //  eventStreams[id].open()
-      //}
+      console.log('Event Stream count is ' + Object.keys(eventStreams).length)
+
+      if(req.body.state === 'open') {
+        eventStreams[streamId].open()
+      }
 
       res.statusCode = response.status
-      res.send(eventStreams[id])
+      res.send(JSON.parse(JSON.stringify(eventStreams[streamId], eventStreamKeyFilter)))
     })
     .catch(function (error) {
       if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
@@ -189,49 +241,8 @@ app.route('/dss/eventstream')
     })
   })
 
-//------------------------------------------------------
-// 
-//------------------------------------------------------
-
-app.route('/dss/eventstream/:id')
-
   //----------------------------------------------------
-  // deleteEventStream
-  //----------------------------------------------------
-
-  .delete(function (req, res) {
-    const id = urlStr(req, 1)
-
-    axios({
-      method: 'delete',
-      url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + id + '.json',
-      headers: {'Authorization': req.headers.authorization}
-    })
-    .then(function (response) {
-      var data = eventStreams[id]
-      if(data) {
-        eventStreams[id].close(1000, 'Deleting ' + type + ' event stream.')
-        delete streams[id]
-        res.statusCode = response.status
-        res.send(data)
-      } else {
-        res.send('Not on the list')
-      }
-    })
-    .catch(function (error) {
-      if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
-      res.end()
-    })
-  })
-
-//------------------------------------------------------
-// 
-//------------------------------------------------------
-
-app.route('/dss/subscriptions')
-
-  //----------------------------------------------------
-  // getSubscriptions
+  // getEventStreams
   //----------------------------------------------------
 
   .get(function (req, res) {
@@ -241,15 +252,15 @@ app.route('/dss/subscriptions')
       headers: req.headers
     })
     .then(function (response) {
-      let subscriptions = []
+      let results = []
       for(let i=0; i<response.data.length; i++) {
-        for(var key in streams) {
-          if(streams[key] != null && streams[key].subscription.id === response.data[i].subscription.id) {
-            subscriptions.push(response.data[i].subscription)
+        for(var key in eventStreams) {
+          if(eventStreams[key].stream_id === response.data[i].subscription.id) {
+            results.push(JSON.parse(JSON.stringify(eventStreams[key], eventStreamKeyFilter)))
           }
         }
       }
-      res.send(subscriptions)
+      res.send(results)
     })
     .catch(function (error) {
       if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
@@ -257,81 +268,78 @@ app.route('/dss/subscriptions')
     })
   })
 
-  //----------------------------------------------------
-  // subscribe
-  //----------------------------------------------------
-
-  .post(function (req, res) {
-    const type = req.body.subscription_type
-
-    if(streams[type]) {
-      axios({
-        method: 'get',
-        url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + streams[type].subscription.id + '.json',
-        headers: {
-          'Authorization': req.headers.authorization,
-          'Accept': req.headers.accept
-        }
-      })
-      .then(function (response) {
-        res.statusCode = 409
-        res.end()
-      })
-      .catch(function (error) {
-        if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
-        res.end()
-      })
-    } else {
-      var data = {
-        "oem_model": req.body.oem_model,
-        "client_type": req.body.client_type,
-        "subscription_type": req.body.subscription_type,
-        "property_name": req.body.property_name
-      }
-      axios({
-        method: 'post',
-        url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions.json',
-        headers: req.headers,
-        data: JSON.stringify(data)
-      })
-      .then(function (response) {
-        streams[type] = new Stream(response.data.subscription, req.body.url)
-        res.send(streams[type])
-      })
-      .catch(function (error) {
-        if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
-        res.end()
-      })
-    }
-  })
-
 //------------------------------------------------------
 // 
 //------------------------------------------------------
 
-app.route('/dss/subscriptions/:type')
+app.route('/dss/eventstreams/:streamId')
 
   //----------------------------------------------------
-  // unsubscribe
+  // getEventStream
+  //----------------------------------------------------
+
+  .get(function (req, res) {
+  })
+
+  //----------------------------------------------------
+  // modifyEventStream
+  //----------------------------------------------------
+
+  .patch(function (req, res) {
+    const streamId = urlStr(req, 1)
+
+    if(req.body.action == 'open') {
+      eventStreams[streamId].open()
+      res.statusCode = 200
+      res.send(req.body)
+    } else if(req.body.action == 'close') {
+      /*
+      axios({
+        method: 'delete',
+        url: 'https://user-dev.aylanetworks.com/api/v1/stream?' + eventStreams[streamId].subscription.stream_key,
+        headers: {'Authorization': req.headers.authorization}
+      })
+      .then(function (response) {
+        console.log('Event Stream count is ' + Object.keys(eventStreams).length)
+        eventStreams[streamId].close(1000, 'Closing socket per request from user.')
+        console.log('Event Stream count is ' + Object.keys(eventStreams).length)
+        res.statusCode = 200
+        res.send(req.body)
+      })
+      .catch(function (error) {
+        if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+        res.end()
+      })
+      */
+      res.statusCode = 200
+      res.send(req.body)
+    }
+  })
+
+  //----------------------------------------------------
+  // deleteEventStream
   //----------------------------------------------------
 
   .delete(function (req, res) {
-    const type = urlStr(req, 1)
+    const streamId = urlStr(req, 1)
 
-    if(streams[type] == null) {
+    if(eventStreams[streamId] == null) {
       res.statusCode = 401
       res.end()
     } else {
       axios({
         method: 'delete',
-        url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + streams[type].subscription.id + '.json',
+        url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + streamId + '.json',
         headers: {'Authorization': req.headers.authorization}
       })
       .then(function (response) {
-        var data = streams[type]
-        streams[type].close(1000, 'Unsubscribed from receiving ' + type + ' events.')
-        streams[type] = null;
-        res.send(data)
+        var data = eventStreams[streamId]
+        eventStreams[streamId].close(1000, 'Closing socket prior to deleting the event stream.')
+        console.log('Event Stream count is ' + Object.keys(eventStreams).length)
+        delete eventStreams[streamId]
+        console.log('Event Stream count is ' + Object.keys(eventStreams).length)
+        res.statusCode = response.status
+        res.send(JSON.parse(JSON.stringify(data, eventStreamKeyFilter)))
       })
       .catch(function (error) {
         if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}

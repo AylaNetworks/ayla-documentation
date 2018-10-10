@@ -7,7 +7,7 @@
 var AylaDssCollector = {
 
   //------------------------------------------------------
-  // 
+  // login
   //------------------------------------------------------
 
   login: function(email, password, success=successCb, failure=failureCb) {
@@ -35,7 +35,7 @@ var AylaDssCollector = {
   },
 
   //------------------------------------------------------
-  // 
+  // logout
   //------------------------------------------------------
 
   logout: function(authToken, success=successCb, failure=failureCb) {
@@ -55,13 +55,13 @@ var AylaDssCollector = {
   },
 
   //------------------------------------------------------
-  // 
+  // createEventStream
   //------------------------------------------------------
 
   createEventStream: function(data, authToken, success=successCb, failure=failureCb) {
     axios({
       method: 'post',
-      url: 'https://docs.aylanetworks.com/dss/eventstream',
+      url: 'https://docs.aylanetworks.com/dss/eventstreams',
       headers: {
         'Authorization': 'auth_token ' + authToken,
         'Content-Type': 'application/json',
@@ -70,16 +70,88 @@ var AylaDssCollector = {
       data: JSON.stringify(data)
     })
     .then(function (response) {success(response.data)})
-    .catch(function (error) {
-      console.log(JSON.stringify(error, null, 2))
-      // failure(error.response.status, error.response.statusText)
-    })
+    .catch(function (error) {failure(error.response.status, error.response.statusText)})
   },
+
+  //------------------------------------------------------
+  // getEventStream
+  //------------------------------------------------------
+
+  //------------------------------------------------------
+  // getEventStreams
+  //------------------------------------------------------
+
+  getEventStreams: function(authToken, success=successCb, failure=failureCb) {
+    axios({
+      method: 'get',
+      url: 'https://docs.aylanetworks.com/dss/eventstreams',
+      headers: {
+        'Authorization': 'auth_token ' + authToken,
+        'Accept': 'application/json'
+      }
+    })
+    .then(function (response) {success(response.data)})
+    .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  },
+
+  //------------------------------------------------------
+  // openEventStream
+  //------------------------------------------------------
+
+  openEventStream: function(streamId, authToken, success=successCb, failure=failureCb) {
+    var data = {'action': 'open'}
+    AylaDssCollector.modifyEventStream(data, streamId, authToken, success, failure)
+  },
+
+  //------------------------------------------------------
+  // closeEventStream
+  //------------------------------------------------------
+
+  closeEventStream: function(streamId, authToken, success=successCb, failure=failureCb) {
+    var data = {'action': 'close'}
+    AylaDssCollector.modifyEventStream(data, streamId, authToken, success, failure)
+  },
+
+  //------------------------------------------------------
+  // modifyEventStream
+  //------------------------------------------------------
+
+  modifyEventStream: function(data, streamId, authToken, success=successCb, failure=failureCb) {
+    axios({
+      method: 'patch',
+      url: 'https://docs.aylanetworks.com/dss/eventstreams/' + streamId,
+      headers: {
+        'Authorization': 'auth_token ' + authToken,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      data: JSON.stringify(data)
+    })
+    .then(function (response) {success(response.data)})
+    .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  },
+
+  //------------------------------------------------------
+  // deleteEventStream
+  //------------------------------------------------------
+
+  deleteEventStream: function(streamId, authToken, success=successCb, failure=failureCb) {
+    axios({
+      method: 'delete',
+      url: 'https://docs.aylanetworks.com/dss/eventstreams/' + streamId,
+      headers: {
+        'Authorization': 'auth_token ' + authToken,
+        'Accept': 'application/json'
+      }
+    })
+    .then(function (response) {success(response.data)})
+    .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  }
 
   //------------------------------------------------------
   // 
   //------------------------------------------------------
-
+  /*
   subscribe: function(data, authToken, success=successCb, failure=failureCb) {
     axios({
       method: 'post',
@@ -94,11 +166,11 @@ var AylaDssCollector = {
     .then(function (response) {success(response.data)})
     .catch(function (error) {failure(error.response.status, error.response.statusText)})
   },
-
+  */
   //------------------------------------------------------
   // 
   //------------------------------------------------------
-
+  /*
   unsubscribe: function(subscriptionType, authToken, success=successCb, failure=failureCb) {
     axios({
       method: 'delete',
@@ -111,11 +183,11 @@ var AylaDssCollector = {
     .then(function (response) {success(response.data)})
     .catch(function (error) {failure(error.response.status, error.response.statusText)})
   },
-
+  */
   //------------------------------------------------------
   // 
   //------------------------------------------------------
-
+  /*
   getSubscriptions: function(authToken, success=successCb, failure=failureCb) {
     axios({
       method: 'get',
@@ -128,7 +200,7 @@ var AylaDssCollector = {
     .then(function (response) {success(response.data)})
     .catch(function (error) {failure(error.response.status, error.response.statusText)})
   }
-
+  */
 };
 
 //------------------------------------------------------

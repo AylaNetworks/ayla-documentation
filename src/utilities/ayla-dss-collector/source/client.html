@@ -78,12 +78,12 @@
       <div class="form-group col-md-6">
 
         <h3 data-toggle="collapse" href="#create-event-stream"><span class="collapsible">Create Event Stream</span></h3>
-        <div  id="create-event-stream"class="collapse show sidenav-widget">
+        <div  id="create-event-stream"class="collapse show">
 
           <div class="row">
             <div class="form-group col-md-12">
               <label>Name</label>
-              <input id="event-stream-name" type="text" class="form-control form-control-sm" value="" placeholder="Optional">
+              <input id="event-stream-name" type="text" class="form-control form-control-sm" value="" placeholder="Default is UTC Date + Event Type">
             </div>
           </div>
 
@@ -102,8 +102,8 @@
             <div class="form-group col-md-6">
               <label>Initial State</label>
               <select id="initial-state" class="form-control form-control-sm">
-                <option value='open' selected>Open</option> 
-                <option value='closed'>Closed</option> 
+                <option value='open'>Open</option> 
+                <option value='closed' selected>Closed</option> 
               </select>
             </div>
           </div>
@@ -157,50 +157,7 @@
       <div class="form-group col-md-6">
 
         <h3 data-toggle="collapse" href="#current-event-streams"><span class="collapsible">Current Event Streams</span></h3>
-        <div id="current-event-streams" class="collapse show sidenav-widget">
-
-
-
-
-<div class="event-stream" data-id="152036"><img src="closed.png"><img src="trash.png"><a data-toggle="collapse" href="#ID152036">ES 001</a></div>
-<div id="ID152036" class="event-stream-collapse collapse">
-<pre>
-{
-  "name": "ES 001",
-  "subscription": {
-    "id": 152036,
-    "oem": "0dfc7900",
-    "dsn": "AC000W000340779,AC000W005606115",
-    "name": null,
-    "description": null,
-    "property_name": "*",
-    "connection_status": "Offline",
-    "batch_size": 1,
-    "is_suspended": false,
-    "created_at": "2018-10-09T20:45:33Z",
-    "updated_at": "2018-10-09T20:45:33Z",
-    "date_suspended": null,
-    "user_uuid": "40e45b84-690c-11e8-acf3-12f911dcfe40",
-    "oem_model": "*",
-    "stream_key": "8828c39d70334e158998cd8f58903eae",
-    "client_type": "mobile",
-    "subscription_type": "datapoint"
-  },
-  "service_url": "wss://mstream-dev.aylanetworks.com/stream",
-  "socket": null
-}
-</pre>
-</div>
-
-
-
-
-        <!--
-        <h3><span class="collapsible">Event Stream Log</span></h3>
-        <div id="subscription-history-note">The UTC dates and times below represent when the Ayla DSS Collector opened or closed an event stream. Click an entry for details.</div>
-        <div id="subscription-history"></div>
-        -->
-      </div>
+        <div id="current-event-streams" class="collapse show"></div>
 
     </div>
   </main>
