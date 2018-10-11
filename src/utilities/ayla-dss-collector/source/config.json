@@ -1,0 +1,20 @@
+[
+  {
+    "event_stream_name": "",
+    "subscription_type": "connectivity",
+    "client_type": "mobile",
+    "service_url": "wss://mstream-dev.aylanetworks.com/stream",
+    "oem_model": "*",
+    "dsn": "",
+    "property_name": "*"
+  },
+  {
+    "event_stream_name": "",
+    "subscription_type": "datapoint",
+    "client_type": "mobile",
+    "service_url": "wss://mstream-dev.aylanetworks.com/stream",
+    "oem_model": "*",
+    "dsn": "",
+    "property_name": "*"
+  }
+]

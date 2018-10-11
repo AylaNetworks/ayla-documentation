@@ -6,7 +6,7 @@ class EventStream {
   // constructor
   //----------------------------------------------------
 
-  constructor(name, subscription, service_url, state, processEvent) {
+  constructor(name, subscription, service_url, state, processEvents) {
 
     this.stream_id = subscription.id
     this.name = name
@@ -14,7 +14,7 @@ class EventStream {
     this.service_url = service_url
     this.state = state
     this.socket = null
-    this.process_event = processEvent
+    this.process_events = processEvents
   }
 
   //----------------------------------------------------
@@ -25,7 +25,7 @@ class EventStream {
     if(!this.socket) {
       this.socket = new WebSocket(this.service_url + '?stream_key=' + this.subscription.stream_key)
       this.state = 'open'
-      this.monitor(this.socket, this.name, this.process_event)
+      this.monitor(this.socket, this.name, this.process_events)
     } else {
       console.log('EventStream: Cannot open socket. It is already open.')
     }
@@ -53,7 +53,7 @@ class EventStream {
   // monitor
   //----------------------------------------------------
 
-  monitor(socket, name, processEvent) {
+  monitor(socket, name, processEvents) {
 
     socket.on('open', function() {
       console.log('Opened event stream: ' + name);
@@ -66,7 +66,7 @@ class EventStream {
       } else {
         var a = data.split('|');
         if(a.length != 2) {console.log('Cannot parse event: ' + name);} 
-        else {processEvent(JSON.parse(a[1]));}
+        else {processEvents(JSON.parse(a[1]));}
       }
     });
 

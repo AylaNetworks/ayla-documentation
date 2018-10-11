@@ -1,19 +1,11 @@
-//------------------------------------------------------
-// Ayla DSS Collector
-//------------------------------------------------------
+'use strict'
 
 const express = require('express')
 const minimist = require('minimist')
 const fs = require('fs-extra')
-const routes = require('./routes');
-const core = require('./core')
-
-const appName = 'Ayla DSS Collector'
 
 const app = express()
-app.use(express.json())
-
-routes(app);
+const appName = 'Test'
 
 const cmdline = ''
 + '$ node server.js --email sarah@acme.com --password abc123\n'
@@ -37,15 +29,21 @@ if(argc) {
   }
 
   if(argc == 2 && args['email'] && args['password']) {
-    core.login(args['email'], args['password'], definitions)
-
+    var email = args['email']
+    var password = args['password']
   } else if (argc == 1 && args['auth-token']) {
-    core.createEventStreams(args['auth-token'], definitions)
-
+    var authToken = args['auth-token']
   } else {
     console.log(cmdline)
     return
   }
+
+  definitions.forEach(function(definition) {
+    console.log(definition)
+  })
+  console.log(email)
+  console.log(password)
+  console.log(authToken)
 }
 
 app.listen(3000)
