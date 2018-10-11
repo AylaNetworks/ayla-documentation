@@ -4,8 +4,6 @@ const db = require('./database');
 
 var processEvents = function(data, persistence) {
 
-  console.log(persistence)
-
   let jsonfile = './events/'
   let csvfile = './events/'
 

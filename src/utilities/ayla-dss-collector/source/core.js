@@ -35,6 +35,7 @@ exports.login = function(email, password, definitions) {
     data: JSON.stringify(data)
   })
   .then(function (response) {
+    console.log('auth_token: ' + response.data.access_token)
     core.createEventStreams(response.data.access_token, definitions)
   })
   .catch(function (error) {
