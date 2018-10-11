@@ -1,50 +1,32 @@
-'use strict'
-
 const express = require('express')
-const minimist = require('minimist')
-const fs = require('fs-extra')
+const jsonexport = require('jsonexport');
 
-const app = express()
 const appName = 'Test'
 
-const cmdline = ''
-+ '$ node server.js --email sarah@acme.com --password abc123\n'
-+ '$ node server.js --auth-token 12345\n'
-+ '$ node server.js'
+const app = express()
 
-const args = minimist(process.argv.slice(2), {
-  string: 'email',           // --email sarah@acme.com
-  string: 'password',        // --password abc123
-  string: 'auth-token'       // --auth-token 12345
-})
-const argc = Object.keys(args).length - 1
+var event = {"seq":"2","metadata":{"oem_id":"0dfc7900","oem_model":"ledevb","dsn":"AC000W000340779","property_name":"Blue_LED","display_name":"Blue LED","base_type":"boolean","resource_tags":[],"event_type":"datapoint"},"datapoint":{"id":"91c74ac6-cd47-11e8-1508-d0154653c8a5","created_at_from_device":null,"updated_at":"2018-10-11T11:19:50Z","created_at":"2018-10-11T11:19:50Z","user_uuid":"40e45b84-690c-11e8-acf3-12f911dcfe40","echo":false,"closed":false,"value":0,"metadata":{"key1":"","key2":""}}}
 
-if(argc) {
 
-  try {
-    var definitions = JSON.parse(fs.readFileSync('config.json'))
-  } catch(e) {
-    console.log('Cannot open config.json file')
-    return
-  }
 
-  if(argc == 2 && args['email'] && args['password']) {
-    var email = args['email']
-    var password = args['password']
-  } else if (argc == 1 && args['auth-token']) {
-    var authToken = args['auth-token']
-  } else {
-    console.log(cmdline)
-    return
-  }
 
-  definitions.forEach(function(definition) {
-    console.log(definition)
-  })
-  console.log(email)
-  console.log(password)
-  console.log(authToken)
-}
+var options={verticalOutput:false}
+ 
+jsonexport(event, {verticalOutput:false}, function(err, csv){
+  if(err) return console.log(err)
 
+
+//  for(var key in csv) {
+//    console.log(key + ': ' + csv[key])
+//  }
+
+  let s = csv.split('\n')[1]
+
+
+  console.log(s)
+});
+
+/*
 app.listen(3000)
 console.log('Running ' + appName)
+*/

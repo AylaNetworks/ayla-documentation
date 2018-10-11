@@ -97,15 +97,14 @@ exports.createEventStream = function(req, res) {
 
     let streamId = response.data.subscription.id
 
-    console.log('Event Stream count is ' + Object.keys(core.eventStreams).length)
     core.eventStreams[streamId] = new EventStream(
       req.body.event_stream_name,
       response.data.subscription, 
+      {"json": "true","csv": "true","relational": "true"},
       req.body.service_url,
       req.body.state,
       processEvents)
-
-    console.log('Event Stream count is ' + Object.keys(core.eventStreams).length)
+    console.log('Created event stream: ' + core.eventStreams[streamId].name + '. Count is ' + Object.keys(core.eventStreams).length)
 
     if(req.body.state === 'open') {
       core.eventStreams[streamId].open()
@@ -180,10 +179,10 @@ exports.deleteEventStream = function(req, res) {
     })
     .then(function (response) {
       var data = core.eventStreams[streamId]
-      core.eventStreams[streamId].close(1000, 'Closed event stream: ' + core.eventStreams[streamId].name)
-      console.log('Event Stream count is ' + Object.keys(core.eventStreams).length)
+      core.eventStreams[streamId].close(1000, '')
+      let name = core.eventStreams[streamId].name
       delete core.eventStreams[streamId]
-      console.log('Event Stream count is ' + Object.keys(core.eventStreams).length)
+      console.log('Closed and deleted event stream: ' + name + '. Count is ' + Object.keys(core.eventStreams).length)
       res.statusCode = response.status
       res.send(JSON.parse(JSON.stringify(data, core.eventStreamKeyFilter)))
     })

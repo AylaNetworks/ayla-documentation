@@ -5,7 +5,8 @@
 const express = require('express')
 const minimist = require('minimist')
 const fs = require('fs-extra')
-const routes = require('./routes');
+const cleanup = require('node-cleanup')
+const routes = require('./routes')
 const core = require('./core')
 
 const appName = 'Ayla DSS Collector'
@@ -13,7 +14,12 @@ const appName = 'Ayla DSS Collector'
 const app = express()
 app.use(express.json())
 
-routes(app);
+routes(app)
+
+cleanup(function (exitCode, signal) {
+//  for (key in core.eventStreams) {}
+  console.log('\nExiting ' + appName)
+})
 
 const cmdline = ''
 + '$ node server.js --email sarah@acme.com --password abc123\n'
@@ -31,6 +37,9 @@ if(argc) {
 
   try {
     var definitions = JSON.parse(fs.readFileSync('config.json'))
+    console.log('CONFIG.JSON:')
+    console.log(JSON.stringify(definitions, null, 2))
+    console.log('--------')
   } catch(e) {
     console.log('Cannot open config.json file')
     return

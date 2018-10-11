@@ -6,7 +6,12 @@
     "service_url": "wss://mstream-dev.aylanetworks.com/stream",
     "oem_model": "*",
     "dsn": "",
-    "property_name": "*"
+    "property_name": "*",
+    "persistence": {
+        "json": "true",
+        "csv": "true",
+        "relational": "true"
+    }
   },
   {
     "event_stream_name": "",
@@ -15,6 +20,11 @@
     "service_url": "wss://mstream-dev.aylanetworks.com/stream",
     "oem_model": "*",
     "dsn": "",
-    "property_name": "*"
+    "property_name": "*",
+    "persistence": {
+        "json": "true",
+        "csv": "true",
+        "relational": "true"
+    }
   }
 ]

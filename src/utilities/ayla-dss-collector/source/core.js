@@ -8,7 +8,7 @@ exports.eventStreams = {}
 
 exports.eventStreamKeyFilter = ['stream_id','name','subscription','id','oem','dsn','name','description','property_name',
 'connection_status','batch_size','is_suspended','created_at','updated_at','date_suspended','user_uuid','oem_model',
-'stream_key','client_type','subscription_type','service_url','state']
+'stream_key','client_type','subscription_type','persistence','json','csv','relational','service_url','state']
 
 //------------------------------------------------------
 // login
@@ -82,15 +82,16 @@ exports.createEventStream = function(authToken, definition) {
 
     let streamId = response.data.subscription.id
 
-    console.log('Event Stream count is ' + Object.keys(core.eventStreams).length)
     core.eventStreams[streamId] = new EventStream(
       definition.event_stream_name,
       response.data.subscription, 
+      definition.persistence,
       definition.service_url,
       definition.state,
       processEvents)
+    console.log('Created event stream: ' + core.eventStreams[streamId].name + '. Count is ' + Object.keys(core.eventStreams).length)
+
     core.eventStreams[streamId].open()
-    console.log('Event Stream count is ' + Object.keys(core.eventStreams).length)
   })
   .catch(function (error) {
     console.log(error)

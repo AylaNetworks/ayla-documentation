@@ -1,39 +1,71 @@
 const fs = require('fs-extra')
+const jsonexport = require('jsonexport');
+const db = require('./database');
 
-var processEvents = function(data) {
+var processEvents = function(data, persistence) {
 
-  let filename = './events/'
+  console.log(persistence)
+
+  let jsonfile = './events/'
+  let csvfile = './events/'
 
   switch(data.metadata.event_type) {
 
     case 'connectivity':
-    filename += 'connectivity.log'
+    jsonfile += 'connectivity.json'
+    csvfile += 'connectivity.csv'
     break
 
     case 'datapoint':
-    filename += 'datapoint.log'
+    jsonfile += 'datapoint.json'
+    csvfile += 'datapoint.csv'
     break
 
     case 'datapointack':
-    filename += 'datapointack.log'
+    jsonfile += 'datapointack.json'
+    csvfile += 'datapointack.csv'
     break
 
     case 'location':
-    filename += 'location.log'
+    jsonfile += 'location.json'
+    csvfile += 'location.csv'
     break
 
     case 'registration':
-    filename += 'registration.log'
+    jsonfile += 'registration.json'
+    csvfile += 'registration.csv'
     break
 
     default:
-    filename += 'default.log'
+    jsonfile += 'default.json'
+    csvfile += 'default.csv'
     break
   }
 
-  fs.appendFile(filename, JSON.stringify(data))
-  .then(() => {console.log('--> EVENT: ' + JSON.stringify(data))})
-  .catch(err => {console.error(err)})
+  console.log('--> ' + data.metadata.event_type.toUpperCase())
+  console.log('Persistence: ' + JSON.stringify(persistence))
+  console.log('Data: ' + JSON.stringify(data))
+
+  if(persistence.json) {
+    fs.appendFile(jsonfile, JSON.stringify(data))
+    .then(() => {})
+    .catch(err => {console.error(err)})
+  }
+
+  if(persistence.csv) {
+    jsonexport(data, {verticalOutput:false}, function(err, csv) {
+      if(err) {
+        console.log('Error writing to CSV file.')
+      } else {
+        fs.appendFile(csvfile, csv.split('\n')[1] + '\n')
+        .catch(err => {console.error(err)})
+      }
+    })
+  }
+
+  if(persistence.relational) {
+    db.insert(data)
+  }
 }
 
 module.exports = processEvents
