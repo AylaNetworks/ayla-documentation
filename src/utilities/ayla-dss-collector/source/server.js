@@ -1,6 +1,4 @@
-//------------------------------------------------------
-// Ayla DSS Collector
-//------------------------------------------------------
+const appName = 'Ayla DSS Collector'
 
 const express = require('express')
 const minimist = require('minimist')
@@ -8,8 +6,6 @@ const fs = require('fs-extra')
 const cleanup = require('node-cleanup')
 const routes = require('./routes')
 const core = require('./core')
-
-const appName = 'Ayla DSS Collector'
 
 const app = express()
 app.use(express.json())
@@ -58,4 +54,4 @@ if(argc) {
 }
 
 app.listen(3000)
-console.log('Running ' + appName)
+console.log('Running ' + appName + ' on Port 3000')
