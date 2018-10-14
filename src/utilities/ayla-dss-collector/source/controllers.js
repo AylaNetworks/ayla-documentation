@@ -2,7 +2,7 @@
 
 const express = require('express')
 const axios = require('axios')
-const EventStream = require('./event-stream')
+const EventStream = require('./stream')
 const processEvents = require('./process-events')
 const core = require('./core')
 

@@ -13,7 +13,6 @@ app.use(express.json())
 routes(app)
 
 cleanup(function (exitCode, signal) {
-//  for (key in core.eventStreams) {}
   console.log('\nExiting ' + appName)
 })
 

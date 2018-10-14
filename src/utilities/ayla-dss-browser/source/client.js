@@ -32,6 +32,50 @@ urls["us"]["field"] = []
 urls["us"]["field"]["cloud"] = 'wss://stream-field.aylanetworks.com/stream'
 urls["us"]["field"]["mobile"] = 'wss://mstream-field.aylanetworks.com/stream'
 
+var eventStreams = {}
+
+//------------------------------------------------------
+// EventStream
+//------------------------------------------------------
+
+class EventStream {
+  constructor(name, streamKey, serviceUrl, processEvent) {
+    this.name = name
+    this.streamKey = streamKey
+    this.serviceUrl = serviceUrl
+    this.processEvent = processEvent
+    this.socket = new WebSocket(serviceUrl + '?stream_key=' + streamKey)
+    this.monitor(this.socket, this.name, this.processEvent)
+  }
+
+  destructor() {
+  }
+
+  monitor(socket, name, processEvents) {
+
+    socket.onopen = function(event) {
+      console.log('open')
+    }
+
+    socket.onerror = function(error) {
+      console.log('error is ' + error)
+    }
+
+    socket.onmessage = function(event) {
+      if(event.data.includes("|Z")) {
+        socket.send("Z")
+        console.log('Heartbeat')
+      } else {
+        processEvent(event)
+      }
+    }
+
+    socket.onclose = function(event) {
+      console.log('close')
+    }
+  }
+}
+
 //------------------------------------------------------
 // createAuthToken
 //------------------------------------------------------
@@ -42,6 +86,16 @@ function createAuthToken(authToken) {
   var expires = date.toUTCString()
   Cookies.set('auth_token', authToken, { expires: 7 })
   console.log('AUTH TOKEN COOKIE VALUE: ' + Cookies.get('auth_token'))
+}
+
+//------------------------------------------------------
+// createDatapoint
+//------------------------------------------------------
+
+function createDatapoint(propertyId, value) {
+  AylaProxyServer.createDatapoint(propertyId, value, Cookies.get('auth_token'), function (datapoint) {
+    console.log('datapoint value = ' + datapoint.datapoint.value)
+  }, displayError)
 }
 
 //------------------------------------------------------
@@ -105,6 +159,14 @@ function displayError(statusCode, statusText) {
 }
 
 //------------------------------------------------------
+// displayEventStream
+//------------------------------------------------------
+
+function displayEventStream(eventStream) {
+  $('#browser-event-streams').append('<div>' + eventStream.name + '</div>')
+}
+
+//------------------------------------------------------
 // displaySubscription
 //------------------------------------------------------
 
@@ -114,7 +176,7 @@ function displaySubscription(data) {
 
   let item = ''
   + '<div class="form-check" data-id="' + data.subscription.id + '">'
-  + '<input class="form-check-input" type="radio" name="exampleRadios" value="' + data.subscription.stream_key + 'option1">'
+  + '<input class="form-check-input" type="radio" name="exampleRadios" value="' + data.subscription.stream_key + '" checked>'
   + '<label class="form-check-label"><a data-toggle="collapse" href="#' + id + '">' + toInitialCaps(data.subscription.subscription_type) + ' Events' + '</a></label>'
   + '</div>'
   + '<div id="' + id + '" class="subscription-collapse collapse">'
@@ -122,7 +184,7 @@ function displaySubscription(data) {
   + JSON.stringify(data, null, 2)
   + '</pre>'
   + '</div>'
-  $('#my-subscriptions').append(item)
+  $('#my-subscriptions').prepend(item)
 }
 
 //------------------------------------------------------
@@ -133,13 +195,19 @@ function displayPropertyValue(details) {
 
   switch(details.base_type) {
     case 'boolean':
+    $('#value-button-wrapper').hide()
     $('#value-wrapper').empty().append('<label class="switch" style="margin-bottom:0;"><input id="property-value" type="checkbox"><span class="slider round"></span></label>')
     if(details.value === 1) {
-      $('#property-value').prop('checked', true);
+      $('#property-value').prop('checked', true)
     } else {
-      $('#property-value').prop('checked', false);
+      $('#property-value').prop('checked', false)
     }
-    break;
+    if(details.direction === 'input') {
+      $('#property-value').prop('disabled', false)
+    } else {
+      $('#property-value').prop('disabled', true)
+    }
+    break
 
     case 'decimal':
     case 'number':
@@ -149,12 +217,12 @@ function displayPropertyValue(details) {
     $('#property-value').val(details.value)
     if(details.direction === 'input') {
       $('#value-button-wrapper').show()
-      $('#property-value').prop('disabled', false);
+      $('#property-value').prop('disabled', false)
     } else {
       $('#value-button-wrapper').hide()
-      $('#property-value').prop('disabled', true);
+      $('#property-value').prop('disabled', true)
     }
-    break;
+    break
   }
 }
 
@@ -255,6 +323,21 @@ $(function() {
 })
 
 //------------------------------------------------------
+// onChangeDestination
+//------------------------------------------------------
+
+$(function() {
+  $('#destination').change(function() {
+    $(this).blur()
+    if($(this).val() === 'collector') {
+      $('#select-persistence-div').show()
+    } else {
+      $('#select-persistence-div').hide()
+    }
+  })
+})
+
+//------------------------------------------------------
 // onClickClose
 //------------------------------------------------------
 
@@ -271,11 +354,34 @@ $(function() {
 })
 
 //------------------------------------------------------
+// onCreateEventStream
+//------------------------------------------------------
+
+$(function() {
+  $('#create-event-stream-button').click(function(event) {
+    console.log('create-event-stream-button')
+
+    let streamKey = $('#my-subscriptions div input:radio:checked').val()
+    let service = JSON.parse($('#service').val())
+    let clientType = $('#client-type').val()
+    let serviceUrl = urls[service.region][service.deployment][clientType]
+
+    eventStreams[streamKey] = new EventStream(streamKey, streamKey, serviceUrl, processEvent)
+    displayEventStream(eventStreams[streamKey])
+
+    //console.log(streamKey)
+    //console.log(clientType)
+    //console.log(url)
+  })
+})
+
+//------------------------------------------------------
 // onClickSubscription
 //------------------------------------------------------
 
 $(function() {
   $("#my-subscriptions").delegate('.subscription-title img', "click", function(e) {
+    $(this).blur()
     let choice = $(this).attr('src').split('.')[0]
     let subscriptionId = $(this).parent().data('id')
     let subscriptionDiv = $(this).parent().parent()
@@ -322,6 +428,35 @@ $(function() {
 })
 
 //------------------------------------------------------
+// onSavePropertyValue
+//------------------------------------------------------
+
+$(function() {
+  $('#value-wrapper').delegate('#save-property-value', "click", function(event) {
+    $(this).blur()
+    var selected = $('#select-properties option:selected')
+    var details = $(selected).data("details")
+    var propertyId = details.key
+    var value = $('#property-value').val()
+    createDatapoint(propertyId, value)
+    console.log('propertyId = ' + propertyId + ', value = ' + value)
+  })
+})
+
+$(function() {
+  $('#value-wrapper').delegate('input:checkbox', "change", function(event) {
+    $(this).blur()
+    var selected = $('#select-properties option:selected')
+    var details = $(selected).data("details")
+    var propertyId = details.key
+    var value = 0
+    if($(this).prop('checked')) {value = 1}
+    createDatapoint(propertyId, value)
+    console.log('propertyId = ' + propertyId + ', value = ' + value)
+  })
+})
+
+//------------------------------------------------------
 // onSelectDevice
 //------------------------------------------------------
 
@@ -346,6 +481,21 @@ $(function() {
     displayPropertyValue(details)
   })
 })
+
+//------------------------------------------------------
+// processEvent
+//------------------------------------------------------
+
+function processEvent(event) {
+  var a = event.data.split('|')
+  if(a.length != 2) {
+    console.log('ERROR: Event split into ' + a.length + 'substrings.')
+    return
+  }
+  var data = JSON.parse(a[1])
+  var json = JSON.stringify(data, null, 2)
+  console.log(json)
+}
 
 //------------------------------------------------------
 // toInitialCaps

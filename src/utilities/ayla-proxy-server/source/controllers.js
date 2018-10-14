@@ -8,6 +8,20 @@ const axios = require('axios')
 //------------------------------------------------------
 
 exports.createDatapoint = function(req, res) {
+  axios({
+    method: 'post',
+    url: 'https://user-dev.aylanetworks.com/apiv1/properties/' + urlStr(req, 2) + '/datapoints',
+    headers: req.headers,
+    data: JSON.stringify(req.body)
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
 }
 
 //------------------------------------------------------

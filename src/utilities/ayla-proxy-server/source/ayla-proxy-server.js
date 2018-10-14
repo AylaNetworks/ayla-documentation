@@ -4,7 +4,29 @@ var AylaProxyServer = {
   // createDatapoint
   //------------------------------------------------------
 
-  createDatapoint: function(authToken, success=successCb, failure=failureCb) {
+  createDatapoint: function(propertyId, value, authToken, success=successCb, failure=failureCb) {
+    let data = {
+      "datapoint": {
+        "value": value,
+        "metadata": {
+          "key1": "",
+          "key2": ""
+        }
+      }
+    }
+    axios({
+      method: 'post',
+      url: 'https://docs.aylanetworks.com/api/v1/properties/' + propertyId + '/datapoints',
+      headers: {
+        'Authorization': 'auth_token ' + authToken,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      data: JSON.stringify(data)
+    })
+    .then(function (response) {success(response.data)})
+    .catch(function (error) {failure(error.response.status, error.response.statusText)})
+
   },
 
   //------------------------------------------------------
