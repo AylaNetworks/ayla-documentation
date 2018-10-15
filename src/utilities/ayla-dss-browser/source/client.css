@@ -1,9 +1,9 @@
 body {padding-top: 5rem;}
 .navbar-brand {font-size: 16px;}
-h3 {font-size: 16px; font-weight: bold; color: steelblue;}
+h3 {font-size: 16px; font-weight: bold; color: black;}
 .collapsible:hover {color: gray; cursor: pointer;}
 #login-form, #logout-form {padding: 1.0rem 1.0rem 0 1.0rem;}
-label {font-weight: bold; font-size:90%; color: black;}
+label {font-weight: bold; font-size:90%; color: #b36200;}
 
 #subscription-history pre {
   background: #333333;
