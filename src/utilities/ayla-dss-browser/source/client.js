@@ -32,20 +32,20 @@ urls["us"]["field"] = []
 urls["us"]["field"]["cloud"] = 'wss://stream-field.aylanetworks.com/stream'
 urls["us"]["field"]["mobile"] = 'wss://mstream-field.aylanetworks.com/stream'
 
-var eventStreams = {}
+var browserEventStreams = {}
 
 //------------------------------------------------------
-// EventStream
+// BrowserEventStream
 //------------------------------------------------------
 
-class EventStream {
+class BrowserEventStream {
   constructor(name, streamKey, serviceUrl, processEvent) {
     this.name = name
     this.streamKey = streamKey
     this.serviceUrl = serviceUrl
     this.processEvent = processEvent
-    this.socket = new WebSocket(serviceUrl + '?stream_key=' + streamKey)
-    this.monitor(this.socket, this.name, this.processEvent)
+    //this.socket = new WebSocket(serviceUrl + '?stream_key=' + streamKey)
+    //this.monitor(this.socket, this.name, this.processEvent)
   }
 
   destructor() {
@@ -159,11 +159,19 @@ function displayError(statusCode, statusText) {
 }
 
 //------------------------------------------------------
-// displayEventStream
+// displayBrowserEventStream
 //------------------------------------------------------
 
-function displayEventStream(eventStream) {
-  $('#browser-event-streams').append('<div>' + eventStream.name + '</div>')
+function displayBrowserEventStream(browserEventStream) {
+
+  let item = ''
+  + '<div class="form-check">'
+  + '<input type="checkbox" class="form-check-input" value="">'
+  + '<label class="form-check-label">' + browserEventStream.name + '</label>'
+  + '</div>'
+
+  $('#browser-event-streams').append(item)
+
 }
 
 //------------------------------------------------------
@@ -172,19 +180,31 @@ function displayEventStream(eventStream) {
 
 function displaySubscription(data) {
 
-  let id = 'ID' + data.subscription.id
+  let id = 'ID' + new Date().getTime()
+  let name = ''
 
-  let item = ''
-  + '<div class="form-check" data-id="' + data.subscription.id + '">'
-  + '<input class="form-check-input" type="radio" name="exampleRadios" value="' + data.subscription.stream_key + '" checked>'
-  + '<label class="form-check-label"><a data-toggle="collapse" href="#' + id + '">' + toInitialCaps(data.subscription.subscription_type) + ' Events' + '</a></label>'
-  + '</div>'
+  if(data.subscription.name) {
+    name = data.subscription.name
+  } else if (data.subscription.subscription_type) {
+    name = 'Subscription for ' + data.subscription.subscription_type + ' events'
+  } else {
+    name = 'Subscription for unspecified events'
+  }
+
+  let top = $('<div/>')
+  $(top).addClass('form-check')
+  $(top).data('subscription', data.subscription)
+  $(top).append('<input class="form-check-input" type="radio" name="exampleRadios" value="' + data.subscription.stream_key + '">')
+  $(top).append('<label class="form-check-label"><a data-toggle="collapse" href="#' + id + '">' + name + '</a></label>')
+
+  let bottom = ''
   + '<div id="' + id + '" class="subscription-collapse collapse">'
   + '<pre>'
   + JSON.stringify(data, null, 2)
   + '</pre>'
   + '</div>'
-  $('#my-subscriptions').prepend(item)
+  $('#my-subscriptions').prepend(bottom)
+  $('#my-subscriptions').prepend(top)
 }
 
 //------------------------------------------------------
@@ -285,6 +305,9 @@ function getSubscriptions() {
     for(var key in data) {
       displaySubscription(data[key])
     }
+    if($('#my-subscriptions div input').length) {
+      $('#my-subscriptions div input').first().prop('checked', true).trigger("click")
+    }
   }, displayError)
 }
 
@@ -359,19 +382,33 @@ $(function() {
 
 $(function() {
   $('#create-event-stream-button').click(function(event) {
-    console.log('create-event-stream-button')
-
-    let streamKey = $('#my-subscriptions div input:radio:checked').val()
+    let eventStreamDiv = $('#my-subscriptions div input:radio:checked').parent()
+    let subscription = $(eventStreamDiv).data('subscription')
+    let streamKey = subscription.stream_key
+    let name = $('#event-stream-name').val()
+    let clientType = subscription.client_type
     let service = JSON.parse($('#service').val())
-    let clientType = $('#client-type').val()
     let serviceUrl = urls[service.region][service.deployment][clientType]
+    let destination = $('#destination').val()
 
-    eventStreams[streamKey] = new EventStream(streamKey, streamKey, serviceUrl, processEvent)
-    displayEventStream(eventStreams[streamKey])
+    if(!name) {
+      if(subscription.subscription_type) {
+        name = 'Event stream for ' + subscription.subscription_type + ' events'
+      } else {
+        name = 'Event stream for unknown events'
+      }
+    }
 
+    browserEventStreams[streamKey] = new BrowserEventStream(name, streamKey, serviceUrl, processEvent)
+    displayBrowserEventStream(browserEventStreams[streamKey])
+
+    //console.log(name)
     //console.log(streamKey)
     //console.log(clientType)
-    //console.log(url)
+    //console.log(serviceUrl)
+    //console.log(destination)
+
+    console.log(Object.keys(browserEventStreams).length)
   })
 })
 
@@ -380,23 +417,37 @@ $(function() {
 //------------------------------------------------------
 
 $(function() {
-  $("#my-subscriptions").delegate('.subscription-title img', "click", function(e) {
-    $(this).blur()
-    let choice = $(this).attr('src').split('.')[0]
-    let subscriptionId = $(this).parent().data('id')
-    let subscriptionDiv = $(this).parent().parent()
-
-    console.log(choice)
-    console.log(subscriptionId)
-
-    if(choice == 'delete') {
-      if(confirm('Delete subscription?')) {
-        deleteSubscription(subscriptionId, subscriptionDiv)
-      }
+  $("#my-subscriptions").delegate('div', "click", function(e) {
+    let subscription = $(this).data('subscription')
+    let name = ''
+    if(subscription.subscription_type) {
+      name = 'Event stream for ' + subscription.subscription_type + ' events'
+    } else {
+      name = 'Event stream for unknown events'
     }
+    $('#event-stream-name').val(name)
   })
 })
 
+/*
+$(function() {
+  $("#my-subscriptions").delegate('.subscription-title img', "click", function(e) {
+    $(this).blur()
+    let choice = $(this).attr('src').split('.')[0]
+    //let subscriptionId = $(this).parent().data('id')
+    //let subscriptionDiv = $(this).parent().parent()
+
+    //console.log(choice)
+    //console.log(subscriptionId)
+
+    //if(choice == 'delete') {
+    //  if(confirm('Delete subscription?')) {
+    //    deleteSubscription(subscriptionId, subscriptionDiv)
+    //  }
+    //}
+  })
+})
+*/
 //------------------------------------------------------
 // onLoad
 //------------------------------------------------------

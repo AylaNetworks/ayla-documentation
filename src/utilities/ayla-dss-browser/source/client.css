@@ -3,7 +3,7 @@ body {padding-top: 5rem;}
 h3 {font-size: 16px; font-weight: bold; color: black;}
 .collapsible:hover {color: gray; cursor: pointer;}
 #login-form, #logout-form {padding: 1.0rem 1.0rem 0 1.0rem;}
-label {font-weight: bold; font-size:90%; color: #b36200;}
+label {font-weight: bold; font-size:85%; color: #b36200;}
 
 #subscription-history pre {
   background: #333333;
@@ -56,10 +56,10 @@ label {font-weight: bold; font-size:90%; color: #b36200;}
 .form-check-label, .form-check-label a {font-size: 95%; font-weight: normal; text-decoration: none; color: gray;}
 
 #add-subscription {padding: 6px; background: #e6e6e6; border: #d9d9d9 1px solid; margin:9px 0px;border-radius: 4px;}
-#add-subscription label {color: black;}
+#add-subscription label {color: black; font-weight: normal;}
 
 #create-subscription {padding: 6px; background: #e6e6e6; border: #d9d9d9 1px solid; margin:9px 0px;border-radius: 4px;}
-#create-subscription label {color: black;}
+#create-subscription label {color: black; font-weight: normal;}
 
 /* BEGIN SLIDER */
 .switch {
@@ -114,3 +114,4 @@ input:checked + .slider:before {
 /* END SLIDER */
 
 
+.tab-content {margin-top: 16px;}
