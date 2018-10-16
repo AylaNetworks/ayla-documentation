@@ -1,5 +1,5 @@
 ---
-title: Ayla Documentation
+title: Site
 layout: notes.html
 ---
 

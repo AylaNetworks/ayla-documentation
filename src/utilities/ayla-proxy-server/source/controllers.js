@@ -33,7 +33,7 @@ exports.createDssSubscription = function(req, res) {
     method: 'post',
     url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions.json',
     headers: req.headers,
-    data: JSON.stringify(data)
+    data: JSON.stringify(req.body)
   })
   .then(function (response) {
     res.statusCode = response.status

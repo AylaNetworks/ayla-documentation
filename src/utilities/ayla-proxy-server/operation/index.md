@@ -6,7 +6,7 @@ layout: utilities-ayla-proxy-server.html
 Start the service:
 
 <pre>
-$ forever -o output.log -e error.log start server.js
+$ forever -o output.log -e error.log --minUptime 1000ms --spinSleepTime 1000ms start server.js
 </pre>
 
 View the service:

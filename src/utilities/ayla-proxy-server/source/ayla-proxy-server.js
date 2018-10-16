@@ -36,7 +36,7 @@ var AylaProxyServer = {
   createDssSubscription: function(data, authToken, success=successCb, failure=failureCb) {
     axios({
       method: 'post',
-      url: 'https://docs.aylanetworks.com/api/v1/subscriptions',
+      url: 'https://docs.aylanetworks.com/api/v1/dss/subscriptions',
       headers: {
         'Authorization': 'auth_token ' + authToken,
         'Content-Type': 'application/json',
