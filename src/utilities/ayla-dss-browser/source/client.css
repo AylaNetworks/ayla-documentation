@@ -14,7 +14,7 @@ label {font-weight: normal; font-size:90%; color: #b36200;}
 
 .event-stream {}
 
-#events {padding:6px; min-height:200px; max-height: 500px;}
+#events {padding:6px; min-height: 468px; max-height: 468px;}
 
 .event {}
 
@@ -25,7 +25,7 @@ label {font-weight: normal; font-size:90%; color: #b36200;}
 .event pre {
   background: #333333;
   padding: 6px;
-  border: 1px solid #e6e6e6;
+  border: none;
   line-height: 1rem;
   color: white;
   font-weight: normal;
