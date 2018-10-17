@@ -10,14 +10,18 @@ h3 {font-size: 100%; font-weight: bold; color: black;}
 
 label {font-weight: normal; font-size:90%; color: #b36200;}
 
-#event-streams {padding:6px; height:160px;}
+/* #event-streams {padding:6px; height:160px;} */
 
-#events {padding:6px; min-height: 333px; max-height: 333px;}
+#events {padding:6px; min-height: 250px; max-height: 250px;}
 
 .event-stream label, 
-.event label {font-size: 95%; font-weight: normal; text-decoration: none; color: gray;}
+.event label {font-size: 90%; font-weight: normal; text-decoration: none; color: gray;}
 
-.event-stream pre, 
+#event-streams .name {cursor: pointer;}
+
+#event-streams .details td {border-color: white;}
+
+#event-streams .details td pre, 
 .event pre {
   background: #333333;
   padding: 6px;
@@ -27,15 +31,19 @@ label {font-weight: normal; font-size:90%; color: #b36200;}
   font-weight: normal;
   font-size: 85%;
   font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
+  margin-right: 4px;
 }
 
 table {width: 100%;}
 table th:nth-child(1) {width:10px;}
-table th:nth-child(3), table th:nth-child(4) {width:80px;}
+table th:nth-child(3), table th:nth-child(4) {width:80px; text-align: right;}
 table, th, td {border-collapse: collapse; vertical-align:top;}
-table th, table td {border: 1px solid lightgray; padding: 3px 6px;}
-table th {font-weight: normal; font-size:90%; color: black;}
-table td {font-size: 90%; font-weight: normal; text-decoration: none; color: gray;}
+table {border: 1px solid lightgray;}
+table th {border-bottom: 1px solid lightgray;}
+table td {border-top: 1px solid lightgray;}
+table th, table td {padding: 3px 4px;}
+table th {font-size:90%; font-weight: normal; color: black;}
+table td {font-size:90%; font-weight: normal; color: gray;}
+table .event-ct, table .pulse-ct {text-align: right;}
 
-.es-name {cursor: pointer;}

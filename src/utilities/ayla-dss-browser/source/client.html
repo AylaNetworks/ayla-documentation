@@ -80,131 +80,29 @@
 
       <div class="form-group col-md-8"> <!-- BEGIN RIGHT COLUMN -->
 
-        <div class="row"> <!-- BEGIN EVENT COUNTERS ROW -->
-          <div class="form-group col-md-12"> <!-- BEGIN EVENT COUNTERS COL -->
-            <h3><span data-toggle="collapse" href="#counters-collapse" class="collapsible">Event streams</span></h3>
-            <div  id="counters-collapse"class="collapse show">
+        <div class="row"> <!-- BEGIN EVENT STREAMS ROW -->
+          <div class="form-group col-md-12"> <!-- BEGIN EVENT STREAMS COL -->
+            <h3><span data-toggle="collapse" href="#event-streams-collapse" class="collapsible">Event streams</span></h3>
+            <div  id="event-streams-collapse"class="collapse show">
 
               <div class="row">
                 <div class="form-group col-md-12">
-                  <table>
+                  <button id="delete-event-stream-btn" type="button" class="btn btn-outline-secondary btn-sm">Delete</button>
+                  <button id="select-all-event-streams-btn" type="button" class="btn btn-outline-secondary btn-sm">Select All</button>
+                  <button id="deselect-all-event-streams-btn" type="button" class="btn btn-outline-secondary btn-sm">Deselect All</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <table id="event-streams">
                     <tr>
                       <th>&nbsp;</th>
                       <th>Name</th>
                       <th>Events</th>
                       <th>Pulses</th>
                     </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td class="es-name">This is a long name of an event stream that is very descriptive.</td>
-                      <td class="ecounter">2</td>
-                      <td class="hcounter">114</td>
-                    </tr>
-                    <tr style="display:none;">
-                      <td>&nbsp;</td>
-                      <td colspan=3>sss</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td class="es-name">This is a long name of an event stream that is very descriptive.</td>
-                      <td class="ecounter">2</td>
-                      <td class="hcounter">114</td>
-                    </tr>
-                    <tr>
-                      <td>&nbsp;</td>
-                      <td colspan=3>sss</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td class="es-name">This is a long name of an event stream that is very descriptive.</td>
-                      <td class="ecounter">2</td>
-                      <td class="hcounter">114</td>
-                    </tr>
-                    <tr>
-                      <td>&nbsp;</td>
-                      <td colspan=3>sss</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td class="es-name">This is a long name of an event stream that is very descriptive.</td>
-                      <td class="ecounter">2</td>
-                      <td class="hcounter">114</td>
-                    </tr>
-                    <tr>
-                      <td>&nbsp;</td>
-                      <td colspan=3>sss</td>
-                    </tr>
                   </table>
-                </div>
-              </div>
-
-            </div>
-          </div> <!-- END EVENT COUNTERS COL -->
-        </div> <!-- END EVENT COUNTERS ROW -->
-
-        <div class="row"> <!-- BEGIN EVENT STREAMS ROW -->
-          <div class="form-group col-md-12"> <!-- BEGIN EVENT STREAMS COL -->
-            <h3><span data-toggle="collapse" href="#event-streams-collapse" class="collapsible">Event streams</span></h3>
-            <div id="event-streams-collapse"class="collapse show">
-
-              <div class="row">
-                <div class="form-group col-md-12">
-                  <div id="event-streams" class="border rounded pre-scrollable">
-
-                    <div class="event-stream" style="background: red;">
-                      <div class="row" style="margin-left:0;margin-right:0;">
-                        <div class="col-md-8" style="background: green;">sss</div>
-                        <div class="col-md-2" style="background: blue;">sss</div>
-                        <div class="col-md-2" style="background: orange;">sss</div>
-                      </div>
-                    </div>
-
-                    <div class="event-stream" style="background: red;">
-                      <div class="row" style="margin-left:0;margin-right:0;">
-                        <div class="col-md-8" style="background: green;">sss</div>
-                        <div class="col-md-2" style="background: blue;">sss</div>
-                        <div class="col-md-2" style="background: orange;">sss</div>
-                      </div>
-                    </div>
-
-                    <div class="event-stream" style="background: red;">
-                      <div class="row" style="margin-left:0;margin-right:0;">
-                        <div class="col-md-8" style="background: green;">sss</div>
-                        <div class="col-md-2" style="background: blue;">sss</div>
-                        <div class="col-md-2" style="background: orange;">sss</div>
-                      </div>
-                    </div>
-
-                    <div class="event-stream" style="background: red;">
-                      <div class="row" style="margin-left:0;margin-right:0;">
-                        <div class="col-md-8" style="background: green;">sss</div>
-                        <div class="col-md-2" style="background: blue;">sss</div>
-                        <div class="col-md-2" style="background: orange;">sss</div>
-                      </div>
-                    </div>
-
-                    <div class="event-stream" style="background: red;">
-                      <div class="row" style="margin-left:0;margin-right:0;">
-                        <div class="col-md-8" style="background: green;">sss</div>
-                        <div class="col-md-2" style="background: blue;">sss</div>
-                        <div class="col-md-2" style="background: orange;">sss</div>
-                      </div>
-                    </div>
-
-
-
-
-
-
-
-                    
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="form-group col-md-12">
-                  <button id="delete-event-stream-btn" type="button" class="btn btn-outline-secondary btn-sm">Delete</button>
                 </div>
               </div>
 
@@ -219,15 +117,15 @@
 
               <div class="row">
                 <div class="form-group col-md-12">
-                  <div id="events" class="border rounded pre-scrollable"></div>
+                  <button id="delete-event-btn" type="button" class="btn btn-outline-secondary btn-sm">Delete</button>
+                  <button id="select-all-events-btn" type="button" class="btn btn-outline-secondary btn-sm">Select All</button>
+                  <button id="deselect-all-events-btn" type="button" class="btn btn-outline-secondary btn-sm">Deselect All</button>
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-12">
-                  <button id="delete-event-btn" type="button" class="btn btn-outline-secondary btn-sm">Delete</button>
-                  <button id="select-all-events-btn" type="button" class="btn btn-outline-secondary btn-sm">Select All</button>
-                  <button id="deselect-all-events-btn" type="button" class="btn btn-outline-secondary btn-sm">Deselect All</button>
+                  <div id="events" class="border rounded pre-scrollable"></div>
                 </div>
               </div>
 

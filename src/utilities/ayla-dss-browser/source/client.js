@@ -34,7 +34,7 @@ urls['us']['field']['mobile'] = 'wss://mstream-field.aylanetworks.com/stream'
 
 var streams = {}
 
-var streamKeyFilter = ['url','streamKey']
+var streamKeyFilter = ['url','streamKey','eventType','eventCount','pulseCount']
 
 //------------------------------------------------------
 // Stream
@@ -47,42 +47,8 @@ class Stream {
     this.streamKey = streamKey
     this.eventType = 'unknown'
     this.eventCount = 0
-    this.heartbeatCount = 0
+    this.pulseCount = 0
     this.socket = new WebSocket(url + '?stream_key=' + streamKey)
-    this.monitor(this)
-  }
-
-  monitor(stream) {
-
-    stream.socket.onopen = function(event) {
-      console.log('open')
-    }
-
-    stream.socket.onerror = function(error) {
-      console.log('error is ' + error)
-    }
-
-    stream.socket.onmessage = function(event) {
-      if(event.data.includes('|Z')) {
-        stream.socket.send('Z')
-        stream.heartbeatCount++
-      } else {
-        var arr = event.data.split('|')
-        if(arr.length != 2) {
-          console.log('ERROR: Event split into ' + arr.length + 'substrings.')
-        } else {
-          let event = JSON.parse(arr[1])
-          stream.eventCount++
-          stream.eventType = event.metadata.event_type
-          console.log(JSON.stringify(stream, ['name','eventType','eventCount','heartbeatCount'], 2))
-          displayEvent(event)
-        }
-      }
-    }
-
-    stream.socket.onclose = function(event) {
-      console.log('close')
-    }
   }
 }
 
@@ -90,9 +56,9 @@ class Stream {
 // displayEvent
 //------------------------------------------------------
 
-function displayEvent(event) {
+function displayEvent(stream, event) {
 
-  console.log('in displayEvent')
+  $('#ID' + stream.streamKey).children('td.event-ct').first().html(stream.eventCount)
 
   let title = 'Seq ' + event.seq + ': ' + toInitialCaps(event.metadata.event_type) + ' event for ' + event.metadata.dsn + ': ';
 
@@ -145,25 +111,68 @@ function displayEvent(event) {
 //------------------------------------------------------
 
 function displayEventStream(stream) {
-  let id = 'ID' + new Date().getTime()
+  let id = 'ID' + stream.streamKey
   let item = ''
-  + '<div class="form-check event-stream">'
-  + '<input type="checkbox" class="form-check-input" value="' + stream.streamKey + '">'
-  + '<span data-toggle="collapse" href="#' + id + '">'
-  + '<label class="form-check-label collapsible">' + stream.name + '</label>'
-  + '</span>'
-  + '<div id="' + id + '" class="collapse">'
-  + '<pre>' + JSON.stringify(stream, streamKeyFilter, 2) + '</pre>'
-  + '</div>'
-  + '</div>'
+  + '<tr id="' + id + '">'
+  + '<td><input type="checkbox" value="' + stream.streamKey + '"></td>'
+  + '<td class="name">' + stream.name + '</td>'
+  + '<td class="event-ct">0</td>'
+  + '<td class="pulse-ct">0</td>'
+  + '</tr>'
+  + '<tr class="details" style="display:none;">'
+  + '<td>&nbsp;</td>'
+  + '<td colspan=3><pre>s</pre></td>'
+  + '</tr>'
   $('#event-streams').append(item)
 }
 
-$(function() {
-  $('.es-name').click(function(event) {
-    $(this).parent().next('tr').toggle()
-  })
-})
+//------------------------------------------------------
+// displayPulse
+//------------------------------------------------------
+
+function displayPulse(stream) {
+  $('#ID' + stream.streamKey).children('td.pulse-ct').first().html(stream.pulseCount)
+}
+
+//------------------------------------------------------
+// monitor
+//------------------------------------------------------
+
+function monitor(stream) {
+
+  stream.socket.onopen = function(msg) {
+    console.log('open')
+  }
+
+  stream.socket.onerror = function(msg) {
+    console.log('error is ' + msg)
+  }
+
+  stream.socket.onmessage = function(msg) {
+
+    if(msg.data.includes('|Z')) {
+      stream.socket.send('Z')
+      stream.pulseCount++
+      displayPulse(stream)
+    }
+
+    else {
+      var arr = msg.data.split('|')
+      if(arr.length != 2) {
+        console.log('ERROR: Event split into ' + arr.length + 'substrings.')
+        return
+      }
+      let event = JSON.parse(arr[1])
+      stream.eventType = event.metadata.event_type
+      stream.eventCount++
+      displayEvent(stream, event)
+    }
+  }
+
+  stream.socket.onclose = function(msg) {
+    console.log('close')
+  }
+}
 
 //------------------------------------------------------
 // onClickCreateEventStream
@@ -177,19 +186,16 @@ $(function() {
     let streamKey = $('#stream-key').val()
     let url = urls[service.region][service.deployment][clientType]
 
-
-
-    let stream = new Stream(name, url, streamKey, processEvents)
-    displayEventStream(stream)
-
-    // displayEvent({"seq": "1","metadata": {"oem_id": "0dfc7900","oem_model": "ledevb","dsn": "AC000W000340649","resource_tags": [],"event_type": "connectivity"},"connection": {"event_time": "2018-09-24T10:26:37Z","user_uuid": "40e45b84-690c-11e8-acf3-12f911dcfe40","status": "Online"}})
+    streams[streamKey] = new Stream(name, url, streamKey)
+    monitor(streams[streamKey])
+    displayEventStream(streams[streamKey])
 
     $('#create-event-stream-form').get(0).reset()
   })
 })
 
 //------------------------------------------------------
-// onClickDeleteEvent
+// onClick Events Buttons
 //------------------------------------------------------
 
 $(function() {
@@ -201,37 +207,63 @@ $(function() {
   })
 })
 
-//------------------------------------------------------
-// onClickDeleteEventStream
-//------------------------------------------------------
-
-$(function() {
-  $('#delete-event-stream-btn').click(function(event) {
-    let checkboxes = $('#event-streams div input[type=checkbox]:checked')
-    $.each(checkboxes, function(index, checkbox) {
-      console.log($(this).val())
-      $(checkbox).parent().remove()
-    })
-  })
-})
-
-//------------------------------------------------------
-// onClickSelectAllEvents
-//------------------------------------------------------
-
 $(function() {
   $('#select-all-events-btn').click(function(event) {
     $('#events div input[type=checkbox]').prop('checked', true)
   })
 })
 
-//------------------------------------------------------
-// onClickDeselectAllEvents
-//------------------------------------------------------
-
 $(function() {
   $('#deselect-all-events-btn').click(function(event) {
     $('#events div input[type=checkbox]').prop('checked', false)
+  })
+})
+
+//------------------------------------------------------
+// onClick Event Streams Buttons
+//------------------------------------------------------
+
+$(function() {
+  $('#delete-event-stream-btn').click(function(event) {
+    let checkboxes = $('#event-streams tr td input[type=checkbox]:checked')
+    $.each(checkboxes, function(index, checkbox) {
+      console.log($(this).val())
+      let tr1 = $(checkbox).parent().parent()
+      let tr2 = $(tr1).next()
+      $(tr1).remove()
+      $(tr2).remove()
+    })
+  })
+})
+
+$(function() {
+  $('#select-all-event-streams-btn').click(function(event) {
+    $('#event-streams tr td input[type=checkbox]').prop('checked', true)
+  })
+})
+
+$(function() {
+  $('#deselect-all-event-streams-btn').click(function(event) {
+    $('#event-streams tr td input[type=checkbox]').prop('checked', false)
+  })
+})
+
+//------------------------------------------------------
+// onClick Event Stream Details
+//------------------------------------------------------
+
+$(function() {
+  $("#event-streams").delegate('tr td.name', "click", function(e) {
+    let tr1 = $(this).parent()
+    let tr2 = $(tr1).next()
+    let streamKey = $(tr1).find('input').val()
+    console.log(streamKey)
+    let stream = streams[streamKey]
+    console.log(stream.name)
+    let pre = $(tr2).find('pre')
+    $(pre).empty()
+    $(pre).append(JSON.stringify(stream, streamKeyFilter, 2))
+    $(tr2).toggle()
   })
 })
 
