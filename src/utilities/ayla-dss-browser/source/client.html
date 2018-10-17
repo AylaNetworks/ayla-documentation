@@ -25,28 +25,33 @@
     <div class="row">
 
       <!-- BEGIN LEFT COLUMN -->
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-5">
 
-        <!-- BEGIN CREATE EVENT STREAM -->
+        <!-- BEGIN CREATE EVENT STREAM ROW -->
         <div class="row">
+
+          <!-- BEGIN CREATE EVENT STREAM COL -->
           <div class="form-group col-md-12">
-            <h3 data-toggle="collapse" href="#create-event-stream-collapse"><span class="collapsible">Create event stream</span></h3>
-            <div  id="create-event-stream-collapse"class="collapse show">
+
+            <h3><span data-toggle="collapse" href="#create-event-stream-collapse" class="collapsible">Create event stream</span></h3>
+
+            <!-- BEGIN CREATE EVENT STREAM FORM -->
+            <form id="create-event-stream-form"class="collapse show" action="javascript:void(0);">
 
               <!-- BEGIN NAME THE EVENT STREAM -->
               <div class="row">
                 <div class="form-group col-md-12">
                   <label>Name the event stream</label>
-                  <input id="event-stream-name" type="text" class="form-control form-control-sm" value="">
+                  <input id="event-stream-name" type="text" class="form-control form-control-sm" required>
                 </div>
               </div>
               <!-- END NAME THE EVENT STREAM -->
 
-              <!-- BEGIN SELECT A SOURCE AND CLIENT TYPE -->
+              <!-- BEGIN SELECT SERVICE -->
               <div class="row">
-                <div class="form-group col-md-6">
-                  <label>Select a source</label>
-                  <select id="event-stream-source" class="form-control form-control-sm">
+                <div class="form-group col-md-12">
+                  <label>Select a service</label>
+                  <select id="service" class="form-control form-control-sm" required>
                     <option value='{"region":"cn","deployment":"dev"}'>China : Dev</option> 
                     <option value='{"region":"cn","deployment":"field"}'>China : Field</option> 
                     <option value='{"region":"eu","deployment":"field"}'>EU : Field</option> 
@@ -55,70 +60,73 @@
                     <option value='{"region":"us","deployment":"field"}'>US : Field</option> 
                   </select>
                 </div>
+              </div>
+              <!-- END SELECT SERVICE -->
 
-                <div class="form-group col-md-6">
+              <!-- BEGIN SELECT CLIENT TYPE -->
+              <div class="row">
+                <div class="form-group col-md-12">
                   <label>Select a client type</label>
-                  <select id="event-stream-client-type" class="form-control form-control-sm">
+                  <select id="client-type" class="form-control form-control-sm" required>
                     <option value="cloud">Cloud</option>
                     <option value="mobile" selected>Mobile</option>
                   </select>
                 </div>
               </div>
-              <!-- END SELECT A SOURCE AND CLIENT TYPE -->
+              <!-- END SELECT CLIENT TYPE -->
 
-              <!-- BEGIN ENTER A STREAM KEY -->
+              <!-- BEGIN ENTER STREAM KEY -->
               <div class="row">
                 <div class="form-group col-md-12">
                   <label>Enter a stream key</label>
-                  <input id="stream-key" type="text" class="form-control form-control-sm" value="">
+                  <input id="stream-key" type="text" class="form-control form-control-sm" required>
                 </div>
               </div>
               <!-- END ENTER STREAM KEY -->
 
-              <!-- BEGIN CREATE EVENT STREAM BTN -->
-              <div class="row">
-                <div class="col-md-12">
-                  <button id="create-event-stream-btn" type="button" class="btn btn-outline-secondary btn-sm">Create</button>
-                </div>
-              </div>
-              <!-- END CREATE EVENT STREAM BTN -->
-
-            </div>
-          </div>
-        </div>
-        <!-- END CREATE EVENT STREAM -->
-
-        <!-- BEGIN EVENT STREAMS -->
-        <div class="row">
-          <div class="form-group col-md-12">
-            <h3 data-toggle="collapse" href="#event-streams-collapse"><span class="collapsible">Event streams</span></h3>
-            <div id="event-streams-collapse"class="collapse show">
-
-              <!-- BEGIN EVENT STREAMS -->
+              <!-- BEGIN CREATE EVENT STREAM BTN-->
               <div class="row">
                 <div class="form-group col-md-12">
-                  <div id="event-streams" class="border rounded pre-scrollable">
-
-                    <div class="form-check event-stream">
-                      <input type="checkbox" class="form-check-input" value="987654321">
-                      <span data-toggle="collapse" href="#ID555">
-                        <label class="form-check-label collapsible">Stream for location events</label>
-                      </span>
-                      <div id="ID555" class="collapse"><pre>sss</pre></div>
-                    </div>
-
-                    <div class="form-check event-stream">
-                      <input type="checkbox" class="form-check-input" value="987654321">
-                      <span data-toggle="collapse" href="#ID556">
-                        <label class="form-check-label collapsible">Stream for datapoint events</label>
-                      </span>
-                      <div id="ID556" class="collapse"><pre>sss</pre></div>
-                    </div>
-
-                  </div>
+                  <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
                 </div>
               </div>
-              <!-- END EVENT STREAMS -->
+              <!-- END CREATE EVENT STREAM BTN-->
+
+            </form>
+            <!-- END CREATE EVENT STREAM FORM -->
+
+          </div>
+          <!-- END CREATE EVENT STREAM COL -->
+
+        </div>
+        <!-- END CREATE EVENT STREAM ROW -->
+
+        <!-- BEGIN EVENT STREAMS ROW -->
+        <div class="row">
+
+          <!-- BEGIN EVENT STREAMS COL -->
+          <div class="form-group col-md-12">
+
+            <h3><span data-toggle="collapse" href="#event-streams-collapse" class="collapsible">Event streams</span></h3>
+
+            <!-- BEGIN EVENT STREAMS COLLAPSE -->
+            <div id="event-streams-collapse"class="collapse show">
+
+              <!-- BEGIN EVENT STREAMS ROW -->
+              <div class="row">
+
+                <!-- BEGIN EVENT STREAMS COL -->
+                <div class="form-group col-md-12">
+
+                  <!-- BEGIN EVENT STREAMS SCROLLABLE -->
+                  <div id="event-streams" class="border rounded pre-scrollable"></div>
+                  <!-- END EVENT STREAMS SCROLLABLE -->
+
+                </div>
+                <!-- END EVENT STREAMS COL -->
+
+              </div>
+              <!-- END EVENT STREAMS ROW -->
 
               <!-- BEGIN DELETE EVENT STREAM BTN -->
               <div class="row">
@@ -129,45 +137,56 @@
               <!-- END DELETE EVENT STREAM BTN -->
 
             </div>
+            <!-- END EVENT STREAMS COLLAPSE -->
+
           </div>
+          <!-- END EVENT STREAMS COL -->
+
         </div>
-        <!-- END EVENT STREAMS -->
+        <!-- END EVENT STREAMS ROW -->
 
       </div>
       <!-- END LEFT COLUMN -->
 
       <!-- BEGIN RIGHT COLUMN -->
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-7">
 
+        <!-- BEGIN EVENTS ROW -->
         <div class="row">
+
+          <!-- BEGIN EVENTS COL -->
           <div class="form-group col-md-12">
-            <h3 data-toggle="collapse" href="#events-collapse"><span class="collapsible">Events</span></h3>
+
+            <h3><span data-toggle="collapse" href="#events-collapse" class="collapsible">Events</span></h3>
+
+            <!-- BEGIN EVENTS COLLAPSE -->
             <div  id="events-collapse"class="collapse show">
 
+              <!-- BEGIN EVENTS ROW -->
               <div class="row">
+
+                <!-- BEGIN EVENTS COL -->
                 <div class="form-group col-md-12">
-                  <div id="events" class="border rounded pre-scrollable">
 
-                    <div class="event">
-                      <div><a data-toggle="collapse" href="#ID123">Connectivity event</a></div>
-                      <div id="ID123" class="collapse">
-                        <pre>sss</pre>
-                      </div>
-                    </div>
+                  <!-- BEGIN EVENTS SCROLLABLE -->
+                  <div id="events" class="border rounded pre-scrollable"></div>
+                  <!-- END EVENTS SCROLLABLE -->
 
-                    <div class="event">
-                      <div><a data-toggle="collapse" href="#ID124">Connectivity event</a></div>
-                      <div id="ID124" class="collapse">
-                        <pre>sss</pre>
-                      </div>
-                    </div>
-
-                  </div>
                 </div>
+                <!-- END EVENTS COL -->
+
               </div>
+              <!-- END EVENTS ROW -->
+
             </div>
+            <!-- END EVENTS COLLAPSE -->
+
           </div>
+          <!-- END EVENTS COL -->
+
         </div>
+        <!-- END EVENTS ROW -->
+
       </div>
       <!-- END RIGHT COLUMN -->
 

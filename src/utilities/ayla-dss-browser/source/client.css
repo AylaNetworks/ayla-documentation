@@ -33,3 +33,8 @@ label {font-weight: normal; font-size:90%; color: #b36200;}
   font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
   margin-bottom: 3px;
 }
+/*
+.btn:focus {
+  outline: none;
+}
+*/
