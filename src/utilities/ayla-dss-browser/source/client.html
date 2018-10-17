@@ -18,36 +18,22 @@
   </nav>
   <!-- END NAV MENU -->
 
-  <!-- BEGIN MAIN -->
   <main role="main" class="container">
+    <div class="row"> <!-- BEGIN OUTER ROW -->
+      <div class="form-group col-md-4"> <!-- BEGIN LEFT COLUMN -->
 
-    <!-- BEGIN OUTER ROW -->
-    <div class="row">
-
-      <!-- BEGIN LEFT COLUMN -->
-      <div class="form-group col-md-5">
-
-        <!-- BEGIN CREATE EVENT STREAM ROW -->
-        <div class="row">
-
-          <!-- BEGIN CREATE EVENT STREAM COL -->
-          <div class="form-group col-md-12">
-
-            <h3><span data-toggle="collapse" href="#create-event-stream-collapse" class="collapsible">Create event stream</span></h3>
-
-            <!-- BEGIN CREATE EVENT STREAM FORM -->
+        <div class="row"> <!-- BEGIN CREATE EVENT STREAM ROW -->
+          <div class="form-group col-md-12"> <!-- BEGIN CREATE EVENT STREAM COL -->
+            <h3><span data-toggle="collapse" href="#create-event-stream-form" class="collapsible">Create event stream</span></h3>
             <form id="create-event-stream-form"class="collapse show" action="javascript:void(0);">
 
-              <!-- BEGIN NAME THE EVENT STREAM -->
               <div class="row">
                 <div class="form-group col-md-12">
                   <label>Name the event stream</label>
                   <input id="event-stream-name" type="text" class="form-control form-control-sm" required>
                 </div>
               </div>
-              <!-- END NAME THE EVENT STREAM -->
 
-              <!-- BEGIN SELECT SERVICE -->
               <div class="row">
                 <div class="form-group col-md-12">
                   <label>Select a service</label>
@@ -61,9 +47,7 @@
                   </select>
                 </div>
               </div>
-              <!-- END SELECT SERVICE -->
 
-              <!-- BEGIN SELECT CLIENT TYPE -->
               <div class="row">
                 <div class="form-group col-md-12">
                   <label>Select a client type</label>
@@ -73,129 +57,186 @@
                   </select>
                 </div>
               </div>
-              <!-- END SELECT CLIENT TYPE -->
 
-              <!-- BEGIN ENTER STREAM KEY -->
               <div class="row">
                 <div class="form-group col-md-12">
                   <label>Enter a stream key</label>
                   <input id="stream-key" type="text" class="form-control form-control-sm" required>
                 </div>
               </div>
-              <!-- END ENTER STREAM KEY -->
 
-              <!-- BEGIN CREATE EVENT STREAM BTN-->
               <div class="row">
                 <div class="form-group col-md-12">
                   <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
                 </div>
               </div>
-              <!-- END CREATE EVENT STREAM BTN-->
 
             </form>
-            <!-- END CREATE EVENT STREAM FORM -->
+          </div> <!-- END CREATE EVENT STREAM COL -->
+        </div> <!-- END CREATE EVENT STREAM ROW -->
 
-          </div>
-          <!-- END CREATE EVENT STREAM COL -->
+        
+      </div> <!-- END LEFT COLUMN -->
 
-        </div>
-        <!-- END CREATE EVENT STREAM ROW -->
+      <div class="form-group col-md-8"> <!-- BEGIN RIGHT COLUMN -->
 
-        <!-- BEGIN EVENT STREAMS ROW -->
-        <div class="row">
+        <div class="row"> <!-- BEGIN EVENT COUNTERS ROW -->
+          <div class="form-group col-md-12"> <!-- BEGIN EVENT COUNTERS COL -->
+            <h3><span data-toggle="collapse" href="#counters-collapse" class="collapsible">Event streams</span></h3>
+            <div  id="counters-collapse"class="collapse show">
 
-          <!-- BEGIN EVENT STREAMS COL -->
-          <div class="form-group col-md-12">
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <table>
+                    <tr>
+                      <th>&nbsp;</th>
+                      <th>Name</th>
+                      <th>Events</th>
+                      <th>Pulses</th>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td class="es-name">This is a long name of an event stream that is very descriptive.</td>
+                      <td class="ecounter">2</td>
+                      <td class="hcounter">114</td>
+                    </tr>
+                    <tr style="display:none;">
+                      <td>&nbsp;</td>
+                      <td colspan=3>sss</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td class="es-name">This is a long name of an event stream that is very descriptive.</td>
+                      <td class="ecounter">2</td>
+                      <td class="hcounter">114</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td colspan=3>sss</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td class="es-name">This is a long name of an event stream that is very descriptive.</td>
+                      <td class="ecounter">2</td>
+                      <td class="hcounter">114</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td colspan=3>sss</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td class="es-name">This is a long name of an event stream that is very descriptive.</td>
+                      <td class="ecounter">2</td>
+                      <td class="hcounter">114</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td colspan=3>sss</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
 
+            </div>
+          </div> <!-- END EVENT COUNTERS COL -->
+        </div> <!-- END EVENT COUNTERS ROW -->
+
+        <div class="row"> <!-- BEGIN EVENT STREAMS ROW -->
+          <div class="form-group col-md-12"> <!-- BEGIN EVENT STREAMS COL -->
             <h3><span data-toggle="collapse" href="#event-streams-collapse" class="collapsible">Event streams</span></h3>
-
-            <!-- BEGIN EVENT STREAMS COLLAPSE -->
             <div id="event-streams-collapse"class="collapse show">
 
-              <!-- BEGIN EVENT STREAMS ROW -->
               <div class="row">
-
-                <!-- BEGIN EVENT STREAMS COL -->
                 <div class="form-group col-md-12">
+                  <div id="event-streams" class="border rounded pre-scrollable">
 
-                  <!-- BEGIN EVENT STREAMS SCROLLABLE -->
-                  <div id="event-streams" class="border rounded pre-scrollable"></div>
-                  <!-- END EVENT STREAMS SCROLLABLE -->
+                    <div class="event-stream" style="background: red;">
+                      <div class="row" style="margin-left:0;margin-right:0;">
+                        <div class="col-md-8" style="background: green;">sss</div>
+                        <div class="col-md-2" style="background: blue;">sss</div>
+                        <div class="col-md-2" style="background: orange;">sss</div>
+                      </div>
+                    </div>
 
+                    <div class="event-stream" style="background: red;">
+                      <div class="row" style="margin-left:0;margin-right:0;">
+                        <div class="col-md-8" style="background: green;">sss</div>
+                        <div class="col-md-2" style="background: blue;">sss</div>
+                        <div class="col-md-2" style="background: orange;">sss</div>
+                      </div>
+                    </div>
+
+                    <div class="event-stream" style="background: red;">
+                      <div class="row" style="margin-left:0;margin-right:0;">
+                        <div class="col-md-8" style="background: green;">sss</div>
+                        <div class="col-md-2" style="background: blue;">sss</div>
+                        <div class="col-md-2" style="background: orange;">sss</div>
+                      </div>
+                    </div>
+
+                    <div class="event-stream" style="background: red;">
+                      <div class="row" style="margin-left:0;margin-right:0;">
+                        <div class="col-md-8" style="background: green;">sss</div>
+                        <div class="col-md-2" style="background: blue;">sss</div>
+                        <div class="col-md-2" style="background: orange;">sss</div>
+                      </div>
+                    </div>
+
+                    <div class="event-stream" style="background: red;">
+                      <div class="row" style="margin-left:0;margin-right:0;">
+                        <div class="col-md-8" style="background: green;">sss</div>
+                        <div class="col-md-2" style="background: blue;">sss</div>
+                        <div class="col-md-2" style="background: orange;">sss</div>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+                    
+                  </div>
                 </div>
-                <!-- END EVENT STREAMS COL -->
-
               </div>
-              <!-- END EVENT STREAMS ROW -->
 
-              <!-- BEGIN DELETE EVENT STREAM BTN -->
               <div class="row">
-                <div class="col-md-12">
+                <div class="form-group col-md-12">
                   <button id="delete-event-stream-btn" type="button" class="btn btn-outline-secondary btn-sm">Delete</button>
                 </div>
               </div>
-              <!-- END DELETE EVENT STREAM BTN -->
 
             </div>
-            <!-- END EVENT STREAMS COLLAPSE -->
+          </div> <!-- END EVENT STREAMS COL -->
+        </div> <!-- END EVENT STREAMS ROW -->
 
-          </div>
-          <!-- END EVENT STREAMS COL -->
-
-        </div>
-        <!-- END EVENT STREAMS ROW -->
-
-      </div>
-      <!-- END LEFT COLUMN -->
-
-      <!-- BEGIN RIGHT COLUMN -->
-      <div class="form-group col-md-7">
-
-        <!-- BEGIN EVENTS ROW -->
-        <div class="row">
-
-          <!-- BEGIN EVENTS COL -->
-          <div class="form-group col-md-12">
-
+        <div class="row"> <!-- BEGIN EVENTS ROW -->
+          <div class="form-group col-md-12"> <!-- BEGIN EVENTS COL -->
             <h3><span data-toggle="collapse" href="#events-collapse" class="collapsible">Events</span></h3>
-
-            <!-- BEGIN EVENTS COLLAPSE -->
             <div  id="events-collapse"class="collapse show">
 
-              <!-- BEGIN EVENTS ROW -->
               <div class="row">
-
-                <!-- BEGIN EVENTS COL -->
                 <div class="form-group col-md-12">
-
-                  <!-- BEGIN EVENTS SCROLLABLE -->
                   <div id="events" class="border rounded pre-scrollable"></div>
-                  <!-- END EVENTS SCROLLABLE -->
-
                 </div>
-                <!-- END EVENTS COL -->
-
               </div>
-              <!-- END EVENTS ROW -->
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <button id="delete-event-btn" type="button" class="btn btn-outline-secondary btn-sm">Delete</button>
+                  <button id="select-all-events-btn" type="button" class="btn btn-outline-secondary btn-sm">Select All</button>
+                  <button id="deselect-all-events-btn" type="button" class="btn btn-outline-secondary btn-sm">Deselect All</button>
+                </div>
+              </div>
 
             </div>
-            <!-- END EVENTS COLLAPSE -->
-
-          </div>
-          <!-- END EVENTS COL -->
-
-        </div>
-        <!-- END EVENTS ROW -->
-
-      </div>
-      <!-- END RIGHT COLUMN -->
-
-    </div>
-    <!-- END OUTER ROW -->
-
+          </div> <!-- END EVENTS COL -->
+        </div> <!-- END EVENTS ROW -->
+      </div> <!-- END RIGHT COLUMN -->
+    </div> <!-- END OUTER ROW -->
   </main>
-  <!-- END MAIN -->
-
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

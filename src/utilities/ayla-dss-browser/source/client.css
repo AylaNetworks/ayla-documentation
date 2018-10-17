@@ -12,14 +12,10 @@ label {font-weight: normal; font-size:90%; color: #b36200;}
 
 #event-streams {padding:6px; height:160px;}
 
-.event-stream {}
-
-#events {padding:6px; min-height: 468px; max-height: 468px;}
-
-.event {}
+#events {padding:6px; min-height: 333px; max-height: 333px;}
 
 .event-stream label, 
-.event div a {font-size: 95%; font-weight: normal; text-decoration: none; color: gray;}
+.event label {font-size: 95%; font-weight: normal; text-decoration: none; color: gray;}
 
 .event-stream pre, 
 .event pre {
@@ -33,8 +29,13 @@ label {font-weight: normal; font-size:90%; color: #b36200;}
   font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
   margin-bottom: 3px;
 }
-/*
-.btn:focus {
-  outline: none;
-}
-*/
+
+table {width: 100%;}
+table th:nth-child(1) {width:10px;}
+table th:nth-child(3), table th:nth-child(4) {width:80px;}
+table, th, td {border-collapse: collapse; vertical-align:top;}
+table th, table td {border: 1px solid lightgray; padding: 3px 6px;}
+table th {font-weight: normal; font-size:90%; color: black;}
+table td {font-size: 90%; font-weight: normal; text-decoration: none; color: gray;}
+
+.es-name {cursor: pointer;}

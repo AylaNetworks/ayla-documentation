@@ -41,42 +41,49 @@ var streamKeyFilter = ['url','streamKey']
 //------------------------------------------------------
 
 class Stream {
-  constructor(name, url, streamKey, processEvents) {
+  constructor(name, url, streamKey) {
     this.name = name
     this.url = url
     this.streamKey = streamKey
-    this.processEvents = processEvents
-    //this.socket = new WebSocket(serviceUrl + '?stream_key=' + streamKey)
-    //this.monitor(this.socket, this.name, this.processEvent)
+    this.eventType = 'unknown'
+    this.eventCount = 0
+    this.heartbeatCount = 0
+    this.socket = new WebSocket(url + '?stream_key=' + streamKey)
+    this.monitor(this)
   }
 
-  destructor() {
-  }
-/*
-  monitor(socket, name, processEvents) {
+  monitor(stream) {
 
-    socket.onopen = function(event) {
+    stream.socket.onopen = function(event) {
       console.log('open')
     }
 
-    socket.onerror = function(error) {
+    stream.socket.onerror = function(error) {
       console.log('error is ' + error)
     }
 
-    socket.onmessage = function(event) {
+    stream.socket.onmessage = function(event) {
       if(event.data.includes('|Z')) {
-        socket.send('Z')
-        console.log('Heartbeat')
+        stream.socket.send('Z')
+        stream.heartbeatCount++
       } else {
-        processEvent(event)
+        var arr = event.data.split('|')
+        if(arr.length != 2) {
+          console.log('ERROR: Event split into ' + arr.length + 'substrings.')
+        } else {
+          let event = JSON.parse(arr[1])
+          stream.eventCount++
+          stream.eventType = event.metadata.event_type
+          console.log(JSON.stringify(stream, ['name','eventType','eventCount','heartbeatCount'], 2))
+          displayEvent(event)
+        }
       }
     }
 
-    socket.onclose = function(event) {
+    stream.socket.onclose = function(event) {
       console.log('close')
     }
   }
-*/
 }
 
 //------------------------------------------------------
@@ -85,49 +92,52 @@ class Stream {
 
 function displayEvent(event) {
 
-  let specific = toInitialCaps(event.metadata.event_type) + ' event for ' + event.metadata.dsn + ': ';
+  console.log('in displayEvent')
+
+  let title = 'Seq ' + event.seq + ': ' + toInitialCaps(event.metadata.event_type) + ' event for ' + event.metadata.dsn + ': ';
 
   switch(event.metadata.event_type) {
     case 'connectivity':
-    specific += event.connection.status;
+    title += event.connection.status;
     break;
 
     case 'datapoint':
     var value = event.datapoint.value;
     if(value.length > 30) {value = value.slice(0, 30) + ' ...';}
-    specific += event.metadata.display_name + ' = ' + value;
+    title += event.metadata.display_name + ' = ' + value;
     break;
 
     case 'datapointack':
     var value = event.datapointack.value;
     if(value.length > 30) {value = value.slice(0, 30) + ' ...';}
-    specific += event.metadata.display_name + ' = ' + value;
+    title += event.metadata.display_name + ' = ' + value;
     break;
 
     case 'location':
-    specific += 'lat = ' + event.location_event.lat + ', long = ' + event.location_event.long
+    title += 'lat = ' + event.location_event.lat + ', long = ' + event.location_event.long
     break;
 
     case 'registration':
-    specific += 'registered = ' + event.registration_event.registered;
+    title += 'registered = ' + event.registration_event.registered;
     break;
 
     default:
     break;
   }
 
-  let now = new Date();
-  let title = toDateTime(now) + ' ' + specific;
-
-  let id = 'ID' + now.getTime()
+  let id = 'ID' + new Date().getTime()
   let item = ''
-  + '<div class="event">'
-  + '<div><a data-toggle="collapse" href="#' + id + '">' + specific + '</a></div>'
+  + '<div class="form-check event">'
+  + '<input type="checkbox" class="form-check-input">'
+  + '<span data-toggle="collapse" href="#' + id + '">'
+  + '<label class="form-check-label collapsible">' + title + '</label>'
+  + '</span>'
   + '<div id="' + id + '" class="collapse">'
   + '<pre>' + JSON.stringify(event, null, 2) + '</pre>'
   + '</div>'
   + '</div>'
-  $('#events').append(item)
+  $('#events').prepend(item)
+  
 }
 
 //------------------------------------------------------
@@ -149,6 +159,12 @@ function displayEventStream(stream) {
   $('#event-streams').append(item)
 }
 
+$(function() {
+  $('.es-name').click(function(event) {
+    $(this).parent().next('tr').toggle()
+  })
+})
+
 //------------------------------------------------------
 // onClickCreateEventStream
 //------------------------------------------------------
@@ -161,12 +177,27 @@ $(function() {
     let streamKey = $('#stream-key').val()
     let url = urls[service.region][service.deployment][clientType]
 
+
+
     let stream = new Stream(name, url, streamKey, processEvents)
     displayEventStream(stream)
 
-    displayEvent({"seq": "1","metadata": {"oem_id": "0dfc7900","oem_model": "ledevb","dsn": "AC000W000340649","resource_tags": [],"event_type": "connectivity"},"connection": {"event_time": "2018-09-24T10:26:37Z","user_uuid": "40e45b84-690c-11e8-acf3-12f911dcfe40","status": "Online"}})
+    // displayEvent({"seq": "1","metadata": {"oem_id": "0dfc7900","oem_model": "ledevb","dsn": "AC000W000340649","resource_tags": [],"event_type": "connectivity"},"connection": {"event_time": "2018-09-24T10:26:37Z","user_uuid": "40e45b84-690c-11e8-acf3-12f911dcfe40","status": "Online"}})
 
     $('#create-event-stream-form').get(0).reset()
+  })
+})
+
+//------------------------------------------------------
+// onClickDeleteEvent
+//------------------------------------------------------
+
+$(function() {
+  $('#delete-event-btn').click(function(event) {
+    let checkboxes = $('#events div input[type=checkbox]:checked')
+    $.each(checkboxes, function(index, checkbox) {
+      $(checkbox).parent().remove()
+    })
   })
 })
 
@@ -185,12 +216,24 @@ $(function() {
 })
 
 //------------------------------------------------------
-// processEvents
+// onClickSelectAllEvents
 //------------------------------------------------------
 
-function processEvents() {
+$(function() {
+  $('#select-all-events-btn').click(function(event) {
+    $('#events div input[type=checkbox]').prop('checked', true)
+  })
+})
 
-}
+//------------------------------------------------------
+// onClickDeselectAllEvents
+//------------------------------------------------------
+
+$(function() {
+  $('#deselect-all-events-btn').click(function(event) {
+    $('#events div input[type=checkbox]').prop('checked', false)
+  })
+})
 
 //------------------------------------------------------
 // toInitialCaps
