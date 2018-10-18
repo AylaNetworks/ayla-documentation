@@ -10,18 +10,9 @@ h3 {font-size: 100%; font-weight: bold; color: black;}
 
 label {font-weight: normal; font-size:90%; color: #b36200;}
 
-/* #event-streams {padding:6px; height:160px;} */
+/* Events */
 
-#events {padding:6px; min-height: 250px; max-height: 250px;}
-
-.event-stream label, 
 .event label {font-size: 90%; font-weight: normal; text-decoration: none; color: gray;}
-
-#event-streams .name {cursor: pointer;}
-
-#event-streams .details td {border-color: white;}
-
-#event-streams .details td pre, 
 .event pre {
   background: #333333;
   padding: 6px;
@@ -34,16 +25,33 @@ label {font-weight: normal; font-size:90%; color: #b36200;}
   margin-bottom: 4px;
   margin-right: 4px;
 }
+/*#events {padding:6px; min-height: 250px; max-height: 250px;}*/
 
-table {width: 100%;}
-table th:nth-child(1) {width:10px;}
-table th:nth-child(3), table th:nth-child(4) {width:80px; text-align: right;}
-table, th, td {border-collapse: collapse; vertical-align:top;}
-table {border: 1px solid lightgray;}
-table th {border-bottom: 1px solid lightgray;}
-table td {border-top: 1px solid lightgray;}
-table th, table td {padding: 3px 4px;}
-table th {font-size:90%; font-weight: normal; color: black;}
-table td {font-size:90%; font-weight: normal; color: gray;}
-table .event-ct, table .pulse-ct {text-align: right;}
+/* Event Streams */
 
+#event-streams {width: 100%;}
+#event-streams th:nth-child(1) {width:10px;}
+#event-streams th:nth-child(3), #event-streams th:nth-child(4) {width:90px; text-align: right;}
+#event-streams, th, td {border-collapse: collapse; vertical-align:top;}
+#event-streams {border: 1px solid lightgray;}
+#event-streams th {border-bottom: 1px solid lightgray;}
+#event-streams td {border-top: 1px solid lightgray;}
+#event-streams th, #event-streams td {padding: 3px 4px;}
+#event-streams th {font-size:90%; font-weight: normal; color: black;}
+#event-streams td {font-size:90%; font-weight: normal; color: gray;}
+#event-streams .numEvents, #event-streams .numHB {text-align: right;}
+
+#event-streams .name {cursor: pointer;}
+#event-streams .details td {border-color: white;}
+#event-streams .details td pre {
+  background: #333333;
+  padding: 6px;
+  border: none;
+  line-height: 1rem;
+  color: white;
+  font-weight: normal;
+  font-size: 85%;
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+  margin-bottom: 4px;
+  margin-right: 4px;
+}

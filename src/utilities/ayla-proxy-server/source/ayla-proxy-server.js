@@ -6,11 +6,11 @@ var AylaProxyServer = {
 
   createDatapoint: function(propertyId, value, authToken, success=successCb, failure=failureCb) {
     let data = {
-      "datapoint": {
-        "value": value,
-        "metadata": {
-          "key1": "",
-          "key2": ""
+      'datapoint': {
+        'value': value,
+        'metadata': {
+          'key1': '',
+          'key2': ''
         }
       }
     }
@@ -45,6 +45,27 @@ var AylaProxyServer = {
       data: JSON.stringify(data)
     })
     .then(function (response) {success(response.data)})
+    .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  },
+
+  //------------------------------------------------------
+  // deleteDssStream
+  //------------------------------------------------------
+
+  deleteDssStream: function(url, streamKey, success=successCb, failure=failureCb) {
+    let data = {
+      'url': url,
+      'streamkey': streamKey
+    }
+    axios({
+      method: 'delete',
+      url: 'https://docs.aylanetworks.com/api/v1/dss/streams',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(data)
+    })
+    .then(function (response) {success({})})
     .catch(function (error) {failure(error.response.status, error.response.statusText)})
   },
 

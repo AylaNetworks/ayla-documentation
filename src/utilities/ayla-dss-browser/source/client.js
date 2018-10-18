@@ -33,8 +33,9 @@ urls['us']['field']['cloud'] = 'wss://stream-field.aylanetworks.com/stream'
 urls['us']['field']['mobile'] = 'wss://mstream-field.aylanetworks.com/stream'
 
 var streams = {}
+var nextStreamId = 1
 
-var streamKeyFilter = ['url','streamKey','eventType','eventCount','pulseCount']
+var streamKeyFilter = ['url','streamKey','eventType','numEvents','numHB']
 
 //------------------------------------------------------
 // Stream
@@ -42,12 +43,13 @@ var streamKeyFilter = ['url','streamKey','eventType','eventCount','pulseCount']
 
 class Stream {
   constructor(name, url, streamKey) {
-    this.name = name
+    this.id = 'ES' + nextStreamId++
+    this.name = this.id + ': ' + name
     this.url = url
     this.streamKey = streamKey
     this.eventType = 'unknown'
-    this.eventCount = 0
-    this.pulseCount = 0
+    this.numEvents = 0
+    this.numHB = 0
     this.socket = new WebSocket(url + '?stream_key=' + streamKey)
   }
 }
@@ -56,11 +58,9 @@ class Stream {
 // displayEvent
 //------------------------------------------------------
 
-function displayEvent(stream, event) {
+function displayEvent(streamId, event) {
 
-  $('#ID' + stream.streamKey).children('td.event-ct').first().html(stream.eventCount)
-
-  let title = 'Seq ' + event.seq + ': ' + toInitialCaps(event.metadata.event_type) + ' event for ' + event.metadata.dsn + ': ';
+  let title = streamId + '-EV' + event.seq + ': ' + toInitialCaps(event.metadata.event_type) + ' event for ' + event.metadata.dsn + ': ';
 
   switch(event.metadata.event_type) {
     case 'connectivity':
@@ -116,8 +116,8 @@ function displayEventStream(stream) {
   + '<tr id="' + id + '">'
   + '<td><input type="checkbox" value="' + stream.streamKey + '"></td>'
   + '<td class="name">' + stream.name + '</td>'
-  + '<td class="event-ct">0</td>'
-  + '<td class="pulse-ct">0</td>'
+  + '<td class="numEvents">0</td>'
+  + '<td class="numHB">0</td>'
   + '</tr>'
   + '<tr class="details" style="display:none;">'
   + '<td>&nbsp;</td>'
@@ -127,33 +127,25 @@ function displayEventStream(stream) {
 }
 
 //------------------------------------------------------
-// displayPulse
-//------------------------------------------------------
-
-function displayPulse(stream) {
-  $('#ID' + stream.streamKey).children('td.pulse-ct').first().html(stream.pulseCount)
-}
-
-//------------------------------------------------------
 // monitor
 //------------------------------------------------------
 
 function monitor(stream) {
 
   stream.socket.onopen = function(msg) {
-    console.log('open')
+    console.log('onopen for stream key ' + stream.streamKey)
   }
 
   stream.socket.onerror = function(msg) {
-    console.log('error is ' + msg)
+    console.log('onerror and error is ' + msg)
   }
 
   stream.socket.onmessage = function(msg) {
 
     if(msg.data.includes('|Z')) {
       stream.socket.send('Z')
-      stream.pulseCount++
-      displayPulse(stream)
+      stream.numHB++
+      $('#ID' + stream.streamKey).children('td.numHB').first().html(stream.numHB)
     }
 
     else {
@@ -164,23 +156,28 @@ function monitor(stream) {
       }
       let event = JSON.parse(arr[1])
       stream.eventType = event.metadata.event_type
-      stream.eventCount++
-      displayEvent(stream, event)
+      stream.numEvents++
+      $('#ID' + stream.streamKey).children('td.numEvents').first().html(stream.numEvents)
+      displayEvent(stream.id, event)
     }
   }
 
   stream.socket.onclose = function(msg) {
-    console.log('close')
+    console.log('onclose for stream key ' + stream.streamKey)
+    console.log('stream.readyState = ' + stream.readyState)
   }
 }
 
 //------------------------------------------------------
-// onClickCreateEventStream
+// Create Event Stream
 //------------------------------------------------------
 
 $(function() {
   $('#create-event-stream-form').submit(function(event) {
     let name = $('#event-stream-name').val()
+    if(!name) {
+      name = $('#event-stream-name').prop('placeholder')
+    }
     let service = JSON.parse($('#service').val())
     let clientType = $('#client-type').val()
     let streamKey = $('#stream-key').val()
@@ -220,27 +217,45 @@ $(function() {
 })
 
 //------------------------------------------------------
-// onClick Event Streams Buttons
+// Delete Event Streams
 //------------------------------------------------------
 
 $(function() {
   $('#delete-event-stream-btn').click(function(event) {
     let checkboxes = $('#event-streams tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
-      console.log($(this).val())
-      let tr1 = $(checkbox).parent().parent()
-      let tr2 = $(tr1).next()
-      $(tr1).remove()
-      $(tr2).remove()
+
+      let streamKey = $(this).val()
+      console.log('Deleting event stream with key ' + streamKey)
+      //let stream = streams[streamKey]
+
+      //AylaProxyServer.deleteDssStream(stream.url, streamKey, function (data) {
+      //  console.log('Success deleting stream')
+        let tr1 = $(checkbox).parent().parent()
+        let tr2 = $(tr1).next()
+        $(tr1).remove()
+        $(tr2).remove()
+      //}, function(statusCode, statusText) {
+      //  console.log('Error deleting stream')
+      //})
+
     })
   })
 })
+
+//------------------------------------------------------
+// 
+//------------------------------------------------------
 
 $(function() {
   $('#select-all-event-streams-btn').click(function(event) {
     $('#event-streams tr td input[type=checkbox]').prop('checked', true)
   })
 })
+
+//------------------------------------------------------
+// 
+//------------------------------------------------------
 
 $(function() {
   $('#deselect-all-event-streams-btn').click(function(event) {
@@ -249,7 +264,7 @@ $(function() {
 })
 
 //------------------------------------------------------
-// onClick Event Stream Details
+// Display Event Stream Details
 //------------------------------------------------------
 
 $(function() {
@@ -257,9 +272,7 @@ $(function() {
     let tr1 = $(this).parent()
     let tr2 = $(tr1).next()
     let streamKey = $(tr1).find('input').val()
-    console.log(streamKey)
     let stream = streams[streamKey]
-    console.log(stream.name)
     let pre = $(tr2).find('pre')
     $(pre).empty()
     $(pre).append(JSON.stringify(stream, streamKeyFilter, 2))

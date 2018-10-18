@@ -29,4 +29,7 @@ module.exports = function(app) {
 
   app.route('/api/v1/dss/subscriptions/:subscriptionId')
     .delete(controllers.deleteDssSubscription);
+
+  app.route('/api/v1/dss/streams')
+    .delete(controllers.deleteDssStream);
 };

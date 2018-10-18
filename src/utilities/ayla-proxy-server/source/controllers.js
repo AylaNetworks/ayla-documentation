@@ -66,6 +66,25 @@ exports.deleteDssSubscription = function(req, res) {
 }
 
 //------------------------------------------------------
+// deleteDssStream
+//------------------------------------------------------
+
+exports.deleteDssStream = function(req, res) {
+  axios({
+    method: 'delete',
+    url: req.body.url + '?stream_key=' + req.body.streamKey
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.end()
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+//------------------------------------------------------
 // getDevice
 //------------------------------------------------------
 
