@@ -3,20 +3,11 @@ urls['cn'] = []
 urls['cn']['dev'] = []
 urls['cn']['dev']['cloud'] = 'wss://stream.ayla.com.cn/stream/stream'
 urls['cn']['dev']['mobile'] = 'wss://mstream.ayla.com.cn/stream'
-urls['cn']['staging'] = []
-urls['cn']['staging']['cloud'] = ''
-urls['cn']['staging']['mobile'] = ''
 urls['cn']['field'] = []
 urls['cn']['field']['cloud'] = 'wss://stream-field.ayla.com.cn/stream'
 urls['cn']['field']['mobile'] = 'wss://mstream-field.ayla.com.cn/stream'
 
 urls['eu'] = []
-urls['eu']['dev'] = []
-urls['eu']['dev']['cloud'] = ''
-urls['eu']['dev']['mobile'] = ''
-urls['eu']['staging'] = []
-urls['eu']['staging']['cloud'] = ''
-urls['eu']['staging']['mobile'] = ''
 urls['eu']['field'] = []
 urls['eu']['field']['cloud'] = 'wss://stream-field-eu.aylanetworks.com/stream'
 urls['eu']['field']['mobile'] = 'wss://mstream-field-eu.aylanetworks.com/stream'
@@ -34,61 +25,60 @@ urls['us']['field']['mobile'] = 'wss://mstream-field.aylanetworks.com/stream'
 
 var streams = {}
 var nextStreamId = 1
-
-var streamKeyFilter = ['url','streamKey','eventType','numEvents','numHB']
+var streamKeyFilter = ['url','streamKey','eventType','numEvents','numHBs']
 
 //------------------------------------------------------
 // Stream
 //------------------------------------------------------
 
 class Stream {
-  constructor(name, url, streamKey) {
+  constructor(name, url, key) {
     this.id = 'ES' + nextStreamId++
     this.name = this.id + ': ' + name
     this.url = url
-    this.streamKey = streamKey
+    this.key = key
     this.eventType = 'unknown'
     this.numEvents = 0
-    this.numHB = 0
-    this.socket = new WebSocket(url + '?stream_key=' + streamKey)
+    this.numHBs = 0
+    this.socket = new WebSocket(url + '?stream_key=' + key)
   }
 }
 
 //------------------------------------------------------
-// displayEvent
+// processEvent
 //------------------------------------------------------
 
-function displayEvent(streamId, event) {
+function processEvent(stream, event) {
 
-  let title = streamId + '-EV' + event.seq + ': ' + toInitialCaps(event.metadata.event_type) + ' event for ' + event.metadata.dsn + ': ';
+  let title = stream. id + '-EV' + event.seq + ': ' + event.metadata.event_type + ' event for ' + event.metadata.dsn + ': '
 
   switch(event.metadata.event_type) {
     case 'connectivity':
-    title += event.connection.status;
-    break;
+    title += event.connection.status
+    break
 
     case 'datapoint':
-    var value = event.datapoint.value;
-    if(value.length > 30) {value = value.slice(0, 30) + ' ...';}
-    title += event.metadata.display_name + ' = ' + value;
-    break;
+    var value = event.datapoint.value
+    if(value.length > 30) {value = value.slice(0, 30) + ' ...'}
+    title += event.metadata.display_name + ' = ' + value
+    break
 
     case 'datapointack':
-    var value = event.datapointack.value;
-    if(value.length > 30) {value = value.slice(0, 30) + ' ...';}
-    title += event.metadata.display_name + ' = ' + value;
-    break;
+    var value = event.datapointack.value
+    if(value.length > 30) {value = value.slice(0, 30) + ' ...'}
+    title += event.metadata.display_name + ' = ' + value
+    break
 
     case 'location':
     title += 'lat = ' + event.location_event.lat + ', long = ' + event.location_event.long
-    break;
+    break
 
     case 'registration':
-    title += 'registered = ' + event.registration_event.registered;
-    break;
+    title += 'registered = ' + event.registration_event.registered
+    break
 
     default:
-    break;
+    break
   }
 
   let id = 'ID' + new Date().getTime()
@@ -111,13 +101,13 @@ function displayEvent(streamId, event) {
 //------------------------------------------------------
 
 function displayEventStream(stream) {
-  let id = 'ID' + stream.streamKey
+  let id = 'ID' + stream.key
   let item = ''
   + '<tr id="' + id + '">'
-  + '<td><input type="checkbox" value="' + stream.streamKey + '"></td>'
+  + '<td><input type="checkbox" value="' + stream.key + '"></td>'
   + '<td class="name">' + stream.name + '</td>'
   + '<td class="numEvents">0</td>'
-  + '<td class="numHB">0</td>'
+  + '<td class="numHBs">0</td>'
   + '</tr>'
   + '<tr class="details" style="display:none;">'
   + '<td>&nbsp;</td>'
@@ -127,13 +117,13 @@ function displayEventStream(stream) {
 }
 
 //------------------------------------------------------
-// monitor
+// monitorEventStream
 //------------------------------------------------------
 
-function monitor(stream) {
+function monitorEventStream(stream) {
 
   stream.socket.onopen = function(msg) {
-    console.log('onopen for stream key ' + stream.streamKey)
+    console.log('onopen for stream key ' + stream.key)
   }
 
   stream.socket.onerror = function(msg) {
@@ -144,8 +134,8 @@ function monitor(stream) {
 
     if(msg.data.includes('|Z')) {
       stream.socket.send('Z')
-      stream.numHB++
-      $('#ID' + stream.streamKey).children('td.numHB').first().html(stream.numHB)
+      stream.numHBs++
+      $('#ID' + stream.key).children('td.numHBs').first().html(stream.numHBs)
     }
 
     else {
@@ -157,13 +147,13 @@ function monitor(stream) {
       let event = JSON.parse(arr[1])
       stream.eventType = event.metadata.event_type
       stream.numEvents++
-      $('#ID' + stream.streamKey).children('td.numEvents').first().html(stream.numEvents)
-      displayEvent(stream.id, event)
+      $('#ID' + stream.key).children('td.numEvents').first().html(stream.numEvents)
+      processEvent(stream, event)
     }
   }
 
   stream.socket.onclose = function(msg) {
-    console.log('onclose for stream key ' + stream.streamKey)
+    console.log('onclose for stream key ' + stream.key)
     console.log('stream.readyState = ' + stream.readyState)
   }
 }
@@ -180,19 +170,19 @@ $(function() {
     }
     let service = JSON.parse($('#service').val())
     let clientType = $('#client-type').val()
-    let streamKey = $('#stream-key').val()
+    let key = $('#stream-key').val()
     let url = urls[service.region][service.deployment][clientType]
 
-    streams[streamKey] = new Stream(name, url, streamKey)
-    monitor(streams[streamKey])
-    displayEventStream(streams[streamKey])
+    streams[key] = new Stream(name, url, key)
+    monitorEventStream(streams[key])
+    displayEventStream(streams[key])
 
     $('#create-event-stream-form').get(0).reset()
   })
 })
 
 //------------------------------------------------------
-// onClick Events Buttons
+// Delete Event
 //------------------------------------------------------
 
 $(function() {
@@ -204,11 +194,19 @@ $(function() {
   })
 })
 
+//------------------------------------------------------
+// Select ALL Events
+//------------------------------------------------------
+
 $(function() {
   $('#select-all-events-btn').click(function(event) {
     $('#events div input[type=checkbox]').prop('checked', true)
   })
 })
+
+//------------------------------------------------------
+// Deselect ALL Events
+//------------------------------------------------------
 
 $(function() {
   $('#deselect-all-events-btn').click(function(event) {
@@ -244,7 +242,7 @@ $(function() {
 })
 
 //------------------------------------------------------
-// 
+// Select All Event Streams
 //------------------------------------------------------
 
 $(function() {
@@ -254,7 +252,7 @@ $(function() {
 })
 
 //------------------------------------------------------
-// 
+// Deselect All Event Streams
 //------------------------------------------------------
 
 $(function() {
@@ -279,19 +277,3 @@ $(function() {
     $(tr2).toggle()
   })
 })
-
-//------------------------------------------------------
-// toInitialCaps
-//------------------------------------------------------
-
-function toInitialCaps(s) {
-  return s.substring(0,1).toUpperCase() + s.substring(1)
-}
-
-//------------------------------------------------------
-// toDateTime
-//------------------------------------------------------
-
-function toDateTime(date) {
-  return date.toISOString().slice(0,19).replace('T', ' ');
-}
