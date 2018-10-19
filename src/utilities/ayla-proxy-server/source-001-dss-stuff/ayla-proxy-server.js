@@ -165,14 +165,19 @@ var AylaProxyServer = {
   // login
   //------------------------------------------------------
 
-  login: function(email, password, appId, appSecret, success=successCb, failure=failureCb) {
+  login: function(email, password, success=successCb, failure=failureCb) {
     var data = {
       'user': {
         'email': email,
         'password': password,
         'application': {
-          'app_id': appId,
-          'app_secret': appSecret
+          'app_id': 'aylau-id',
+          'app_secret': 'aylau-hC9Kgc4EQvYxb-9sUFpHlKfBx74'
+        /*
+        'application': {
+          'app_id': 'alya-api-browser-id',
+          'app_secret': 'alya-api-browser-2tFsUL41FELUlyfrSMEZ4kNKwJg'
+          */
         }
       }
     }

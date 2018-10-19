@@ -315,6 +315,11 @@ span.a {
 
 .normal-table {font-size: 95%; color: gray;}
 
+.key-value-table {font-size: 90%; line-height: 12px; }
+.key-value-table, .key-value-table th, .key-value-table td {border: 1px gainsboro solid !important;}
+.key-value-table tr th {background: white !important; color: darkgreen !important;}
+.key-value-table tr td {color: gray;}
+
 /******************************************
  img
 ******************************************/

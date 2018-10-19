@@ -1,4 +1,4 @@
-const appName = 'Ayla DSS Collector'
+const appName = 'DSS Collector'
 
 const express = require('express')
 const WebSocket = require('ws')

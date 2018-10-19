@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ayla Proxy Client</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="client.css">
+</head>
+
+<body>
+
+  <!-- BEGIN NAV MENU -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" style="height:62px;">
+    <a class="navbar-brand" href="./client.html">Ayla Proxy Client</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navdrop"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navdrop">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a id="account-link" class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"></a>
+          <div class="dropdown-menu dropdown-menu-right" style="width:320px;background:snow;">
+
+            <!-- BEGIN LOGIN FORM -->
+            <form id="login-form" style="display:none;">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <div style="text-align:center;font-size:80%;color:gray;">Log into your Ayla account.</div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <input type="email" class="form-control" id="email" placeholder="email" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <input type="password" class="form-control" id="password" placeholder="password" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <button id="login-submit" type="submit" class="btn btn-success btn-sm btn-block">Login</button>
+                </div>
+                <div class="form-group col-md-6">
+                  <button id="login-close" type="button" class="btn btn-secondary btn-sm btn-block click-body">Close</button>
+                </div>
+              </div>
+            </form>
+            <!-- END LOGIN FORM -->
+
+            <!-- BEGIN LOGOUT FORM -->
+            <form id="logout-form" style="display:none;">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <div style="text-align:center;font-size:80%;color:gray;">You are logged into your Ayla account.</div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <button id="logout-submit" type="submit" class="btn btn-warning btn-sm btn-block">Logout</button>
+                </div>
+                <div class="form-group col-md-6">
+                  <button id="logout-close" type="button" class="btn btn-secondary btn-sm btn-block click-body">Close</button>
+                </div>
+              </div>
+            </form>
+            <!-- END LOGOUT FORM -->
+
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- END NAV MENU -->
+
+  <main role="main" class="container">
+
+    <!-- BEGIN ERROR MSG BOX -->
+    <div id="error-msg" style="display:none;">
+      <button id="error-msg-btn" type="text" class="btn btn-light btn-sm">Close</button><span></span>
+    </div>
+    <!-- END ERROR MSG BOX -->
+
+    <!-- BEGIN TAB LIST -->
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" data-toggle="tab" href="#event-streams-tab" role="tab">Event Streams</a>
+      <a class="nav-item nav-link" data-toggle="tab" href="#events-tab" role="tab">Events</a>
+    </div>
+    <!-- BEGIN TAB LIST -->
+
+    <!-- BEGIN TAB CONTENT -->
+    <div class="tab-content">
+
+      <!-- BEGIN EVENT STREAMS TAB -->
+      <div class="tab-pane fade show active" id="event-streams-tab" role="tabpanel">
+
+        <!-- BEGIN OUTER ROW -->
+        <div class="row">
+
+          <!-- BEGIN LEFT COLUMN -->
+          <div class="form-group col-md-6">
+
+            <!-- BEGIN CREATE EVENT STREAM -->
+            <div class="row">
+              <div class="form-group col-md-12">
+
+                <h3 data-toggle="collapse" href="#create-event-stream"><span class="collapsible">Create Event Stream</span></h3>
+                <div  id="create-event-stream"class="collapse show">
+
+                  <!-- BEGIN SELECT SUBSCRIPTIONS -->
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label>Subscription</label>
+                      <span id="subscription-buttons">
+                        <button id="subscription-add" value="add" type="button" class="btn btn-link btn-sm text-secondary" data-toggle="collapse" href="#add-subscription-form">Add</button>
+                        <button id="subscription-remove" value="remove" type="button" class="btn btn-link btn-sm text-secondary">Remove</button>
+                        <button id="subscription-create" value="create" type="button" class="btn btn-link btn-sm text-secondary" data-toggle="collapse" href="#create-subscription-form">Create</button>
+                        <button id="subscription-delete" value="delete" type="button" class="btn btn-link btn-sm text-secondary">Delete</button>
+                      </span>
+
+                      <!-- BEGIN ADD SUBSCRIPTION -->
+                      <div  id="add-subscription-form"class="collapse">
+
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>Subscription Name</label>
+                            <input type="text" class="form-control form-control-sm" value="">
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-md-6">
+                            <label>Subscription Type</label>
+                            <select id="subscription-type-add" class="form-control form-control-sm">
+                              <option value='connectivity'>Connectivity</option> 
+                              <option value='datapoint' selected>Datapoint</option> 
+                              <option value='datapointack'>Datapoint Ack</option> 
+                              <option value='location'>Location</option> 
+                              <option value='registration'>Registration</option> 
+                            </select>
+                          </div>
+
+                          <div class="form-group col-md-6">
+                            <label>Client Type</label>
+                            <select id="client-type-add" class="form-control form-control-sm">
+                              <option value="cloud">Cloud</option>
+                              <option value="mobile" selected>Mobile</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>Stream Key</label>
+                            <input type="text" class="form-control form-control-sm" value="">
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-12" style="margin-bottom: .5rem;">
+                            <button id="" type="button" class="btn btn-light btn-sm">Submit</button>
+                            <button id="" type="button" class="btn btn-light btn-sm">Cancel</button>
+                          </div>
+                        </div>
+
+                      </div>
+                      <!-- END ADD SUBSCRIPTION -->
+
+                      <!-- BEGIN CREATE SUBSCRIPTION -->
+                      <div  id="create-subscription-form"class="collapse">
+
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>Subscription Name</label>
+                            <input id="subscription-name" type="text" class="form-control form-control-sm" value="">
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-md-6">
+                            <label>Subscription Type</label>
+                            <select id="subscription-type" class="form-control form-control-sm">
+                              <option value='connectivity'>Connectivity</option> 
+                              <option value='datapoint' selected>Datapoint</option> 
+                              <option value='datapointack'>Datapoint Ack</option> 
+                              <option value='location'>Location</option> 
+                              <option value='registration'>Registration</option> 
+                            </select>
+                          </div>
+
+                          <div class="form-group col-md-6">
+                            <label>Client Type</label>
+                            <select id="client-type" class="form-control form-control-sm">
+                              <option value="cloud">Cloud</option>
+                              <option value="mobile" selected>Mobile</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <!-- BEGIN DSNs and OEM Models -->
+                        <div class="row">
+                          <div class="form-group col-md-6">
+                            <label>DSNs</label>
+                            <input id="dsn" type="text" class="form-control form-control-sm" placeholder="Leave blank for all devices">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label>OEM Models</label>
+                            <input id="oem-model" type="text" class="form-control form-control-sm" value="*">
+                          </div>
+                        </div>
+                        <!-- END DSNs and OEM Models -->
+
+                        <!-- BEGIN PROPS and BATCH SIZE -->
+                        <div class="row">
+                          <div class="form-group col-md-6">
+                            <label>Property Names</label>
+                            <input id="property-name" type="text" class="form-control form-control-sm" value="*">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label>Batch Size</label>
+                            <input id="batch-size" type="text" class="form-control form-control-sm" value="1">
+                          </div>
+                        </div>
+                        <!-- END PROPS and BATCH SIZE -->
+
+                        <!-- BEGIN DESCRIPTION -->
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>Description</label>
+                            <textarea class="form-control" id="description" rows="3"></textarea>
+                          </div>
+                        </div>
+                        <!-- END DESCRIPTION -->
+
+                        <div class="row">
+                          <div class="col-md-12" style="margin-bottom: .5rem;">
+                            <button id="create-subscription-button" type="button" class="btn btn-light btn-sm">Submit</button>
+                            <button id="" type="button" class="btn btn-light btn-sm">Cancel</button>
+                          </div>
+                        </div>
+
+                      </div>
+                      <!-- END CREATE SUBSCRIPTION -->
+
+                      <!-- BEGIN MY SUBSCRIPTIONS -->
+                      <div id="my-subscriptions" class="border rounded pre-scrollable" style="padding:6px; height:160px;"></div>
+                      <!-- END MY SUBSCRIPTIONS -->
+
+                    </div>
+                  </div>
+                  <!-- END SELECT SUBSCRIPTIONS -->
+
+                  <!-- BEGIN EVENT STREAM NAME -->
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label>Event Stream Name</label>
+                      <input id="event-stream-name" type="text" class="form-control form-control-sm" value="">
+                    </div>
+                  </div>
+                  <!-- END EVENT STREAM NAME -->
+
+                  <!-- BEGIN SOURCE AND DESTINATION -->
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label>Source</label>
+                      <select id="service" class="form-control form-control-sm">
+                        <option value='{"region":"cn","deployment":"dev"}'>China : Dev</option> 
+                        <option value='{"region":"cn","deployment":"field"}'>China : Field</option> 
+                        <option value='{"region":"eu","deployment":"field"}'>EU : Field</option> 
+                        <option value='{"region":"us","deployment":"dev"}' selected>US : Dev</option> 
+                        <option value='{"region":"us","deployment":"staging"}'>US : Staging</option> 
+                        <option value='{"region":"us","deployment":"field"}'>US : Field</option> 
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label>Destination</label>
+                      <select id="destination" class="form-control form-control-sm">
+                        <option value='browser'>Browser</option> 
+                        <option value='collector'>Collector</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- END SOURCE AND DESTINATION -->
+
+                  <!-- BEGIN PERSISTENCE -->
+                  <div id="select-persistence-div" class="row" style="display:none;">
+                    <div class="form-group col-md-12">
+                      <label>Persistence</label>
+                      <div id="select-persistence" class="border rounded" style="padding:6px;">
+                        <div class="form-check form-check-inline">
+                          <input type="checkbox" class="form-check-input" value="json" id="json-checkbox">
+                          <label class="form-check-label">json</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input type="checkbox" class="form-check-input" value="csv" id="csv-checkbox">
+                          <label class="form-check-label">csv</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input type="checkbox" class="form-check-input" value="mysql" id="mysql-checkbox">
+                          <label class="form-check-label">mysql</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END PERSISTENCE -->
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <button id="create-event-stream-button" type="button" class="btn btn-secondary btn-sm">Create</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- END CREATE EVENT STREAM -->
+
+          </div>
+          <!-- END LEFT COLUMN -->
+
+          <!-- BEGIN RIGHT COLUMN -->
+          <div class="form-group col-md-6">
+
+            <!-- BEGIN EVENT STREAMS -->
+            <div class="row">
+              <div class="form-group col-md-12">
+                <h3 data-toggle="collapse" href="#event-streams"><span class="collapsible">Event Streams</span></h3>
+                <div id="event-streams" class="collapse show">
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label>Browser Event Streams</label>
+                      <button id="browser-event-stream-delete" type="button" class="btn btn-link btn-sm text-secondary">Delete</button>
+                      <div id="browser-event-streams" class="border rounded pre-scrollable" style="padding:6px; height:160px;"></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label>Collector Event Streams</label>
+                      <div class="border rounded pre-scrollable" style="padding:6px; height:160px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END EVENT STREAMS -->
+
+          </div>
+          <!-- END RIGHT COLUMN -->
+
+        </div>
+        <!-- END OUTER ROW -->
+
+      </div>
+      <!-- END EVENT STREAMS TAB -->
+
+      <!-- BEGIN EVENTS TAB -->
+      <div class="tab-pane" id="events-tab" role="tabpanel">
+
+        <!-- BEGIN OUTER ROW -->
+        <div class="row">
+
+          <!-- BEGIN LEFT COLUMN -->
+          <div class="form-group col-md-3">
+
+            <!-- BEGIN DATAPOINT TOOL -->
+            <div class="row">
+              <div class="form-group col-md-12">
+
+                <h3 data-toggle="collapse" href="#datapoint-tool"><span class="collapsible">Datapoint Tool</span></h3>
+                <div  id="datapoint-tool"class="collapse show">
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label for="select-devices">Devices</label>
+                      <select id="select-devices" class="form-control form-control-sm"></select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label for="select-properties">Properties</label>
+                      <select id="select-properties" class="form-control form-control-sm"></select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label>Value</label>
+                      <div id="value-wrapper">
+                        <input id="property-value" type="text" class="form-control form-control-sm">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <div id="value-button-wrapper" style="display:none;">
+                        <!--<label>&nbsp;</label>-->
+                        <button id="save-property-value" type="button" class="btn btn-success btn-sm btn-block">Save</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- END DATAPOINT TOOL -->
+
+          </div>
+          <!-- END LEFT COLUMN -->
+
+          <!-- BEGIN RIGHT COLUMN -->
+          <div class="form-group col-md-9">
+
+            <!-- BEGIN BROWSER EVENTS -->
+            <div class="row">
+              <div class="form-group col-md-12">
+                <h3 data-toggle="collapse" href="#browser-events"><span class="collapsible">Browser Events</span></h3>
+                <div class="collapse show">
+                  <div id="browser-events" class="border rounded pre-scrollable" style="padding:6px; height:400px;"></div>
+                </div>
+              </div>
+            </div>
+            <!-- END BROWSER EVENTS -->
+
+          </div>
+          <!-- END RIGHT COLUMN -->
+
+        </div>
+        <!-- END EVENTS TAB -->
+
+      </div>
+      <!-- END TAB CONTENT -->
+
+    </main>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="https://docs.aylanetworks.com/utilities/ayla-proxy-server/source/ayla-proxy-server.js"></script>
+  <script src="client.js"></script>
+  </html>
