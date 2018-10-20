@@ -10,7 +10,7 @@ urls['us']['field'] = 'wss://stream-field.aylanetworks.com/stream'
 
 var streams = {}
 var nextStreamId = 1
-var streamKeyFilter = ['url','key','eventType','numEvents','numHBs']
+var streamPropFilter = ['url','key','beginningSeqId','endingSeqId','eventType','numEvents','numHBs']
 
 //------------------------------------------------------
 // Set Service Url
@@ -43,15 +43,26 @@ $(function() {
 //------------------------------------------------------
 
 class Stream {
-  constructor(name, url, key) {
-    this.id = 'ES' + nextStreamId++
+  constructor(name, url, key, bSeqId, eSeqId) {
+    this.id = nextStreamId++
     this.name = name
     this.url = url
     this.key = key
+    this.beginningSeqId = bSeqId
+    this.endingSeqId = eSeqId
     this.eventType = 'unknown'
     this.numEvents = 0
     this.numHBs = 0
-    this.socket = new WebSocket(url + '?stream_key=' + key)
+
+    let fullUrl = url + '?stream_key=' + key
+    if(bSeqId) {
+      fullUrl += '&seq_start=' + bSeqId
+      if(eSeqId) {
+        fullUrl += '&seq_end=' + eSeqId
+      }
+    }
+
+    this.socket = new WebSocket(fullUrl)
   }
 }
 
@@ -100,7 +111,7 @@ function processEvent(stream, event) {
 
 function displayEvent(stream, event, value) {
   let item = ''
-  + '<tr>'
+  + '<tr class="summary">'
   + '<td class="chk"><input type="checkbox"></td>'
   + '<td>' + stream.id + '</td>'
   + '<td>' + event.seq + '</td>'
@@ -121,7 +132,7 @@ function displayEvent(stream, event, value) {
 
 function displayEventStream(stream) {
   let item = ''
-  + '<tr id="ID' + stream.key + '">'
+  + '<tr id="ID' + stream.key + '" class="summary">'
   + '<td class="chk"><input type="checkbox" value="' + stream.key + '"></td>'
   + '<td>' + stream.id + '</td>'
   + '<td class="name">' + stream.name + '</td>'
@@ -183,17 +194,37 @@ function monitorEventStream(stream) {
 $(function() {
   $('#create-event-stream-form').submit(function(event) {
 
+    let key = $('#stream-key').val()
+
+    for(var k in streams) {
+      if(k === key) {
+        displayMessage('This stream key is already in use.')
+        return
+      }
+    }
+
     let name = $('#event-stream-name').val()
     if(!name) {
       name = $('#event-stream-name').prop('placeholder')
     }
     let url = $('#service-url').val()
-    let key = $('#stream-key').val()
+    let bSeqId = $('#beginning-seqid').val()
+    let eSeqId = $('#ending-seqid').val()
 
-    streams[key] = new Stream(name, url, key)
+    streams[key] = new Stream(name, url, key, bSeqId, eSeqId)
     monitorEventStream(streams[key])
     displayEventStream(streams[key])
 
+    $('#create-event-stream-form').get(0).reset()
+  })
+})
+
+//------------------------------------------------------
+// Clear Event Stream Form
+//------------------------------------------------------
+
+$(function() {
+  $('#create-event-stream-form .clear-form').click(function(event) {
     $('#create-event-stream-form').get(0).reset()
   })
 })
@@ -244,9 +275,9 @@ $(function() {
     let checkboxes = $('#event-streams tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
 
-      let streamKey = $(this).val()
-      let stream = streams[streamKey]
-      stream.socket.close()
+      let key = $(this).val()
+      streams[key].socket.close()
+      delete streams[key]
 
       let tr1 = $(checkbox).closest('tr')
       let tr2 = $(tr1).next()
@@ -284,11 +315,10 @@ $(function() {
   $("#event-streams").delegate('tr td:not(.chk)', "click", function(e) {
     let tr1 = $(this).parent()
     let tr2 = $(tr1).next()
-    let streamKey = $(tr1).find('input').val()
-    let stream = streams[streamKey]
+    let key = $(tr1).find('input').val()
     let pre = $(tr2).find('pre')
     $(pre).empty()
-    $(pre).append(JSON.stringify(stream, streamKeyFilter, 2))
+    $(pre).append(JSON.stringify(streams[key], streamPropFilter, 2))
     $(tr2).toggle()
   })
 })
@@ -300,5 +330,20 @@ $(function() {
 $(function() {
   $("#events").delegate('tr td:not(.chk)', "click", function(e) {
     $(this).parent().next().toggle()
+  })
+})
+
+//------------------------------------------------------
+// displayMessage
+//------------------------------------------------------
+
+function displayMessage(msg) {
+  $('#msg-box span').html(msg)
+  $('#msg-box').show()
+}
+
+$(function() {
+  $('#msg-box button').click(function(event) {
+    $('#msg-box').hide()
   })
 })

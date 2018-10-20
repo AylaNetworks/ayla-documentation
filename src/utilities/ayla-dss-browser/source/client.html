@@ -19,7 +19,13 @@
   <!-- END NAV MENU -->
 
   <main role="main" class="container">
+
+    <div id="msg-box" style="display:none;"> <!-- BEGIN MSG BOX -->
+      <button type="text" class="btn btn-light btn-sm">Close</button><span></span>
+    </div> <!-- END MSG BOX -->
+
     <div class="row"> <!-- BEGIN OUTER ROW -->
+
       <div class="form-group col-md-4"> <!-- BEGIN LEFT COLUMN -->
 
         <div class="row"> <!-- BEGIN CREATE EVENT STREAM ROW -->
@@ -62,7 +68,22 @@
 
               <div class="row">
                 <div class="form-group col-md-12">
+                  <label>Define a replay frame (optional)</label>
+                  <div class="row">
+                    <div class="col-6">
+                      <input id="beginning-seqid" type="number" class="form-control form-control-sm" placeholder="Beginning seqId">
+                    </div>
+                    <div class="col-6">
+                      <input id="ending-seqid" type="number" class="form-control form-control-sm" placeholder="Ending seqId">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
                   <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm clear-form">Clear</button>
                 </div>
               </div>
 
@@ -82,9 +103,11 @@
 
               <div class="row">
                 <div class="col-md-12">
-                  <span id="delete-event-streams-btn" class="link-btn">Delete</span>
-                  <span id="select-all-event-streams-btn" class="link-btn">Select All</span>
-                  <span id="deselect-all-event-streams-btn" class="link-btn">Deselect All</span>
+                  <div class="link-btns">
+                    <span id="delete-event-streams-btn" class="link-btn">Delete</span>
+                    <span id="select-all-event-streams-btn" class="link-btn">Select All</span>
+                    <span id="deselect-all-event-streams-btn" class="link-btn">Deselect All</span>
+                  </div>
                 </div>
               </div>
 
@@ -94,7 +117,7 @@
                     <thead>
                       <tr>
                         <th>&nbsp;</th>
-                        <th>sId</th>
+                        <th>Stream</th>
                         <th>Name</th>
                         <th>Events</th>
                         <th>HBs</th>
@@ -116,9 +139,11 @@
 
               <div class="row">
                 <div class="col-md-12">
-                  <span id="delete-events-btn" class="link-btn">Delete</span>
-                  <span id="select-all-events-btn" class="link-btn">Select All</span>
-                  <span id="deselect-all-events-btn" class="link-btn">Deselect All</span>
+                  <div class="link-btns">
+                    <span id="delete-events-btn" class="link-btn">Delete</span>
+                    <span id="select-all-events-btn" class="link-btn">Select All</span>
+                    <span id="deselect-all-events-btn" class="link-btn">Deselect All</span>
+                  </div>
                 </div>
               </div>
 
@@ -128,7 +153,7 @@
                     <thead>
                       <tr>
                         <th>&nbsp;</th>
-                        <th>sId</th>
+                        <th>Stream</th>
                         <th>Seq</th>
                         <th>Type</th>
                         <th>DSN</th>
@@ -151,6 +176,5 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="client.js"></script>
 </html>

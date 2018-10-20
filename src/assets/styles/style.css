@@ -206,11 +206,11 @@ strong {color: #1a1a1a;}
 #content pre {
   background: #333333;
   padding: 6px;
-  border: 1px solid #e6e6e6;
   line-height: 1rem;
   color: white;
   font-weight: normal;
   font-size: 80%;
+  border: none;
 }
 
 #content label {font-weight: bold; font-size: 90%;}

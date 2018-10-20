@@ -53,11 +53,13 @@ function displayPropertyValue(details) {
     } else {
       $('#property-value').prop('checked', false)
     }
+    /*
     if(details.direction === 'input') {
       $('#property-value').prop('disabled', false)
     } else {
       $('#property-value').prop('disabled', true)
     }
+    */
     break
 
     case 'decimal':

@@ -19,66 +19,32 @@ table td {border-top: 1px solid lightgray;}
 table th, table td {padding: 3px 4px;}
 table th {font-size:90%; font-weight: normal; color: black;}
 table td {font-size:90%; font-weight: normal; color: gray;}
-
+table tr.summary td {cursor: pointer;}
+table tr.details td {border-color: white;}
+table tr.details td pre {
+  background: #333333;
+  padding: 6px;
+  border: none;
+  line-height: 1rem;
+  color: white;
+  font-weight: normal;
+  font-size: 85%;
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
 
 /* Event Streams */
-
-/*#event-streams {width: 100%;}
-#event-streams th, #event-streams td {border-collapse: collapse; vertical-align:top;}
-#event-streams {border: 1px solid lightgray;}
-#event-streams th {border-bottom: 1px solid lightgray;}
-#event-streams td {border-top: 1px solid lightgray;}
-#event-streams th, #event-streams td {padding: 3px 4px;}
-#event-streams th {font-size:90%; font-weight: normal; color: black;}
-#event-streams td {font-size:90%; font-weight: normal; color: gray;}*/
 #event-streams th:nth-child(1) {width:24px;}
-#event-streams th:nth-child(2) {width:50px;}
+#event-streams th:nth-child(2) {width:56px;}
 #event-streams th:nth-child(4), #event-streams th:nth-child(5) {width:60px; text-align: right;}
 #event-streams .numEvents, #event-streams .numHBs {text-align: right;}
 
-#event-streams td {cursor: pointer;}
-#event-streams .details td {border-color: white;}
-#event-streams .details td pre {
-  background: #333333;
-  padding: 6px;
-  border: none;
-  line-height: 1rem;
-  color: white;
-  font-weight: normal;
-  font-size: 85%;
-  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
-  margin-bottom: 4px;
-  margin-right: 4px;
-}
-
 /* Events */
-
-/*#events {width: 100%;}
-#events th, #events td {border-collapse: collapse; vertical-align:top;}
-#events {border: 1px solid lightgray;}
-#events th {border-bottom: 1px solid lightgray;}
-#events td {border-top: 1px solid lightgray;}
-#events th, #events td {padding: 3px 4px;}
-#events th {font-size:90%; font-weight: normal; color: black;}
-#events td {font-size:90%; font-weight: normal; color: gray;}*/
 #events th:nth-child(1) {width:24px;}
-#events th:nth-child(2) {width:50px;}
+#events th:nth-child(2) {width:56px;}
 
-#events td {cursor: pointer;}
-#events .details td {border-color: white;}
-#events .details td pre {
-  background: #333333;
-  padding: 6px;
-  border: none;
-  line-height: 1rem;
-  color: white;
-  font-weight: normal;
-  font-size: 85%;
-  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
-  margin-bottom: 4px;
-  margin-right: 4px;
-}
-
+/* link buttons */
 .link-btn {
   color: #20b2aa;
   cursor: pointer;
@@ -86,3 +52,9 @@ table td {font-size:90%; font-weight: normal; color: gray;}
   margin-right: 12px;
 }
 .link-btn:hover {color: #26d9d0;}
+.link-btns {margin-bottom: .5rem;}
+
+/* */
+#msg-box {background: red; padding:12px; margin-bottom:16px; color:white;}
+#msg-box span {padding-left: 16px;}
+
