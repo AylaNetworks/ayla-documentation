@@ -1,0 +1,14 @@
+[
+  {
+    "id" : "ES7",
+    "name": "Datapoint",
+    "url": "wss://mstream-dev.aylanetworks.com/stream",
+    "key": "feadde3981c842aa9fdd79b302fe3281"
+  },
+  {
+    "id" : "ES8",
+    "name": "Connectivity",
+    "url": "wss://mstream-dev.aylanetworks.com/stream",
+    "key": "4ae3d297f6064f988f619efd0311b470"
+  }
+]

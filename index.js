@@ -25,7 +25,9 @@ metalsmith(__dirname)
     referenceUrl: "",
     a: "none",
     b: "none",
-    c: "none"
+    c: "none",
+    d: "none",
+    e: "none"
   })
 
   .source('./src')

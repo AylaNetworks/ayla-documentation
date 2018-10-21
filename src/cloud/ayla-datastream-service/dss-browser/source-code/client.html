@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>DSS Browser</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="client.css">
+</head>
+
+<body>
+
+  <!-- BEGIN NAV MENU -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="./client.html"><img src="ayla-leaf.png" width="28" alt="">DSS Browser</a>
+  </nav>
+  <!-- END NAV MENU -->
+
+  <main role="main" class="container">
+
+    <div id="msg-box" style="display:none;"> <!-- BEGIN MSG BOX -->
+      <button type="text" class="btn btn-light btn-sm">Close</button><span></span>
+    </div> <!-- END MSG BOX -->
+
+    <div class="row"> <!-- BEGIN OUTER ROW -->
+
+      <div class="form-group col-md-4"> <!-- BEGIN LEFT COLUMN -->
+
+        <div class="row"> <!-- BEGIN CREATE EVENT STREAM ROW -->
+          <div class="form-group col-md-12"> <!-- BEGIN CREATE EVENT STREAM COL -->
+            <h3><span data-toggle="collapse" href="#create-event-stream-form" class="collapsible">Create event stream</span></h3>
+            <form id="create-event-stream-form"class="collapse show" action="javascript:void(0);">
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label>Name the event stream</label>
+                  <input id="event-stream-name" type="text" class="form-control form-control-sm" placeholder="New event stream">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label>Select a region</label>
+                  <select id="service" class="form-control form-control-sm">
+                    <option value='{"region":"cn","deployment":"dev"}'>China - Dev</option> 
+                    <option value='{"region":"cn","deployment":"field"}'>China - Field</option> 
+                    <option value='{"region":"eu","deployment":"field"}'>EU - Field</option> 
+                    <option value='{"region":"us","deployment":"dev"}' selected>US - Dev</option> 
+                    <option value='{"region":"us","deployment":"field"}'>US - Field</option> 
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <input id="service-url" type="text" class="form-control form-control-sm" readonly>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label>Enter a stream key</label>
+                  <input id="stream-key" type="text" class="form-control form-control-sm" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label>Define a replay frame (opt)</label>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <input id="beginning-seqid" type="number" class="form-control form-control-sm" placeholder="First Seq ID">
+                    </div>
+                    <div class="form-group col-6">
+                      <input id="ending-seqid" type="number" class="form-control form-control-sm" placeholder="Last Seq ID">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm clear-form">Clear</button>
+                </div>
+              </div>
+
+            </form>
+          </div> <!-- END CREATE EVENT STREAM COL -->
+        </div> <!-- END CREATE EVENT STREAM ROW -->
+
+
+      </div> <!-- END LEFT COLUMN -->
+
+      <div class="form-group col-md-8"> <!-- BEGIN RIGHT COLUMN -->
+
+        <div class="row"> <!-- BEGIN EVENT STREAMS ROW -->
+          <div class="form-group col-md-12"> <!-- BEGIN EVENT STREAMS COL -->
+            <h3><span data-toggle="collapse" href="#event-streams-collapse" class="collapsible">Event streams</span></h3>
+            <div  id="event-streams-collapse"class="collapse show">
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="link-btns">
+                    <span id="delete-event-streams-btn" class="link-btn">Delete</span>
+                    <span id="select-all-event-streams-btn" class="link-btn">Select All</span>
+                    <span id="deselect-all-event-streams-btn" class="link-btn">Deselect All</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <table id="event-streams">
+                    <thead>
+                      <tr>
+                        <th>&nbsp;</th>
+                        <th>ES</th>
+                        <th>Name</th>
+                        <th>Events</th>
+                        <th>HBs</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div> <!-- END EVENT STREAMS COL -->
+        </div> <!-- END EVENT STREAMS ROW -->
+
+        <div class="row"> <!-- BEGIN EVENTS ROW -->
+          <div class="form-group col-md-12"> <!-- BEGIN EVENTS COL -->
+            <h3><span data-toggle="collapse" href="#events-collapse" class="collapsible">Events</span></h3>
+            <div  id="events-collapse"class="collapse show">
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="link-btns">
+                    <span id="delete-events-btn" class="link-btn">Delete</span>
+                    <span id="select-all-events-btn" class="link-btn">Select All</span>
+                    <span id="deselect-all-events-btn" class="link-btn">Deselect All</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <table id="events">
+                    <thead>
+                      <tr>
+                        <th>&nbsp;</th>
+                        <th>ES</th>
+                        <th>Seq</th>
+                        <th>Type</th>
+                        <th>DSN</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>                 
+                </div>
+              </div>
+
+            </div>
+          </div> <!-- END EVENTS COL -->
+        </div> <!-- END EVENTS ROW -->
+
+      </div> <!-- END RIGHT COLUMN -->
+    </div> <!-- END OUTER ROW -->
+  </main>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="client.js"></script>
+</html>

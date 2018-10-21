@@ -1,6 +1,7 @@
 ---
 title: Introduction
 layout: cloud-ayla-datastream-service.html
+c: block
 ---
 
 The Ayla Datastream Service (DSS) is a [WebSocket](https://en.wikipedia.org/wiki/WebSocket) service that provides the following event notifications to subscribing client applications:

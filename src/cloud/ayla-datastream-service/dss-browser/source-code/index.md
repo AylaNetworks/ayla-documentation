@@ -1,6 +1,6 @@
 ---
-title: DSS Collector
+title: Source code
 layout: cloud-ayla-datastream-service.html
-d: block
+e: block
 ---
 
