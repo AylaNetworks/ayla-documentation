@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 const express = require('express')
 const axios = require('axios')
@@ -25,10 +25,10 @@ exports.createDatapoint = function(req, res) {
 }
 
 //------------------------------------------------------
-// createDssSubscription
+// dssCreateSubscription
 //------------------------------------------------------
 
-exports.createDssSubscription = function(req, res) {
+exports.dssCreateSubscription = function(req, res) {
   axios({
     method: 'post',
     url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions.json',
@@ -46,10 +46,29 @@ exports.createDssSubscription = function(req, res) {
 }
 
 //------------------------------------------------------
-// deleteDssSubscription
+// dssDeleteConnection
 //------------------------------------------------------
 
-exports.deleteDssSubscription = function(req, res) {
+exports.dssDeleteConnection = function(req, res) {
+  axios({
+    method: 'delete',
+    url: req.body.url + '?stream_key=' + req.body.streamKey
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.end()
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+//------------------------------------------------------
+// dssDeleteSubscription
+//------------------------------------------------------
+
+exports.dssDeleteSubscription = function(req, res) {
   axios({
     method: 'delete',
     url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
@@ -66,17 +85,38 @@ exports.deleteDssSubscription = function(req, res) {
 }
 
 //------------------------------------------------------
-// deleteDssStream
+// dssGetSubscription
 //------------------------------------------------------
 
-exports.deleteDssStream = function(req, res) {
+exports.dssGetSubscription = function(req, res) {
   axios({
-    method: 'delete',
-    url: req.body.url + '?stream_key=' + req.body.streamKey
+    method: 'get',
+    url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
+    headers: {'Authorization': req.headers.authorization}
   })
   .then(function (response) {
     res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
     res.end()
+  })
+}
+
+//------------------------------------------------------
+// dssGetSubscriptions
+//------------------------------------------------------
+
+exports.getDssSubscriptions = function(req, res) {
+  axios({
+    method: 'get',
+    url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions',
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
   })
   .catch(function (error) {
     if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
@@ -112,26 +152,6 @@ exports.getDevices = function(req, res) {
   axios({
     method: 'get',
     url: 'https://user-dev.aylanetworks.com/apiv1/devices',
-    headers: req.headers
-  })
-  .then(function (response) {
-    res.statusCode = response.status
-    res.send(response.data)
-  })
-  .catch(function (error) {
-    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
-    res.end()
-  })
-}
-
-//------------------------------------------------------
-// getDssSubscriptions
-//------------------------------------------------------
-
-exports.getDssSubscriptions = function(req, res) {
-  axios({
-    method: 'get',
-    url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions',
     headers: req.headers
   })
   .then(function (response) {

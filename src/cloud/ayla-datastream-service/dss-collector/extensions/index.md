@@ -1,6 +1,6 @@
 ---
-title: DSS Browser
+title: Extensions
 layout: cloud-ayla-datastream-service.html
-e: block
+d: block
 ---
 

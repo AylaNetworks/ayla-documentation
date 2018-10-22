@@ -15,7 +15,7 @@ function createAuthToken(authToken) {
 //------------------------------------------------------
 
 function createDatapoint(propertyId, value) {
-  AylaProxyServer.createDatapoint(propertyId, value, Cookies.get('auth_token'), function (datapoint) {
+  AylaProxyClient.createDatapoint(propertyId, value, Cookies.get('auth_token'), function (datapoint) {
     console.log('datapoint value = ' + datapoint.datapoint.value)
   }, displayError)
 }
@@ -84,7 +84,7 @@ function displayPropertyValue(details) {
 //------------------------------------------------------
 
 function getDevice(deviceId) {
-  AylaProxyServer.getDevice(deviceId, Cookies.get('auth_token'), function (device) {
+  AylaProxyClient.getDevice(deviceId, Cookies.get('auth_token'), function (device) {
     getProperties(device.device.key)
   }, displayError)
 }
@@ -94,7 +94,7 @@ function getDevice(deviceId) {
 //------------------------------------------------------
 
 function getDevices() {
-  AylaProxyServer.getDevices(Cookies.get('auth_token'), function (devices) {
+  AylaProxyClient.getDevices(Cookies.get('auth_token'), function (devices) {
     $('#select-devices').empty()
     if(devices.length) {
       var details = devices[0].device
@@ -114,7 +114,7 @@ function getDevices() {
 //------------------------------------------------------
 
 function getProperties(deviceId) {
-  AylaProxyServer.getProperties(deviceId, Cookies.get('auth_token'), function (properties) {
+  AylaProxyClient.getProperties(deviceId, Cookies.get('auth_token'), function (properties) {
     $('#select-properties').empty()
     if(properties.length) {
       var details = properties[0].property
@@ -141,7 +141,7 @@ $(function() {
     var password = $('#password').val()
     var appId = $('#appId').val()
     var appSecret = $('#appSecret').val()
-    AylaProxyServer.login(email, password, appId, appSecret, function(data) {
+    AylaProxyClient.login(email, password, appId, appSecret, function(data) {
       $('#account-link').html('Logout')
       createAuthToken(data.access_token)
       getDevices()
@@ -159,7 +159,7 @@ $(function() {
     $('body').trigger('click')
     let authToken = Cookies.get('auth_token')
     deleteAuthToken()
-    AylaProxyServer.logout(authToken, function (data) {
+    AylaProxyClient.logout(authToken, function (data) {
       $('#account-link').html('Login')
     }, displayError)
   })
