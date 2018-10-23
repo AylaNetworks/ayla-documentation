@@ -3,14 +3,17 @@
 const express = require('express')
 const axios = require('axios')
 
-//------------------------------------------------------
-// createDatapoint
-//------------------------------------------------------
+const domain = 'https://user-dev.aylanetworks.com'
+const streamDomain = 'https://stream.aylanetworks.com'
+
+/*------------------------------------------------------
+createDatapoint
+------------------------------------------------------*/
 
 exports.createDatapoint = function(req, res) {
   axios({
     method: 'post',
-    url: 'https://user-dev.aylanetworks.com/apiv1/properties/' + urlStr(req, 2) + '/datapoints',
+    url: domain + '/apiv1/properties/' + urlStr(req, 2) + '/datapoints',
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -24,14 +27,14 @@ exports.createDatapoint = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// dssCreateSubscription
-//------------------------------------------------------
+/*------------------------------------------------------
+dssCreateSubscription
+------------------------------------------------------*/
 
 exports.dssCreateSubscription = function(req, res) {
   axios({
     method: 'post',
-    url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions.json',
+    url: streamDomain + '/api/v1/subscriptions.json',
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -45,9 +48,9 @@ exports.dssCreateSubscription = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// dssDeleteConnection
-//------------------------------------------------------
+/*------------------------------------------------------
+dssDeleteConnection
+------------------------------------------------------*/
 
 exports.dssDeleteConnection = function(req, res) {
   axios({
@@ -64,14 +67,14 @@ exports.dssDeleteConnection = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// dssDeleteSubscription
-//------------------------------------------------------
+/*------------------------------------------------------
+dssDeleteSubscription
+------------------------------------------------------*/
 
 exports.dssDeleteSubscription = function(req, res) {
   axios({
     method: 'delete',
-    url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
+    url: streamDomain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
     headers: {'Authorization': req.headers.authorization}
   })
   .then(function (response) {
@@ -84,14 +87,14 @@ exports.dssDeleteSubscription = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// dssGetSubscription
-//------------------------------------------------------
+/*------------------------------------------------------
+dssGetSubscription
+------------------------------------------------------*/
 
 exports.dssGetSubscription = function(req, res) {
   axios({
     method: 'get',
-    url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
+    url: streamDomain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
     headers: {'Authorization': req.headers.authorization}
   })
   .then(function (response) {
@@ -104,14 +107,14 @@ exports.dssGetSubscription = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// dssGetSubscriptions
-//------------------------------------------------------
+/*------------------------------------------------------
+dssGetSubscriptions
+------------------------------------------------------*/
 
-exports.getDssSubscriptions = function(req, res) {
+exports.dssGetSubscriptions = function(req, res) {
   axios({
     method: 'get',
-    url: 'https://user-dev.aylanetworks.com/api/v1/subscriptions',
+    url: streamDomain + '/api/v1/subscriptions.json',
     headers: req.headers
   })
   .then(function (response) {
@@ -124,14 +127,14 @@ exports.getDssSubscriptions = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// getDevice
-//------------------------------------------------------
+/*------------------------------------------------------
+getDevice
+------------------------------------------------------*/
 
 exports.getDevice = function(req, res) {
     axios({
     method: 'get',
-    url: 'https://user-dev.aylanetworks.com/apiv1/devices/' + urlStr(req, 1),
+    url: domain + '/apiv1/devices/' + urlStr(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -144,14 +147,14 @@ exports.getDevice = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// getDevices
-//------------------------------------------------------
+/*------------------------------------------------------
+getDevices
+------------------------------------------------------*/
 
 exports.getDevices = function(req, res) {
   axios({
     method: 'get',
-    url: 'https://user-dev.aylanetworks.com/apiv1/devices',
+    url: domain + '/apiv1/devices',
     headers: req.headers
   })
   .then(function (response) {
@@ -164,14 +167,14 @@ exports.getDevices = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// getProperties
-//------------------------------------------------------
+/*------------------------------------------------------
+getProperties
+------------------------------------------------------*/
 
 exports.getProperties = function(req, res) {
     axios({
     method: 'get',
-    url: 'https://user-dev.aylanetworks.com/apiv1/devices/' + urlStr(req, 2) + '/properties',
+    url: domain + '/apiv1/devices/' + urlStr(req, 2) + '/properties',
     headers: req.headers
   })
   .then(function (response) {
@@ -184,21 +187,21 @@ exports.getProperties = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// getProperty
-//------------------------------------------------------
+/*------------------------------------------------------
+getProperty
+------------------------------------------------------*/
 
 exports.getProperty = function(req, res) {
 }
 
-//------------------------------------------------------
-// login
-//------------------------------------------------------
+/*------------------------------------------------------
+login
+------------------------------------------------------*/
 
 exports.login = function(req, res) {
   axios({
     method: 'post',
-    url: 'https://user-dev.aylanetworks.com/users/sign_in',
+    url: domain + '/users/sign_in',
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -212,14 +215,14 @@ exports.login = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// logout
-//------------------------------------------------------
+/*------------------------------------------------------
+logout
+------------------------------------------------------*/
 
 exports.logout = function(req, res) {
   axios({
     method: 'post',
-    url: 'https://user-dev.aylanetworks.com/users/sign_out',
+    url: domain + '/users/sign_out',
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -233,9 +236,9 @@ exports.logout = function(req, res) {
   })
 }
 
-//------------------------------------------------------
-// 
-//------------------------------------------------------
+/*------------------------------------------------------
+
+------------------------------------------------------*/
 
 function urlStr(req, index) {
   const fields = req.url.split('/')

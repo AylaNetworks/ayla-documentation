@@ -10,7 +10,11 @@ h3 {font-size: 100%; font-weight: bold; color: black;}
 
 label {font-weight: normal; font-size:90%; color: #20b2aa;}
 
-/* table in general */
+/* message box */
+#msg-box {background: red; padding:12px; margin-bottom:16px; color:white;}
+#msg-box span {padding-left: 16px;}
+
+/* table */
 table {width: 100%;}
 table th, table td {border-collapse: collapse; vertical-align:top;}
 table {border: 1px solid lightgray;}
@@ -36,7 +40,7 @@ table tr.details td pre {
 table tr th:nth-child(1) {width:24px;}
 table tr th:nth-child(2) {width:42px;}
 
-/* Event Streams */
+/* table for event streams */
 #event-streams th:nth-child(4), 
 #event-streams th:nth-child(5),
 #event-streams .numEvents, 
@@ -51,8 +55,4 @@ table tr th:nth-child(2) {width:42px;}
 }
 .link-btn:hover {color: #26d9d0;}
 .link-btns {margin-bottom: .5rem;}
-
-/* */
-#msg-box {background: red; padding:12px; margin-bottom:16px; color:white;}
-#msg-box span {padding-left: 16px;}
 

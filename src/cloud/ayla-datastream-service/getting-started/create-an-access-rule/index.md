@@ -5,7 +5,7 @@ c: block
 ---
 
 <ol>
-  <li>In OEM Dashboard, click <code>DataStream</code>.</li>
+  <li>In Dashboard Portal, click <code>DataStream</code>.</li>
   <li>Click <code>Access Rules</code>.</li>
   <li>Click <code>Create Access Rule</code>, and create one with the following parameters:
     <table class="key-value-table">

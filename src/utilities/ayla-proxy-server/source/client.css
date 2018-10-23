@@ -1,76 +1,68 @@
 body {padding-top: 5rem;}
-.navbar-brand {font-size: 16px;}
-h3 {font-size: 16px; font-weight: bold; color: black;}
+
+.navbar {height:62px;}
+
+.navbar-brand {font-size: 100%;}
+
+h3 {font-size: 100%; font-weight: bold; color: black;}
+
 .collapsible:hover {color: gray; cursor: pointer;}
+
+label {font-weight: normal; font-size:90%; color: #20b2aa;}
+
 #login-form, #logout-form {padding: 1.0rem 1.0rem 0 1.0rem;}
-label {font-weight: bold; font-size:85%; color: #b36200;}
+.tab-content {margin-top: 16px;}
 
-#subscription-history pre {
+/* message box */
+#msg-box {background: red; padding:12px; margin-bottom:16px; color:white;}
+#msg-box span {padding-left: 16px;}
+
+/* table */
+table {width: 100%;}
+table th, table td {border-collapse: collapse; vertical-align:top;}
+table {border: 1px solid lightgray;}
+table th {border-bottom: 1px solid lightgray;}
+table td {border-top: 1px solid lightgray;}
+table th, table td {padding: 3px 4px;}
+table th {font-size:90%; font-weight: normal; color: black;}
+table td {font-size:90%; font-weight: normal; color: gray;}
+table tr.summary td {cursor: pointer;}
+table tr.details td {border-color: white;}
+table tr.details td pre {
   background: #333333;
   padding: 6px;
-  border: 1px solid #e6e6e6;
-  line-height: 1rem;
-  color: white;
-  font-weight: normal;
-  font-size: 11px;
-}
-
-#subscription-history-note {font-size: 85%; color: #333333;margin-bottom: 16px;}
-
-.terminal {
-  font-size: 90%; 
-  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; 
-  text-decoration: none;
-}
-
-.subscribe {color:black;}
-.unsubscribe {color:red;}
-.subscribe:hover {color:black;}
-.unsubscribe:hover {color:red;}
-
-#error-msg {background: red;padding:12px;margin-bottom:16px;color:white;}
-#error-msg span {padding-left: 16px;}
-
-/* New to Ayla DSS Browser */
-
-.subscription-title a {
-  color: black;
-  font-size: 90%; 
-  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; 
-  text-decoration: none;
-}
-.subscription-title a:hover {color: black;}
-.subscription-title img {margin-right: 12px;}
-.subscription-title img:hover {cursor: pointer;}
-
-.subscription-collapse pre {
-  background: #333333;
-  padding: 6px;
-  border: 1px solid #e6e6e6;
-  line-height: 1rem;
-  color: white;
-  font-weight: normal;
-  font-size: 11px;
-}
-
-.event {
-  background: #333333;
-  padding: 6px;
-  border: 1px solid #e6e6e6;
+  border: none;
   line-height: 1rem;
   color: white;
   font-weight: normal;
   font-size: 85%;
   font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+  margin-bottom: 4px;
+  margin-right: 4px;
 }
+table tr th:nth-child(1) {width:24px;}
+table tr th:nth-child(2) {width:42px;}
 
-.form-check-label, .form-check-label a {font-size: 95%; font-weight: normal; text-decoration: none; color: gray;}
+/* table for event streams */
+#event-streams th:nth-child(4), 
+#event-streams th:nth-child(5),
+#event-streams .numEvents, 
+#event-streams .numHBs {width:60px; text-align: right;}
 
-#add-subscription-form {padding: 6px; background: #e6e6e6; border: #d9d9d9 1px solid; margin:6px 0px 18px 0px; border-radius: 4px;}
-#add-subscription-form label {color: black; font-weight: normal;}
+/* link buttons */
+.link-btn {
+  color: #20b2aa;
+  cursor: pointer;
+  font-size: 85%;
+  margin-right: 12px;
+}
+.link-btn:hover {color: #26d9d0;}
+.link-btns {margin-bottom: .5rem;}
 
-#create-subscription-form {padding: 6px; background: #e6e6e6; border: #d9d9d9 1px solid; margin:6px 0px 18px 0px; border-radius: 4px;}
-#create-subscription-form label {color: black; font-weight: normal;}
+/* nav-link */
+.nav-link {color: gray;}
+.nav-link:hover {color: green;}
+.nav-link.active {color: black;}
 
 /* BEGIN SLIDER */
 .switch {
@@ -106,13 +98,8 @@ label {font-weight: bold; font-size:85%; color: #b36200;}
   transition: .4s;
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
+input:checked + .slider {background-color: #2196F3;}
+input:focus + .slider {box-shadow: 0 0 1px #2196F3;}
 
 input:checked + .slider:before {
   -webkit-transform: translateX(94px);
@@ -124,9 +111,6 @@ input:checked + .slider:before {
 .slider.round:before {border-radius: 50%;}
 /* END SLIDER */
 
-
-.tab-content {margin-top: 16px;}
-
-.disabled-label {text-decoration: line-through !important;}
-
-.terminal-font {font-size:90%; font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;}
+#add-subscription-form {border: 1px solid #404040;; padding: 6px 18px;margin-bottom: 24px; background: #404040;}
+#add-subscription-form input, #add-subscription-form select {border-color: #404040;}
+#add-subscription-form label, #add-subscription-form h3 {color: white; font-weight: normal;}

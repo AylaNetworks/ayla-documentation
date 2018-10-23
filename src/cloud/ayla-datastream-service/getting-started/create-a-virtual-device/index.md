@@ -5,7 +5,7 @@ c: block
 ---
 
 <ol>
-  <li>In OEM Dashboard, click <code>Devices > Virtual Devices</code>.</li>
+  <li>In Dashboard Portal, click <code>Devices > Virtual Devices</code>.</li>
   <li>Click <code>Create Virtual Device</code>, and create one with the following parameters:
     <table class="key-value-table">
       <tr>

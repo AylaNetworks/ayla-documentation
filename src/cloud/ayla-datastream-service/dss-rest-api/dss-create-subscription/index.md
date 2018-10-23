@@ -27,16 +27,13 @@ a: block
 
 <pre>
 {
-  "oem": "0dfc7900",
-  "dsn": "AC000W000340779,AC000W005606115",
-  "name": null,
-  "description": null,
-  "property_name": "*",
-  "batch_size": 1,
-  "user_uuid": "00000000-0000-0000-0000-000000000000",
-  "oem_model": "*",
-  "client_type": "mobile",
-  "subscription_type": "datapoint"
+  "name": "",
+  "description": "",
+  "oem-model": "",
+  "dsn": "",
+  "property_name": "",
+  "client_type": "",
+  "subscription_type": ""
 }
 </pre>
 
@@ -49,18 +46,11 @@ a: block
     <th>Description</th>
   </tr>
   <tr>
-    <td>batch_size</td>
-    <td>integer</td>
-    <td>optional</td>
-    <td>1</td>
-    <td>The number of events to bundle before sending to client.</td>
-  </tr>
-  <tr>
-    <td>client_type</td>
+    <td>name</td>
     <td>string</td>
-    <td>required</td>
-    <td>&nbsp;</td>
-    <td>cloud or user_opt_in</td>
+    <td>optional</td>
+    <td>null</td>
+    <td>Name meaningful to user</td>
   </tr>
   <tr>
     <td>description</td>
@@ -70,32 +60,18 @@ a: block
     <td>Description meaningful to user</td>
   </tr>
   <tr>
-    <td>dsn</td>
-    <td>string</td>
-    <td>optional</td>
-    <td>&#42;</td>
-    <td>Comma-separated list of DSNs. Required if oem_model == &#42;</td>
-  </tr>
-  <tr>
-    <td>name</td>
-    <td>string</td>
-    <td>optional</td>
-    <td>null</td>
-    <td>Name meaningful to user</td>
-  </tr>
-  <tr>
-    <td>oem</td>
-    <td>string</td>
-    <td>optional</td>
-    <td></td>
-    <td>The OEM ID string</td>
-  </tr>
-  <tr>
     <td>oem_model</td>
     <td>string</td>
     <td>optional</td>
     <td>*</td>
     <td>Unique product model name</td>
+  </tr>
+  <tr>
+    <td>dsn</td>
+    <td>string</td>
+    <td>optional</td>
+    <td>&#42;</td>
+    <td>Comma-separated list of DSNs. Required if oem_model == &#42;</td>
   </tr>
   <tr>
     <td>property_name</td>
@@ -105,18 +81,18 @@ a: block
     <td>Comma-separated list of device property names.</td>
   </tr>
   <tr>
+    <td>client_type</td>
+    <td>string</td>
+    <td>required</td>
+    <td>&nbsp;</td>
+    <td>cloud or user_opt_in</td>
+  </tr>
+  <tr>
     <td>subscription_type</td>
     <td>string</td>
     <td>required</td>
     <td>&nbsp;</td>
     <td>connectivity, datapoint, datapointack, location, or registration.</td>
-  </tr>
-  <tr>
-    <td>user_uuid</td>
-    <td>string</td>
-    <td>optional</td>
-    <td>&nbsp;</td>
-    <td>Registered owner unique id</td>
   </tr>
 </table>
 

@@ -29,7 +29,7 @@ b: block
 ## Exploring registration events with DSS Browser
 
 <ol>
-<li>In OEM Dashboard, click <code>Datastreams &gt; Access Rules</code>, and add a rule similar to the following:
+<li>In Dashboard Portal, click <code>Datastreams &gt; Access Rules</code>, and add a rule similar to the following:
 <table class="key-value-table">
 <tr>
 <th>Role:</th>
@@ -48,7 +48,7 @@ b: block
 <td>registration</td>
 </tr>
 </table>
-<li>In OEM Dashboard, click <code>Datastreams &gt; Subscriptions</code>, and add a subscription similar to the following:
+<li>In Dashboard Portal, click <code>Datastreams &gt; Subscriptions</code>, and add a subscription similar to the following:
 <table class="key-value-table">
 <tr>
 <th>Name:</th>
@@ -69,5 +69,5 @@ b: block
 </table>
 </li>
 <li>In DSS Browser, use your new subscription stream key to create an event stream.</li>
-<li>In OEM Dashboard, unregister and re-register your device. Ayla DSS will push the events to DSS Browser.</li>
+<li>In Developer Portal, unregister and re-register your device. Ayla DSS will push the events to DSS Browser.</li>
 </ol>

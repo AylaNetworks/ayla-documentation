@@ -40,7 +40,7 @@ b: block
 ## Exploring datapointack events with DSS Browser
 
 <ol>
-<li>In OEM Dashboard, click <code>Datastreams &gt; Access Rules</code>, and add a rule similar to the following:
+<li>In Dashboard Portal, click <code>Datastreams &gt; Access Rules</code>, and add a rule similar to the following:
 <table class="key-value-table">
 <tr>
 <th>Role:</th>
@@ -59,7 +59,7 @@ b: block
 <td>datapointack</td>
 </tr>
 </table>
-<li>In OEM Dashboard, click <code>Datastreams &gt; Subscriptions</code>, and add a subscription similar to the following:
+<li>In Dashboard Portal, click <code>Datastreams &gt; Subscriptions</code>, and add a subscription similar to the following:
 <table class="key-value-table">
 <tr>
 <th>Name:</th>

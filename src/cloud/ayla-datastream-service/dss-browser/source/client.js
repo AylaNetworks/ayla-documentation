@@ -132,7 +132,7 @@ displayEventStream
 
 function displayEventStream(stream) {
   let item = ''
-  + '<tr id="ID' + stream.key + '" class="summary">'
+  + '<tr class="summary">'
   + '<td class="chk"><input type="checkbox" value="' + stream.key + '"></td>'
   + '<td>' + stream.id + '</td>'
   + '<td class="name">' + stream.name + '</td>'
@@ -235,7 +235,6 @@ Delete Events
 
 $(function() {
   $('#delete-events-btn').click(function(event) {
-
     let checkboxes = $('#events tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
       let tr1 = $(checkbox).closest('tr')
@@ -275,7 +274,7 @@ $(function() {
     let checkboxes = $('#event-streams tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
 
-      let key = $(this).val()
+      let key = $(checkbox).val()
       streams[key].socket.close()
       delete streams[key]
 

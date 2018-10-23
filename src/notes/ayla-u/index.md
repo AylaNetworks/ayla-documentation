@@ -1,6 +1,6 @@
 ---
-title: Test
-layout: page-full-width.html
+title: Ayla U
+layout: notes.html
 ---
 
 <div class="row hspace">

@@ -41,7 +41,7 @@ createDatapoint: function(propertyId, value, authToken, success=successCb, failu
   }
   axios({
     method: 'post',
-    url: 'https://docs.aylanetworks.com/api/v1/properties/' + propertyId + '/datapoints',
+    url: domain + '/api/v1/properties/' + propertyId + '/datapoints',
     headers: {
       'Authorization': 'auth_token ' + authToken,
       'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ createDatapoint: function(propertyId, value, authToken, success=successCb, failu
     data: JSON.stringify(data)
   })
   .then(function (response) {success(response.data)})
-  .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  .catch(function (error) {callFailureCb(error, failure)})
 },
 
 /*------------------------------------------------------
@@ -91,7 +91,7 @@ Response
 dssCreateSubscription: function(data, authToken, success=successCb, failure=failureCb) {
   axios({
     method: 'post',
-    url: 'https://docs.aylanetworks.com/api/v1/dss/subscriptions',
+    url: domain + '/api/v1/dss/subscriptions',
     headers: {
       'Authorization': 'auth_token ' + authToken,
       'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ dssCreateSubscription: function(data, authToken, success=successCb, failure=fail
     data: JSON.stringify(data)
   })
   .then(function (response) {success(response.data)})
-  .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  .catch(function (error) {callFailureCb(error, failure)})
 },
 
 /*------------------------------------------------------
@@ -118,14 +118,14 @@ dssDeleteConnection: function(url, streamKey, success=successCb, failure=failure
   }
   axios({
     method: 'delete',
-    url: 'https://docs.aylanetworks.com/api/v1/dss/streams',
+    url: domain + '/api/v1/dss/streams',
     headers: {
       'Content-Type': 'application/json'
     },
     data: JSON.stringify(data)
   })
   .then(function (response) {success({})})
-  .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  .catch(function (error) {callFailureCb(error, failure)})
 },
 
 /*------------------------------------------------------
@@ -139,14 +139,14 @@ Response
 dssDeleteSubscription: function(subscriptionId, authToken, success=successCb, failure=failureCb) {
   axios({
     method: 'delete',
-    url: 'https://docs.aylanetworks.com/api/v1/dss/subscriptions/' + subscriptionId,
+    url: domain + '/api/v1/dss/subscriptions/' + subscriptionId,
     headers: {
       'Authorization': 'auth_token ' + authToken,
       'Accept': 'application/json'
     }
   })
   .then(function (response) {success(response.data)})
-  .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  .catch(function (error) {callFailureCb(error, failure)})
 },
 
 /*------------------------------------------------------
@@ -158,7 +158,7 @@ Response
 ------------------------------------------------------*/
 
 dssGetSubscription: function(subscriptionId, authToken, success=successCb, failure=failureCb) {
-}
+},
 
 /*------------------------------------------------------
 dssGetSubscriptions
@@ -171,14 +171,14 @@ Response
 dssGetSubscriptions: function(authToken, success=successCb, failure=failureCb) {
   axios({
     method: 'get',
-    url: 'https://docs.aylanetworks.com/api/v1/dss/subscriptions',
+    url: domain + '/api/v1/dss/subscriptions',
     headers: {
       'Authorization': 'auth_token ' + authToken,
       'Accept': 'application/json'
     }
   })
   .then(function (response) {success(response.data)})
-  .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  .catch(function (error) {callFailureCb(error, failure)})
 },
 
 /*------------------------------------------------------
@@ -236,14 +236,14 @@ Response
 getDevice: function(deviceId, authToken, success=successCb, failure=failureCb) {
   axios({
     method: 'get',
-    url: 'https://docs.aylanetworks.com/api/v1/devices/' + deviceId,
+    url: domain + '/api/v1/devices/' + deviceId,
     headers: {
       'Authorization': 'auth_token ' + authToken,
       'Accept': 'application/json'
     }
   })
   .then(function (response) {success(response.data)})
-  .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  .catch(function (error) {callFailureCb(error, failure)})
 },
 
 /*------------------------------------------------------
@@ -306,14 +306,14 @@ Response
 getDevices: function(authToken, success=successCb, failure=failureCb) {
   axios({
     method: 'get',
-    url: 'https://docs.aylanetworks.com/api/v1/devices',
+    url: domain + '/api/v1/devices',
     headers: {
       'Authorization': 'auth_token ' + authToken,
       'Accept': 'application/json'
     }
   })
   .then(function (response) {success(response.data)})
-  .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  .catch(function (error) {callFailureCb(error, failure)})
 },
 
 /*------------------------------------------------------
@@ -389,14 +389,14 @@ Response
 getProperties: function(deviceId, authToken, success=successCb, failure=failureCb) {
   axios({
     method: 'get',
-    url: 'https://docs.aylanetworks.com/api/v1/devices/' + deviceId + '/properties',
+    url: domain + '/api/v1/devices/' + deviceId + '/properties',
     headers: {
       'Authorization': 'auth_token ' + authToken,
       'Accept': 'application/json'
     }
   })
   .then(function (response) {success(response.data)})
-  .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  .catch(function (error) {callFailureCb(error, failure)})
 },
 
 /*------------------------------------------------------
@@ -480,7 +480,7 @@ login: function(email, password, appId, appSecret, success=successCb, failure=fa
   }
   axios({
     method: 'post',
-    url: 'https://docs.aylanetworks.com/api/v1/session',
+    url: domain + '/api/v1/session',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -488,7 +488,7 @@ login: function(email, password, appId, appSecret, success=successCb, failure=fa
     data: JSON.stringify(data)
   })
   .then(function (response) {success(response.data)})
-  .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  .catch(function (error) {callFailureCb(error, failure)})
 },
 
 /*------------------------------------------------------
@@ -511,7 +511,7 @@ logout: function(authToken, success=successCb, failure=failureCb) {
   var data = {'user': {'access_token': authToken}}
   axios({
     method: 'delete',
-    url: 'https://docs.aylanetworks.com/api/v1/session',
+    url: domain + '/api/v1/session',
     headers: {
       'Authorization': 'auth_token ' + authToken,
       'Content-Type': 'application/json',
@@ -520,14 +520,22 @@ logout: function(authToken, success=successCb, failure=failureCb) {
     data: JSON.stringify(data)
   })
   .then(function (response) {success(response.data)})
-  .catch(function (error) {failure(error.response.status, error.response.statusText)})
+  .catch(function (error) {callFailureCb(error, failure)})
 }
 
-};
+}
 
 /*------------------------------------------------------
-
+callFailureCb
 ------------------------------------------------------*/
 
+function callFailureCb(error, failure=failureCb) {
+  if(error.response && error.response.statusText) {
+    failure(error.response.statusText)
+  } else {
+    failure(error)
+  }
+}
+
 let successCb = function(data) {console.log(JSON.stringify(data, null, 2))}
-let failureCb = function(statusCode, statusText) {console.log(statusCode + ' ' + statusText)}
+let failureCb = function(msg) {console.log(msg)}

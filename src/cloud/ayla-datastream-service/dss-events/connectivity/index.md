@@ -27,7 +27,7 @@ b: block
 ## Exploring connectivity events with DSS Browser
 
 <ol>
-<li>In OEM Dashboard, click <code>Datastreams &gt; Access Rules</code>, and add a rule similar to the following:
+<li>In Dashboard Portal, click <code>Datastreams &gt; Access Rules</code>, and add a rule similar to the following:
 <table class="key-value-table">
 <tr>
 <th>Role:</th>
@@ -46,7 +46,7 @@ b: block
 <td>connectivity</td>
 </tr>
 </table>
-<li>In OEM Dashboard, click <code>Datastreams &gt; Subscriptions</code>, and add a subscription similar to the following:
+<li>In Dashboard Portal, click <code>Datastreams &gt; Subscriptions</code>, and add a subscription similar to the following:
 <table class="key-value-table">
 <tr>
 <th>Name:</th>

@@ -12,8 +12,7 @@
 
 <body>
 
-  <!-- BEGIN NAV MENU -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" style="height:62px;">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" style="height:62px;"> <!-- BEGIN NAV MENU -->
     <a class="navbar-brand" href="./client.html"><img src="ayla-leaf.png" width="28" alt="">Proxy Client</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navdrop"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navdrop">
@@ -22,8 +21,7 @@
           <a id="account-link" class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"></a>
           <div class="dropdown-menu dropdown-menu-right" style="width:320px;background:snow;">
 
-            <!-- BEGIN LOGIN FORM -->
-            <form id="login-form" style="display:none;">
+            <form id="login-form" style="display:none;"> <!-- BEGIN LOGIN FORM -->
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <div style="text-align:center;font-size:80%;color:gray;">Log into your Ayla account.</div>
@@ -57,11 +55,9 @@
                   <button id="login-close" type="button" class="btn btn-secondary btn-sm btn-block click-body">Close</button>
                 </div>
               </div>
-            </form>
-            <!-- END LOGIN FORM -->
+            </form> <!-- END LOGIN FORM -->
 
-            <!-- BEGIN LOGOUT FORM -->
-            <form id="logout-form" style="display:none;">
+            <form id="logout-form" style="display:none;"> <!-- BEGIN LOGOUT FORM -->
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <div style="text-align:center;font-size:80%;color:gray;">You are logged into your Ayla account.</div>
@@ -75,48 +71,38 @@
                   <button id="logout-close" type="button" class="btn btn-secondary btn-sm btn-block click-body">Close</button>
                 </div>
               </div>
-            </form>
-            <!-- END LOGOUT FORM -->
+            </form> <!-- END LOGOUT FORM -->
 
           </div>
         </li>
       </ul>
     </div>
-  </nav>
-  <!-- END NAV MENU -->
+  </nav> <!-- END NAV MENU -->
+  
 
   <main role="main" class="container">
 
-    <!-- BEGIN ERROR MSG BOX -->
-    <div id="error-msg" style="display:none;">
-      <button id="error-msg-btn" type="text" class="btn btn-light btn-sm">Close</button><span></span>
-    </div>
-    <!-- END ERROR MSG BOX -->
 
-    <!-- BEGIN TAB LIST -->
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <div id="msg-box" style="display:none;"> <!-- BEGIN MSG BOX -->
+      <button type="text" class="btn btn-light btn-sm">Close</button><span></span>
+    </div> <!-- END MSG BOX -->
+
+    <div class="nav nav-tabs" id="nav-tab" role="tablist"> <!-- BEGIN TAB LIST -->
       <a class="nav-item nav-link active" data-toggle="tab" href="#devices-tab" role="tab">Devices</a>
-    </div>
-    <!-- BEGIN TAB LIST -->
+      <a class="nav-item nav-link" data-toggle="tab" href="#dss-tab" role="tab">DSS</a>
+    </div> <!-- END TAB LIST -->
 
-    <!-- BEGIN TAB CONTENT -->
-    <div class="tab-content">
+    <div class="tab-content"> <!-- BEGIN TAB CONTENT -->
 
-      <!-- BEGIN DEVICES TAB -->
-      <div class="tab-pane fade show active" id="devices-tab" role="tabpanel">
+      <div class="tab-pane fade show active" id="devices-tab" role="tabpanel"> <!-- BEGIN DEVICES TAB -->        
+        <div class="row"> <!-- BEGIN OUTER ROW -->
 
-        <!-- BEGIN OUTER ROW -->
-        <div class="row">
-
-          <!-- BEGIN LEFT COLUMN -->
-          <div class="form-group col-md-3">
-
-            <!-- BEGIN DATAPOINT TOOL -->
-            <div class="row">
-              <div class="form-group col-md-12">
+          <div class="form-group col-md-3"> <!-- BEGIN LEFT COLUMN -->            
+            <div class="row"> <!-- BEGIN DATAPOINT TOOL -->
+              <div class="form-group col-md-12"> <!-- BEGIN COLUMN -->
 
                 <h3 data-toggle="collapse" href="#datapoint-tool"><span class="collapsible">Datapoint Tool</span></h3>
-                <div  id="datapoint-tool"class="collapse show">
+                <div  id="datapoint-tool"class="collapse show"> <!-- BEGIN DATAPOINT TOOL COLLAPSE -->
 
                   <div class="row">
                     <div class="form-group col-md-12">
@@ -134,48 +120,155 @@
 
                   <div class="row">
                     <div class="form-group col-md-12">
-                      <label>Value</label>
-                      <div id="value-wrapper">
-                        <input id="property-value" type="text" class="form-control form-control-sm">
-                      </div>
+                      <label id="value-label" style="display:none;">Value</label>
+                      <div id="value-wrapper" style="display:none;"></div>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="form-group col-md-12">
                       <div id="value-button-wrapper" style="display:none;">
-                        <!--<label>&nbsp;</label>-->
                         <button id="save-property-value" type="button" class="btn btn-success btn-sm btn-block">Save</button>
                       </div>
                     </div>
                   </div>
 
-                </div>
-              </div>
-            </div>
-            <!-- END DATAPOINT TOOL -->
+                </div> <!-- END DATAPOINT TOOL COLLAPSE -->
+              </div> <!-- END COLUMN -->
+            </div> <!-- END DATAPOINT TOOL -->
+          </div> <!-- END LEFT COLUMN -->          
 
-          </div>
-          <!-- END LEFT COLUMN -->
+          <div class="form-group col-md-9"> <!-- BEGIN RIGHT COLUMN -->
+          </div> <!-- END RIGHT COLUMN -->
 
-          <!-- BEGIN RIGHT COLUMN -->
-          <div class="form-group col-md-9">
-          </div>
-          <!-- END RIGHT COLUMN -->
+        </div>  <!-- END OUTER ROW -->
+      </div> <!-- END DEVICES TAB -->
 
-        </div>
-        <!-- END DEVICES TAB -->
+      <div class="tab-pane fade" id="dss-tab" role="tabpanel"> <!-- BEGIN DSS TAB -->        
+        <div class="row"> <!-- BEGIN OUTER ROW -->
 
-      </div>
-      <!-- END TAB CONTENT -->
+          <div class="form-group col-md-6"> <!-- BEGIN LEFT COLUMN -->
 
-    </main>
-  </body>
+            <div class="row"> <!-- BEGIN SUBSCRIPTIONS -->
+              <div class="form-group col-md-12">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://docs.aylanetworks.com/utilities/ayla-proxy-server/source/ayla-proxy-client.js"></script>
-  <script src="client.js"></script>
-  </html>
+                <h3 data-toggle="collapse" href="#subscriptions-collapse"><span class="collapsible">Subscriptions</span></h3>
+                <div  id="subscriptions-collapse"class="collapse show"> <!-- BEGIN SUBSCRIPTIONS COLLAPSE -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span id="add-subscription-btn" class="link-btn">Add</span>
+                        <span id="delete-subscriptions-btn" class="link-btn">Delete</span>
+                        <span id="select-all-subscriptions-btn" class="link-btn">Select All</span>
+                        <span id="deselect-all-subscriptions-btn" class="link-btn">Deselect All</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row" style="display:none;" id="add-subscription-row">
+                    <div class="form-group col-md-12">
+                      <form id="add-subscription-form" action="javascript:void(0);">
+
+                        <h3>Add Subscription</h3>
+
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>Name</label>
+                            <input id="add-subscription-name" type="text" class="form-control form-control-sm" value="" required>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>Description</label>
+                            <input id="add-subscription-description" type="text" class="form-control form-control-sm" value="" required>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>OEM Model</label>
+                            <input id="add-subscription-oem-model" type="text" class="form-control form-control-sm" value="" required>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>DSN</label>
+                            <input id="add-subscription-dsn" type="text" class="form-control form-control-sm" value="" required>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>Property Name</label>
+                            <input id="add-subscription-property-name" type="text" class="form-control form-control-sm" value="" required>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>Client Type</label>
+                            <select id="add-subscription-client-type" class="form-control form-control-sm">
+                              <option value='cloud'>cloud</option> 
+                              <option value='user_opt_in'>user_opt_in</option> 
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-md-12">
+                            <label>Subscription Type</label>
+                            <select id="add-subscription-subscription-type" class="form-control form-control-sm">
+                              <option value='connectivity'>connectivity</option>
+                              <option value='datapoint'>datapoint</option>
+                              <option value='datapointack'>datapointack</option>
+                              <option value='location'>location</option>
+                              <option value='registration'>registration</option>
+                            </select>
+                          </div>
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <table id="subscriptions">
+                        <thead>
+                          <tr>
+                            <th>&nbsp;</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div> <!-- END SUBSCRIPTIONS COLLAPSE -->
+              </div> <!-- END COLUMN -->
+            </div> <!-- SUBSCRIPTIONS -->
+          </div> <!-- END LEFT COLUMN -->
+
+          <div class="form-group col-md-6"> <!-- BEGIN RIGHT COLUMN -->
+          </div> <!-- END RIGHT COLUMN -->
+
+        </div>  <!-- END OUTER ROW -->
+      </div> <!-- END DSS TAB -->
+
+    </div> <!-- END TAB CONTENT -->
+  </main>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://docs.aylanetworks.com/utilities/ayla-proxy-server/source/ayla-proxy-client.js"></script>
+<script src="client.js"></script>
+</html>
