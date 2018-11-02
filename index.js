@@ -27,7 +27,12 @@ metalsmith(__dirname)
     b: "none",
     c: "none",
     d: "none",
-    e: "none"
+    e: "none",
+    f: "none",
+    g: "none",
+    h: "none",
+    i: "none",
+    j: "none"
   })
 
   .source('./src')
@@ -74,5 +79,7 @@ metalsmith(__dirname)
 //  }));
 
   .build(function(err, files) {
-    if (err) { throw err; }
+    if (err) { 
+      throw err; 
+    }
   });

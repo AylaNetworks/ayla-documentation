@@ -1,6 +1,6 @@
 ---
 title: Create a virtual device
-layout: cloud-ayla-datastream-service.html
+layout: ayla-datastream-service.html
 c: block
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Introduction
-layout: devices-ayla-linux-agent.html
+layout: ayla-linux-agent.html
 a: block
 ---
 
@@ -10,7 +10,7 @@ This page provides a brief description of both the Ayla Platform and the Ayla De
 
 Ayla architecture is divided into three parts: Devices, Cloud, and Apps. To view a brief, thorough overview, watch the video below.
 
-<div class="row hspace">
+<div class="row margin-left hspace">
 <div class="col-lg-12">
 <iframe 
   width="560" 
@@ -44,7 +44,7 @@ Ayla architecture is divided into three parts: Devices, Cloud, and Apps. To view
 
 Fundamentally, putting aside data collection and analytics, the Ayla Platform enables applications to interact with a cloud-based model of a device, controlling various aspects of the device, and responding to device events. Consider, for example, a simple Linux-based device composed of a host application, green LED, blue button, and red button:
 
-<div class="row justify-content-center hspace">
+<div class="row margin-left hspace">
 <div class="col-lg-6 col-md-9 col-sm-12">
 <img class="img-fluid" src="ayla-platform-led-button.jpg">
 </div>
@@ -57,7 +57,7 @@ The central character in this diagram is the digital twin (red box) composed of 
 
 The Ayla Device Platform for Linux ([Github](https://github.com/AylaNetworks/device_linux_public)), which includes the Ayla Linux Agent (devd) and an example host application (appd), enables a Linux device (e.g. Raspberry Pi) to stay in sync with a digital twin in the Ayla Cloud. The video below shows devd and appd in action on a Raspbery Pi. 
 
-<div class="row hspace">
+<div class="row margin-left hspace">
 <div class="col-lg-12">
 <iframe 
   width="560" 

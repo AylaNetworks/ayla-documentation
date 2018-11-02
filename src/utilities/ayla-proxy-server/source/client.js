@@ -5,17 +5,9 @@ createDatapoint
 ------------------------------------------------------*/
 
 function createDatapoint(propertyId, value) {
-  AylaProxyClient.createDatapoint(propertyId, value, Cookies.get('auth_token'), function (datapoint) {
+  MyAyla.createDatapoint(propertyId, value, function (datapoint) {
     console.log('datapoint value = ' + datapoint.datapoint.value)
   }, displayMessage)
-}
-
-/*------------------------------------------------------
-deleteAuthToken
-------------------------------------------------------*/
-
-function deleteAuthToken(authToken) {
-  Cookies.remove('auth_token')
 }
 
 /*------------------------------------------------------
@@ -100,8 +92,7 @@ $(function() {
   $('#delete-subscriptions-btn').click(function(event) {
     let checkboxes = $('#subscriptions tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
-      AylaProxyClient.dssDeleteSubscription($(checkbox).val(), Cookies.get('auth_token'), function (data) {
-        console.log(JSON.stringify(data, null, 2))
+      MyAyla.dssDeleteSubscription($(checkbox).val(), function (data) {
         let tr1 = $(checkbox).closest('tr')
         let tr2 = $(tr1).next()
         $(tr1).remove()
@@ -136,7 +127,7 @@ dssGetSubscriptions
 ------------------------------------------------------*/
 
 function dssGetSubscriptions() {
-  AylaProxyClient.dssGetSubscriptions(Cookies.get('auth_token'), function (subscriptions) {
+  MyAyla.dssGetSubscriptions(function (subscriptions) {
     subscriptions.forEach(function(subscription) {
       displaySubscription(subscription.subscription)
     })
@@ -148,7 +139,7 @@ getDevice
 ------------------------------------------------------*/
 
 function getDevice(deviceId) {
-  AylaProxyClient.getDevice(deviceId, Cookies.get('auth_token'), function (device) {
+  MyAyla.getDevice(deviceId, function (device) {
     getProperties(device.device.key)
   }, displayMessage)
 }
@@ -158,7 +149,7 @@ getDevices
 ------------------------------------------------------*/
 
 function getDevices() {
-  AylaProxyClient.getDevices(Cookies.get('auth_token'), function (devices) {
+  MyAyla.getDevices(function (devices) {
     $('#select-devices').empty()
     if(devices.length) {
       var details = devices[0].device
@@ -178,7 +169,7 @@ getProperties
 ------------------------------------------------------*/
 
 function getProperties(deviceId) {
-  AylaProxyClient.getProperties(deviceId, Cookies.get('auth_token'), function (properties) {
+  MyAyla.getProperties(deviceId, function (properties) {
     $('#select-properties').empty()
     if(properties.length) {
       var details = properties[0].property
@@ -205,10 +196,8 @@ $(function() {
     var password = $('#password').val()
     var appId = $('#appId').val()
     var appSecret = $('#appSecret').val()
-    AylaProxyClient.login(email, password, appId, appSecret, function(data) {
+    MyAyla.login(email, password, appId, appSecret, function(data) {
       $('#account-link').html('Logout')
-      saveAuthToken(data.access_token)
-      saveAppCredentials(appId, appSecret)
       getDevices()
       dssGetSubscriptions()
     }, displayMessage)
@@ -223,15 +212,13 @@ $(function() {
   $('#logout-form' ).submit(function(event) {
     event.preventDefault()
     $('body').trigger('click')
-    let authToken = Cookies.get('auth_token')
-    deleteAuthToken()
     $('#select-devices').empty()
     $('#select-properties').empty()
     $('#value-label').hide()
     $('#value-wrapper').hide()
     $('#value-button-wrapper').hide()
-    $('#subscriptions').empty()
-    AylaProxyClient.logout(authToken, function (data) {
+    $('#subscriptions > tbody').empty()
+    MyAyla.logout(function (data) {
       $('#account-link').html('Login')
     }, displayMessage)
   })
@@ -301,6 +288,43 @@ $(function() {
   })
 })
 
+
+$(function() {
+  $('#add-subscription-form').submit(function(event) {
+
+    let oemModel = $('#add-subscription-oem-model').val()
+    if(!oemModel) {oemModel = '*'}
+    let dsn = $('#add-subscription-dsn').val()
+    if(!dsn) {dsn = '*'}
+    let propertyName = $('#add-subscription-property-name').val()
+    if(!propertyName) {propertyName = "*"}
+
+    let data = {
+      "name": $('#add-subscription-name').val(),
+      "description": $('#add-subscription-description').val(),
+      "subscription_type": $('#add-subscription-subscription-type').val(),
+      "oem_model": oemModel,
+      "dsn": dsn,
+      "property_name": propertyName,
+      "client_type": $('#add-subscription-client-type').val()
+    }
+
+    MyAyla.dssCreateSubscription(data, function (subscription) {
+      displaySubscription(subscription.subscription)
+    }, displayMessage)
+
+    $('#add-subscription-form').get(0).reset()
+    $('#add-subscription-row').hide()
+  })
+})
+
+$(function() {
+  $('#add-subscription-form .close-me').click(function(event) {
+    $('#add-subscription-form').get(0).reset()
+    $('#add-subscription-row').hide()
+  })
+})
+
 /*------------------------------------------------------
 On Click Close Login/Logout
 ------------------------------------------------------*/
@@ -313,13 +337,13 @@ On Click Login/Logout
 
 $(function() {
   $('#account-link').click(function(event) {
-    if(Cookies.get('auth_token')) {
+    if(MyAyla.isLoggedIn()) {
       $('#login-form').hide()
       $('#logout-form').show()
     } else {
-      let appId = Cookies.get('app_id')
+      let appId = MyAyla.getAppId()
       if(appId) {$('#appId').val(appId)}
-      let appSecret = Cookies.get('app_secret')
+      let appSecret = MyAyla.getAppSecret()
       if(appSecret) {$('#appSecret').val(appSecret)}
       $('#login-form').show()
       $('#logout-form').hide()
@@ -332,7 +356,7 @@ On Load
 ------------------------------------------------------*/
 
 $(function() {
-  if(Cookies.get('auth_token')) {
+  if(MyAyla.isLoggedIn()) {
     $('#account-link').html('Logout')
     getDevices()
     dssGetSubscriptions()
@@ -340,26 +364,3 @@ $(function() {
     $('#account-link').html('Login')
   }
 })
-
-/*------------------------------------------------------
-saveAuthToken
-------------------------------------------------------*/
-
-function saveAuthToken(authToken) {
-  var date = new Date()
-  date.setMonth(date.getMonth() + 10)
-  var expires = date.toUTCString()
-  Cookies.set('auth_token', authToken, {expires: 7})
-}
-
-/*------------------------------------------------------
-saveAppCredentials
-------------------------------------------------------*/
-
-function saveAppCredentials(appId, appSecret) {
-  var date = new Date()
-  date.setMonth(date.getMonth() + 10)
-  var expires = date.toUTCString()
-  Cookies.set('app_id', appId, {expires: 7})
-  Cookies.set('app_secret', appSecret, {expires: 7})
-}

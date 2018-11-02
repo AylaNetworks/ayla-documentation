@@ -132,7 +132,7 @@ displayEventStream
 
 function displayEventStream(stream) {
   let item = ''
-  + '<tr class="summary">'
+  + '<tr id="ID' + stream.key + '" class="summary">'
   + '<td class="chk"><input type="checkbox" value="' + stream.key + '"></td>'
   + '<td>' + stream.id + '</td>'
   + '<td class="name">' + stream.name + '</td>'

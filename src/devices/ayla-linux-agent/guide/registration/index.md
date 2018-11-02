@@ -1,6 +1,6 @@
 ---
 title: Registration
-layout: devices-ayla-linux-agent.html
+layout: ayla-linux-agent.html
 a: block
 ---
 

@@ -1,10 +1,10 @@
 ---
 title: Explore Host Application Source Code
-layout: devices-ayla-linux-agent.html
+layout: ayla-linux-agent.html
 b: block
 ---
 
-This tutorial helps you explore Host Application (appd) source code, and the application's use of the [Ayla Linux Agent API](/devices/ayla-linux-agent/reference/ayla-linux-agent-api).
+This tutorial helps you explore Host Application (appd) source code, and the application's use of the (devd) [Agent API](/devices/ayla-linux-agent/reference/agent-api).
 
 ## Host Application Structure
 

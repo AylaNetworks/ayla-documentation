@@ -1,6 +1,6 @@
 ---
 title: Configuration File
-layout: devices-ayla-linux-agent.html
+layout: ayla-linux-agent.html
 c: block
 ---
 
@@ -12,7 +12,10 @@ The Ayla Linux Agent (devd) requires a factory configuration file to uniquely id
 
 The config_gen utility source code is compiled and run on a Linux development machine. It takes several parameters:
 
-* <DSN>.xml file (produced by the Ayla Factory Service)* OEM info file* Device MAC address to be provisioned (if a manufacturing log file is needed).* The utility outputs a unique devd factory config, and optionally appends an entry to a factory log file (which may be required by Ayla to enable the device on the cloud service). The README file in the host_util/config_gen directory describes usage.
+* <DSN>.xml file (produced by the Ayla Factory Service)
+* OEM info file
+* Device MAC address to be provisioned (if a manufacturing log file is needed).
+* The utility outputs a unique devd factory config, and optionally appends an entry to a factory log file (which may be required by Ayla to enable the device on the cloud service). The README file in the host_util/config_gen directory describes usage.
 
 ### Factory Method
 
@@ -22,5 +25,8 @@ Each device is manufactured and programmed with a firmware image that includes a
 
 The devd daemon (and other Ayla daemons) on the device use a consistent scheme to manage configuration files:
 
-* Each daemon is run using the “-c” option specify its factory config file path. The factory config file is only written during factory provisioning. To ensure integrity, set read-only file permissions or store in a read-only file system.* When a daemon’s configuration is modified from defaults and saved, a new file (startup config) is created. All future configuration changes overwrite this file. By default, startup config is created in the same directory as factory config. It uses the factory file name with “.startup” appended. If needed, the startup config can be stored in a different startup directory with the “-s” option.* Startup config must be stored in a writeable flash file system, so it persists across reboots. If not, daemons revert to factory default settings on each reboot.* When a daemon is factory reset, the startup configuration file is deleted and the factory config is loaded.
+* Each daemon is run using the “-c” option specify its factory config file path. The factory config file is only written during factory provisioning. To ensure integrity, set read-only file permissions or store in a read-only file system.
+* When a daemon’s configuration is modified from defaults and saved, a new file (startup config) is created. All future configuration changes overwrite this file. By default, startup config is created in the same directory as factory config. It uses the factory file name with “.startup” appended. If needed, the startup config can be stored in a different startup directory with the “-s” option.
+* Startup config must be stored in a writeable flash file system, so it persists across reboots. If not, daemons revert to factory default settings on each reboot.
+* When a daemon is factory reset, the startup configuration file is deleted and the factory config is loaded.
 

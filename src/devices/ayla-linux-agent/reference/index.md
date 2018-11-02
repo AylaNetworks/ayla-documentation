@@ -1,12 +1,12 @@
 ---
 title: Reference
-layout: devices-ayla-linux-agent.html
+layout: ayla-linux-agent.html
 c: block
 ---
 
 <div class="row hspace">
 <div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/reference/ayla-linux-agent-api/">Ayla Linux Agent API</a>
+<a href="/devices/ayla-linux-agent/reference/agent-api/">Agent API</a>
 </div>
 <div class="col-lg-9 col-md-7 col-sm-12">
 This reference provides details about the API available to host applications.

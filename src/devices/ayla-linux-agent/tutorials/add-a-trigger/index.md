@@ -1,6 +1,6 @@
 ---
 title: Add a Trigger to Red_button
-layout: devices-ayla-linux-agent.html
+layout: ayla-linux-agent.html
 b: block
 ---
 

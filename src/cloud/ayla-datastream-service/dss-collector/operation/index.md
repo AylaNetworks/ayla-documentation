@@ -1,6 +1,6 @@
 ---
 title: Operation
-layout: cloud-ayla-datastream-service.html
+layout: ayla-datastream-service.html
 d: block
 ---
 

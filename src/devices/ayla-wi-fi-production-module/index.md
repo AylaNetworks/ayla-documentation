@@ -1,5 +1,5 @@
 ---
 title: Ayla Wi-Fi Production Module
-layout: devices-ayla-wi-fi-production-module.html
+layout: ayla-wi-fi-production-module.html
 ---
 

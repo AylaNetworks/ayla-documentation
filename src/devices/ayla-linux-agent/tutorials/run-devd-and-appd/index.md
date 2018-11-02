@@ -1,6 +1,6 @@
 ---
 title: Run the Ayla Linux Agent and the Host Application
-layout: devices-ayla-linux-agent.html
+layout: ayla-linux-agent.html
 b: block
 ---
 

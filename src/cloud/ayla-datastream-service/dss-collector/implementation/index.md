@@ -1,14 +1,12 @@
 ---
 title: Implementation
-layout: cloud-ayla-datastream-service.html
+layout: ayla-datastream-service.html
 d: block
 ---
 
 DSS Collector consists of one source file ([collector.js](../source/collector.js)) and one configuration file ([config.json](../source/config.json)).
 
-### Logical flow of execution
-
-DSS Collector does the following:
+DSS Collector follows this logic:
 
 <ol>
 <li>Reads the config file into an object called <code>defs</code>.</li>

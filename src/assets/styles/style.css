@@ -81,7 +81,7 @@ strong {color: #1a1a1a;}
 ******************************************/
 
 #sidenav a:hover {color: red;}
-#sidenav a.active {color: red; font-weight: bold;}
+#sidenav a.active {color: blue; /*font-weight: bold;*/}
 
 #sidenav {
   width: 250px;
@@ -227,7 +227,7 @@ span.a {
 #content-title {padding-top: 9px;}
 #content-title span {font-weight: bold; font-size: 125%;}
 
-#content .hspace {margin-top: 20px; margin-bottom: 20px;}
+#content .hspace {margin-top: 28px; margin-bottom: 28px;}
 /*
 @media (min-width: 768px) {
   #content .img-border {padding: 12px;}
@@ -241,12 +241,12 @@ span.a {
 
 #content dt {font-size: 100%; font-weight: normal; color: steelblue;}
 #content dd {margin-left: 24px;}
-
+/*
 #content iframe {
   display:block; 
   margin: 0 auto;
 }
-
+*/
 #content div.card-body {background: ghostwhite;}
 
 
@@ -317,8 +317,9 @@ span.a {
 
 .key-value-table {font-size: 90%; line-height: 12px; }
 .key-value-table, .key-value-table th, .key-value-table td {border: 1px gainsboro solid !important;}
-.key-value-table tr th {background: white !important; color: darkgreen !important;}
+.key-value-table tr th {background: white !important; color: black !important;}
 .key-value-table tr td {color: gray;}
+.vertical-middle tr td {vertical-align: middle !important;}
 
 /******************************************
  img
@@ -437,3 +438,13 @@ input:checked + .slider:before {
 
 .target {position:relative;}
 .target a {position:absolute; top:-110px;}
+
+@media (min-width: 960px) {
+  .margin-left {margin-left: 20px;}
+}
+@media (max-width: 960px) {
+  .margin-left {margin-left: 0px;}
+}
+
+.under-construction {color: gray;}
+.under-construction a {color: gray;}

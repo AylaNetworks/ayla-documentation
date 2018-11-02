@@ -1,6 +1,6 @@
 ---
 title: Add a Red_button Property
-layout: devices-ayla-linux-agent.html
+layout: ayla-linux-agent.html
 b: block
 ---
 

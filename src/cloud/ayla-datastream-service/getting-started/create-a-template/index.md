@@ -1,6 +1,6 @@
 ---
 title: Create a template
-layout: cloud-ayla-datastream-service.html
+layout: ayla-datastream-service.html
 c: block
 ---
 

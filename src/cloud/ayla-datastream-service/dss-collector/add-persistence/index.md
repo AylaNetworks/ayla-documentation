@@ -1,6 +1,6 @@
 ---
 title: Add persistence
-layout: cloud-ayla-datastream-service.html
+layout: ayla-datastream-service.html
 d: block
 ---
 
@@ -99,9 +99,9 @@ const pool = mysql.createPool({
 
 ## Utilize the data
 
-Each record in the database contains a sequence_id, creation_date, and value. These values can yield (1) the number of too_warm "true" events per day, (2) the total too_warm minutes per day, and (3) the average too_warm minutes per day:
+Each record in the database contains a sequence_id, creation_date, and value. These values yield (1) the number of too_warm "true" events per day, (2) the total too_warm minutes per day, and (3) the average too_warm minutes per day:
 
-<div class="row justify-content-center hspace">
+<div class="row margin-left hspace">
 <div class="col-lg-6 col-md-12">
 <img class="img-fluid" src="too-warm-chart.png">
 </div>

@@ -18,11 +18,11 @@ $(function() {
     let p1 = window.location.pathname.substr(1);
     let path = p1.substr(0, p1.lastIndexOf('/')) || p1;
 
-    //let path = window.location.pathname.substr(1).slice(0, -1);
     let arr = path.split('/').map(s => {
       let arr2 = s.split('-').map(s2 => {
         return s2.charAt(0).toUpperCase() + s2.slice(1);
       });
+      //let arr2 = s.split('-');
       let r = '';
       arr2.forEach((t) => {
         r = r + ' ' + t;
@@ -47,102 +47,13 @@ $(function() {
 });
 
 //------------------------------------------------------
-// Account Link Dropdown Event Handler
+// 
 //------------------------------------------------------
 
 $(function() {
-  $('#account-link').click(function(event) {
-    if(Cookies.get('access_token')) {
-      $('#login-form').hide();
-      $('#logout-form').show();
-    } else {
-      $('#login-error-div').hide();
-      $('#login-form').show();
-      $('#logout-form').hide();
-    }
-
-  });
-});
-
-//------------------------------------------------------
-// Login Form Event Handler
-//------------------------------------------------------
-
-$(function() {
-  $("#login-form" ).submit(function(event) {
+  $('#feedback').click(function(event) {
     event.preventDefault();
-    var email = $('#email').val();
-    var password = $('#password').val();
-    AylaProxyServer.login(email, password, loginCb);
-  });
-});
-
-//------------------------------------------------------
-// loginCb
-//------------------------------------------------------
-
-var loginCb = function (data) {
-  if("error" in data) {
-    $('#login-error-text').html(data.error);
-    $('#login-error-div').show();
-    setTimeout(function() {
-      $('#login-submit').removeClass('active');
-    }.bind('#login-submit'), 10);
-  } 
-  else {
-    var date = new Date();
-    date.setMonth(date.getMonth() + 10);
-    var expires = date.toUTCString();
-    Cookies.set('access_token', data.access_token, { expires: 7 });
-    Cookies.set('refresh_token', data.refresh_token, { expires: 7 });
-    $('#login-error-line').hide();
-    $('#login-form').hide();
-    $('#logout-form').show();
-    console.log('ACCESS TOKEN COOKIE VALUE: ' + Cookies.get('access_token'));
-  }
-}
-
-//------------------------------------------------------
-// Login Close Event Handler
-//------------------------------------------------------
-
-$(function() {
-  $('#login-close').click(function(event) {
-      $("body").trigger("click");
-  });
-});
-
-//------------------------------------------------------
-// Logout Form Event Handler
-//------------------------------------------------------
-
-$(function() {
-  $("#logout-form" ).submit(function(event) {
-    event.preventDefault();
-    AylaProxyServer.logout(logoutCb);
-  });
-});
-
-//------------------------------------------------------
-// logoutCb
-//------------------------------------------------------
-
-var logoutCb = function(data) {
-  Cookies.remove('access_token');
-  Cookies.remove('refresh_token');
-  $('#login-error-div').hide();
-  $('#login-form').show();
-  $('#logout-form').hide();
-  console.log('ACCESS TOKEN COOKIE VALUE: ' + Cookies.get('access_token'));
-}
-
-//------------------------------------------------------
-// Logout Close Event Handler
-//------------------------------------------------------
-
-$(function() {
-  $('#logout-close').click(function(event) {
-      $("body").trigger("click");
+    window.location.href = '/feedback/?page=' + window.location.pathname;
   });
 });
 
@@ -160,17 +71,6 @@ $(function() {
       $(this).attr('src', '/assets/images/chevron-block-24.png');
       $(ol).show();
     }
-  });
-});
-
-//------------------------------------------------------
-// 
-//------------------------------------------------------
-
-$(function() {
-  $('#feedback').click(function(event) {
-    event.preventDefault();
-    window.location.href = '/feedback/?page=' + window.location.pathname;
   });
 });
 
@@ -214,16 +114,3 @@ function nthIndex(str, pat, n){
   }
   return i;
 }
-
-//------------------------------------------------------
-// 
-//------------------------------------------------------
-/*
-$(function() {
-  $("#search").keyup(function (e) {
-   if (e.keyCode == 13) {
-    alert("Search");  
-   }
-  });
-});
-*/

@@ -23,13 +23,17 @@ layout: page-full-width-no-title.html
 </div>
 
 <div class="row" style="margin-top: 30px;">
+<!--
 <div class="col-12 text-center">
 <a href="https://developer.aylanetworks.com/" target="_blank">Developer Portal</a>
 <span>&nbsp;~&nbsp;</span>
 <a href="https://dashboard-dev.aylanetworks.com/" target="_blank">Dashboard Portal</a>
 </div>
+-->
 <div class="col-12 text-center">
-<span class="last-updated">Last updated on October 23, 2018</span>
+<span class="last-updated"><a href="system-status">System Status by Region</a></span>
+<span>~</span>
+<span class="last-updated"><a href="release-notes">Website Release Notes</a></span>
 </div>
 </div>
 
