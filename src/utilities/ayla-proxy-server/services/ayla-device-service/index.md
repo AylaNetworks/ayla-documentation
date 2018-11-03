@@ -37,4 +37,4 @@ a: block
 </tr>
 </table>
 
-[Click to view the Javascript API for this service](api).
+[View the API](api).

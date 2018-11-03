@@ -5,14 +5,18 @@ createDatapoint
 ------------------------------------------------------*/
 
 function createDatapoint(propertyId, value) {
-  MyAyla.createDatapoint(propertyId, value, function (datapoint) {
-    console.log('datapoint value = ' + datapoint.datapoint.value)
-  }, displayMessage)
+  MyAyla.createDatapoint(propertyId, value, function (obj) {
+    console.log('propertyId = ' + propertyId + ', value = ' + obj.datapoint.value)
+  }, displayError)
 }
 
 /*------------------------------------------------------
 displayMessage
 ------------------------------------------------------*/
+
+function displayError(obj) {
+  displayMessage(obj.status + ' ' + obj.statusText)
+}
 
 function displayMessage(msg) {
   $('#msg-box span').html(msg)
@@ -97,7 +101,7 @@ $(function() {
         let tr2 = $(tr1).next()
         $(tr1).remove()
         $(tr2).remove()
-      }, displayMessage)
+      }, displayError)
     })
   })
 })
@@ -131,7 +135,7 @@ function dssGetSubscriptions() {
     subscriptions.forEach(function(subscription) {
       displaySubscription(subscription.subscription)
     })
-  }, displayMessage)
+  }, displayError)
 }
 
 /*------------------------------------------------------
@@ -141,7 +145,7 @@ getDevice
 function getDevice(deviceId) {
   MyAyla.getDevice(deviceId, function (device) {
     getProperties(device.device.key)
-  }, displayMessage)
+  }, displayError)
 }
 
 /*------------------------------------------------------
@@ -161,7 +165,7 @@ function getDevices() {
       })
     }
     getProperties(details.key)
-  }, displayMessage)
+  }, displayError)
 }
 
 /*------------------------------------------------------
@@ -181,7 +185,7 @@ function getProperties(deviceId) {
       })
     }
     displayPropertyValue(details)
-  }, displayMessage)
+  }, displayError)
 }
 
 /*------------------------------------------------------
@@ -200,7 +204,7 @@ $(function() {
       $('#account-link').html('Logout')
       getDevices()
       dssGetSubscriptions()
-    }, displayMessage)
+    }, displayError)
   })
 })
 
@@ -220,7 +224,7 @@ $(function() {
     $('#subscriptions > tbody').empty()
     MyAyla.logout(function (data) {
       $('#account-link').html('Login')
-    }, displayMessage)
+    }, displayError)
   })
 })
  
@@ -237,7 +241,6 @@ $(function() {
     var propertyId = details.key
     var value = $(this).prop('checked') + 0
     createDatapoint(propertyId, value)
-    console.log('propertyId = ' + propertyId + ', value = ' + value)
   })
 })
 
@@ -248,7 +251,6 @@ $(function() {
     var propertyId = details.key
     var value = $('#value-wrapper input').val()
     createDatapoint(propertyId, value)
-    console.log('propertyId = ' + propertyId + ', value = ' + value)
   })
 })
 
@@ -311,7 +313,7 @@ $(function() {
 
     MyAyla.dssCreateSubscription(data, function (subscription) {
       displaySubscription(subscription.subscription)
-    }, displayMessage)
+    }, displayError)
 
     $('#add-subscription-form').get(0).reset()
     $('#add-subscription-row').hide()

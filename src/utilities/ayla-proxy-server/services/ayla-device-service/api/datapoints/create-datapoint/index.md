@@ -4,29 +4,17 @@ layout: ayla-device-service.html
 b: block
 ---
 
-# Function Definition
-<pre>
-function createDatapoint(
-  propertyId, 
-  value, 
-  successCb=defSuccessCb, 
-  failureCb=defFailureCb
-)
+<pre class="light">
+function createDatapoint(propertyId, value, successCb=null, errorCb=null)
 </pre>
 
-## propertyId
+### successCb parameter
 
-## value
+<pre class="light">function successCb(obj)</pre>
 
-## successCb
+The API passes to your callback an object similar to the following:
 
-<pre>
-function successCb(datapoint)
-</pre>
-
-### datapoint
-
-<pre>
+<pre class="light">
 {
   "datapoint": {
     "updated_at": "2018-11-02T14:15:06Z",
@@ -41,17 +29,61 @@ function successCb(datapoint)
 }
 </pre>
 
-## failureCb
+### errorCb parameter
 
-<pre>
-function failureCb(msg)
+<pre class="light">function errorCb(obj)</pre>
+
+The API passes to your callback an object similar to the following:
+
+<pre class="light">
+{
+  "status": 404,
+  "statusText": "Not Found"
+}
 </pre>
 
-# Example
-<pre>
-MyAyla.createDatapoint(propertyId, value, function(datapoint) {
-  console.log(datapoint.datapoint.value)
-}, function(msg) {
-  console.log(msg)
+### Example
+
+<pre class="light">
+MyAyla.createDatapoint(propertyId, value, function(obj) {
+  console.log(JSON.stringify(obj.datapoint, null, 2))
+}, function(obj) {
+  console.log(JSON.stringify(obj, null, 2))
 })
+</pre>
+
+# REST API
+
+<code>createDatapoint</code> passes the request data to the <code>Ayla Proxy Server</code> endpoint, and receives the response data in reply.
+
+### Endpoint
+<pre class="light">/api/v1/properties/:propertyId/datapoints</pre>
+
+### Request Data
+<pre class="light">
+{
+  "datapoint": {
+    "value": "1",
+    "metadata": {
+      "key1": "",
+      "key2": ""
+    }
+  }
+}
+</pre>
+
+### Response Data
+<pre class="light">
+{
+  "datapoint": {
+    "updated_at": "2018-10-04T12:56:57Z",
+    "created_at": "2018-10-04T12:56:57Z",
+    "echo": false,
+    "metadata": {
+      "key1": "",
+      "key2": ""
+    },
+    "value": 1
+  }
+}
 </pre>

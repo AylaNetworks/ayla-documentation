@@ -1,5 +1,5 @@
 ---
-title: Ayla Device Service ~ Javascript API
+title: Ayla Device Service API
 layout: ayla-device-service.html
 ---
 

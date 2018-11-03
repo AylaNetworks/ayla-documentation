@@ -7,6 +7,6 @@ Deployed in your domain, the Ayla Proxy Server accesses Ayla services on behalf 
 
 <div class="row margin-left hspace">
 <div class="col-lg-6 col-md-10 col-sm-12">
-<img class="img-fluid" src="proxy-server.png">
+<img class="img-fluid" src="ayla-proxy-server.png">
 </div>
 </div>

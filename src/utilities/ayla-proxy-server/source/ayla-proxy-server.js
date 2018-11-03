@@ -2,34 +2,9 @@ var MyAyla = {
 
 /*------------------------------------------------------
 createDatapoint
-
-Request
-{
-  "datapoint": {
-    "value": "1",
-    "metadata": {
-      "key1": "",
-      "key2": ""
-    }
-  }
-}
-
-Response
-{
-  "datapoint": {
-    "updated_at": "2018-10-04T12:56:57Z",
-    "created_at": "2018-10-04T12:56:57Z",
-    "echo": false,
-    "metadata": {
-      "key1": "",
-      "key2": ""
-    },
-    "value": 1
-  }
-}
 ------------------------------------------------------*/
 
-createDatapoint: function(propertyId, value, successCb=defSuccessCb, failureCb=defFailureCb) {
+createDatapoint: function(propertyId, value, successCb=null, errorCb=null) {
   let data = {
     'datapoint': {
       'value': value,
@@ -50,7 +25,7 @@ createDatapoint: function(propertyId, value, successCb=defSuccessCb, failureCb=d
     data: JSON.stringify(data)
   })
   .then(function (response) {callSuccessCb(response, successCb)})
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
@@ -88,7 +63,7 @@ Response
 }
 ------------------------------------------------------*/
 
-dssCreateSubscription: function(data, successCb=defSuccessCb, failureCb=defFailureCb) {
+dssCreateSubscription: function(data, successCb=null, errorCb=null) {
   axios({
     method: 'post',
     url: domain + '/api/v1/dss/subscriptions',
@@ -100,7 +75,7 @@ dssCreateSubscription: function(data, successCb=defSuccessCb, failureCb=defFailu
     data: JSON.stringify(data)
   })
   .then(function (response) {callSuccessCb(response, successCb)})
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
@@ -111,7 +86,7 @@ Request
 Response
 ------------------------------------------------------*/
 
-dssDeleteConnection: function(url, streamKey, successCb=defSuccessCb, failureCb=defFailureCb) {
+dssDeleteConnection: function(url, streamKey, successCb=null, errorCb=null) {
   let data = {
     'url': url,
     'streamkey': streamKey
@@ -125,7 +100,7 @@ dssDeleteConnection: function(url, streamKey, successCb=defSuccessCb, failureCb=
     data: JSON.stringify(data)
   })
   .then(function (response) {success({})})
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
@@ -136,7 +111,7 @@ Request
 Response
 ------------------------------------------------------*/
 
-dssDeleteSubscription: function(subscriptionId, successCb=defSuccessCb, failureCb=defFailureCb) {
+dssDeleteSubscription: function(subscriptionId, successCb=null, errorCb=null) {
   axios({
     method: 'delete',
     url: domain + '/api/v1/dss/subscriptions/' + subscriptionId,
@@ -146,7 +121,7 @@ dssDeleteSubscription: function(subscriptionId, successCb=defSuccessCb, failureC
     }
   })
   .then(function (response) {callSuccessCb(response, successCb)})
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
@@ -157,7 +132,7 @@ Request
 Response
 ------------------------------------------------------*/
 
-dssGetSubscription: function(subscriptionId, successCb=defSuccessCb, failureCb=defFailureCb) {
+dssGetSubscription: function(subscriptionId, successCb=null, errorCb=null) {
   axios({
     method: 'get',
     url: domain + '/api/v1/dss/subscriptions/' + subscriptionId,
@@ -167,7 +142,7 @@ dssGetSubscription: function(subscriptionId, successCb=defSuccessCb, failureCb=d
     }
   })
   .then(function (response) {callSuccessCb(response, successCb)})
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
@@ -178,7 +153,7 @@ Request
 Response
 ------------------------------------------------------*/
 
-dssGetSubscriptions: function(successCb=defSuccessCb, failureCb=defFailureCb) {
+dssGetSubscriptions: function(successCb=null, errorCb=null) {
   axios({
     method: 'get',
     url: domain + '/api/v1/dss/subscriptions',
@@ -188,7 +163,7 @@ dssGetSubscriptions: function(successCb=defSuccessCb, failureCb=defFailureCb) {
     }
   })
   .then(function (response) {callSuccessCb(response, successCb)})
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
@@ -259,7 +234,7 @@ Response
 }
 ------------------------------------------------------*/
 
-getDevice: function(deviceId, successCb=defSuccessCb, failureCb=defFailureCb) {
+getDevice: function(deviceId, successCb=null, errorCb=null) {
   axios({
     method: 'get',
     url: domain + '/api/v1/devices/' + deviceId,
@@ -269,7 +244,7 @@ getDevice: function(deviceId, successCb=defSuccessCb, failureCb=defFailureCb) {
     }
   })
   .then(function (response) {callSuccessCb(response, successCb)})
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
@@ -329,7 +304,7 @@ Response
 ]
 ------------------------------------------------------*/
 
-getDevices: function(successCb=defSuccessCb, failureCb=defFailureCb) {
+getDevices: function(successCb=null, errorCb=null) {
   axios({
     method: 'get',
     url: domain + '/api/v1/devices',
@@ -339,7 +314,7 @@ getDevices: function(successCb=defSuccessCb, failureCb=defFailureCb) {
     }
   })
   .then(function (response) {callSuccessCb(response, successCb)})
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
@@ -412,7 +387,7 @@ Response
 ]
 ------------------------------------------------------*/
 
-getProperties: function(deviceId, successCb=defSuccessCb, failureCb=defFailureCb) {
+getProperties: function(deviceId, successCb=null, errorCb=null) {
   axios({
     method: 'get',
     url: domain + '/api/v1/devices/' + deviceId + '/properties',
@@ -422,7 +397,7 @@ getProperties: function(deviceId, successCb=defSuccessCb, failureCb=defFailureCb
     }
   })
   .then(function (response) {callSuccessCb(response, successCb)})
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
@@ -465,7 +440,7 @@ Response
 }
 ------------------------------------------------------*/
 
-getProperty: function(successCb=defSuccessCb, failureCb=defFailureCb) {
+getProperty: function(successCb=null, errorCb=null) {
 },
 
 /*------------------------------------------------------
@@ -501,7 +476,7 @@ Response
 }
 ------------------------------------------------------*/
 
-login: function(email, password, appId, appSecret, successCb=defSuccessCb, failureCb=defFailureCb) {
+login: function(email, password, appId, appSecret, successCb=null, errorCb=null) {
   var data = {
     'user': {
       'email': email,
@@ -527,7 +502,7 @@ login: function(email, password, appId, appSecret, successCb=defSuccessCb, failu
     saveAppSecret(appSecret)
     callSuccessCb(response, successCb)
   })
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
@@ -546,7 +521,7 @@ Response
 }
 ------------------------------------------------------*/
 
-logout: function(successCb=defSuccessCb, failureCb=defFailureCb) {
+logout: function(successCb=null, errorCb=null) {
   var data = {'user': {'access_token': getAuthToken()}}
   axios({
     method: 'delete',
@@ -562,7 +537,7 @@ logout: function(successCb=defSuccessCb, failureCb=defFailureCb) {
     deleteAuthToken()
     callSuccessCb(response, successCb)
   })
-  .catch(function (error) {callFailureCb(error, failureCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 }
 
 }
@@ -572,24 +547,24 @@ callSuccessCb
 ------------------------------------------------------*/
 
 function callSuccessCb(response, successCb) {
-  successCb(response.data)
-}
-
-let defSuccessCb = function(data) {console.log(JSON.stringify(data, null, 2))}
-
-/*------------------------------------------------------
-callFailureCb
-------------------------------------------------------*/
-
-function callFailureCb(error, failureCb) {
-  if(error.response && error.response.statusText) {
-    failureCb(error.response.status + ' ' + error.response.statusText)
-  } else {
-    failureCb(error)
+  if(successCb) {
+    successCb(response.data)
   }
 }
 
-let defFailureCb = function(msg) {console.log(msg)}
+/*------------------------------------------------------
+callErrorCb
+------------------------------------------------------*/
+
+function callErrorCb(error, errorCb) {
+  if(errorCb) {
+    if(error.response && error.response.statusText) {
+      errorCb({"status": error.response.status, "statusText": error.response.statusText})
+    } else {
+      errorCb({"status": 520, "statusText": error})
+    }
+  }
+}
 
 /*------------------------------------------------------
 saveAuthToken

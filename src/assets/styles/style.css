@@ -80,8 +80,8 @@ strong {color: #1a1a1a;}
  #sidenav
 ******************************************/
 
-#sidenav a:hover {color: red;}
-#sidenav a.active {color: blue; /*font-weight: bold;*/}
+#sidenav a:hover {color: #ff4d4d;}
+#sidenav a.active {color: red; /*font-weight: bold;*/}
 
 #sidenav {
   width: 250px;
@@ -313,12 +313,12 @@ span.a {
   }
 }
 
-.normal-table {font-size: 95%; color: gray;}
+.normal-table {font-size: 95%; color: black;}
 
 .key-value-table {font-size: 90%; line-height: 12px; }
 .key-value-table, .key-value-table th, .key-value-table td {border: 1px gainsboro solid !important;}
-.key-value-table tr th {background: white !important; color: black !important;}
-.key-value-table tr td {color: gray;}
+.key-value-table tr th {background: white !important; color: black !important; font-weight: bold !important;}
+.key-value-table tr td {color: black;}
 .vertical-middle tr td {vertical-align: middle !important;}
 
 /******************************************
@@ -448,3 +448,5 @@ input:checked + .slider:before {
 
 .under-construction {color: gray;}
 .under-construction a {color: gray;}
+
+.light {width:fit-content !important; background:#f8f8ff !important; color:black !important; border: 1px solid #e6e6ff !important;}

@@ -4,6 +4,8 @@ layout: ayla-dynamic-gateway-agent.html
 c: block
 ---
 
+[device_linux_gw_public](https://github.com/AylaNetworks/device_linux_gw_public)
+
 ### [app/appd/main.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/appd/main.c)
 
 Calls:
