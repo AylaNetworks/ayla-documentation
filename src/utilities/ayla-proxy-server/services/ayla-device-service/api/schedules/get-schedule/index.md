@@ -1,6 +1,6 @@
 ---
 title: Get Schedule
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 h: block
 ---
 

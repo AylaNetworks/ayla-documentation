@@ -1,10 +1,6 @@
 ---
 title: Properties
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 f: block
 ---
 
-<pre>
-MyAyla.getProperty
-MyAyla.getProperties
-</pre>

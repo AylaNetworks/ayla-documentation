@@ -1,6 +1,6 @@
 ---
 title: Get Devices In Group
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 c: block
 ---
 

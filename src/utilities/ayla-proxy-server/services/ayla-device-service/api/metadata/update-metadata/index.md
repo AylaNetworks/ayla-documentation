@@ -1,6 +1,6 @@
 ---
 title: Update Metadata
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 e: block
 ---
 

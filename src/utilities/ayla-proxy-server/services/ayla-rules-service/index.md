@@ -36,3 +36,7 @@ a: block
 <td><a href="https://" target="_blank">&nbsp;</a></td>
 </tr>
 </table>
+
+### Service API
+
+[Click to view the service API](api).

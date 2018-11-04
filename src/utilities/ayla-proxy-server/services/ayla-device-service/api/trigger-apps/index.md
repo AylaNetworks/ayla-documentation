@@ -1,9 +1,6 @@
 ---
 title: Trigger Apps
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 j: block
 ---
 
-<pre>
-MyAyla.getTriggerApp
-</pre>

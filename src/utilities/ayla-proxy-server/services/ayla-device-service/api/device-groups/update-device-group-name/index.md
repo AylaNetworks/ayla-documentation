@@ -1,6 +1,6 @@
 ---
 title: Update Device Group Name
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 c: block
 ---
 

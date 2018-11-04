@@ -1,6 +1,6 @@
 ---
 title: Get Property Trigger Apps
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 f: block
 ---
 

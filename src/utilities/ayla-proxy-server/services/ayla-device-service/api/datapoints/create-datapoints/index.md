@@ -1,6 +1,6 @@
 ---
 title: Create Datapoints
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 b: block
 ---
 

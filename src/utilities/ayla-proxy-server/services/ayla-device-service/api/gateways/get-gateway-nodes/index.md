@@ -1,6 +1,6 @@
 ---
 title: Get Gateway Nodes
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 d: block
 ---
 

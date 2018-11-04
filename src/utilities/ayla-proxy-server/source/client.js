@@ -5,8 +5,8 @@ createDatapoint
 ------------------------------------------------------*/
 
 function createDatapoint(propertyId, value) {
-  MyAyla.createDatapoint(propertyId, value, function (obj) {
-    console.log('propertyId = ' + propertyId + ', value = ' + obj.datapoint.value)
+  MyAyla.createDatapoint(propertyId, value, function (data) {
+    console.log('propertyId = ' + propertyId + ', value = ' + data.datapoint.value)
   }, displayError)
 }
 
@@ -14,8 +14,8 @@ function createDatapoint(propertyId, value) {
 displayMessage
 ------------------------------------------------------*/
 
-function displayError(obj) {
-  displayMessage(obj.status + ' ' + obj.statusText)
+function displayError(status) {
+  displayMessage(status.code + ' ' + status.text)
 }
 
 function displayMessage(msg) {
@@ -96,7 +96,7 @@ $(function() {
   $('#delete-subscriptions-btn').click(function(event) {
     let checkboxes = $('#subscriptions tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
-      MyAyla.dssDeleteSubscription($(checkbox).val(), function (data) {
+      MyAyla.deleteSubscription($(checkbox).val(), function (data) {
         let tr1 = $(checkbox).closest('tr')
         let tr2 = $(tr1).next()
         $(tr1).remove()
@@ -131,7 +131,7 @@ dssGetSubscriptions
 ------------------------------------------------------*/
 
 function dssGetSubscriptions() {
-  MyAyla.dssGetSubscriptions(function (subscriptions) {
+  MyAyla.getSubscriptions(function (subscriptions) {
     subscriptions.forEach(function(subscription) {
       displaySubscription(subscription.subscription)
     })
@@ -143,8 +143,8 @@ getDevice
 ------------------------------------------------------*/
 
 function getDevice(deviceId) {
-  MyAyla.getDevice(deviceId, function (device) {
-    getProperties(device.device.key)
+  MyAyla.getDevice(deviceId, function (data) {
+    getProperties(data.device.key)
   }, displayError)
 }
 
@@ -153,14 +153,14 @@ getDevices
 ------------------------------------------------------*/
 
 function getDevices() {
-  MyAyla.getDevices(function (devices) {
+  MyAyla.getDevices(function (arr) {
     $('#select-devices').empty()
-    if(devices.length) {
-      var details = devices[0].device
-      $.each(devices, function(index, device) {
+    if(arr.length) {
+      var details = arr[0].device
+      $.each(arr, function(index, data) {
         var option = $('<option/>')
-        option.text(device.device.product_name)
-        option.data("details", device.device)
+        option.text(data.device.product_name)
+        option.data("details", data.device)
         $('#select-devices').append(option)
       })
     }
@@ -173,14 +173,14 @@ getProperties
 ------------------------------------------------------*/
 
 function getProperties(deviceId) {
-  MyAyla.getProperties(deviceId, function (properties) {
+  MyAyla.getProperties(deviceId, function (arr) {
     $('#select-properties').empty()
-    if(properties.length) {
-      var details = properties[0].property
-      $.each(properties, function(index, property) {
+    if(arr.length) {
+      var details = arr[0].property
+      $.each(arr, function(index, data) {
         var option = $('<option/>')
-        option.text(property.property.display_name)
-        option.data("details", property.property)
+        option.text(data.property.display_name)
+        option.data("details", data.property)
         $('#select-properties').append(option)
       })
     }
@@ -311,7 +311,7 @@ $(function() {
       "client_type": $('#add-subscription-client-type').val()
     }
 
-    MyAyla.dssCreateSubscription(data, function (subscription) {
+    MyAyla.createSubscription(data, function (subscription) {
       displaySubscription(subscription.subscription)
     }, displayError)
 

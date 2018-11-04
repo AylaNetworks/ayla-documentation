@@ -1,6 +1,6 @@
 ---
 title: Find Devices
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 a: block
 ---
 

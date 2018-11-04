@@ -1,6 +1,6 @@
 ---
 title: Get Device Timezone
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 i: block
 ---
 

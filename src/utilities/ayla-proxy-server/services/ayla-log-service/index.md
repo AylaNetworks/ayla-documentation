@@ -36,3 +36,7 @@ a: block
 <td><a href="https://log-field.aylanetworks.com" target="_blank">log-field.aylanetworks.com</a></td>
 </tr>
 </table>
+
+### Service API
+
+[Click to view the service API](api).

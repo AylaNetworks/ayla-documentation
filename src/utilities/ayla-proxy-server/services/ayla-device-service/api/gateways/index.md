@@ -1,9 +1,6 @@
 ---
 title: Gateways
-layout: ayla-device-service.html
+layout: ayla-proxy-server-device-service.html
 d: block
 ---
 
-<pre>
-MyAyla.getGatewayNodes
-</pre>
