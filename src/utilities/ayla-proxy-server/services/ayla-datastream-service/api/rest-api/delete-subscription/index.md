@@ -4,39 +4,24 @@ layout: ayla-proxy-server-datastream-service.html
 a: block
 ---
 
-Deletes the subscription specified by a subscription id.
+<pre class="light">
+function deleteSubscription(subscriptionId, successCb=null, errorCb=null)
+</pre>
 
-### Request
+### successCb
 
-<pre>DELETE https://&lt;DSS Domain&gt;/api/v1/subscriptions/:subscriptionId.json</pre>
+<pre class="light">function successCb(data)</pre>
 
-<table class="key-value-table">
-  <tr>
-    <th>Authorization</th>
-    <td>auth_token abcdef0123456789abcdef0123456789</td>
-  </tr>
-</table>
-
-No request data.
-
-### Response
-
-<table class="key-value-table">
-  <tr>
-    <th>204</th>
-    <td>No Content</td>
-  </tr>
-</table>
-
-No response data.
+The API passes <code>""</code> to your callback.
 
 ### Example
 
-<pre>
-curl -X DELETE \
-  https://stream.aylanetworks.com/api/v1/subscriptions/50155.json \
-  -H 'Accept: application/json' \
-  -H 'Authorization: auth_token abcdef0123456789abcdef0123456789' \
-  -H 'Cache-Control: no-cache' \
-  -H 'Content-Type: application/json'
+<pre class="light">
+MyAyla.deleteSubscription(subscriptionId, null, function(status) {
+  console.log(JSON.stringify(status))
+})
 </pre>
+
+# REST API
+
+<pre class="light">DELETE /api/v1/dss/subscriptions/:subscriptionId</pre>

@@ -96,7 +96,7 @@ $(function() {
   $('#delete-subscriptions-btn').click(function(event) {
     let checkboxes = $('#subscriptions tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
-      MyAyla.deleteSubscription($(checkbox).val(), function (data) {
+      MyAyla.deleteSubscription($(checkbox).val(), function(data) {
         let tr1 = $(checkbox).closest('tr')
         let tr2 = $(tr1).next()
         $(tr1).remove()
@@ -311,8 +311,8 @@ $(function() {
       "client_type": $('#add-subscription-client-type').val()
     }
 
-    MyAyla.createSubscription(data, function (subscription) {
-      displaySubscription(subscription.subscription)
+    MyAyla.createSubscription(data, function (data) {
+      displaySubscription(data.subscription)
     }, displayError)
 
     $('#add-subscription-form').get(0).reset()

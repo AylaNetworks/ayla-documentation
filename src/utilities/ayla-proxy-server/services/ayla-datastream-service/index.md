@@ -4,6 +4,8 @@ layout: ayla-proxy-server.html
 a: block
 ---
 
+[Click to view the service API](api).
+
 ### Regional Domains
 
 Use <code>wss</code> for WebSockets, and <code>https</code> for the REST API.
@@ -115,7 +117,3 @@ Use <code>wss</code> for WebSockets, and <code>https</code> for the REST API.
 </tr>
 </tr>
 </table>
-
-### Service API
-
-[Click to view the service API](api).

@@ -30,37 +30,6 @@ createDatapoint: function(propertyId, value, successCb=null, errorCb=null) {
 
 /*------------------------------------------------------
 createSubscription
-
-Request
-{
-  "oem_model": "*",
-  "client_type": "mobile",
-  "subscription_type": "datapoint",
-  "property_name": "*"
-}
-
-Response
-{
-  "subscription": {
-    "id": 149818,
-    "oem": "0dfc7900",
-    "dsn": "AC000W000340779,AC000W005606115",
-    "name": null,
-    "description": null,
-    "property_name": "*",
-    "connection_status": "Offline",
-    "batch_size": 1,
-    "is_suspended": false,
-    "created_at": "2018-10-04T13:04:32Z",
-    "updated_at": "2018-10-04T13:04:32Z",
-    "date_suspended": null,
-    "user_uuid": "40e45b84-690c-11e8-acf3-12f911dcfe40",
-    "oem_model": "*",
-    "stream_key": "234af7d24c996857b09a9637ebece795",
-    "client_type": "mobile",
-    "subscription_type": "datapoint"
-  }
-}
 ------------------------------------------------------*/
 
 createSubscription: function(data, successCb=null, errorCb=null) {
@@ -80,10 +49,6 @@ createSubscription: function(data, successCb=null, errorCb=null) {
 
 /*------------------------------------------------------
 deleteConnection
-
-Request
-
-Response
 ------------------------------------------------------*/
 
 deleteConnection: function(url, streamKey, successCb=null, errorCb=null) {
@@ -105,10 +70,6 @@ deleteConnection: function(url, streamKey, successCb=null, errorCb=null) {
 
 /*------------------------------------------------------
 deleteSubscription
-
-Request
-
-Response
 ------------------------------------------------------*/
 
 deleteSubscription: function(subscriptionId, successCb=null, errorCb=null) {
@@ -126,10 +87,6 @@ deleteSubscription: function(subscriptionId, successCb=null, errorCb=null) {
 
 /*------------------------------------------------------
 getSubscription
-
-Request
-
-Response
 ------------------------------------------------------*/
 
 getSubscription: function(subscriptionId, successCb=null, errorCb=null) {
@@ -147,10 +104,6 @@ getSubscription: function(subscriptionId, successCb=null, errorCb=null) {
 
 /*------------------------------------------------------
 getSubscriptions
-
-Request
-
-Response
 ------------------------------------------------------*/
 
 getSubscriptions: function(successCb=null, errorCb=null) {

@@ -4,6 +4,8 @@ layout: ayla-proxy-server.html
 a: block
 ---
 
+[Click to view the service API](api).
+
 ### Regional Domains
 
 <table class="key-value-table vertical-middle">
@@ -36,7 +38,3 @@ a: block
 <td><a href="https://ans-field.aylanetworks.com" target="_blank">ans-field.aylanetworks.com</a></td>
 </tr>
 </table>
-
-### Service API
-
-[Click to view the service API](api).

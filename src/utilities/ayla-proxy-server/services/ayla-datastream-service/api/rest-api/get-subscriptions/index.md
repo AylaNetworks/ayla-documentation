@@ -4,35 +4,17 @@ layout: ayla-proxy-server-datastream-service.html
 a: block
 ---
 
-Gets all subscriptions for the user associated with the auth token.
+<pre class="light">
+function getSubscriptions(successCb=null, errorCb=null)
+</pre>
 
-### Request
+### successCb
 
-<pre>GET https://&lt;DSS Domain&gt;/api/v1/subscriptions.json</pre>
+<pre class="light">function successCb(arr)</pre>
 
-<table class="key-value-table">
-  <tr>
-    <th>Authorization</th>
-    <td>auth_token abcdef0123456789abcdef0123456789</td>
-  </tr>
-  <tr>
-    <th>Accept</th>
-    <td>application/json</td>
-  </tr>
-</table>
+The API passes to your callback an object similar to the following:
 
-No request data.
-
-### Response
-
-<table class="key-value-table">
-  <tr>
-    <th>200</th>
-    <td>OK</td>
-  </tr>
-</table>
-
-<pre>
+<pre class="light">
 [
   {
     "subscription": {
@@ -81,11 +63,19 @@ No request data.
 
 ### Example
 
-<pre>
-curl -X GET \
-  https://stream.aylanetworks.com/api/v1/subscriptions.json \
-  -H 'Accept: application/json' \
-  -H 'Authorization: auth_token abcdef01234567890000000000000001' \
-  -H 'Cache-Control: no-cache' \
-  -H 'Content-Type: application/json'
+<pre class="light">
+MyAyla.getSubscriptions(function(arr) {
+  if(arr.length) {
+    $.each(arr, function(index, data) {
+      console.log(JSON.stringify(data.subscription))
+    })
+  }
+}, function(status) {
+  console.log(JSON.stringify(status))
+})
 </pre>
+
+# REST API
+
+<pre class="light">GET /api/v1/dss/subscriptions</pre>
+
