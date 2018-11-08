@@ -28,6 +28,26 @@ exports.createDatapoint = function(req, res) {
 }
 
 /*------------------------------------------------------
+deleteDevice
+------------------------------------------------------*/
+
+exports.deleteDevice = function(req, res) {
+  axios({
+    method: 'delete',
+    url: domain + '/apiv1/devices/' + urlStr(req, 1),
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
 dssCreateSubscription
 ------------------------------------------------------*/
 
@@ -132,7 +152,7 @@ getDevice
 ------------------------------------------------------*/
 
 exports.getDevice = function(req, res) {
-    axios({
+  axios({
     method: 'get',
     url: domain + '/apiv1/devices/' + urlStr(req, 1),
     headers: req.headers
@@ -172,7 +192,7 @@ getProperties
 ------------------------------------------------------*/
 
 exports.getProperties = function(req, res) {
-    axios({
+  axios({
     method: 'get',
     url: domain + '/apiv1/devices/' + urlStr(req, 2) + '/properties',
     headers: req.headers
@@ -223,6 +243,27 @@ exports.logout = function(req, res) {
   axios({
     method: 'post',
     url: domain + '/users/sign_out',
+    headers: req.headers,
+    data: JSON.stringify(req.body)
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
+updateDevice
+------------------------------------------------------*/
+
+exports.updateDevice = function(req, res) {
+  axios({
+    method: 'put',
+    url: domain + '/apiv1/devices/' + urlStr(req, 1),
     headers: req.headers,
     data: JSON.stringify(req.body)
   })

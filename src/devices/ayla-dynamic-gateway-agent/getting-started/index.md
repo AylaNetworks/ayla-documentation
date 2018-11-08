@@ -1,6 +1,6 @@
 ---
-title: Reference
+title: Getting Started
 layout: ayla-dynamic-gateway-agent.html
-c: block
+i: block
 ---
 

@@ -4,6 +4,8 @@ layout: ayla-proxy-server-datastream-service.html
 a: block
 ---
 
+This function gets the attributes of all your DSS subscriptions.
+
 <pre class="light">
 function getSubscriptions(successCb=null, errorCb=null)
 </pre>
@@ -75,7 +77,7 @@ MyAyla.getSubscriptions(function(arr) {
 })
 </pre>
 
-# REST API
+# Ayla Proxy Server REST API
 
 <pre class="light">GET /api/v1/dss/subscriptions</pre>
 

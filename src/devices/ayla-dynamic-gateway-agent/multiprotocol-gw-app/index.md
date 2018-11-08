@@ -1,6 +1,6 @@
 ---
-title: Reference
+title: Multiprotocol Gateway App
 layout: ayla-dynamic-gateway-agent.html
-c: block
+g: block
 ---
 

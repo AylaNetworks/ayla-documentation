@@ -1,6 +1,6 @@
 ---
-title: Bluetooth LE Gateway
+title: Introduction
 layout: ayla-dynamic-gateway-agent.html
-b: block
+h: block
 ---
 

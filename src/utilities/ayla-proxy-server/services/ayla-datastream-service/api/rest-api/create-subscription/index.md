@@ -4,6 +4,8 @@ layout: ayla-proxy-server-datastream-service.html
 a: block
 ---
 
+This function creates a DSS subscription.
+
 <pre class="light">
 function createSubscription(input, successCb=null, errorCb=null)
 </pre>
@@ -123,6 +125,6 @@ MyAyla.createSubscription(input, function(data) {
 })
 </pre>
 
-# REST API
+# Ayla Proxy Server REST API
 
 <pre class="light">POST /api/v1/dss/subscriptions</pre>

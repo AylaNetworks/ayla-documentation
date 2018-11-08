@@ -1,6 +1,6 @@
 ---
-title: Zigbee Gateway
+title: Bluetooth Gateway App
 layout: ayla-dynamic-gateway-agent.html
-a: block
+b: block
 ---
 

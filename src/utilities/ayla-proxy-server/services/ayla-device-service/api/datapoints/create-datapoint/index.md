@@ -4,6 +4,8 @@ layout: ayla-proxy-server-device-service.html
 b: block
 ---
 
+This function creates a new value for the specified property.
+
 <pre class="light">
 function createDatapoint(propertyId, value, successCb=null, errorCb=null)
 </pre>
@@ -39,7 +41,7 @@ MyAyla.createDatapoint(propertyId, value, function(data) {
 })
 </pre>
 
-# REST API
+# Ayla Proxy Server REST API
 
 <pre class="light">POST /api/v1/properties/:propertyId/datapoints</pre>
 

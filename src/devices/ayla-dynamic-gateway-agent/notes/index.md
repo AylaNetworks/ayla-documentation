@@ -1,6 +1,6 @@
 ---
-title: Reference
+title: Notes
 layout: ayla-dynamic-gateway-agent.html
-c: block
+d: block
 ---
 

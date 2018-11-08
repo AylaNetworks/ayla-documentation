@@ -9,6 +9,8 @@ module.exports = function(app) {
 
   app.route('/api/v1/devices/:deviceId')
     .get(controllers.getDevice)
+    .put(controllers.updateDevice)
+    .delete(controllers.deleteDevice)
 
   app.route('/api/v1/devices/:deviceId/properties')
     .get(controllers.getProperties)

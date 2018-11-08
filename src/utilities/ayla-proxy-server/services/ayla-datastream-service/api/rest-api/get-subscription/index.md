@@ -4,6 +4,8 @@ layout: ayla-proxy-server-datastream-service.html
 a: block
 ---
 
+This function gets the attributes of the specified DSS subscription.
+
 <pre class="light">
 function getSubscription(subscriptionId, successCb=null, errorCb=null)
 </pre>
@@ -48,6 +50,6 @@ MyAyla.getSubscription(subscriptionId, function(data) {
 })
 </pre>
 
-# REST API
+# Ayla Proxy Server REST API
 
 <pre class="light">GET /api/v1/dss/subscriptions/:subscriptionId</pre>

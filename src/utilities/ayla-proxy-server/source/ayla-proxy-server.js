@@ -69,6 +69,23 @@ deleteConnection: function(url, streamKey, successCb=null, errorCb=null) {
 },
 
 /*------------------------------------------------------
+deleteDevice
+------------------------------------------------------*/
+
+deleteDevice: function(deviceId, successCb=null, errorCb=null) {
+  axios({
+    method: 'delete',
+    url: domain + '/api/v1/devices/' + deviceId,
+    headers: {
+      'Authorization': 'auth_token ' + getAuthToken(),
+      'Accept': 'application/json'
+    }
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
 deleteSubscription
 ------------------------------------------------------*/
 

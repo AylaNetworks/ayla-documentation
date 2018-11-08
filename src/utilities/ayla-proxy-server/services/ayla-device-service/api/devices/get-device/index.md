@@ -4,6 +4,8 @@ layout: ayla-proxy-server-device-service.html
 a: block
 ---
 
+This function gets all the attributes of the specified device.
+
 <pre class="light">
 function getDevice(deviceId, successCb=null, errorCb=null)
 </pre>
@@ -71,6 +73,6 @@ MyAyla.getDevice(deviceId, function(data) {
 })
 </pre>
 
-# REST API
+# Ayla Proxy Server REST API
 
 <pre class="light">GET /api/v1/devices/:deviceId</pre>

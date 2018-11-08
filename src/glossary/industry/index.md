@@ -51,6 +51,8 @@ layout: glossary.html
 <li><a href="https://en.wikipedia.org/wiki/Near-field_communication">Near Field Communication (NFC)</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Original_design_manufacturer">Original Design Manufacturing (ODM)</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Original_equipment_manufacturer">Original Equipment Manufacturing (OEM)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Out-of-band_data">Out-of-Band Data</a></li>
+<li><a href="https://blog.bluetooth.com/bluetooth-pairing-part-5-legacy-pairing-out-of-band">Out-of-Band Pairing (OOP)</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Over-the-air_programming">Over The Air (OTA)</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Peer-to-peer">Peer-to-peer (P2P)</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Personal_area_network">Personal Area Network (PAN)</a></li>

@@ -4,6 +4,8 @@ layout: ayla-proxy-server-datastream-service.html
 a: block
 ---
 
+This function deletes the specified DSS Subscription.
+
 <pre class="light">
 function deleteSubscription(subscriptionId, successCb=null, errorCb=null)
 </pre>
@@ -22,6 +24,6 @@ MyAyla.deleteSubscription(subscriptionId, null, function(status) {
 })
 </pre>
 
-# REST API
+# Ayla Proxy Server REST API
 
 <pre class="light">DELETE /api/v1/dss/subscriptions/:subscriptionId</pre>
