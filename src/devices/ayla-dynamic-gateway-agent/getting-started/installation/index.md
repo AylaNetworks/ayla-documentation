@@ -4,43 +4,194 @@ layout: ayla-dynamic-gateway-agent.html
 i: block
 ---
 
-Before you install the [Ayla Dynamic Gateway Agent](https://github.com/AylaNetworks/device_linux_gw_public) on your Raspberry Pi, be sure to complete the following steps:
+Before you install the [Ayla Dynamic Gateway Agent](https://github.com/AylaNetworks/device_linux_gw_public) on your Raspberry Pi, complete the following steps:
 
 1. Create an Ayla account.
 1. Unregister your RPi device.
-1. Delete old installations including daemons.
+1. Delete old installations including daemons on your RPi.
 
-### Obtain a devd.conf file
+### Create a dsn.xml file
+
+Add instructions here for creating this file in Dashboard Portal.
+
+### Create an oem_info file
+
+Add instructions here for modify this file:
+
+<pre class="light">
+region US                                    # Device region code
+oem aabbccee                                 # OEM ID
+oem_model sample_oem_model                   # OEM model
+oem_secret deadbeefdeadbeefdeadbeefdeadbeef  # OEM secret
+mfg_model Sample-manufacturer-model          # Manufacturer model
+mfg_serial Sample-manufacturer-serial-number # Manufacturer S/N (optional)
+mfg_sw_version v1.2.3_F                      # Manufacturer SW version (optional)
+odm devices_R_us                             # Original Device Manufacturer name (optional)
+</pre>
+
+### Clone the Ayla Gateway Repository
 
 <ol>
-<li></li>
+<li>Secure shell to your RPi with <code>$ ssh pi@192.168.1.3</code>.</li>
 
-<li></li>
+<li>Change directory to <code>/home/pi</code>.</li>
 
-<li></li>
+<li>Clone the repo:</li>
+<pre class="light">
+$ git clone https&#58;//github.com/AylaNetworks/device_linux_gw_public.git
+</pre>
 </ol>
 
-Notes from Ayla Linux Agent:
+### Generate a devd.conf file
 
-* Obtain a devd.conf file. Copy to RPi.
-  * Generate with config_gen.
-  * appd oem_model = linuxevb.
-  * gatewayd oem_model = ggdemo.
-  * bt_gatewayd = linuxevb.
-  * zb_gatewayd = linuxevb.
-  * multi_gatewayd = linuxevb.
-* Obtain ayla_install.sh. Copy to RPi.
-  * Modify ayla_package=.
-  * Modify temp_dir= if desired.
-  * sudo ./ayla_install.sh --help
-  * sudo ./ayla_install.sh for basic installation.
-  * Use -a to set the build app, it could be appd, gateway, bt_gatewayd, zb_gatewayd, and multi_gatewayd
-  * The --log option may be used to save a list of installation steps to a file.
-* Run the installation.
-* Reboot the RPi.
-* Verify that devd and appd are running.
-* Register the RPi device.
-* Test the RPi device.
+<ol>
+<li>Make the <code>config_gen</code> utility:</li>
+<pre class="light">
+$ cd device_linux_gw_public
+$ make host_utils
+</pre>
 
-Notes about OTA Updates:
+<li>Determine the MAC address of your RPi:</li>
+<pre class="light">
+$ ifconfig
+</pre>
 
+<li>Copy your dsn.xml file:</li>
+<pre class="light">
+$ scp AC000W123456789.xml pi@192.168.1.3:device_linux_gw_public/build/native/utils
+</pre>
+
+<li>Copy your oem_info file:</li>
+<pre class="light">
+$ scp oem_info pi@192.168.1.3:device_linux_gw_public/build/native/utils
+</pre>
+
+<li>Change directory to <code>&sim;/device_linux_gw_public/build/native/utils</code>.</p>
+
+<li>Execute <code>config_gen</code>:</li>
+<pre class="light">
+$ ./config_gen -m aa11bb22cc33 -d AC000W123456789.xml -i oem_info
+</pre>
+
+<li>Copy the resulting <code>AC000W123456789.conf</code> file to <code>/home/pi/devd.conf</code>:</li>
+<pre class="light">
+$ cp AC000W123456789.conf ~/devd.conf
+</pre>
+
+<li>Open <code>devd.conf</code>. It should resemble this:</li>
+<pre class="light">
+{
+  "config": {
+    "sys": {
+      "factory": 1
+    },
+    "id": {
+      "dsn": "AC000W123456789",
+      "rsa_pub_key": "-----BEGIN RSA PUBLIC KEY-----\nMIIB...
+    },
+    "client": {
+      "region": "US"
+    },
+    "oem": {
+      "oem": "0aaa111e",
+      "model": "linuxevb",
+      "key": "UT9...
+    }
+  }
+}
+</pre>
+
+<li>Add <code>,"server": {"default": 1}</code> to the <code>client</code> section as indicated in red below, and save. Don't forget the initial comma. This addition is important for initial prototyping, and should be removed after the OEM model is enabled on the platform.</li>
+<pre class="light">
+{
+  "config": {
+    "sys": {
+      "factory": 1
+    },
+    "id": {
+      "dsn": "AC000W123456789",
+      "rsa_pub_key": "-----BEGIN RSA PUBLIC KEY-----\nMIIB...
+    },
+    "client": {
+      "region": "US"<span style="color:red;">,
+      "server": {
+          "default": 1
+      }</span>
+    },
+    "oem": {
+      "oem": "0aaa111e",
+      "model": "linuxevb",
+      "key": "UT9...
+    }
+  }
+}
+</pre>
+</ol>
+
+### Install the Ayla package
+<ol>
+<li>Copy ayla_install.sh to <code>/home/pi</code>:</li>
+<pre class="light">
+$ cp ~/device_linux_gw_public/dev_kit/raspberry_pi/ayla_install.sh ~/ 
+</pre>
+
+<li>Open the file:</li>
+<pre class="light">
+$ nano ayla_install.sh
+</pre>
+
+<li>Find the following line:</li>
+<pre class="light">
+ayla_src_dir="$temp_dir/ayla/src"
+</pre>
+
+<li>Change it to the following, and save.</li>
+<pre class="light">
+ayla_src_dir="/home/pi/device_linux_gw_public"
+</pre>
+
+<li>View ayla_install.sh options:</li>
+<pre class="light">
+$ sudo ./ayla_install.sh -h
+</pre>
+
+<li>Run ayla_install.sh. The installation script installs the Ayla package in <code>~/ayla</code>.</li>
+<pre class="light">
+$ sudo ./ayla_install.sh -a appd -g
+</pre>
+<p>During installation, you will see the following note:</p>
+<pre class="light">
+NOTE: To compile programs with wiringPi, you need to add:
+    -lwiringPi
+  to your compile line(s) To use the Gertboard, MaxDetect, etc.
+  code (the devLib), you need to also add:
+    -lwiringPiDev
+  to your compile line(s).
+</pre>
+
+<li>Reboot using <code>sudo reboot</code>.</li>
+</ol>
+
+### Verify the installation
+
+The installation directory <code>&sim;/ayla/</code> contains the following:
+
+<pre class="light">
+ayla_install.opts  A text file auto-generated by ayla_install.sh.
+bin                A directory containing daemons and utilities.
+config             A directory containing config files for daemons.
+etc                
+lib                A directory containing libapp.a, libayla.a, and libplatform.a.
+</pre>
+
+The daemon init directory <code>/etc/init.d/</code> contains the startup files for cond, devd, and logd.
+
+You can use <code>ps</code> to verify that the daemons are running:
+
+<pre class="light">
+$ ps -A | grep appd
+$ ps -A | grep cond
+$ ps -A | grep devd
+$ ps -A | grep logd
+</pre>
+</ol>
