@@ -36,25 +36,31 @@ This function also allows the setting of "from device" values
 for the purpose of testing.
 ------------------------------------------------------*/
 
-function displayPropertyValue(details) {
+function displayPropertyValue(type, value, direction) {
 
   $('#value-label').show()
   $('#value-wrapper').show()
 
-  switch(details.base_type) {
+  let status = (direction==='input') ? '>' : ' disabled>'
+
+  switch(type) {
     case 'boolean':
     $('#value-button-wrapper').hide()
 
     $('#value-wrapper').empty().append(''
       + '<label class="switch" style="margin-bottom:0;">'
-      + '<input id="property-value" type="checkbox" value="' + details.value + '">'
+      + '<input id="property-value" type="checkbox" value="' + value + '"' + status
       + '<span class="slider round"></span>'
       + '</label>')
     break
 
     default:
-    $('#value-wrapper').empty().append('<input id="property-value" type="text" class="form-control form-control-sm" value="' + details.value + '">')
-    $('#value-button-wrapper').show()
+    $('#value-wrapper').empty().append('<input id="property-value" type="text" class="form-control form-control-sm" value="' + value + '"' + status)
+    if(direction==='input') {
+      $('#value-button-wrapper').show()
+    } else {
+      $('#value-button-wrapper').hide()
+    }
     break
   }
 }
@@ -77,16 +83,25 @@ function getDevices() {
   MyAyla.getDevices(function (arr) {
     $('#select-devices').empty()
     if(arr.length) {
-      var details = arr[0].device
+      var deviceId = arr[0].device.key
       $.each(arr, function(index, data) {
         var option = $('<option/>')
         option.text(data.device.product_name)
         option.val(data.device.key)
-        option.data("details", data.device)
         $('#select-devices').append(option)
       })
     }
-    getProperties(details.key)
+    getProperties(deviceId)
+  }, displayError)
+}
+
+/*------------------------------------------------------
+getProperty
+------------------------------------------------------*/
+
+function getProperty(propertyId) {
+  MyAyla.getProperty(propertyId, function (data) {
+    displayPropertyValue(data.property.base_type, data.property.value, data.property.direction)
   }, displayError)
 }
 
@@ -98,16 +113,17 @@ function getProperties(deviceId) {
   MyAyla.getProperties(deviceId, function (arr) {
     $('#select-properties').empty()
     if(arr.length) {
-      var details = arr[0].property
+      var type = arr[0].property.base_type
+      var value = arr[0].property.value
+      var direction = arr[0].property.direction
       $.each(arr, function(index, data) {
         var option = $('<option/>')
         option.text(data.property.display_name)
         option.val(data.property.key)
-        option.data("details", data.property)
         $('#select-properties').append(option)
       })
     }
-    displayPropertyValue(details)
+    displayPropertyValue(type, value, direction)
   }, displayError)
 }
 
@@ -157,20 +173,18 @@ On Click Datapoint (for non-boolean properties)
 $(function() {
   $('#value-wrapper').delegate('input:checkbox', "change", function(event) {
     $(this).blur()
-    var selected = $('#select-properties option:selected')
-    var details = $(selected).data("details")
-    var propertyId = details.key
-    var value = $(this).prop('checked') + 0
+    let selected = $('#select-properties option:selected')
+    let propertyId = $(selected).val()
+    let value = $(this).prop('checked') + 0
     createDatapoint(propertyId, value)
   })
 })
 
 $(function() {
   $('#save-property-value').click(function(event) {
-    var selected = $('#select-properties option:selected')
-    var details = $(selected).data("details")
-    var propertyId = details.key
-    var value = $('#value-wrapper input').val()
+    let selected = $('#select-properties option:selected')
+    let propertyId = $(selected).val()
+    let value = $('#value-wrapper input').val()
     createDatapoint(propertyId, value)
   })
 })
@@ -182,10 +196,9 @@ On Change Device
 $(function() {
   $( "#select-devices" ).change(function() {
     $(this).blur()
-    var selected = $('#select-devices option:selected')
-    var details = $(selected).data("details")
-
-    getProperties(details.key)
+    let selected = $('#select-devices option:selected')
+    let deviceId = $(selected).val()
+    getProperties(deviceId)
   })
 })
 
@@ -197,8 +210,8 @@ $(function() {
   $( "#select-properties" ).change(function() {
     $(this).blur()
     var selected = $('#select-properties option:selected')
-    var details = $(selected).data("details")
-    displayPropertyValue(details)
+    let propertyId = $(selected).val()
+    getProperty(propertyId)
   })
 })
 

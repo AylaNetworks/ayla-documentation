@@ -448,3 +448,12 @@ input:checked + .slider:before {
 .under-construction a {color: gray;}
 
 .light {width:fit-content !important; background:#f8f8ff !important; color:black !important; border: 1px solid #f8f8ff !important;}
+
+@media (min-width: 960px) {
+  .img-margins {margin: 12px 0 20px 16px;}
+}
+@media (max-width: 960px) {
+  .img-margins {margin: 6px 0 12px 0px;}
+}
+
+ol {margin-top: 6px;}

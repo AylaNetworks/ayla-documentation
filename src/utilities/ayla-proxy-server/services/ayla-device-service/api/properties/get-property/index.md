@@ -61,4 +61,4 @@ MyAyla.getProperty(propertyId, function(data) {
 
 # Ayla Proxy Server REST API
 
-<pre class="light">GET /api/v1/:propertyId</pre>
+<pre class="light">GET /api/v1/properties/:propertyId</pre>

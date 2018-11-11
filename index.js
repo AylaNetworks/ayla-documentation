@@ -32,7 +32,9 @@ metalsmith(__dirname)
     g: "none",
     h: "none",
     i: "none",
-    j: "none"
+    j: "none",
+    k: "none",
+    l: "none"
   })
 
   .source('./src')

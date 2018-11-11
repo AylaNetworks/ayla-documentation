@@ -4,6 +4,14 @@ layout: ayla-dynamic-gateway-agent.html
 i: block
 ---
 
+### What are you installing?
+
+Add a description here. Readers need to understand that the installation installs devd, cond, logd, appd, gatewayd, bt_gatewayd, zb_gatewayd, multi-gatewayd. 
+
+They also need to understand that all the apps are renamed to appd.
+
+### Preparation
+
 Before you install the [Ayla Dynamic Gateway Agent](https://github.com/AylaNetworks/device_linux_gw_public) on your Raspberry Pi, complete the following steps:
 
 1. Create an Ayla account.
@@ -48,7 +56,7 @@ $ git clone https&#58;//github.com/AylaNetworks/device_linux_gw_public.git
 <li>Make the <code>config_gen</code> utility:</li>
 <pre class="light">
 $ cd device_linux_gw_public
-$ make host_utils
+$ sudo make host_utils
 </pre>
 
 <li>Determine the MAC address of your RPi:</li>
@@ -128,7 +136,7 @@ $ cp AC000W123456789.conf ~/devd.conf
 </pre>
 </ol>
 
-### Install the Ayla package
+### Modify the installation script
 <ol>
 <li>Copy ayla_install.sh to <code>/home/pi</code>:</li>
 <pre class="light">
@@ -149,12 +157,22 @@ ayla_src_dir="$temp_dir/ayla/src"
 <pre class="light">
 ayla_src_dir="/home/pi/device_linux_gw_public"
 </pre>
+</ol>
 
+### Consider installation options
+
+Explain how to build each app, and how to rebuild a different app.
+
+<ol>
 <li>View ayla_install.sh options:</li>
 <pre class="light">
 $ sudo ./ayla_install.sh -h
 </pre>
+</ol>
 
+### Perform the installation
+
+<ol>
 <li>Run ayla_install.sh. The installation script installs the Ayla package in <code>~/ayla</code>.</li>
 <pre class="light">
 $ sudo ./ayla_install.sh -a appd -g

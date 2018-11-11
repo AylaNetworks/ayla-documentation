@@ -1,6 +1,6 @@
 ---
-title: Gateway Agent
+title: Directions
 layout: ayla-dynamic-gateway-agent.html
-e: block
+i: block
 ---
 

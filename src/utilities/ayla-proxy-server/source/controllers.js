@@ -212,6 +212,19 @@ getProperty
 ------------------------------------------------------*/
 
 exports.getProperty = function(req, res) {
+  axios({
+    method: 'get',
+    url: domain + '/apiv1/properties/' + urlStr(req, 1),
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
 }
 
 /*------------------------------------------------------
