@@ -4,9 +4,25 @@ layout: ayla-dynamic-gateway-agent.html
 i: block
 ---
 
-This page shows you how to create dsn.xml and oem_info files, determine the mac address of your RPi, and build & run the config_gen utility to produce a devd.conf file required by ayla_install.sh to install the Ayla Dynamic Gateway Package on your RPi. See the diagram.
+This page shows you how to generate a devd.conf file which will be required later (as input) by the ayla_install.sh script.
 
-<img class="img-margins" src="generate-devd-conf.png" width="260">
+### Overview
+
+Here is an overview of the process. See the other headings below for details.
+
+<div class="row">
+<div class="col-lg-8 col-md-10 col-sm-12">
+<img class="img-margins img-fluid" src="generate-devd-conf.png">
+</div>
+</div>
+
+1. Reserve a DSN in the Ayla Dashboard Portal to represent your gateway, and download a dsn.xml file.
+1. Create an oem_info file to define region, oem id, oem model, and oem secret.
+1. Determine the Mac Address of your RPi interface.
+1. Make the Ayla config_gen utility.
+1. Run config_gen to generate a configuration file, save the xml file, and update the mfg_log.txt file.
+1. Rename the configuration file to devd.conf.
+1. Add additional JSON to devd.conf.
 
 ### Create a dsn.xml file
 
@@ -17,7 +33,7 @@ This page shows you how to create dsn.xml and oem_info files, determine the mac 
 1. In the textbox on the right, select 1.
 1. Click Submit.
 1. Download the XML file to your computer.
-1. Secure Copy the XML file to your RPi:
+1. Secure Copy the XML file to ```/home/pi``` on your RPi:
 <pre class="light">
 $ scp AC000W123456789.xml pi@192.168.1.3:
 </pre>
@@ -60,7 +76,7 @@ mfg_serial myMfgSN
 mfg_sw_version v1.2.3_A
 odm myOdmName
 </pre>
-1. Secure Copy the file to your RPi:
+1. Secure Copy the file to ```/home/pi``` on your RPi:
 <pre class="light">
 $ scp oem_info pi@192.168.1.3:
 </pre>
@@ -81,13 +97,30 @@ $ sudo make host_utils
 </pre>
 The newly built utility is in ```~/device_linux_gw_public/build/native/utils```.
 
-### Create the devd.conf file
+### Run config_gen
 
 <ol>
-<li>From ```/home/pi```, run ```config_gen```:
+<li>From ```/home/pi```, run config_gen to view command-line options:
 <pre class="light">
-$ ./device_linux_gw_public/build/native/utils/config_gen -d ~/AC000W123456789.xml -i ~/oem_info -m b411ab4ce220
-</pre></li>
+$ ./device_linux_gw_public/build/native/utils/config_gen
+Usage: config_gen -d <dsn_path> -i <oem_info_file> [OPTIONS]
+  REQUIRED:
+    -d <dsn_path>           Path to DSN .xml file from AFS
+    -i <oem_info_file>      Path to file with OEM info (see ex.)
+  OPTIONS:
+    -n                      Omit mfg log file generation
+    -m <MAC_address>        Device MAC addr (omit when using -n)
+    -o <output_dir>         Directory to create for output files
+    -v <verbosity>          0 = silent, 1 = default, 2 = verbose
+  Examples:
+    config_gen -d dsns/AC000W000123456.xml -i ./oem_info -m 112233445566 -o ./ayla_config -v 2
+    config_gen -n -d dsns/AC000W000123457.xml -i ./oem_info
+</pre>
+<li>Run config_gen:</li>
+<pre class="light">
+$ ./device_linux_gw_public/build/native/utils/config_gen -d ./AC000W123456789.xml -i ./oem_info -m b411ab4ce220
+</pre>
+</li>
 <li>Rename the resulting ```AC000W123456789.conf``` file to ```devd.conf```, and leave it in ```/home/pi```.</li>
 <li>Open ```devd.conf```. It should resemble this:
 <pre class="light">
@@ -139,3 +172,7 @@ $ ./device_linux_gw_public/build/native/utils/config_gen -d ~/AC000W123456789.xm
 </pre>
 </li>
 </ol>
+
+### Details for your Chosen Example Application
+
+In the sidebar, click on the example of your choice to create templates, complete the installation, register the device, etc.

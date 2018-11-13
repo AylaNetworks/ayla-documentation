@@ -36,33 +36,3 @@ ayla_src_dir="$temp_dir/ayla/src"
 ayla_src_dir="/home/pi/device_linux_gw_public"
 </pre>
 </ol>
-
-### View installation options
-
-Please don't actually perform an installation, yet. We have more preparation to do. Just view the installation options.
-
-1. Display installation options:
-<pre class="light">
-$ ./ayla_install.sh -h
-&nbsp;
-ayla_install.sh [OPTIONS]
-OPTIONS:
-  -d, --dryrun        Tests script configuration and exits without modifying the system
-  -u, --upgrade       Modifies install to avoid overwriting existing config
-  -b, --build_env     Just installs the packages required to compile Ayla modules
-  -p, --package PATH  Path of Ayla source tarball, or URL to GIT repo (default: device_linux_public.git)
-  -c, --config DIR    Directory to find required config files (default: /home/pi/)
-  -a, --app APP_NAME  Appd to build (default: appd)
-  -n, --no_wifi       Omits installing and configuring Wi-Fi-specific components
-  -g, --gpio          Adds Wiring Pi library for Raspberry Pi
-  -m, --modem         Adds usb-modeswitch library to support USB connected [cellular] modems
-  -z, --ble           Installs BlueZ Bluetooth daemon from source to enable full BLE support
-  -e, --zigbee        Installs libreadline-dev/libncurses-dev to enable full ZigBee support
-  -t, --multi         Installs BlueZ Bluetooth daemon/libreadline-dev/libncurses-dev to enable BLE/ZigBee support
-  -l, --log PATH      Dump installation details to a log file
-  -v, --version       Print script version
-  -h, --help          Print usage
-</pre>
-1. You will use the ```-a``` flag to specify the example application to build: appd, gatewayd, bt_gatewayd, zb_gatewayd, or multi_gatewayd.
-1. You will use the ```-u``` flag to install over a previous installation (e.g. changing from gatewayd to zb_gatewayd).
-1. Note the ```-c``` flag. The installation script requires you to supply a devd.conf file. You will learn how to generate this file in a subsequent section. 

@@ -451,9 +451,12 @@ input:checked + .slider:before {
 
 @media (min-width: 960px) {
   .img-margins {margin: 12px 0 20px 16px;}
+  .img-top-bottom {margin-top: 12px; margin-bottom: 20px;}
 }
 @media (max-width: 960px) {
   .img-margins {margin: 6px 0 12px 0px;}
+  .img-top-bottom {margin-top: 6px; margin-bottom: 12px;}
 }
 
 ol {margin-top: 6px;}
+.reduce {font-size: 90%;}
