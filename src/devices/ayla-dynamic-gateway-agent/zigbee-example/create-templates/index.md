@@ -1,6 +1,6 @@
 ---
-title: Build the Example
+title: Create templates
 layout: ayla-dynamic-gateway-agent.html
-b: block
+a: block
 ---
 

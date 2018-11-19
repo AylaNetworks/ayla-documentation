@@ -10,7 +10,7 @@ layout: page-full-width.html
 </tr>
 <tr>
 <td>2018-10-26</td>
-<td>Added [Ayla Datastream Service](/cloud/datastream-service/).</td>
+<td>Added [Ayla Datastream Service](/cloud/ayla-datastream-service/).</td>
 </tr>
 <tr>
 <td>2018-09-14</td>

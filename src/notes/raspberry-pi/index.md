@@ -25,16 +25,16 @@ Use <code>ifconfig</code> to configure a network interface. Try <code>ifconfig -
 
 Use <code>sudo iwlist wlan0 scan</code> to get more detailed wireless information from a wireless interface.
 
-Use <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code> to add a wireless network. Don't put quotes around ...
+Use <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code> to add a wireless network. Put country first.
 
 <pre class="light">
+country=US
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
-country=US
 
 network={
         ssid="Thorndike"
-        psk="E4F2DA1BDB"
+        psk="********"
 }
 </pre>
 
@@ -171,4 +171,9 @@ $ scp -rp pi@192.168.1.3:ayla/* ./ayla
 * [Turn WIFI on from the command line - Still off](https://lb.raspberrypi.org/forums/viewtopic.php?t=206223)
 * [New Out Of Box Software (NOOBS)](https://www.raspberrypi.org/documentation/installation/noobs.md)
 * [Etcher](https://www.balena.io/etcher/)
-* [How to remove systemd services](https://www.raspberrypi.org/documentation/).
+* [How to remove systemd services](https://www.raspberrypi.org/documentation/)
+* [Pi 3 B+ WiFi issues: country?](https://www.raspberrypi.org/forums/viewtopic.php?t=208591)
+* [*** Raspberry Pi Distance Sensor: How to setup the HC-SR04](https://pimylifeup.com/raspberry-pi-distance-sensor/)
+* [Using a Raspberry Pi distance sensor (ultrasonic sensor HC-SR04)](https://tutorials-raspberrypi.com/raspberry-pi-ultrasonic-sensor-hc-sr04/)
+* [How to build your own private smart home with a Raspberry Pi and Mozilla’s Things Gateway](https://hacks.mozilla.org/2018/02/how-to-build-your-own-private-smart-home-with-a-raspberry-pi-and-mozillas-things-gateway/)
+* [How to setup Bluetooth on a Raspberry Pi 3](https://www.cnet.com/how-to/how-to-setup-bluetooth-on-a-raspberry-pi-3/)

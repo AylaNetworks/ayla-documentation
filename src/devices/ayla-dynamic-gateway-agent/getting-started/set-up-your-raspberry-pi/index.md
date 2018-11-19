@@ -4,8 +4,11 @@ layout: ayla-dynamic-gateway-agent.html
 i: block
 ---
 
-### Stop daemons from prior installations
+You can refer to the official [Raspberry Pi documentation](https://www.raspberrypi.org/documentation/) for help with setting up your RPi.
 
+When deleting a previous Ayla Linux Agent or Ayla Dynamic Gateway Agent installation, include the following:
+ 
+1. Stop daemons, and delete daemon initialization files:
 <pre class="light">
 $ ps -A | grep devd
 $ ps -A | grep appd
@@ -18,12 +21,13 @@ $ sudo rm /etc/init.d/devd
 $ sudo rm /etc/init.d/cond
 $ sudo rm /etc/init.d/logd
 </pre>
-
-### Delete prior installations
-
+1. Delete the installation files and directory:
 <pre class="light">
 $ sudo rm ~/ayla_install.sh
 $ sudo rm ~/devd.conf
 $ sudo rm -r ~/ayla/
+</pre>
+1. Delete cloned source code:
+<pre class="light">
 $ sudo rm -r ~/device_linux_gw_public/
 </pre>

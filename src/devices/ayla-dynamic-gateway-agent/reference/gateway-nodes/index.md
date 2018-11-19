@@ -1,6 +1,6 @@
 ---
-title: Build the Example
+title: Gateway Nodes
 layout: ayla-dynamic-gateway-agent.html
-e: block
+c: block
 ---
 

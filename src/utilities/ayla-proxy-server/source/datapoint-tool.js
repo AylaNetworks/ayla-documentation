@@ -71,6 +71,7 @@ getDevice
 
 function getDevice(deviceId) {
   MyAyla.getDevice(deviceId, function (data) {
+    $('#device-details-collapse').empty().append('<pre>' + JSON.stringify(data.device, null, 2) + '</pre>')
     getProperties(data.device.key)
   }, displayError)
 }
@@ -91,7 +92,7 @@ function getDevices() {
         $('#select-devices').append(option)
       })
     }
-    getProperties(deviceId)
+    getDevice(deviceId)
   }, displayError)
 }
 
@@ -101,6 +102,7 @@ getProperty
 
 function getProperty(propertyId) {
   MyAyla.getProperty(propertyId, function (data) {
+    $('#property-details-collapse').empty().append('<pre>' + JSON.stringify(data.property, null, 2) + '</pre>')
     displayPropertyValue(data.property.base_type, data.property.value, data.property.direction)
   }, displayError)
 }
@@ -113,6 +115,7 @@ function getProperties(deviceId) {
   MyAyla.getProperties(deviceId, function (arr) {
     $('#select-properties').empty()
     if(arr.length) {
+      var propertyId = arr[0].property.key
       var type = arr[0].property.base_type
       var value = arr[0].property.value
       var direction = arr[0].property.direction
@@ -123,7 +126,7 @@ function getProperties(deviceId) {
         $('#select-properties').append(option)
       })
     }
-    displayPropertyValue(type, value, direction)
+    getProperty(propertyId)
   }, displayError)
 }
 
@@ -198,7 +201,7 @@ $(function() {
     $(this).blur()
     let selected = $('#select-devices option:selected')
     let deviceId = $(selected).val()
-    getProperties(deviceId)
+    getDevice(deviceId)
   })
 })
 

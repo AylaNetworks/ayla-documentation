@@ -28,6 +28,46 @@ exports.createDatapoint = function(req, res) {
 }
 
 /*------------------------------------------------------
+createSubscription
+------------------------------------------------------*/
+
+exports.createSubscription = function(req, res) {
+  axios({
+    method: 'post',
+    url: streamDomain + '/api/v1/subscriptions.json',
+    headers: req.headers,
+    data: JSON.stringify(req.body)
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
+deleteConnection
+------------------------------------------------------*/
+
+exports.deleteConnection = function(req, res) {
+  axios({
+    method: 'delete',
+    url: req.body.url + '?stream_key=' + req.body.streamKey
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.end()
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
 deleteDevice
 ------------------------------------------------------*/
 
@@ -48,94 +88,14 @@ exports.deleteDevice = function(req, res) {
 }
 
 /*------------------------------------------------------
-dssCreateSubscription
+deleteSubscription
 ------------------------------------------------------*/
 
-exports.dssCreateSubscription = function(req, res) {
-  axios({
-    method: 'post',
-    url: streamDomain + '/api/v1/subscriptions.json',
-    headers: req.headers,
-    data: JSON.stringify(req.body)
-  })
-  .then(function (response) {
-    res.statusCode = response.status
-    res.send(response.data)
-  })
-  .catch(function (error) {
-    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
-    res.end()
-  })
-}
-
-/*------------------------------------------------------
-dssDeleteConnection
-------------------------------------------------------*/
-
-exports.dssDeleteConnection = function(req, res) {
-  axios({
-    method: 'delete',
-    url: req.body.url + '?stream_key=' + req.body.streamKey
-  })
-  .then(function (response) {
-    res.statusCode = response.status
-    res.end()
-  })
-  .catch(function (error) {
-    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
-    res.end()
-  })
-}
-
-/*------------------------------------------------------
-dssDeleteSubscription
-------------------------------------------------------*/
-
-exports.dssDeleteSubscription = function(req, res) {
+exports.deleteSubscription = function(req, res) {
   axios({
     method: 'delete',
     url: streamDomain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
     headers: {'Authorization': req.headers.authorization}
-  })
-  .then(function (response) {
-    res.statusCode = response.status
-    res.send(response.data)
-  })
-  .catch(function (error) {
-    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
-    res.end()
-  })
-}
-
-/*------------------------------------------------------
-dssGetSubscription
-------------------------------------------------------*/
-
-exports.dssGetSubscription = function(req, res) {
-  axios({
-    method: 'get',
-    url: streamDomain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
-    headers: {'Authorization': req.headers.authorization}
-  })
-  .then(function (response) {
-    res.statusCode = response.status
-    res.send(response.data)
-  })
-  .catch(function (error) {
-    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
-    res.end()
-  })
-}
-
-/*------------------------------------------------------
-dssGetSubscriptions
-------------------------------------------------------*/
-
-exports.dssGetSubscriptions = function(req, res) {
-  axios({
-    method: 'get',
-    url: streamDomain + '/api/v1/subscriptions.json',
-    headers: req.headers
   })
   .then(function (response) {
     res.statusCode = response.status
@@ -215,6 +175,46 @@ exports.getProperty = function(req, res) {
   axios({
     method: 'get',
     url: domain + '/apiv1/properties/' + urlStr(req, 1),
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
+getSubscription
+------------------------------------------------------*/
+
+exports.getSubscription = function(req, res) {
+  axios({
+    method: 'get',
+    url: streamDomain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
+    headers: {'Authorization': req.headers.authorization}
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
+getSubscriptions
+------------------------------------------------------*/
+
+exports.getSubscriptions = function(req, res) {
+  axios({
+    method: 'get',
+    url: streamDomain + '/api/v1/subscriptions.json',
     headers: req.headers
   })
   .then(function (response) {

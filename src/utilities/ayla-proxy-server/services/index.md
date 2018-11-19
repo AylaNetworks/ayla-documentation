@@ -4,6 +4,8 @@ layout: ayla-proxy-server.html
 a: block
 ---
 
+<p style="color:red;">See [Deprecation of APIs Dependent on property_id](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/406028289/Deprecation+of+APIs+Dependent+on+property+id).</p>
+
 ### Regional Domains
 
 Ayla divides the world into three service regions: 

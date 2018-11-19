@@ -78,3 +78,13 @@ input:checked + .slider:before {
 .slider.round {border-radius: 30px;}
 .slider.round:before {border-radius: 50%;}
 /* END SLIDER */
+
+pre {
+  background: #333333;
+  padding: 6px;
+  line-height: 1rem;
+  color: white;
+  font-weight: normal;
+  font-size: 80%;
+  border: none;
+}

@@ -4,11 +4,11 @@ layout: ayla-dynamic-gateway-agent.html
 i: block
 ---
 
-This page shows you how to generate a devd.conf file which will be required later (as input) by the ayla_install.sh script.
+This page shows you how to generate a devd.conf file required (as input) by the ayla_install.sh script. The purpose of the devd.conf file is described near the bottom of this page.
 
 ### Overview
 
-Here is an overview of the process. See the other headings below for details.
+Here are the steps required to create a devd.conf file. See the other headings below for details.
 
 <div class="row">
 <div class="col-lg-8 col-md-10 col-sm-12">
@@ -23,6 +23,7 @@ Here is an overview of the process. See the other headings below for details.
 1. Run config_gen to generate a configuration file, save the xml file, and update the mfg_log.txt file.
 1. Rename the configuration file to devd.conf.
 1. Add additional JSON to devd.conf.
+1. Feed devd.conf to ayla_install.sh.
 
 ### Create a dsn.xml file
 
@@ -97,7 +98,7 @@ $ sudo make host_utils
 </pre>
 The newly built utility is in ```~/device_linux_gw_public/build/native/utils```.
 
-### Run config_gen
+### Run config_gen to generate devd.conf
 
 <ol>
 <li>From ```/home/pi```, run config_gen to view command-line options:
@@ -145,7 +146,7 @@ $ ./device_linux_gw_public/build/native/utils/config_gen -d ./AC000W123456789.xm
 }
 </pre>
 </li>
-<li>Add ```,"server": {"default": 1}``` to the ```client``` section as indicated in red below, and save. Don't forget the initial comma. This addition is important for initial prototyping, and can be removed later, after the OEM model is enabled on the platform.
+<li>Add ```,"server": {"default": 1}``` to the ```client``` section as indicated in red below, and save. Don't forget the initial comma. This addition is important for initial prototyping, but must be removed when the gateway is deployed on your production platform.
 <pre class="light">
 {
   "config": {
@@ -173,6 +174,13 @@ $ ./device_linux_gw_public/build/native/utils/config_gen -d ./AC000W123456789.xm
 </li>
 </ol>
 
-### Details for your Chosen Example Application
+### Purpose of devd.conf
 
-In the sidebar, click on the example of your choice to create templates, complete the installation, register the device, etc.
+1. Provides your gateway with a device serial number (1) unique within the Ayla Cloud, and (2) tied to your RPi Mac Address.
+1. Assigns your gateway to a regional instance of the Ayla Cloud, and to a particular OEM account.
+1. Defines the template that the Ayla Cloud uses to instantiate the Digital Twin corresponding to your gateway.
+1. Provides a baseline for the <code>&sim;/ayla/config/devd.conf.startup</code> file. See [Startup Files](../../reference/startup-files).
+
+### What to do next
+
+Click [Simulator Example](../../simulator-example) in the sidebar. The Simulator Gateway is a great way to learn how to create gateway and node templates.

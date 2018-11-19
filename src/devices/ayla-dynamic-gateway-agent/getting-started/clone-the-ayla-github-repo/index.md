@@ -4,8 +4,6 @@ layout: ayla-dynamic-gateway-agent.html
 i: block
 ---
 
-First, obtain access to the Ayla [device_linux_gw_public](https://github.com/AylaNetworks/device_linux_gw_public) Github repository from your Ayla contact.
-
 By default, the installation script ([ayla_install.sh](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/dev_kit/raspberry_pi/ayla_install.sh)) copies source files from the Github repository to a temporary directory on your RPi, builds various libraries, daemons, and example applications, installs them in ```/home/pi/ayla```, and deletes the temporary directory. The directions below show you how to modify this installation behavior to retain the source files in ```/home/pi/device_linux_gw_public``` so that you can modify them as you experiment with building a gateway application. 
 
 ### Clone the Ayla Github

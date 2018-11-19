@@ -26,10 +26,10 @@ module.exports = function(app) {
     .delete(controllers.logout)
 
   app.route('/api/v1/dss/subscriptions')
-    .get(controllers.dssGetSubscriptions)
-    .post(controllers.dssCreateSubscription)
+    .get(controllers.getSubscriptions)
+    .post(controllers.createSubscription)
 
   app.route('/api/v1/dss/subscriptions/:subscriptionId')
-    .get(controllers.dssGetSubscription)
-    .delete(controllers.dssDeleteSubscription)
+    .get(controllers.getSubscription)
+    .delete(controllers.deleteSubscription)
 }
