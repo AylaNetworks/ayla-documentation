@@ -20,7 +20,7 @@ The following diagram presents the essential elements of the Ayla Dynamic Gatewa
 1. The black shapes in the Ayla Cloud represent templates.
   1. Developers (via the Developer Portal) create templates to represent specific attributes and properties of devices.  
   1. Gateway template properties enable node control and gateway diagnostics.
-  1. In the example, LNode is a lightbulb template. Its properties deal with the control and state of a lightblub.
+  1. In the example, LNode is a lightbulb node template. Its properties deal with the control and state of a lightbulb.
   1. SNode is a sensor template with relevant properties.
   1. PNode is a smart plug node template.
 1. The gradient blue shapes are digital twins which inherit properties from templates. They model devices.

@@ -1,15 +1,15 @@
 ---
-title: Create a gateway
+title: Install the gateway
 layout: ayla-dynamic-gateway-agent.html
 f: block
 ---
 
-This page shows you how build and install all gateway components including your simulator gateway, and how to register your gateway.
+This page shows you how to build and install all gateway components including your simulator gateway, and how to register your gateway.
 
 ### Review ayla_install.sh output
 
-<p><a data-toggle="collapse" href="#collapseExample">Click to review ayla_install.sh output</a></p>
-<pre class="collapse" id="collapseExample">
+<p><a data-toggle="collapse" href="#preview-output">Click this link</a> to preview sample output from ayla_install.sh.</p>
+<pre class="collapse" id="preview-output">
 $ sudo ./ayla_install.sh -a gatewayd -n
 
 ****************************************
@@ -254,17 +254,15 @@ OPTIONS:
   -v, --version       Print script version
   -h, --help          Print usage
 </pre>
-<div>Use the <code>-a</code> flag below to build and install the Simulator Gateway <code>gatewayd</code>. It will be renamed <code>appd</code>.</div>
-<div>Use the <code>-n</code> flag below if your RPi is connected via Ethernet. The <code>cond</code> daemon will not run.</div>
-<div>Use the <code>-u</code> flag below to reinstall over a previous installation. Your gateway and node digital twins are untouched.</div>
+<div>Use the <code>-a</code> flag to build and install the Simulator Gateway <code>gatewayd</code>. It will be renamed <code>appd</code>.</div>
+<div>Use the <code>-n</code> flag if your RPi is connected via Ethernet. The <code>cond</code> daemon will not run.</div>
+<div>Use the <code>-u</code> flag to reinstall over a previous installation. Your gateway and node digital twins are untouched.</div>
 </li>
 <li>Perform the installation. Here are some examples:
 <pre class="light">
 $ sudo ./ayla_install.sh -a gatewayd        # Your RPi is using Wi-Fi
 
 $ sudo ./ayla_install.sh -a gatewayd -n     # Your RPi is using Ethernet
-
-$ sudo ./ayla_install.sh -a gatewayd -n -u  # Your RPi is using Ethernet, and you are re-installing.
 </pre>
 <div>You may be required to enter your Github credentials during the process.</div>
 </li>
@@ -321,12 +319,6 @@ The following diagram provides details about the <code>/home/pi/ayla</code> inst
 
 1. In the Ayla Developer Portal, click View My Devices. A list of devices appears.
 1. Click the Serial Number of your gateway. A list of properties appears. <u>Do not update current values at this time</u>.
-1. Optionally, assign new Display Names to properties:
-<div class="row">
-<div class="col-lg-4 col-md-8 col-sm-12">
-<img class="img-fluid img-top-bottom" src="gw-properties.png">
-</div>
-</div>
 1. Click (Devices) Details, change Product Name to "Sim GW 1", peruse other attributes, and click OK.
 1. Click (Devices) Template, and verify that Current Template is "Sim GW".
 1. Click (Devices) Nodes, and verify that this gateway does not yet have any nodes.

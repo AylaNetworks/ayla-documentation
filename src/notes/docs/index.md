@@ -3,6 +3,8 @@ title: Docs
 layout: notes.html
 ---
 
+[Ayla Connection](https://connection.aylanetworks.com)
+
 ### Wi-Fi Module
 
 [Ayla Getting Started Guide](https://aylanetworks.app.box.com/file/226288388839)
