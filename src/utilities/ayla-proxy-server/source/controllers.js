@@ -7,6 +7,27 @@ const domain = 'https://user-dev.aylanetworks.com'
 const streamDomain = 'https://stream.aylanetworks.com'
 
 /*------------------------------------------------------
+createAccessRule
+------------------------------------------------------*/
+
+exports.createAccessRule = function(req, res) {
+  axios({
+    method: 'post',
+    url: streamDomain + '/api/v1/oemAccessRules',
+    headers: req.headers,
+    data: JSON.stringify(req.body)
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
 createDatapoint
 ------------------------------------------------------*/
 
@@ -37,6 +58,26 @@ exports.createSubscription = function(req, res) {
     url: streamDomain + '/api/v1/subscriptions.json',
     headers: req.headers,
     data: JSON.stringify(req.body)
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
+deleteAccessRule
+------------------------------------------------------*/
+
+exports.deleteAccessRule = function(req, res) {
+  axios({
+    method: 'delete',
+    url: streamDomain + '/api/v1/oemAccessRules/' + urlStr(req, 1),
+    headers: req.headers
   })
   .then(function (response) {
     res.statusCode = response.status
@@ -108,6 +149,46 @@ exports.deleteSubscription = function(req, res) {
 }
 
 /*------------------------------------------------------
+getAccessRule
+------------------------------------------------------*/
+
+exports.getAccessRule = function(req, res) {
+  axios({
+    method: 'get',
+    url: streamDomain + '/api/v1/oemAccessRules/' + urlStr(req, 1),
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
+getAccessRules
+------------------------------------------------------*/
+
+exports.getAccessRules = function(req, res) {
+  axios({
+    method: 'get',
+    url: streamDomain + '/api/v1/oemAccessRules',
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
 getDevice
 ------------------------------------------------------*/
 
@@ -148,13 +229,13 @@ exports.getDevices = function(req, res) {
 }
 
 /*------------------------------------------------------
-getProperties
+getProperty
 ------------------------------------------------------*/
 
-exports.getProperties = function(req, res) {
+exports.getProperty = function(req, res) {
   axios({
     method: 'get',
-    url: domain + '/apiv1/devices/' + urlStr(req, 2) + '/properties',
+    url: domain + '/apiv1/properties/' + urlStr(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -168,13 +249,13 @@ exports.getProperties = function(req, res) {
 }
 
 /*------------------------------------------------------
-getProperty
+getProperties
 ------------------------------------------------------*/
 
-exports.getProperty = function(req, res) {
+exports.getProperties = function(req, res) {
   axios({
     method: 'get',
-    url: domain + '/apiv1/properties/' + urlStr(req, 1),
+    url: domain + '/apiv1/devices/' + urlStr(req, 2) + '/properties',
     headers: req.headers
   })
   .then(function (response) {

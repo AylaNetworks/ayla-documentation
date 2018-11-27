@@ -95,7 +95,18 @@
 
             <h3 data-toggle="collapse" href="#access-rules-collapse"><span class="collapsible">Access Rules</span></h3>
             <div  id="access-rules-collapse"class="collapse show"> <!-- BEGIN ACCESS RULES COLLAPSE -->
-              sss
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="link-btns">
+                    <span id="add-access-rules-btn" class="link-btn">Add</span>
+                    <span id="delete-access-rules-btn" class="link-btn">Delete</span>
+                    <span id="select-all-access-rules-btn" class="link-btn">Select All</span>
+                    <span id="deselect-all-access-rules-btn" class="link-btn">Deselect All</span>
+                  </div>
+                </div>
+              </div>
+
             </div> <!-- END ACCESS RULES COLLAPSE -->
           </div> <!-- END COLUMN -->
         </div> <!-- END ACCESS RULES -->
@@ -191,9 +202,89 @@
                     <thead>
                       <tr>
                         <th>&nbsp;</th>
-                        <th>ID</th>
                         <th>Name</th>
-                        <th>Type</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div> <!-- END SUBSCRIPTIONS COLLAPSE -->
+          </div> <!-- END COLUMN -->
+        </div> <!-- END SUBSCRIPTIONS -->
+
+        <div class="row"> <!-- BEGIN DEVICE PROPERTY VALUE -->
+          <div class="form-group col-md-12">
+
+            <h3 data-toggle="collapse" href="#device-property-value-collapse"><span class="collapsible">Device Property Value</span></h3>
+            <div  id="device-property-value-collapse"class="collapse show"> <!-- BEGIN DEVICE PROPERTY VALUE COLLAPSE -->
+
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label data-toggle="collapse" href="#device-details-collapse" class="link-btn">Device</label>
+                  <select id="select-device" class="form-control form-control-sm"></select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label data-toggle="collapse" href="#property-details-collapse" class="link-btn">Property</label>
+                  <select id="select-property" class="form-control form-control-sm"></select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div  id="device-details-collapse"class="collapse"></div>
+                  <div  id="property-details-collapse"class="collapse"></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label id="value-label" style="display:none;">Value</label>
+                  <div id="value-wrapper" style="display:none;"></div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div id="value-button-wrapper" style="display:none;">
+                    <label id="value-label">&nbsp;</label>
+                    <button id="save-property-value" type="button" class="btn btn-success btn-sm btn-block">Save</button>
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- END DEVICE PROPERTY VALUE COLLAPSE -->
+          </div> <!-- END COLUMN -->
+        </div> <!-- END DEVICE PROPERTY VALUE -->
+
+      </div> <!-- END LEFT COLUMN -->
+
+      <div class="form-group col-md-6"> <!-- BEGIN RIGHT COLUMN -->
+
+        <div class="row"> <!-- BEGIN EVENT STREAMS -->
+          <div class="form-group col-md-12">
+
+            <h3 data-toggle="collapse" href="#event-streams-collapse"><span class="collapsible">Event Streams</span></h3>
+            <div  id="event-streams-collapse"class="collapse show"> <!-- BEGIN EVENT STREAMS COLLAPSE -->
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="link-btns">
+                    <span id="add-event-streams-btn" class="link-btn">Add</span>
+                    <span id="delete-event-streams-btn" class="link-btn">Delete</span>
+                    <span id="select-all-event-streams-btn" class="link-btn">Select All</span>
+                    <span id="deselect-all-event-streams-btn" class="link-btn">Deselect All</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <table id="event-streams">
+                    <thead>
+                      <tr>
+                        <th>&nbsp;</th>
+                        <th>ES</th>
+                        <th>Name</th>
+                        <th>Events</th>
+                        <th>HBs</th>
                       </tr>
                     </thead>
                     <tbody></tbody>
@@ -201,12 +292,30 @@
                 </div>
               </div>
 
-            </div> <!-- END SUBSCRIPTIONS COLLAPSE -->
+            </div> <!-- END EVENT STREAMS COLLAPSE -->
           </div> <!-- END COLUMN -->
-        </div> <!-- END SUBSCRIPTIONS -->
-      </div> <!-- END LEFT COLUMN -->
+        </div> <!-- END EVENT STREAMS -->
 
-      <div class="form-group col-md-6"> <!-- BEGIN RIGHT COLUMN -->
+        <div class="row"> <!-- BEGIN EVENTS -->
+          <div class="form-group col-md-12">
+
+            <h3 data-toggle="collapse" href="#events-collapse"><span class="collapsible">Events</span></h3>
+            <div  id="events-collapse"class="collapse show"> <!-- BEGIN EVENTS COLLAPSE -->
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="link-btns">
+                    <span id="delete-events-btn" class="link-btn">Delete</span>
+                    <span id="select-all-events-btn" class="link-btn">Select All</span>
+                    <span id="deselect-all-events-btn" class="link-btn">Deselect All</span>
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- END EVENTS COLLAPSE -->
+          </div> <!-- END COLUMN -->
+        </div> <!-- END EVENTS -->
+
       </div> <!-- END RIGHT COLUMN -->
 
     </div>  <!-- END OUTER ROW -->

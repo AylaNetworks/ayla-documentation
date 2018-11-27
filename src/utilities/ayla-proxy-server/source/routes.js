@@ -15,6 +15,22 @@ module.exports = function(app) {
   app.route('/api/v1/devices/:deviceId/properties')
     .get(controllers.getProperties)
 
+  app.route('/api/v1/dss/accessrules')
+    .get(controllers.getAccessRules)
+    .post(controllers.createAccessRule)
+
+  app.route('/api/v1/dss/accessrules/:accessRuleId')
+    .get(controllers.getAccessRule)
+    .delete(controllers.deleteAccessRule)
+
+  app.route('/api/v1/dss/subscriptions')
+    .get(controllers.getSubscriptions)
+    .post(controllers.createSubscription)
+
+  app.route('/api/v1/dss/subscriptions/:subscriptionId')
+    .get(controllers.getSubscription)
+    .delete(controllers.deleteSubscription)
+
   app.route('/api/v1/properties/:propertyId')
     .get(controllers.getProperty)
 
@@ -24,12 +40,4 @@ module.exports = function(app) {
   app.route('/api/v1/session')
     .post(controllers.login)
     .delete(controllers.logout)
-
-  app.route('/api/v1/dss/subscriptions')
-    .get(controllers.getSubscriptions)
-    .post(controllers.createSubscription)
-
-  app.route('/api/v1/dss/subscriptions/:subscriptionId')
-    .get(controllers.getSubscription)
-    .delete(controllers.deleteSubscription)
 }

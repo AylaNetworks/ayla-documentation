@@ -187,13 +187,13 @@ getDevices: function(successCb=null, errorCb=null) {
 },
 
 /*------------------------------------------------------
-getProperties
+getProperty
 ------------------------------------------------------*/
 
-getProperties: function(deviceId, successCb=null, errorCb=null) {
+getProperty: function(propertyId, successCb=null, errorCb=null) {
   axios({
     method: 'get',
-    url: domain + '/api/v1/devices/' + deviceId + '/properties',
+    url: domain + '/api/v1/properties/' + propertyId,
     headers: {
       'Authorization': 'auth_token ' + getAuthToken(),
       'Accept': 'application/json'
@@ -204,13 +204,13 @@ getProperties: function(deviceId, successCb=null, errorCb=null) {
 },
 
 /*------------------------------------------------------
-getProperty
+getProperties
 ------------------------------------------------------*/
 
-getProperty: function(propertyId, successCb=null, errorCb=null) {
+getProperties: function(deviceId, successCb=null, errorCb=null) {
   axios({
     method: 'get',
-    url: domain + '/api/v1/properties/' + propertyId,
+    url: domain + '/api/v1/devices/' + deviceId + '/properties',
     headers: {
       'Authorization': 'auth_token ' + getAuthToken(),
       'Accept': 'application/json'

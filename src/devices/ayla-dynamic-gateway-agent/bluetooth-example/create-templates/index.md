@@ -112,10 +112,11 @@ This page explains how to create gateway and node templates for your linuxevb Bl
 <tr><td>Type</td><td>Node</td></tr>
 </table>
 </li>
-<li>Add the following properties to the template, or import [bt-gw-grillright-properties.csv](bt-gw-grillright-properties.csv):
+<li>Add the following properties to the template:
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
 <tr><td>ALARM</td><td>ALARM</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
+<tr><td>COMMAND</td><td>COMMAND</td><td>String</td><td>To Device</td><td>oem</td></tr>
 <tr><td>CONTROL_MODE</td><td>CONTROL_MODE</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
 <tr><td>COOKING</td><td>COOKING</td><td>Boolean</td><td>From Device</td><td>oem</td></tr>
 <tr><td>TIME</td><td>TIME</td><td>String</td><td>From Device</td><td>oem</td></tr>
