@@ -99,11 +99,86 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="link-btns">
-                    <span id="add-access-rules-btn" class="link-btn">Add</span>
+                    <span id="add-access-rule-btn" class="link-btn">Add</span>
                     <span id="delete-access-rules-btn" class="link-btn">Delete</span>
                     <span id="select-all-access-rules-btn" class="link-btn">Select All</span>
                     <span id="deselect-all-access-rules-btn" class="link-btn">Deselect All</span>
                   </div>
+                </div>
+              </div>
+
+              <div class="row" style="display:none;" id="add-access-rule-row"> <!-- BEGIN ADD ACCESS RULE ROW -->
+                <div class="form-group col-md-12">
+                  <form id="add-access-rule-form" class="add-form" action="javascript:void(0);"> <!-- BEGIN ADD ACCESS RULE FORM -->
+
+                    <h3>Add Access Rule</h3>
+
+                    <div class="row">
+                      <div class="form-group col-md-12">
+                        <label>Subscription Type</label>
+                        <select id="add-access-rule-subscription-type" class="form-control form-control-sm">
+                          <option value='connectivity'>connectivity</option>
+                          <option value='datapoint'>datapoint</option>
+                          <option value='datapointack'>datapointack</option>
+                          <option value='location'>location</option>
+                          <option value='registration'>registration</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label>Role</label>
+                        <select id="add-access-rule-role" class="form-control form-control-sm">
+                          <option value='OEM::Admin'>OEM::Admin</option>
+                          <option value='OEM::Staff'>OEM::Staff</option>
+                          <option value='OEM::SupportEngineer'>OEM::SupportEngineer</option>
+                          <option value='OEM::SupportManager'>OEM::SupportManager</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>OEM Model</label>
+                        <input id="add-access-rule-oem-model" type="text" class="form-control form-control-sm" value="">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label>Property Name</label>
+                        <input id="add-access-rule-property-name" type="text" class="form-control form-control-sm" value="">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Client Type</label>
+                        <select id="add-access-rule-client-type" class="form-control form-control-sm">
+                          <option value='cloud'>cloud</option> 
+                          <option value='user_opt_in'>user_opt_in</option> 
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button type="submit" class="btn btn-outline-light btn-sm">Create</button>
+                        <button type="button" class="btn btn-outline-light btn-sm close-me">Cancel</button>
+                      </div>
+                    </div>
+                  </form> <!-- END ADD ACCESS RULE FORM -->
+                </div>
+              </div> <!-- END ADD ACCESS RULE ROW -->
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <table id="access-rules">
+                    <thead>
+                      <tr>
+                        <th>&nbsp;</th>
+                        <th>OEM Model</th>
+                        <th>Property</th>
+                        <th>Type</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
                 </div>
               </div>
 
@@ -128,9 +203,9 @@
                 </div>
               </div>
 
-              <div class="row" style="display:none;" id="add-subscription-row">
+              <div class="row" style="display:none;" id="add-subscription-row"> <!-- BEGIN ADD SUBSCRIPTION ROW -->
                 <div class="form-group col-md-12">
-                  <form id="add-subscription-form" action="javascript:void(0);">
+                  <form id="add-subscription-form" class="add-form" action="javascript:void(0);"> <!-- BEGIN ADD SUBSCRIPTION FORM -->
 
                     <h3>Add Subscription</h3>
 
@@ -163,12 +238,12 @@
 
                     <div class="row">
                       <div class="form-group col-md-6">
-                        <label>OEM Model</label>
-                        <input id="add-subscription-oem-model" type="text" class="form-control form-control-sm" value="">
-                      </div>
-                      <div class="form-group col-md-6">
                         <label>DSN</label>
                         <input id="add-subscription-dsn" type="text" class="form-control form-control-sm" value="">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>OEM Model</label>
+                        <input id="add-subscription-oem-model" type="text" class="form-control form-control-sm" value="">
                       </div>
                     </div>
 
@@ -187,14 +262,14 @@
                     </div>
 
                     <div class="row">
-                      <div class="form-group col-md-12">
+                      <div class="col-md-12">
                         <button type="submit" class="btn btn-outline-light btn-sm">Create</button>
-                        <button type="button" class="btn btn-outline-light btn-sm close-me">Close</button>
+                        <button type="button" class="btn btn-outline-light btn-sm close-me">Cancel</button>
                       </div>
                     </div>
-                  </form>
+                  </form> <!-- END ADD SUBSCRIPTION FORM -->
                 </div>
-              </div>
+              </div> <!-- END ADD SUBSCRIPTION ROW -->
 
               <div class="row">
                 <div class="form-group col-md-12">
@@ -209,6 +284,7 @@
                   </table>
                 </div>
               </div>
+
             </div> <!-- END SUBSCRIPTIONS COLLAPSE -->
           </div> <!-- END COLUMN -->
         </div> <!-- END SUBSCRIPTIONS -->
@@ -267,13 +343,60 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="link-btns">
-                    <span id="add-event-streams-btn" class="link-btn">Add</span>
+                    <span id="add-event-stream-btn" class="link-btn">Add</span>
                     <span id="delete-event-streams-btn" class="link-btn">Delete</span>
                     <span id="select-all-event-streams-btn" class="link-btn">Select All</span>
                     <span id="deselect-all-event-streams-btn" class="link-btn">Deselect All</span>
                   </div>
                 </div>
               </div>
+
+              <div class="row" style="display:none;" id="add-event-stream-row"> <!-- BEGIN ADD EVENT STREAM ROW -->
+                <div class="form-group col-md-12">
+                  <form id="add-event-stream-form" class="add-form" action="javascript:void(0);"> <!-- BEGIN ADD EVENT STREAM FORM -->
+
+                    <h3>Add Event Stream</h3>
+
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label>Subscription</label>
+                        <select id="add-event-stream-subscription" class="form-control form-control-sm"></select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Service</label>
+                        <select id="add-event-stream-service" class="form-control form-control-sm">
+                          <option value='{"region":"cn","deployment":"dev"}'>China - Dev</option> 
+                          <option value='{"region":"cn","deployment":"field"}'>China - Field</option> 
+                          <option value='{"region":"eu","deployment":"field"}'>EU - Field</option> 
+                          <option value='{"region":"us","deployment":"dev"}' selected>US - Dev</option> 
+                          <option value='{"region":"us","deployment":"field"}'>US - Field</option> 
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label>Replay Frame (optional)</label>
+                        <div class="row">
+                          <div class="form-group col-6">
+                            <input id="add-event-stream-beginning-seqid" type="number" class="form-control form-control-sm" placeholder="First Seq ID">
+                          </div>
+                          <div class="form-group col-6">
+                            <input id="add-event-stream-ending-seqid" type="number" class="form-control form-control-sm" placeholder="Last Seq ID">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button type="submit" class="btn btn-outline-light btn-sm">Create</button>
+                        <button type="button" class="btn btn-outline-light btn-sm close-me">Cancel</button>
+                      </div>
+                    </div>
+                  </form> <!-- END ADD EVENT STREAM FORM -->
+                </div>
+              </div> <!-- END ADD EVENT STREAM ROW -->
 
               <div class="row">
                 <div class="form-group col-md-12">
@@ -309,6 +432,24 @@
                     <span id="select-all-events-btn" class="link-btn">Select All</span>
                     <span id="deselect-all-events-btn" class="link-btn">Deselect All</span>
                   </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-12" style="overflow-x: auto;">
+                  <table id="events">
+                    <thead>
+                      <tr>
+                        <th>&nbsp;</th>
+                        <th>ES</th>
+                        <th>Seq</th>
+                        <th>Type</th>
+                        <th>DSN</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
                 </div>
               </div>
 

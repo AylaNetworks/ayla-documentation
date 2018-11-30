@@ -20,16 +20,18 @@ label {font-weight: normal; font-size:90%; color: #20b2aa;}
 /* table */
 table {width: 100%;}
 table th, table td {border-collapse: collapse; vertical-align:top;}
-table {border: 1px solid lightgray;}
-table th {border-bottom: 1px solid lightgray;}
-table td {border-top: 1px solid lightgray;}
+table th {border-bottom: 1px solid #d9d9d9; background: #d9d9d9;}
+table td {
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
 table th, table td {padding: 3px 4px;}
-table th {font-size:90%; font-weight: normal; color: black;}
-table td {font-size:90%; font-weight: normal; color: gray;}
+table th {font-size:90%; font-weight: normal; color: white;}
+table td {font-size:90%; font-weight: normal; color: #595959;}
 table tr.summary td {cursor: pointer;}
-table tr.details td {border-color: white;}
+table tr.details td {padding: 6px 0;}
 table tr.details td pre {
-  background: #333333;
+  background: #4d4d4d;
   padding: 6px;
   border: none;
   line-height: 1rem;
@@ -37,8 +39,10 @@ table tr.details td pre {
   font-weight: normal;
   font-size: 85%;
   font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
-  margin-bottom: 4px;
-  margin-right: 4px;
+  margin: 0;
+  /*overflow-x: scroll;
+  word-wrap: normal;
+  white-space: pre;*/
 }
 table tr th:nth-child(1) {width:24px;}
 
@@ -64,20 +68,10 @@ table tr th:nth-child(1) {width:24px;}
 .nav-link:hover {color: green;}
 .nav-link.active {color: black;}
 
-#add-subscription-form {border: 1px solid #404040;; padding: 6px 18px;margin-bottom: 12px; background: #404040;}
-#add-subscription-form input, #add-subscription-form select {border-color: #404040;}
-#add-subscription-form label, #add-subscription-form h3 {color: white; font-weight: normal;}
-#add-subscription-form h3 {margin-top: 12px;}
-
-pre {
-  background: #333333;
-  padding: 6px;
-  line-height: 1rem;
-  color: white;
-  font-weight: normal;
-  font-size: 80%;
-  border: none;
-}
+.add-form {border: 1px solid steelblue; padding: 6px 6px; margin-bottom: 12px; background: steelblue;}
+.add-form input, .add-form select {border-color: steelblue;}
+.add-form label, .add-form h3 {color: white; font-weight: normal;}
+.add-form h3 {text-align: center;}
 
 /* BEGIN SLIDER */
 .switch {

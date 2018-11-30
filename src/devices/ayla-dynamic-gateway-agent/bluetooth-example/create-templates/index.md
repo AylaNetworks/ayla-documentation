@@ -38,6 +38,7 @@ This page explains how to create gateway and node templates for your linuxevb Bl
 <tr><td>bt_scan_results</td><td>bt_scan_results</td><td>String</td><td>From Device</td><td>oem</td></tr>
 <tr><td>num_nodes</td><td>num_nodes</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
 </table>
+<p>The properties compose the <code>appd_gw_prop_table</code> in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/gateway.c).</p>
 </li>
 </ol>
 
@@ -55,6 +56,7 @@ This page explains how to create gateway and node templates for your linuxevb Bl
 <tr><td>Version</td><td>\*</td></tr>
 <tr><td>Type</td><td>Node</td></tr>
 </table>
+<p>For the Template Key definition, see <code>BT_TEMPLATE_DEVICE</code> in [bt_interface.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_interface.c).</p>
 </li>
 <li>Add the following properties to the template:
 <table class="key-value-table">
@@ -65,6 +67,7 @@ This page explains how to create gateway and node templates for your linuxevb Bl
 <tr><td>Appearance</td><td>Appearance</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
 <tr><td>Alias</td><td>Alias</td><td>String</td><td>To Device</td><td>oem</td></tr>
 </table>
+<p>These properties compose the <code>bt_template_device</code> array in [bt_interface.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_interface.c).</p>
 </li>
 </ol>
 
@@ -82,6 +85,7 @@ This page explains how to create gateway and node templates for your linuxevb Bl
 <tr><td>Version</td><td>\*</td></tr>
 <tr><td>Type</td><td>Node</td></tr>
 </table>
+<p>This template is added by the <code>bt_gatt_init_info</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
 <li>Add the following properties to the template:
 <table class="key-value-table">
@@ -94,6 +98,7 @@ This page explains how to create gateway and node templates for your linuxevb Bl
 <tr><td>sw_revision</td><td>sw_revision</td><td>String</td><td>From Device</td><td>oem</td></tr>
 <tr><td>system_id</td><td>system_id</td><td>String</td><td>From Device</td><td>oem</td></tr>
 </table>
+<p>These properties are added by the <code>bt_gatt_init_info</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
 </ol>
 
@@ -108,9 +113,10 @@ This page explains how to create gateway and node templates for your linuxevb Bl
 <tr><td>Registration Type</td><td>None</td></tr>
 <tr><td>Model</td><td>linuxevb</td></tr>
 <tr><td>Template Key</td><td>grillrt</td></tr>
-<tr><td>Version</td><td>\*</td></tr>
+<tr><td>Version</td><td>1.2</td></tr>
 <tr><td>Type</td><td>Node</td></tr>
 </table>
+<p>This template is added by the <code>bt_gatt_init_grillright</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
 <li>Add the following properties to the template:
 <table class="key-value-table">
@@ -127,5 +133,6 @@ This page explains how to create gateway and node templates for your linuxevb Bl
 <tr><td>TARGET_TIME</td><td>TARGET_TIME</td><td>String</td><td>From Device</td><td>oem</td></tr>
 <tr><td>TEMP</td><td>TEMP</td><td>Decimal</td><td>From Device</td><td>oem</td></tr>
 </table>
+<p>This properties are added by the <code>bt_gatt_init_grillright</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
 </ol>

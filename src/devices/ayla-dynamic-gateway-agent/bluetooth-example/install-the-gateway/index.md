@@ -4,7 +4,43 @@ layout: ayla-dynamic-gateway-agent.html
 b: block
 ---
 
-This page shows you how to build, install, and register your Bluetooth gateway. 
+This page shows you how to create a template for your Bluetooth Gateway, and how to build, install, and register your the gateway. 
+
+### Create a Gateway Template
+<ol>
+<li>Browse to the Ayla Developer Portal.</li>
+<li>Click Design a Device, and click Add.</li>
+<li>Create a template with the following attributes:
+<table class="key-value-table">
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Visibility</td><td>oem</td></tr>
+<tr><td>Name</td><td>BT GW</td></tr>
+<tr><td>Description</td><td>bt_gatewayd</td></tr>
+<tr><td>Registration Type</td><td>Same-LAN</td></tr>
+<tr><td>Model</td><td>linuxevb</td></tr>
+<tr><td>Version</td><td>bluetooth_gateway_demo_v1.2</td></tr>
+<tr><td>Type</td><td>Gateway</td></tr>
+<tr><td>Gateway Type</td><td>Generic</td></tr>
+</table>
+</li>
+<li>Add the following properties to the template:
+<table class="key-value-table">
+<tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
+<tr><td>version</td><td>version</td><td>String</td><td>From Device</td><td>oem</td></tr>
+<tr><td>bt_scan_enable</td><td>bt_scan_enable</td><td>Integer</td><td>To Device</td><td>oem</td></tr>
+<tr><td>bt_scan_status</td><td>bt_scan_status</td><td>Boolean</td><td>From Device</td><td>oem</td></tr>
+<tr><td>bt_connect_id</td><td>bt_connect_id</td><td>String</td><td>To Device</td><td>oem</td></tr>
+<tr><td>bt_connect_result</td><td>bt_connect_result</td><td>String</td><td>From Device</td><td>oem</td></tr>
+<tr><td>bt_disconnect_id</td><td>bt_disconnect_id</td><td>String</td><td>To Device</td><td>oem</td></tr>
+<tr><td>bt_disconnect_result</td><td>bt_disconnect_result</td><td>String</td><td>From Device</td><td>oem</td></tr>
+<tr><td>bt_connect_passkey</td><td>bt_connect_passkey</td><td>Integer</td><td>To Device</td><td>oem</td></tr>
+<tr><td>bt_connect_passkey_display</td><td>bt_connect_passkey_display</td><td>String</td><td>From Device</td><td>oem</td></tr>
+<tr><td>bt_scan_results</td><td>bt_scan_results</td><td>String</td><td>From Device</td><td>oem</td></tr>
+<tr><td>num_nodes</td><td>num_nodes</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
+</table>
+<p>The properties compose the <code>appd_gw_prop_table</code> in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/gateway.c).</p>
+</li>
+</ol>
 
 ### Perform the installation
 
@@ -98,9 +134,9 @@ The following diagram provides details about the <code>/home/pi/ayla</code> inst
 
 1. In the Ayla Developer Portal, click View My Devices. A list of devices appears.
 1. Click the Serial Number of your gateway. A list of properties appears. <u>Do not update current values at this time</u>.
-1. Rename the version properties.
-   1. Rename oem_host_version to appd_template_version. See [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/gateway.c). 
-   1. Rename version to appd_version. See [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/gateway.c). 
+1. Rename the version properties. 
+  1. Note that the oem_host_version property value is the same as appd_template_version in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/gateway.c). So, rename oem_host_version to appd_template_version.
+  1. Note that the version property value is the same as appd_version in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/gateway.c). So, rename version to appd_version.
 1. Click (Devices) Details, change Product Name to "BT GW 1", peruse other attributes, and click OK.
 1. Click (Devices) Template, and verify that Current Template is "BT GW".
 1. Click (Devices) Nodes, and verify that this gateway does not yet have any nodes.
