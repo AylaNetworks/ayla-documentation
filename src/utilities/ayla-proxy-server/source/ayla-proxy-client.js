@@ -82,6 +82,22 @@ function processEvent(stream, event) {
 }
 
 /*------------------------------------------------------
+Delete Events
+------------------------------------------------------*/
+
+$(function() {
+  $('#delete-events-btn').click(function(event) {
+    let checkboxes = $('#events tbody tr td input[type=checkbox]:checked')
+    $.each(checkboxes, function(index, checkbox) {
+      let tr1 = $(checkbox).closest('tr')
+      let tr2 = $(tr1).next()
+      $(tr1).remove()
+      $(tr2).remove()
+    })
+  })
+})
+
+/*------------------------------------------------------
 Delete Event Streams
 ------------------------------------------------------*/
 
@@ -255,9 +271,11 @@ function displayPropertyValue(type, value, direction) {
     case 'boolean':
     $('#value-button-wrapper').hide()
 
+    let checked = (value===1) ? ' checked' : ''
+
     $('#value-wrapper').empty().append(''
       + '<label class="switch" style="margin-bottom:0;">'
-      + '<input id="property-value" type="checkbox" value="' + value + '"' + status
+      + '<input id="property-value" type="checkbox" value="' + value + '"' + checked + status
       + '<span class="slider round"></span>'
       + '</label>')
     break
@@ -321,22 +339,24 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Select All Access Rules
+Select All
 ------------------------------------------------------*/
 
 $(function() {
-  $('#select-all-access-rules-btn').click(function(event) {
-    $('#access-rules tbody tr td input[type=checkbox]').prop('checked', true)
+  $('.select-all').click(function(event) {
+    let table = $(this).data('table')
+    $('#' + table + ' tbody tr td input[type=checkbox]').prop('checked', true)
   })
 })
 
 /*------------------------------------------------------
-Deselect All Access Rules
+Deselect All
 ------------------------------------------------------*/
 
 $(function() {
-  $('#deselect-all-access-rules-btn').click(function(event) {
-    $('#access-rules tbody tr td input[type=checkbox]').prop('checked', false)
+  $('.deselect-all').click(function(event) {
+    let table = $(this).data('table')
+    $('#' + table + ' tbody tr td input[type=checkbox]').prop('checked', false)
   })
 })
 
@@ -395,31 +415,12 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Select All Subscriptions
-------------------------------------------------------*/
-
-$(function() {
-  $('#select-all-subscriptions-btn').click(function(event) {
-    $('#subscriptions tbody tr td input[type=checkbox]').prop('checked', true)
-  })
-})
-
-/*------------------------------------------------------
-Deselect All Subscriptions
-------------------------------------------------------*/
-
-$(function() {
-  $('#deselect-all-subscriptions-btn').click(function(event) {
-    $('#subscriptions tbody tr td input[type=checkbox]').prop('checked', false)
-  })
-})
-
-/*------------------------------------------------------
 getAccessRules
 ------------------------------------------------------*/
 
 function getAccessRules() {
   MyAyla.getAccessRules(function (rules) {
+    $('#access-rules > tbody').empty()
     rules.forEach(function(data) {
       displayAccessRule(data.OemAccessRule)
     })
@@ -432,6 +433,8 @@ getSubscriptions
 
 function getSubscriptions() {
   MyAyla.getSubscriptions(function (subscriptions) {
+    $('#subscriptions > tbody').empty()
+    $('#add-event-stream-subscription').empty()
     subscriptions.forEach(function(data) {
       displaySubscription(data.subscription)
     })
@@ -784,4 +787,16 @@ $(function() {
   } else {
     $('#account-link').html('Login')
   }
+})
+
+/*------------------------------------------------------
+Refresh On Click
+------------------------------------------------------*/
+
+$(function() {
+  $('#refresh').click(function(event) {
+    getAccessRules()
+    getSubscriptions()
+    getDevices()
+  })
 })

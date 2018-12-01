@@ -46,6 +46,18 @@ table tr.details td pre {
 }
 table tr th:nth-child(1) {width:24px;}
 
+pre {
+  background: #4d4d4d;
+  padding: 6px;
+  border: none;
+  line-height: 1rem;
+  color: white;
+  font-weight: normal;
+  font-size: 80%;
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+  margin: 0;
+}
+
 /* table for event streams */
 #event-streams th:nth-child(2) {width:42px;}
 #event-streams th:nth-child(4), 

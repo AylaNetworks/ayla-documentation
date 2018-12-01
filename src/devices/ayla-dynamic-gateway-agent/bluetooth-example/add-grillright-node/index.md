@@ -6,37 +6,6 @@ b: block
 
 This page shows you how to create templates for a Grillright BBQ Thermostat node, and how to add the node to your Bluetooth Gateway.
 
-## Create templates
-
-### Create a Generic Node Template
-<ol>
-<li>Create a template with the following attributes:
-<table class="key-value-table">
-<tr><th>Field</th><th>Value</th></tr>
-<tr><td>Visibility</td><td>oem</td></tr>
-<tr><td>Name</td><td>BT GW Generic</td></tr>
-<tr><td>Description</td><td>Generic</td></tr>
-<tr><td>Registration Type</td><td>None</td></tr>
-<tr><td>Model</td><td>linuxevb</td></tr>
-<tr><td>Template Key</td><td>generic</td></tr>
-<tr><td>Version</td><td>\*</td></tr>
-<tr><td>Type</td><td>Node</td></tr>
-</table>
-<p>For the Template Key definition, see <code>BT_TEMPLATE_DEVICE</code> in [bt_interface.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_interface.c).</p>
-</li>
-<li>Add the following properties to the template:
-<table class="key-value-table">
-<tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
-<tr><td>Name</td><td>Name</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>Icon</td><td>Icon</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>Class</td><td>Class</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
-<tr><td>Appearance</td><td>Appearance</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
-<tr><td>Alias</td><td>Alias</td><td>String</td><td>To Device</td><td>oem</td></tr>
-</table>
-<p>These properties compose the <code>bt_template_device</code> array in [bt_interface.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_interface.c).</p>
-</li>
-</ol>
-
 ### Create an Info Node Template
 <ol>
 <li>Create a template with the following attributes:
@@ -99,11 +68,9 @@ This page shows you how to create templates for a Grillright BBQ Thermostat node
 <tr><td>TARGET_TIME</td><td>TARGET_TIME</td><td>String</td><td>From Device</td><td>oem</td></tr>
 <tr><td>TEMP</td><td>TEMP</td><td>Decimal</td><td>From Device</td><td>oem</td></tr>
 </table>
-<p>This properties are added by the <code>bt_gatt_init_grillright</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
+<p>These properties are added by the <code>bt_gatt_init_grillright</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
 </ol>
-
-## Add the node
 
 ### Reset the Grillright
 
@@ -264,9 +231,7 @@ $ sudo tail -f /var/log/syslog
 <li>Rename the other properties as needed.</li>
 </ol>
 
-## Test node properties
-
-### TEMP
+### Test the TEMP property
 
 <ol>
 <li>In the Ayla Developer Portal, click View My Devices. A list of devices appears.</li>
@@ -288,7 +253,7 @@ $ sudo tail -f /var/log/syslog
 </li>
 </ol>
 
-### CONTROL_MODE
+### Test the CONTROL_MODE property
 
 <ol>
 <li>In the Ayla Developer Portal, click the <code>Sensor 1: Control Mode</code> property, and click Datapoints.</li>
@@ -296,17 +261,17 @@ $ sudo tail -f /var/log/syslog
 <li>Observe the new datapoints.</li>
 </ol>
 
-### TIMER
+### Test the TIMER property
 
 <ol>
 <li>In the Ayla Developer Portal, click the <code>Sensor 1: Alarm</code> property, and click Datapoints.</li>
 <li>On the Grillright device, touch <code>Set</code>.</li>
 <li>Touch <code>+</code> until the control mode is <code>Timer</code>.</li>
-<li>Set the timer for a short duration, and start the timer.</li>.
+<li>Set the timer for a short duration, and start the timer.</li>
 <li>When the timer beeps, observe the new datapoints.</li>
 </ol>
 
-## About node property names
+### About node property names
 
 Consider the string <code>00:grillrt:ALARM</code> which is composed of three parts separated by colons:
 
