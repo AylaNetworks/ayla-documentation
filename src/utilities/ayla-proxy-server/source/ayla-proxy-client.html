@@ -13,13 +13,67 @@
 <body>
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" style="height:62px;"> <!-- BEGIN NAV MENU -->
-    <a class="navbar-brand" href="./client.html"><img src="ayla-leaf.png" width="28" alt="">Ayla Proxy Client</a>
+    <a class="navbar-brand" href="./ayla-proxy-client.html" style="margin-right:6px;"><img src="ayla-leaf.png" width="28" alt="">Ayla Proxy Client</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navdrop"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navdrop">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a id="refresh" class="nav-link" href="#">Refresh</a></li>
+
+        <!--<li class="nav-item"><a id="sync" class="nav-link" href="#">Device</a></li>-->
+
         <li class="nav-item dropdown">
-          <a id="account-link" class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"></a>
+          <a id="target-link" class="nav-link" href="#" data-toggle="dropdown">Target</a>
+          <div class="dropdown-menu dropdown-menu-right" style="width:320px;background:snow;">
+
+            <form id="target-form"> <!-- BEGIN COMMAND FORM -->
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Device</label>
+                  <select id="select-device" class="form-control form-control-sm"></select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Property</label>
+                  <select id="select-property" class="form-control form-control-sm"></select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label id="value-label" style="display:none;">Value</label>
+                  <div id="value-wrapper" style="display:none;"></div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div id="value-button-wrapper" style="display:none;">
+                    <label id="value-label">&nbsp;</label>
+                    <button id="save-property-value" type="button" class="btn btn-success btn-sm btn-block">Save</button>
+                  </div>
+                </div>
+              </div>
+            </form> <!-- END COMMAND FORM -->
+
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a id="about-link" class="nav-link" href="#" data-toggle="dropdown">About</a>
+          <div class="dropdown-menu dropdown-menu-right" style="width:320px;background:snow;padding:6px;">
+<pre style="color:black;background:transparent;">
+{
+  "server":{
+    "domain": "docs.aylanetworks.com"
+    "region": "us",
+    "deployment-type": "dev"
+  }
+}
+</pre>
+          </div>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <a id="account-link" class="nav-link" href="#" data-toggle="dropdown"></a>
           <div class="dropdown-menu dropdown-menu-right" style="width:320px;background:snow;">
 
             <form id="login-form" style="display:none;"> <!-- BEGIN LOGIN FORM -->
@@ -45,7 +99,7 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <input type="password" class="form-control" id="appSecret" placeholder="appSecret" required>
+                  <input type="appsecret" class="form-control" id="appSecret" placeholder="appSecret" required>
                 </div>
               </div>
               <div class="form-row">
@@ -81,7 +135,7 @@
   </nav> <!-- END NAV MENU -->
   
 
-  <main role="main" class="container">
+  <main role="main" class="container-fluid">
 
     <div id="msg-box" style="display:none;"> <!-- BEGIN MSG BOX -->
       <button type="text" class="btn btn-light btn-sm">Close</button><span></span>
@@ -102,8 +156,6 @@
                   <div class="link-btns">
                     <span id="add-access-rule-btn" class="link-btn">Add</span>
                     <span id="delete-access-rules-btn" class="link-btn">Delete</span>
-                    <span class="select-all link-btn" data-table="access-rules">Select All</span>
-                    <span class="deselect-all link-btn" data-table="access-rules">Deselect All</span>
                   </div>
                 </div>
               </div>
@@ -172,7 +224,7 @@
                   <table id="access-rules">
                     <thead>
                       <tr>
-                        <th>&nbsp;</th>
+                        <th><input type="checkbox"></th>
                         <th>OEM Model</th>
                         <th>Property</th>
                         <th>Type</th>
@@ -198,8 +250,7 @@
                   <div class="link-btns">
                     <span id="add-subscription-btn" class="link-btn">Add</span>
                     <span id="delete-subscriptions-btn" class="link-btn">Delete</span>
-                    <span class="select-all link-btn" data-table="subscriptions">Select All</span>
-                    <span class="deselect-all link-btn" data-table="subscriptions">Deselect All</span>
+                    <span id="deploy-subscriptions-btn" class="link-btn">Deploy</span>
                   </div>
                 </div>
               </div>
@@ -277,7 +328,7 @@
                   <table id="subscriptions">
                     <thead>
                       <tr>
-                        <th>&nbsp;</th>
+                        <th><input type="checkbox"></th>
                         <th>Name</th>
                       </tr>
                     </thead>
@@ -289,47 +340,6 @@
             </div> <!-- END SUBSCRIPTIONS COLLAPSE -->
           </div> <!-- END COLUMN -->
         </div> <!-- END SUBSCRIPTIONS -->
-
-        <div class="row"> <!-- BEGIN DEVICE PROPERTY VALUE -->
-          <div class="form-group col-md-12">
-
-            <h3 data-toggle="collapse" href="#device-property-value-collapse"><span class="collapsible">Device Property Value</span></h3>
-            <div  id="device-property-value-collapse"class="collapse show"> <!-- BEGIN DEVICE PROPERTY VALUE COLLAPSE -->
-
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label data-toggle="collapse" href="#device-details-collapse" class="link-btn">Device</label>
-                  <select id="select-device" class="form-control form-control-sm"></select>
-                </div>
-                <div class="form-group col-md-6">
-                  <label data-toggle="collapse" href="#property-details-collapse" class="link-btn">Property</label>
-                  <select id="select-property" class="form-control form-control-sm"></select>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div  id="device-details-collapse"class="collapse"></div>
-                  <div  id="property-details-collapse"class="collapse"></div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label id="value-label" style="display:none;">Value</label>
-                  <div id="value-wrapper" style="display:none;"></div>
-                </div>
-                <div class="form-group col-md-6">
-                  <div id="value-button-wrapper" style="display:none;">
-                    <label id="value-label">&nbsp;</label>
-                    <button id="save-property-value" type="button" class="btn btn-success btn-sm btn-block">Save</button>
-                  </div>
-                </div>
-              </div>
-
-            </div> <!-- END DEVICE PROPERTY VALUE COLLAPSE -->
-          </div> <!-- END COLUMN -->
-        </div> <!-- END DEVICE PROPERTY VALUE -->
 
       </div> <!-- END LEFT COLUMN -->
 
@@ -346,8 +356,6 @@
                   <div class="link-btns">
                     <span id="add-event-stream-btn" class="link-btn">Add</span>
                     <span id="delete-event-streams-btn" class="link-btn">Delete</span>
-                    <span class="select-all link-btn" data-table="event-streams">Select All</span>
-                    <span class="deselect-all link-btn" data-table="event-streams">Deselect All</span>
                   </div>
                 </div>
               </div>
@@ -359,19 +367,9 @@
                     <h3>Add Event Stream</h3>
 
                     <div class="row">
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-12">
                         <label>Subscription</label>
                         <select id="add-event-stream-subscription" class="form-control form-control-sm"></select>
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label>Service</label>
-                        <select id="add-event-stream-service" class="form-control form-control-sm">
-                          <option value='{"region":"cn","deployment":"dev"}'>China - Dev</option> 
-                          <option value='{"region":"cn","deployment":"field"}'>China - Field</option> 
-                          <option value='{"region":"eu","deployment":"field"}'>EU - Field</option> 
-                          <option value='{"region":"us","deployment":"dev"}' selected>US - Dev</option> 
-                          <option value='{"region":"us","deployment":"field"}'>US - Field</option> 
-                        </select>
                       </div>
                     </div>
 
@@ -404,7 +402,7 @@
                   <table id="event-streams">
                     <thead>
                       <tr>
-                        <th>&nbsp;</th>
+                        <th><input type="checkbox"></th>
                         <th>ES</th>
                         <th>Name</th>
                         <th>Events</th>
@@ -430,8 +428,6 @@
                 <div class="col-md-12">
                   <div class="link-btns">
                     <span id="delete-events-btn" class="link-btn">Delete</span>
-                    <span class="select-all link-btn" data-table="events">Select All</span>
-                    <span class="deselect-all link-btn" data-table="events">Deselect All</span>
                   </div>
                 </div>
               </div>
@@ -441,7 +437,7 @@
                   <table id="events">
                     <thead>
                       <tr>
-                        <th>&nbsp;</th>
+                        <th><input type="checkbox"></th>
                         <th>ES</th>
                         <th>Seq</th>
                         <th>Type</th>

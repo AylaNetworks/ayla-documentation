@@ -2,9 +2,9 @@
 
 const express = require('express')
 const axios = require('axios')
+const server = require('./server')
 
-const domain = 'https://user-dev.aylanetworks.com'
-const streamDomain = 'https://stream.aylanetworks.com'
+const http = 'https://'
 
 /*------------------------------------------------------
 createAccessRule
@@ -13,7 +13,7 @@ createAccessRule
 exports.createAccessRule = function(req, res) {
   axios({
     method: 'post',
-    url: streamDomain + '/api/v1/oemAccessRules',
+    url: http + server.services.datastream.domain + '/api/v1/oemAccessRules',
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -34,7 +34,7 @@ createDatapoint
 exports.createDatapoint = function(req, res) {
   axios({
     method: 'post',
-    url: domain + '/apiv1/properties/' + urlStr(req, 2) + '/datapoints',
+    url: http + server.services.device.domain + '/apiv1/properties/' + urlStr(req, 2) + '/datapoints',
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -55,7 +55,7 @@ createSubscription
 exports.createSubscription = function(req, res) {
   axios({
     method: 'post',
-    url: streamDomain + '/api/v1/subscriptions.json',
+    url: http + server.services.datastream.domain + '/api/v1/subscriptions.json',
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -76,7 +76,7 @@ deleteAccessRule
 exports.deleteAccessRule = function(req, res) {
   axios({
     method: 'delete',
-    url: streamDomain + '/api/v1/oemAccessRules/' + urlStr(req, 1),
+    url: http + server.services.datastream.domain + '/api/v1/oemAccessRules/' + urlStr(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -115,7 +115,7 @@ deleteDevice
 exports.deleteDevice = function(req, res) {
   axios({
     method: 'delete',
-    url: domain + '/apiv1/devices/' + urlStr(req, 1),
+    url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -135,7 +135,7 @@ deleteSubscription
 exports.deleteSubscription = function(req, res) {
   axios({
     method: 'delete',
-    url: streamDomain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
+    url: http + server.services.datastream.domain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
     headers: {'Authorization': req.headers.authorization}
   })
   .then(function (response) {
@@ -155,7 +155,7 @@ getAccessRule
 exports.getAccessRule = function(req, res) {
   axios({
     method: 'get',
-    url: streamDomain + '/api/v1/oemAccessRules/' + urlStr(req, 1),
+    url: http + server.services.datastream.domain + '/api/v1/oemAccessRules/' + urlStr(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -175,7 +175,7 @@ getAccessRules
 exports.getAccessRules = function(req, res) {
   axios({
     method: 'get',
-    url: streamDomain + '/api/v1/oemAccessRules',
+    url: http + server.services.datastream.domain + '/api/v1/oemAccessRules',
     headers: req.headers
   })
   .then(function (response) {
@@ -189,13 +189,46 @@ exports.getAccessRules = function(req, res) {
 }
 
 /*------------------------------------------------------
+getCandidates
+
+Ayla returns 404 for zero candidates. It is better to return 200 and [] because the client can use the same code path.
+See https://softwareengineering.stackexchange.com/questions/358243/should-no-results-be-an-error-in-a-restful-response.
+------------------------------------------------------*/
+
+exports.getCandidates = function(req, res) {
+  axios({
+    method: 'get',
+    url: http + server.services.device.domain + '/apiv1/devices/register.json?dsn=' + urlStr(req, 2) + '&regtype=Node',
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {
+      if(error.response.status === 404) {
+        res.statusCode = 200
+        res.send(JSON.parse('[]'))
+      } else {
+        res.statusCode = error.response.status
+        res.end()
+      }
+    } else {
+      res.statusCode = 404
+      res.end()
+    }
+  })
+}
+
+/*------------------------------------------------------
 getDevice
 ------------------------------------------------------*/
 
 exports.getDevice = function(req, res) {
   axios({
     method: 'get',
-    url: domain + '/apiv1/devices/' + urlStr(req, 1),
+    url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -215,7 +248,7 @@ getDevices
 exports.getDevices = function(req, res) {
   axios({
     method: 'get',
-    url: domain + '/apiv1/devices',
+    url: http + server.services.device.domain + '/apiv1/devices',
     headers: req.headers
   })
   .then(function (response) {
@@ -229,13 +262,22 @@ exports.getDevices = function(req, res) {
 }
 
 /*------------------------------------------------------
+getDssDomain
+------------------------------------------------------*/
+
+exports.getDssDomain = function(req, res) {
+  res.statusCode = 200
+  res.send(server.services.datastream.domain)
+}
+
+/*------------------------------------------------------
 getProperty
 ------------------------------------------------------*/
 
 exports.getProperty = function(req, res) {
   axios({
     method: 'get',
-    url: domain + '/apiv1/properties/' + urlStr(req, 1),
+    url: http + server.services.device.domain + '/apiv1/properties/' + urlStr(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -255,7 +297,7 @@ getProperties
 exports.getProperties = function(req, res) {
   axios({
     method: 'get',
-    url: domain + '/apiv1/devices/' + urlStr(req, 2) + '/properties',
+    url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 2) + '/properties',
     headers: req.headers
   })
   .then(function (response) {
@@ -275,7 +317,7 @@ getSubscription
 exports.getSubscription = function(req, res) {
   axios({
     method: 'get',
-    url: streamDomain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
+    url: http + server.services.datastream.domain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
     headers: {'Authorization': req.headers.authorization}
   })
   .then(function (response) {
@@ -295,7 +337,7 @@ getSubscriptions
 exports.getSubscriptions = function(req, res) {
   axios({
     method: 'get',
-    url: streamDomain + '/api/v1/subscriptions.json',
+    url: http + server.services.datastream.domain + '/api/v1/subscriptions.json',
     headers: req.headers
   })
   .then(function (response) {
@@ -315,7 +357,7 @@ login
 exports.login = function(req, res) {
   axios({
     method: 'post',
-    url: domain + '/users/sign_in',
+    url: http + server.services.user.domain + '/users/sign_in',
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -336,7 +378,7 @@ logout
 exports.logout = function(req, res) {
   axios({
     method: 'post',
-    url: domain + '/users/sign_out',
+    url: http + server.services.user.domain + '/users/sign_out',
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -357,7 +399,7 @@ updateDevice
 exports.updateDevice = function(req, res) {
   axios({
     method: 'put',
-    url: domain + '/apiv1/devices/' + urlStr(req, 1),
+    url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 1),
     headers: req.headers,
     data: JSON.stringify(req.body)
   })

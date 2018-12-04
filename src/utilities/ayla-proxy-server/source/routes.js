@@ -12,6 +12,9 @@ module.exports = function(app) {
     .put(controllers.updateDevice)
     .delete(controllers.deleteDevice)
 
+  app.route('/api/v1/devices/:dsn/candidates')
+    .get(controllers.getCandidates)
+
   app.route('/api/v1/devices/:deviceId/properties')
     .get(controllers.getProperties)
 
@@ -22,6 +25,9 @@ module.exports = function(app) {
   app.route('/api/v1/dss/accessrules/:accessRuleId')
     .get(controllers.getAccessRule)
     .delete(controllers.deleteAccessRule)
+
+  app.route('/api/v1/dss/domain')
+    .get(controllers.getDssDomain)
 
   app.route('/api/v1/dss/subscriptions')
     .get(controllers.getSubscriptions)

@@ -1,0 +1,34 @@
+{
+  "services": {
+    "application": {
+      "domain": "application.aylanetworks.com"
+    },
+    "datastream": {
+      "domain": "stream.aylanetworks.com"
+    },
+    "device": {
+      "domain": "ads-dev.aylanetworks.com"
+    },
+    "factory-proxy": {
+      "domain": "api-dev.aylanetworks.com"
+    },
+    "image": {
+      "domain": "ais.aylanetworks.com"
+    },
+    "log": {
+      "domain": "log.aylanetworks.com"
+    },
+    "notification": {
+      "domain": "ans.aylanetworks.com"
+    },
+    "rules": {
+      "domain": "rulesservice-dev.aylanetworks.com"
+    },
+    "user": {
+      "domain": "user-dev.aylanetworks.com"
+    },
+    "zigbee": {
+      "domain": "zigbee.aylanetworks.com"
+    }
+  }
+}

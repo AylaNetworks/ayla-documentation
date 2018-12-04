@@ -4,6 +4,8 @@ layout: ayla-dynamic-gateway-agent.html
 b: block
 ---
 
+Both the Grillright and the Magic Blue nodes require the properties in the <code>generic</code> template.
+
 ### Create a Generic Node Template
 <ol>
 <li>Create a template with the following attributes:

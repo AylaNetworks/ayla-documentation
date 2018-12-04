@@ -33,7 +33,7 @@ layout: page-full-width.html
 <tr>
 <td rowspan="2">Gateway</td>
 <td rowspan="2">Gateway Agent</td>
-<td colspan="1" class="under-construction">Ayla Dynamic Gateway Agent</td>
+<td colspan="1">[Ayla Dynamic Gateway Agent](ayla-dynamic-gateway-agent)</td>
 </tr>
 <tr>
 <td colspan="1" class="under-construction">Ayla Static Gateway Agent</td>

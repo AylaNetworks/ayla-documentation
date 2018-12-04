@@ -1,10 +1,10 @@
 ---
-title: Add Grillright node
+title: Add a Grillright node
 layout: ayla-dynamic-gateway-agent.html
 b: block
 ---
 
-This page shows you how to create templates for a Grillright BBQ Thermostat node, and how to add the node to your Bluetooth Gateway.
+This page shows you how to create node-specific templates, test RPi-to-device communication, add the Grillright node to the Gateway, and test node properties.
 
 ### Create an Info Node Template
 <ol>
@@ -81,7 +81,7 @@ This page shows you how to create templates for a Grillright BBQ Thermostat node
 <li>Use a paperclip to reset the device.</li>
 </ol> 
 
-### Test Raspberry Pi-to-Grillright communication
+### Test RPi-to-device communication
 
 <ol>
 <li>In your RPi Secure Shell, run the following:
@@ -157,19 +157,19 @@ $ sudo tail -f /var/log/syslog
 </div>
 </li>
 <li>Click the Current Value column of the bt_scan_enable property.</li>
-<li>Set New Value to 1, click OK, and watch the list of gateway properties:
+<li>Set New Value to 1, click OK:
 <div class="row">
 <div class="col-lg-6 col-md-9 col-sm-12">
 <img class="img-fluid img-top-bottom" src="bt-scan-enable.png">
 </div>
 </div>
-<p>The bt_scan_results property value should return the MAC addresses of bluetooth devices near your Raspberry Pi. One of these MAC addresses represents your Grillright:</p>
+<p>The bt_scan_results property value should return the MAC addresses of bluetooth devices near your Raspberry Pi. One of these MAC addresses represents your Grillright. Sometimes, the results display. Often then don't.</p>
 <div class="row">
 <div class="col-lg-6 col-md-9 col-sm-12">
 <img class="img-fluid img-top-bottom" src="bt-scan-results-01.png">
 </div>
 </div>
-<p>Within seconds, however, the results disappear as the bt_scan_results property value updates to an empty array:</p>
+<p>If the results do display, they disappear quickly as the bt_scan_results property value updates to an empty array:</p>
 <div class="row">
 <div class="col-lg-6 col-md-9 col-sm-12">
 <img class="img-fluid img-top-bottom" src="bt-scan-results-02.png">
@@ -212,7 +212,7 @@ $ sudo tail -f /var/log/syslog
 <img class="img-fluid img-top-bottom" src="grillright-properties-001.png">
 </div>
 </div>
-<p>Many of the properties appear to be duplicates (e.g. ALARM, CONTROL_MODE). This is not the case. The Grillright has two sensors, and each sensor requires its own set of properties. The property names on the list are Display Names. The actual Name of each property is unique.</p>
+<p>Many of the properties appear to be duplicates (e.g. ALARM, CONTROL_MODE). This is not the case. The Grillright has two sensors, and each sensor requires its own set of properties. The property names on the list are Display Names. The actual Name of each property (e.g. <code>00:grillrt:ALARM</code>) is unique.</p>
 </li>
 <li>Click one of the ALARM properties to see the actual name:
 <div class="row">
@@ -221,7 +221,7 @@ $ sudo tail -f /var/log/syslog
 </div>
 </div>
 </li>
-<li>Rename the property, and save:
+<li>Change the Display Name, and save:
 <div class="row">
 <div class="col-lg-4 col-md-8 col-sm-12">
 <img class="img-fluid img-top-bottom" src="property-name-2.png">
@@ -231,7 +231,7 @@ $ sudo tail -f /var/log/syslog
 <li>Rename the other properties as needed.</li>
 </ol>
 
-### Test the TEMP property
+### Test node properties
 
 <ol>
 <li>In the Ayla Developer Portal, click View My Devices. A list of devices appears.</li>
@@ -251,35 +251,19 @@ $ sudo tail -f /var/log/syslog
 </div>
 </div>
 </li>
-</ol>
-
-### Test the CONTROL_MODE property
-
-<ol>
-<li>In the Ayla Developer Portal, click the <code>Sensor 1: Control Mode</code> property, and click Datapoints.</li>
+<li>Click the <code>Sensor 1: Control Mode</code> property, and click Datapoints.</li>
 <li>On the Grillright device, touch <code>Set</code>, and then touch <code>+</code> several times to rotate through the control modes.</li>
 <li>Observe the new datapoints.</li>
-</ol>
-
-### Test the TIMER property
-
-<ol>
-<li>In the Ayla Developer Portal, click the <code>Sensor 1: Alarm</code> property, and click Datapoints.</li>
+<li>Click the <code>Sensor 1: Alarm</code> property, and click Datapoints.</li>
 <li>On the Grillright device, touch <code>Set</code>.</li>
 <li>Touch <code>+</code> until the control mode is <code>Timer</code>.</li>
 <li>Set the timer for a short duration, and start the timer.</li>
 <li>When the timer beeps, observe the new datapoints.</li>
 </ol>
 
-### About node property names
+### Startup files
 
-Consider the string <code>00:grillrt:ALARM</code> which is composed of three parts separated by colons:
-
-* <code>00</code> is the subdomain name.
-* <code>grillrt</code> is the template key name.
-* <code>ALARM</code> is the given property name.
-
-These three parts form the hierarchy depicted in the following diagram:
+For startup purposes, the gateway keeps track of nodes in two startup files: <code>devd.conf.startup</code> and <code>appd.conf.startup</code>. Both are located in <code>&sim;/ayla/config</code>. A node is composed of one or more subdevices identified by a key (e.g. 00). One or more templates contribute properties to a subdevice. See the diagram.
 
 <div class="row">
 <div class="col-lg-6 col-md-9 col-sm-12">
@@ -287,7 +271,11 @@ These three parts form the hierarchy depicted in the following diagram:
 </div>
 </div>
 
-To inspect your own startup files, SSH to your RPi, and change directory to <code>&sim;/ayla/config</code>.
+The <node>device ~ node ~ subdevice ~ template ~ property</node> hierarchy explains property names. Consider <code>00:grillrt:ALARM</code>:
+
+* <code>00</code> is the subdomain name.
+* <code>grillrt</code> is the template key name.
+* <code>ALARM</code> is the property name as defined in the application.
 
 To inspect the origin of <code>grillrt</code> property names, browse to [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c), and search for the <code>bt_gatt_init_grillright</code> function:
 

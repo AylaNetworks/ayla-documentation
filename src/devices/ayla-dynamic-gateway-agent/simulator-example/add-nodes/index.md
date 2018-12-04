@@ -149,3 +149,43 @@ Nov 15 09:22:04 rpi appd: [info-app] appd_node_ops_confirm_handler: node prop se
 <img class="img-fluid img-top-bottom" src="all-nodes.png">
 </div>
 </div>
+
+### Startup files
+
+For startup purposes, the gateway keeps track of nodes in two startup files: <code>devd.conf.startup</code> and <code>appd.conf.startup</code>. Both are located in <code>&sim;/ayla/config</code>. A node is composed of one or more subdevices identified by a key (e.g. s1). One or more templates contribute properties to a subdevice. See the diagram.
+
+<div class="row">
+<div class="col-lg-6 col-md-9 col-sm-12">
+<img class="img-fluid img-margins" src="startup-files.png">
+</div>
+</div>
+
+The <node>device ~ node ~ subdevice ~ template ~ property</node> hierarchy explains property names. Consider <code>s1:gg_sim:battery_charge</code>:
+
+* <code>s1</code> is the subdomain name.
+* <code>gg_sim</code> is the template key name.
+* <code>battery_charge</code> is the property name as defined in the application.
+
+To inspect the origin of <code>gg_sim</code>, <code>gg_sens</code>, and <code>gg_tstat</code> property names, browse to [node_sim.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/gatewayd/node_sim.c), and search for the <code>sim_template_sim</code>, <code>sim_template_sensor</code>, and <code>sim_template_tstat</code> arrays:
+
+<pre>
+static const struct sim_node_prop_def const sim_template_sim[] = {
+  {{"enable", PROP_BOOLEAN, PROP_TO_DEVICE}, sim_node_prop_init_enable},
+  {{"battery_enable", PROP_BOOLEAN, PROP_TO_DEVICE}, NULL, sim_node_prop_battery_enable_set},
+  {{"battery_charge", PROP_INTEGER, PROP_FROM_DEVICE}, sim_node_prop_init_battery_charge }
+};
+
+static const struct sim_node_prop_def const sim_template_tstat[] = {
+  {{"temp_setpoint",  PROP_INTEGER, PROP_TO_DEVICE}, sim_node_prop_init_temp_setpoint, sim_node_prop_update_tstat},
+  {{"vacation_mode",  PROP_BOOLEAN, PROP_TO_DEVICE}, NULL, sim_node_prop_update_tstat},
+  {{"local_temp", PROP_DECIMAL, PROP_FROM_DEVICE}, sim_node_prop_init_local_temp},
+  {{"heat_on",  PROP_BOOLEAN, PROP_FROM_DEVICE}},
+  {{"ac_on",  PROP_BOOLEAN, PROP_FROM_DEVICE}}
+};
+
+static const struct sim_node_prop_def const sim_template_sensor[] = {
+  {{"temp", PROP_DECIMAL, PROP_FROM_DEVICE}},
+  {{"humidity", PROP_DECIMAL, PROP_FROM_DEVICE}},
+  {{"light_level", PROP_DECIMAL, PROP_FROM_DEVICE}},
+};
+</pre>

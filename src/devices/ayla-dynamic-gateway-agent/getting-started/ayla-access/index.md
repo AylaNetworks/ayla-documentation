@@ -4,7 +4,11 @@ layout: ayla-dynamic-gateway-agent.html
 i: block
 ---
 
-Regarding access, to build an Ayla Gateway, you need the following:
+### Ayla User Account
 
-1. An Ayla user account in your company's OEM account which allows you to use the [Ayla Developer Portal](https://docs.aylanetworks.com/cloud/ayla-developer-portal/) and the [Ayla Dashboard Portal](https://docs.aylanetworks.com/cloud/ayla-dashboard-portal/).
-1. Access to the Ayla [device_linux_gw_public](https://github.com/AylaNetworks/device_linux_gw_public) Github repository.
+You need an Ayla user account in your company's OEM account to access the [Ayla Developer Portal](https://docs.aylanetworks.com/cloud/ayla-developer-portal/) and the [Ayla Dashboard Portal](https://docs.aylanetworks.com/cloud/ayla-dashboard-portal/). Your company's Ayla OEM account admin has the access rights necessary to create this user account for you. You will need OEM::Developer rights.
+
+### Ayla Github Access
+
+You also need read access to the Ayla [device_linux_gw_public](https://github.com/AylaNetworks/device_linux_gw_public) Github repository.
+

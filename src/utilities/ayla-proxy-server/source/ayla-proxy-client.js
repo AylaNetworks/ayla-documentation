@@ -1,15 +1,4 @@
-var domain = 'https://docs.aylanetworks.com'
-
-var urls = []
-urls['cn'] = []
-urls['cn']['dev'] = 'wss://stream.ayla.com.cn/stream/stream'
-urls['cn']['field'] = 'wss://stream-field.ayla.com.cn/stream'
-urls['eu'] = []
-urls['eu']['field'] = 'wss://stream-field-eu.aylanetworks.com/stream'
-urls['us'] = []
-urls['us']['dev'] = 'wss://stream.aylanetworks.com/stream'
-urls['us']['field'] = 'wss://stream-field.aylanetworks.com/stream'
-
+var streamUrl = null
 var streams = {}
 var nextStreamId = 1
 var streamPropFilter = ['url','key','beginningSeqId','endingSeqId','eventType','numEvents','numHBs']
@@ -19,14 +8,14 @@ Stream
 ------------------------------------------------------*/
 
 class Stream {
-  constructor(name, url, key, bSeqId, eSeqId) {
+  constructor(name, url, key, eventType, bSeqId=null, eSeqId=null) {
     this.id = nextStreamId++
     this.name = name
     this.url = url
     this.key = key
+    this.eventType = eventType
     this.beginningSeqId = bSeqId
     this.endingSeqId = eSeqId
-    this.eventType = 'unknown'
     this.numEvents = 0
     this.numHBs = 0
 
@@ -37,7 +26,6 @@ class Stream {
         fullUrl += '&seq_end=' + eSeqId
       }
     }
-
     this.socket = new WebSocket(fullUrl)
   }
 }
@@ -87,6 +75,7 @@ Delete Events
 
 $(function() {
   $('#delete-events-btn').click(function(event) {
+    $('#events tr th input[type=checkbox]').prop('checked', false)
     let checkboxes = $('#events tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
       let tr1 = $(checkbox).closest('tr')
@@ -103,6 +92,7 @@ Delete Event Streams
 
 $(function() {
   $('#delete-event-streams-btn').click(function(event) {
+    $('#event-streams tr th input[type=checkbox]').prop('checked', false)
     let checkboxes = $('#event-streams tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
       let key = $(checkbox).val()
@@ -147,9 +137,6 @@ displayEvent
 ------------------------------------------------------*/
 
 function displayEvent(stream, event, value) {
-
-  console.log(JSON.stringify(event, null, 2))
-
   let item = ''
   + '<tr class="summary">'
   + '<td class="chk"><input type="checkbox"></td>'
@@ -164,6 +151,14 @@ function displayEvent(stream, event, value) {
   + '<td colspan=5><pre>' + JSON.stringify(event, null, 2) + '</pre></td>'
   + '</tr>'
   $('#events > tbody').prepend(item)
+
+  if(event.metadata.event_type === 'datapoint') {
+    let selected = $('#select-property option:selected')
+    let property = $(selected).data('details')
+    if(property.name === event.metadata.property_name) {
+      updatePropertyValue(event.metadata.base_type, event.datapoint.value)
+    }
+  }
 }
 
 /*------------------------------------------------------
@@ -215,7 +210,7 @@ function monitorEventStream(stream) {
         return
       }
       let event = JSON.parse(arr[1])
-      stream.eventType = event.metadata.event_type
+      // stream.eventType = event.metadata.event_type
       stream.numEvents++
       $('#ID' + stream.key).children('td.numEvents').first().html(stream.numEvents)
       processEvent(stream, event)
@@ -292,6 +287,25 @@ function displayPropertyValue(type, value, direction) {
 }
 
 /*------------------------------------------------------
+updatePropertyValue
+------------------------------------------------------*/
+
+function updatePropertyValue(type, value) {
+
+  console.log('The value is ' + value)
+
+  switch(type) {
+    case 'boolean':
+    $('#property-value').prop('checked', value)
+    break
+
+    default:
+    $('#property-value').val(value)
+    break
+  }
+}
+
+/*------------------------------------------------------
 displayAccessRule
 ------------------------------------------------------*/
 
@@ -321,11 +335,22 @@ $(function() {
 })
 
 /*------------------------------------------------------
+Display Candidate Details
+------------------------------------------------------*/
+
+$(function() {
+  $("#candidates").delegate('tr.summary td:not(.chk)', "click", function(e) {
+    $(this).parent().next().toggle()
+  })
+})
+
+/*------------------------------------------------------
 Delete Access Rule
 ------------------------------------------------------*/
 
 $(function() {
   $('#delete-access-rules-btn').click(function(event) {
+    $('#access-rules tr th input[type=checkbox]').prop('checked', false)
     let checkboxes = $('#access-rules tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
       MyAyla.deleteAccessRule($(checkbox).val(), function(data) {
@@ -339,24 +364,17 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Select All
+Select All / Deselect All
 ------------------------------------------------------*/
 
 $(function() {
-  $('.select-all').click(function(event) {
-    let table = $(this).data('table')
-    $('#' + table + ' tbody tr td input[type=checkbox]').prop('checked', true)
-  })
-})
-
-/*------------------------------------------------------
-Deselect All
-------------------------------------------------------*/
-
-$(function() {
-  $('.deselect-all').click(function(event) {
-    let table = $(this).data('table')
-    $('#' + table + ' tbody tr td input[type=checkbox]').prop('checked', false)
+  $('table thead tr th input[type=checkbox]').click(function(event) {
+    let table = $(this).closest('table')
+    if($(this).prop('checked')) {
+      $(table).find('tbody tr td input[type=checkbox]').prop('checked', true)
+    } else {
+      $(table).find('tbody tr td input[type=checkbox]').prop('checked', false)
+    }
   })
 })
 
@@ -365,21 +383,25 @@ displaySubscription
 ------------------------------------------------------*/
 
 function displaySubscription(subscription) {
-  let item = ''
-  + '<tr class="summary">'
-  + '<td class="chk"><input type="checkbox" value="' + subscription.id + '"></td>'
-  + '<td>' + subscription.name + '</td>'
-  + '</tr>'
-  + '<tr class="details" style="display:none;">'
-  + '<td>&nbsp;</td>'
-  + '<td><pre>' + JSON.stringify(subscription, null, 2) + '</pre></td>'
-  + '</tr>'
-  $('#subscriptions > tbody').append(item)
+
+  var tr = $('<tr/>').addClass('summary')
+  var input = $('<input/>').prop('type', 'checkbox').val(subscription.id).data('details', subscription)
+  var td = $('<td/>').addClass('chk')
+  td.append(input)
+  tr.append(td)
+  tr.append('<td>' + subscription.name + '</td>')
+  $('#subscriptions > tbody').append(tr)
+  tr = $('<tr/>').addClass('details').css('display', 'none')
+  tr.append('<td>&nbsp;</td>')
+  tr.append('<td><pre>' + JSON.stringify(subscription, null, 2) + '</pre></td>')
+  $('#subscriptions > tbody').append(tr)
+
+  // console.log(tr.get(0).outerHTML)
 
   var option = $('<option/>')
   option.text(subscription.name)
   option.val(subscription.id)
-  option.data("details", subscription)
+  option.data('details', subscription)
   $('#add-event-stream-subscription').append(option)
 }
 
@@ -399,6 +421,7 @@ Delete Subscriptions
 
 $(function() {
   $('#delete-subscriptions-btn').click(function(event) {
+    $('#subscriptions tr th input[type=checkbox]').prop('checked', false)
     let checkboxes = $('#subscriptions tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
       MyAyla.deleteSubscription($(checkbox).val(), function(data) {
@@ -407,9 +430,30 @@ $(function() {
         $(tr1).remove()
         $(tr2).remove()
 
-        $('#add-event-stream-subscription option[value=' + $(checkbox).val() + ']').remove();
+        $('#add-event-stream-subscription option[value=' + $(checkbox).val() + ']').remove()
 
       }, displayError)
+    })
+  })
+})
+
+/*------------------------------------------------------
+Deploy Subscriptions
+------------------------------------------------------*/
+
+$(function() {
+  $('#deploy-subscriptions-btn').click(function(event) {
+    $('#subscriptions tr th input[type=checkbox]').prop('checked', false)
+    let checkboxes = $('#subscriptions tbody tr td input[type=checkbox]:checked')
+    $.each(checkboxes, function(index, checkbox) {
+      $(checkbox).prop('checked', false).prop( "disabled", true )
+      let subscription = $(checkbox).data('details')
+      let name = subscription.name
+      let key = subscription.stream_key
+      let eventType = subscription.subscription_type
+      streams[key] = new Stream(name, streamUrl, key, eventType)
+      monitorEventStream(streams[key])
+      displayEventStream(streams[key])
     })
   })
 })
@@ -424,6 +468,16 @@ function getAccessRules() {
     rules.forEach(function(data) {
       displayAccessRule(data.OemAccessRule)
     })
+  }, displayError)
+}
+
+/*------------------------------------------------------
+getDssUrl
+------------------------------------------------------*/
+
+function getDssUrl() {
+  MyAyla.getDssDomain(function (dssDomain) {
+    streamUrl = 'wss://' + dssDomain + '/stream'
   }, displayError)
 }
 
@@ -449,6 +503,7 @@ function getDevice(deviceId) {
   MyAyla.getDevice(deviceId, function (data) {
     $('#device-details-collapse').empty().append('<pre>' + JSON.stringify(data.device, null, 2) + '</pre>')
     getProperties(data.device.key)
+    getCandidates(data.device.dsn)
   }, displayError)
 }
 
@@ -465,11 +520,45 @@ function getDevices() {
         var option = $('<option/>')
         option.text(data.device.product_name)
         option.val(data.device.key)
+        option.data('details', data.device)
         $('#select-device').append(option)
       })
     }
     getDevice(deviceId)
   }, displayError)
+}
+
+/*------------------------------------------------------
+getCandidates
+------------------------------------------------------*/
+
+function getCandidates(dsn) {
+  MyAyla.getCandidates(dsn, function (arr) {
+    $('#candidates > tbody').empty()
+    if(arr.length) {
+      $.each(arr, function(index, data) {
+        displayCandidate(data.device)
+      })
+    }
+  }, displayError)
+}
+
+/*------------------------------------------------------
+displayCandidate
+------------------------------------------------------*/
+
+function displayCandidate(device) {
+  let item = ''
+  + '<tr id="ID' + device.dsn + '" class="summary">'
+  + '<td class="chk"><input type="checkbox" value="' + device.dsn + '"></td>'
+  + '<td>' + device.product_name + '</td>'
+  + '<td class="name">' + device.oem_model + '</td>'
+  + '</tr>'
+  + '<tr class="details" style="display:none;">'
+  + '<td>&nbsp;</td>'
+  + '<td colspan=2><pre>' + JSON.stringify(device, null, 2) + '</pre></td>'
+  + '</tr>'
+  $('#candidates > tbody').append(item)
 }
 
 /*------------------------------------------------------
@@ -499,6 +588,7 @@ function getProperties(deviceId) {
         var option = $('<option/>')
         option.text(data.property.display_name)
         option.val(data.property.key)
+        option.data('details', data.property)
         $('#select-property').append(option)
       })
     }
@@ -540,6 +630,7 @@ $(function() {
     $('#value-label').hide()
     $('#value-wrapper').hide()
     $('#value-button-wrapper').hide()
+    $('#access-rules > tbody').empty()
     $('#subscriptions > tbody').empty()
     MyAyla.logout(function (data) {
       $('#account-link').html('Login')
@@ -576,8 +667,6 @@ $(function() {
       "property_name": propertyName,
       "client_type": $('#add-subscription-client-type').val()
     }
-
-    console.log(JSON.stringify(data, null, 2))
 
     MyAyla.createAccessRule(data, function (data) {
       displayAccessRule(data.OemAccessRule)
@@ -672,13 +761,12 @@ $(function() {
 
     let subscription = $('#add-event-stream-subscription option:selected').data("details")
     let name = subscription.name
-    let service = JSON.parse($('#add-event-stream-service').val())
-    let url = urls[service.region][service.deployment]
     let key = subscription.stream_key
+    let eventType = subscription.subscription_type
     let bSeqId = $('#add-event-stream-beginning-seqid').val()
     let eSeqId = $('#add-event-stream-ending-seqid').val()
 
-    streams[key] = new Stream(name, url, key, bSeqId, eSeqId)
+    streams[key] = new Stream(name, streamUrl, key, eventType, bSeqId, eSeqId)
     monitorEventStream(streams[key])
     displayEventStream(streams[key])
 
@@ -781,6 +869,7 @@ On Load
 $(function() {
   if(MyAyla.isLoggedIn()) {
     $('#account-link').html('Logout')
+    getDssUrl()
     getAccessRules()
     getSubscriptions()
     getDevices()
@@ -790,13 +879,32 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Refresh On Click
+On Click Refresh Devices
 ------------------------------------------------------*/
 
 $(function() {
-  $('#refresh').click(function(event) {
-    getAccessRules()
-    getSubscriptions()
+  $('#refresh-devices').click(function(event) {
     getDevices()
+  })
+})
+
+/*------------------------------------------------------
+On Click Refresh Candidates
+------------------------------------------------------*/
+
+$(function() {
+  $('#refresh-candidates').click(function(event) {
+    getCandidates($('#select-device option:selected').data('details').dsn)
+  })
+})
+
+$(function() {
+  $("#sidenav").mCustomScrollbar({theme: "minimal"})
+
+  $(function() {
+    $('#sidenavCollapse').on('click', function () {
+      $('#sidenav, #content').toggleClass('active')
+      $('.collapse.in').toggleClass('in')
+    })
   })
 })

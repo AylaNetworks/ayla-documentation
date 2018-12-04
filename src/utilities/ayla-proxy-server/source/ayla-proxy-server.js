@@ -1,3 +1,5 @@
+var domain = window.location.origin
+
 var MyAyla = {
 
 /*------------------------------------------------------
@@ -156,6 +158,22 @@ getAccessRules: function(successCb=null, errorCb=null) {
 },
 
 /*------------------------------------------------------
+getDssDomain
+------------------------------------------------------*/
+
+getDssDomain: function(successCb=null, errorCb=null) {
+  axios({
+    method: 'get',
+    url: domain + '/api/v1/dss/domain',
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
 getSubscription
 ------------------------------------------------------*/
 
@@ -203,6 +221,23 @@ getAppSecret
 
 getAppSecret: function() {
   return Cookies.get('app_secret')
+},
+
+/*------------------------------------------------------
+getCandidates
+------------------------------------------------------*/
+
+getCandidates: function(dsn, successCb=null, errorCb=null) {
+  axios({
+    method: 'get',
+    url: domain + '/api/v1/devices/' + dsn + '/candidates',
+    headers: {
+      'Authorization': 'auth_token ' + getAuthToken(),
+      'Accept': 'application/json'
+    }
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
 /*------------------------------------------------------
