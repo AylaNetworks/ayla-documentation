@@ -241,6 +241,23 @@ getCandidates: function(dsn, successCb=null, errorCb=null) {
 },
 
 /*------------------------------------------------------
+getNodes
+------------------------------------------------------*/
+
+getNodes: function(dsn, successCb=null, errorCb=null) {
+  axios({
+    method: 'get',
+    url: domain + '/api/v1/devices/' + dsn + '/nodes',
+    headers: {
+      'Authorization': 'auth_token ' + getAuthToken(),
+      'Accept': 'application/json'
+    }
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
 getDevice
 ------------------------------------------------------*/
 

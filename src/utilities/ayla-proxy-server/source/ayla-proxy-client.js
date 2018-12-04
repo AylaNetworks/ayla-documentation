@@ -503,6 +503,7 @@ function getDevice(deviceId) {
   MyAyla.getDevice(deviceId, function (data) {
     $('#device-details-collapse').empty().append('<pre>' + JSON.stringify(data.device, null, 2) + '</pre>')
     getProperties(data.device.key)
+    getNodes(data.device.dsn)
     getCandidates(data.device.dsn)
   }, displayError)
 }
@@ -560,6 +561,52 @@ function displayCandidate(device) {
   + '</tr>'
   $('#candidates > tbody').append(item)
 }
+
+/*------------------------------------------------------
+getNodes
+------------------------------------------------------*/
+
+function getNodes(dsn) {
+  MyAyla.getNodes(dsn, function (arr) {
+    $('#nodes > tbody').empty()
+    if(arr.length) {
+      $.each(arr, function(index, data) {
+        displayNode(data.device)
+      })
+    }
+  }, displayError)
+}
+
+/*------------------------------------------------------
+displayNode
+------------------------------------------------------*/
+
+function displayNode(device) {
+
+console.log(JSON.stringify(device, null, 2))
+
+  let item = ''
+  + '<tr id="ID' + device.dsn + '" class="summary">'
+  + '<td class="chk"><input type="checkbox" value="' + device.dsn + '"></td>'
+  + '<td>' + device.product_name + '</td>'
+  + '<td class="name">' + device.oem_model + '</td>'
+  + '</tr>'
+  + '<tr class="details" style="display:none;">'
+  + '<td>&nbsp;</td>'
+  + '<td colspan=2><pre>' + JSON.stringify(device, null, 2) + '</pre></td>'
+  + '</tr>'
+  $('#nodes > tbody').append(item)
+}
+
+/*------------------------------------------------------
+Display Nodes Details
+------------------------------------------------------*/
+
+$(function() {
+  $("#nodes").delegate('tr.summary td:not(.chk)', "click", function(e) {
+    $(this).parent().next().toggle()
+  })
+})
 
 /*------------------------------------------------------
 getProperty
@@ -895,16 +942,5 @@ On Click Refresh Candidates
 $(function() {
   $('#refresh-candidates').click(function(event) {
     getCandidates($('#select-device option:selected').data('details').dsn)
-  })
-})
-
-$(function() {
-  $("#sidenav").mCustomScrollbar({theme: "minimal"})
-
-  $(function() {
-    $('#sidenavCollapse').on('click', function () {
-      $('#sidenav, #content').toggleClass('active')
-      $('.collapse.in').toggleClass('in')
-    })
   })
 })

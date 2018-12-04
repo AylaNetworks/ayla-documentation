@@ -12,11 +12,14 @@ module.exports = function(app) {
     .put(controllers.updateDevice)
     .delete(controllers.deleteDevice)
 
+  app.route('/api/v1/devices/:deviceId/properties')
+    .get(controllers.getProperties)
+
   app.route('/api/v1/devices/:dsn/candidates')
     .get(controllers.getCandidates)
 
-  app.route('/api/v1/devices/:deviceId/properties')
-    .get(controllers.getProperties)
+  app.route('/api/v1/devices/:dsn/nodes')
+    .get(controllers.getNodes)
 
   app.route('/api/v1/dss/accessrules')
     .get(controllers.getAccessRules)

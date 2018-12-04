@@ -191,7 +191,8 @@ exports.getAccessRules = function(req, res) {
 /*------------------------------------------------------
 getCandidates
 
-Ayla returns 404 for zero candidates. It is better to return 200 and [] because the client can use the same code path.
+Ayla returns 404 for zero candidates. It returns 500 if you ask a node for Node candidates. 
+It is better to return 200 and [] because the client can use the same code path.
 See https://softwareengineering.stackexchange.com/questions/358243/should-no-results-be-an-error-in-a-restful-response.
 ------------------------------------------------------*/
 
@@ -207,7 +208,7 @@ exports.getCandidates = function(req, res) {
   })
   .catch(function (error) {
     if(error.response) {
-      if(error.response.status === 404) {
+      if(error.response.status === 404 || error.response.status === 500) {
         res.statusCode = 200
         res.send(JSON.parse('[]'))
       } else {
@@ -218,6 +219,26 @@ exports.getCandidates = function(req, res) {
       res.statusCode = 404
       res.end()
     }
+  })
+}
+
+/*------------------------------------------------------
+getNodes
+------------------------------------------------------*/
+
+exports.getNodes = function(req, res) {
+  axios({
+    method: 'get',
+    url: http + server.services.device.domain + '/apiv1/dsns/' + urlStr(req, 2) + '/registered_nodes',
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
   })
 }
 
