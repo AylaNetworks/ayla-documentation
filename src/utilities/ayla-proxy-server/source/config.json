@@ -1,4 +1,9 @@
 {
+  "server": {
+    "domain": "docs.aylanetworks.com",
+    "region": "us",
+    "deployment_type": "dev"
+  },
   "services": {
     "application": {
       "domain": "application.aylanetworks.com"
@@ -9,7 +14,7 @@
     "device": {
       "domain": "ads-dev.aylanetworks.com"
     },
-    "factory-proxy": {
+    "factory_proxy": {
       "domain": "api-dev.aylanetworks.com"
     },
     "image": {

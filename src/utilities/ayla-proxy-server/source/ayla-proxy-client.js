@@ -2,6 +2,7 @@ var streamUrl = null
 var streams = {}
 var nextStreamId = 1
 var streamPropFilter = ['url','key','beginningSeqId','endingSeqId','eventType','numEvents','numHBs']
+var account = null
 
 /*------------------------------------------------------
 Stream
@@ -233,6 +234,16 @@ function createDatapoint(propertyId, value) {
 }
 
 /*------------------------------------------------------
+createNode
+------------------------------------------------------*/
+
+function createNode(dsn) {
+  MyAyla.createNode(account.uuid, dsn, function (data) {
+    getNode(dsn)
+  }, displayError)
+}
+
+/*------------------------------------------------------
 displayMessage
 ------------------------------------------------------*/
 
@@ -276,7 +287,7 @@ function displayPropertyValue(type, value, direction) {
     break
 
     default:
-    $('#value-wrapper').empty().append('<input id="property-value" type="text" class="form-control form-control-sm" value="' + value + '"' + status)
+    $('#value-wrapper').empty().append('<input id="property-value" type="text" class="form-control form-control-sm mr-sm-2" value="' + value + '"' + status)
     if(direction==='input') {
       $('#value-button-wrapper').show()
     } else {
@@ -496,12 +507,41 @@ function getSubscriptions() {
 }
 
 /*------------------------------------------------------
+getConfig
+------------------------------------------------------*/
+
+function getConfig() {
+  MyAyla.getConfig(function (data) {
+    $('#ayla-proxy-server-description').empty().html(''
+      + 'You are communicating with an Ayla Proxy Server hosted at <code>' + data.server.domain + '</code>.'
+      + ' This server is communicating with the <code>' + data.server.region + ' ' + data.server.deployment_type + '</code> Ayla Cloud.' 
+      )
+    $('#ayla-proxy-server-config').empty().html(JSON.stringify(data, null, 2))
+  }, displayError)
+}
+
+/*------------------------------------------------------
+getAccount
+------------------------------------------------------*/
+
+function getAccount() {
+  MyAyla.getAccount(function (data) {
+    account = data
+  }, displayError)
+}
+
+/*------------------------------------------------------
 getDevice
 ------------------------------------------------------*/
 
 function getDevice(deviceId) {
   MyAyla.getDevice(deviceId, function (data) {
-    $('#device-details-collapse').empty().append('<pre>' + JSON.stringify(data.device, null, 2) + '</pre>')
+
+    $('#device-attributes > tbody').empty()
+    $.each(data.device, function( key, value ) {
+      displayDeviceAttributes(key, value)
+    })
+
     getProperties(data.device.key)
     getNodes(data.device.dsn)
     getCandidates(data.device.dsn)
@@ -553,13 +593,70 @@ function displayCandidate(device) {
   + '<tr id="ID' + device.dsn + '" class="summary">'
   + '<td class="chk"><input type="checkbox" value="' + device.dsn + '"></td>'
   + '<td>' + device.product_name + '</td>'
-  + '<td class="name">' + device.oem_model + '</td>'
+  + '<td>' + device.oem_model + '</td>'
   + '</tr>'
   + '<tr class="details" style="display:none;">'
   + '<td>&nbsp;</td>'
   + '<td colspan=2><pre>' + JSON.stringify(device, null, 2) + '</pre></td>'
   + '</tr>'
   $('#candidates > tbody').append(item)
+}
+
+/*------------------------------------------------------
+displayDeviceAttributes
+------------------------------------------------------*/
+
+function displayDeviceAttributes(key, value) {
+  let item = ''
+  + '<tr>'
+  + '<td class="chk"><input type="checkbox" value="' + 1 + '"></td>'
+  + '<td>' + key + '</td>'
+  + '<td>' + value + '</td>'
+  + '</tr>'
+  $('#device-attributes > tbody').append(item)
+}
+
+/*------------------------------------------------------
+displayPropertyAttributes
+------------------------------------------------------*/
+
+function displayPropertyAttributes(key, value) {
+  let item = ''
+  + '<tr>'
+  + '<td class="chk"><input type="checkbox" value="' + 1 + '"></td>'
+  + '<td>' + key + '</td>'
+  + '<td>' + value + '</td>'
+  + '</tr>'
+  $('#property-attributes > tbody').append(item)
+}
+
+/*------------------------------------------------------
+displayProperty
+------------------------------------------------------*/
+
+function displayProperty(property) {
+  let item = ''
+  + '<tr id="ID' + property.key + '" class="summary">'
+  + '<td class="chk"><input type="checkbox" value="' + property.key + '"></td>'
+  + '<td>' + property.display_name + '</td>'
+  + '<td>' + property.base_type + '</td>'
+  + '<td>' + property.direction + '</td>'
+  + '</tr>'
+  + '<tr class="details" style="display:none;">'
+  + '<td>&nbsp;</td>'
+  + '<td colspan=3><pre>' + JSON.stringify(property, null, 2) + '</pre></td>'
+  + '</tr>'
+  $('#device-properties > tbody').append(item)
+}
+
+/*------------------------------------------------------
+getNode
+------------------------------------------------------*/
+
+function getNode(dsn) {
+  MyAyla.getDeviceByDsn(dsn, function (data) {
+    displayNode(data.device)
+  }, displayError)
 }
 
 /*------------------------------------------------------
@@ -582,14 +679,11 @@ displayNode
 ------------------------------------------------------*/
 
 function displayNode(device) {
-
-console.log(JSON.stringify(device, null, 2))
-
   let item = ''
   + '<tr id="ID' + device.dsn + '" class="summary">'
   + '<td class="chk"><input type="checkbox" value="' + device.dsn + '"></td>'
   + '<td>' + device.product_name + '</td>'
-  + '<td class="name">' + device.oem_model + '</td>'
+  + '<td>' + device.oem_model + '</td>'
   + '</tr>'
   + '<tr class="details" style="display:none;">'
   + '<td>&nbsp;</td>'
@@ -599,11 +693,64 @@ console.log(JSON.stringify(device, null, 2))
 }
 
 /*------------------------------------------------------
-Display Nodes Details
+getDatapoints
+------------------------------------------------------*/
+
+function getDatapoints(propertyId) {
+  MyAyla.getDatapoints(propertyId, function (arr) {
+    $('#property-datapoints > tbody').empty()
+    if(arr.length) {
+      $.each(arr, function(index, data) {
+        displayDatapoint(data.datapoint)
+      })
+    }
+  }, displayError)
+}
+
+/*------------------------------------------------------
+displayDatapoint
+------------------------------------------------------*/
+
+function displayDatapoint(datapoint) {
+  let item = ''
+  + '<tr class="summary">'
+  + '<td class="chk"><input type="checkbox"></td>'
+  + '<td>' + datapoint.created_at + '</td>'
+  + '<td>' + datapoint.value + '</td>'
+  + '</tr>'
+  + '<tr class="details" style="display:none;">'
+  + '<td>&nbsp;</td>'
+  + '<td colspan=2><pre>' + JSON.stringify(datapoint, null, 2) + '</pre></td>'
+  + '</tr>'
+  $('#property-datapoints > tbody').prepend(item)
+}
+
+/*------------------------------------------------------
+Display Node Details
 ------------------------------------------------------*/
 
 $(function() {
   $("#nodes").delegate('tr.summary td:not(.chk)', "click", function(e) {
+    $(this).parent().next().toggle()
+  })
+})
+
+/*------------------------------------------------------
+Display Datapoint Details
+------------------------------------------------------*/
+
+$(function() {
+  $("#property-datapoints").delegate('tr.summary td:not(.chk)', "click", function(e) {
+    $(this).parent().next().toggle()
+  })
+})
+
+/*------------------------------------------------------
+Display Property Details
+------------------------------------------------------*/
+
+$(function() {
+  $("#device-properties").delegate('tr.summary td:not(.chk)', "click", function(e) {
     $(this).parent().next().toggle()
   })
 })
@@ -614,7 +761,14 @@ getProperty
 
 function getProperty(propertyId) {
   MyAyla.getProperty(propertyId, function (data) {
-    $('#property-details-collapse').empty().append('<pre>' + JSON.stringify(data.property, null, 2) + '</pre>')
+
+    $('#property-attributes > tbody').empty()
+    $.each(data.property, function( key, value ) {
+      displayPropertyAttributes(key, value)
+    })
+
+    getDatapoints(propertyId)
+
     displayPropertyValue(data.property.base_type, data.property.value, data.property.direction)
   }, displayError)
 }
@@ -626,6 +780,7 @@ getProperties
 function getProperties(deviceId) {
   MyAyla.getProperties(deviceId, function (arr) {
     $('#select-property').empty()
+    $('#device-properties > tbody').empty()
     if(arr.length) {
       var propertyId = arr[0].property.key
       var type = arr[0].property.base_type
@@ -637,6 +792,7 @@ function getProperties(deviceId) {
         option.val(data.property.key)
         option.data('details', data.property)
         $('#select-property').append(option)
+        displayProperty(data.property)
       })
     }
     getProperty(propertyId)
@@ -657,9 +813,12 @@ $(function() {
     var appSecret = $('#appSecret').val()
     MyAyla.login(email, password, appId, appSecret, function(data) {
       $('#account-link').html('Logout')
+      getAccount()
+      getDssUrl()
       getAccessRules()
       getSubscriptions()
       getDevices()
+      getConfig()
     }, displayError)
   })
 })
@@ -732,6 +891,26 @@ $(function() {
   $('#add-access-rule-form .close-me').click(function(event) {
     $('#add-access-rule-form').get(0).reset()
     $('#add-access-rule-row').hide()
+  })
+})
+
+/*------------------------------------------------------
+On Click Register Candidates
+------------------------------------------------------*/
+
+$(function() {
+  $('#register-candidates').click(function(event) {
+    $('#candidates tr th input[type=checkbox]').prop('checked', false)
+    let checkboxes = $('#candidates tbody tr td input[type=checkbox]:checked')
+    $.each(checkboxes, function(index, checkbox) {
+      let dsn = $(checkbox).val()
+      createNode(dsn)
+
+      let tr1 = $(checkbox).closest('tr')
+      let tr2 = $(tr1).next()
+      $(tr1).remove()
+      $(tr2).remove()
+    })
   })
 })
 
@@ -916,10 +1095,12 @@ On Load
 $(function() {
   if(MyAyla.isLoggedIn()) {
     $('#account-link').html('Logout')
+    getAccount()
     getDssUrl()
     getAccessRules()
     getSubscriptions()
     getDevices()
+    getConfig()
   } else {
     $('#account-link').html('Login')
   }
@@ -942,5 +1123,15 @@ On Click Refresh Candidates
 $(function() {
   $('#refresh-candidates').click(function(event) {
     getCandidates($('#select-device option:selected').data('details').dsn)
+  })
+})
+
+/*------------------------------------------------------
+On Click Refresh Nodes
+------------------------------------------------------*/
+
+$(function() {
+  $('#refresh-nodes').click(function(event) {
+    getNodes($('#select-device option:selected').data('details').dsn)
   })
 })

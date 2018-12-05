@@ -21,6 +21,7 @@ try {
   return
 }
 
+exports.config = config
 exports.services = config.services
 
 app.listen(8080)

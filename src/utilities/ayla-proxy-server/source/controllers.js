@@ -70,6 +70,27 @@ exports.createSubscription = function(req, res) {
 }
 
 /*------------------------------------------------------
+createNode
+------------------------------------------------------*/
+
+exports.createNode = function(req, res) {
+  axios({
+    method: 'put',
+    url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 2) + '/register',
+    headers: req.headers,
+    data: JSON.stringify(req.body)
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
 deleteAccessRule
 ------------------------------------------------------*/
 
@@ -237,6 +258,36 @@ exports.getNodes = function(req, res) {
     res.send(response.data)
   })
   .catch(function (error) {
+    if(error.response) {
+      if(error.response.status === 405) {
+        res.statusCode = 200
+        res.send(JSON.parse('[]'))
+      } else {
+        res.statusCode = error.response.status
+        res.end()
+      }
+    } else {
+      res.statusCode = 404
+      res.end()
+    }
+  })
+}
+
+/*------------------------------------------------------
+getAccount
+------------------------------------------------------*/
+
+exports.getAccount = function(req, res) {
+  axios({
+    method: 'get',
+    url: http + server.services.user.domain + '/users/get_user_profile',
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
     if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
     res.end()
   })
@@ -250,6 +301,47 @@ exports.getDevice = function(req, res) {
   axios({
     method: 'get',
     url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 1),
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
+getDeviceByDsn
+------------------------------------------------------*/
+
+exports.getDeviceByDsn = function(req, res) {
+  console.log(http + server.services.device.domain + '/apiv1/dsns/' + urlStr(req, 2))
+  axios({
+    method: 'get',
+    url: http + server.services.device.domain + '/apiv1/dsns/' + urlStr(req, 2),
+    headers: req.headers
+  })
+  .then(function (response) {
+    res.statusCode = response.status
+    res.send(response.data)
+  })
+  .catch(function (error) {
+    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
+    res.end()
+  })
+}
+
+/*------------------------------------------------------
+getDatapoints
+------------------------------------------------------*/
+
+exports.getDatapoints = function(req, res) {
+  axios({
+    method: 'get',
+    url: http + server.services.device.domain + '/apiv1/properties/' + urlStr(req, 2) + '/datapoints',
     headers: req.headers
   })
   .then(function (response) {
@@ -289,6 +381,15 @@ getDssDomain
 exports.getDssDomain = function(req, res) {
   res.statusCode = 200
   res.send(server.services.datastream.domain)
+}
+
+/*------------------------------------------------------
+getConfig
+------------------------------------------------------*/
+
+exports.getConfig = function(req, res) {
+  res.statusCode = 200
+  res.send(server.config)
 }
 
 /*------------------------------------------------------

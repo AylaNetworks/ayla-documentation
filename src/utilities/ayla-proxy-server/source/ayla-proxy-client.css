@@ -129,3 +129,5 @@ input:checked + .slider:before {
 .slider.round {border-radius: 30px;}
 .slider.round:before {border-radius: 50%;}
 /* END SLIDER */
+
+code {color: #b36200;}

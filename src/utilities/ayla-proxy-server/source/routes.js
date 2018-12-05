@@ -4,6 +4,9 @@ var controllers = require('./controllers')
 
 module.exports = function(app) {
 
+  app.route('/api/v1/config')
+    .get(controllers.getConfig)
+
   app.route('/api/v1/devices')
     .get(controllers.getDevices)
 
@@ -15,11 +18,15 @@ module.exports = function(app) {
   app.route('/api/v1/devices/:deviceId/properties')
     .get(controllers.getProperties)
 
+  app.route('/api/v1/devices/:dsn/attributes')
+    .get(controllers.getDeviceByDsn)
+
   app.route('/api/v1/devices/:dsn/candidates')
     .get(controllers.getCandidates)
 
   app.route('/api/v1/devices/:dsn/nodes')
     .get(controllers.getNodes)
+    .post(controllers.createNode)
 
   app.route('/api/v1/dss/accessrules')
     .get(controllers.getAccessRules)
@@ -44,9 +51,13 @@ module.exports = function(app) {
     .get(controllers.getProperty)
 
   app.route('/api/v1/properties/:propertyId/datapoints')
+    .get(controllers.getDatapoints)
     .post(controllers.createDatapoint)
 
   app.route('/api/v1/session')
     .post(controllers.login)
     .delete(controllers.logout)
+
+  app.route('/api/v1/account')
+    .get(controllers.getAccount)
 }

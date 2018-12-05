@@ -22,6 +22,32 @@ createAccessRule: function(data, successCb=null, errorCb=null) {
 },
 
 /*------------------------------------------------------
+createNode
+------------------------------------------------------*/
+
+createNode: function(user_uuid, dsn, successCb=null, errorCb=null) {
+  var data = {
+    'user_uuid': user_uuid
+  }
+
+  console.log(domain + '/api/v1/devices/' + dsn + '/nodes')
+  console.log(JSON.stringify(data, null, 2))
+
+  axios({
+    method: 'post',
+    url: domain + '/api/v1/devices/' + dsn + '/nodes',
+    headers: {
+      'Authorization': 'auth_token ' + getAuthToken(),
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    data: JSON.stringify(data)
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
 createDatapoint
 ------------------------------------------------------*/
 
@@ -174,6 +200,39 @@ getDssDomain: function(successCb=null, errorCb=null) {
 },
 
 /*------------------------------------------------------
+getAccount
+------------------------------------------------------*/
+
+getAccount: function(successCb=null, errorCb=null) {
+  axios({
+    method: 'get',
+    url: domain + '/api/v1/account',
+    headers: {
+      'Authorization': 'auth_token ' + getAuthToken(),
+      'Accept': 'application/json'
+    }
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
+getConfig
+------------------------------------------------------*/
+
+getConfig: function(successCb=null, errorCb=null) {
+  axios({
+    method: 'get',
+    url: domain + '/api/v1/config',
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
 getSubscription
 ------------------------------------------------------*/
 
@@ -198,6 +257,23 @@ getSubscriptions: function(successCb=null, errorCb=null) {
   axios({
     method: 'get',
     url: domain + '/api/v1/dss/subscriptions',
+    headers: {
+      'Authorization': 'auth_token ' + getAuthToken(),
+      'Accept': 'application/json'
+    }
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
+getDatapoints
+------------------------------------------------------*/
+
+getDatapoints: function(propertyId, successCb=null, errorCb=null) {
+  axios({
+    method: 'get',
+    url: domain + '/api/v1/properties/' + propertyId + '/datapoints',
     headers: {
       'Authorization': 'auth_token ' + getAuthToken(),
       'Accept': 'application/json'
@@ -265,6 +341,23 @@ getDevice: function(deviceId, successCb=null, errorCb=null) {
   axios({
     method: 'get',
     url: domain + '/api/v1/devices/' + deviceId,
+    headers: {
+      'Authorization': 'auth_token ' + getAuthToken(),
+      'Accept': 'application/json'
+    }
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
+getDeviceByDsn
+------------------------------------------------------*/
+
+getDeviceByDsn: function(dsn, successCb=null, errorCb=null) {
+  axios({
+    method: 'get',
+    url: domain + '/api/v1/devices/' + dsn + '/attributes',
     headers: {
       'Authorization': 'auth_token ' + getAuthToken(),
       'Accept': 'application/json'
