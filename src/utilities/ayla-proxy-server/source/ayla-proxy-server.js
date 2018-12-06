@@ -29,10 +29,6 @@ createNode: function(user_uuid, dsn, successCb=null, errorCb=null) {
   var data = {
     'user_uuid': user_uuid
   }
-
-  console.log(domain + '/api/v1/devices/' + dsn + '/nodes')
-  console.log(JSON.stringify(data, null, 2))
-
   axios({
     method: 'post',
     url: domain + '/api/v1/devices/' + dsn + '/nodes',
@@ -341,23 +337,6 @@ getDevice: function(deviceId, successCb=null, errorCb=null) {
   axios({
     method: 'get',
     url: domain + '/api/v1/devices/' + deviceId,
-    headers: {
-      'Authorization': 'auth_token ' + getAuthToken(),
-      'Accept': 'application/json'
-    }
-  })
-  .then(function (response) {callSuccessCb(response, successCb)})
-  .catch(function (error) {callErrorCb(error, errorCb)})
-},
-
-/*------------------------------------------------------
-getDeviceByDsn
-------------------------------------------------------*/
-
-getDeviceByDsn: function(dsn, successCb=null, errorCb=null) {
-  axios({
-    method: 'get',
-    url: domain + '/api/v1/devices/' + dsn + '/attributes',
     headers: {
       'Authorization': 'auth_token ' + getAuthToken(),
       'Accept': 'application/json'

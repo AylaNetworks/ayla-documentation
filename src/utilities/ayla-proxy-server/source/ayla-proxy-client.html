@@ -13,7 +13,7 @@
 <body>
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top"> <!-- BEGIN NAV MENU -->
-    <a class="navbar-brand" href="./ayla-proxy-client.html" style="margin-right:6px;"><img src="ayla-leaf.png" width="28" alt="">Ayla Proxy Client</a>
+    <a class="navbar-brand mr-sm-2" href="./ayla-proxy-client.html" style="margin-right:6px;"><img src="ayla-leaf.png" width="28" alt="">Ayla Proxy Client</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navdrop"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navdrop">
 
@@ -22,7 +22,7 @@
         <select style="width:200px;" id="select-property" class="form-control form-control-sm mr-sm-2"></select>
         <div id="value-wrapper" style="display:none;"></div>
         <div id="value-button-wrapper" style="display:none;">
-          <button id="save-property-value" type="button" class="btn btn-success btn-sm btn-block">Save</button>
+          <button id="save-property-value" type="button" class="btn btn-outline-light btn-sm">Save</button>
         </div>
       </form>
 
@@ -121,8 +121,9 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="link-btns">
-                        <span id="add-access-rule-btn" class="link-btn">Add</span>
+                        <span id="add-access-rule-btn" class="link-btn" onclick="$('#add-access-rule-row').toggle()">Add</span>
                         <span id="delete-access-rules-btn" class="link-btn">Delete</span>
+                        <span class="link-btn" onclick="getAccessRules()">Refresh</span>
                       </div>
                     </div>
                   </div>
@@ -179,7 +180,7 @@
                         <div class="row">
                           <div class="col-md-12">
                             <button type="submit" class="btn btn-outline-light btn-sm">Create</button>
-                            <button type="button" class="btn btn-outline-light btn-sm close-me">Cancel</button>
+                            <button type="reset" class="btn btn-outline-light btn-sm close-me" onclick="$('#add-access-rule-row').hide()">Cancel</button>
                           </div>
                         </div>
                       </form> <!-- END ADD ACCESS RULE FORM -->
@@ -215,9 +216,10 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="link-btns">
-                        <span id="add-subscription-btn" class="link-btn">Add</span>
+                        <span id="add-subscription-btn" class="link-btn" onclick="$('#add-subscription-row').toggle()">Add</span>
                         <span id="delete-subscriptions-btn" class="link-btn">Delete</span>
                         <span id="deploy-subscriptions-btn" class="link-btn">Deploy</span>
+                        <span class="link-btn" onclick="getSubscriptions()">Refresh</span>
                       </div>
                     </div>
                   </div>
@@ -283,7 +285,7 @@
                         <div class="row">
                           <div class="col-md-12">
                             <button type="submit" class="btn btn-outline-light btn-sm">Create</button>
-                            <button type="button" class="btn btn-outline-light btn-sm close-me">Cancel</button>
+                            <button type="reset" class="btn btn-outline-light btn-sm close-me" onclick="$('#add-subscription-row').hide()">Cancel</button>
                           </div>
                         </div>
                       </form> <!-- END ADD SUBSCRIPTION FORM -->
@@ -321,7 +323,7 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="link-btns">
-                        <span id="add-event-stream-btn" class="link-btn">Add</span>
+                        <span id="add-event-stream-btn" class="link-btn" onclick="$('#add-event-stream-row').toggle()">Add</span>
                         <span id="delete-event-streams-btn" class="link-btn">Delete</span>
                       </div>
                     </div>
@@ -357,7 +359,7 @@
                         <div class="row">
                           <div class="col-md-12">
                             <button type="submit" class="btn btn-outline-light btn-sm">Create</button>
-                            <button type="button" class="btn btn-outline-light btn-sm close-me">Cancel</button>
+                            <button type="reset" class="btn btn-outline-light btn-sm close-me" onclick="$('#add-event-stream-row').hide()">Cancel</button>
                           </div>
                         </div>
                       </form> <!-- END ADD EVENT STREAM FORM -->
@@ -440,6 +442,14 @@
                 <div  id="device-attributes-collapse"class="collapse show"> <!-- BEGIN DEVICE ATTRIBUTES COLLAPSE -->
 
                   <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span class="link-btn" onclick="getDeviceAttributes($('#select-device option:selected').data('details').key)">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
                     <div class="form-group col-md-12">
                       <table id="device-attributes">
                         <thead>
@@ -465,6 +475,14 @@
                 <div  id="device-properties-collapse"class="collapse show"> <!-- BEGIN DEVICE PROPERTIES COLLAPSE -->
 
                   <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span id="refresh-device-properties-btn" class="link-btn">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
                     <div class="form-group col-md-12">
                       <table id="device-properties">
                         <thead>
@@ -488,39 +506,6 @@
 
           <div class="form-group col-md-6"> <!-- BEGIN DEVICE RIGHT COLUMN -->
 
-            <div class="row"> <!-- BEGIN DEVICE NODES -->
-              <div class="form-group col-md-12">
-
-                <h3 data-toggle="collapse" href="#device-nodes-collapse"><span class="collapsible">Nodes</span></h3>
-                <div  id="device-nodes-collapse"class="collapse show"> <!-- BEGIN DEVICE NODES COLLAPSE -->
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="link-btns">
-                        <span id="refresh-nodes" class="link-btn">Refresh</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="form-group col-md-12">
-                      <table id="nodes">
-                        <thead>
-                          <tr>
-                            <th><input type="checkbox"></th>
-                            <th>Product Name</th>
-                            <th>OEM Model</th>
-                          </tr>
-                        </thead>
-                        <tbody></tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                </div> <!-- END DEVICE NODES COLLAPSE -->
-              </div> <!-- END COLUMN -->
-            </div> <!-- END DEVICE NODES -->
-
             <div class="row"> <!-- BEGIN DEVICE NODE CANDIDATES -->
               <div class="form-group col-md-12">
 
@@ -530,8 +515,8 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="link-btns">
-                        <span id="register-candidates" class="link-btn">Register</span>
-                        <span id="refresh-candidates" class="link-btn">Refresh</span>
+                        <span id="register-candidates-btn" class="link-btn">Register</span>
+                        <span class="link-btn" onclick="getCandidates($('#select-device option:selected').data('details').dsn)">Refresh</span>
                       </div>
                     </div>
                   </div>
@@ -555,6 +540,39 @@
               </div> <!-- END COLUMN -->
             </div> <!-- END DEVICE NODE CANDIDATES -->
 
+            <div class="row"> <!-- BEGIN DEVICE NODES -->
+              <div class="form-group col-md-12">
+
+                <h3 data-toggle="collapse" href="#device-nodes-collapse"><span class="collapsible">Nodes</span></h3>
+                <div  id="device-nodes-collapse"class="collapse show"> <!-- BEGIN DEVICE NODES COLLAPSE -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span class="link-btn" onclick="getNodes($('#select-device option:selected').data('details').dsn)">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <table id="nodes">
+                        <thead>
+                          <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Product Name</th>
+                            <th>OEM Model</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div> <!-- END DEVICE NODES COLLAPSE -->
+              </div> <!-- END COLUMN -->
+            </div> <!-- END DEVICE NODES -->
+
           </div> <!-- END DEVICE RIGHT COLUMN -->
 
         </div>  <!-- END DEVICE OUTER ROW -->
@@ -572,6 +590,14 @@
 
                 <h3 data-toggle="collapse" href="#property-attributes-collapse"><span class="collapsible">Attributes</span></h3>
                 <div  id="property-attributes-collapse"class="collapse show"> <!-- BEGIN PROPERTY ATTRIBUTES COLLAPSE -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span class="link-btn" onclick="getPropertyAttributes($('#select-property option:selected').data('details').key)">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
 
                   <div class="row">
                     <div class="form-group col-md-12">
@@ -601,6 +627,14 @@
 
                 <h3 data-toggle="collapse" href="#property-datapoints-collapse"><span class="collapsible">Datapoints</span></h3>
                 <div  id="property-datapoints-collapse"class="collapse show"> <!-- BEGIN PROPERTY DATAPOINTS COLLAPSE -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span class="link-btn" onclick="getDatapoints($('#select-property option:selected').data('details').key)">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
 
                   <div class="row">
                     <div class="form-group col-md-12">
@@ -633,9 +667,14 @@
 
           <div class="form-group col-md-12"> <!-- BEGIN ABOUT COLUMN -->
 
-            <p id="ayla-proxy-server-description" style="font-size:92%;"></p>
-
-            <pre id="ayla-proxy-server-config"></pre>
+            <div class="row">
+              <div class="col-md-6">
+                <p id="ayla-proxy-server-description" style="font-size:92%;"></p>
+              </div>
+              <div class="col-md-6">
+                <pre id="ayla-proxy-server-config"></pre>
+              </div>
+            </div>
 
           </div> <!-- END ABOUT COLUMN -->
 

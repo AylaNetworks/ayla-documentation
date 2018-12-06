@@ -124,11 +124,12 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Display Event Details
+Display Details
 ------------------------------------------------------*/
 
 $(function() {
-  $("#events").delegate('tr td:not(.chk)', "click", function(e) {
+  $("body").delegate('tr.simple-details td:not(.chk)', "click", function(e) {
+    console.log('Display Details')
     $(this).parent().next().toggle()
   })
 })
@@ -139,7 +140,7 @@ displayEvent
 
 function displayEvent(stream, event, value) {
   let item = ''
-  + '<tr class="summary">'
+  + '<tr class="summary simple-details">'
   + '<td class="chk"><input type="checkbox"></td>'
   + '<td>' + stream.id + '</td>'
   + '<td>' + event.seq + '</td>'
@@ -237,9 +238,12 @@ function createDatapoint(propertyId, value) {
 createNode
 ------------------------------------------------------*/
 
-function createNode(dsn) {
+function createNode(dsn, candidateRow) {
   MyAyla.createNode(account.uuid, dsn, function (data) {
-    getNode(dsn)
+    let tr2 = $(candidateRow).next()
+    $(candidateRow).remove()
+    $(tr2).remove()
+    displayNode(data.device)
   }, displayError)
 }
 
@@ -302,9 +306,6 @@ updatePropertyValue
 ------------------------------------------------------*/
 
 function updatePropertyValue(type, value) {
-
-  console.log('The value is ' + value)
-
   switch(type) {
     case 'boolean':
     $('#property-value').prop('checked', value)
@@ -322,7 +323,7 @@ displayAccessRule
 
 function displayAccessRule(rule) {
   let item = ''
-  + '<tr class="summary">'
+  + '<tr class="summary simple-details">'
   + '<td class="chk"><input type="checkbox" value="' + rule.id + '"></td>'
   + '<td>' + rule.oem_model + '</td>'
   + '<td>' + rule.property_name + '</td>'
@@ -334,26 +335,6 @@ function displayAccessRule(rule) {
   + '</tr>'
   $('#access-rules > tbody').append(item)
 }
-
-/*------------------------------------------------------
-Display Access Rule Details
-------------------------------------------------------*/
-
-$(function() {
-  $("#access-rules").delegate('tr.summary td:not(.chk)', "click", function(e) {
-    $(this).parent().next().toggle()
-  })
-})
-
-/*------------------------------------------------------
-Display Candidate Details
-------------------------------------------------------*/
-
-$(function() {
-  $("#candidates").delegate('tr.summary td:not(.chk)', "click", function(e) {
-    $(this).parent().next().toggle()
-  })
-})
 
 /*------------------------------------------------------
 Delete Access Rule
@@ -395,7 +376,7 @@ displaySubscription
 
 function displaySubscription(subscription) {
 
-  var tr = $('<tr/>').addClass('summary')
+  var tr = $('<tr/>').addClass('summary simple-details')
   var input = $('<input/>').prop('type', 'checkbox').val(subscription.id).data('details', subscription)
   var td = $('<td/>').addClass('chk')
   td.append(input)
@@ -415,16 +396,6 @@ function displaySubscription(subscription) {
   option.data('details', subscription)
   $('#add-event-stream-subscription').append(option)
 }
-
-/*------------------------------------------------------
-Display Subscription Details
-------------------------------------------------------*/
-
-$(function() {
-  $("#subscriptions").delegate('tr.summary td:not(.chk)', "click", function(e) {
-    $(this).parent().next().toggle()
-  })
-})
 
 /*------------------------------------------------------
 Delete Subscriptions
@@ -513,8 +484,9 @@ getConfig
 function getConfig() {
   MyAyla.getConfig(function (data) {
     $('#ayla-proxy-server-description').empty().html(''
-      + 'You are communicating with an Ayla Proxy Server hosted at <code>' + data.server.domain + '</code>.'
-      + ' This server is communicating with the <code>' + data.server.region + ' ' + data.server.deployment_type + '</code> Ayla Cloud.' 
+      + 'This application is communicating with an <code>Ayla Proxy Server</code> instance (hosted at <code>' + data.server.domain + '</code>)'
+      + ' which is communicating with the <code>' + data.server.region + ' ' + data.server.deployment_type + '</code> Ayla Cloud.'
+      + ' The code block shows the <code>Ayla Proxy Server</code> configuration file:'
       )
     $('#ayla-proxy-server-config').empty().html(JSON.stringify(data, null, 2))
   }, displayError)
@@ -531,17 +503,32 @@ function getAccount() {
 }
 
 /*------------------------------------------------------
+getDeviceAttributes
+------------------------------------------------------*/
+
+function getDeviceAttributes(deviceId) {
+  MyAyla.getDevice(deviceId, function (data) {
+    $('#device-attributes > tbody').empty()
+    $.each(data.device, function( key, value ) {
+      if(!Array.isArray(value)) {
+        displayDeviceAttribute(key, value)
+      }
+    })
+  }, displayError)
+}
+
+/*------------------------------------------------------
 getDevice
 ------------------------------------------------------*/
 
 function getDevice(deviceId) {
   MyAyla.getDevice(deviceId, function (data) {
-
     $('#device-attributes > tbody').empty()
     $.each(data.device, function( key, value ) {
-      displayDeviceAttributes(key, value)
+      if(!Array.isArray(value)) {
+        displayDeviceAttribute(key, value)
+      }
     })
-
     getProperties(data.device.key)
     getNodes(data.device.dsn)
     getCandidates(data.device.dsn)
@@ -590,7 +577,7 @@ displayCandidate
 
 function displayCandidate(device) {
   let item = ''
-  + '<tr id="ID' + device.dsn + '" class="summary">'
+  + '<tr class="summary simple-details">'
   + '<td class="chk"><input type="checkbox" value="' + device.dsn + '"></td>'
   + '<td>' + device.product_name + '</td>'
   + '<td>' + device.oem_model + '</td>'
@@ -603,10 +590,10 @@ function displayCandidate(device) {
 }
 
 /*------------------------------------------------------
-displayDeviceAttributes
+displayDeviceAttribute
 ------------------------------------------------------*/
 
-function displayDeviceAttributes(key, value) {
+function displayDeviceAttribute(key, value) {
   let item = ''
   + '<tr>'
   + '<td class="chk"><input type="checkbox" value="' + 1 + '"></td>'
@@ -617,10 +604,10 @@ function displayDeviceAttributes(key, value) {
 }
 
 /*------------------------------------------------------
-displayPropertyAttributes
+displayPropertyAttribute
 ------------------------------------------------------*/
 
-function displayPropertyAttributes(key, value) {
+function displayPropertyAttribute(key, value) {
   let item = ''
   + '<tr>'
   + '<td class="chk"><input type="checkbox" value="' + 1 + '"></td>'
@@ -636,7 +623,7 @@ displayProperty
 
 function displayProperty(property) {
   let item = ''
-  + '<tr id="ID' + property.key + '" class="summary">'
+  + '<tr class="summary simple-details">'
   + '<td class="chk"><input type="checkbox" value="' + property.key + '"></td>'
   + '<td>' + property.display_name + '</td>'
   + '<td>' + property.base_type + '</td>'
@@ -647,16 +634,6 @@ function displayProperty(property) {
   + '<td colspan=3><pre>' + JSON.stringify(property, null, 2) + '</pre></td>'
   + '</tr>'
   $('#device-properties > tbody').append(item)
-}
-
-/*------------------------------------------------------
-getNode
-------------------------------------------------------*/
-
-function getNode(dsn) {
-  MyAyla.getDeviceByDsn(dsn, function (data) {
-    displayNode(data.device)
-  }, displayError)
 }
 
 /*------------------------------------------------------
@@ -680,7 +657,7 @@ displayNode
 
 function displayNode(device) {
   let item = ''
-  + '<tr id="ID' + device.dsn + '" class="summary">'
+  + '<tr class="summary simple-details">'
   + '<td class="chk"><input type="checkbox" value="' + device.dsn + '"></td>'
   + '<td>' + device.product_name + '</td>'
   + '<td>' + device.oem_model + '</td>'
@@ -689,7 +666,7 @@ function displayNode(device) {
   + '<td>&nbsp;</td>'
   + '<td colspan=2><pre>' + JSON.stringify(device, null, 2) + '</pre></td>'
   + '</tr>'
-  $('#nodes > tbody').append(item)
+  $('#nodes > tbody').prepend(item)
 }
 
 /*------------------------------------------------------
@@ -713,7 +690,7 @@ displayDatapoint
 
 function displayDatapoint(datapoint) {
   let item = ''
-  + '<tr class="summary">'
+  + '<tr class="summary simple-details">'
   + '<td class="chk"><input type="checkbox"></td>'
   + '<td>' + datapoint.created_at + '</td>'
   + '<td>' + datapoint.value + '</td>'
@@ -726,34 +703,19 @@ function displayDatapoint(datapoint) {
 }
 
 /*------------------------------------------------------
-Display Node Details
+getPropertyAttributes
 ------------------------------------------------------*/
 
-$(function() {
-  $("#nodes").delegate('tr.summary td:not(.chk)', "click", function(e) {
-    $(this).parent().next().toggle()
-  })
-})
-
-/*------------------------------------------------------
-Display Datapoint Details
-------------------------------------------------------*/
-
-$(function() {
-  $("#property-datapoints").delegate('tr.summary td:not(.chk)', "click", function(e) {
-    $(this).parent().next().toggle()
-  })
-})
-
-/*------------------------------------------------------
-Display Property Details
-------------------------------------------------------*/
-
-$(function() {
-  $("#device-properties").delegate('tr.summary td:not(.chk)', "click", function(e) {
-    $(this).parent().next().toggle()
-  })
-})
+function getPropertyAttributes(propertyId) {
+  MyAyla.getProperty(propertyId, function (data) {
+    $('#property-attributes > tbody').empty()
+    $.each(data.property, function( key, value ) {
+      if(!Array.isArray(value)) {
+        displayPropertyAttribute(key, value)
+      }
+    })
+  }, displayError)
+}
 
 /*------------------------------------------------------
 getProperty
@@ -764,7 +726,9 @@ function getProperty(propertyId) {
 
     $('#property-attributes > tbody').empty()
     $.each(data.property, function( key, value ) {
-      displayPropertyAttributes(key, value)
+      if(!Array.isArray(value)) {
+        displayPropertyAttribute(key, value)
+      }
     })
 
     getDatapoints(propertyId)
@@ -845,16 +809,6 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Add Access Rule - Open
-------------------------------------------------------*/
-
-$(function() {
-  $('#add-access-rule-btn').click(function(event) {
-    $('#add-access-rule-row').show()
-  })
-})
-
-/*------------------------------------------------------
 Add Access Rule - Submit
 ------------------------------------------------------*/
 
@@ -884,17 +838,6 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Add Access Rule - Cancel
-------------------------------------------------------*/
-
-$(function() {
-  $('#add-access-rule-form .close-me').click(function(event) {
-    $('#add-access-rule-form').get(0).reset()
-    $('#add-access-rule-row').hide()
-  })
-})
-
-/*------------------------------------------------------
 On Click Register Candidates
 ------------------------------------------------------*/
 
@@ -904,23 +847,8 @@ $(function() {
     let checkboxes = $('#candidates tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
       let dsn = $(checkbox).val()
-      createNode(dsn)
-
-      let tr1 = $(checkbox).closest('tr')
-      let tr2 = $(tr1).next()
-      $(tr1).remove()
-      $(tr2).remove()
+      createNode(dsn, $(checkbox).closest('tr'))
     })
-  })
-})
-
-/*------------------------------------------------------
-Add Subscription - Open
-------------------------------------------------------*/
-
-$(function() {
-  $('#add-subscription-btn').click(function(event) {
-    $('#add-subscription-row').show()
   })
 })
 
@@ -958,27 +886,6 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Add Subscription - Cancel
-------------------------------------------------------*/
-
-$(function() {
-  $('#add-subscription-form .close-me').click(function(event) {
-    $('#add-subscription-form').get(0).reset()
-    $('#add-subscription-row').hide()
-  })
-})
-
-/*------------------------------------------------------
-Add Event Stream - Open
-------------------------------------------------------*/
-
-$(function() {
-  $('#add-event-stream-btn').click(function(event) {
-    $('#add-event-stream-row').show()
-  })
-})
-
-/*------------------------------------------------------
 Add Event Stream - Submit
 ------------------------------------------------------*/
 
@@ -996,17 +903,6 @@ $(function() {
     monitorEventStream(streams[key])
     displayEventStream(streams[key])
 
-    $('#add-event-stream-form').get(0).reset()
-    $('#add-event-stream-row').hide()
-  })
-})
-
-/*------------------------------------------------------
-Add Event Stream - Cancel
-------------------------------------------------------*/
-
-$(function() {
-  $('#add-event-stream-form .close-me').click(function(event) {
     $('#add-event-stream-form').get(0).reset()
     $('#add-event-stream-row').hide()
   })
@@ -1104,34 +1000,4 @@ $(function() {
   } else {
     $('#account-link').html('Login')
   }
-})
-
-/*------------------------------------------------------
-On Click Refresh Devices
-------------------------------------------------------*/
-
-$(function() {
-  $('#refresh-devices').click(function(event) {
-    getDevices()
-  })
-})
-
-/*------------------------------------------------------
-On Click Refresh Candidates
-------------------------------------------------------*/
-
-$(function() {
-  $('#refresh-candidates').click(function(event) {
-    getCandidates($('#select-device option:selected').data('details').dsn)
-  })
-})
-
-/*------------------------------------------------------
-On Click Refresh Nodes
-------------------------------------------------------*/
-
-$(function() {
-  $('#refresh-nodes').click(function(event) {
-    getNodes($('#select-device option:selected').data('details').dsn)
-  })
 })

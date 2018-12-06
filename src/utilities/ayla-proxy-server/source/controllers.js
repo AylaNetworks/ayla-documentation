@@ -74,11 +74,24 @@ createNode
 ------------------------------------------------------*/
 
 exports.createNode = function(req, res) {
+  var dsn = urlStr(req, 2)
+  var authorization = req.headers.authorization
+
   axios({
     method: 'put',
-    url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 2) + '/register',
+    url: http + server.services.device.domain + '/apiv1/devices/' + dsn + '/register',
     headers: req.headers,
     data: JSON.stringify(req.body)
+  })
+  .then(function (response) {
+    return axios({
+      method: 'get',
+      url: http + server.services.device.domain + '/apiv1/dsns/' + dsn,
+      headers: {
+        'Authorization': authorization,
+        'Accept': 'application/json'
+      }
+    })
   })
   .then(function (response) {
     res.statusCode = response.status
@@ -301,27 +314,6 @@ exports.getDevice = function(req, res) {
   axios({
     method: 'get',
     url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 1),
-    headers: req.headers
-  })
-  .then(function (response) {
-    res.statusCode = response.status
-    res.send(response.data)
-  })
-  .catch(function (error) {
-    if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
-    res.end()
-  })
-}
-
-/*------------------------------------------------------
-getDeviceByDsn
-------------------------------------------------------*/
-
-exports.getDeviceByDsn = function(req, res) {
-  console.log(http + server.services.device.domain + '/apiv1/dsns/' + urlStr(req, 2))
-  axios({
-    method: 'get',
-    url: http + server.services.device.domain + '/apiv1/dsns/' + urlStr(req, 2),
     headers: req.headers
   })
   .then(function (response) {

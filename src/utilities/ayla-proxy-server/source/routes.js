@@ -18,9 +18,6 @@ module.exports = function(app) {
   app.route('/api/v1/devices/:deviceId/properties')
     .get(controllers.getProperties)
 
-  app.route('/api/v1/devices/:dsn/attributes')
-    .get(controllers.getDeviceByDsn)
-
   app.route('/api/v1/devices/:dsn/candidates')
     .get(controllers.getCandidates)
 
