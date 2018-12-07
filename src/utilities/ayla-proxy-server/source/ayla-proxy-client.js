@@ -478,16 +478,15 @@ function getSubscriptions() {
 }
 
 /*------------------------------------------------------
-getConfig
+getServerConfiguration
 ------------------------------------------------------*/
 
-function getConfig() {
-  MyAyla.getConfig(function (data) {
+function getServerConfiguration() {
+  MyAyla.getServerConfiguration(function (data) {
     $('#ayla-proxy-server-description').empty().html(''
-      + 'This application is communicating with an <code>Ayla Proxy Server</code> instance (hosted at <code>' + data.server.domain + '</code>)'
-      + ' which is communicating with the <code>' + data.server.region + ' ' + data.server.deployment_type + '</code> Ayla Cloud.'
-      + ' The code block shows the <code>Ayla Proxy Server</code> configuration file:'
-      )
+      + 'This application is communicating with an <code>Ayla Proxy Server</code> hosted at <code>' + data.server.domain + '</code>.'
+      + ' This particular <code>Ayla Proxy Server</code> is configured to communicate with'
+      + ' the <code>' + data.server.region + ' ' + data.server.deployment_type + '</code> Ayla Cloud.')
     $('#ayla-proxy-server-config').empty().html(JSON.stringify(data, null, 2))
   }, displayError)
 }
@@ -777,12 +776,7 @@ $(function() {
     var appSecret = $('#appSecret').val()
     MyAyla.login(email, password, appId, appSecret, function(data) {
       $('#account-link').html('Logout')
-      getAccount()
-      getDssUrl()
-      getAccessRules()
-      getSubscriptions()
-      getDevices()
-      getConfig()
+      loadAll()
     }, displayError)
   })
 })
@@ -794,14 +788,7 @@ logout
 $(function() {
   $('#logout-form' ).submit(function(event) {
     event.preventDefault()
-    $('body').trigger('click')
-    $('#select-device').empty()
-    $('#select-property').empty()
-    $('#value-label').hide()
-    $('#value-wrapper').hide()
-    $('#value-button-wrapper').hide()
-    $('#access-rules > tbody').empty()
-    $('#subscriptions > tbody').empty()
+    emptyAll()
     MyAyla.logout(function (data) {
       $('#account-link').html('Login')
     }, displayError)
@@ -842,7 +829,7 @@ On Click Register Candidates
 ------------------------------------------------------*/
 
 $(function() {
-  $('#register-candidates').click(function(event) {
+  $('#register-candidates-btn').click(function(event) {
     $('#candidates tr th input[type=checkbox]').prop('checked', false)
     let checkboxes = $('#candidates tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
@@ -991,13 +978,43 @@ On Load
 $(function() {
   if(MyAyla.isLoggedIn()) {
     $('#account-link').html('Logout')
-    getAccount()
-    getDssUrl()
-    getAccessRules()
-    getSubscriptions()
-    getDevices()
-    getConfig()
+    loadAll()
   } else {
     $('#account-link').html('Login')
+    getServerConfiguration()
   }
 })
+
+/*------------------------------------------------------
+emptyAll
+------------------------------------------------------*/
+
+function emptyAll() {
+  $('body').trigger('click')
+  $('#select-device').empty()
+  $('#select-property').empty()
+  $('#value-label').hide()
+  $('#value-wrapper').hide()
+  $('#value-button-wrapper').hide()
+  $('#access-rules > tbody').empty()
+  $('#subscriptions > tbody').empty()
+  $('#device-properties > tbody').empty()
+  $('#device-attributes > tbody').empty()
+  $('#property-attributes > tbody').empty()
+  $('#property-datapoints > tbody').empty() 
+  $('#candidates > tbody').empty()
+  $('#nodes > tbody').empty() 
+}
+
+/*------------------------------------------------------
+loadAll
+------------------------------------------------------*/
+
+function loadAll() {
+  getAccount()
+  getDssUrl()
+  getAccessRules()
+  getSubscriptions()
+  getDevices()
+  getServerConfiguration()
+}

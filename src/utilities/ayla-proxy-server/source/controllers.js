@@ -376,10 +376,10 @@ exports.getDssDomain = function(req, res) {
 }
 
 /*------------------------------------------------------
-getConfig
+getServerConfiguration
 ------------------------------------------------------*/
 
-exports.getConfig = function(req, res) {
+exports.getServerConfiguration = function(req, res) {
   res.statusCode = 200
   res.send(server.config)
 }

@@ -97,20 +97,248 @@
 
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#monitor-tab" role="tab">Monitor</a>
-        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#device-tab" role="tab">Device</a>
+        <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#device-tab" role="tab">Device</a>
         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#property-tab" role="tab">Property</a>
+        <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#dss-tab" role="tab">DSS</a>
         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#about-tab" role="tab">About</a>
       </div>
     </nav>
 
     <div class="tab-content" id="nav-tabContent"> <!-- BEGIN TAB CONTENT -->
 
-      <div class="tab-pane fade show active" id="monitor-tab" role="tabpanel"> <!-- BEGIN MONITOR TAB -->
+      <div class="tab-pane fade show active" id="device-tab" role="tabpanel"> <!-- BEGIN DEVICE TAB -->
 
-        <div class="row"> <!-- BEGIN MONITOR OUTER ROW -->
+        <div class="row"> <!-- BEGIN DEVICE OUTER ROW -->
 
-          <div class="form-group col-md-6"> <!-- BEGIN MONITOR LEFT COLUMN -->
+          <div class="form-group col-md-6"> <!-- BEGIN DEVICE LEFT COLUMN -->
+
+            <div class="row"> <!-- BEGIN DEVICE PROPERTIES -->
+              <div class="form-group col-md-12">
+
+                <h3 data-toggle="collapse" href="#device-properties-collapse"><span class="collapsible">Properties</span></h3>
+                <div  id="device-properties-collapse"class="collapse show"> <!-- BEGIN DEVICE PROPERTIES COLLAPSE -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span id="refresh-device-properties-btn" class="link-btn">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <table id="device-properties">
+                        <thead>
+                          <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Display Name</th>
+                            <th>Type</th>
+                            <th>Direction</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div> <!-- END DEVICE PROPERTIES COLLAPSE -->
+              </div> <!-- END COLUMN -->
+            </div> <!-- END DEVICE PROPERTIES -->
+
+            <div class="row"> <!-- BEGIN DEVICE ATTRIBUTES -->
+              <div class="form-group col-md-12">
+
+                <h3 data-toggle="collapse" href="#device-attributes-collapse"><span class="collapsible">Attributes</span></h3>
+                <div  id="device-attributes-collapse"class="collapse show"> <!-- BEGIN DEVICE ATTRIBUTES COLLAPSE -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span class="link-btn" onclick="getDeviceAttributes($('#select-device option:selected').data('details').key)">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <table id="device-attributes">
+                        <thead>
+                          <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Key</th>
+                            <th>Value</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div> <!-- END DEVICE ATTRIBUTES COLLAPSE -->
+              </div> <!-- END COLUMN -->
+            </div> <!-- END DEVICE ATTRIBUTES -->
+
+          </div> <!-- END DEVICE LEFT COLUMN -->
+
+          <div class="form-group col-md-6"> <!-- BEGIN DEVICE RIGHT COLUMN -->
+
+            <div class="row"> <!-- BEGIN DEVICE NODE CANDIDATES -->
+              <div class="form-group col-md-12">
+
+                <h3 data-toggle="collapse" href="#candidates-collapse"><span class="collapsible">Candidates</span></h3>
+                <div  id="candidates-collapse"class="collapse show"> <!-- BEGIN DEVICE NODE CANDIDATES COLLAPSE -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span id="register-candidates-btn" class="link-btn">Register</span>
+                        <span class="link-btn" onclick="getCandidates($('#select-device option:selected').data('details').dsn)">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <table id="candidates">
+                        <thead>
+                          <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Product Name</th>
+                            <th>OEM Model</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div> <!-- END DEVICE NODE CANDIDATES COLLAPSE -->
+              </div> <!-- END COLUMN -->
+            </div> <!-- END DEVICE NODE CANDIDATES -->
+
+            <div class="row"> <!-- BEGIN DEVICE NODES -->
+              <div class="form-group col-md-12">
+
+                <h3 data-toggle="collapse" href="#device-nodes-collapse"><span class="collapsible">Nodes</span></h3>
+                <div  id="device-nodes-collapse"class="collapse show"> <!-- BEGIN DEVICE NODES COLLAPSE -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span class="link-btn" onclick="getNodes($('#select-device option:selected').data('details').dsn)">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <table id="nodes">
+                        <thead>
+                          <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Product Name</th>
+                            <th>OEM Model</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div> <!-- END DEVICE NODES COLLAPSE -->
+              </div> <!-- END COLUMN -->
+            </div> <!-- END DEVICE NODES -->
+
+          </div> <!-- END DEVICE RIGHT COLUMN -->
+        </div>  <!-- END DEVICE OUTER ROW -->
+      </div> <!-- END DEVICE TAB -->
+
+      <div class="tab-pane fade" id="property-tab" role="tabpanel"> <!-- BEGIN PROPERTY TAB -->
+
+        <div class="row"> <!-- BEGIN PROPERTY OUTER ROW -->
+
+          <div class="form-group col-md-6"> <!-- BEGIN PROPERTY LEFT COLUMN -->
+
+            <div class="row"> <!-- BEGIN PROPERTY ATTRIBUTES -->
+              <div class="form-group col-md-12">
+
+                <h3 data-toggle="collapse" href="#property-attributes-collapse"><span class="collapsible">Attributes</span></h3>
+                <div  id="property-attributes-collapse"class="collapse show"> <!-- BEGIN PROPERTY ATTRIBUTES COLLAPSE -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span class="link-btn" onclick="getPropertyAttributes($('#select-property option:selected').data('details').key)">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <table id="property-attributes">
+                        <thead>
+                          <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Key</th>
+                            <th>Value</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div> <!-- END PROPERTY ATTRIBUTES COLLAPSE -->
+              </div> <!-- END COLUMN -->
+            </div> <!-- END PROPERTY ATTRIBUTES -->
+
+          </div> <!-- END PROPERTY LEFT COLUMN -->
+
+          <div class="form-group col-md-6"> <!-- BEGIN PROPERTY RIGHT COLUMN -->
+
+            <div class="row"> <!-- BEGIN PROPERTY DATAPOINTS -->
+              <div class="form-group col-md-12">
+
+                <h3 data-toggle="collapse" href="#property-datapoints-collapse"><span class="collapsible">Datapoints</span></h3>
+                <div  id="property-datapoints-collapse"class="collapse show"> <!-- BEGIN PROPERTY DATAPOINTS COLLAPSE -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="link-btns">
+                        <span class="link-btn" onclick="getDatapoints($('#select-property option:selected').data('details').key)">Refresh</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <table id="property-datapoints">
+                        <thead>
+                          <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Date</th>
+                            <th>Value</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div> <!-- END PROPERTY DATAPOINTS COLLAPSE -->
+              </div> <!-- END COLUMN -->
+            </div> <!-- END PROPERTY DATAPOINTS -->
+
+          </div> <!-- END PROPERTY RIGHT COLUMN -->
+        </div>  <!-- END PROPERTY OUTER ROW -->
+      </div> <!-- END PROPERTY TAB -->
+
+      <div class="tab-pane fade" id="dss-tab" role="tabpanel"> <!-- BEGIN DSS TAB -->
+
+        <div class="row"> <!-- BEGIN DSS OUTER ROW -->
+
+          <div class="form-group col-md-6"> <!-- BEGIN DSS LEFT COLUMN -->
 
             <div class="row"> <!-- BEGIN ACCESS RULES -->
               <div class="form-group col-md-12">
@@ -310,9 +538,9 @@
               </div> <!-- END COLUMN -->
             </div> <!-- END SUBSCRIPTIONS -->
 
-          </div> <!-- END MONITOR LEFT COLUMN -->
+          </div> <!-- END DSS LEFT COLUMN -->
 
-          <div class="form-group col-md-6"> <!-- BEGIN MONITOR RIGHT COLUMN -->
+          <div class="form-group col-md-6"> <!-- BEGIN DSS RIGHT COLUMN -->
 
             <div class="row"> <!-- BEGIN EVENT STREAMS -->
               <div class="form-group col-md-12">
@@ -423,243 +651,9 @@
               </div> <!-- END COLUMN -->
             </div> <!-- END EVENTS -->
 
-          </div> <!-- END MONITOR RIGHT COLUMN -->
-
-        </div>  <!-- END MONITOR OUTER ROW -->
-
-      </div> <!-- END MONITOR TAB -->
-
-      <div class="tab-pane fade" id="device-tab" role="tabpanel"> <!-- BEGIN DEVICE TAB -->
-
-        <div class="row"> <!-- BEGIN DEVICE OUTER ROW -->
-
-          <div class="form-group col-md-6"> <!-- BEGIN DEVICE LEFT COLUMN -->
-
-            <div class="row"> <!-- BEGIN DEVICE ATTRIBUTES -->
-              <div class="form-group col-md-12">
-
-                <h3 data-toggle="collapse" href="#device-attributes-collapse"><span class="collapsible">Attributes</span></h3>
-                <div  id="device-attributes-collapse"class="collapse show"> <!-- BEGIN DEVICE ATTRIBUTES COLLAPSE -->
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="link-btns">
-                        <span class="link-btn" onclick="getDeviceAttributes($('#select-device option:selected').data('details').key)">Refresh</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="form-group col-md-12">
-                      <table id="device-attributes">
-                        <thead>
-                          <tr>
-                            <th><input type="checkbox"></th>
-                            <th>Key</th>
-                            <th>Value</th>
-                          </tr>
-                        </thead>
-                        <tbody></tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                </div> <!-- END DEVICE ATTRIBUTES COLLAPSE -->
-              </div> <!-- END COLUMN -->
-            </div> <!-- END DEVICE ATTRIBUTES -->
-
-            <div class="row"> <!-- BEGIN DEVICE PROPERTIES -->
-              <div class="form-group col-md-12">
-
-                <h3 data-toggle="collapse" href="#device-properties-collapse"><span class="collapsible">Properties</span></h3>
-                <div  id="device-properties-collapse"class="collapse show"> <!-- BEGIN DEVICE PROPERTIES COLLAPSE -->
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="link-btns">
-                        <span id="refresh-device-properties-btn" class="link-btn">Refresh</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="form-group col-md-12">
-                      <table id="device-properties">
-                        <thead>
-                          <tr>
-                            <th><input type="checkbox"></th>
-                            <th>Display Name</th>
-                            <th>Type</th>
-                            <th>Direction</th>
-                          </tr>
-                        </thead>
-                        <tbody></tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                </div> <!-- END DEVICE PROPERTIES COLLAPSE -->
-              </div> <!-- END COLUMN -->
-            </div> <!-- END DEVICE PROPERTIES -->
-
-          </div> <!-- END DEVICE LEFT COLUMN -->
-
-          <div class="form-group col-md-6"> <!-- BEGIN DEVICE RIGHT COLUMN -->
-
-            <div class="row"> <!-- BEGIN DEVICE NODE CANDIDATES -->
-              <div class="form-group col-md-12">
-
-                <h3 data-toggle="collapse" href="#candidates-collapse"><span class="collapsible">Candidates</span></h3>
-                <div  id="candidates-collapse"class="collapse show"> <!-- BEGIN DEVICE NODE CANDIDATES COLLAPSE -->
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="link-btns">
-                        <span id="register-candidates-btn" class="link-btn">Register</span>
-                        <span class="link-btn" onclick="getCandidates($('#select-device option:selected').data('details').dsn)">Refresh</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="form-group col-md-12">
-                      <table id="candidates">
-                        <thead>
-                          <tr>
-                            <th><input type="checkbox"></th>
-                            <th>Product Name</th>
-                            <th>OEM Model</th>
-                          </tr>
-                        </thead>
-                        <tbody></tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                </div> <!-- END DEVICE NODE CANDIDATES COLLAPSE -->
-              </div> <!-- END COLUMN -->
-            </div> <!-- END DEVICE NODE CANDIDATES -->
-
-            <div class="row"> <!-- BEGIN DEVICE NODES -->
-              <div class="form-group col-md-12">
-
-                <h3 data-toggle="collapse" href="#device-nodes-collapse"><span class="collapsible">Nodes</span></h3>
-                <div  id="device-nodes-collapse"class="collapse show"> <!-- BEGIN DEVICE NODES COLLAPSE -->
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="link-btns">
-                        <span class="link-btn" onclick="getNodes($('#select-device option:selected').data('details').dsn)">Refresh</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="form-group col-md-12">
-                      <table id="nodes">
-                        <thead>
-                          <tr>
-                            <th><input type="checkbox"></th>
-                            <th>Product Name</th>
-                            <th>OEM Model</th>
-                          </tr>
-                        </thead>
-                        <tbody></tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                </div> <!-- END DEVICE NODES COLLAPSE -->
-              </div> <!-- END COLUMN -->
-            </div> <!-- END DEVICE NODES -->
-
-          </div> <!-- END DEVICE RIGHT COLUMN -->
-
-        </div>  <!-- END DEVICE OUTER ROW -->
-
-      </div> <!-- END DEVICE TAB -->
-
-      <div class="tab-pane fade" id="property-tab" role="tabpanel"> <!-- BEGIN PROPERTY TAB -->
-
-        <div class="row"> <!-- BEGIN PROPERTY OUTER ROW -->
-
-          <div class="form-group col-md-6"> <!-- BEGIN PROPERTY LEFT COLUMN -->
-
-            <div class="row"> <!-- BEGIN PROPERTY ATTRIBUTES -->
-              <div class="form-group col-md-12">
-
-                <h3 data-toggle="collapse" href="#property-attributes-collapse"><span class="collapsible">Attributes</span></h3>
-                <div  id="property-attributes-collapse"class="collapse show"> <!-- BEGIN PROPERTY ATTRIBUTES COLLAPSE -->
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="link-btns">
-                        <span class="link-btn" onclick="getPropertyAttributes($('#select-property option:selected').data('details').key)">Refresh</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="form-group col-md-12">
-                      <table id="property-attributes">
-                        <thead>
-                          <tr>
-                            <th><input type="checkbox"></th>
-                            <th>Key</th>
-                            <th>Value</th>
-                          </tr>
-                        </thead>
-                        <tbody></tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                </div> <!-- END PROPERTY ATTRIBUTES COLLAPSE -->
-              </div> <!-- END COLUMN -->
-            </div> <!-- END PROPERTY ATTRIBUTES -->
-
-          </div> <!-- END PROPERTY LEFT COLUMN -->
-
-          <div class="form-group col-md-6"> <!-- BEGIN PROPERTY RIGHT COLUMN -->
-
-            <div class="row"> <!-- BEGIN PROPERTY DATAPOINTS -->
-              <div class="form-group col-md-12">
-
-                <h3 data-toggle="collapse" href="#property-datapoints-collapse"><span class="collapsible">Datapoints</span></h3>
-                <div  id="property-datapoints-collapse"class="collapse show"> <!-- BEGIN PROPERTY DATAPOINTS COLLAPSE -->
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="link-btns">
-                        <span class="link-btn" onclick="getDatapoints($('#select-property option:selected').data('details').key)">Refresh</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="form-group col-md-12">
-                      <table id="property-datapoints">
-                        <thead>
-                          <tr>
-                            <th><input type="checkbox"></th>
-                            <th>Date</th>
-                            <th>Value</th>
-                          </tr>
-                        </thead>
-                        <tbody></tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                </div> <!-- END PROPERTY DATAPOINTS COLLAPSE -->
-              </div> <!-- END COLUMN -->
-            </div> <!-- END PROPERTY DATAPOINTS -->
-
-          </div> <!-- END PROPERTY RIGHT COLUMN -->
-
-        </div>  <!-- END PROPERTY OUTER ROW -->
-
-      </div> <!-- END PROPERTY TAB -->
+          </div> <!-- END DSS RIGHT COLUMN -->
+        </div>  <!-- END DSS OUTER ROW -->
+      </div> <!-- END DSS TAB -->
 
       <div class="tab-pane fade" id="about-tab" role="tabpanel"> <!-- BEGIN ABOUT TAB -->
 
@@ -667,21 +661,18 @@
 
           <div class="form-group col-md-12"> <!-- BEGIN ABOUT COLUMN -->
 
-            <div class="row">
-              <div class="col-md-6">
+            <div class="row justify-content-md-center">
+              <div class="col-md-8">
+                <h3>Ayla Proxy Server</h3>
                 <p id="ayla-proxy-server-description" style="font-size:92%;"></p>
-              </div>
-              <div class="col-md-6">
+                <h3>Server Configuration File</h3>
                 <pre id="ayla-proxy-server-config"></pre>
               </div>
             </div>
 
           </div> <!-- END ABOUT COLUMN -->
-
         </div>  <!-- END ABOUT OUTER ROW -->
-
       </div> <!-- END ABOUT TAB -->
-
     </div> <!-- END TAB CONTENT -->
 
   </main>

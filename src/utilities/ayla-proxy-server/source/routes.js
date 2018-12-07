@@ -4,8 +4,8 @@ var controllers = require('./controllers')
 
 module.exports = function(app) {
 
-  app.route('/api/v1/config')
-    .get(controllers.getConfig)
+  app.route('/api/v1/account')
+    .get(controllers.getAccount)
 
   app.route('/api/v1/devices')
     .get(controllers.getDevices)
@@ -51,10 +51,10 @@ module.exports = function(app) {
     .get(controllers.getDatapoints)
     .post(controllers.createDatapoint)
 
+  app.route('/api/v1/server/configuration')
+    .get(controllers.getServerConfiguration)
+
   app.route('/api/v1/session')
     .post(controllers.login)
     .delete(controllers.logout)
-
-  app.route('/api/v1/account')
-    .get(controllers.getAccount)
 }

@@ -213,13 +213,13 @@ getAccount: function(successCb=null, errorCb=null) {
 },
 
 /*------------------------------------------------------
-getConfig
+getServerConfiguration
 ------------------------------------------------------*/
 
-getConfig: function(successCb=null, errorCb=null) {
+getServerConfiguration: function(successCb=null, errorCb=null) {
   axios({
     method: 'get',
-    url: domain + '/api/v1/config',
+    url: domain + '/api/v1/server/configuration',
     headers: {
       'Accept': 'application/json'
     }
