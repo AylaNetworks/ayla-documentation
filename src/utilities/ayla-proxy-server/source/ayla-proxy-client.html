@@ -18,6 +18,7 @@
     <div class="collapse navbar-collapse" id="navdrop">
 
       <form class="form-inline mt-2 mt-md-0">
+        <img id="device-filter" class="mr-sm-2" data-toggle="collapse" href="#device-filter-collapse" src="filter.png" width="22">
         <select style="width:200px;" id="select-device" class="form-control form-control-sm mr-sm-2"></select>
         <select style="width:200px;" id="select-property" class="form-control form-control-sm mr-sm-2"></select>
         <div id="value-wrapper" style="display:none;"></div>
@@ -114,6 +115,10 @@
     <div id="msg-box" style="display:none;"> <!-- BEGIN MSG BOX -->
       <button type="text" class="btn btn-light btn-sm">Close</button><span></span>
     </div> <!-- END MSG BOX -->
+
+    <div  id="device-filter-collapse"class="collapse">
+      Device Filter
+    </div>
 
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
