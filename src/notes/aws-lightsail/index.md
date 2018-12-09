@@ -6,7 +6,7 @@ layout: notes.html
 ## AWS
 
 * [AWS Lightsail Homepage](https://lightsail.aws.amazon.com/ls/webapp/home/instances)
-* [Node NodeJS with Lamp on Apache Bitnami Stack](https://www.fperkins.com/uncategorized/nodejs-lamp-apache-bitnami-stack.php)
+* [Node JS on Apache Bitnami LAMP Stack](https://www.fperkins.com/uncategorized/nodejs-lamp-apache-bitnami-stack.php)
 
 ### Secure Shell (SSH)
 
@@ -24,7 +24,7 @@ Get new certs every three months. Your account credentials have been saved in yo
 
 * [Start Or Stop Services](https://docs.bitnami.com/aws/faq/administration/control-services/)
 * [Connect To PhpMyAdmin](https://docs.bitnami.com/aws/faq/administration/access-phpmyadmin/)
-* [Generate And Install A Let's Encrypt SSL Certificate For A Bitnami Application[](https://docs.bitnami.com/aws/how-to/generate-install-lets-encrypt-ssl/)
+* [Generate And Install A Let's Encrypt SSL Certificate For A Bitnami Application](https://docs.bitnami.com/aws/how-to/generate-install-lets-encrypt-ssl/)
 * [Stop Cache Completely](https://community.bitnami.com/t/stop-cache-completely/24819)
 
 ## PhpMyAdmin

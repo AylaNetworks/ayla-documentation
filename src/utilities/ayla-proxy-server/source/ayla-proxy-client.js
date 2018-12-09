@@ -539,7 +539,19 @@ getDevices
 ------------------------------------------------------*/
 
 function getDevices() {
-  MyAyla.getDevices(function (arr) {
+  let filter = {
+    //"paginated" : "false"
+    //"per_page" : "200",
+    "order_by" : "dsn",
+    "order" : "as"
+    //"connected_at_after" : "sss",
+    //"connected_at_before" : "sss",
+    //"activated_at_after" : "sss",
+    //"activated_at_before" : "sss",
+    //"status" : "sss",
+    //"nodes" : "false"
+  }
+  MyAyla.getDevices(filter, function (arr) {
     $('#select-device').empty()
     if(arr.length) {
       var deviceId = arr[0].device.key

@@ -10,7 +10,7 @@ This page shows you how to create a template for your Bluetooth Gateway, and how
 <ol>
 <li>Browse to the Ayla Developer Portal.</li>
 <li>Click Design a Device, and click Add.</li>
-<li>Create a template with the following attributes:
+<li>Create a template with the following attributes. For the <code>Version</code> value, see <code>appd_template_version</code> in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/gateway.c).
 <table class="key-value-table">
 <tr><th>Field</th><th>Value</th></tr>
 <tr><td>Visibility</td><td>oem</td></tr>
@@ -23,7 +23,7 @@ This page shows you how to create a template for your Bluetooth Gateway, and how
 <tr><td>Gateway Type</td><td>Generic</td></tr>
 </table>
 </li>
-<li>Add the following properties to the template:
+<li>Add the following properties to the template. These properties compose <code>appd_gw_prop_table</code> in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/gateway.c).
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
 <tr><td>version</td><td>version</td><td>String</td><td>From Device</td><td>oem</td></tr>
@@ -38,7 +38,6 @@ This page shows you how to create a template for your Bluetooth Gateway, and how
 <tr><td>bt_scan_results</td><td>bt_scan_results</td><td>String</td><td>From Device</td><td>oem</td></tr>
 <tr><td>num_nodes</td><td>num_nodes</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
 </table>
-<p>The properties compose the <code>appd_gw_prop_table</code> in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/gateway.c).</p>
 </li>
 </ol>
 

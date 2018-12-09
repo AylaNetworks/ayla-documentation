@@ -350,10 +350,19 @@ getDevice: function(deviceId, successCb=null, errorCb=null) {
 getDevices
 ------------------------------------------------------*/
 
-getDevices: function(successCb=null, errorCb=null) {
+getDevices: function(filter=null, successCb=null, errorCb=null) {
+  var url = '/api/v1/devices'
+  if(filter) {
+    url += '?'
+    var separator = ''
+    for (var key in filter) {
+      url = url + separator + key + '=' + filter[key]
+      separator = '&'
+    }
+  }
   axios({
     method: 'get',
-    url: domain + '/api/v1/devices',
+    url: domain + url,
     headers: {
       'Authorization': 'auth_token ' + getAuthToken(),
       'Accept': 'application/json'

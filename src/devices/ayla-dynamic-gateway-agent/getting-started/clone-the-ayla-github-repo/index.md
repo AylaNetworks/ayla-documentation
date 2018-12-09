@@ -33,4 +33,12 @@ ayla_src_dir="$temp_dir/ayla/src"
 <pre class="light">
 ayla_src_dir="/home/pi/device_linux_gw_public"
 </pre>
+1. Find the following:
+<pre class="light">
+ayla_package="https&#58;//github.com/AylaNetworks/device_linux_public.git"
+</pre>
+1. Change it to this:
+<pre class="light">
+ayla_package="https&#58;//github.com/AylaNetworks/device_linux_gw_public.git"
+</pre>
 </ol>

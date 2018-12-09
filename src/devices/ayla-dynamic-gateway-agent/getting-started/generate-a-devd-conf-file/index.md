@@ -33,7 +33,8 @@ Here are the steps required to create a devd.conf file. See the other headings b
 1. For Model, select ```AY001MRT1-Linux Software Agent```. 
 1. In the textbox on the right, select 1.
 1. Click Submit.
-1. Download the XML file to your computer.
+1. Download the archive file to your computer.
+1. Unzip the archive file to extract the XML file.
 1. Secure Copy the XML file to ```/home/pi``` on your RPi:
 <pre class="light">
 $ scp AC000W123456789.xml pi@192.168.1.3:

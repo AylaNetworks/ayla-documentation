@@ -3,6 +3,7 @@
 const express = require('express')
 const axios = require('axios')
 const server = require('./server')
+const url = require('url')
 
 const http = 'https://'
 
@@ -34,7 +35,7 @@ createDatapoint
 exports.createDatapoint = function(req, res) {
   axios({
     method: 'post',
-    url: http + server.services.device.domain + '/apiv1/properties/' + urlStr(req, 2) + '/datapoints',
+    url: http + server.services.device.domain + '/apiv1/properties/' + urlSegment(req, 2) + '/datapoints',
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -74,7 +75,7 @@ createNode
 ------------------------------------------------------*/
 
 exports.createNode = function(req, res) {
-  var dsn = urlStr(req, 2)
+  var dsn = urlSegment(req, 2)
   var authorization = req.headers.authorization
 
   axios({
@@ -110,7 +111,7 @@ deleteAccessRule
 exports.deleteAccessRule = function(req, res) {
   axios({
     method: 'delete',
-    url: http + server.services.datastream.domain + '/api/v1/oemAccessRules/' + urlStr(req, 1),
+    url: http + server.services.datastream.domain + '/api/v1/oemAccessRules/' + urlSegment(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -149,7 +150,7 @@ deleteDevice
 exports.deleteDevice = function(req, res) {
   axios({
     method: 'delete',
-    url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 1),
+    url: http + server.services.device.domain + '/apiv1/devices/' + urlSegment(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -169,7 +170,7 @@ deleteSubscription
 exports.deleteSubscription = function(req, res) {
   axios({
     method: 'delete',
-    url: http + server.services.datastream.domain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
+    url: http + server.services.datastream.domain + '/api/v1/subscriptions/' + urlSegment(req, 1) + '.json',
     headers: {'Authorization': req.headers.authorization}
   })
   .then(function (response) {
@@ -189,7 +190,7 @@ getAccessRule
 exports.getAccessRule = function(req, res) {
   axios({
     method: 'get',
-    url: http + server.services.datastream.domain + '/api/v1/oemAccessRules/' + urlStr(req, 1),
+    url: http + server.services.datastream.domain + '/api/v1/oemAccessRules/' + urlSegment(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -233,7 +234,7 @@ See https://softwareengineering.stackexchange.com/questions/358243/should-no-res
 exports.getCandidates = function(req, res) {
   axios({
     method: 'get',
-    url: http + server.services.device.domain + '/apiv1/devices/register.json?dsn=' + urlStr(req, 2) + '&regtype=Node',
+    url: http + server.services.device.domain + '/apiv1/devices/register.json?dsn=' + urlSegment(req, 2) + '&regtype=Node',
     headers: req.headers
   })
   .then(function (response) {
@@ -263,7 +264,7 @@ getNodes
 exports.getNodes = function(req, res) {
   axios({
     method: 'get',
-    url: http + server.services.device.domain + '/apiv1/dsns/' + urlStr(req, 2) + '/registered_nodes',
+    url: http + server.services.device.domain + '/apiv1/dsns/' + urlSegment(req, 2) + '/registered_nodes',
     headers: req.headers
   })
   .then(function (response) {
@@ -313,7 +314,7 @@ getDevice
 exports.getDevice = function(req, res) {
   axios({
     method: 'get',
-    url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 1),
+    url: http + server.services.device.domain + '/apiv1/devices/' + urlSegment(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -333,7 +334,7 @@ getDatapoints
 exports.getDatapoints = function(req, res) {
   axios({
     method: 'get',
-    url: http + server.services.device.domain + '/apiv1/properties/' + urlStr(req, 2) + '/datapoints',
+    url: http + server.services.device.domain + '/apiv1/properties/' + urlSegment(req, 2) + '/datapoints',
     headers: req.headers
   })
   .then(function (response) {
@@ -351,14 +352,27 @@ getDevices
 ------------------------------------------------------*/
 
 exports.getDevices = function(req, res) {
+
+  console.log(req.url)
+  const myURL = url.parse(req.url, true)
+  console.log(JSON.stringify(myURL, null, 2))
+  const newUrl = http + server.services.device.domain + '/apiv1/devices' + myURL.search
+  console.log(newUrl)
+
   axios({
     method: 'get',
-    url: http + server.services.device.domain + '/apiv1/devices',
+    url: newUrl,
     headers: req.headers
   })
   .then(function (response) {
+    var arr = []
+    response.data.forEach(function(data){
+      if(data.device.device_type !== 'Node') {
+        arr.push(data)
+      }
+    })
     res.statusCode = response.status
-    res.send(response.data)
+    res.send(arr)
   })
   .catch(function (error) {
     if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
@@ -391,7 +405,7 @@ getProperty
 exports.getProperty = function(req, res) {
   axios({
     method: 'get',
-    url: http + server.services.device.domain + '/apiv1/properties/' + urlStr(req, 1),
+    url: http + server.services.device.domain + '/apiv1/properties/' + urlSegment(req, 1),
     headers: req.headers
   })
   .then(function (response) {
@@ -411,7 +425,7 @@ getProperties
 exports.getProperties = function(req, res) {
   axios({
     method: 'get',
-    url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 2) + '/properties',
+    url: http + server.services.device.domain + '/apiv1/devices/' + urlSegment(req, 2) + '/properties',
     headers: req.headers
   })
   .then(function (response) {
@@ -431,7 +445,7 @@ getSubscription
 exports.getSubscription = function(req, res) {
   axios({
     method: 'get',
-    url: http + server.services.datastream.domain + '/api/v1/subscriptions/' + urlStr(req, 1) + '.json',
+    url: http + server.services.datastream.domain + '/api/v1/subscriptions/' + urlSegment(req, 1) + '.json',
     headers: {'Authorization': req.headers.authorization}
   })
   .then(function (response) {
@@ -513,7 +527,7 @@ updateDevice
 exports.updateDevice = function(req, res) {
   axios({
     method: 'put',
-    url: http + server.services.device.domain + '/apiv1/devices/' + urlStr(req, 1),
+    url: http + server.services.device.domain + '/apiv1/devices/' + urlSegment(req, 1),
     headers: req.headers,
     data: JSON.stringify(req.body)
   })
@@ -531,7 +545,19 @@ exports.updateDevice = function(req, res) {
 
 ------------------------------------------------------*/
 
-function urlStr(req, index) {
-  const fields = req.url.split('/')
+function urlSegment(req, index) {
+  const fields = url.parse(req.url).pathname.split('/')
   return fields[fields.length-index]
+}
+/*
+function urlQueryValue(req, key) {
+  return req.url.searchParams.get(key)
+}
+*/
+function displayUrl(req) {
+  var p = url.parse(req.url, true)
+  console.log(p.pathname)
+  console.log(p.search)
+  console.log(p.query)
+
 }
