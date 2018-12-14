@@ -8,7 +8,7 @@ This page shows you how to create a node-specific template, test RPi-to-device c
 
 ### Create a Bulb RGB Node Template
 <ol>
-<li>Create a template with the following attributes:
+<li>Create a template with the following attributes. See <code>bt_gatt_init_bulb_rgb</code> in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).
 <table class="key-value-table">
 <tr><th>Field</th><th>Value</th></tr>
 <tr><td>Visibility</td><td>oem</td></tr>
@@ -20,9 +20,8 @@ This page shows you how to create a node-specific template, test RPi-to-device c
 <tr><td>Version</td><td>1.5</td></tr>
 <tr><td>Type</td><td>Node</td></tr>
 </table>
-<p>This template is added by the <code>bt_gatt_init_bulb_rgb</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
-<li>Add the following properties to the template:
+<li>Add the following properties to the template. See <code>bt_gatt_init_bulb_rgb</code> in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
 <tr><td>mode</td><td>mode</td><td>Integer</td><td>To Device</td><td>oem</td></tr>
@@ -32,7 +31,6 @@ This page shows you how to create a node-specific template, test RPi-to-device c
 <tr><td>fade</td><td>fade</td><td>Integer</td><td>To Device</td><td>oem</td></tr>
 <tr><td>fade_rate</td><td>fade_rate</td><td>Integer</td><td>To Device</td><td>oem</td></tr>
 </table>
-<p>These properties are added by the <code>bt_gatt_init_bulb_rgb</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
 </ol>
 

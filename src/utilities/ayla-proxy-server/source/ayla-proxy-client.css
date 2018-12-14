@@ -18,7 +18,7 @@ label {font-weight: normal; font-size:90%; color: #20b2aa;}
 /* table */
 table {width: 100%;}
 table th, table td {border-collapse: collapse; vertical-align:top;}
-table th {border-bottom: 1px solid #d9d9d9; background: #d9d9d9;}
+table th {border-bottom: 1px solid #cccccc; background: #cccccc;}
 table td {
   border-top: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
@@ -78,8 +78,8 @@ pre {
 .nav-link:hover {color: green;}
 .nav-link.active {color: black;}
 
-.add-form {border: 1px solid steelblue; padding: 6px 6px; margin-bottom: 12px; background: steelblue;}
-.add-form input, .add-form select {border-color: steelblue;}
+.add-form {border: 1px solid #cccccc; padding: 6px 6px; /*margin-bottom: 12px;*/ background: #cccccc;}
+.add-form input, .add-form select {border-color: #cccccc;}
 .add-form label, .add-form h3 {color: white; font-weight: normal;}
 .add-form h3 {text-align: center;}
 

@@ -8,7 +8,7 @@ This page shows you how to create node-specific templates, test RPi-to-device co
 
 ### Create an Info Node Template
 <ol>
-<li>Create a template with the following attributes:
+<li>Create a template with the following attributes. See <code>bt_gatt_init_info</code> in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).
 <table class="key-value-table">
 <tr><th>Field</th><th>Value</th></tr>
 <tr><td>Visibility</td><td>oem</td></tr>
@@ -20,9 +20,8 @@ This page shows you how to create node-specific templates, test RPi-to-device co
 <tr><td>Version</td><td>\*</td></tr>
 <tr><td>Type</td><td>Node</td></tr>
 </table>
-<p>This template is added by the <code>bt_gatt_init_info</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
-<li>Add the following properties to the template:
+<li>Add the following properties to the template. See <code>bt_gatt_init_info</code> in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
 <tr><td>mfg_name</td><td>mfg_name</td><td>String</td><td>From Device</td><td>oem</td></tr>
@@ -33,13 +32,12 @@ This page shows you how to create node-specific templates, test RPi-to-device co
 <tr><td>sw_revision</td><td>sw_revision</td><td>String</td><td>From Device</td><td>oem</td></tr>
 <tr><td>system_id</td><td>system_id</td><td>String</td><td>From Device</td><td>oem</td></tr>
 </table>
-<p>These properties are added by the <code>bt_gatt_init_info</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
 </ol>
 
 ### Create a Grillright Node Template
 <ol>
-<li>Create a template with the following attributes:
+<li>Create a template with the following attributes. See <code>bt_gatt_init_grillright</code> in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).
 <table class="key-value-table">
 <tr><th>Field</th><th>Value</th></tr>
 <tr><td>Visibility</td><td>oem</td></tr>
@@ -51,9 +49,8 @@ This page shows you how to create node-specific templates, test RPi-to-device co
 <tr><td>Version</td><td>1.2</td></tr>
 <tr><td>Type</td><td>Node</td></tr>
 </table>
-<p>This template is added by the <code>bt_gatt_init_grillright</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
-<li>Add the following properties to the template:
+<li>Add the following properties to the template. See <code>bt_gatt_init_grillright</code> in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
 <tr><td>ALARM</td><td>ALARM</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
@@ -68,7 +65,6 @@ This page shows you how to create node-specific templates, test RPi-to-device co
 <tr><td>TARGET_TIME</td><td>TARGET_TIME</td><td>String</td><td>From Device</td><td>oem</td></tr>
 <tr><td>TEMP</td><td>TEMP</td><td>Decimal</td><td>From Device</td><td>oem</td></tr>
 </table>
-<p>These properties are added by the <code>bt_gatt_init_grillright</code> function in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).</p>
 </li>
 </ol>
 

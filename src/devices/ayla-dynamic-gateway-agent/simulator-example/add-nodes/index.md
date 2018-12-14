@@ -49,13 +49,6 @@ It takes only a few seconds to utilize the DSS Browser utility in the [Ayla Data
 1. [Create a subscription](https://docs.aylanetworks.com/cloud/ayla-datastream-service/getting-started/create-subscriptions/).
 1. [Run DSS Browser](https://docs.aylanetworks.com/cloud/ayla-datastream-service/dss-browser/) or [DSS Collector](https://docs.aylanetworks.com/cloud/ayla-datastream-service/dss-collector/).
 
-<div>Here is an example of DSS Browser:</div>
-<div class="row">
-<div class="col-lg-9 col-md-10 col-sm-12">
-<img class="img-fluid img-top-bottom" src="dss-browser-example.png">
-</div>
-</div>
-
 ## Add nodes
 
 ### Add a sensor node
@@ -150,7 +143,7 @@ Nov 15 09:22:04 rpi appd: [info-app] appd_node_ops_confirm_handler: node prop se
 </div>
 </div>
 
-### Startup files
+## Startup files
 
 For startup purposes, the gateway keeps track of nodes in two startup files: <code>devd.conf.startup</code> and <code>appd.conf.startup</code>. Both are located in <code>&sim;/ayla/config</code>. A node is composed of one or more subdevices identified by a key (e.g. s1). One or more templates contribute properties to a subdevice. See the diagram.
 

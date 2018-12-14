@@ -129,7 +129,6 @@ Display Details
 
 $(function() {
   $("body").delegate('tr.simple-details td:not(.chk)', "click", function(e) {
-    console.log('Display Details')
     $(this).parent().next().toggle()
   })
 })
@@ -538,19 +537,7 @@ function getDevice(deviceId) {
 getDevices
 ------------------------------------------------------*/
 
-function getDevices() {
-  let filter = {
-    //"paginated" : "false"
-    //"per_page" : "200",
-    "order_by" : "dsn",
-    "order" : "as"
-    //"connected_at_after" : "sss",
-    //"connected_at_before" : "sss",
-    //"activated_at_after" : "sss",
-    //"activated_at_before" : "sss",
-    //"status" : "sss",
-    //"nodes" : "false"
-  }
+function getDevices(filter=null) {
   MyAyla.getDevices(filter, function (arr) {
     $('#select-device').empty()
     if(arr.length) {
@@ -788,7 +775,7 @@ $(function() {
     var appSecret = $('#appSecret').val()
     MyAyla.login(email, password, appId, appSecret, function(data) {
       $('#account-link').html('Logout')
-      loadAll()
+      getNonDeviceData()
     }, displayError)
   })
 })
@@ -804,6 +791,39 @@ $(function() {
     MyAyla.logout(function (data) {
       $('#account-link').html('Login')
     }, displayError)
+  })
+})
+
+/*------------------------------------------------------
+Get Device List - Submit
+------------------------------------------------------*/
+
+$(function() {
+  $('#device-filter-form').submit(function(event) {
+
+    let filter = {
+      "paginated" : "true",
+      "order_by" : $('#device-filter-order-by').val(),
+      "order" : $('#device-filter-order').val(),
+      "per_page" : $('#device-filter-per-page').val()
+    }
+
+    /*
+    let filter = {
+      "[filter][order_by]" : $('#device-filter-order-by').val(),
+      "[filter][order]" : $('#device-filter-order').val(),
+      "paginated" : $('#device-filter-paginated').val(),
+      "per_page" : $('#device-filter-per-page').val(),
+      "connected_at_after" : $('#device-filter-connected-at-after').val(),
+      "connected_at_before" : $('#device-filter-activated-at-before').val(),
+      "activated_at_after" : $('#device-filter-connected-at-after').val(),
+      "activated_at_before" : $('#device-filter-activated-at-before').val(),
+      "status" : $('#device-filter-status').val()
+    }
+    */
+
+    console.log(JSON.stringify(filter, null, 2))
+    getDevices(filter)
   })
 })
 
@@ -990,7 +1010,7 @@ On Load
 $(function() {
   if(MyAyla.isLoggedIn()) {
     $('#account-link').html('Logout')
-    loadAll()
+    getNonDeviceData()
   } else {
     $('#account-link').html('Login')
     getServerConfiguration()
@@ -1019,10 +1039,10 @@ function emptyAll() {
 }
 
 /*------------------------------------------------------
-loadAll
+getNonDeviceData
 ------------------------------------------------------*/
 
-function loadAll() {
+function getNonDeviceData() {
   getAccount()
   getDssUrl()
   getAccessRules()
