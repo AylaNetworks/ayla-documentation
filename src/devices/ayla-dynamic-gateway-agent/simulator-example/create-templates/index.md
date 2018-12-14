@@ -26,10 +26,10 @@ This page explains how to create gateway and node templates for your ggdemo Simu
 <li>Add the following properties to the template:
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
-<tr><td>version</td><td>appd_version</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>add_tstat_nodes</td><td>Add Thermostat Nodes</td><td>Integer</td><td>To Device</td><td>oem</td></tr>
-<tr><td>add_sensor_nodes</td><td>Add Sensor Nodes</td><td>Integer</td><td>To Device</td><td>oem</td></tr>
-<tr><td>num_nodes</td><td>Number of Nodes</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
+<tr><td>version</td><td>appd_version</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>add_tstat_nodes</td><td>Add Thermostat Nodes</td><td>Integer</td><td>To Device</td><td>user</td></tr>
+<tr><td>add_sensor_nodes</td><td>Add Sensor Nodes</td><td>Integer</td><td>To Device</td><td>user</td></tr>
+<tr><td>num_nodes</td><td>Number of Nodes</td><td>Integer</td><td>From Device</td><td>user</td></tr>
 </table>
 </li>
 </ol>
@@ -53,9 +53,9 @@ This page explains how to create gateway and node templates for your ggdemo Simu
 <li>Add the following properties to the template:
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
-<tr><td>enable</td><td>Enable</td><td>Boolean</td><td>To Device</td><td>oem</td></tr>
-<tr><td>battery_enable</td><td>Battery Enable</td><td>Boolean</td><td>To Device</td><td>oem</td></tr>
-<tr><td>battery_charge</td><td>Battery Charge</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
+<tr><td>enable</td><td>Enable</td><td>Boolean</td><td>To Device</td><td>user</td></tr>
+<tr><td>battery_enable</td><td>Battery Enable</td><td>Boolean</td><td>To Device</td><td>user</td></tr>
+<tr><td>battery_charge</td><td>Battery Charge</td><td>Integer</td><td>From Device</td><td>user</td></tr>
 </table>
 </li>
 </ol>
@@ -78,9 +78,9 @@ This page explains how to create gateway and node templates for your ggdemo Simu
 <li>Add the following properties to the template:
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
-<tr><td>temp</td><td>Temperature</td><td>Decimal</td><td>From Device</td><td>oem</td></tr>
-<tr><td>humidity</td><td>Humidity</td><td>Decimal</td><td>From Device</td><td>oem</td></tr>
-<tr><td>light_level</td><td>Light Level</td><td>Decimal</td><td>From Device</td><td>oem</td></tr>
+<tr><td>temp</td><td>Temperature</td><td>Decimal</td><td>From Device</td><td>user</td></tr>
+<tr><td>humidity</td><td>Humidity</td><td>Decimal</td><td>From Device</td><td>user</td></tr>
+<tr><td>light_level</td><td>Light Level</td><td>Decimal</td><td>From Device</td><td>user</td></tr>
 </table>
 </li>
 </ol>
@@ -103,11 +103,11 @@ This page explains how to create gateway and node templates for your ggdemo Simu
 <li>Add the following properties to the template:
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
-<tr><td>temp_setpoint</td><td>Temperature Set Point</td><td>Integer</td><td>To Device</td><td>oem</td></tr>
-<tr><td>vacation_mode</td><td>Vacation Mode</td><td>Boolean</td><td>To Device</td><td>oem</td></tr>
-<tr><td>local_temp</td><td>Local Temperature</td><td>Decimal</td><td>From Device</td><td>oem</td></tr>
-<tr><td>heat_on</td><td>Heat On</td><td>Boolean</td><td>From Device</td><td>oem</td></tr>
-<tr><td>ac_on</td><td>AC On</td><td>Boolean</td><td>From Device</td><td>oem</td></tr>
+<tr><td>temp_setpoint</td><td>Temperature Set Point</td><td>Integer</td><td>To Device</td><td>user</td></tr>
+<tr><td>vacation_mode</td><td>Vacation Mode</td><td>Boolean</td><td>To Device</td><td>user</td></tr>
+<tr><td>local_temp</td><td>Local Temperature</td><td>Decimal</td><td>From Device</td><td>user</td></tr>
+<tr><td>heat_on</td><td>Heat On</td><td>Boolean</td><td>From Device</td><td>user</td></tr>
+<tr><td>ac_on</td><td>AC On</td><td>Boolean</td><td>From Device</td><td>user</td></tr>
 </table>
 </li>
 </ol>

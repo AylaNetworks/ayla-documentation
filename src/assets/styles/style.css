@@ -169,6 +169,20 @@ strong {color: #1a1a1a;}
   }
 }
 
+@media (min-width: 768px) {
+  #content.page-with-foobar {
+    width: calc(100% - 250px);
+    padding: 10px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  #content.page-with-foobar {
+    width: 100%; 
+    padding: 6px 6px;
+  }
+}
+
 @media (min-width: 1200px) {
   #content.page-full-width {
     width: 100%;
@@ -462,3 +476,5 @@ ol {margin-top: 6px;}
 .reduce {font-size: 90%;}
 
 code {color: #b36200;}
+
+#content.page-with-foobar li img {margin-top: 18px; margin-bottom: 18px;}

@@ -24,13 +24,13 @@ This page shows you how to create node-specific templates, test RPi-to-device co
 <li>Add the following properties to the template. See <code>bt_gatt_init_info</code> in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
-<tr><td>mfg_name</td><td>mfg_name</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>model_num</td><td>model_num</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>serial_num</td><td>serial_num</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>hw_revision</td><td>hw_revision</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>fw_revision</td><td>fw_revision</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>sw_revision</td><td>sw_revision</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>system_id</td><td>system_id</td><td>String</td><td>From Device</td><td>oem</td></tr>
+<tr><td>mfg_name</td><td>mfg_name</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>model_num</td><td>model_num</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>serial_num</td><td>serial_num</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>hw_revision</td><td>hw_revision</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>fw_revision</td><td>fw_revision</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>sw_revision</td><td>sw_revision</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>system_id</td><td>system_id</td><td>String</td><td>From Device</td><td>user</td></tr>
 </table>
 </li>
 </ol>
@@ -53,17 +53,17 @@ This page shows you how to create node-specific templates, test RPi-to-device co
 <li>Add the following properties to the template. See <code>bt_gatt_init_grillright</code> in [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c).
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
-<tr><td>ALARM</td><td>ALARM</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
-<tr><td>COMMAND</td><td>COMMAND</td><td>String</td><td>To Device</td><td>oem</td></tr>
-<tr><td>CONTROL_MODE</td><td>CONTROL_MODE</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
-<tr><td>COOKING</td><td>COOKING</td><td>Boolean</td><td>From Device</td><td>oem</td></tr>
-<tr><td>TIME</td><td>TIME</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>DONENESS</td><td>DONENESS</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
-<tr><td>MEAT</td><td>MEAT</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
-<tr><td>PCT_DONE</td><td>PCT_DONE</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
-<tr><td>TARGET_TEMP</td><td>TARGET_TEMP</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
-<tr><td>TARGET_TIME</td><td>TARGET_TIME</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>TEMP</td><td>TEMP</td><td>Decimal</td><td>From Device</td><td>oem</td></tr>
+<tr><td>ALARM</td><td>ALARM</td><td>Integer</td><td>From Device</td><td>user</td></tr>
+<tr><td>COMMAND</td><td>COMMAND</td><td>String</td><td>To Device</td><td>user</td></tr>
+<tr><td>CONTROL_MODE</td><td>CONTROL_MODE</td><td>Integer</td><td>From Device</td><td>user</td></tr>
+<tr><td>COOKING</td><td>COOKING</td><td>Boolean</td><td>From Device</td><td>user</td></tr>
+<tr><td>TIME</td><td>TIME</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>DONENESS</td><td>DONENESS</td><td>Integer</td><td>From Device</td><td>user</td></tr>
+<tr><td>MEAT</td><td>MEAT</td><td>Integer</td><td>From Device</td><td>user</td></tr>
+<tr><td>PCT_DONE</td><td>PCT_DONE</td><td>Integer</td><td>From Device</td><td>user</td></tr>
+<tr><td>TARGET_TEMP</td><td>TARGET_TEMP</td><td>Integer</td><td>From Device</td><td>user</td></tr>
+<tr><td>TARGET_TIME</td><td>TARGET_TIME</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>TEMP</td><td>TEMP</td><td>Decimal</td><td>From Device</td><td>user</td></tr>
 </table>
 </li>
 </ol>

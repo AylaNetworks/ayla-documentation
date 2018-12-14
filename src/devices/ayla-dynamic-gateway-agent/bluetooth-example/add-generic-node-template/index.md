@@ -24,11 +24,11 @@ Both the Grillright and the Magic Blue nodes require the properties in the <code
 <li>Add the following properties to the template. See <code>bt_template_device</code> in [bt_interface.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_interface.c).
 <table class="key-value-table">
 <tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
-<tr><td>Name</td><td>Name</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>Icon</td><td>Icon</td><td>String</td><td>From Device</td><td>oem</td></tr>
-<tr><td>Class</td><td>Class</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
-<tr><td>Appearance</td><td>Appearance</td><td>Integer</td><td>From Device</td><td>oem</td></tr>
-<tr><td>Alias</td><td>Alias</td><td>String</td><td>To Device</td><td>oem</td></tr>
+<tr><td>Name</td><td>Name</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>Icon</td><td>Icon</td><td>String</td><td>From Device</td><td>user</td></tr>
+<tr><td>Class</td><td>Class</td><td>Integer</td><td>From Device</td><td>user</td></tr>
+<tr><td>Appearance</td><td>Appearance</td><td>Integer</td><td>From Device</td><td>user</td></tr>
+<tr><td>Alias</td><td>Alias</td><td>String</td><td>To Device</td><td>user</td></tr>
 </table>
 </li>
 </ol>
