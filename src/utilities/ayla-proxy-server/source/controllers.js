@@ -353,9 +353,16 @@ getDevices
 ------------------------------------------------------*/
 
 exports.getDevices = function(req, res) {
-  const myURL = url.parse(req.url, true)
-  const newUrl = http + server.services.device.domain + '/apiv1/devices' + myURL.search
-  console.log(newUrl)
+  const myUrl = url.parse(req.url, true)
+  const defaultQuery = 'paginated=true'
+  var newUrl = http + server.services.device.domain + '/apiv1/devices'
+  if(myUrl.search === '?') {
+    newUrl += '?' + defaultQuery
+  } else {
+    newUrl += myUrl.search + '&' + defaultQuery
+  }
+  //console.log(newUrl)
+  //console.log(JSON.stringify(myUrl, null, 2))
 
   axios({
     method: 'get',
@@ -363,17 +370,10 @@ exports.getDevices = function(req, res) {
     headers: req.headers
   })
   .then(function (response) {
-    //var arr = []
-    //response.data.forEach(function(data){
-    //  if(data.device.device_type !== 'Node') {
-    //    arr.push(data)
-    //  }
-    //})
     res.statusCode = response.status
     res.send(response.data)
   })
   .catch(function (error) {
-    console.log('IN THE ERROR')
     if(error.response) {res.statusCode = error.response.status} else {res.statusCode = 404}
     res.end()
   })

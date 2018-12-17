@@ -478,3 +478,5 @@ ol {margin-top: 6px;}
 code {color: #b36200;}
 
 #content.page-with-foobar li img {margin-top: 18px; margin-bottom: 18px;}
+
+.collapsible {cursor: pointer;}

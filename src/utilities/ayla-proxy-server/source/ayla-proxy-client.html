@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="navdrop">
 
       <form class="form-inline mt-2 mt-md-0">
-        <!--<img id="device-filter" class="collapsible mr-sm-2" data-toggle="collapse" href="#device-filter-collapse" src="filter.png" width="22" style="">-->
+        <img id="device-filter" class="collapsible mr-sm-2" data-toggle="collapse" href="#device-filter-collapse" src="filter.png" width="22" style="">
         <select style="width:200px;" id="select-device" class="form-control form-control-sm mr-sm-2"></select>
         <select style="width:200px;" id="select-property" class="form-control form-control-sm mr-sm-2"></select>
         <div id="value-wrapper" style="display:none;"></div>
@@ -101,20 +101,31 @@
     <form id="device-filter-form" class="add-form" action="javascript:void(0);"> <!-- BEGIN DEVICE FILTER FORM -->
 
       <div class="row">
-        <div class="form-group col-md-6 col-lg-3">
-          <label>Paginated</label>
-          <select id="device-filter-paginated" class="form-control form-control-sm">
-            <option value='true'>True</option>
-            <option value='false' selected>False</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6 col-lg-3">
-          <label>Per Page</label>
-          <input id="device-filter-per-page" type="number" class="form-control form-control-sm" value="10">
-        </div>
+
         <div class="form-group col-md-6 col-lg-3">
           <div class="row">
-            <div class="form-group col-8">
+            <div class="col-6">
+              <label>Per Page</label>
+              <select id="device-filter-per-page" class="form-control form-control-sm">
+                <option value='10' selected>10</option>
+                <option value='20'>20</option>
+                <option value='30'>30</option>
+                <option value='40'>40</option>
+                <option value='50'>50</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label>Page</label>
+              <select id="device-filter-page" class="form-control form-control-sm">
+                <option value='1' selected>1</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6 col-lg-3">
+          <div class="row">
+            <div class="col-8">
               <label>Order By</label>
               <select id="device-filter-order-by" class="form-control form-control-sm">
                 <option value='device_type'>device_type</option>
@@ -124,7 +135,7 @@
                 <option value='product_name' selected>product_name</option>
               </select>
             </div>
-            <div class="form-group col-4">
+            <div class="col-4">
               <label>Order</label>
               <select id="device-filter-order" class="form-control form-control-sm">
                 <option value='asc' selected>A-Z</option>
@@ -133,17 +144,49 @@
             </div>
           </div>
         </div>
+
         <div class="form-group col-md-6 col-lg-3">
-          <label>Status</label>
-          <select id="device-filter-status" class="form-control form-control-sm">
-            <option value='all' selected>All</option>
-            <option value='online'>Online</option>
-            <option value='offline'>Offline</option>
-            <option value='initializing'>Initializing</option>
-          </select>
+          <div class="row">
+            <div class="col-6">
+              <label>Status</label>
+              <select id="device-filter-status" class="form-control form-control-sm">
+                <option value='' selected>All</option>
+                <option value='online'>Online</option>
+                <option value='offline'>Offline</option>
+                <option value='initializing'>Initializing</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label>Role</label>
+              <select id="device-filter-role" class="form-control form-control-sm">
+                <option value='user' selected>User</option>
+                <option value='admin'>Admin</option>
+              </select>
+            </div>
+          </div>
         </div>
+
+        <div class="form-group col-md-6 col-lg-3">
+          <div class="row">
+            <div class="col-6">
+              <label>Type</label>
+              <select id="device-filter-type" class="form-control form-control-sm">
+                <option value='all' selected>All</option>
+                <option value='Gateway'>Gateway</option>
+                <option value='Node'>Node</option>
+                <option value='Wifi'>Wifi</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <div><label>&nbsp;</label></div>
+              <button type="reset" class="btn btn-outline-light btn-sm form-control" onclick="$('#device-filter-collapse').removeClass('show')">Close</button>
+            </div>
+          </div>
+        </div>
+
       </div>
 
+      <!--
       <div class="row">
         <div class="form-group col-md-6 col-lg-3">
           <label>Connected At/After</label>
@@ -162,13 +205,15 @@
           <input id="device-filter-activated-at-before" type="date" class="form-control form-control-sm" value="">
         </div>
       </div>
-
+      -->
+      <!--
       <div class="row">
         <div class="col-md-12">
           <button type="submit" class="btn btn-outline-light btn-sm">Get Devices</button>
-          <button type="reset" class="btn btn-outline-light btn-sm close-me" onclick="$('#device-filter-collapse').removeClass('show')">Close</button>
+          <button type="reset" class="btn btn-outline-light btn-sm" onclick="$('#device-filter-collapse').removeClass('show')">Close</button>
         </div>
       </div>
+    -->
 
     </form> <!-- END DEVICE FILTER FORM -->
   </div> <!-- END DEVICE FILTER COLLAPSE -->
@@ -486,7 +531,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <button type="submit" class="btn btn-outline-light btn-sm">Create</button>
-                          <button type="reset" class="btn btn-outline-light btn-sm close-me" onclick="$('#add-access-rule-row').hide()">Cancel</button>
+                          <button type="reset" class="btn btn-outline-light btn-sm" onclick="$('#add-access-rule-row').hide()">Cancel</button>
                         </div>
                       </div>
                     </form> <!-- END ADD ACCESS RULE FORM -->
@@ -591,7 +636,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <button type="submit" class="btn btn-outline-light btn-sm">Create</button>
-                          <button type="reset" class="btn btn-outline-light btn-sm close-me" onclick="$('#add-subscription-row').hide()">Cancel</button>
+                          <button type="reset" class="btn btn-outline-light btn-sm" onclick="$('#add-subscription-row').hide()">Cancel</button>
                         </div>
                       </div>
                     </form> <!-- END ADD SUBSCRIPTION FORM -->
@@ -665,7 +710,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <button type="submit" class="btn btn-outline-light btn-sm">Create</button>
-                          <button type="reset" class="btn btn-outline-light btn-sm close-me" onclick="$('#add-event-stream-row').hide()">Cancel</button>
+                          <button type="reset" class="btn btn-outline-light btn-sm" onclick="$('#add-event-stream-row').hide()">Cancel</button>
                         </div>
                       </div>
                     </form> <!-- END ADD EVENT STREAM FORM -->
