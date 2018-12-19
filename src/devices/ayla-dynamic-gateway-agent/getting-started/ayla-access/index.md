@@ -6,7 +6,7 @@ i: block
 
 ### Ayla User Account
 
-You need an Ayla user account in your company's OEM account to access the [Ayla Developer Portal](https://docs.aylanetworks.com/cloud/ayla-developer-portal/) and the [Ayla Dashboard Portal](https://docs.aylanetworks.com/cloud/ayla-dashboard-portal/). Your company's Ayla OEM account admin has the access rights necessary to create this user account for you. You will need OEM::Developer rights.
+You need an Ayla user account in your company's OEM account. Then, use [Ayla Developer Portal](https://docs.aylanetworks.com/apps/ayla-developer-portal/) and the [Ayla Dashboard Portal](https://docs.aylanetworks.com/apps/ayla-dashboard-portal/) to access the account. Your company's Ayla OEM account admin has the access rights necessary to create this user account for you. You will need OEM::Developer rights.
 
 ### Ayla Github Access
 

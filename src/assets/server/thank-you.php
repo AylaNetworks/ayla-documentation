@@ -22,6 +22,8 @@ if(
   return;
 }
 
+mail("anonz3000@gmail.com", "Ayla Documentation Feedback", $description);
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {

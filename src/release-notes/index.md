@@ -9,6 +9,10 @@ layout: page-full-width.html
 <th>Description</th>
 </tr>
 <tr>
+<td>2018-12-12</td>
+<td>Added [Ayla Dynamic Gateway Agent](/devices/ayla-dynamic-gateway-agent/).</td>
+</tr>
+<tr>
 <td>2018-10-26</td>
 <td>Added [Ayla Datastream Service](/cloud/ayla-datastream-service/).</td>
 </tr>

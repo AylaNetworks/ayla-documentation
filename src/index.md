@@ -1,51 +1,62 @@
 ---
 title: Ayla Documentation
-layout: page-full-width-no-title.html
+layout: page-homepage.html
 ---
 
-<div class="row" style="margin: 20px 0 36px 0;">
-<div class="col-12 text-center">
-<a href="https://www.aylanetworks.com/"><img src="/assets/images/ayla-networks-logo-leaf.jpg" width="220px"></a>
-<div style="color: darkgreen; font-size: 85%;">IoT Platform</div>
-</div>
+<div class="row">
+  <div class="col-md-12" style="background:white;padding-top:12px;">
+    <p>This site provides [Ayla Networks](https://www.aylanetworks.com) guides, tutorials, and references for users, developers, and integrators. To get started, click [Overview](overview).</p>
+  </div>
 </div>
 
 <div class="row">
-<div class="col-md-4 text-center cat-tile2"><a href="/devices/"><img class="img-fluid" src="/assets/images/devices-450.jpg"></a></div>
-<div class="col-md-4 text-center cat-tile2"><a href="/cloud/"><img class="img-fluid" src="/assets/images/cloud-450.jpg"></a></div>
-<div class="col-md-4 text-center cat-tile2"><a href="/apps/"><img class="img-fluid" src="/assets/images/apps-450.jpg"></a></div>
+  <div class="col-md-4" style="background:ghostwhite; text-align: center;">
+    <div style="font-size: 90%; display: inline-block; text-align: left;">
+      <h2>Device Agents & APIs</h2>
+      <p>Ayla Wi-Fi Production Module</p>
+      <p>Ayla Cellular Production Module</p>
+      <p>Ayla Integrated Agent</p>
+      <p>Ayla Portable Agent</p>
+      <p>[Ayla Linux Agent](devices/ayla-linux-agent)</a></p>
+      <p>Ayla Android Agent</p>
+      <p>[Ayla Dynamic Gateway Agent](devices/ayla-dynamic-gateway-agent)</a></p>
+      <p>Ayla Static Gateway Agent</p>
+    </div>
+  </div>
+  <div class="col-md-4" style="background:ghostwhite;border-left:1px solid #e6e6ff;border-right:1px solid #e6e6ff;text-align: center;">
+    <div style="font-size: 90%; display: inline-block; text-align: left;">
+      <h2>Cloud Services & APIs</h2>
+      <p>Ayla Application Service</p>
+      <p>[Ayla Datastream Service](cloud/ayla-datastream-service)</p>
+      <p>Ayla Device Service</p>
+      <p>Ayla Factory Proxy Service</p>
+      <p>Ayla Image Service</p>
+      <p>Ayla Log Service</p>
+      <p>Ayla Notification Service</p>
+      <p>Ayla Rules Service</p>
+      <p>Ayla User Service</p>
+      <p>Ayla Zigbee Service</p>
+    </div>
+  </div>
+  <div class="col-md-4" style="background:ghostwhite; text-align: center;">
+    <div style="font-size: 90%; display: inline-block; text-align: left;">
+      <h2>Applications</h2>
+      <p>Ayla Dashboard Portal</p>
+      <p>Ayla Developer Portal</p>
+      <p>AMAP</p>
+      <p>Aura</p>
+    </div>
+  </div>
 </div>
 
-<div class="row">
-<div class="col-md-4 text-center cat-tile2"><a href="/glossary/"><img class="img-fluid" src="/assets/images/glossary-450.jpg"></a></div>
-<div class="col-md-4 text-center cat-tile2"><a href="/training/"><img class="img-fluid" src="/assets/images/training-450.jpg"></a></div>
-<div class="col-md-4 text-center cat-tile2"><a href="/certification/"><img class="img-fluid" src="/assets/images/certification-450.jpg"></a></div>
-</div>
-
-<div class="row" style="margin-top: 30px;">
-<!--
+<div class="row" style="margin-top:36px;">
 <div class="col-12 text-center">
-<a href="https://developer.aylanetworks.com/" target="_blank">Developer Portal</a>
-<span>&nbsp;~&nbsp;</span>
-<a href="https://dashboard-dev.aylanetworks.com/" target="_blank">Dashboard Portal</a>
-</div>
--->
-<div class="col-12 text-center">
-<span class="last-updated"><a href="system-status">System Status by Region</a></span>
+<span class="last-updated"><a href="https://www.aylanetworks.com" target="_blank">aylanetworks.com</a></span>
 <span>~</span>
-<span class="last-updated"><a href="release-notes">Website Release Notes</a></span>
+<span class="last-updated"><a href="system-status">System Status</a></span>
+<span>~</span>
+<span class="last-updated"><a href="release-notes">Release Notes</a></span>
+<!--<span>~</span>
+<span class="last-updated"><a href="labs">Ayla Labs</a></span>-->
 </div>
 </div>
-
-<!--
-<div class="row" style="margin-top: 30px;">
-<div class="col-12 text-center">
-<a href="https://www.linkedin.com/company/ayla-networks" target="_blank"><img src="/assets/images/linkedin.svg" height="16px"></a>
-<a href="https://twitter.com/aylanetworks" target="_blank"><img src="/assets/images/twitter.svg" height="16px"></a>
-<a href="https://www.facebook.com/Ayla-Networks-478621938884489" target="_blank"><img src="/assets/images/facebook.svg" height="16px"></a>
-<a href="https://www.youtube.com/user/InternetOfThingsIoT" target="_blank"><img src="/assets/images/youtube.svg" height="16px"></a>
-<a href="/assets/blt5de75fa8027618ab/Wechat QR_big.jpg" target="_self"><img src="/assets/images/wechat.svg" height="16px"></a>
-<a href="http://weibo.com/aylanetworks" target="_blank"><img src="/assets/images/weibo.svg" height="16px"></a>
-</div>
-</div>
--->

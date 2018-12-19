@@ -211,6 +211,33 @@ strong {color: #1a1a1a;}
   }
 }
 
+@media (min-width: 1200px) {
+  #content.page-homepage {
+    width: 100%;
+    padding: 10px 10%;
+  }
+}
+
+@media (max-width: 1200px) {
+  #content.page-homepage {
+    width: 100%;
+    padding: 10px 5%;
+  }
+}
+
+@media (max-width: 1000px) {
+  #content.page-homepage {
+    width: 100%;
+    padding: 6px 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  #content.page-homepage {
+    width: 100%; 
+    padding: 6px 6px;
+  }
+}
 #content.active {width: 100%;}
 
 #content li {margin-bottom: 6px;}
@@ -480,3 +507,5 @@ code {color: #b36200;}
 #content.page-with-foobar li img {margin-top: 18px; margin-bottom: 18px;}
 
 .collapsible {cursor: pointer;}
+
+#content img.indent {margin-left: 24px;}

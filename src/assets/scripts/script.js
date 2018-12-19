@@ -3,12 +3,12 @@
 //------------------------------------------------------
 
 $(function() {
-  if($('#sidenav').length != 0) {
+  //if($('#sidenav').length != 0) {
     var selector = '#' + window.location.pathname.substring(1).slice(0,-1).replace(/\//g, '-');
-    if($(selector).length) {
+    if(selector !== '#' && $(selector).length) {
       $(selector).addClass('active');
     }
-  }
+  //}
 });
 
 $(function() {
@@ -41,7 +41,7 @@ $(function() {
 
 $(function() {
   if($('title').html().toLowerCase() === 'feedback') {
-    $('#feedback').addClass('active');
+    //$('#feedback').addClass('active');
     $('#page').val(getParameterByName('page'));
   }
 });
