@@ -5,7 +5,7 @@ layout: page-homepage.html
 
 <div class="row">
   <div class="col-md-12" style="background:white;padding-top:12px;">
-    <p>This site provides [Ayla Networks](https://www.aylanetworks.com) guides, tutorials, and references for users, developers, and integrators. To get started, click [Overview](overview).</p>
+    <p style="text-align: center;">For [Ayla Networks](https://www.aylanetworks.com) developers and integrators. See [Overview](overview).</p>
   </div>
 </div>
 
@@ -40,11 +40,11 @@ layout: page-homepage.html
   </div>
   <div class="col-md-4" style="background:ghostwhite; text-align: center;">
     <div style="font-size: 90%; display: inline-block; text-align: left;">
-      <h2>Applications</h2>
+      <h2>Applications & Libraries</h2>
+      <p>Ayla Agile Mobile App Platform (AMAP)</p>
       <p>Ayla Dashboard Portal</p>
+      <p>Ayla Demo Mobile App (Aura)</p>
       <p>Ayla Developer Portal</p>
-      <p>AMAP</p>
-      <p>Aura</p>
     </div>
   </div>
 </div>

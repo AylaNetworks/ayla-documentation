@@ -156,28 +156,28 @@ strong {color: #1a1a1a;}
 }
 
 @media (min-width: 768px) {
-  #content.page-with-sidebar {
+  #content.page-sidebar {
     width: calc(100% - 250px);
     padding: 10px 40px;
   }
 }
 
 @media (max-width: 768px) {
-  #content.page-with-sidebar {
+  #content.page-sidebar {
     width: 100%; 
     padding: 6px 6px;
   }
 }
 
 @media (min-width: 768px) {
-  #content.page-with-foobar {
+  #content.page-with-sidebar {
     width: calc(100% - 250px);
     padding: 10px 40px;
   }
 }
 
 @media (max-width: 768px) {
-  #content.page-with-foobar {
+  #content.page-with-sidebar {
     width: 100%; 
     padding: 6px 6px;
   }
@@ -408,60 +408,6 @@ input:-webkit-autofill {
 .tab-pane {padding-top: 9px;}
 .tab-content label {margin-top: 12px; margin-bottom: 3px;}
 
-/* BEGIN SLIDER */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  height: 34px;
-}
-
-.switch input {display:none;}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(196px);
-  -ms-transform: translateX(196px);
-  transform: translateX(196px);
-}
-
-.slider.round {border-radius: 34px;}
-.slider.round:before {border-radius: 50%;}
-/* END SLIDER */
-
-
-
 .collapse-label {margin: 12px 0 3px 0;}
 .collapse-label a {font-size:85%; }
 #set-property-value a {font-size:85%;}
@@ -504,8 +450,35 @@ ol {margin-top: 6px;}
 
 code {color: #b36200;}
 
-#content.page-with-foobar li img {margin-top: 18px; margin-bottom: 18px;}
-
 .collapsible {cursor: pointer;}
 
 #content img.indent {margin-left: 24px;}
+
+/******************************************
+ page-sidebar
+******************************************/
+
+.page-sidebar img {
+  display: block;
+  margin: 16px 0px 16px 24px;
+}
+
+.page-sidebar li img {
+  display: block;
+  margin: 16px 0px 16px 0px;
+}
+
+.page-sidebar iframe {
+  display: block;
+  margin: 16px 0px 16px 24px;
+}
+
+.page-sidebar pre {
+  background:#f8f8ff !important;
+  color:black !important; 
+  border: 1px solid #f8f8ff !important;
+  padding: 6px;
+  line-height: 1rem;
+  font-weight: normal;
+  font-size: 80%;
+}

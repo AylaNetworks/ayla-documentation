@@ -11,73 +11,45 @@ Note the following:
 1. Creating a schedule requires <u>no</u> additional coding. Creating a schedule is a user activity.
 1. A single schedule can control many actions on the device. For example, a single schedule can turn on/off several LEDs, start up a motor, and turn on/off various sensors. 
 1. You create schedules in the Developer Portal. When you save the Schedule, the Ayla Cloud downloads the schedule to the Ayla Linux Agent which is responsible for setting timers, waking up, and executing the scheduled actions.
-1. Schedule configurations are saved on the device in <code>~/ayla/config/appd.conf.startup</code>.
+1. Schedule configurations are saved on the device in <code>&#126;/ayla/config/appd.conf.startup</code>.
 
 ### Create a schedule
 
 Here are directions for creating a schedule:
 
-<ol>
-<li>Browse to the Developer Portal.</li>
-<li>Click View My Devices &gt; Raspberry Pi &gt; Schedules.</li>
-<li>Click Add, fill out the form, and click OK. Use this form as a guide:
-<div class="row">
-<div class="col-lg-8 col-md-10 col-sm-12">
-<img class="img-fluid" src="dev-portal-012.jpg">
-</div>
-</div>
-</li>
+1. Browse to the Developer Portal.
+1. Click View My Devices &gt; Raspberry Pi &gt; Schedules.
+1. Click Add, fill out the form, and click OK. Use this form as a guide:
+<img src="dev-portal-012.jpg" width="600">
+
 <p>The 2-second interval means this schedule will wake up every 2 seconds. The 1-second duration means that actions (as yet unspecified) can take place during a 1 second window.</p>
-<li>Click the new schedule:
-<div class="row hspace">
-<div class="col-lg-4 col-md-6 col-sm-12">
-<img class="img-fluid" src="schedule-list.jpg">
-</div>
-</div>
-</li>
-<li>Click the Actions tab:
-<div class="row hspace">
-<div class="col-lg-4 col-md-6 col-sm-12">
-<img class="img-fluid" src="actions-tab.jpg">
-</div>
-</div>
-</li>
-<li>Create the following two actions:
-<div class="row">
-<div class="hspace col-lg-4 col-md-6 col-sm-12">
-<img class="img-fluid" src="action1.jpg">
-</div>
-<div class="hspace col-lg-4 col-md-6 col-sm-12">
-<img class="img-fluid" src="action2.jpg">
-</div>
-</div>
-</li>
-<li>Click the Settings tab, and click OK. If devd and appd are running, the Green LED on your RPi should begin to blink on/off every 1 second.</li>
-<li>Run appd in debug mode to see on/off messages.</li>
-<li>Verify datapoints in Aura, or in the Developer Portal:
+1. Click the new schedule:
+<img src="schedule-list.jpg" width="300">
+1. Click the Actions tab:
+<img src="actions-tab.jpg" width="300">
+1. Create the following two actions:
 <div class="row">
 <div class="col-lg-4 col-md-6 col-sm-12">
-<img class="img-fluid" src="aura-028.jpg">
+<img src="action1.jpg" width="300">
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12">
+<img src="action2.jpg" width="300">
 </div>
 </div>
-</li>
-</ol>
+1. Click the Settings tab, and click OK. If devd and appd are running, the Green LED on your RPi should begin to blink on/off every 1 second.
+1. Run appd in debug mode to see on/off messages.
+1. Verify datapoints in Aura, or in the Developer Portal:
+<img src="aura-028.jpg" width="300">
 
 ### Implement Blue_LED
 
 This optional section shows you how to control both the green and blue LEDs with a single Schedule.
 
-<ol>
-<li>Shutdown your RPi</li>
-<li>Wire the Blue LED like this:
-<div class="row hspace">
-<div class="col-lg-7 col-md-9 col-sm-12">
-<img class="img-fluid img-border" src="pinout.svg">
-</div>
-</div>
-</li>
-<li>Start your RPi</li>
-<li>Determine the GPIO pin:
+1. Shutdown your RPi
+1. Wire the Blue LED like this:
+<img src="pinout.svg" width="550">
+1. Start your RPi
+1. Determine the GPIO pin:
 <pre>
 $ gpio readall
 </pre>
@@ -111,8 +83,7 @@ Here is the output:
  +-----+-----+---------+------+---+---Pi 3+--+---+------+---------+-----+-----+
 </pre>
 We are using BCM 16 which is wPi 27.
-</li>
-<li>Test the new Blue LED with <code>blue_led.py</code>:
+1. Test the new Blue LED with <code>blue_led.py</code>:
 <pre>
 import RPi.GPIO as GPIO
 import time
@@ -125,21 +96,20 @@ while True:
   GPIO.output(16, False)
   time.sleep(1)
 </pre>
-</li>
-<li>Implement the blue button in appd, make, and test it with your mobile app.</li>
-<li>Add the following two new actions to the RPI Activity Schedule.
+1. Implement the blue button in appd, make, and test it with your mobile app.
+1. Add the following two new actions to the RPI Activity Schedule.
 <div class="row">
-<div class="hspace col-lg-4 col-md-6 col-sm-12">
-<img class="img-fluid" src="action3.jpg">
+<div class="col-lg-4 col-md-6 col-sm-12">
+<img src="action3.jpg" width="300">
 </div>
-<div class="hspace col-lg-4 col-md-6 col-sm-12">
-<img class="img-fluid" src="action4.jpg">
+<div class="col-lg-4 col-md-6 col-sm-12">
+<img src="action4.jpg" width="300">
 </div>
 </div>
-</li>
-<li>Test the schedule. It should blink like this:
-<div class="row hspace">
-<div class="col-lg-12">
+
+### Test the schedule
+
+It should blink like this:
 <iframe 
   style="float:left"
   width="560" 
@@ -150,9 +120,3 @@ while True:
   encrypted-media" 
   allowfullscreen>
 </iframe>
-</div>
-</div>
-</li>
-</ol>
-
-

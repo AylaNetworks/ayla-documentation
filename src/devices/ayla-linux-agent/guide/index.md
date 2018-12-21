@@ -4,38 +4,8 @@ layout: ayla-linux-agent.html
 a: block
 ---
 
-<div class="row hspace">
-<div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/guide/introduction/">Introduction</a>
-</div>
-<div class="col-lg-9 col-md-7 col-sm-12">
-This page introduces the various components of the Ayla Device Platform for Linux including the Ayla Linux Agent.
-</div>
-</div>
-
-<div class="row hspace">
-<div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/guide/installation/">Installation</a>
-</div>
-<div class="col-lg-9 col-md-7 col-sm-12">
-This page shows you how to create an Ayla account, set up your Raspberry Pi, create a factory configuration file, and install the Ayla Device Platform for Linux including the Ayla Linux Agent.
-</div>
-</div>
-
-<div class="row hspace">
-<div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/guide/registration/">Registration</a>
-</div>
-<div class="col-lg-9 col-md-7 col-sm-12">
-This page shows you how to register your Raspberry Pi device (host application and Ayla Linux Agent) with the Ayla Cloud.
-</div>
-</div>
-
-<div class="row hspace">
-<div class="col-lg-3 col-md-5 col-sm-12">
-<a href="/devices/ayla-linux-agent/guide/tests/">Tests</a>
-</div>
-<div class="col-lg-9 col-md-7 col-sm-12">
-This page shows you how to test the various properties of your host application.
-</div>
-</div>
+1. [Introduction](introduction) describes the various components of the Ayla Device Platform for Linux.
+1. [Ayla Access](ayla-access) explains how to get access to Ayla online resources.
+1. [Installation](installation) shows you how to install the Ayla Device Platform for Linux on your Raspberry Pi.
+1. [Registration](registration) shows you how to register your Raspberry Pi device with the Ayla Cloud.
+1. [Tests](tests) shows you how to test the various default properties of your host application.

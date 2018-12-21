@@ -4,61 +4,19 @@ layout: ayla-linux-agent.html
 a: block
 ---
 
-This page provides a brief description of both the Ayla Platform and the Ayla Device Platform for Linux (which includes the Ayla Linux Agent).
+The following diagram shows the Ayla Linux Agent (devd) and an example host application (appd) within the context of the Ayla Platform.
 
-# Ayla Platform
+<img src="ayla-platform-led-button.png" width="480">
 
-Ayla architecture is divided into three parts: Devices, Cloud, and Apps. To view a brief, thorough overview, watch the video below.
+1. The Raspberry Pi, devd, appd, the green LED, and the two buttons form the IoT device.
+1. The digital twin is a model of the device instantiated from the template.
+1. The digital twin is how web and mobile apps see the device. 
+1. These applications send commands to the device via "To Device" properties like the green LED.
+1. They remain aware of device state via "From Device" properties like the buttons.
+1. devd provides connectivity and security.
 
-<div class="row margin-left hspace">
-<div class="col-lg-12">
-<iframe 
-  width="560" 
-  height="315" 
-  src="https://www.youtube.com/embed/qmMH4I_RVno?rel=0&amp;showinfo=0" 
-  frameborder="0" 
-  allow="autoplay; 
-  encrypted-media" 
-  allowfullscreen>
-</iframe>
-</div>
-</div>
+The video below shows devd and appd in action on a Raspbery Pi:
 
-<a class="btn-link" data-toggle="collapse" href="#overview-transcript" role="button">Click to view a transcript of the video.</a>
-
-<div class="collapse" id="overview-transcript">
-<div class="card card-body hspace">
-<p>The Internet of Things, or IoT, is here, and it is connecting everything around us to the internet. From ceiling fans to thermostats, this network is enabling everyday devices to communicate for the very first time.</p>
-
-<p>But, suppose you are a manufacturer, and you want to IoT-enable your products to provide consumers with a better user experience, or even just to learn how users are actually using your devices. Where do you start? Well, first you would need to wirelessly connect your device to the cloud by designing the necessary networking hardware and networking stack into your product. Then, you would need to develop an application, writing the software to establish and manage the communication with the cloud. And finally, to make it all work, you would also need to build a cloud that has the capabilities to support all your users and devices as you scale.</p>
-
-<p>However, building this type of solution is only half the battle as it not only poses an enormous amount of risk and financial investment up front, but an ongoing challenge to maintain it as well. Fortunately, there is an alternative to building and managing this yourself. Ayla offers an end-to-end IoT platform that includes a completely managed cloud service which provides the enterprise capabilities you need to scale your deployment. The Ayla cloud requires zero cloud coding and has been built from the ground up to provide security and scale, global reach, analytics, user management, device management, alerts and notifications, data management, and more, out of the box.</p>
-
-<p>The Ayla cloud also offers several pre-integrated apps, feeds, and reporting services, as well as the ability to integrate with other third-party systems to enable you to better manage your business. To connect your devices to the Ayla cloud, Ayla enables pre-programmed, fully-tested, and production-ready networking hardware through partnerships with the industry's leading chip and module manufacturers. Ayla offers support for both embedded and Linux-based applications to cover the broadest array of communication protocols, and adds no additional cost to hardware.</p>
-
-<p>As for developing mobile apps that can securely control and manage your products, Ayla provides native iOS and Android libraries that support the creation of triggers, schedules & timers, registrations, account CRUD, and more. For customers looking for an even faster time to market with less on-going maintenance, Ayla offers a partially completed white-label mobile app called AMAP that provides much of the coding needed to jump start the development of primary features that consumers have come to expect from any high-performing mobile app.</p>
-
-<p>For those looking for some mobile development help, Ayla has a robust ecosystem of partners who can be called on to assist with any project. Ayla's agile IoT platform abstracts the complexity of developing connected devices, and is trusted by some of the world's leading brands to sole the IoT so they can focus on what they do best. Ayla is solving the Internet of Things, so you don't have to.</p>
-</div>
-</div>
-
-Fundamentally, putting aside data collection and analytics, the Ayla Platform enables applications to interact with a cloud-based model of a device, controlling various aspects of the device, and responding to device events. Consider, for example, a simple Linux-based device composed of a host application, green LED, blue button, and red button:
-
-<div class="row margin-left hspace">
-<div class="col-lg-6 col-md-9 col-sm-12">
-<img class="img-fluid" src="ayla-platform-led-button.jpg">
-</div>
-</div>
-
-The central character in this diagram is the digital twin (red box) composed of properties representing various aspects of the device. The digital twin is how web and mobile apps see the device. These applications send commands to the device via "To Device" properties like the green LED. They remain aware of device state via "From Device" properties like the buttons. The Ayla software agent enables the device to connect to the Ayla Cloud.
-
-
-# Ayla Device Platform for Linux
-
-The Ayla Device Platform for Linux ([Github](https://github.com/AylaNetworks/device_linux_public)), which includes the Ayla Linux Agent (devd) and an example host application (appd), enables a Linux device (e.g. Raspberry Pi) to stay in sync with a digital twin in the Ayla Cloud. The video below shows devd and appd in action on a Raspbery Pi. 
-
-<div class="row margin-left hspace">
-<div class="col-lg-12">
 <iframe 
   width="560" 
   height="315" 
@@ -68,53 +26,23 @@ The Ayla Device Platform for Linux ([Github](https://github.com/AylaNetworks/dev
   encrypted-media" 
   allowfullscreen>
 </iframe>
-</div>
-</div>
 
-<a class="btn-link" data-toggle="collapse" href="#rpi-transcript" role="button">Click to view a transcript of the video.</a>
+### Transcript
 
-<div class="collapse" id="rpi-transcript">
-<div class="card card-body hspace">
-<p>A Host Application called appd (written in C) is running on the CPU of this Raspberry Pi 3, and it is controlling this green LED, this blue button, and this red button. Together, the Raspberry Pi, the host application, the LED, and the buttons form our Raspberry Pi Device.</p>
+A Host Application called appd (written in C) is running on the CPU of this Raspberry Pi 3, and it is controlling this green LED, this blue button, and this red button. Together, the Raspberry Pi, the host application, the LED, and the buttons form our Raspberry Pi Device.
 
-<p>An Ayla Linux Agent called devd (also written in C) is also running on this CPU.</p>
+An Ayla Linux Agent called devd (also written in C) is also running on this CPU.
 
-<p>Now, appd uses devd to talk to the Ayla Cloud which maintains a digital twin of our Raspberry Pi Device that includes a Green_LED property, a Blue_button property, and a Red-button property.</p>
+Now, appd uses devd to talk to the Ayla Cloud which maintains a digital twin of our Raspberry Pi Device that includes a Green_LED property, a Blue_button property, and a Red-button property.
 
-<p>Mobile and web applications (like the Aura Mobile App shown here) send commands to, and receive events from, our Raspberry Pi Device by interacting with the digital twin in the cloud. So, for example, we can send a command, via the digital twin, to illumindate the LED, and we can receive press and release events from the blue and red buttons. </p>
-</div>
-</div>
+Mobile and web applications (like the Aura Mobile App shown here) send commands to, and receive events from, our Raspberry Pi Device by interacting with the digital twin in the cloud. So, for example, we can send a command, via the digital twin, to illumindate the LED, and we can receive press and release events from the blue and red buttons.
 
-The Ayla Device Platform for Linux is composed of the components below. Communication among Ayla daemons takes place over Unix domain sockets.
+### Ayla Device Platform for Linux components
 
-<dl>
-<dt>devd</dt>
-<dd>The Ayla Linux Agent (devd) provides the following functionality:
-<ul>
-<li>Communicates via HTTPS with the Ayla Device Service (ADS).</li>
-<li>Connects to and receives event notifications from the Ayla Notification Service (ANS).</li>
-<li>Handles HTTP requests from devices on the local network with its internal web server.</li>
-<li>Responds to mDNS address requests for DSN hostnames.</li>
-<li>Supports LAN mode encrypted sessions for communication with Ayla mobile apps.</li>
-<li>Provides an IPC interface for internal messaging with other Ayla daemons.</li>
-</ul>
-</dd>
-
-<dt>appd</dt>
-<dd>The host application (appd) defines and manages device properties, and either directly controls the behavior of a device, or provides an interface to other applications in control of devices. By default, devd launches and monitors appd. If appd crashes or quits, devd re-launches it. To speed development, a demo application daemon is provided.</dd>
-
-<dt>devdwatch</dt>
-<dd>This watchdog software is designed to monitor and re-launch devd in case of failure. If available, Ayla recommends using the system's built-in process-restart functionality.</dd>
-
-<dt>acgi</dt>
-<dd>This CGI utility is executed by the system’s primary web server. Acgi parses each request and forwards valid requests to devd, which handles them using its internal web server. This component is required to support LAN mode, Wi-Fi Setup, and Same-LAN registration. For acgi to work, some device configuration is required.</dd>
-
-<dt>ota_update</dt>
-<dd>This utility is used to download, verify, and apply an over-the-air (OTA) firmware image. This utility is invoked by devd when the service indicates a pending device update. For ota_update to be fully functional, OTA-related platform-specific functions must be implemented in the lib/platform library. Platform-specific functions implement image storage, readback, and apply the downloaded image to the system.</dd>
-
-<dt>cond</dt>
-<dd>Wi-Fi connection manager daemon that enables Ayla Wi-Fi Setup functionality and provides an abstraction layer between Ayla daemons and the Wi-Fi driver. This daemon manages scan results and network profiles, configures AP mode, and establishes connections to Wi-Fi access points. (Optional component and may be omitted if Ayla Wi- Fi Setup solution is not needed.)</dd>
-
-<dt>logd</dt>
-<dd>This is the Ayla logging client. Ayla daemons write specially-tagged log messages to Syslog. This daemon parses syslog output, filters messages based on log config managed by devd, and posts them to Ayla logging service. Can be remotely enabled from the Ayla OEM Dashboard and configured to monitor and debug. (Optional component and may be omitted if remote logging functionality is not needed.)</dd>
-</dl>
+1. The Ayla Linux Agent (devd) communicates via HTTPS with the Ayla Device Service (ADS), connects to and receives event notifications from the Ayla Notification Service (ANS), handles HTTP requests from devices on the local network with its internal web server, responds to mDNS address requests for DSN hostnames, supports LAN mode encrypted sessions for communication with Ayla mobile apps, and provides an IPC interface for internal messaging with other Ayla daemons.
+1. The host application (appd) defines and manages device properties, and either directly controls the behavior of a device, or provides an interface to other applications in control of devices. By default, devd launches and monitors appd. If appd crashes or quits, devd re-launches it. To speed development, a demo application daemon is provided.
+1. devdwatch is watchdog software designed to monitor and re-launch devd in case of failure. If available, Ayla recommends using the system's built-in process-restart functionality.
+1. acgi is a CGI utility executed by the system’s primary web server. Acgi parses each request and forwards valid requests to devd, which handles them using its internal web server. This component is required to support LAN mode, Wi-Fi Setup, and Same-LAN registration. For acgi to work, some device configuration is required.
+1. ota_update is a utility for downloading, verifying, and applying over-the-air (OTA) firmware images. This utility is invoked by devd when the service indicates a pending device update. For ota_update to be fully functional, OTA-related platform-specific functions must be implemented in the lib/platform library. Platform-specific functions implement image storage, readback, and apply the downloaded image to the system.
+1. cond is the Wi-Fi connection manager daemon that enables Ayla Wi-Fi Setup functionality, and provides an abstraction layer between Ayla daemons and the Wi-Fi driver. This daemon manages scan results and network profiles, configures AP mode, and establishes connections to Wi-Fi access points. (Optional component and may be omitted if Ayla Wi- Fi Setup solution is not needed.)
+1. logd is the Ayla logging client. Ayla daemons write specially-tagged log messages to Syslog. This daemon parses syslog output, filters messages based on log config managed by devd, and posts them to Ayla logging service. Can be remotely enabled from the Ayla OEM Dashboard and configured to monitor and debug. (Optional component and may be omitted if remote logging functionality is not needed.)

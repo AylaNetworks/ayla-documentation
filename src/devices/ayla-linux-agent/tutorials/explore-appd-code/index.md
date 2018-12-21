@@ -6,16 +6,16 @@ b: block
 
 This tutorial helps you explore Host Application (appd) source code, and the application's use of the (devd) [Agent API](/devices/ayla-linux-agent/reference/agent-api).
 
-## Host Application Structure
+### Host Application Structure
 
-In essence, the host application (appd) is composed of two files and three libraries:
+In essence, the host application (appd) is composed of two files and three libraries located on your RPi:
 
 <pre>
-~/device_linux_public/app/appd/main.c
-~/device_linux_public/app/appd/appd.c
-~/device_linux_public/build/native/obj/lib/app/libapp.a
-~/device_linux_public/build/native/obj/lib/ayla/libayla.a
-~/device_linux_public/build/native/obj/lib/platform/libplatform.a
+&sim;/device_linux_public/app/appd/main.c
+&sim;/device_linux_public/app/appd/appd.c
+&sim;/device_linux_public/build/native/obj/lib/app/libapp.a
+&sim;/device_linux_public/build/native/obj/lib/ayla/libayla.a
+&sim;/device_linux_public/build/native/obj/lib/platform/libplatform.a
 </pre>
 
 ### main.c
@@ -52,6 +52,7 @@ int main(int argc, char **argv)
 ### appd.c
 
 appd.c implements an array of prop structures, one for each property it maintains:
+
 <pre>
 static struct prop appd_prop_table[] = {
   {.name = "version",.type = PROP_STRING,.send = appd_send_version},
@@ -73,7 +74,7 @@ static struct prop appd_prop_table[] = {
 
 ### props.h (libapp.a)
 
-Defined and described in <code>~/device_linux_public/lib/app/include/app/props.h</code>, the prop structure looks like this:
+Defined and described in <code>&sim;/device_linux_public/lib/app/include/app/props.h</code>, the prop structure looks like this:
 
 <pre>
 struct prop {
@@ -96,21 +97,14 @@ struct prop {
 </pre>
 
 The host application calls several functions exposed by props.h (relating to the updating of property values between appd and devd) including the following:
-
-<dl>
-<dt>prop_add</dt>
-<dd>The host application calls <code>prop_add</code> to register properties with the Ayla Linux Agent.</dd>
-
-<dt>prop_send_by_name</dt>
-<dd>The host application calls <code>prop_send_by_name</code> to tell the agent to send a property value to the Ayla Cloud. Interrupt service routines, for example, that listen for button presses and releases, might call this function.</dd>
-
-<dt>prop_lookup</dt>
-<dd>The host application calls <code>prop_lookup</code> to determine the current value of a property.</dd>
-</dl>
+* prop_add - The host application calls <code>prop_add</code> to register properties with the Ayla Linux Agent.
+* prop_send_by_name - The host application calls <code>prop_send_by_name</code> to tell the agent to send a property value to the Ayla Cloud. Interrupt service routines, for example, that listen for button presses and releases, might call this function.
+* prop_lookup - The host application calls <code>prop_lookup</code> to determine the current value of a property.
 
 ### Makefile
 
-To see the source files and libraries that compose appd, open <code>~/device_linux_public/app/appd/Makefile</code>:
+To see the source files and libraries that compose appd, open <code>&sim;/device_linux_public/app/appd/Makefile</code>:
+
 <pre>
 #
 # List of source files to build
