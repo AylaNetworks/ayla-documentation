@@ -5,7 +5,7 @@ layout: page-homepage.html
 
 <div class="row">
   <div class="col-md-12" style="background:white;padding-top:12px;">
-    <p style="text-align: center;">For [Ayla Networks](https://www.aylanetworks.com) developers and integrators. See [Overview](overview).</p>
+    <p style="text-align: center;">For [Ayla](https://www.aylanetworks.com) developers and integrators. See [Overview](overview).</p>
   </div>
 </div>
 
