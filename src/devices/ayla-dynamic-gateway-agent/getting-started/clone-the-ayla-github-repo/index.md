@@ -9,12 +9,12 @@ By default, the installation script ([ayla_install.sh](https://github.com/AylaNe
 ### Clone the Ayla Github
 
 1. Secure shell to your RPi:
-<pre class="light">
+<pre>
 $ ssh pi@192.168.1.3
 </pre>
 1. Ensure that you are in your home directory (e.g. ```/home/pi```).
 1. Clone the repository. You will be asked for your Github username and password.
-<pre class="light">
+<pre>
 $ git clone https&#58;//github.com/AylaNetworks/device_linux_gw_public.git
 </pre>
 1. View the new ```/home/pi/device_linux_gw_public``` source directory.
@@ -22,23 +22,22 @@ $ git clone https&#58;//github.com/AylaNetworks/device_linux_gw_public.git
 ### Point the installation script at the source directory
 
 1. Copy ayla_install.sh to your home directory:
-<pre class="light">
+<pre>
 $ cp ~/device_linux_gw_public/dev_kit/raspberry_pi/ayla_install.sh ~/ 
 </pre>
 1. Open the file for editing, and find the following line:
-<pre class="light">
+<pre>
 ayla_src_dir="$temp_dir/ayla/src"
 </pre>
 1. Change it to the following, and save.
-<pre class="light">
+<pre>
 ayla_src_dir="/home/pi/device_linux_gw_public"
 </pre>
 1. Find the following:
-<pre class="light">
+<pre>
 ayla_package="https&#58;//github.com/AylaNetworks/device_linux_public.git"
 </pre>
 1. Change it to this:
-<pre class="light">
+<pre>
 ayla_package="https&#58;//github.com/AylaNetworks/device_linux_gw_public.git"
 </pre>
-</ol>

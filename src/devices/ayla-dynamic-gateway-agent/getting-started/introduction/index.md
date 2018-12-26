@@ -6,11 +6,7 @@ i: block
 
 The following diagram presents the essential elements of the Ayla Dynamic Gateway Package for Linux.
 
-<div class="row">
-<div class="col-lg-7 col-md-10 col-sm-12">
-<img class="img-margins img-fluid" src="ayla-linux-gw-agent-detail.png">
-</div>
-</div>
+<img src="ayla-linux-gw-agent-detail.png" width="600">
 
 1. In the diagram, the Raspberry Pi represents any Linux-based platform.
 1. devd is the Ayla Dynamic Gateway Agent. It communicates with the Ayla Cloud via Wi-Fi or Ethernet.

@@ -6,14 +6,13 @@ i: block
 
 The Ayla Dynamic Gateway Package includes five example applications: 
 
-<table class="key-value-table">
-<tr><th>&nbsp;</th><th>Example Name</th><th>Github link</th><th>Description</th></tr>
-<tr><td>1.</td><td>[Simulator Example](../../simulator-example)</td><td>[gatewayd](https://github.com/AylaNetworks/device_linux_gw_public/tree/master/app/gatewayd)</td><td>Resembles the other gateway apps, but requires no hardware.</td></tr>
-<tr><td>2.</td><td>[Bluetooth Example](../../bluetooth-example)</td><td>[bt_gatewayd](https://github.com/AylaNetworks/device_linux_gw_public/tree/master/app/bt_gatewayd)</td><td>Manages Bluetooth devices.</td></tr>
-<tr><td>3.</td><td>[Zigbee Example](../../zigbee-example)</td><td>[zp_gatewayd](https://github.com/AylaNetworks/device_linux_gw_public/tree/master/app/zb_gatewayd)</td><td>Manages Zigbee devices.</td></tr>
-<tr><td>4.</td><td>[Multiprotocol Example](../../multiprotocol-example)</td><td>[multi_gatewayd](https://github.com/AylaNetworks/device_linux_gw_public/tree/master/app/multi_gatewayd)</td><td>Manages diverse short-distance protocol devices.</td></tr>
-<tr><td>5.</td><td>[Device Example](../../device-example)</td><td>[appd](https://github.com/AylaNetworks/device_linux_gw_public/tree/master/app/appd)</td><td>Not a gateway. Controls electronics connected directly to the RPi.</td></tr>
-</table>
+||Example Name|Github link|Description|
+|-|-|-|-|
+|1|[Simulator Example](../../simulator-example)|[gatewayd](https://github.com/AylaNetworks/device_linux_gw_public/tree/master/app/gatewayd)|Resembles the other gateway apps, but requires no hardware.|
+|2|[Bluetooth Example](../../bluetooth-example)|[bt_gatewayd](https://github.com/AylaNetworks/device_linux_gw_public/tree/master/app/bt_gatewayd)|Manages Bluetooth devices.|
+|3|[Zigbee Example](../../zigbee-example)|[zp_gatewayd](https://github.com/AylaNetworks/device_linux_gw_public/tree/master/app/zb_gatewayd)|Manages Zigbee devices.|
+|4|[Multiprotocol Example](../../multiprotocol-example)|[multi_gatewayd](https://github.com/AylaNetworks/device_linux_gw_public/tree/master/app/multi_gatewayd)|Manages diverse short-distance protocol devices.|
+|5|[Device Example](../../device-example)|[appd](https://github.com/AylaNetworks/device_linux_gw_public/tree/master/app/appd)|Not a gateway. Controls electronics connected directly to the RPi.|
 
 Note the following:
 

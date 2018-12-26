@@ -9,7 +9,7 @@ You can refer to the official [Raspberry Pi documentation](https://www.raspberry
 When deleting a previous Ayla Linux Agent or Ayla Dynamic Gateway Agent installation, include the following:
  
 1. Stop daemons, and delete daemon initialization files:
-<pre class="light">
+<pre>
 $ ps -A | grep devd
 $ ps -A | grep appd
 $ ps -A | grep cond
@@ -22,12 +22,12 @@ $ sudo rm /etc/init.d/cond
 $ sudo rm /etc/init.d/logd
 </pre>
 1. Delete the installation files and directory:
-<pre class="light">
+<pre>
 $ sudo rm ~/ayla_install.sh
 $ sudo rm ~/devd.conf
 $ sudo rm -r ~/ayla/
 </pre>
 1. Delete cloned source code:
-<pre class="light">
+<pre>
 $ sudo rm -r ~/device_linux_gw_public/
 </pre>

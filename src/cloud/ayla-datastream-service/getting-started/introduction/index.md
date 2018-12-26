@@ -8,38 +8,17 @@ c: block
 
 The Ayla Datastream Service (DSS) is a WebSocket server that pushes device-related events (in near real-time) from the Ayla Cloud to subscribing WebSocket clients associated (typically) with data analytics systems. The diagram below provides a high-level overview of DSS including two example clients: DSS Browser is a browser-based client that displays events on a page, and DSS Collector is a Node.JS client that writes events to disk.
 
-<div class="row margin-left hspace">
-<div class="col-lg-8 col-md-12">
-<img class="img-fluid" src="ayla-dss.png">
-</div>
-</div>
+<img src="ayla-dss.png" width="550">
 
 ### Events
 
-The table below summarizes the five types of events that DSS sends to subscribing clients.
+The list below summarizes the five types of events that DSS sends to subscribing clients.
 
-<table class="key-value-table">
-<tr>
-<th>connectivity</th>
-<td>The Ayla Cloud started/stopped interacting with a registered device.</td>
-</tr>
-<tr>
-<th>datapoint</th>
-<td>A digital twin property value changed.</td>
-</tr>
-<tr>
-<th>datapointack</th>
-<td>An Ayla Agent confirmed to the Ayla Cloud that a device property value changed.</td>
-</tr>
-<tr>
-<th>location</th>
-<td>A digital twin latitute/longitude value changed.</td>
-</tr>
-<tr>
-<th>registration</th>
-<td>The Ayla Cloud registered/unregistered a device.</td>
-</tr>
-</table>
+* connectivity - The Ayla Cloud started/stopped interacting with a registered device.
+* datapoint - A digital twin property value changed.
+* datapointack - An Ayla Agent confirmed to the Ayla Cloud that a device property value changed.
+* location - A digital twin latitute/longitude value changed.
+* registration - The Ayla Cloud registered/unregistered a device.
 
 ### Digital Twins
 
@@ -125,7 +104,7 @@ timeStamp: 192795.29999988154
 type: "message"
 </pre>
 
-The key/value pair of interest is <code>data:"1|Z"</code>. The key is <code>data</code>. The value, <code>"1|Z"</code>, indicates that this MessageEvent is a DSS heartbeat. If the MessageEvent had been an actual event (connectivity, datapoint, etc.), the value would have been similar to <code>data:"481|{}"</code>. The number <code>481</code> represents the length of the JSON event string within the curly braces. The "|" is useful for splitting the string into length and event. And, the curly braces, <code>{}</code>, encapsulate the actual JSON event string which might look like this:
+The key/value pair of interest is <code>data:"1&#124;Z"</code>. The key is <code>data</code>. The value, <code>"1&#124;Z"</code>, indicates that this MessageEvent is a DSS heartbeat. If the MessageEvent had been an actual event (connectivity, datapoint, etc.), the value would have been similar to <code>data:"481&#124;{}"</code>. The number <code>481</code> represents the length of the JSON event string within the curly braces. The "&#124;" is useful for splitting the string into length and event. And, the curly braces, <code>{}</code>, encapsulate the actual JSON event string which might look like this:
 
 <pre>
 {

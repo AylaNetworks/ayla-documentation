@@ -10,7 +10,7 @@ Deletes the subscription specified by a subscription id.
 
 <pre>DELETE https://&lt;DSS Domain&gt;/api/v1/subscriptions/:subscriptionId.json</pre>
 
-<table class="key-value-table">
+<table>
   <tr>
     <th>Authorization</th>
     <td>auth_token abcdef0123456789abcdef0123456789</td>
@@ -21,7 +21,7 @@ No request data.
 
 ### Response
 
-<table class="key-value-table">
+<table>
   <tr>
     <th>204</th>
     <td>No Content</td>

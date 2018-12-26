@@ -12,25 +12,21 @@ The <code>ayla_install.sh</code> script fails if <code>uname -n</code> does not 
 
 So, run <code>uname -n</code> on your Raspberry Pi. If the returned value is other than <code>raspberrypi</code>, do the following:
 
-<ol>
-<li>Open <code>ayla_install.sh</code>.</li>
-<li>Search for <code>OS is not the raspberrypi</code> in the following conditional statement:
-<pre class="light">
+1. Open <code>ayla_install.sh</code>.
+1. Search for <code>OS is not the raspberrypi</code> in the following conditional statement:
+<pre>
 if [ "$(uname -n)" != "raspberrypi" ]; then
   error_exit "OS is not the raspberrypi"
 fi
 </pre>
-</li>
-<li>Modify the script as needed, or comment out the conditional.</li>
-</ol>
+1. Modify the script as needed, or comment out the conditional.
 
 ### Perform the installation
 
-<ol>
-<li>In your RPi Secure Shell, change to your home directory (e.g. <code>/home/pi</code>).</li>
-<li>Verify that <code>ayla_install.sh</code> and <code>devd.conf</code> reside there. If not, complete the steps in [Getting Started](../../getting-started).</li>
-<li>Use the <code>-h</code> or <code>--help</code> flag to view ayla_install.sh options:
-<pre class="light">
+1. In your RPi Secure Shell, change to your home directory (e.g. <code>/home/pi</code>).
+1. Verify that <code>ayla_install.sh</code> and <code>devd.conf</code> reside there. If not, complete the steps in [Getting Started](../../getting-started).
+1. Use the <code>-h</code> or <code>--help</code> flag to view ayla_install.sh options:
+<pre>
 $ ./ayla_install.sh -h
 &nbsp;
 OPTIONS:
@@ -54,26 +50,18 @@ OPTIONS:
 <div>Use the <code>-e</code> flag to enable full Zigbee support.</div>
 <div>Use the <code>-n</code> flag if your RPi is connected via Ethernet. The <code>cond</code> daemon will not run.</div>
 <div>Use the <code>-u</code> flag to reinstall over a previous installation. Your gateway and node digital twins are untouched.</div>
-</li>
-<li>Perform the installation. Here are some examples:
-<pre class="light">
+1. Perform the installation. Here are some examples:
+<pre>
 $ sudo ./ayla_install.sh -e -a zb_gatewayd        # Your RPi is using Wi-Fi
-
 $ sudo ./ayla_install.sh -e -a zb_gatewayd -n     # Your RPi is using Ethernet
 </pre>
 <div>You may be required to enter your Github credentials during the process.</div>
-</li>
-</ol>
 
 ### Inspect the installation
 
 The following diagram provides an overview of components involved in the building and installing the Ayla Dynamic Gateway Package.
 
-<div class="row">
-<div class="col-lg-7 col-md-10 col-sm-12">
-<img class="img-fluid img-margins" src="inspect-installation.png">
-</div>
-</div>
+<img src="inspect-installation.png" width="600">
 
 1. Review [Generate a devd.conf file](../../getting-started/generate-a-devd-conf-file).
 1. Source code for the Zigbee Gateway (zb_gatewayd). The installation process renames it to appd in <code>&sim;/ayla/bin</code>.
@@ -85,11 +73,7 @@ The following diagram provides an overview of components involved in the buildin
 
 The following diagram provides details about the <code>/home/pi/ayla</code> installation directory.
 
-<div class="row">
-<div class="col-lg-7 col-md-10 col-sm-12">
-<img class="img-fluid img-margins" src="../../simulator-example/install-the-gateway/inspect-installation-details.png">
-</div>
-</div>
+<img src="../../simulator-example/install-the-gateway/inspect-installation-details.png" width="600">
 
 1. This is the Ayla Gateway Agent daemon (devd) and your gateway application (appd).
 1. See [Startup Files](../../reference/startup-files).
@@ -97,47 +81,33 @@ The following diagram provides details about the <code>/home/pi/ayla</code> inst
 
 ### Register the gateway
 
-<ol>
-<li>Reboot the RPi with <code>sudo reboot</code>.</li>
-<li>Using a computer <span style="color:red;">connected to the same LAN</span> as your RPi, browse to the Ayla Developer Portal.</li>
-<li>Click Register New Device. 
-<div class="row">
-<div class="col-lg-6 col-md-10 col-sm-12">
-<img class="img-fluid img-top-bottom" src="../../simulator-example/install-the-gateway/register-new-device-found.png">
-</div>
-</div>
+1. Reboot the RPi with <code>sudo reboot</code>.
+1. Using a computer <span style="color:red;">connected to the same LAN</span> as your RPi, browse to the Ayla Developer Portal.
+1. Click Register New Device. 
+<img src="../../simulator-example/install-the-gateway/register-new-device-found.png" width="500">
 <div>If the Device Registration page does not contain a Registration Code textbox, reboot your RPi, and refresh the page.</div>
-</li>
-<li>Click the link on the page to reveal a device registration code (e.g. e224a1) in a new tab.</li>
-<li>Copy and paste the code into the Registration Code textbox, and click Register. The Ayla Cloud registers the gateway to your Ayla user account, and associates the RPi gateway with the ZB GW template you created earlier.</li>
-</ol>
+1. Click the link on the page to reveal a device registration code (e.g. e224a1) in a new tab.
+1. Copy and paste the code into the Registration Code textbox, and click Register. The Ayla Cloud registers the gateway to your Ayla user account, and associates the RPi gateway with the ZB GW template you created earlier.
 
 ### View gateway in Ayla Developer Portal
 
-<ol>
-<li>In the Ayla Developer Portal, click View My Devices. A list of devices appears.</li>
-<li>Click the Serial Number of your gateway. The following list of properties appears:
-  <ol>
-<li><code>num_nodes</code> indicates the number of nodes in your <code>~/ayla/config/appd.conf.startup</code> file.</li>
-<li><code>zb_network_up</code> indicates that your RPi-based Zigbee gateway is up (1) or down (0).</li>
-<li>Set <code>zb_join_enable</code> to the number of seconds you want your GW to listen for devices in pairing mode. 60 to 120 seconds is usually sufficient.</li>
-<li>When <code>zb_join_status</code> equals 1, your GW is available for pairing. 0 means it is not available.</li>
-<li>Set <code>zb_bind_cmd</code> to <code>bind or unbind,source node address,destination node address,cluster_id</code>. Example:
-<pre class="light">
+1. In the Ayla Developer Portal, click View My Devices. A list of devices appears.
+1. Click the Serial Number of your gateway. The following list of properties appears:
+  1. <code>num_nodes</code> indicates the number of nodes in your <code>~/ayla/config/appd.conf.startup</code> file.
+1. <code>zb_network_up</code> indicates that your RPi-based Zigbee gateway is up (1) or down (0).
+1. Set <code>zb_join_enable</code> to the number of seconds you want your GW to listen for devices in pairing mode. 60 to 120 seconds is usually sufficient.
+1. When <code>zb_join_status</code> equals 1, your GW is available for pairing. 0 means it is not available.
+1. Set <code>zb_bind_cmd</code> to <code>bind or unbind,source node address,destination node address,cluster_id</code>. Example:
+<pre>
 bind,00158D00006F95F1,00158D00006F9405,0x0006"
 </pre>
-</li>
-<li><code>zb_bind_result</code> contains the results of the bind or unbind command.</li>
-<li><code>version</code> is the same as appd_version in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/zb_gatewayd/gateway.c).</li>
-<li><code>oem_host_version</code> is the same as appd_template_version in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/zb_gatewayd/gateway.c).</li>
-</ol>
-</li>
-<li>Click (Devices) Details, change Product Name to "ZB GW 1", peruse other attributes, and click OK.</li>
-<li>Click (Devices) Template, and verify that Current Template is "ZB GW".</li>
-<li>Click (Devices) Nodes, and verify that this gateway does not yet have any nodes.</li>
-<li>Click (Devices) Candidates, and verify that it does not have any candidate nodes, either.</li>
-</ol>
-
+1. <code>zb_bind_result</code> contains the results of the bind or unbind command.
+1. <code>version</code> is the same as appd_version in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/zb_gatewayd/gateway.c).
+1. <code>oem_host_version</code> is the same as appd_template_version in [gateway.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/zb_gatewayd/gateway.c).
+1. Click (Devices) Details, change Product Name to "ZB GW 1", peruse other attributes, and click OK.
+1. Click (Devices) Template, and verify that Current Template is "ZB GW".
+1. Click (Devices) Nodes, and verify that this gateway does not yet have any nodes.
+1. Click (Devices) Candidates, and verify that it does not have any candidate nodes, either.
 
 ### View gateway in Ayla Dashboard Portal
 

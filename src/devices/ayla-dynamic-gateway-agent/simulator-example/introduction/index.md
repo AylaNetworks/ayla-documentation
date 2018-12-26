@@ -6,11 +6,7 @@ f: block
 
 The Simulator Gateway simulates sensor and thermostat nodes producing datapoints (e.g. temperature) every 15 seconds.
 
-<div class="row">
-<div class="col-lg-6 col-md-10 col-sm-12">
-<img class="img-margins img-fluid" src="simulator-gateway.png">
-</div>
-</div>
+<img src="simulator-gateway.png" width="550">
 
 1. In the diagram, the Raspberry Pi represents any Linux-based platform.
 1. devd is the Ayla Dynamic Gateway Agent. It communicates with the Ayla Cloud via Wi-Fi or Ethernet.

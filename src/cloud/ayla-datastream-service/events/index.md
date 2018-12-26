@@ -14,9 +14,7 @@ Ayla DSS generates five types of events:
 
 You can use DSS Browser or DSS Collector to explore all five types of events. You can use a virtual device to cause registration and datapoint events, or a real device to cause all five. Be sure to do the following:
 
-<ol>
-<li>In Dashboard Portal, click <code>Datastreams &gt; Access Rules</code>, to add a rule that gives you authorization to create a subscription.</li>
-<li>In Dashboard Portal, click <code>Datastreams &gt; Subscriptions</code>, to add a subscription that defines the type of events you want to receive.</li>
-<li>In DSS Browser or DSS Collector, use your new subscription stream key to create an event stream.</li>
-<li>Change the digital twin representing your device in a way that causes the desired type of event.</li>
-</ol>
+1. In Dashboard Portal, click <code>Datastreams &gt; Access Rules</code>, to add a rule that gives you authorization to create a subscription.
+1. In Dashboard Portal, click <code>Datastreams &gt; Subscriptions</code>, to add a subscription that defines the type of events you want to receive.
+1. In DSS Browser or DSS Collector, use your new subscription stream key to create an event stream.
+1. Change the digital twin representing your device in a way that causes the desired type of event.

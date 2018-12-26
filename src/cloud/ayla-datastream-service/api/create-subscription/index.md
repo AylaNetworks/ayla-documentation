@@ -10,7 +10,7 @@ Creates a DSS subscription including a stream key which is requred by a client t
 
 <pre>POST https://&lt;DSS Domain&gt;/api/v1/subscriptions.json</pre>
 
-<table class="key-value-table">
+<table>
   <tr>
     <th>Authorization</th>
     <td>auth_token abcdef0123456789abcdef0123456789</td>
@@ -33,7 +33,7 @@ Creates a DSS subscription including a stream key which is requred by a client t
 }
 </pre>
 
-<table class="key-value-table">
+<table>
   <tr>
     <th>Parameter</th>
     <th>Type</th>
@@ -86,7 +86,7 @@ Creates a DSS subscription including a stream key which is requred by a client t
 
 ### Response
 
-<table class="key-value-table">
+<table>
   <tr>
     <th>201</th>
     <td>Created</td>

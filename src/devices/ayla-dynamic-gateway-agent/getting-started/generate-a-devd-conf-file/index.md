@@ -10,11 +10,7 @@ This page shows you how to generate a devd.conf file required (as input) by the 
 
 Here are the steps required to create a devd.conf file. See the other headings below for details.
 
-<div class="row">
-<div class="col-lg-8 col-md-10 col-sm-12">
-<img class="img-margins img-fluid" src="generate-devd-conf.png">
-</div>
-</div>
+<img src="generate-devd-conf.png" width="700">
 
 1. Reserve a DSN in the Ayla Dashboard Portal to represent your gateway, and download a dsn.xml file.
 1. Create an oem_info file to define region, oem id, oem model, and oem secret.
@@ -30,21 +26,21 @@ Here are the steps required to create a devd.conf file. See the other headings b
 1. Browse to the [Ayla Dashboard Portal](https://docs.aylanetworks.com/cloud/ayla-dashboard-portal/).
 1. Click Factory Actions in the sidebar.
 1. Click the Reserve DSNs button.
-1. For Model, select ```AY001MRT1-Linux Software Agent```. 
+1. For Model, select <code>AY001MRT1-Linux Software Agent</code>.
 1. In the textbox on the right, select 1.
 1. Click Submit.
 1. Download the archive file to your computer.
 1. Unzip the archive file to extract the XML file.
-1. Secure Copy the XML file to ```/home/pi``` on your RPi:
-<pre class="light">
+1. Secure Copy the XML file to <code>/home/pi</code> on your RPi:
+<pre>
 $ scp AC000W123456789.xml pi@192.168.1.3:
 </pre>
 
 ### Create on oem_info file
 
-1. On your computer, create a text file called ```oem_info```.
+1. On your computer, create a text file called <code>oem_info</code>.
 1. Copy and paste the content below. Each line is a space-delimited, key:value pair with no quotes.
-<pre class="light">
+<pre>
 region myRegion
 oem myOemId
 oem_model myOemModel
@@ -54,9 +50,9 @@ mfg_serial myMfgSN
 mfg_sw_version v1.2.3_A
 odm myOdmName
 </pre>
-1. Replace ```myRegion``` with US, EU, or CN.
-1. Replace ```myOemId``` with your oem id (see Ayla Dashboard Portal &gt; OEM Profile &gt; OEM ID).
-<li>Replace ```myOemModel``` with the appropriate oem_model from the table:
+1. Replace <code>myRegion</code> with US, EU, or CN.
+1. Replace <code>myOemId</code> with your oem id (see Ayla Dashboard Portal &gt; OEM Profile &gt; OEM ID).
+1. Replace <code>myOemModel</code> with the appropriate oem_model from the table:
 <table class="key-value-table">
 <tr><th>Application Name</th><th>Short Name</th><th>oem_model</th></tr>
 <tr><td>Simulator Example</td><td>gatewayd</td><td>ggdemo</td></tr>
@@ -65,10 +61,10 @@ odm myOdmName
 <tr><td>Multiprotocol Example</td><td>multi_gatewayd</td><td>linuxevb</td></tr>
 <tr><td>Device Example</td><td>appd</td><td>linuxevb</td></tr>
 </table>
-</li>
-1. Replace ```myOemSecret``` with your oem secret (see Ayla Dashboard Portal &gt; OEM Profile &gt; OEM Secret)
+
+1. Replace <code>myOemSecret</code> with your oem secret (see Ayla Dashboard Portal &gt; OEM Profile &gt; OEM Secret)
 1. Leave the other values alone, and save. Here is an example:
-<pre class="light">
+<pre>
 region US
 oem aabb1122
 oem_model ggdemo
@@ -78,32 +74,31 @@ mfg_serial myMfgSN
 mfg_sw_version v1.2.3_A
 odm myOdmName
 </pre>
-1. Secure Copy the file to ```/home/pi``` on your RPi:
-<pre class="light">
+1. Secure Copy the file to <code>/home/pi</code> on your RPi:
+<pre>
 $ scp oem_info pi@192.168.1.3:
 </pre>
 
 ### Determine your RPi Mac Address
 
-Secure Shell (ssh) to your RPi, and run ```ip address``` or ```ifconfig```. If the RPi is connected to the internet via Ethernet, use the resulting ```eth0``` values. If via Wi-Fi, use the ```wlan0``` values. Find the term ```ether```. The Mac Address follows. (e.g. b4:11:ab:4c:e2:20). Remove the delimiting colons (e.g. b411ab4ce220). Use the colon-less value below as input to config_gen.
+Secure Shell (ssh) to your RPi, and run <code>ip address</code> or <code>ifconfig</code>. If the RPi is connected to the internet via Ethernet, use the resulting <code>eth0</code> values. If via Wi-Fi, use the <code>wlan0</code> values. Find the term <code>ether</code>. The Mac Address follows. (e.g. b4:11:ab:4c:e2:20). Remove the delimiting colons (e.g. b411ab4ce220). Use the colon-less value below as input to config_gen.
 
 ### Make the config_gen utility
 
 1. On your RPi, change directory to your Ayla source directory:
-<pre class="light">
-$ cd &sim;/device_linux_gw_public
+<pre>
+$ cd &#126;/device_linux_gw_public
 </pre>
 1. Build config_gen. 
-<pre class="light">
+<pre>
 $ sudo make host_utils
 </pre>
-The newly built utility is in ```~/device_linux_gw_public/build/native/utils```.
+The newly built utility is in <code>&#126;/device_linux_gw_public/build/native/utils</code>.
 
 ### Run config_gen to generate devd.conf
 
-<ol>
-<li>From ```/home/pi```, run config_gen to view command-line options:
-<pre class="light">
+1. From <code>/home/pi</code>, run config_gen to view command-line options:
+<pre>
 $ ./device_linux_gw_public/build/native/utils/config_gen
 Usage: config_gen -d <dsn_path> -i <oem_info_file> [OPTIONS]
   REQUIRED:
@@ -118,14 +113,13 @@ Usage: config_gen -d <dsn_path> -i <oem_info_file> [OPTIONS]
     config_gen -d dsns/AC000W000123456.xml -i ./oem_info -m 112233445566 -o ./ayla_config -v 2
     config_gen -n -d dsns/AC000W000123457.xml -i ./oem_info
 </pre>
-<li>Run config_gen:</li>
-<pre class="light">
+1. Run config_gen:
+<pre>
 $ ./device_linux_gw_public/build/native/utils/config_gen -d ./AC000W123456789.xml -i ./oem_info -m b411ab4ce220
 </pre>
-</li>
-<li>Rename the resulting ```AC000W123456789.conf``` file to ```devd.conf```, and leave it in ```/home/pi```.</li>
-<li>Open ```devd.conf```. It should resemble this:
-<pre class="light">
+1. Rename the resulting <code>AC000W123456789.conf</code> file to <code>devd.conf</code>, and leave it in <code>/home/pi</code>.
+1. Open <code>devd.conf</code>. It should resemble this:
+<pre>
 {
   "config": {
     "sys": {
@@ -146,9 +140,8 @@ $ ./device_linux_gw_public/build/native/utils/config_gen -d ./AC000W123456789.xm
   }
 }
 </pre>
-</li>
-<li>Add ```,"server": {"default": 1}``` to the ```client``` section as indicated in red below, and save. Don't forget the initial comma. This addition is important for initial prototyping, but must be removed when the gateway is deployed on your production platform.
-<pre class="light">
+1. Add <code>,"server": {"default": 1}</code> to the <code>client</code> section as indicated in red below, and save. Don't forget the initial comma. This addition is important for initial prototyping, but must be removed when the gateway is deployed on your production platform.
+<pre>
 {
   "config": {
     "sys": {
@@ -172,15 +165,13 @@ $ ./device_linux_gw_public/build/native/utils/config_gen -d ./AC000W123456789.xm
   }
 }
 </pre>
-</li>
-</ol>
 
 ### Purpose of devd.conf
 
 1. Provides your gateway with a device serial number (1) unique within the Ayla Cloud, and (2) tied to your RPi Mac Address.
 1. Assigns your gateway to a regional instance of the Ayla Cloud, and to a particular OEM account.
 1. Defines the template that the Ayla Cloud uses to instantiate the Digital Twin corresponding to your gateway.
-1. Provides a baseline for the <code>&sim;/ayla/config/devd.conf.startup</code> file. See [Startup Files](../../reference/startup-files).
+1. Provides a baseline for the <code>&#126;/ayla/config/devd.conf.startup</code> file. See [Startup Files](../../reference/startup-files).
 
 ### What to do next
 

@@ -22,7 +22,7 @@ Because, upon registration, sensor and thermostat nodes begin immediately to gen
 ### Tail the messages log
 
 Secure Shell to your RPi, and tail the messages log:
-<pre class="light">
+<pre>
 $ tail -f /var/log/messages
 </pre>
 <div>Here is a sample:</div>
@@ -60,40 +60,20 @@ It takes only a few seconds to utilize the DSS Browser utility in the [Ayla Data
 1. Click OK. Note that Number of Nodes is set to 1.
 1. Click (Devices) Nodes. The list is empty.
 1. Click (Devices) Candidates. The list contains one new candidate sensor node:
-<div class="row">
-<div class="col-lg-6 col-md-9 col-sm-12">
-<img class="img-fluid img-top-bottom" src="sensor-node-candidate.png">
-</div>
-</div>
+<img src="sensor-node-candidate.png" width="500">
 The serial number begin with "V" indicating that the node is a "virtual" device.
 1. Click the Register link.
 1. Click (Devices) Nodes to view the new node on the list.
-<div class="row">
-<div class="col-lg-6 col-md-9 col-sm-12">
-<img class="img-fluid img-top-bottom" src="sensor-node.png">
-</div>
-</div>
+<img src="sensor-node.png" width="500">
 1. Click View My Devices. The node appears on this list, too.
-<div class="row">
-<div class="col-lg-6 col-md-9 col-sm-12">
-<img class="img-fluid img-top-bottom" src="node-on-devices-list.png">
-</div>
-</div>
+<img src="node-on-devices-list.png" width="500">
 1. Click the new sensor node. The node properties list appears:
-<div class="row">
-<div class="col-lg-6 col-md-9 col-sm-12">
-<img class="img-fluid img-top-bottom" src="sensor-node-properties.png">
-</div>
-</div>
+<img src="sensor-node-properties.png" width="500">
 <div>The <span style="color:red;">red</span> arrows indicate properties from the Sim GW Node template.</div>
 <div>The <span style="color:blue;">blue</span> arrows indicate properties from the Sim GW SNode template.</div>
 <div>The <span style="color:#cccc00;">yellow</span> arrow indicates the default oem_host_version property assigned to all devices.</div>
 1. Click humidity &gt; Datapoints to view accumulating data.
-<div class="row">
-<div class="col-lg-6 col-md-9 col-sm-12">
-<img class="img-fluid img-top-bottom" src="datapoints.png">
-</div>
-</div>
+<img src="datapoints.png" width="500">
 1. Click Details, and set Product Name to "Sim GW 1 SNode 1".
 1. See the periodic updates in <code>/var/log/messages</code>:
 <pre>
@@ -108,21 +88,13 @@ Nov 15 09:22:04 rpi appd: [info-app] appd_node_ops_confirm_handler: node prop se
 ### Add a thermostat node
 
 1. Add a thermostat node in the same way you added a sensor node. Expect to find these properties.
-<div class="row">
-<div class="col-lg-6 col-md-9 col-sm-12">
-<img class="img-fluid img-top-bottom" src="thermostat-node-properties.png">
-</div>
-</div>
+<img src="thermostat-node-properties.png" width="500">
 <div>The <span style="color:red;">red</span> arrows indicate properties from the Sim GW Node template.</div>
 <div>The <span style="color:blue;">blue</span> arrows indicate properties from the Sim GW TNode template.</div>
 <div>The <span style="color:#cccc00;">yellow</span> arrow indicates the default oem_host_version property assigned to all devices.</div>
 1. Set the temp_setpoint property to a value (e.g. 70). Watch for datapoints from local_temp.
 1. Set vacation_mode to 1. heat_on changes to 0. Watch local_temp decrease:
-<div class="row">
-<div class="col-lg-4 col-md-8 col-sm-12">
-<img class="img-fluid img-top-bottom" src="vacation-mode.png">
-</div>
-</div>
+<img src="vacation-mode.png" width="300">
 
 ### Add multiple nodes
 
@@ -130,28 +102,16 @@ Nov 15 09:22:04 rpi appd: [info-app] appd_node_ops_confirm_handler: node prop se
 1. Click the Add Sensor Nodes property.
 1. Change the Current Value to 5, and click OK.
 1. Click (Devices) Candidates. You may have to refresh because candidate creation takes a few seconds.
-<div class="row">
-<div class="col-lg-6 col-md-9 col-sm-12">
-<img class="img-fluid img-top-bottom" src="five-candidate-nodes.png">
-</div>
-</div>
+<img src="five-candidate-nodes.png" width="500">
 1. Click the register link for each candidate. Refresh the page (and click Candidates tab) between each registration.
 1. Click (Devices) Nodes. See the new nodes. 
-<div class="row">
-<div class="col-lg-5 col-md-8 col-sm-12">
-<img class="img-fluid img-top-bottom" src="all-nodes.png">
-</div>
-</div>
+<img src="all-nodes.png" width="380">
 
 ## Startup files
 
 For startup purposes, the gateway keeps track of nodes in two startup files: <code>devd.conf.startup</code> and <code>appd.conf.startup</code>. Both are located in <code>&sim;/ayla/config</code>. A node is composed of one or more subdevices identified by a key (e.g. s1). One or more templates contribute properties to a subdevice. See the diagram.
 
-<div class="row">
-<div class="col-lg-6 col-md-9 col-sm-12">
-<img class="img-fluid img-margins" src="startup-files.png">
-</div>
-</div>
+<img src="startup-files.png" width="460">
 
 The <node>device ~ node ~ subdevice ~ template ~ property</node> hierarchy explains property names. Consider <code>s1:gg_sim:battery_charge</code>:
 

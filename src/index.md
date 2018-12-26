@@ -12,7 +12,7 @@ layout: page-homepage.html
 <div class="row">
   <div class="col-md-4" style="background:ghostwhite; text-align: center;">
     <div style="font-size: 90%; display: inline-block; text-align: left;">
-      <h2>Device Agents & APIs</h2>
+      <h2 style="margin-bottom: 18px">Device Agents & APIs</h2>
       <p>Ayla Wi-Fi Production Module</p>
       <p>Ayla Cellular Production Module</p>
       <p>Ayla Integrated Agent</p>
@@ -25,7 +25,7 @@ layout: page-homepage.html
   </div>
   <div class="col-md-4" style="background:ghostwhite;border-left:1px solid #e6e6ff;border-right:1px solid #e6e6ff;text-align: center;">
     <div style="font-size: 90%; display: inline-block; text-align: left;">
-      <h2>Cloud Services & APIs</h2>
+      <h2 style="margin-bottom: 18px">Cloud Services & APIs</h2>
       <p>Ayla Application Service</p>
       <p>[Ayla Datastream Service](cloud/ayla-datastream-service)</p>
       <p>Ayla Device Service</p>
@@ -40,7 +40,7 @@ layout: page-homepage.html
   </div>
   <div class="col-md-4" style="background:ghostwhite; text-align: center;">
     <div style="font-size: 90%; display: inline-block; text-align: left;">
-      <h2>Applications & Libraries</h2>
+      <h2 style="margin-bottom: 18px">Applications & Libraries</h2>
       <p>Ayla Agile Mobile App Platform (AMAP)</p>
       <p>Ayla Dashboard Portal</p>
       <p>Ayla Demo Mobile App (Aura)</p>

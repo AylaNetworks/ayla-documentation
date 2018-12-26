@@ -10,7 +10,7 @@ Gets all subscriptions for the user associated with the auth token.
 
 <pre>GET https://&lt;DSS Domain&gt;/api/v1/subscriptions.json</pre>
 
-<table class="key-value-table">
+<table>
   <tr>
     <th>Authorization</th>
     <td>auth_token abcdef0123456789abcdef0123456789</td>
@@ -25,7 +25,7 @@ No request data.
 
 ### Response
 
-<table class="key-value-table">
+<table>
   <tr>
     <th>200</th>
     <td>OK</td>

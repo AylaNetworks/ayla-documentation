@@ -482,3 +482,11 @@ code {color: #b36200;}
   font-weight: normal;
   font-size: 80%;
 }
+
+.page-sidebar table {font-size: 90%; line-height: 12px;}
+.page-sidebar table, .page-sidebar th, .page-sidebar td {border: 1px gainsboro solid !important;}
+.page-sidebar th {background: white !important; color: black !important; font-weight: bold !important;}
+.page-sidebar td {color: black;}
+.page-sidebar {vertical-align: top !important;}
+
+
