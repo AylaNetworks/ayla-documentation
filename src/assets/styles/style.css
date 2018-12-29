@@ -323,13 +323,7 @@ span.a {
  tables
 ******************************************/
 
-#content table {
-  width: auto;
-}
-
-#content table tr, #content table th, #content table td {
-}
-
+#content table {width: auto;}
 #content table, #content th, #content td {
   border-collapse: collapse;
   margin-top: 12px;
@@ -337,11 +331,8 @@ span.a {
   padding: 6px 6px;
   vertical-align:top;
 }
-
-/* #content table {border: 1px solid steelblue;} */
 #content th {border: 1px solid steelblue;}
 #content td {border: 1px solid #c8daea;}
-
 #content table th {background: steelblue; font-weight: normal; text-align: left; color: white;}
 
 #content .note {padding: 12px; margin: 24px 0px; background: azure;}
@@ -483,8 +474,10 @@ code {color: #b36200;}
   font-size: 80%;
 }
 
-.page-sidebar table {font-size: 90%; line-height: 12px;}
+.page-sidebar table {font-size: 90%; line-height: 20px;}
 .page-sidebar table, .page-sidebar th, .page-sidebar td {border: 1px gainsboro solid !important;}
+.page-sidebar th, .page-sidebar td {padding: 3px 6px !important;}
+.page-sidebar th:first-child, .page-sidebar td:first-child {white-space: nowrap}
 .page-sidebar th {background: white !important; color: black !important; font-weight: bold !important;}
 .page-sidebar td {color: black;}
 .page-sidebar {vertical-align: top !important;}

@@ -17,7 +17,7 @@ The Ayla Datastream Service (DSS) is a WebSocket server that pushes device-relat
 
 Use <code>wss</code> for WebSockets, and <code>https</code> for the REST API.
 
-<table class="vertical-middle">
+<table>
 <tr>
 <th>client-type</th>
 <th>region</th>

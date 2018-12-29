@@ -3,7 +3,7 @@ title: Apps
 layout: page-full-width.html
 ---
 
-<table style="width: 100%;">
+<table>
 <tr>
 <th>Portal</th>
 <th>Description</th>

@@ -9,6 +9,6 @@ The Ayla Proxy Server is designed to be deployed in a Node.js environment in you
 
 To get a device, for example, your application might use <code>getDevice</code>:
 
-<pre class="light">
+<pre>
 function getDevice(deviceId, successCb=null, errorCb=null)
 </pre>

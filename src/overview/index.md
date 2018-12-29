@@ -5,8 +5,6 @@ layout: page-full-width.html
 
 This video provides an overview of the Ayla IoT Platform:
 
-<div class="row hspace">
-<div class="col-md-12">
 <iframe 
   width="560" 
   height="315" 
@@ -16,8 +14,6 @@ This video provides an overview of the Ayla IoT Platform:
   encrypted-media" 
   allowfullscreen>
 </iframe>
-</div>
-</div>
 
 <h3>Transcript</h3>
 

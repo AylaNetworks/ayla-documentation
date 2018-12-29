@@ -27,7 +27,7 @@ Use <code>sudo iwlist wlan0 scan</code> to get more detailed wireless informatio
 
 Use <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code> to add a wireless network. Put country first.
 
-<pre class="light">
+<pre>
 country=US
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
@@ -48,7 +48,7 @@ network={
 
 Previously, I added wiringPi to <code>&#126;/device_linux_public/app/appd</code>:
 
-<pre class="light">
+<pre>
 LIBS = ssl crypto curl jansson wiringPi
 </pre>
 
@@ -58,7 +58,7 @@ LIBS = ssl crypto curl jansson wiringPi
 
 Secure Shell Login:
 
-<pre class="light">
+<pre>
 $ ssh pi@192.168.1.3
 
 Linux rpi 4.14.62-v7+ #1134 SMP Tue Aug 14 17:10:10 BST 2018 armv7l
@@ -81,7 +81,7 @@ Copy <code>ayla_install.sh</code> and <code>devd.conf</code> to <code>/home/pi</
 
 
 
-<pre class="light">
+<pre>
 ls /home/pi/ayla
 bin
 config
@@ -92,7 +92,7 @@ lib
 
 Not-hidden Files:
 
-<pre class="light">
+<pre>
 $ ls -1
 ayla
 ayla_install.sh
@@ -116,7 +116,7 @@ wiringPi
 
 Hidden Files:
 
-<pre class="light">
+<pre>
 .bash_history
 .bash_logout
 .bashrc
@@ -142,7 +142,7 @@ Hidden Files:
 
 Daemon startup scripts reside in <code>/etc/init.d</code>. The daemons themselves can reside anywhere.
 
-<pre class="light">
+<pre>
 $ sudo systemctl stop devd
 $ sudo /lib/systemd/systemd-sysv-install disable devd
 $ sudo rm /etc/init.d/devd
@@ -157,7 +157,7 @@ $ sudo systemctl reset-failed
 
 # Commands
 
-<pre class="light">
+<pre>
 $ scp -rp pi@192.168.1.3:ayla/* ./ayla
 </pre>
 

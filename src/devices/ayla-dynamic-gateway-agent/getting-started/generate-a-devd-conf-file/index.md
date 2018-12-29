@@ -53,7 +53,7 @@ odm myOdmName
 1. Replace <code>myRegion</code> with US, EU, or CN.
 1. Replace <code>myOemId</code> with your oem id (see Ayla Dashboard Portal &gt; OEM Profile &gt; OEM ID).
 1. Replace <code>myOemModel</code> with the appropriate oem_model from the table:
-<table class="key-value-table">
+<table>
 <tr><th>Application Name</th><th>Short Name</th><th>oem_model</th></tr>
 <tr><td>Simulator Example</td><td>gatewayd</td><td>ggdemo</td></tr>
 <tr><td>Bluetooth Example</td><td>bt_gatewayd</td><td>linuxevb</td></tr>

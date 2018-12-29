@@ -4,7 +4,7 @@ title: Ayla User Service
 
 ### Regional Domains
 
-<table class="key-value-table vertical-middle">
+<table>
 <tr>
 <th>region</th>
 <th>deployment</th>

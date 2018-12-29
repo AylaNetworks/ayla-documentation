@@ -3,7 +3,7 @@ title: Industry Terms
 layout: glossary.html
 ---
 
-<div class="row hspace">
+<div class="row">
 <div class="col-md-6">
 <ul>
 <li><a href="https://developer.amazon.com/docs/custom-skills/implement-the-built-in-intents.html">Alexa Skills and Intents</a></li>
