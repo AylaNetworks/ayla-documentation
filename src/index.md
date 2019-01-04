@@ -4,14 +4,13 @@ layout: page-homepage.html
 ---
 
 <div class="row">
-  <div class="col-md-12" style="background:white;padding-top:12px;">
-    <p style="text-align: center;">[Overview](overview)</p>
+  <div class="col-md-3" style="background:ghostwhite;">
+    <div style="font-size: 90%;">
+      <h2 style="margin-bottom: 18px">[Overview](overview)</h2>
+    </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-md-4" style="background:ghostwhite; text-align: center;">
-    <div style="font-size: 90%; display: inline-block; text-align: left;">
+  <div class="col-md-3" style="background:ghostwhite; border-left:1px solid #e6e6ff;">
+    <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Device Agents](devices)</h2>
       <p>Ayla Wi-Fi Production Module</p>
       <p>Ayla Cellular Production Module</p>
@@ -23,8 +22,8 @@ layout: page-homepage.html
       <p>Ayla Static Gateway Agent</p>
     </div>
   </div>
-  <div class="col-md-4" style="background:ghostwhite;border-left:1px solid #e6e6ff;border-right:1px solid #e6e6ff;text-align: center;">
-    <div style="font-size: 90%; display: inline-block; text-align: left;">
+  <div class="col-md-3" style="background:ghostwhite;border-left:1px solid #e6e6ff;border-right:1px solid #e6e6ff;">
+    <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Cloud Services](cloud)</h2>
       <p>Ayla Application Service</p>
       <p>[Ayla Datastream Service](cloud/ayla-datastream-service)</p>
@@ -38,8 +37,8 @@ layout: page-homepage.html
       <p>Ayla Zigbee Service</p>
     </div>
   </div>
-  <div class="col-md-4" style="background:ghostwhite; text-align: center;">
-    <div style="font-size: 90%; display: inline-block; text-align: left;">
+  <div class="col-md-3" style="background:ghostwhite;">
+    <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Applications](apps)</h2>
       <p>Ayla Agile Mobile App Platform (AMAP)</p>
       <p>Ayla Dashboard Portal</p>

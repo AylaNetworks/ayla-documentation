@@ -6,7 +6,7 @@ b: block
 
 This tutorial shows you how to control a red button with your version of the host application using a new property called Red_button which you will add to the Host Application and to the digital twin in the Ayla Cloud.
 
-# Wire and test the Red Button
+## Wire and test the Red Button
 
 ### Wire the Red Button
 
@@ -57,7 +57,7 @@ $ gcc -Wall -o red_button_isr red_button_isr.c -lwiringPi
 </pre>
 1. Press Ctrl-C to stop the program.
 
-# Modify appd to control the LED
+## Modify appd to control the LED
 
 ### Modify main.c
 
@@ -136,7 +136,6 @@ Sep  6 06:13:55 rpi appd: [info-app] appd_prop_confirm_cb: output = 8 send at 15
 <pre>
 Sep  6 06:17:19 rpi appd: [debug-app] data_recv: {"cmd":{"proto":"data","id":9,"op":"nak","args":[{"err":"unknown_prop","name":"Red_button","dests":1,"op":"prop_send"}]}}
 </pre>
-
 
 ### Create the Red_button property in the cloud
 

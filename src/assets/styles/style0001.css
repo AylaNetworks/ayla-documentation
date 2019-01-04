@@ -1,12 +1,6 @@
-/******************************************
- 
-******************************************/
-
-body {background: #ffffff;}
-
+/* elements */
 p, li, dd {font-size: 1.0em; font-weight: 400; line-height: 1.5em;}
-
-p, li, #sidenav a {color: #1a1a1a;}
+p, li {color: #1a1a1a;}
 
 h1 {font-size: 120%; margin-top: 24px; font-weight: bold; color: black;}
 h2 {font-size: 110%; margin-top: 24px; font-weight: bold; color: #396a93;}
@@ -19,17 +13,11 @@ a, a:hover, a:focus {text-decoration: none;}
 a {color: DodgerBlue;}
 a:hover {color: #0059b3;}
 
-/******************************************
- Top Menu
-******************************************/
-
+/* Top Menu */
 .navbar {padding: 10px 10px 10px 5px; margin-bottom: 0px;}
 .container-fluid {padding-right: 0px; padding-left: 0px;}
 
-/******************************************
- #breadcrumbs
-******************************************/
-
+/* breadcrumbs */
 #breadcrumbs {
   height: 40px;
   line-height: 40px;
@@ -46,14 +34,11 @@ a:hover {color: #0059b3;}
   z-index:100;
   font-size: 90%;
 }
-
 #breadcrumbs a {color: #404040;}
 #breadcrumbs a:hover {color: red;}
 
-/******************************************
- #sidenav
-******************************************/
-
+/* sidenav */
+#sidenav a {color: #1a1a1a;}
 #sidenav a:hover {color: #ff4d4d;}
 #sidenav a.active {color: red;}
 
@@ -77,15 +62,12 @@ a:hover {color: #0059b3;}
 }
 
 #sidenav ul {padding-left: 0px; list-style-type: none;}
-
 #sidenav ol {padding-left: 3px;}
 #sidenav ol > li {line-height: 1.8em;}
-
 #sidenav ul > li > a.book {font-weight: bold;}
+#sidenav ul > li > a.chapter {font-weight: bold;}
 #sidenav ul > li > a:hover {cursor: pointer;}
-
 #sidenav ul > li > ol {padding-left: 3px;}
-
 #sidenav ul > li {margin-bottom: 9px;}
 #sidenav ul > li > ol > li {line-height: 1.8em;}
 
@@ -94,17 +76,12 @@ a:hover {color: #0059b3;}
 #sidenav ul > li > img {width: 18px; display: none;}
 #sidenav ul > li:hover img.toggle {display: block;}
 #sidenav ul > li > img:hover {cursor: pointer;}
+#sidenav label {margin-bottom: .2rem;}
 
+/* footer */
 .footer span {font-size: 80% !important; color: gray; margin-top: 16px;}
 
-/******************************************
- homepage
-******************************************/
-
-/******************************************
- #content
-******************************************/
-
+/* content */
 #content {
   min-height: calc(100% - 100px);
   transition: all 0.3s;
@@ -114,60 +91,11 @@ a:hover {color: #0059b3;}
 }
 
 #content.active {width: 100%;}
-
 #content li {margin-bottom: 6px;}
-
 #content dd ul li {margin-bottom: 0px;}
-
 #content label {font-weight: bold; font-size: 90%;}
-
-span.a {
-    display: inline-block;
-    width: 180px;
-    padding: 5px;
-    border: 1px solid blue;    
-    background-color: yellow; 
-}
-
 #content-title {padding-top: 9px;}
 #content-title span {font-weight: bold; font-size: 125%;}
-
-/******************************************
- Look at again
-******************************************/
-
-.nav-icon {padding-right: 3px; padding-bottom: 5px; width: 20px;}
-
-.mr-sm-2, .mx-sm-2 {margin-right: 0rem!important;}
-
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px white inset;
-}
-
-#login-form, #logout-form {padding: 1.0rem 1.0rem 0 1.0rem;}
-#login-required {font-size: 85%;}
-#controls label {font-weight: bold; font-size:85%;}
-.terminal-font {font-size:95%; font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;}
-.custom-control-label {font-weight: normal !important;}
-#sidenav label {margin-bottom: .2rem;}
-.tab-pane {padding-top: 9px;}
-.tab-content label {margin-top: 12px; margin-bottom: 3px;}
-
-.collapse-label {margin: 12px 0 3px 0;}
-.collapse-label a {font-size:85%; }
-#set-property-value a {font-size:85%;}
-#save-property-value a {font-size:85%;}
-/*#devices-page input:disabled {border-color:#0d0d0d; background: #0d0d0d; color: white;}*/
-#devices-page input:disabled {border-color:#595959; background:#595959; color: white;}
-/*.sidenav-widget {background:white;padding:9px 6px 0 6px;}*/
-.sidenav-widget label {color:steelblue; !important;font-weight:normal !important;}
-.form-group {margin-bottom: .5rem;}
-
-#toc-list {margin-top: 6px;}
-#toc-list li {font-size: 90%;}
-
-.target {position:relative;}
-.target a {position:absolute; top:-110px;}
 
 /* tables */
 table {font-size: 90%; line-height: 20px; margin-bottom: 16px;}
@@ -178,10 +106,13 @@ th {background: white !important; color: black !important; font-weight: bold !im
 td {color: black;}
 table th, table td {vertical-align: top !important;}
 
+li table {margin-top: 12px;}
+
 /* images and videos */
 #content img {display: block; margin: 16px 0px 16px 24px;}
 #content li img {display: block; margin: 16px 0px 16px 0px;}
 #content iframe {display: block; margin: 16px 0px 16px 24px;}
+#content .img-border{border: 1px solid lightgray;}
 
 /* code snippets */
 #content pre {
@@ -196,13 +127,10 @@ table th, table td {vertical-align: top !important;}
 #content li pre {margin-top: 12px;}
 #content code {color: #b36200;}
 
-/******************************************
-media
-******************************************/
-
+/* media */
 @media (min-width: 1200px) {
   #content.page-full-width {width: 100%; padding: 10px 15%;}
-  #content.page-homepage {width: 100%; padding: 10px 10%;}
+  #content.page-homepage {width: 100%; padding: 10px 5%;}
 }
 
 @media (max-width: 1200px) {

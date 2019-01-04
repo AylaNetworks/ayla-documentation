@@ -8,7 +8,7 @@ This tutorial shows you how to control a blue button with your version of the ho
 
 <img src="../../guide/tests/aura-013.jpg" width="300">
 
-# Wire and test the Blue Button
+## Wire and test the Blue Button
 
 ### Wire the Blue Button
 
@@ -110,7 +110,7 @@ int main(void) {
 }
 </pre>
 
-# Modify appd to respond to the button
+## Modify appd to respond to the button
 
 ### Modify main.c
 

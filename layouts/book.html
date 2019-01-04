@@ -1,0 +1,29 @@
+{{> top }}
+
+<!-- BEGIN SIDENAV -->
+<nav id="sidenav">
+<ul>
+
+<li><a id="sample-book-getting-started" class="chapter" href="/sample-book/getting-started">Getting Started</a>
+<img class="toggle" src="/assets/images/chevron-{{a}}-24.png">
+<ol style="display:{{a}};">
+<li><a id="sample-book-getting-started-introduction" href="/sample-book/getting-started/introduction/">Introduction</a></li>
+<li><a id="sample-book-getting-started-installation" href="/sample-book/getting-started/installation/">Installation</a></li>
+</ol>
+</li>
+
+<li><a id="sample-book-customization" class="chapter" href="/sample-book/customization">Customization</a></li>
+
+<li><a id="sample-book-reference" class="chapter" href="/sample-book/reference">Reference</a>
+<img class="toggle" src="/assets/images/chevron-{{c}}-24.png">
+<ol style="display:{{c}};">
+<li><a id="sample-book-reference-configuration" href="/sample-book/reference/configuration/">Configuration</a></li>
+<li><a id="sample-book-reference-interface" href="/sample-book/reference/interface/">Interface</a></li>
+</ol>
+</li>
+
+</ul>
+</nav>
+<!-- END SIDENAV -->
+
+{{> bottom pageType='page-with-sidebar' }}

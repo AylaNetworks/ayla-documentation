@@ -8,7 +8,7 @@ This tutorial shows you how to control a green LED with your version of the host
 
 <img src="../../guide/tests/aura-013.jpg" width="300">
 
-# Wire and test a Green LED
+## Wire and test a Green LED
 
 ### Wire the Green LED
 
@@ -83,7 +83,7 @@ $ gcc -Wall -o green_led green_led.c -lwiringPi
 </pre>
 1. Press Ctrl-C to stop the program.
 
-# Modify appd to control the LED
+## Modify appd to control the LED
 
 Recall that appd is composed of three files, main.c, appd.c, and appd.h, which reside in <code>/home/pi/device_linux_public/app/appd</code> along with Makefile. You will modify each of these files.
 
