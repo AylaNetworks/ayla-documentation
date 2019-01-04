@@ -5,4 +5,4 @@ layout: book.html
 
 <img src="book-summary-page.png" width="350">
 
-This site consists of books like this Sample Book which is composed of a <code>Book Summary Page</code>, two or more <code>Chapter Summary Pages</code>, and zero or more <code>Content Pages</code>. 
+This is the <code>Book Summary Page</code> of the Sample Book. All books have a summary page. Click [Getting Started](getting-started) to continue. To see the source content for this Sample Book, visit the [ayla-documentation](https://github.com/AylaNetworks/ayla-documentation/tree/master/src/sample-book) repository.
