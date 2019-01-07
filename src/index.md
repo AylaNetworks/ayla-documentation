@@ -3,7 +3,7 @@ title: Ayla Documentation
 layout: page-homepage.html
 ---
 
-<div class="row">
+<div class="row" style="margin-top:18px;">
   <div class="col-md-3" style="background:ghostwhite;">
     <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Overview](overview)</h2>
