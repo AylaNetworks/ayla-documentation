@@ -4,7 +4,7 @@ layout: authoring-guide.html
 a: block
 ---
 
-Content on this site is organized into <code>Books</code>. A book has two views as demonstrated by our Sample Book:
+Content is organized into <code>Books</code>. A book has two views as demonstrated by our Sample Book:
 
 1. The [Published view](/sample-book) is what customers, partners, and colleagues see.
 1. The [Repository view](https://github.com/AylaNetworks/ayla-documentation/tree/master/src/sample-book) is where your source files live. Note the following:
