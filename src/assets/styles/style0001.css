@@ -91,8 +91,7 @@ a:hover {color: #0059b3;}
 }
 
 #content.active {width: 100%;}
-#content li {margin-bottom: 6px;}
-#content dd ul li {margin-bottom: 0px;}
+#content li {margin-bottom: 6px; margin-top: 6px;}
 #content label {font-weight: bold; font-size: 90%;}
 #content-title {padding-top: 9px;}
 #content-title span {font-weight: bold; font-size: 125%;}
