@@ -17,10 +17,11 @@ This tutorial shows you how to control a red button with your version of the hos
 
 ### Test with red_button_isr.c
 
-1. Create <code>&#126;/ayla_tests/red_button_isr.c</code> with the following code:
+<ol>
+<li>Create <code>&#126;/ayla_tests/red_button_isr.c</code> with the following code:
 <pre>
-#include <stdio.h>
-#include <wiringPi.h>
+#include &lt;stdio.h&gt;
+#include &lt;wiringPi.h&gt;
 #define GREEN_LED 1
 #define RED_BUTTON 26
 
@@ -47,15 +48,19 @@ int main (void) {
 }
 </pre>
 Use <code>gpio readall</code> to show the schemes for specifying a GPIO pin. We are using the wPi scheme where wPi 26 == BCM 12.
-1. Build the program:
+</li>
+<li>Build the program:
 <pre>
 $ gcc -Wall -o red_button_isr red_button_isr.c -lwiringPi
 </pre>
-1. Run the program to verify that the button can control the LED.
+</li>
+<li>Run the program to verify that the button can control the LED.
 <pre>
 ./red_button_isr
 </pre>
-1. Press Ctrl-C to stop the program.
+</li>
+<li>Press Ctrl-C to stop the program.</li>
+</ol>
 
 ## Modify appd to control the LED
 

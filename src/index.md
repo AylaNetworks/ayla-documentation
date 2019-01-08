@@ -55,5 +55,7 @@ layout: page-homepage.html
 <span><a href="system-status">System Status</a></span>
 <span>~</span>
 <span><a href="release-notes">Release Notes</a></span>
+<span>~</span>
+<span><a href="authoring-guide">Authoring Guide</a></span>
 </div>
 </div>

@@ -11,4 +11,3 @@ All markdown files are named <code>index.md</code>.
 
 Image files (almost always) reside in the same directory as the index.md file on which they appear. See the Images page for the exception.
 <img src="directory-file-page.png" width="700">
-
