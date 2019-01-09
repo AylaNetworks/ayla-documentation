@@ -57,5 +57,7 @@ layout: page-homepage.html
 <span><a href="release-notes">Release Notes</a></span>
 <span>~</span>
 <span><a href="authoring-guide">Authoring Guide</a></span>
+<span>~</span>
+<span><a href="https://analytics.google.com">Google Analytics</a></span>
 </div>
 </div>

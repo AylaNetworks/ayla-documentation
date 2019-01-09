@@ -9,6 +9,10 @@ layout: page-full-width.html
 <th>Description</th>
 </tr>
 <tr>
+<td>2019-01-08</td>
+<td>Added [Authoring Guide](/authoring-guide/).</td>
+</tr>
+<tr>
 <td>2018-12-12</td>
 <td>Added [Ayla Dynamic Gateway Agent](/devices/ayla-dynamic-gateway-agent/).</td>
 </tr>
