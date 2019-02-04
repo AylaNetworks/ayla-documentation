@@ -2,5 +2,7 @@
 title: Ayla Labs
 ---
 
-<p><a href="ayla-proxy-server">Ayla Proxy Server</a></p>
+[Ayla Proxy Server](ayla-proxy-server)
+
+[Raspberry Pi](raspberry-pi)
 

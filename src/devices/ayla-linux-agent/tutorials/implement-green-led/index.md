@@ -12,17 +12,21 @@ This tutorial shows you how to control a green LED with your version of the host
 
 ### Wire the Green LED
 
-1. Shutdown your RPi.
-1. Wire the GPIO pins on your RPi to a breadboard, adding a green LED and a 220 Ω resister as seen in the diagram below.
+<ol>
+<li>Shutdown your RPi.</li>
+<li>Wire the GPIO pins on your RPi to a breadboard, adding a green LED and a 220 Ω resister as seen in the diagram below.
 <img src="pinout.svg" width="550">
 We used a breadboard, jumper wires, and an LED from an [Elegoo Super Starter Kit for Arduino](https://www.newegg.com/Product/Product.aspx?Item=9SIABFW5178264&ignorebbr=1).
-1. Restart your RPi.
+</li>
+<li>Restart your RPi.</li>
+</ol>
 
 ### Test with green_led.py
 
-1. ssh to your RPi.
-1. Create a directory called <code>/home/pi/ayla_tests</code>.
-1. Create a text file in this directory called <code>green_led.py</code> with the following code:
+<ol>
+<li>ssh to your RPi.</li>
+<li>Create a directory called <code>/home/pi/ayla_tests</code>.</li>
+<li>Create a text file in this directory called <code>green_led.py</code> with the following code:
 <pre>
 import RPi.GPIO as GPIO
 import time
@@ -35,25 +39,32 @@ while True:
   GPIO.output(18, False)
   time.sleep(1)
 </pre>
-1. Ensure the new file is executable:
+</li>
+<li>Ensure the new file is executable:
 <pre>
 $ chmod +x green_led.py
 </pre>
-1. Run the python program to verify that your wiring is correct:
+</li>
+<li>Run the python program to verify that your wiring is correct:
 <pre>
-python green_led.py</pre>
+python green_led.py
+</pre>
 The green LED should blink.
-1. Press Ctrl-C to stop the program.
+</li>
+<li>Press Ctrl-C to stop the program.</li>
+</ol>
 
 ### Test with green_led.c
 
-1. Install Wiring Pi on your RPi.
-1. Execute the following command to view a table showing the various schemes for specifying a GPIO pin:
+<ol>
+<li>Install Wiring Pi on your RPi.</li>
+<li>Execute the following command to view a table showing the various schemes for specifying a GPIO pin:
 <pre>
 $ gpio readall
 </pre>
 The schemes are BCM, wPi, Name, and Physical. We are using the wPi scheme where wPi 1 == BCM 18.
-1. Create a text file called <code>&#126;/ayla_tests/green_led.c</code> with the following code:
+</li>
+<li>Create a text file called <code>&#126;/ayla_tests/green_led.c</code> with the following code:
 <pre>
 #include &lt;stdio.h&gt;
 #include &lt;wiringPi.h&gt;
@@ -73,15 +84,19 @@ int main(void) {
   return 0;
 }
 </pre>
-1. Build the program:
+</li>
+<li>Build the program:
 <pre>
 $ gcc -Wall -o green_led green_led.c -lwiringPi
 </pre>
-1. Run the program to verify that you can control the LED from a program written in C. The LED should blink.
+</li>
+<li>Run the program to verify that you can control the LED from a program written in C. The LED should blink.
 <pre>
 ./green_led
 </pre>
-1. Press Ctrl-C to stop the program.
+</li>
+<li>Press Ctrl-C to stop the program.</li>
+</ol>
 
 ## Modify appd to control the LED
 
@@ -89,44 +104,56 @@ Recall that appd is composed of three files, main.c, appd.c, and appd.h, which r
 
 ### Modify Makefile
 
-1. Open <code>&#126;/device_linux_public/app/appd/Makefile</code> for editing.
-1. Scroll to the section called "List of libraries to link."
-1. Add wiringPi (with an uppercase 'P').
+<ol>
+<li>Open <code>&#126;/device_linux_public/app/appd/Makefile</code> for editing.</li>
+<li>Scroll to the section called "List of libraries to link."</li>
+<li>Add wiringPi (with an uppercase 'P').
 <pre>
 LIBS = ssl crypto curl jansson wiringPi
 </pre>
-1. Save the file.
+</li>
+<li>Save the file.</li>
+</ol>
 
 ### Modify main.c
 
-1. Open <code>&#126;/device_linux_public/app/appd/main.c</code> for editing.
-1. Include the wiringPi.h header file:
+<ol>
+<li>Open <code>&#126;/device_linux_public/app/appd/main.c</code> for editing.</li>
+<li>Include the wiringPi.h header file:
 <pre>
-#include <wiringPi.h>
+#include &lt;wiringPi.h&gt;
 </pre>
-1. Scroll to the main function, and add the following code just before the call to app_run:
+</li>
+<li>Scroll to the main function, and add the following code just before the call to app_run:
 <pre>
 wiringPiSetup();
 </pre>
-1. Save the file.
+</li>
+<li>Save the file.</li>
+</ol>
 
 ### Modify appd.h
 
-1. Open <code>&#126;/device_linux_public/app/appd/appd.h</code> for editing.
-1. Add the following:
+<ol>
+<li>Open <code>&#126;/device_linux_public/app/appd/appd.h</code> for editing.</li>
+<li>Add the following:
 <pre>
 #define GREEN_LED 1
 </pre>
-1. Save the file.
+</li>
+<li>Save the file.</li>
+</ol>
 
 ### Modify appd.c
 
-1. Open <code>&#126;/device_linux_public/app/appd/appd.c</code> for editing.
-1. Include the wiringPi.h header file:
+<ol>
+<li>Open <code>&#126;/device_linux_public/app/appd/appd.c</code> for editing.</li>
+<li>Include the wiringPi.h header file:
 <pre>
-#include <wiringPi.h>
+#include &lt;wiringPi.h&gt;
 </pre>
-1. Scroll to the <code>app_prop_table</code>, and find the entry for the Green_LED, and modify the set field:
+</li>
+<li>Scroll to the <code>app_prop_table</code>, and find the entry for the Green_LED, and modify the set field:
 <pre>
 {
   .name = "Green_LED",
@@ -138,7 +165,8 @@ wiringPiSetup();
   .ads_failure_cb = appd_prop_ads_failure_cb,
 },
 </pre>
-1. Add the following function to the file. Do so before <code>app_prop_table</code>:
+</li>
+<li>Add the following function to the file. Do so before <code>app_prop_table</code>:
 <pre>
 static int appd_green_led_set(struct prop \*prop, const void \*val, size_t len, const struct op_args \*args) {
   pinMode(GREEN_LED, OUTPUT);
@@ -154,7 +182,9 @@ static int appd_green_led_set(struct prop \*prop, const void \*val, size_t len, 
   return 0;
 }
 </pre>
-1. Save the file.
+</li>
+<li>Save the file.</li>
+</ol>
 
 ### Make, run, and test appd
 

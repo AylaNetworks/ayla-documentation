@@ -3,12 +3,10 @@ title: Ayla Linux Agent
 layout: ayla-linux-agent.html
 ---
 
-The Ayla Linux Agent (devd in the diagram) connects Linux-based applications to the Ayla Cloud by providing connectivity, security, and other services. It is part of the Ayla Device Platform for Linux.
+The Ayla Linux Agent (devd) securely connects a Linux-based host application (appd) to the Ayla Cloud. Both can run as daemons:
 
 <img src="ayla-linux-agent.png" width="320">
 
-The [Guide](/devices/ayla-linux-agent/guide) shows you how to install the Ayla Device Platform for Linux on a Raspberry Pi, register the Ayla Linux Agent with the Ayla Cloud, and test the agent with an example host application called appd.
+In the diagram, <code>appd</code> is the sample host application (supplied by Ayla) running on Raspian. Programmers can modify <code>appd</code> to control peripherals represented by the LED and buttons on the breadboard. They can also create, in the Ayla Cloud, a digital twin representing the LED and the buttons as properties. Then, by interfacing with <code>devd</code> via sockets, <code>appd</code> keeps the digital twin and the peripherals in sync, sending and receiving property updates. The Ayla Linux Agent is part of the [Ayla Device Platform for Linux](https://github.com/AylaNetworks/device_linux_public). 
 
-The [Tutorials](/devices/ayla-linux-agent/tutorials) help you explore appd in more detail. They help you set up a development environment, understand appd architecture, modify appd to control an LED and a button, add a property, and perform Over-The-Air (OTA) updates.
-
-The [Reference](/devices/ayla-linux-agent/reference) provides API documentation and background information.
+Click [Guide](guide) to get started connecting a Linux device to the Ayla Cloud.

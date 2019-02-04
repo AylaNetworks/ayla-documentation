@@ -97,7 +97,8 @@ The newly built utility is in <code>&#126;/device_linux_gw_public/build/native/u
 
 ### Run config_gen to generate devd.conf
 
-1. From <code>/home/pi</code>, run config_gen to view command-line options:
+<ol>
+<li>From <code>/home/pi</code>, run config_gen to view command-line options:
 <pre>
 $ ./device_linux_gw_public/build/native/utils/config_gen
 Usage: config_gen -d <dsn_path> -i <oem_info_file> [OPTIONS]
@@ -113,12 +114,14 @@ Usage: config_gen -d <dsn_path> -i <oem_info_file> [OPTIONS]
     config_gen -d dsns/AC000W000123456.xml -i ./oem_info -m 112233445566 -o ./ayla_config -v 2
     config_gen -n -d dsns/AC000W000123457.xml -i ./oem_info
 </pre>
-1. Run config_gen:
+</li>
+<li>Run config_gen:
 <pre>
 $ ./device_linux_gw_public/build/native/utils/config_gen -d ./AC000W123456789.xml -i ./oem_info -m b411ab4ce220
 </pre>
-1. Rename the resulting <code>AC000W123456789.conf</code> file to <code>devd.conf</code>, and leave it in <code>/home/pi</code>.
-1. Open <code>devd.conf</code>. It should resemble this:
+</li>
+<li>Rename the resulting <code>AC000W123456789.conf</code> file to <code>devd.conf</code>, and leave it in <code>/home/pi</code>.</li>
+<li>Open <code>devd.conf</code>. It should resemble this:
 <pre>
 {
   "config": {
@@ -140,7 +143,8 @@ $ ./device_linux_gw_public/build/native/utils/config_gen -d ./AC000W123456789.xm
   }
 }
 </pre>
-1. Add <code>,"server": {"default": 1}</code> to the <code>client</code> section as indicated in red below, and save. Don't forget the initial comma. This addition is important for initial prototyping, but must be removed when the gateway is deployed on your production platform.
+</li>
+<li>Add <code>,"server": {"default": 1}</code> to the <code>client</code> section as indicated in red below, and save. Don't forget the initial comma. This addition is important for initial prototyping, but must be removed when the gateway is deployed on your production platform.
 <pre>
 {
   "config": {
@@ -165,6 +169,8 @@ $ ./device_linux_gw_public/build/native/utils/config_gen -d ./AC000W123456789.xm
   }
 }
 </pre>
+</li>
+</ol>
 
 ### Purpose of devd.conf
 

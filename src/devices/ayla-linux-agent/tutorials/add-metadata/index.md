@@ -18,11 +18,13 @@ Limits, defined in <code>&#126;/device_linux_public/lib/app/props_internal.h.</c
 
 Here are the directions for implementing metadata:
 
-1. Browse to the Developer Portal.
-1. Click View My Devices &gt; Raspberry Pi &gt; Blue_button &gt; Datapoints, and note the absence of Metadata.
+<ol>
+<li>Browse to the Developer Portal.</li>
+<li>Click View My Devices &gt; Raspberry Pi &gt; Blue_button &gt; Datapoints, and note the absence of Metadata.
 <img src="dev-portal-010.jpg" width="550">
-1. Open <code>&#126;/device_linux_public/app/appd/appd.c</code> for editing.
-1. Scroll to the <code>blue_button_isr</code> function, and modify it like this:
+</li>
+<li>Open <code>&#126;/device_linux_public/app/appd/appd.c</code> for editing.</li>
+<li>Scroll to the <code>blue_button_isr</code> function, and modify it like this:
 <pre>
 void blue_button_isr(void) {
   struct op_options opts = {.confirm = 1};
@@ -40,9 +42,10 @@ void blue_button_isr(void) {
   prop_metadata_free(metadata);
 }
 </pre>
-1. Make and run the host app in debug mode.
-1. Click the Blue Button on your breadboard.
-1. View the output in the debug terminal:
+</li>
+<li>Make and run the host app in debug mode.</li>
+<li>Click the Blue Button on your breadboard.</li>
+<li>View the output in the debug terminal:
 <pre>
 2018-09-12T16:46:21.950 [DBG] appd::prop_val_send()  Blue_button
 2018-09-12T16:46:21.950 [DBG] appd::data_send_json()  {"cmd":{"proto":"data","id":8,"op":"prop_send","opts":{"confirm":true},"args":[{"property":{"name":"Blue_button","base_type":"boolean","value":1,"metadata":{"buttonSize":"small","buttonDistributer":"Elego"},"dev_time_ms":1536770781950}}]}}
@@ -58,6 +61,9 @@ void blue_button_isr(void) {
 2018-09-12T16:46:22.386 [DBG] appd::data_recv()  {"cmd":{"proto":"data","id":9,"op":"confirm_true"}}
 </pre>
 Note the metadata: <code>"metadata":{"buttonSize":"small","buttonDistributer":"Elego"}</code>.
-1. View the Blue_button property in the Developer Portal:
+</li>
+<li>View the Blue_button property in the Developer Portal:
 <img src="dev-portal-011.jpg" width="550">
-1. Note the metadata. Can you modify the blue_button_isr function so that metadata is sent for press events, but not release events?
+</li>
+<li>Note the metadata. Can you modify the blue_button_isr function so that metadata is sent for press events, but not release events?</li>
+</ol>

@@ -1,0 +1,8 @@
+---
+title: Ayla IQ
+layout: glossary.html
+---
+
+Across the world, millions of commercially and residentially deployed equipment routinely fail. These include HVAC systems and gas/water systems in buildings, as well as coffee brewers and other home appliances in residences. Research has shown that nearly 78% of the time, product returns are determined to be ‘no fault found’, and in 68% of cases the service event didn’t need a service technician. This results in significant inefficiencies and operating costs that adversely impact financial and operating performance of manufacturers and service organizations to the tune of hundreds of millions of dollars annually.
+
+AylaIQ is a turnkey solution tailored for both product manufacturers and service enterprises to realize rapid time to IoT value. The solution, which comes in a simple and easy to deploy dongle form integrated with a cloud service and dashboard application, is designed for the ubiquitous RS-232/RS-485 serial port communication standard that is common across various types of residential and commercial equipment. Unlike traditional ‘greenfield’ devices, with AylaIQ there are no long lead times to develop and connect. Additionally there is no device level engineering effort needed – AylaIQ works out of the box, connects directly into the serial port and uses Wi-fi or LPWAN Cellular to stream device data to the cloud for analysis and insights on usage and performance.

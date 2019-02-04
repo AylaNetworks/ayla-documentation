@@ -12,15 +12,19 @@ This tutorial shows you how to control a blue button with your version of the ho
 
 ### Wire the Blue Button
 
-1. Shutdown your RPi.
-1. Wire the GPIO pins on your RPi to a breadboard, adding a button and a 10K Ω resister as seen in the diagram below. Whether or not the button is blue, we will refer to it as the blue button.
+<ol>
+<li>Shutdown your RPi.</li>
+<li>Wire the GPIO pins on your RPi to a breadboard, adding a button and a 10K Ω resister as seen in the diagram below. Whether or not the button is blue, we will refer to it as the blue button.
 <img src="pinout.svg" width="550">
-1. Restart your RPi.
+</li>
+<li>Restart your RPi.</li>
+</ol>
 
 ### Test with blue_button.py
 
-1. ssh to your RPi.
-1. Create <code>&#126;/ayla_tests/blue_button.py</code> with the following code:
+<ol>
+<li>ssh to your RPi.</li>
+<li>Create <code>&#126;/ayla_tests/blue_button.py</code> with the following code:
 <pre>
 import RPi.GPIO as GPIO
 import time
@@ -34,20 +38,25 @@ while True:
   else:
     GPIO.output(18, True)
 </pre>
-1. Ensure the new file is executable:
+</li>
+<li>Ensure the new file is executable:
 <pre>
 $ chmod +x blue_button.py
 </pre>
-1. Run the python program to verify that your wiring is correct:
+</li>
+<li>Run the python program to verify that your wiring is correct:
 <pre>
 python blue_button.py
 </pre>
 The button should turn the Green LED on/off.
-1. Press Ctrl-C to stop the program.
+</li>
+<li>Press Ctrl-C to stop the program.</li>
+</ol>
 
 ### Test with blue_button_poll.c
 
-1. Create <code>&#126;/ayla_tests/blue_button_poll.c</code> with the following code:
+<ol>
+<li>Create <code>&#126;/ayla_tests/blue_button_poll.c</code> with the following code:
 <pre>
 #include &lt;stdio.h&gt;
 #include &lt;wiringPi.h&gt;
@@ -60,23 +69,27 @@ int main(void) {
   pinMode(BLUE_BUTTON, INPUT);
   for(;;) {
     if(digitalRead(BLUE_BUTTON) == LOW)
-      digitalWrite(GREEN_LED, HIGH);
-    else
-      digitalWrite(GREEN_LED,  LOW);
+    digitalWrite(GREEN_LED, HIGH);
+  else
+    digitalWrite(GREEN_LED,  LOW);
   }
   return 0;
 }
 </pre>
 Use <code>gpio readall</code> to show the schemes for specifying a GPIO pin. We are using the wPi scheme where wPi 6 == BCM 25.
-1. Build the program:
+</li>
+<li>Build the program:
 <pre>
 $ gcc -Wall -o blue_button_poll blue_button_poll.c -lwiringPi
 </pre>
-1. Run the program to verify that the button controls the LED.
+</li>
+<li>Run the program to verify that the button controls the LED.
 <pre>
 ./blue_button_poll
 </pre>
-1. Press Ctrl-C to stop the program.
+</li>
+<li>Press Ctrl-C to stop the program.</li>
+</ol>
 
 ### Test with blue_button_isr.c
 
@@ -114,28 +127,35 @@ int main(void) {
 
 ### Modify main.c
 
-1. Open <code>&#126;/device_linux_public/app/appd/main.c</code> for editing.
-1. Scroll to the main function, and add the following just after <code>wiringPiSetup()</code>:
+<ol>
+<li>Open <code>&#126;/device_linux_public/app/appd/main.c</code> for editing.</li>
+<li>Scroll to the main function, and add the following just after <code>wiringPiSetup()</code>:
 <pre>
 pinMode(BLUE_BUTTON, INPUT);
 wiringPiISR(BLUE_BUTTON, INT_EDGE_BOTH, &blue_button_isr);
 </pre>
-1. Save the file.
+</li>
+<li>Save the file.</li>
+</ol>
 
 ### Modify appd.h
 
-1. Open <code>&#126;/device_linux_public/app/appd/appd.h</code> for editing.
-1. Add the following just after <code>#define GREEN_LED 1</code>:
+<ol>
+<li>Open <code>&#126;/device_linux_public/app/appd/appd.h</code> for editing.</li>
+<li>Add the following just after <code>#define GREEN_LED 1</code>:
 <pre>
 #define BLUE_BUTTON 6
 void blue_button_isr(void);
 </pre>
-1. Save the file.
+</li>
+<li>Save the file.</li>
+</ol>
 
 ### Modify appd.c
 
-1. Open <code>&#126;/device_linux_public/app/appd/appd.c</code> for editing.
-1. Add the following function (anywhere is fine):
+<ol>
+<li>Open <code>&#126;/device_linux_public/app/appd/appd.c</code> for editing.</li>
+<li>Add the following function (anywhere is fine):
 <pre>
 void blue_button_isr(void) {
   if(digitalRead(BLUE_BUTTON) == LOW) {blue_button = 1;}
@@ -143,7 +163,9 @@ void blue_button_isr(void) {
   prop_send_by_name("Blue_button");
 }
 </pre>
-1. Save the file.
+</li>
+<li>Save the file.</li>
+</ol>
 
 ### Make, run, and test appd
 

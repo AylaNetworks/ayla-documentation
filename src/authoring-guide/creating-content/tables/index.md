@@ -34,6 +34,6 @@ Or, you can make it with HTML:
 &lt;/table&gt;
 </pre>
 
-Markdown is fine for the vast majority of tables which require a header row.
+Markdown is fine for the vast majority of tables requiring a header row.
 
-See [Lists](../lists) to learn how to intersperse tables in lists.
+See [Lists](../../lists) to learn how to interject tables into lists.

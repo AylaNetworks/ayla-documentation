@@ -10,10 +10,13 @@ This tutorial shows you how to control a red button with your version of the hos
 
 ### Wire the Red Button
 
-1. Shutdown your RPi.
-1. Wire the GPIO pins on your RPi to a breadboard, adding another button and another 10K Ω resister as seen in the diagram below. Whether or not the button is red, we will refer to it as the red button.
+<ol>
+<li>Shutdown your RPi.</li>
+<li>Wire the GPIO pins on your RPi to a breadboard, adding another button and another 10K Ω resister as seen in the diagram below. Whether or not the button is red, we will refer to it as the red button.
 <img src="pinout.svg" width="550">
-1. Restart your RPi.
+</li>
+<li>Restart your RPi.</li>
+</ol>
 
 ### Test with red_button_isr.c
 
@@ -66,34 +69,40 @@ $ gcc -Wall -o red_button_isr red_button_isr.c -lwiringPi
 
 ### Modify main.c
 
-1. Open <code>&#126;/device_linux_public/app/appd/main.c</code> for editing.
-1. Scroll to the main function, and add the following:</code>:
+<ol>
+<li>Open <code>&#126;/device_linux_public/app/appd/main.c</code> for editing.</li>
+<li>Scroll to the main function, and add the following:</code>:
 <pre>
 pinMode(RED_BUTTON, INPUT);
 wiringPiISR(RED_BUTTON, INT_EDGE_BOTH, &red_button_isr);
 </pre>
-
-1. Save the file.
+</li>
+<li>Save the file.</li>
+</ol>
 
 ### Modify appd.h
 
-1. Open <code>&#126;/device_linux_public/app/appd/appd.h</code> for editing.
-1. Add the following:</code>:
+<ol>
+<li>Open <code>&#126;/device_linux_public/app/appd/appd.h</code> for editing.</li>
+<li>Add the following:</code>:
 <pre>
 #define RED_BUTTON 26
 void red_button_isr(void);
 </pre>
-
-1. Save the file.
+</li>
+<li>Save the file.</li>
+</ol>
 
 ### Modify appd.c
 
-1. Open <code>&#126;/device_linux_public/app/appd/appd.c</code> for editing.
-1. Add the following variable:
+<ol>
+<li>Open <code>&#126;/device_linux_public/app/appd/appd.c</code> for editing.</li>
+<li>Add the following variable:
 <pre>
 static u8 red_button;
 </pre>
-1. Scroll to <code>appd_prop_table</code>, and add the following prop struct after the Blue_button entry:
+</li>
+<li>Scroll to <code>appd_prop_table</code>, and add the following prop struct after the Blue_button entry:
 <pre>
 {
   .name = "Red_button",
@@ -104,7 +113,8 @@ static u8 red_button;
   .ads_failure_cb = appd_prop_ads_failure_cb,
 },
 </pre>
-1. Add the following function:
+</li>
+<li>Add the following function:
 <pre>
 void red_button_isr(void) {
   if(digitalRead(RED_BUTTON) == LOW) {red_button = 1;}
@@ -112,7 +122,9 @@ void red_button_isr(void) {
   prop_send_by_name("Red_button");
 }
 </pre>
-1. Save the file.
+</li>
+<li>Save the file.</li>
+</ol>
 
 ### Make and run appd
 
@@ -120,7 +132,8 @@ Make and run the host app, but don't push the button yet.
 
 ### Test appd (causing an error)
 
-1. tail <code>syslog</code>:
+<ol>
+<li>tail <code>syslog</code>:
 <pre>
 $ tail -f /var/log/syslog
 </pre>
@@ -137,18 +150,23 @@ Sep  6 06:13:55 rpi devd: [debug-io] app_send_json: {"cmd":{"proto":"data","id":
 Sep  6 06:13:55 rpi appd: [debug-app] data_recv: {"cmd":{"proto":"data","id":7,"op":"confirm_true"}}
 Sep  6 06:13:55 rpi appd: [info-app] appd_prop_confirm_cb: output = 8 send at 1536232435003 to dests 1 succeeded
 </pre>
-1. Click the red button, and view the new output in syslog. The most important line is the following which indicates that the corresponding digital twin in the Ayla Cloud does not know about the new Red_button property.
+</li>
+<li>Click the red button, and view the new output in syslog. The most important line is the following which indicates that the corresponding digital twin in the Ayla Cloud does not know about the new Red_button property.
 <pre>
 Sep  6 06:17:19 rpi appd: [debug-app] data_recv: {"cmd":{"proto":"data","id":9,"op":"nak","args":[{"err":"unknown_prop","name":"Red_button","dests":1,"op":"prop_send"}]}}
 </pre>
+</li>
+</ol>
 
 ### Create the Red_button property in the cloud
 
-1. Browse to the Developer Portal > View My Devices > Raspberry Pi
-1. Click Add, define the new Red_property, and click Save:
+<ol>
+<li>Browse to the Developer Portal > View My Devices > Raspberry Pi</li>
+<li>Click Add, define the new Red_property, and click Save:
 <img src="create-red-button.jpg" width="300" style="padding:12px; border: 1px solid lightgray;">
-1. Click the Red Button on the breadboard. The new cloud-based property should reflect the button state.
-1. To see the Red_button property on your iPhone, navigate to the Devices page, tap the gear in the top-right corner, tap Fetch All Properties, click Cancel, and scroll to find the property.
+</li>
+<li>Click the Red Button on the breadboard. The new cloud-based property should reflect the button state.</li>
+<li>To see the Red_button property on your iPhone, navigate to the Devices page, tap the gear in the top-right corner, tap Fetch All Properties, click Cancel, and scroll to find the property.
 <div class="row">
 <div class="col-lg-4 col-md-6 col-sm-12">
 <img class="img-fluid" src="aura-025.jpg">
@@ -157,4 +175,6 @@ Sep  6 06:17:19 rpi appd: [debug-app] data_recv: {"cmd":{"proto":"data","id":9,"
 <img class="img-fluid" src="aura-026.jpg">
 </div>
 </div>
-1. Tap the Red_button property to see the Red LED illuminate.
+</li>
+<li>Tap the Red_button property to see the Red LED illuminate.</li>
+</ol>

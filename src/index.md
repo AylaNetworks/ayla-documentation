@@ -11,22 +11,21 @@ layout: page-homepage.html
   </div>
   <div class="col-md-3" style="background:ghostwhite; border-left:1px solid #e6e6ff;">
     <div style="font-size: 90%;">
-      <h2 style="margin-bottom: 18px">[Device Agents](devices)</h2>
-      <p>Ayla Wi-Fi Production Module</p>
-      <p>Ayla Cellular Production Module</p>
-      <p>Ayla Integrated Agent</p>
-      <p>Ayla Portable Agent</p>
-      <p>[Ayla Linux Agent](devices/ayla-linux-agent)</a></p>
-      <p>Ayla Android Agent</p>
-      <p>[Ayla Dynamic Gateway Agent](devices/ayla-dynamic-gateway-agent)</a></p>
-      <p>Ayla Static Gateway Agent</p>
+      <h2 style="margin-bottom: 18px">[Devices](devices)</h2>
+      <p>[Ayla Production Modules](devices/ayla-production-modules)</p>
+      <p>[Ayla Integrated Agents](devices/ayla-integrated-agents)</p>
+      <p>[Ayla Portable Agent](devices/ayla-portable-agent)</p>
+      <p>[Ayla Linux Agent](devices/ayla-linux-agent)<span class="tutorials">Tutorials</span></p>
+      <p>[Ayla Android Agent](devices/ayla-android-agent)</p>
+      <p>[Ayla Dynamic Gateway Agent](devices/ayla-dynamic-gateway-agent)<span class="tutorials">Tutorials</span></p>
+      <p>[Ayla Static Gateway Agent](devices/ayla-static-gateway-agent)</p>
     </div>
   </div>
   <div class="col-md-3" style="background:ghostwhite;border-left:1px solid #e6e6ff;border-right:1px solid #e6e6ff;">
     <div style="font-size: 90%;">
-      <h2 style="margin-bottom: 18px">[Cloud Services](cloud)</h2>
+      <h2 style="margin-bottom: 18px">[Cloud](cloud)</h2>
       <p>Ayla Application Service</p>
-      <p>[Ayla Datastream Service](cloud/ayla-datastream-service)</p>
+      <p>[Ayla Datastream Service](cloud/ayla-datastream-service)<span class="tutorials">Tutorials</span></p>
       <p>Ayla Device Service</p>
       <p>Ayla Factory Proxy Service</p>
       <p>Ayla Image Service</p>
@@ -44,6 +43,7 @@ layout: page-homepage.html
       <p>Ayla Dashboard Portal</p>
       <p>Ayla Demo Mobile App (Aura)</p>
       <p>Ayla Developer Portal</p>
+      <p>[Ayla Proxy Server](labs/ayla-proxy-server)</p>
     </div>
   </div>
 </div>
@@ -54,10 +54,10 @@ layout: page-homepage.html
 <span>~</span>
 <span><a href="system-status">System Status</a></span>
 <span>~</span>
+<!--
 <span><a href="release-notes">Release Notes</a></span>
 <span>~</span>
+-->
 <span><a href="authoring-guide">Authoring Guide</a></span>
-<span>~</span>
-<span><a href="https://analytics.google.com">Google Analytics</a></span>
 </div>
 </div>

@@ -19,5 +19,5 @@ Below are writing tips:
 
 1. Write direct prose.
 1. Avoid repetition and wordiness.
-1. Avoid emphasis with bold, italics, and underlining.
+1. Avoid **bold** and *italics* unless you feel the emphasis is critical.
 </pre>

@@ -4,10 +4,12 @@ layout: authoring-guide.html
 a: block
 ---
 
-Consider whether you need any headings on a particular page. You may not. Never use just one heading.
+Here are the rules for headings:
 
-If you need to divide a page into logical units, use Level 3 headings like this:
-
+<ol>
+<li>Ask yourself if you need any headings on the page. You may not.</li>
+<li>Never use just one heading on the page. The title of the page does this job.</li>
+<li>If you need to divide a page into logical units, use Level 3 headings like this:
 <pre style="white-space: pre-wrap;">
 ### Laboris nisi
 
@@ -17,11 +19,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 </pre>
-
 In many cases, a few Level 3 headings is all you need. 
-
-If, however, you need to group Level 3 headings, use Level 2 headings like this:
-
+</li>
+<li>If, however, you need to group Level 3 headings, use Level 2 headings like this:
 <pre style="white-space: pre-wrap;">
 ## Colors
 
@@ -39,5 +39,6 @@ If, however, you need to group Level 3 headings, use Level 2 headings like this:
 
 ### Octagon
 </pre>
-
-Finally, if you need to group Level 2 headings, use Level 1 headings. 
+</li>
+<li>Finally, if you need to group Level 2 headings, use Level 1 headings.</li>
+</ol>

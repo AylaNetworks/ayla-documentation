@@ -4,8 +4,8 @@ layout: ayla-linux-agent.html
 a: block
 ---
 
-1. [Introduction](introduction) describes the various components of the Ayla Device Platform for Linux.
-1. [Ayla Access](ayla-access) explains how to get access to Ayla online resources.
-1. [Installation](installation) shows you how to install the Ayla Device Platform for Linux on your Raspberry Pi.
-1. [Registration](registration) shows you how to register your Raspberry Pi device with the Ayla Cloud.
-1. [Tests](tests) shows you how to test the various default properties of your host application.
+1. [Introduction](introduction) provides a diagram of the Ayla Linux Agent within the context of the Ayla Cloud.
+1. [Raspberry Pi](raspberry-pi) explains how to set up a headless RPi.
+1. [Ayla Resources](ayla-resources) helps you access all the necessary Ayla resources.
+1. [Ayla Installation](ayla-installation) shows you how to install the Ayla Linux Agent.
+1. [Testing](testing) shows you how to test the various default properties of your host application.

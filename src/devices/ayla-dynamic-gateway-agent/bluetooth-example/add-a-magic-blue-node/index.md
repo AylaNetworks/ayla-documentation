@@ -84,7 +84,7 @@ Discovery started
 [CHG] Controller B8:27:EB:80:7B:CC Discovering: yes
 [NEW] Device F8:1D:78:63:37:36 LEDBLE-78633736
 [CHG] Device E6:E5:C0:FA:A0:ED RSSI: -42
-# scan off
+&#35; scan off
 </pre>
 <div>In this case, <code>F8:1D:78:63:37:36</code> is a Magic Blue Mac address.</div>
 1. Exit the utility.

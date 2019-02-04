@@ -10,15 +10,19 @@ This tutorial shows you how to add a trigger to the Red_button property. A trigg
 
 Here are the steps:
 
-1. Browse to the Developer Portal.
-1. Click View My Devices &gt; Raspberry Pi &gt; Red_button &gt; Triggers.
-1. Click Add, fill out the form, and click OK. Use this form as a guide:
+<ol>
+<li>Browse to the Developer Portal.</li>
+<li>Click View My Devices &gt; Raspberry Pi &gt; Red_button &gt; Triggers.</li>
+<li>Click Add, fill out the form, and click OK. Use this form as a guide:
 <img src="new-trigger.jpg" width="300">
-1. Click Add to add an application to the trigger:
+</li>
+<li>Click Add to add an application to the trigger:
 <img src="add-application.jpg" width="600">
-1. Add an email application:
+</li>
+<li>Add an email application:
 <img src="trigger-email-form.jpg" width="300">
-1. With appd running (optionally in debug mode), click the Red Button on your breadboard. 
+</li>
+<li>With appd running (optionally in debug mode), click the Red Button on your breadboard. 
 <pre>
 2018-09-16T09:39:19.978 [DBG] appd::prop_val_send()  Red_button
 2018-09-16T09:39:19.979 [DBG] appd::data_send_json()  {"cmd":{"proto":"data","id":8,"op":"prop_send","opts":{"confirm":true},"args":[{"property":{"name":"Red_button","base_type":"boolean","value":1,"metadata":{"buttonSize":"small","buttonDistributer":"Elego"},"dev_time_ms":1537090759979}}]}}
@@ -33,5 +37,8 @@ Here are the steps:
 2018-09-16T09:39:33.259 [DBG] appd::data_recv_data()  {"proto":"data","id":9,"op":"ack"}, recv_request_id 9
 2018-09-16T09:39:33.663 [DBG] appd::data_recv()  {"cmd":{"proto":"data","id":9,"op":"confirm_true"}}
 </pre>
-1. Check your email:
+</li>
+<li>Check your email:
 <img src="trigger-email.jpg" width="300">
+</li>
+</ol>
