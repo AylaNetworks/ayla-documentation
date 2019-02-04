@@ -4,11 +4,11 @@ layout: ayla-linux-agent.html
 a: block
 ---
 
-The Ayla Linux Agent tutorials assume that your Linux environment is a Raspberry Pi 3 Model B+ with a 32 GB MicroSD Card running the latest Raspian version. The [CanaKit Raspberry Pi 3 Model B+ Ultimate Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-ultimate-kit.html) provides all the components needed to complete the standard tutorials. Refer to the "Read Me First!" card, "CanaKit Raspberry Pi Quick-Start Guide," official [Raspberry Pi](https://www.raspberrypi.org/) website, and Additional Links at the bottom of the page for official set-up directions. 
+The [CanaKit Raspberry Pi 3 Model B+ Ultimate Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-ultimate-kit.html) provides all the components needed to complete the standard tutorials. Refer to the "Read Me First!" card, "CanaKit Raspberry Pi Quick-Start Guide," official [Raspberry Pi](https://www.raspberrypi.org/) website, and Additional Links at the bottom of this page for official set-up directions. 
 
 ### Headless Setup
 
-The following steps explain how to set up a headless, wireless Raspberry Pi (no monitor, keyboard, mouse, Ethernet cable) accessible via Secure Shell (ssh):
+The following steps explain how to set up a headless, wireless Raspberry Pi (no monitor, keyboard, mouse, Ethernet cable), running Raspbian Stretch Lite, and accessible via Secure Shell (ssh):
 
 <ol>
 

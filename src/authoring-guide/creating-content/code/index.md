@@ -66,4 +66,5 @@ When you wrap code in <code>&lt;pre&gt;...&lt;/pre&gt;</code> tags, you need to 
 |hash|&#35;|&amp;#35;||
 |less than|&lt;|&amp;lt;||
 |greater than|&gt;|&amp;gt;|&nbsp;|
+|tilde|&#126;|&amp;#126;|equivalency sign|
 
