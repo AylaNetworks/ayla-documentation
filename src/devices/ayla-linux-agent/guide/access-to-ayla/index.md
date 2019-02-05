@@ -1,5 +1,5 @@
 ---
-title: Ayla Resources
+title: Access to Ayla
 layout: ayla-linux-agent.html
 a: block
 ---

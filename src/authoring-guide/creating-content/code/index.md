@@ -67,4 +67,4 @@ When you wrap code in <code>&lt;pre&gt;...&lt;/pre&gt;</code> tags, you need to 
 |less than|&lt;|&amp;lt;||
 |greater than|&gt;|&amp;gt;|&nbsp;|
 |tilde|&#126;|&amp;#126;|equivalency sign|
-
+|colon|&colon;|&amp;colon;|Use in http&colon;//|
