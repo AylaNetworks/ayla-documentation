@@ -48,7 +48,7 @@ And, when you start <code>devd</code>, it starts <code>appd</code>:
 sudo systemctl start devd
 </pre>
 
-It makes sense to change this default behavior (so that <code>devd</code> no longer stops/starts <code>appd</code>) if you want to run <code>appd</code> in foreground/debug mode. However, the following rule still applies:
+It makes sense to change this default behavior (so that <code>devd</code> no longer stops/starts <code>appd</code>) if you want to run <code>appd</code> from the build directory (<code>/device_linux_public/build/native/obj/app/appd/appd</code>) and/or in foreground/debug mode. However, the following rule still applies:
 
 <span style="color:red;">Always stop/start devd before stopping/starting appd.</span>
 
