@@ -6,7 +6,7 @@ b: block
 
 This tutorial shows you how to control a blue button with your version of the host application using an existing property called Blue_button. By default, the Blue_button does not actually respond to a real button:
 
-<img src="../../guide/tests/aura-013.jpg" width="300">
+<img src="aura-013.jpg" width="300">
 
 ## Wire and test the Blue Button
 

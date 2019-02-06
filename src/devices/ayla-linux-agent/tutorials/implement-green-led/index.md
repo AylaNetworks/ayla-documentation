@@ -6,7 +6,7 @@ b: block
 
 This tutorial shows you how to control a green LED with your version of the host application using an existing property called Green_LED. By default, the Green_LED property does not actually control a real LED:
 
-<img src="../../guide/tests/aura-013.jpg" width="300">
+<img src="aura-013.jpg" width="300">
 
 ## Wire and test a Green LED
 

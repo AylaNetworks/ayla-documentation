@@ -6,7 +6,7 @@ a: block
 
 The [CanaKit Raspberry Pi 3 Model B+ Ultimate Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-ultimate-kit.html) provides all the components needed to complete the standard tutorials. Refer to the "Read Me First!" card, "CanaKit Raspberry Pi Quick-Start Guide," official [Raspberry Pi](https://www.raspberrypi.org/) website, and Additional Links at the bottom of this page for official set-up directions. 
 
-### Headless Setup
+## Headless Setup
 
 The following steps explain how to set up a headless, wireless Raspberry Pi (no monitor, keyboard, mouse, Ethernet cable), running Raspbian Stretch Lite, and accessible via Secure Shell (ssh):
 
@@ -92,6 +92,7 @@ network={
      key_mgmt=WPA-PSK
 }
 </pre>
+At boot time, Raspian copies the file to <code>/etc/wpa_supplicant/wpa_supplicant.conf</code>.
 </li>
 
 <li>Configure Secure Shell by creating an empty <code>ssh</code> text file:
@@ -171,7 +172,40 @@ GNU nano, version 2.7.4
 
 </ol>
 
-### Additional Links
+## Notes
+
+### ssh
+
+When you reinstall Raspian on an RPi to which you have been previously opening a secure shell, <code>ssh</code> on your computer may notice the change, and may display a notice similar to the following:
+<pre>
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:r4Y+vxKp5N6tEsMJtc6za1v/Rujms4wfjMY51jH8wsw.
+Please contact your system administrator.
+Add correct host key in /Users/matt/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /Users/matt/.ssh/known_hosts:5
+ECDSA host key for 192.168.1.8 has changed and you have requested strict checking.
+Host key verification failed.
+</pre>
+
+To solve this, open <code>/.ssh/known_hosts</code> on your computer, and delete the row representing the previous IP Address - ECDSA Key association.
+
+### raspi-config
+
+Use <code>raspi-config</code> to set configuration from the command line:
+
+<pre>
+$ sudo raspi-config
+</pre>
+
+<img src="raspi-config" width="500">
+
+## Additional Links
 
 * [raspberrypi.org/documentation/remote-access/ssh](https://www.raspberrypi.org/documentation/remote-access/ssh/)
 * [Installing NOOBS for first time without screen or keyboard](https://www.raspberrypi.org/forums/viewtopic.php?t=172862)
@@ -182,3 +216,4 @@ GNU nano, version 2.7.4
 * [Setting WiFi up via the command line](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md)
 * [SSH (Secure Shell)](https://www.raspberrypi.org/documentation/remote-access/ssh/)
 * [Setting up your own Raspberry Pi 3 git server with Go Git Service (Gogs) and Raspbian Stretch Lite](https://www.techcoil.com/blog/setting-up-your-own-raspberry-pi-3-git-server-with-go-git-service-gogs-and-raspbian-stretch-lite/)
+* [Setting Wi-Fi up via the command line](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md)

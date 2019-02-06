@@ -138,6 +138,7 @@ displayEvent
 ------------------------------------------------------*/
 
 function displayEvent(stream, event, value) {
+
   let item = ''
   + '<tr class="summary simple-details">'
   + '<td class="chk"><input type="checkbox"></td>'

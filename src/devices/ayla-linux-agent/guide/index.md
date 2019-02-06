@@ -10,6 +10,5 @@ a: block
 1. [Template](template) provides direction for creating a template in the Ayla Cloud.
 1. [Installation](installation) shows you how to install the Ayla Device Platform for Linux.
 1. [Configuration](configuration) provides steps for creating a devd.conf file.
-1. [Execution](execution) demonstrates various ways to run devd and appd.
 1. [Registration](registration) helps you register your RPi device in the Ayla Cloud.
-1. [Experimentation](experimentation) shows you how to test the various default properties of your host application.
+1. [User Tests](user-tests) shows you how to test the various default properties of your host application.
