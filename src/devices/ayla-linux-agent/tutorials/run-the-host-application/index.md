@@ -4,7 +4,7 @@ layout: ayla-linux-agent.html
 b: block
 ---
 
-The Ayla Device Platform for Linux runs a small number of Linux daemons including the Ayla Linux Agent (<code>devd</code>), your host application (<code>appd</code>), the Ayla Connection Manager (<code>cond</code>) if your Linux client is using Wi-Fi, and the Ayla Logging Client (<code>logd</code>) if you want Ayla-related messages to be written not only to syslog, also to the Ayla Cloud. And, there are several ways to run these daemons. This page explores these two topics. Many of the examples below require you to use a Secure Shell to your Raspberry Pi.
+The Ayla Device Platform for Linux runs a small number of Linux daemons including the Ayla Linux Agent (<code>devd</code>), your host application (<code>appd</code>), the Ayla Connection Manager (<code>cond</code>) if your Linux client is using Wi-Fi, and the Ayla Logging Client (<code>logd</code>) if you want Ayla-related messages to be written not only to syslog, also to the Ayla Cloud. And, there are several ways to run these daemons. This tutorial explores these two topics. Many of the examples below require you to use a Secure Shell to your Raspberry Pi.
 
 ## Where are the daemons?
 
@@ -51,6 +51,8 @@ sudo systemctl start devd
 It makes sense to change this default behavior (so that <code>devd</code> no longer stops/starts <code>appd</code>) if you want to run <code>appd</code> from the build directory (<code>/device_linux_public/build/native/obj/app/appd/appd</code>) and/or in foreground/debug mode. However, the following rule still applies:
 
 <span style="color:red;">Always stop/start devd before stopping/starting appd.</span>
+
+## Decoupling devd and appd
 
 Here is how you decouple <code>devd</code> and <code>appd</code>:
 

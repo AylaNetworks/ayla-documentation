@@ -4,7 +4,7 @@ layout: ayla-linux-agent.html
 b: block
 ---
 
-This page shows you how to modify, build, and run appd. Subsequent tutorials delve into the details of Ayla daemons, source code, and the build process. To get started, recall that the sample host application (appd) includes two integer properties called input and output, and that when you set input to x, appd sets output to x<sup>2</sup>:
+This tutorial shows you how to modify, build, and run appd. Subsequent tutorials delve into the details of Ayla daemons, source code, and the build process. To get started, recall that the sample host application (appd) includes two integer properties called input and output, and that when you set input to x, appd sets output to x<sup>2</sup>:
 
 <img src="properties-001.png" width="360">
 

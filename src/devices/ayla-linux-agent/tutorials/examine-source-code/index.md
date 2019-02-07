@@ -8,7 +8,7 @@ This tutorial helps you explore Host Application (appd) source code, and the app
 
 ### Host Application Structure
 
-In essence, the host application (appd) is composed of two files and three libraries located on your RPi:
+In essence, the host application (appd) is composed of two files and three libraries located in the source directory of your RPi:
 
 <pre>
 &sim;/device_linux_public/app/appd/main.c
@@ -18,9 +18,9 @@ In essence, the host application (appd) is composed of two files and three libra
 &sim;/device_linux_public/build/native/obj/lib/platform/libplatform.a
 </pre>
 
-### main.c
+### main function
 
-main.c implements the main function which is, for the most part, boilerplate code. The function parses command-line options, calls several functions in libapp.a (app.h) to set up callbacks for various events, and then calls app_run which is the main program loop:
+<code>main.c</code> implements the <code>main</code> function which parses command-line options, calls several functions in <code>libapp.a</code> to set up callbacks for various events, and then calls the <code>app_run</code> function (the main program loop) implemented in <code>appd.c</code>:
 
 <pre>
 int main(int argc, char **argv)
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 
 ### appd.c
 
-appd.c implements an array of prop structures, one for each property it maintains:
+<code>appd.c</code> implements an array called <code>appd_prop_table</code> of <code>prop</code> structures, one for each property it maintains, properties that are represented by the digital twin in the Ayla Cloud corresponding to this device:
 
 <pre>
 static struct prop appd_prop_table[] = {
