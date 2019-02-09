@@ -33,7 +33,7 @@ static int appd_input_set(struct prop &#42;prop, const void &#42;val, size_t len
 <li>Save the file.</li>
 <li>Build a new version of appd:
 <pre>
-$ cd &#126;/device_linux_public/app/appd
+$ cd &#126;/device_linux_public
 $ sudo make
 </pre>
 The new appd resides in <code>&#126;/device_linux_public/build/native/obj/app/appd</code>.

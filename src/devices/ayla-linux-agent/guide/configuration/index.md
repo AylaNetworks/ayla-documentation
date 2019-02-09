@@ -10,7 +10,7 @@ This page shows you how to create an Ayla Linux Agent configuration file (devd.c
 
 ### 1. Create a dsn.xml file
 
-1. Browse to the [Ayla Dashboard Portal](https://docs.aylanetworks.com/cloud/ayla-dashboard-portal/), and log in.
+1. Browse to the [Ayla Dashboard Portal](https://docs.aylanetworks.com/apps/ayla-dashboard-portal/), and log in.
 1. Click Factory Actions in the sidebar.
 1. Click the Reserve DSNs button.
 1. For Model, select <code>AY001MRT1-Linux Software Agent</code>.

@@ -77,7 +77,7 @@ If the Ayla Cloud cannot find the specified template, then it uses the first tem
 <table>
 <tr><th>Field</th><th>Value</th></tr>
 <tr><td>Visibility</td><td>oem</td></tr>
-<tr><td>Name</td><td>Ayla Linux Device</td></tr>
+<tr><td>Name</td><td>Linux Device appd_demo 1.3</td></tr>
 <tr><td>Description</td><td>For default host application</td></tr>
 <tr><td>Registration Type</td><td>Same-LAN</td></tr>
 <tr><td>Model</td><td>linuxevb</td></tr>
@@ -90,23 +90,24 @@ If the Ayla Cloud cannot find the specified template, then it uses the first tem
 <img src="template-properties-add.png" width="600">
 1. Add the following properties:
 <table>
-<tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th></tr>
-<tr><td>version</td><td>Version</td><td>String</td><td>From Device</td><td>user</td></tr>
-<tr><td>Green_LED</td><td>Green LED</td><td>Boolean</td><td>To Device</td><td>user</td></tr>
-<tr><td>Blue_LED</td><td>Blue LED</td><td>Boolean</td><td>To Device</td><td>user</td></tr>
-<tr><td>Blue_button</td><td>Blue Button</td><td>Boolean</td><td>From Device</td><td>user</td></tr>
-<tr><td>input</td><td>Input</td><td>Integer</td><td>To Device</td><td>user</td></tr>
-<tr><td>output</td><td>Output</td><td>Integer</td><td>From Device</td><td>user</td></tr>
-<tr><td>decimal_in</td><td>Decimal In</td><td>Decimal</td><td>To Device</td><td>user</td></tr>
-<tr><td>decimal_out</td><td>Decimal Out</td><td>Decimal</td><td>From Device</td><td>user</td></tr>
-<tr><td>cmd</td><td>Command</td><td>String</td><td>To Device</td><td>user</td></tr>
-<tr><td>log</td><td>Log</td><td>String</td><td>From Device</td><td>user</td></tr>
-<tr><td>file_down</td><td>File Down</td><td>File</td><td>To Device</td><td>user</td></tr>
-<tr><td>file_up</td><td>File Up</td><td>File</td><td>From Device</td><td>user</td></tr>
-<tr><td>file_up_test</td><td>File Up Test</td><td>Boolean</td><td>To Device</td><td>user</td></tr>
-<tr><td>batch_hold</td><td>Batch Hold</td><td>Boolean</td><td>To Device</td><td>user</td></tr>
+<tr><th>Name</th><th>Display Name</th><th>Type</th><th>Direction</th><th>Scope</th><th>Notes</th></tr>
+<tr><td>version</td><td>Version</td><td>String</td><td>From Device</td><td>user</td><td>Check <code>Host SW Version</code>.</td></tr>
+<tr><td>Green_LED</td><td>Green LED</td><td>Boolean</td><td>To Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>Blue_LED</td><td>Blue LED</td><td>Boolean</td><td>To Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>Blue_button</td><td>Blue Button</td><td>Boolean</td><td>From Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>input</td><td>Input</td><td>Integer</td><td>To Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>output</td><td>Output</td><td>Integer</td><td>From Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>decimal_in</td><td>Decimal In</td><td>Decimal</td><td>To Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>decimal_out</td><td>Decimal Out</td><td>Decimal</td><td>From Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>cmd</td><td>Command</td><td>String</td><td>To Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>log</td><td>Log</td><td>String</td><td>From Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>file_down</td><td>File Down</td><td>File</td><td>To Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>file_up</td><td>File Up</td><td>File</td><td>From Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>file_up_test</td><td>File Up Test</td><td>Boolean</td><td>To Device</td><td>user</td><td>&nbsp;</td></tr>
+<tr><td>batch_hold</td><td>Batch Hold</td><td>Boolean</td><td>To Device</td><td>user</td><td>&nbsp;</td></tr>
 </table>
 Here is the completed list of properties:
 <img src="property-list.png" width="800">
-1. To delete a property, click on the appropriate row in the <code>Base Type</code>, <code>Direction</code>, or <code>Scope</code> column, and then click <code>Delete</code>:
+
+If you need to delete a property, click on the appropriate row in the <code>Base Type</code>, <code>Direction</code>, or <code>Scope</code> column, and then click <code>Delete</code>:
 <img src="delete-property.png" width="800">

@@ -17,7 +17,7 @@ The Product Name is, by default, the Serial Number.
 <img src="product-name-1.png" width="400">
 1. Change the <code>Product Name</code>, and click OK.
 <img src="product-name-2.png" width="400">
-1. Click the Properties tab. These are the properties you defined in [Templates](../templates). The steps below show you how to test these properties.
+1. Click the Properties tab. All but one of these are the properties you defined in [Templates](../templates). The exception is <code>oem_host_version</code>. Ayla created this property for you. It represents the template version. The steps below show you how to test these properties.
 <img src="device-properties.png" width="800">
 
 ### Test boolean properties

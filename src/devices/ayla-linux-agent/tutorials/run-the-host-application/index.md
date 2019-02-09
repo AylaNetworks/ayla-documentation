@@ -11,7 +11,7 @@ The Ayla Device Platform for Linux runs a small number of Linux daemons includin
 Ayla daemons, which can run in the foreground or background, reside in <code>/home/pi/ayla/bin</code>:
 
 <pre>
-$ ls -1 &#126;/ayla/bin/*d
+$ ls -1 &#126;/ayla/bin/&#42;d
 /home/pi/ayla/bin/appd
 /home/pi/ayla/bin/cond
 /home/pi/ayla/bin/devd
@@ -36,7 +36,7 @@ $ ls -1 /etc/init.d/{cond,devd,logd}
 
 ## The relationship between devd and appd
 
-Unlike <code>cond</code>, <code>devd</code>, and <code>logd</code>, <code>appd</code> does not have a corresponding script in <code>/etc/init.d</code>. Instead, <code>appd</code> is (by default) started/stopped by <code>devd</code>. So, when you stop <code>devd</code>, it stops <code>appd</code>:
+Unlike <code>cond</code>, <code>devd</code>, and <code>logd</code>, <code>appd</code> does not have a corresponding script in <code>/etc/init.d</code>. Instead, <code>devd</code> (by default) starts/stops <code>appd</code>. It also restarts <code>appd</code> if the latter fails. So, when you stop <code>devd</code>, it stops <code>appd</code>:
 
 <pre>
 $ sudo systemctl stop devd
@@ -48,9 +48,9 @@ And, when you start <code>devd</code>, it starts <code>appd</code>:
 sudo systemctl start devd
 </pre>
 
-It makes sense to change this default behavior (so that <code>devd</code> no longer stops/starts <code>appd</code>) if you want to run <code>appd</code> from the build directory (<code>/device_linux_public/build/native/obj/app/appd/appd</code>) and/or in foreground/debug mode. However, the following rule still applies:
+It makes sense to change this default behavior (so that <code>devd</code> no longer manages <code>appd</code>) if you want to run <code>appd</code> from the build directory (<code>/device_linux_public/build/native/obj/app/appd/appd</code>) and/or in foreground/debug mode. However, the following rule always applies:
 
-<span style="color:red;">Always stop/start devd before stopping/starting appd.</span>
+<span style="color:red;">Always restart devd before starting appd.</span>
 
 ## Decoupling devd and appd
 
@@ -72,15 +72,10 @@ OPTIONS="--debug -n -c /home/pi/ayla/config/devd.conf"
 <pre>
 $ sudo systemctl start devd
 Warning: devd.service changed on disk. Run 'systemctl daemon-reload' to reload units.
-$ systemctl daemon-reload
-==== AUTHENTICATING FOR org.freedesktop.systemd1.reload-daemon ===
-Authentication is required to reload the systemd state.
-Multiple identities can be used for authentication:
- 1. ,,, (pi)
- 2.  root
-Choose identity to authenticate as (1-2): 1
-Password: 
-==== AUTHENTICATION COMPLETE ===
+</pre>
+Run <code>systemctl daemon-reload</code> as instructed:
+<pre>
+$ sudo systemctl daemon-reload
 </pre>
 1. Verify that devd is running:
 <pre>
@@ -96,31 +91,51 @@ $ ps -A | grep appd
 
 The sections below assume the following:
 1. <code>devd</code> and <code>appd</code> have been decoupled per the instructions above.
-1. <code>devd</code> and <code>appd</code> are not running.
+1. <code>devd</code> and <code>appd</code> are not running. If <code>devd</code> is running, skip the first step of each heading below.
 
 ### Run appd in background mode
 
-1. Start devd.
+<ol>
+<li>Start devd.
 <pre>
 $ sudo systemctl start devd
 </pre>
-1. Start appd:
+</li>
+<li>View appd command-line options:
+<pre>
+$ sudo ~/device_linux_public/build/native/obj/app/appd/appd -h
+/home/pi/device_linux_public/build/native/obj/app/appd/appd: invalid option -- 'h'
+Usage: appd
+  Options:
+    -c --factory_config &lt;file&gt;   Specify factory config file
+    -s --startup_dir &lt;dir&gt;       Specify startup config directory
+    -d --debug                   Run in debug mode
+    -f --foreground              Don't detach daemon process, run in foreground
+    -o --sockdir  &lt;dir&gt;          Specify socket directory
+</pre>
+</li>
+<li>Start appd:
 <pre>
 $ sudo &#126;/device_linux_public/build/native/obj/app/appd/appd -c /home/pi/ayla/config/appd.conf
 </pre>
-1. Verify that appd is running:
+</li>
+<li>Verify that appd is running:
 <pre>
 $ ps -A | grep appd
  3581 ?        00:00:00 appd
 </pre>
-1. Stop devd:
+</li>
+<li>Stop devd:
 <pre>
 $ sudo systemctl stop devd
 </pre>
-1. Stop appd:
+</li>
+<li>Stop appd:
 <pre>
 $ sudo killall appd
 </pre>
+</li>
+</ol>
 
 ### Run appd in foreground mode
 
@@ -142,11 +157,11 @@ Terminal output may look like this:
 [INF] appd::appd_prop_confirm_cb()  output = 0 send at 1545320451361 to dests 1 succeeded
 [INF] appd::appd_prop_confirm_cb()  output = 8 send at 1545320452132 to dests 1 succeeded
 </pre>
+1. Stop appd with <code>Ctrl-C</code>.
 1. Stop devd:
 <pre>
 $ sudo systemctl stop devd
 </pre>
-1. Stop appd with <code>Ctrl-C</code>.
 
 ### Run appd in foreground+debug mode
 
@@ -172,8 +187,15 @@ Terminal output may look like this:
 ...
 ...
 </pre>
+1. Try changing some property values via Ayla Developer Portal or Aura Mobile App, and view the results in the terminal:
+<pre>
+2019-02-07T15:14:32.355 [DBG] appd::data_recv()  {"cmd":{"proto":"data","id":1,"op":"prop_update","args":[{"property":{"base_type":"boolean","name":"Blue_LED","value":0}}],"opts":{"source":1}}}
+2019-02-07T15:14:32.355 [DBG] appd::data_cmd_parse()  {"proto":"data","id":1,"op":"prop_update","args":[{"property":{"base_type":"boolean","name":"Blue_LED","value":0}}],"opts":{"source":1}}, protocol data
+2019-02-07T15:14:32.355 [DBG] appd::data_recv_data()  {"proto":"data","id":1,"op":"prop_update","args":[{"property":{"base_type":"boolean","name":"Blue_LED","value":0}}],"opts":{"source":1}}, recv_request_id 1
+2019-02-07T15:14:32.355 [DBG] appd::prop_arg_set()  Blue_LED = 0
+</pre>
+1. Stop appd with <code>Ctrl-C</code>.
 1. Stop devd:
 <pre>
 $ sudo systemctl stop devd
 </pre>
-1. Stop appd with <code>Ctrl-C</code>.

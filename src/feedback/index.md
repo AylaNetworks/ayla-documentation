@@ -3,6 +3,9 @@ title: Feedback
 layout: page-full-width.html
 ---
 
+Send an email to matt at aylanetworks dot com.
+
+<!--
 <form action="/assets/server/thank-you.php" method="post">
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -36,3 +39,4 @@ layout: page-full-width.html
   </div>
   <button type="submit" class="btn btn-success">Submit</button>
 </form>
+-->

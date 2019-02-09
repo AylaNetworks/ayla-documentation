@@ -61,7 +61,7 @@ When you wrap code in <code>&lt;pre&gt;...&lt;/pre&gt;</code> tags, you need to 
 
 |Name|Original|Replacement|Comment|
 |-|-|-|-|
-|asterisk|&#42;|&amp;#42|C code uses asterisks for pointers.|
+|asterisk|&#42;|&amp;#42;|C code uses asterisks for pointers.|
 |at|&#64;|&amp;#64;||
 |hash|&#35;|&amp;#35;||
 |less than|&lt;|&amp;lt;||

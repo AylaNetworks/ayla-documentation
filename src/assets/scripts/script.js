@@ -39,23 +39,23 @@ $(function() {
   $('#breadcrumbs').html(breadcrumbs);
 });
 
-$(function() {
-  if($('title').html().toLowerCase() === 'feedback') {
-    //$('#feedback').addClass('active');
-    $('#page').val(getParameterByName('page'));
-  }
-});
+//$(function() {
+//  if($('title').html().toLowerCase() === 'feedback') {
+//    $('#feedback').addClass('active');
+//    $('#page').val(getParameterByName('page'));
+//  }
+//});
 
 //------------------------------------------------------
 // 
 //------------------------------------------------------
 
-$(function() {
-  $('#feedback').click(function(event) {
-    event.preventDefault();
-    window.location.href = '/feedback/?page=' + window.location.pathname;
-  });
-});
+//$(function() {
+//  $('#feedback').click(function(event) {
+//    event.preventDefault();
+//    window.location.href = '/feedback/?page=' + window.location.pathname;
+//  });
+//});
 
 //------------------------------------------------------
 // 

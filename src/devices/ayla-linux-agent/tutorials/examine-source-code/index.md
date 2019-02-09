@@ -6,52 +6,50 @@ b: block
 
 This tutorial helps you explore Host Application (appd) source code, and the application's use of the (devd) [Agent API](/devices/ayla-linux-agent/reference/agent-api).
 
-### Host Application Structure
+## Where are appd files?
 
-In essence, the host application (appd) is composed of two files and three libraries located in the source directory of your RPi:
-
-<pre>
-&sim;/device_linux_public/app/appd/main.c
-&sim;/device_linux_public/app/appd/appd.c
-&sim;/device_linux_public/build/native/obj/lib/app/libapp.a
-&sim;/device_linux_public/build/native/obj/lib/ayla/libayla.a
-&sim;/device_linux_public/build/native/obj/lib/platform/libplatform.a
-</pre>
-
-### main function
-
-<code>main.c</code> implements the <code>main</code> function which parses command-line options, calls several functions in <code>libapp.a</code> to set up callbacks for various events, and then calls the <code>app_run</code> function (the main program loop) implemented in <code>appd.c</code>:
+In essence, the host application (appd) is composed of two source files and three Ayla libraries (mostly <code>libapp.a</code>):
 
 <pre>
-int main(int argc, char **argv)
-{
-  parse_opts(argc, argv);
-
-  app_init(cmdname, appd_version, appd_init, appd_start);
-  app_set_debug(debug);
-  app_set_exit_func(appd_exit);
-  app_set_factory_reset_func(appd_factory_reset);
-  app_set_conn_event_func(appd_connectivity_event);
-  app_set_registration_event_func(appd_registration_event);
-  if (app_set_conf_file(conf_factory_file, conf_startup_dir) < 0) {
-    exit(EXIT_FAILURE);
-  }
-  if (socket_dir) {
-    if (app_set_socket_directory(socket_dir) < 0) {
-      exit(EXIT_FAILURE);
-    }
-  }
-
-  signal(SIGINT, signal_handler);
-  signal(SIGTERM, signal_handler);
-
-  return app_run(foreground);
-}
+&#126;/device_linux_public/app/appd/main.c
+&#126;/device_linux_public/app/appd/appd.c
+&#126;/device_linux_public/build/native/obj/lib/app/libapp.a
+&#126;/device_linux_public/build/native/obj/lib/ayla/libayla.a
+&#126;/device_linux_public/build/native/obj/lib/platform/libplatform.a
 </pre>
 
-### appd.c
+The source files for the libraries are in the following directories:
 
-<code>appd.c</code> implements an array called <code>appd_prop_table</code> of <code>prop</code> structures, one for each property it maintains, properties that are represented by the digital twin in the Ayla Cloud corresponding to this device:
+<pre>
+&#126;/device_linux_public/lib/app
+&#126;/device_linux_public/lib/ayla
+&#126;/device_linux_public/lib/platform
+</pre>
+
+The host application also includes third-party libraries. See the [Makefile](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/app/appd/Makefile).
+
+## main.c
+
+[main.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/app/appd/main.c) defines <code>main()</code> which calls the following functions:
+
+|Function|File|Component|Description|
+|-|-|-|-|
+|parse_opts|[main.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/app/appd/main.c)|appd|Parse cmdline options.|
+|app_init|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Initializes data structures and libraries.|
+|app_set_debug|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Enable or disable debug logging.|
+|app_set_exit_func|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Register a callback to notify the application that it is about to terminate.|
+|app_set_factory_reset_func|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Register a callback to notify the application that a factory reset has been requested.|
+|app_set_conn_event_func|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Register a callback to notify the application when cloud or LAN connections have gone up or down.|
+|app_set_registration_event_func|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Register a callback to notify the application when device user registration has changed.|
+|app_set_conf_file|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Set the factory config file path and the startup config directory.|
+|app_set_socket_directory|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Override the default socket directory of <code>/var/run</code>.|
+|app_run|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Run the program main loop which consumes the calling thread.|
+
+## appd.c
+
+### appd_prop_table
+
+[appd.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/app/appd/appd.c) defines <code>appd_prop_table</code>, an array of <code>prop</code> structures, one for each property maintained by the host app, properties that are represented by the digital twin in the Ayla Cloud corresponding to this device.
 
 <pre>
 static struct prop appd_prop_table[] = {
@@ -72,9 +70,7 @@ static struct prop appd_prop_table[] = {
 };
 </pre>
 
-### props.h (libapp.a)
-
-Defined and described in <code>&sim;/device_linux_public/lib/app/include/app/props.h</code>, the prop structure looks like this:
+Defined and described in [props.h](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/include/app/props.h), part of libapp, the prop structure looks like this:
 
 <pre>
 struct prop {
@@ -96,31 +92,29 @@ struct prop {
 };
 </pre>
 
-The host application calls several functions exposed by props.h (relating to the updating of property values between appd and devd) including the following:
-* prop_add - The host application calls <code>prop_add</code> to register properties with the Ayla Linux Agent.
-* prop_send_by_name - The host application calls <code>prop_send_by_name</code> to tell the agent to send a property value to the Ayla Cloud. Interrupt service routines, for example, that listen for button presses and releases, might call this function.
-* prop_lookup - The host application calls <code>prop_lookup</code> to determine the current value of a property.
+### Functions
 
-### Makefile
+[appd.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/app/appd/appd.c) defines several function which, collectively, call the following library functions:
 
-To see the source files and libraries that compose appd, open <code>&sim;/device_linux_public/app/appd/Makefile</code>:
+|Function|File|Component|Description|
+|-|-|-|-|
+|app_set_template_version|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Select the cloud template version to use with this application.|
+|prop_val_send|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send a value for a property.|
+|prop_val_to_str|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Converts a value to string format for printing.|
+|prop_arg_set|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Handles incoming property updates. Used as generic <code>set</code> function in prop structs.|
+|prop_metadata_alloc|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Allocates empty prop_metadata structure with size of PROP_METADATA_MAX_ENTRIES.|
+|prop_metadata_addf|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Add key/value pair to prop_metadata_list struct using a printf-style formatted value.|
+|prop_lookup|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Lookup a property table entry by name.|
+|prop_arg_batch_append|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Same as prop_arg_send, but property is put in queue to be sent later.|
+|prop_metadata_free|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Free a prop_metadata_list struct.|
+|prop_send_by_name|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send property by looking it up by name.|
+|prop_batch_send|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send a batch list.|
+|prop_send|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send property by <code>struct prop *prop</code>.|
+|prop_metadata_add|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Add a new key/value pair to a prop_metadata_list structure.|
+|prop_add|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Add a list of properties to the library's property lookup table.|
+|prop_batch_confirm_handler_set|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Set the confirmation handler for prop batch sends.|
+|prop_send_from_dev|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send all from-device properties.|
+|prop_request_to_dev|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Request values of all to-device properties from the service.|
 
-<pre>
-#
-# List of source files to build
-#
-SOURCES = \
-        appd.c \
-        main.c \
-        $(NULL)
+## Callbacks
 
-#
-# List of libraries to link
-#
-LIBS = ssl crypto curl jansson
-
-#
-# List of dependencies on Ayla libraries 
-#
-LIBDEPS = $(LIB_PLATFORM) $(LIB_AYLA) $(LIB_APP)
-</pre>

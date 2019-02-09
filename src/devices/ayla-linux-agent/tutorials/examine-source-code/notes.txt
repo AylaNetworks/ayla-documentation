@@ -1,0 +1,19 @@
+====================================
+main.c
+====================================
+
+
+Display the command-line options.
+Read and follow configuration file.
+Read and follow command line options.
+
+Run in foreground/background mode.
+
+Run in debug mode.
+
+Identify and use correct socket.
+
+lib/ayla/include/ayla/msg_utils.h
+
+#define MSG_SOCKET_DIR_DEFAULT    "/var/run"
+#define MSG_SOCKET_DEFAULT    "msg_sock"
