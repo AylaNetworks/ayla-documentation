@@ -13,7 +13,7 @@ To complete the tutorials, you need access to the following Ayla resources:
 
 The term "Ayla Account" can refer to an OEM account or a user account.
 
-<img src="oem-user-accounts.png" width="700">
+<a href="oem-user-accounts.png"><img src="oem-user-accounts.png" width="700"></a>
 
 ### Ayla OEM Account
 

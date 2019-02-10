@@ -10,7 +10,7 @@ After exploring the concept of Ayla Templates, this page shows you how to create
 
 Recall this diagram from the [Introduction](../introduction):
 
-<img src="../introduction/ayla-platform-led-button.png" width="480">
+<a href="../introduction/ayla-platform-led-button.png"><img src="../introduction/ayla-platform-led-button.png" width="480"></a>
 
 Ayla represents physical devices as digital twins in the cloud. Mobile apps and web-based portals interact with digital twins to query and control associated physical devices. A digital twin is a set of properties that represent characteristics or actions of the associated physical device. 
 

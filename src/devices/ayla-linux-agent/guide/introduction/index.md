@@ -6,7 +6,7 @@ a: block
 
 The following diagram shows the Ayla Linux Agent (devd) and the sample host application (appd) within the context of the Ayla Platform.
 
-<img src="ayla-platform-led-button.png" width="480">
+<a href="ayla-platform-led-button.png"><img src="ayla-platform-led-button.png" width="480"></a>
 
 1. The Raspberry Pi, devd, appd, the green LED, and the two buttons form the IoT device.
 1. The digital twin is a model of the device instantiated from a template.

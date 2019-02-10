@@ -115,6 +115,3 @@ struct prop {
 |prop_batch_confirm_handler_set|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Set the confirmation handler for prop batch sends.|
 |prop_send_from_dev|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send all from-device properties.|
 |prop_request_to_dev|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Request values of all to-device properties from the service.|
-
-## Callbacks
-

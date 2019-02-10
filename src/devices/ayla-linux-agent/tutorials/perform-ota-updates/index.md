@@ -35,7 +35,7 @@ Finally, the OTA Daemon resets the device.
 
 ## Steps for performing the OTA update
 
-<span style="color:red;">For OTA updates to work, <code>devd</code> must be configured to manage <code>appd</code> which is the default behavior. See [Run the host application](../run-the-host-application) for information about why and how to decouple the two daemons.</span>
+<span style="color:red;">By default, <code>devd</code> is configured to stop/start <code>appd</code>. For OTA updates to work properly, this default setting must still be in play. 
 
 ### Change appd version
 
