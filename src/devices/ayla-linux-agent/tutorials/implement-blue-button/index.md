@@ -4,7 +4,7 @@ layout: ayla-linux-agent.html
 b: block
 ---
 
-This tutorial shows you how to control a blue button with your version of the host application using an existing property called Blue_button. By default, the Blue_button does not actually respond to a real button:
+This tutorial shows you how to control a blue button with your version of the host application using an existing property called Blue_button:
 
 <img src="blue-button.png" width="200">
 
@@ -69,9 +69,9 @@ int main(void) {
   pinMode(BLUE_BUTTON, INPUT);
   for(;;) {
     if(digitalRead(BLUE_BUTTON) == LOW)
-    digitalWrite(GREEN_LED, HIGH);
-  else
-    digitalWrite(GREEN_LED,  LOW);
+      digitalWrite(GREEN_LED, HIGH);
+    else
+      digitalWrite(GREEN_LED,  LOW);
   }
   return 0;
 }
@@ -125,37 +125,16 @@ int main(void) {
 
 ## Modify appd to respond to the button
 
-### Modify main.c
-
-<ol>
-<li>Open <code>&#126;/device_linux_public/app/appd/main.c</code> for editing.</li>
-<li>Scroll to the main function, and add the following just after <code>wiringPiSetup()</code>:
-<pre>
-pinMode(BLUE_BUTTON, INPUT);
-wiringPiISR(BLUE_BUTTON, INT_EDGE_BOTH, &blue_button_isr);
-</pre>
-</li>
-<li>Save the file.</li>
-</ol>
-
-### Modify appd.h
-
-<ol>
-<li>Open <code>&#126;/device_linux_public/app/appd/appd.h</code> for editing.</li>
-<li>Add the following just after <code>#define GREEN_LED 1</code>:
-<pre>
-#define BLUE_BUTTON 6
-void blue_button_isr(void);
-</pre>
-</li>
-<li>Save the file.</li>
-</ol>
-
 ### Modify appd.c
 
 <ol>
 <li>Open <code>&#126;/device_linux_public/app/appd/appd.c</code> for editing.</li>
-<li>Add the following function (anywhere is fine):
+<li>Specify a GPIO pin for the blue button:
+<pre>
+#define BLUE_BUTTON 6
+</pre>
+</li>
+<li>Add the following function:
 <pre>
 void blue_button_isr(void) {
   if(digitalRead(BLUE_BUTTON) == LOW) {blue_button = 1;}
@@ -164,10 +143,25 @@ void blue_button_isr(void) {
 }
 </pre>
 </li>
+<li>Scroll to the <code>appd_start</code> function, and add the following after <code>wiringPiSetup()</code>:
+<pre>
+pinMode(BLUE_BUTTON, INPUT);
+wiringPiISR(BLUE_BUTTON, INT_EDGE_BOTH, &blue_button_isr);
+</pre>
+</li>
 <li>Save the file.</li>
 </ol>
 
 ### Make, run, and test appd
 
-Make and run the host app. Test the new functionality by pressing and releasing the button. The Blue_button property in Aura should indicate the button state.
+Make and run appd:
 
+<pre>
+$ cd ~/device_linux_public/
+$ sudo make
+$ sudo systemctl stop devd
+$ sudo cp ~/device_linux_public/build/native/obj/app/appd/appd ~/ayla/bin/appd
+$ sudo systemctl start devd
+</pre>
+
+Test the new functionality by pressing and releasing the button. The Blue_button property in Aura should indicate the button state.

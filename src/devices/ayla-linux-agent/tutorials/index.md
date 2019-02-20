@@ -13,4 +13,5 @@ b: block
 1. [Add Red_button](add-red-button) shows you how to add, wire, and control a Red_button property.
 1. [Add a Trigger](add-a-trigger) shows you how to add a trigger to the Red_button property.
 1. [Add a Schedule](add-a-schedule) shows you how to add a schedule to appd.
-1. [Performing OTA Updates](perform-ota-updates) shows you how to update appd software.
+1. [Explore Serial I/O](explore-serial-io) examines serial I/O between appd and an Arduino-based program.
+1. [Performing OTA Updates](perform-ota-updates) shows you how to update appd software. See also [Versioning](../guide/versioning).

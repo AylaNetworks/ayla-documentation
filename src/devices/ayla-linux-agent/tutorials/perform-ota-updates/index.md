@@ -10,7 +10,7 @@ Ayla provides a mechanism for performing over-the-air (OTA) updates in order to 
 
 Ayla does not define a particular file format for OTA image files. The Ayla Cloud and all Ayla device components view the file as opaque. As the following diagram illustrates, and the steps explain, only platform-specific OTA Custom Code needs to understand both the file format and how to use the contents of the file to update software.
 
-<img src="how-ota-updates-work.png" width="600">
+<a href="how-ota-updates-work.png"><img src="how-ota-updates-work.png" width="600"></a>
 
 1. An admin creates an OTA image file.
 1. Using Ayla Dashboard Portal, the admin uploads the file to the Ayla Cloud, associating it with a digital twin.

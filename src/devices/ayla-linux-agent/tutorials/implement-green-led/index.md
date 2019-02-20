@@ -4,7 +4,7 @@ layout: ayla-linux-agent.html
 b: block
 ---
 
-This tutorial shows you how to control a green LED with your version of the host application using an existing property called Green_LED. By default, the Green_LED property does not actually control a real LED:
+This tutorial shows you how to control a green LED with your version of the host application using an existing property called Green_LED:
 
 <img src="green-led.png" width="200">
 
@@ -100,8 +100,6 @@ $ gcc -Wall -o green_led green_led.c -lwiringPi
 
 ## Modify appd to control the LED
 
-Recall that appd is composed of three files, main.c, appd.c, and appd.h, which reside in <code>/home/pi/device_linux_public/app/appd</code> along with Makefile. You will modify each of these files.
-
 ### Modify Makefile
 
 <ol>
@@ -115,35 +113,6 @@ LIBS = ssl crypto curl jansson wiringPi
 <li>Save the file.</li>
 </ol>
 
-### Modify main.c
-
-<ol>
-<li>Open <code>&#126;/device_linux_public/app/appd/main.c</code> for editing.</li>
-<li>Include the wiringPi.h header file:
-<pre>
-#include &lt;wiringPi.h&gt;
-</pre>
-</li>
-<li>Scroll to the main function, and add the following code just before the call to app_run:
-<pre>
-wiringPiSetup();
-</pre>
-</li>
-<li>Save the file.</li>
-</ol>
-
-### Modify appd.h
-
-<ol>
-<li>Open <code>&#126;/device_linux_public/app/appd/appd.h</code> for editing.</li>
-<li>Add the following:
-<pre>
-#define GREEN_LED 1
-</pre>
-</li>
-<li>Save the file.</li>
-</ol>
-
 ### Modify appd.c
 
 <ol>
@@ -152,8 +121,12 @@ wiringPiSetup();
 <pre>
 #include &lt;wiringPi.h&gt;
 </pre>
+<li>Specify a GPIO pin for the green LED:
+<pre>
+#define GREEN_LED 1
+</pre>
 </li>
-<li>Scroll to the <code>app_prop_table</code>, and find the entry for the Green_LED, and modify the set field:
+<li>Scroll to <code>app_prop_table</code>, find the entry for the Green_LED, and modify the set field:
 <pre>
 {
   .name = "Green_LED",
@@ -166,21 +139,21 @@ wiringPiSetup();
 },
 </pre>
 </li>
-<li>Add the following function to the file. Do so before <code>app_prop_table</code>:
+<li>Add the following function to the file before <code>app_prop_table</code>:
 <pre>
 static int appd_green_led_set(struct prop \*prop, const void \*val, size_t len, const struct op_args \*args) {
-  pinMode(GREEN_LED, OUTPUT);
-  int green_led = \*((uint8_t \*)val);
-  if(green_led == 1) {
-    digitalWrite(GREEN_LED, HIGH);
-  } else {
-    digitalWrite(GREEN_LED, LOW);
-  }
   if (prop_arg_set(prop, val, len, args) != ERR_OK) {
     return -1;
   }
+  digitalWrite(GREEN_LED, green_led);
   return 0;
 }
+</pre>
+</li>
+<li>Scroll to the <code>appd_start</code> function, and add the following:
+<pre>
+wiringPiSetup();
+pinMode(GREEN_LED, OUTPUT);
 </pre>
 </li>
 <li>Save the file.</li>
@@ -188,4 +161,14 @@ static int appd_green_led_set(struct prop \*prop, const void \*val, size_t len, 
 
 ### Make, run, and test appd
 
-Make and run the host app. Test the new functionality by toggling the Green LED property on/off in Aura, and verifying that the actual LED on the breadboard turns on/off.
+Make and run appd:
+
+<pre>
+$ cd ~/device_linux_public/
+$ sudo make
+$ sudo systemctl stop devd
+$ sudo cp ~/device_linux_public/build/native/obj/app/appd/appd ~/ayla/bin/appd
+$ sudo systemctl start devd
+</pre>
+
+Test the new functionality by toggling the Green LED property on/off in Aura, and verifying that the actual LED on the breadboard turns on/off.

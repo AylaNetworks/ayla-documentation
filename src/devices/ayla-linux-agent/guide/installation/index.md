@@ -54,3 +54,4 @@ $ sudo ./ayla_install.sh -g     // Wi-Fi
 $ sudo ./ayla_install.sh -g -n  // Ethernet
 </pre>
 If you are installing over a previous installation, include the <code>-u</code> flag. The <code>-g</code> flag installs the [Wiring Pi library](http://wiringpi.com/) in your run environment which is required by the tutorials for connecting your RPi via GPIO pins to LEDs and buttons on a breadboard.
+1. When the installation completes, do NOT reboot yet.

@@ -1,5 +1,5 @@
 ---
-title: Docs
+title: Ayla Docs
 layout: notes.html
 ---
 

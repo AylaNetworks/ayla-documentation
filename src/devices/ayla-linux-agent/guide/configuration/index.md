@@ -77,6 +77,10 @@ $ ./device_linux_public/build/native/utils/config_gen -d ./AC000W123456789.xml -
 
 Rename the resulting <code>AC000W123456789.conf</code> file to <code>devd.conf</code> (overwriting any existing one), and leave it in <code>/home/pi</code>.
 
+<pre>
+$ mv AC000W123456789.conf devd.conf
+</pre>
+
 ### 7. Modify devd.conf
 
 <ol>

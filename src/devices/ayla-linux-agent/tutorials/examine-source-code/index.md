@@ -4,7 +4,23 @@ layout: ayla-linux-agent.html
 b: block
 ---
 
-This tutorial helps you explore Host Application (appd) source code, and the application's use of the (devd) [Agent API](/devices/ayla-linux-agent/reference/agent-api).
+This tutorial helps you explore host application (appd) source code, and the application's use of the [Ayla Linux Agent (devd) API](/devices/ayla-linux-agent/reference/agent-api).
+
+## What does appd do?
+
+Consider the following diagram:
+
+<a href="sync-tables.png"><img src="sync-tables.png" width="700"></a>
+
+1. <code>appd</code> defines an array of properties (e.g. Green_LED) associated with the device.
+1. The Ayla Cloud maintains an identical set of properties in the device's digital twin.
+1. <code>appd</code> and the Ayla Cloud work together to keep the properties synchronized.
+1. Each property includes a name, type, value, direction (<code>To Device</code> or <code>From Device</code>), etc.
+1. <code>To Device</code> (from the cloud) property values are sometimes related to command and control (e.g. turn on LED).
+1. <code>From Device</code> (to the cloud) property values are sometimes related to interrupts (e.g. the button was pressed).
+1. Typically, <code>appd</code> interacts with two interfaces: Agent API and Hardware API.
+1. The Agent API is <code>devd</code> which contributes secure connectivity to the cloud.
+1. The Hardware API depends on your hardware. For Linux on RPi, it includes the GPIO header. 
 
 ## Where are appd files?
 
@@ -30,7 +46,7 @@ The host application also includes third-party libraries. See the [Makefile](htt
 
 ## main.c
 
-[main.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/app/appd/main.c) defines <code>main()</code> which calls the following functions:
+[main.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/app/appd/main.c) defines <code>main()</code> which invokes the following functions:
 
 |Function|File|Component|Description|
 |-|-|-|-|
@@ -49,7 +65,7 @@ The host application also includes third-party libraries. See the [Makefile](htt
 
 ### appd_prop_table
 
-[appd.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/app/appd/appd.c) defines <code>appd_prop_table</code>, an array of <code>prop</code> structures, one for each property maintained by the host app, properties that are represented by the digital twin in the Ayla Cloud corresponding to this device.
+[appd.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/app/appd/appd.c) defines <code>appd_prop_table</code>, an array of <code>prop</code> structures, one for each property maintained by the host app, properties that are represented by the digital twin corresponding to this device in the Ayla Cloud. 
 
 <pre>
 static struct prop appd_prop_table[] = {
@@ -70,7 +86,7 @@ static struct prop appd_prop_table[] = {
 };
 </pre>
 
-Defined and described in [props.h](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/include/app/props.h), part of libapp, the prop structure looks like this:
+Each item in the array is a <code>prop</code> struct which is defined in [props.h](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/include/app/props.h), part of libapp:
 
 <pre>
 struct prop {
@@ -92,6 +108,27 @@ struct prop {
 };
 </pre>
 
+The following table represents a subset of values for each property in the <code>appd_prop_table</code> array:
+
+|name|type|set|send|direction|
+|-|-|-|-|-|
+|version|String|&nbsp;|appd_send_version|From Device|
+|Green_LED|Boolean|<span style="color:red;">appd_led_set</span>|prop_arg_send|<span style="color:red;">To Device</span>|
+|Blue_LED|Boolean|<span style="color:red;">appd_led_set</span>|prop_arg_send|<span style="color:red;">To Device</span>|
+|Blue_button|Boolean|&nbsp;|prop_arg_send|From Device|
+|input|Integer|<span style="color:red;">appd_input_set</span>|prop_arg_send|<span style="color:red;">To Device</span>|
+|output|Integer|&nbsp;|prop_arg_send|From Device|
+|decimal_in|decimal|<span style="color:red;">appd_decimal_in_set</span>|prop_arg_send|<span style="color:red;">To Device</span>|
+|decimal_out|decimal|&nbsp;|prop_arg_send|From Device|
+|cmd|string|<span style="color:red;">appd_cmd_set</span>|prop_arg_send|<span style="color:red;">To Device</span>|
+|log|string|&nbsp;|prop_arg_send|From Device|
+|file_down|file|<span style="color:red;">prop_arg_set</span>|&nbsp;|<span style="color:red;">To Device</span>|
+|file_up|file|&nbsp; |prop_arg_send|From Device|
+|file_up_test|Boolean|<span style="color:red;">appd_file_up_test_set</span>|prop_arg_send|<span style="color:red;">To Device</span>|
+|batch_hold|Boolean|<span style="color:red;">appd_batch_hold_set</span>|prop_arg_send|<span style="color:red;">To Device</span>|
+
+The <code>prop</code> structure does not actually have a <code>direction</code> variable. It is implied. If a property has a <code>set</code> method, then it has <code>To Device</code> directionality. Else, it has <code>From Device</code> directionality. <code>prop_arg_set</code> is an example of a generic <code>set</code> function provided by libapp. <code>appd_led_set</code> is an example of a custom <code>set</code> function implemented by the host application.
+
 ### Functions
 
 [appd.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/app/appd/appd.c) defines several function which, collectively, call the following library functions:
@@ -99,19 +136,19 @@ struct prop {
 |Function|File|Component|Description|
 |-|-|-|-|
 |app_set_template_version|[app.c](https://github.com/AylaNetworks/device_linux_public/blob/7c773e5a51f9aebb5bdb93fdaf48425813054590/lib/app/app.c)|libapp|Select the cloud template version to use with this application.|
+|prop_add|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Add a list of properties to the library's property lookup table.|
+|prop_send|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send property by <code>struct prop &#42;prop</code>.|
 |prop_val_send|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send a value for a property.|
-|prop_val_to_str|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Converts a value to string format for printing.|
-|prop_arg_set|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Handles incoming property updates. Used as generic <code>set</code> function in prop structs.|
-|prop_metadata_alloc|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Allocates empty prop_metadata structure with size of PROP_METADATA_MAX_ENTRIES.|
-|prop_metadata_addf|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Add key/value pair to prop_metadata_list struct using a printf-style formatted value.|
-|prop_lookup|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Lookup a property table entry by name.|
-|prop_arg_batch_append|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Same as prop_arg_send, but property is put in queue to be sent later.|
-|prop_metadata_free|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Free a prop_metadata_list struct.|
 |prop_send_by_name|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send property by looking it up by name.|
 |prop_batch_send|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send a batch list.|
-|prop_send|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send property by <code>struct prop *prop</code>.|
-|prop_metadata_add|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Add a new key/value pair to a prop_metadata_list structure.|
-|prop_add|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Add a list of properties to the library's property lookup table.|
+|prop_arg_batch_append|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Same as prop_arg_send, but property is put in queue to be sent later.|
 |prop_batch_confirm_handler_set|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Set the confirmation handler for prop batch sends.|
+|prop_metadata_alloc|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Allocates empty prop_metadata structure with size of PROP_METADATA_MAX_ENTRIES.|
+|prop_metadata_addf|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Add key/value pair to prop_metadata_list struct using a printf-style formatted value.|
+|prop_metadata_free|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Free a prop_metadata_list struct.|
+|prop_metadata_add|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Add a new key/value pair to a prop_metadata_list structure.|
+|prop_arg_set|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Handles incoming property updates. Used as generic <code>set</code> function in prop structs.|
+|prop_lookup|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Lookup a property table entry by name.|
 |prop_send_from_dev|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Send all from-device properties.|
 |prop_request_to_dev|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Request values of all to-device properties from the service.|
+|prop_val_to_str|[props.c](https://github.com/AylaNetworks/device_linux_public/blob/c102d2dd7fc31386ca2686099bb31fb4ddae8c38/lib/app/props.c)|libapp|Converts a value to string format for printing.|

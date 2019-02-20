@@ -12,3 +12,4 @@ a: block
 1. [Configuration](configuration) provides steps for creating a devd.conf file.
 1. [Registration](registration) helps you register your RPi device in the Ayla Cloud.
 1. [User Tests](user-tests) shows you how to test the various default properties of your host application.
+1. [Versioning](versioning) explains how Ayla keeps track of appd and devd versions. See also [Perform OTA Updates](../tutorials/perform-ota-updates/).

@@ -67,36 +67,15 @@ $ gcc -Wall -o red_button_isr red_button_isr.c -lwiringPi
 
 ## Modify appd to control the LED
 
-### Modify main.c
-
-<ol>
-<li>Open <code>&#126;/device_linux_public/app/appd/main.c</code> for editing.</li>
-<li>Scroll to the main function, and add the following:</code>:
-<pre>
-pinMode(RED_BUTTON, INPUT);
-wiringPiISR(RED_BUTTON, INT_EDGE_BOTH, &red_button_isr);
-</pre>
-</li>
-<li>Save the file.</li>
-</ol>
-
-### Modify appd.h
-
-<ol>
-<li>Open <code>&#126;/device_linux_public/app/appd/appd.h</code> for editing.</li>
-<li>Add the following:</code>:
-<pre>
-#define RED_BUTTON 26
-void red_button_isr(void);
-</pre>
-</li>
-<li>Save the file.</li>
-</ol>
-
 ### Modify appd.c
 
 <ol>
 <li>Open <code>&#126;/device_linux_public/app/appd/appd.c</code> for editing.</li>
+<li>Specify a GPIO pin for the red button:
+<pre>
+#define RED_BUTTON 26
+</pre>
+</li>
 <li>Add the following variable:
 <pre>
 static u8 red_button;
@@ -121,6 +100,12 @@ void red_button_isr(void) {
   else {red_button = 0;}
   prop_send_by_name("Red_button");
 }
+</pre>
+</li>
+<li>Scroll to the <code>appd_start</code> function, and add the following after <code>wiringPiSetup()</code>:
+<pre>
+pinMode(RED_BUTTON, INPUT);
+wiringPiISR(RED_BUTTON, INT_EDGE_BOTH, &red_button_isr);
 </pre>
 </li>
 <li>Save the file.</li>
