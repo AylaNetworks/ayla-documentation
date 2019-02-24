@@ -4,7 +4,7 @@ layout: ayla-linux-agent.html
 a: block
 ---
 
-Versioning allows you to upgrade the Ayla Linux Agent (devd), the host application (appd), and the template associated with the host application while maintaining compatibility among the three components. This page explains versioning in general. It does not explain how to perform over-the-air updates with version control. For that, see [Perform OTA Updates](../../tutorials/perform-ota-versioning). Now, consider the following diagram:
+Versioning allows you to upgrade the Ayla Linux Agent (devd), the host application (appd), and the template associated with the host application while maintaining compatibility among the three components. This page explains versioning in general. It does not explain how to perform over-the-air updates with version control. For that, see [Perform OTA Updates](../../tutorials/perform-ota-updates). Now, consider the following diagram:
 
 <img src="dev-portal-versions.png" width="760">
 

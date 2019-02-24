@@ -3,7 +3,7 @@ title: Feedback
 layout: page-full-width.html
 ---
 
-Send an email to matt at aylanetworks dot com.
+Please send feedback to matt at aylanetworks dot com.
 
 <!--
 <form action="/assets/server/thank-you.php" method="post">

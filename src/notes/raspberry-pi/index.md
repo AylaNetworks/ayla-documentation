@@ -1,7 +1,10 @@
 ---
 title: Raspberry Pi
 layout: notes.html
+a: block
 ---
+
+See [The Debian GNU/Linux FAQ](https://www.debian.org/doc/manuals/debian-faq/index.en.html#contents).
 
 # About my Raspberry Pi
 

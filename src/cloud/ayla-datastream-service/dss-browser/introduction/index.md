@@ -6,7 +6,7 @@ e: block
 
 DSS Browser is a browser-based WebSocket application (HTML, CSS, JS, jQuery, Bootstrap) that listens for, and displays, DSS events. It is useful for rapid understanding and experimentation.
 
-The directions on this page focus on the freezer scenario which involves datapoint events only. To explore all five event types, see [DSS Events](../../dss-events).
+The directions on this page focus on the freezer scenario which involves datapoint events only. To explore all five event types, see [DSS Events](../../events).
 
 1. Run [DSS Browser](https://docs.aylanetworks.com/cloud/ayla-datastream-service/dss-browser/source/client.html).
 1. For <code>Name the event stream</code>, enter <code>Freezer too_warm for DSS Browser</code>.

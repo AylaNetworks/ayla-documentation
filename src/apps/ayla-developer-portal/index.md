@@ -17,12 +17,12 @@ title: Ayla Developer Portal
 </tr>
 <tr>
 <td>field</td>
-<td><a href="sss" target="_blank">&nbsp;</a></td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>eu</td>
 <td>field</td>
-<td><a href="sss" target="_blank">&nbsp;</a></td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td rowspan="2">us</td>
@@ -31,6 +31,6 @@ title: Ayla Developer Portal
 </tr>
 <tr>
 <td>field</td>
-<td><a href="sss" target="_blank">&nbsp;</a></td>
+<td>&nbsp;</td>
 </tr>
 </table>

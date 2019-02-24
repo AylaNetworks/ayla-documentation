@@ -6,7 +6,7 @@ b: block
 
 1. [Modify the host application](modify-the-host-application) shows you how to modify, build, and run appd.
 1. [Run the host application](modify-the-host-application) shows you how run appd in various ways.
-1. [Examine source code](source-code) helps you explore host application (appd) source code, and its use of Ayla Linux Agent APIs.
+1. [Examine source code](examine-source-code) helps you explore host application (appd) source code, and its use of Ayla Linux Agent APIs.
 1. [Implement Green_LED](implement-green-led) shows you how to wire and control the Green_LED property.
 1. [Implement Blue_button](implement-blue-button) shows you how to wire and control the Blue_button property.
 1. [Add Metadata](add-metadata) shows you how to add metadata to a property.

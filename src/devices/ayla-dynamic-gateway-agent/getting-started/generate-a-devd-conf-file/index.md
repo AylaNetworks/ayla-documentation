@@ -23,7 +23,7 @@ Here are the steps required to create a devd.conf file. See the other headings b
 
 ### Create a dsn.xml file
 
-1. Browse to the [Ayla Dashboard Portal](https://docs.aylanetworks.com/cloud/ayla-dashboard-portal/).
+1. Browse to the [Ayla Dashboard Portal](/apps/ayla-dashboard-portal/).
 1. Click Factory Actions in the sidebar.
 1. Click the Reserve DSNs button.
 1. For Model, select <code>AY001MRT1-Linux Software Agent</code>.

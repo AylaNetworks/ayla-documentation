@@ -4,20 +4,20 @@ layout: ayla-linux-agent.html
 a: block
 ---
 
-The Ayla Device Platform for Linux runs on a Linux operating system such as Debian-based Raspbian, the primary OS of the small and versatile [Raspberry Pi](https://en.wikipedia.org/wiki/Raspberry_Pi). This page explains how to set up a [Raspberry Pi 3 Model B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/), part of the [CanaKit Raspberry Pi 3 Model B+ Ultimate Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-ultimate-kit.html) which provides all the components needed to complete the tutorials. Although it is possible to set up a Raspberry Pi in desktop mode (with monitor, keyboard, mouse, and Ethernet cable), most use cases require remote access via [Secure Shell (ssh)](https://en.wikipedia.org/wiki/Secure_Shell), [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/), or some other tool, to a headless and, sometimes, wireless installation. Of the possible set up combinations below, <span style="color:red;">Row C</span> is <span style="color:red;">recommended</span> as your initial environment because it allows you to use VNC Viewer (explained below), and it avoids the need to pre-configure wireless which you can do using VNC Viewer later. 
+The Ayla Device Platform for Linux runs on a Linux operating system such as Debian-based Raspbian, the primary OS of the [Raspberry Pi](https://en.wikipedia.org/wiki/Raspberry_Pi). The follow table outlines a few ways to set up a Raspberry Pi:
 
-|&nbsp;|Raspbian OS|Monitor + Keyboard + Mouse|Network Connection|
-|-|-|-|-|-|
-|A|full|yes|wired|
-|B|full|yes|wireless|
-|<span style="color:red;">C</span>|<span style="color:red;">full</span>|<span style="color:red;">no</span>|<span style="color:red;">wired</span>|
-|D|full|no|wireless|
-|E|lite|yes|wired|
-|F|lite|yes|wireless|
-|G|lite|no|wired|
-|H|lite|no|wireless|
+|&nbsp;|Raspbian OS|Desktop Software|Monitor + Keyboard + Mouse|Network Connection|Purpose|
+|-|-|-|-|-|-|-|
+|A|&#10003;|&#10003;|&#10003;|wired|&nbsp;|
+|B|&#10003;|&#10003;|&#10003;|wireless|&nbsp;|
+|C|&#10003;|&#10003;|&nbsp;|wired|Development|
+|D|&#10003;|&#10003;|&nbsp;|wireless|&nbsp;|
+|E|&#10003;|&nbsp;|&#10003;|wired|&nbsp;|
+|F|&#10003;|&nbsp;|&#10003;|wireless|&nbsp;|
+|G|&#10003;|&nbsp;|&nbsp;|wired|&nbsp;|
+|H|&#10003;|&nbsp;|&nbsp;|wireless|Production|
 
-Although the full Raspbian OS (<code>Raspbian Stretch OS with desktop and recommended software</code>) is pre-installed on the Canakit MicroSD card, the steps below include instructions for flashing a new Raspbian OS onto your MicroSD card in case you want to re-image.
+The steps below explain how to set up Row C, a headless, wired [Raspberry Pi 3 Model B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/) with Raspian Desktop as a <span style="color:red;">development environment</span> useful for completing the [Tutorials](../../tutorials). Although you can access your RPi via [USB to TTL Serial Cable](https://www.adafruit.com/product/954) or [Secure Shell (ssh)](https://en.wikipedia.org/wiki/Secure_Shell), inclusion of the Desktop software also allows you access via [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) if you prefer a more graphical approach. The [CanaKit Raspberry Pi 3 Model B+ Ultimate Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-ultimate-kit.html) provides all the components needed. Although the MicroSD card has Raspbian pre-loaded, the steps include instructions for flashing a new Raspbian OS onto your MicroSD card in case you want to re-image. Later, for your <span style="color:red;">production environment</span>, you may prefer a headless, wireless installation with Raspbian Lite. 
 
 ## Recommended setup
 
