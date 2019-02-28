@@ -15,6 +15,8 @@ layout: notes.html
 
 [Google Cloud Platform](https://cloud.google.com/docs/)
 
+[Adafruit Explore and Learn](https://learn.adafruit.com/)
+
 ### Tools
 
 [pandoc](https://pandoc.org/index.html)
@@ -23,3 +25,8 @@ layout: notes.html
 
 [Read the Docs](https://readthedocs.org/)
 
+[Next.js](https://nextjs.org/)
+
+[Gatsby.js](https://www.gatsbyjs.org/)
+
+[Next vs Gatsby](https://www.reddit.com/r/reactjs/comments/992n2r/next_vs_gatsby/)

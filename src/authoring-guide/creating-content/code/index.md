@@ -68,3 +68,5 @@ When you wrap code in <code>&lt;pre&gt;...&lt;/pre&gt;</code> tags, you need to 
 |greater than|&gt;|&amp;gt;|&nbsp;|
 |tilde|&#126;|&amp;#126;|equivalency sign|
 |colon|&colon;|&amp;colon;|Use in http&colon;//|
+
+See also [HTML Character Entities Cheat Sheet](https://www.cheatography.com/davechild/cheat-sheets/html-character-entities/).

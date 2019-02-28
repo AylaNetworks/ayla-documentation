@@ -43,7 +43,6 @@ layout: page-homepage.html
       <p>Ayla Dashboard Portal</p>
       <p>Ayla Demo Mobile App (Aura)</p>
       <p>Ayla Developer Portal</p>
-      <p>[Ayla Proxy Server](labs/ayla-proxy-server)</p>
     </div>
   </div>
 </div>

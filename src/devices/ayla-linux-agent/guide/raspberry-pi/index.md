@@ -4,38 +4,36 @@ layout: ayla-linux-agent.html
 a: block
 ---
 
-The Ayla Device Platform for Linux runs on a Linux operating system such as Debian-based Raspbian, the primary OS of the [Raspberry Pi](https://en.wikipedia.org/wiki/Raspberry_Pi). The follow table outlines a few ways to set up a Raspberry Pi:
+The Ayla Device Platform for Linux runs on a Linux operating system such as Debian-based Raspbian, the primary OS of the [Raspberry Pi](https://en.wikipedia.org/wiki/Raspberry_Pi). The following table outlines a few ways to set up a Raspberry Pi:
 
-|&nbsp;|Raspbian OS|Desktop Software|Monitor + Keyboard + Mouse|Network Connection|Purpose|
+|&nbsp;|Raspbian|Peripherals|Network|Access|Purpose|
 |-|-|-|-|-|-|-|
-|A|&#10003;|&#10003;|&#10003;|wired|&nbsp;|
-|B|&#10003;|&#10003;|&#10003;|wireless|&nbsp;|
-|C|&#10003;|&#10003;|&nbsp;|wired|Development|
-|D|&#10003;|&#10003;|&nbsp;|wireless|&nbsp;|
-|E|&#10003;|&nbsp;|&#10003;|wired|&nbsp;|
-|F|&#10003;|&nbsp;|&#10003;|wireless|&nbsp;|
-|G|&#10003;|&nbsp;|&nbsp;|wired|&nbsp;|
-|H|&#10003;|&nbsp;|&nbsp;|wireless|Production|
+|A|Full|<img style="margin:0;" src="monitor-keyboard-mouse.png" width="80">|wired|serial, ssh, vnc|&nbsp;|
+|B|Full|<img style="margin:0;" src="monitor-keyboard-mouse.png" width="80">|wireless|serial, ssh, vnc|&nbsp;|
+|C|Full|&nbsp;|wired|serial, ssh, vnc|Development|
+|D|Full|&nbsp;|wireless|serial, ssh, vnc|&nbsp;|
+|E|Lite|<img style="margin:0;" src="monitor-keyboard-mouse.png" width="80">|wired|serial, ssh|&nbsp;|
+|F|Lite|<img style="margin:0;" src="monitor-keyboard-mouse.png" width="80">|wireless|serial, ssh|&nbsp;|
+|G|Lite|&nbsp;|wired|serial, ssh|&nbsp;|
+|H|Lite|&nbsp;|wireless|serial, ssh|Production|
 
-The steps below explain how to set up Row C, a headless, wired [Raspberry Pi 3 Model B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/) with Raspian Desktop as a <span style="color:red;">development environment</span> useful for completing the [Tutorials](../../tutorials). Although you can access your RPi via [USB to TTL Serial Cable](https://www.adafruit.com/product/954) or [Secure Shell (ssh)](https://en.wikipedia.org/wiki/Secure_Shell), inclusion of the Desktop software also allows you access via [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) if you prefer a more graphical approach. The [CanaKit Raspberry Pi 3 Model B+ Ultimate Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-ultimate-kit.html) provides all the components needed. Although the MicroSD card has Raspbian pre-loaded, the steps include instructions for flashing a new Raspbian OS onto your MicroSD card in case you want to re-image. Later, for your <span style="color:red;">production environment</span>, you may prefer a headless, wireless installation with Raspbian Lite. 
+The steps below explain how to set up Row C as a <span style="color:red;">development environment</span> useful for completing the [Tutorials](../../tutorials). The configuration includes [Raspbian Stretch with desktop and recommended software](https://www.raspberrypi.org/downloads/raspbian/) running on a headless [Raspberry Pi 3 Model B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/), connected to the network via Ethernet cable, and accessible via [serial cable](https://www.adafruit.com/product/954), [Secure Shell (ssh)](https://en.wikipedia.org/wiki/Secure_Shell), and/or [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/). The [CanaKit Raspberry Pi 3 Model B+ Ultimate Starter Kit](https://www.canakit.com/raspberry-pi-3-model-b-plus-ultimate-kit.html) provides all the needed hardware components. Later, for your <span style="color:red;">production environment</span>, you may prefer Row H.
 
-## Recommended setup
-
-### Set up the physical Raspberry Pi
+## Set up the physical Raspberry Pi
 
 1. Insert the RPi into the clear case per [these directions](https://www.canakit.com/pi-case). You won't need the lid or camera for now.
 <img src="rpi-and-case.png" width="300">
 1. Install the heat sinks:
 <img src="rpi-heat-sinks.png" width="300">
 
-### Access the MicroSD card
+## Access the MicroSD card
 
 1. Insert the MicroSD card into a USB MicroSD card reader:
 <img src="rpi-card-reader.png" width="200">
 1. Insert the reader into a USB port on your computer.
 <img src="mounted-canakit.png" width="140">
 
-### Flash an OS image
+## Flash an OS image
 
 1. Download one of the flavors of [Raspbian Stretch](https://www.raspberrypi.org/downloads/raspbian/) to your computer. Do not unzip.
 1. Download [Etcher](https://www.balena.io/etcher/) to your computer, and install it.
@@ -45,50 +43,46 @@ The steps below explain how to set up Row C, a headless, wired [Raspberry Pi 3 M
 1. Flash the new Raspian image to the MicroSD card:
 <img src="etcher-flash.png" width="300">
 
-### Configure for remote access
+## Enable remote access
 
-1. In a terminal on your computer, view the contents of the MicroSD card which may be named <code>boot</code>:
+1. In a terminal on your computer, view the contents of the MicroSD card <code>boot</code> directory:
 <pre>
 /Volumes/boot$ ls -1
-COPYING.linux
-LICENCE.broadcom
-LICENSE.oracle
-bcm2708-rpi-0-w.dtb
-...
 </pre>
+1. Enable serial communication by appending <code>enable_uart=1</code> to <code>config.txt</code>.
 1. Enable Secure Shell by creating an empty <code>ssh</code> text file:
 <pre>
 /Volumes/boot$ touch ssh
 </pre>
+1. Close the terminal.
 1. Unmount the MicroSD card:
 <img src="mounted-boot.png" width="140">
 
-### Power on the Raspberry Pi
-
-CAUTION: After powering on, you will need to find the IP address of your Raspberry Pi. If you have access to your router, you can determine the IP address by finding a new device named <code>RASPBERRYPI</code>, the default RPi name. Otherwise, finding the newly assigned IP address can be challenging. One approach is running <code>arp -a &gt; before</code> in a terminal before powering on, and <code>arp -a &gt; after</code> after powering on, and then comparing the two files with <code>diff before after</code>. The new IP entry will be the difference between the two files. 
+## Power on the Raspberry Pi
 
 1. Insert the MicroSD card into your Raspberry Pi:
 <img src="rpi-micro-sd-card.png" width="300">
-1. Use the CanaKit PiSwitch to plug-in and power-on the RPi, and wait for a minute or two:
-<img src="rpi-on-off-switch.png" width="400">
+1. Connect an Ethernet cable and a CanaKit PiSwitch:
+<img src="rpi-ethernet-power.png" width="400">
+1. Power-on the RPi, and wait for a minute or two:
 
-### Find your RPi IP address
+## Access the Raspberry Pi
 
-If you have access, you can inspect your router directly:
+There are three standard methods for accessing a Raspberry Pi:
 
-<img src="attached-devices.png" width="700">
+1. Serial Cable
+1. Secure Shell (ssh)
+1. VNC Viewer
 
-And/or you can enter <code>arp -a</code> in a terminal:
-<pre>
-$ arp -a
-...
-? (192.168.1.9) at aa:aa:aa:aa:aa:aa on en0 ifscope [ethernet]
-...
-</pre>
+Note that the last two approaches require you to specify the IP address of the Raspberry Pi. If you have access rights to your local router, you can determine the RPi IP address by inspecting the router. You can also use <code>arp -a</code> in a terminal on your computer.
 
-### Connect via Secure Shell
+### Serial Cable
 
-1. Run <code>ssh</code>:
+See [Adafruit's Raspberry Pi Lesson 5. Using a Console Cable](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-5-using-a-console-cable/overview).
+
+### Secure Shell
+
+1. Run <code>ssh</code> (specifying your RPi's IP Address):
 <pre>
 $ ssh pi&#64;192.168.1.9
 </pre>
@@ -136,7 +130,7 @@ Wi-Fi is disabled because the country is not set.
 Use raspi-config to set the country before use.
 </pre>
 
-### Run VNC Viewer
+### VNC Viewer
 
 1. In your <code>ssh</code> terminal, enter the following:
 <pre>
@@ -150,9 +144,9 @@ The Raspberry Pi Software Configuration Tool menu appears:
 1. Exit the utility, and reboot.
 1. Download [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) onto your computer, install, and run. See also [Virtual Network Computing](https://www.raspberrypi.org/documentation/remote-access/vnc/).
 <img src="vnc.png" width="600">
-Now, to access your RPi from your computer, you can use VNC Viewer with its File Manager, Text Editor, Terminal, and Browser, and/or you can use a Secure Shell with <code>vi</code>, <code>nano</code>, etc.
+Now, to access your RPi from your computer, you can use VNC Viewer with its File Manager, Text Editor, Terminal, and Browser.
 
-### Finish up
+### Last steps
 
 1. Change your password:
 <pre>
@@ -170,7 +164,7 @@ $ sudo apt-get install git -y
 </pre>
 </li>
 
-## Configure for wireless
+## Wireless considerations
 
 ### At run time
 
