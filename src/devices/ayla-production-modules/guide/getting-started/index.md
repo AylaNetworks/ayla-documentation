@@ -4,8 +4,11 @@ layout: ayla-production-modules.html
 a: block
 ---
 
-1. Open the box.
-1. Take out the dev kit and the cable.
-1. sss
-1. sss
-1. sss
+### Buy a dev Kit
+
+### Create an Ayla account
+
+### Install the Aura mobile app
+
+### Connect the dev kit
+
