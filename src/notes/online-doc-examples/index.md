@@ -17,6 +17,10 @@ layout: notes.html
 
 [Adafruit Explore and Learn](https://learn.adafruit.com/)
 
+[Github REST API 3](https://developer.github.com/v3/)
+
+[ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/index.html)
+
 ### Tools
 
 [pandoc](https://pandoc.org/index.html)
