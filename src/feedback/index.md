@@ -3,7 +3,9 @@ title: Feedback
 layout: page-full-width.html
 ---
 
-Please send feedback to matt at aylanetworks dot com.
+If you have access to the Ayla Networks Jira System, please create a ticket in the [Ayla Documentation](https://aylanetworks.atlassian.net/jira/software/projects/AD/boards/135) project.
+
+Else, please send feedback to matt at aylanetworks dot com.
 
 <!--
 <form action="/assets/server/thank-you.php" method="post">

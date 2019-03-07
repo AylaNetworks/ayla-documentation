@@ -6,7 +6,10 @@ layout: page-homepage.html
 <div class="row" style="margin-top:18px;">
   <div class="col-md-3" style="background:ghostwhite;">
     <div style="font-size: 90%;">
-      <h2 style="margin-bottom: 18px">[Overview](overview)</h2>
+      <h2 style="margin-bottom: 18px">[Getting Started](getting-started)</h2>
+      <p>[Overview](getting-started/overview)</p>
+      <p>[Ayla Developer Kit](getting-started/ayla-developer-kit)<span class="draft">Draft</span></p>
+      <p>[Ayla on an ESP32 Dev Kit](getting-started/ayla-on-an-esp32devkit)<span class="draft">Draft</span></p>
     </div>
   </div>
   <div class="col-md-3" style="background:ghostwhite; border-left:1px solid #e6e6ff;">

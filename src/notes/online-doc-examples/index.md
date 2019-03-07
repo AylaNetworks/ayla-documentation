@@ -21,6 +21,8 @@ layout: notes.html
 
 [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/index.html)
 
+[Git Tutorials](https://www.atlassian.com/git/tutorials)
+
 ### Tools
 
 [pandoc](https://pandoc.org/index.html)

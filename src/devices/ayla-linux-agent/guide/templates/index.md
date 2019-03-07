@@ -18,7 +18,7 @@ Ayla represents physical devices as digital twins in the cloud. Mobile apps and 
 
 Properties are defined in two places:
 
-1. The host application running on the device. The default host application ([appd](https://github.com/AylaNetworks/device_linux_public/tree/master/app/appd)) for the Ayla Device Platform for Linux defines the following properties in a struct called <code>appd_prop_table</code> in [appd.c](https://github.com/AylaNetworks/device_linux_public/blob/master/app/appd/appd.c):
+1. Properties are defined in the host application running on the device. The default host application ([appd](https://github.com/AylaNetworks/device_linux_public/tree/master/app/appd)) for the Ayla Device Platform for Linux defines the following properties in a struct called <code>appd_prop_table</code> in [appd.c](https://github.com/AylaNetworks/device_linux_public/blob/master/app/appd/appd.c):
 <table>
 <tr><th>name</th><th>type</th><th>set</th><th>send</th></tr>
 <tr><td>version</td><td>PROP_STRING</td><td>&nbsp;</td><td>appd_send_version</td></tr>
@@ -36,7 +36,7 @@ Properties are defined in two places:
 <tr><td>file_up_test</td><td>PROP_BOOLEAN</td><td>appd_file_up_test_set</td><td>prop_arg_send</td></tr>
 <tr><td>batch_hold</td><td>PROP_BOOLEAN</td><td>appd_batch_hold_set</td><td>prop_arg_send</td></tr>
 </table>
-1. The digital twin in the Ayla Cloud. The corresponding digital twin will need to define these properties, too. See "Defining a template" below.
+1. Properties are defined in the digital twin in the Ayla Cloud. The corresponding digital twin will need to define these properties, too. See "Defining a template" below.
 
 ### How to define digital-twin properties
 

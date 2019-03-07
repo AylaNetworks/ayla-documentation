@@ -3,7 +3,7 @@ p, li, dd {font-size: 1.0em; font-weight: 400; line-height: 1.5em;}
 p, li {color: #1a1a1a;}
 
 h1 {font-size: 120%; margin-top: 24px; font-weight: bold; color: black;}
-h2 {font-size: 110%; margin-top: 24px; font-weight: bold; color: green;}
+h2 {font-size: 110%; margin-top: 24px; font-weight: bold; color: steelblue;}
 h3 {font-size: 100%; margin-top: 24px; font-weight: bold; color: darkorange;}
 h4 {font-size: 1.00rem;}
 h5 {font-size: 1.00rem;}
@@ -126,14 +126,17 @@ li table {margin-top: 12px;}
 #content li pre {margin-top: 12px;}
 #content code {color: #b36200;}
 
-#content .tutorials {
+#content .tutorials, #content .draft {
   color:white;
   background:forestgreen;
-  padding:3px;
+  padding:3px 4px;
   font-size:80%;
-  border-radius: 7px;
+  border-radius: 6px;
   margin-left: 6px;
 }
+
+#content .tutorials {background:forestgreen;}
+#content .draft {background:red;}
 
 /* media */
 @media (min-width: 1200px) {
