@@ -6,7 +6,7 @@ a: block
 
 The host app running on the Ayla Dev Kit (the app you will modify in [Customize](../../customize)) defines ...
 
-### Boolean properties
+## Boolean properties
 
 1. Click Ayla Dev Kit on the Aura Devices list:
 <img src="aura-devices-device.png" height="340">
@@ -24,7 +24,7 @@ The Blue_button property slider slides on.
 <img src="aura-blue-button.png" width="300">
 So, pressing the button on the kit sends an update *from the device*.
 
-### String properties
+## String properties
 
 1. Tap the white space to the right of the cmd property:
 <img src="aura-cmd.png" width="300">
@@ -35,7 +35,7 @@ Setting the cmd property sends a string value *to the device*.
 <img src="aura-log.png" width="300">
 The host app (on the device) sets <code>log = cmd</code>, and sends the string *from the device*.
 
-### Integer properties
+## Integer properties
 
 1. Tap the value to the right of the input property:
 <img src="aura-input.png" width="300">
@@ -47,7 +47,7 @@ Setting the input property sends an integer value *to the device*.
 <img src="aura-output.png" width="300">
 The host app (on the device) sets <code>output = input &#42; input</code>, and sends the integer *from the device*.
 
-### Decimal properties
+## Decimal properties
 
 1. Tap the value to the right of the decimal_in property:
 <img src="aura-decimal-in.png" width="300">
@@ -59,7 +59,14 @@ Setting the decimal_in property sends a decimal value *to the device*.
 <img src="aura-decimal-out.png" width="300">
 The host app (on the device) sets <code>decimal_out = decimal_in</code>, and sends the decimal *from the device*.
 
-### File properties
+## Version property
+
+1. Tap the version property name:
+<img src="aura-version.png" width="300">
+Property details appear:
+<img src="aura-version-details.png" width="240">
+
+## File properties
 
 File properties are minimally implemented in the example host application. You set the stream_up_length integer property (To Device) to a value, and the host app sets the stream_up file property (From Device) to a url string.
 
@@ -72,10 +79,3 @@ Setting the stream-up-len property sends an integer value *to the device*.
 <img src="aura-stream-up.png" width="300">
 1. Tap the property name to see details:
 <img src="aura-stream-up-details.png" width="240">
-
-### Version property
-
-1. Tap the version property name:
-<img src="aura-version.png" width="300">
-Property details appear:
-<img src="aura-version-details.png" width="240">

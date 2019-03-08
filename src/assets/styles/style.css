@@ -129,14 +129,14 @@ li table {margin-top: 12px;}
 #content .tutorials, #content .draft {
   color:white;
   background:forestgreen;
-  padding:3px 4px;
+  padding:2px 4px;
   font-size:80%;
   border-radius: 6px;
   margin-left: 6px;
 }
 
 #content .tutorials {background:forestgreen;}
-#content .draft {background:red;}
+#content .draft {background:orange;}
 
 /* media */
 @media (min-width: 1200px) {

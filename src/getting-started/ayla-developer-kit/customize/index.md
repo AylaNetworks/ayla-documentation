@@ -4,6 +4,8 @@ layout: ayla-developer-kit.html
 b: block
 ---
 
+This chapter helps you customize Ayla from a programmer's perspective.
+
 1. [Introduction](introduction)
 1. [Architecture](architecture)
 1. [Build environment](build-environment)
@@ -15,3 +17,4 @@ b: block
 1. [Placeholder](placeholder-d)
 1. [Placeholder](placeholder-e)
 1. [Placeholder](placeholder-f)
+1. [Agent API](agent-api)

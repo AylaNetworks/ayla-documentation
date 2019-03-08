@@ -15,13 +15,13 @@ layout: page-homepage.html
   <div class="col-md-3" style="background:ghostwhite; border-left:1px solid #e6e6ff;">
     <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Devices](devices)</h2>
-      <p>[Ayla Production Modules](devices/ayla-production-modules)</p>
-      <p>[Ayla Integrated Agents](devices/ayla-integrated-agents)</p>
-      <p>[Ayla Portable Agent](devices/ayla-portable-agent)</p>
+      <p>[Ayla Production Modules](devices/ayla-production-modules)<span class="draft">Draft</span></p>
+      <p>[Ayla Integrated Agents](devices/ayla-integrated-agents)<span class="draft">Draft</span></p>
+      <p>[Ayla Portable Agent](devices/ayla-portable-agent)<span class="draft">Draft</span></p>
       <p>[Ayla Linux Agent](devices/ayla-linux-agent)<span class="tutorials">Tutorials</span></p>
-      <p>[Ayla Android Agent](devices/ayla-android-agent)</p>
+      <p>[Ayla Android Agent](devices/ayla-android-agent)<span class="draft">Draft</span></p>
       <p>[Ayla Dynamic Gateway Agent](devices/ayla-dynamic-gateway-agent)<span class="tutorials">Tutorials</span></p>
-      <p>[Ayla Static Gateway Agent](devices/ayla-static-gateway-agent)</p>
+      <p>[Ayla Static Gateway Agent](devices/ayla-static-gateway-agent)<span class="draft">Draft</span></p>
     </div>
   </div>
   <div class="col-md-3" style="background:ghostwhite;border-left:1px solid #e6e6ff;border-right:1px solid #e6e6ff;">
@@ -42,10 +42,10 @@ layout: page-homepage.html
   <div class="col-md-3" style="background:ghostwhite;">
     <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Applications](apps)</h2>
-      <p>Ayla Agile Mobile App Platform (AMAP)</p>
-      <p>Ayla Dashboard Portal</p>
-      <p>Ayla Demo Mobile App (Aura)</p>
+      <p>[Aura](/apps/aura)<span class="draft">Draft</span></p>
+      <p>AMAP</p>
       <p>Ayla Developer Portal</p>
+      <p>Ayla Dashboard Portal</p>
     </div>
   </div>
 </div>
