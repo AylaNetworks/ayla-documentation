@@ -4,7 +4,7 @@ layout: ayla-developer-kit.html
 b: block
 ---
 
-This chapter helps you customize Ayla from a programmer's perspective.
+This chapter helps you customize host application code.
 
 1. [Introduction](introduction)
 1. [Architecture](architecture)

@@ -3,7 +3,7 @@ title: Ayla Developer Kit
 layout: ayla-developer-kit.html
 ---
 
-The Ayla Developer Kit enables you to quickly explore the [Ayla Networks](https://www.aylanetworks.com/) IoT Cloud as a user and developer.
+The Ayla Developer Kit enables you to quickly explore the [Ayla IoT Cloud](https://www.aylanetworks.com/) as a user and developer.
 
 <img src="ayla-developer-kit.png" width="450">
 

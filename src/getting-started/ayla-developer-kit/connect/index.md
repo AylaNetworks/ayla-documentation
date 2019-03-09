@@ -3,7 +3,7 @@ title: Connect
 layout: ayla-developer-kit.html
 ---
 
-This page helps you connect your Ayla Developer Kit to the Ayla Cloud.
+Connecting your Ayla Developer Kit to the Ayla Cloud requires only a few steps:
 
 1. Take your Ayla Developer Kit out of the box.
 1. Plug the small end of the cable into the kit:
