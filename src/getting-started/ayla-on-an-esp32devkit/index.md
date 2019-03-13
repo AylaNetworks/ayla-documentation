@@ -3,7 +3,7 @@ title: Ayla on an ESP32 Dev Kit
 layout: ayla-on-an-esp32devkit.html
 ---
 
-An Ayla agent on an Espressif ESP32 Dev Kit C enables you to quickly explore the [Ayla Networks](https://www.aylanetworks.com/) IoT Cloud as a user and developer.
+An Ayla agent on an Espressif ESP32 Dev Kit C enables you to quickly explore the [Ayla IoT Cloud](https://www.aylanetworks.com/) as a user and developer.
 
 <img src="ayla-on-an-esp32devkit.png" width="500">
 

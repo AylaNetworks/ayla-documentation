@@ -35,4 +35,12 @@ Get new certs every three months. Your account credentials have been saved in yo
 </li>
 <li>Browse to <a href="http://127.0.0.1:8888/phpmyadmin">http://127.0.0.1:8888/phpmyadmin</a>.</li>
 </ol>
-</div>
+
+## Certificates
+
+<pre>
+$ sudo /opt/bitnami/ctlscript.sh stop
+$ cd /opt/bitnami
+$ sudo lego --email="name@gmail.com" --domains="docs.aylanetworks.com" run
+$ sudo /opt/bitnami/ctlscript.sh start
+</pre>
