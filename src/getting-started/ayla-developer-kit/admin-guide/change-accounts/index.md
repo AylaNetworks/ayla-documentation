@@ -1,6 +1,6 @@
 ---
-title: Ayla Accounts
+title: Change Accounts
 layout: ayla-developer-kit.html
-a: block
+c: block
 ---
 

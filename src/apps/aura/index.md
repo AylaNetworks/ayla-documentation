@@ -3,7 +3,15 @@ title: Aura
 layout: page-full-width.html
 ---
 
+## Main Menu
+
+<img src="aura-menu.png" width="720">
+
+## Device
+
 <img src="aura-device.png" width="720">
+
+## Messages
 
 <img src="aura-offline-mode.png" width="200">
 

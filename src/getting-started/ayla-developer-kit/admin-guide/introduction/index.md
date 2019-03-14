@@ -1,6 +1,6 @@
 ---
-title: OTA Updates
+title: Introduction
 layout: ayla-developer-kit.html
-a: block
+c: block
 ---
 
