@@ -17,4 +17,3 @@ This chapter helps you customize host application code.
 1. [Placeholder](placeholder-d)
 1. [Placeholder](placeholder-e)
 1. [Placeholder](placeholder-f)
-1. [Agent API](agent-api)

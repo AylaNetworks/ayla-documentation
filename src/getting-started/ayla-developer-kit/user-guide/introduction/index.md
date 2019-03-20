@@ -4,11 +4,15 @@ layout: ayla-developer-kit.html
 a: block
 ---
 
-This page showcases Ayla funtionality. First, tap *Ayla Dev Kit* on the Devices screen to display the Device screen. A list of properties (e.g. Blue_LED) appears. These particular properties help to demonstrate Ayla functionality. Ayla sees any device (including your dev kit) as a set of boolean, string, integer, decimal, and file properties. 
+This page introduces you to Ayla properties, schedules, and notifications. First, tap *Ayla Dev Kit* on the Devices screen.  
 
 <img src="aura-devices-device.png" height="340">
 
-## Boolean properties
+## Properties
+
+Note the list of properties (e.g. Blue_LED, Blue_button) at the bottom of the screen. Ayla sees any device (including your dev kit) as a set of boolean, string, integer, decimal, and/or file properties. Specific to the dev kit, these particular properties help demonstrate Ayla functionality.
+
+### Boolean properties
 
 1. Tap the Blue_LED property slider:
 <img src="aura-blue-led.png" width="200">
@@ -24,7 +28,7 @@ The Blue_button property slider slides on.
 <img src="aura-blue-button.png" width="200">
 So, pressing the button on the kit sends an update *from the device*.
 
-## String properties
+### String properties
 
 1. Tap the white space to the right of the cmd property:
 <img src="aura-cmd.png" width="200">
@@ -40,7 +44,7 @@ The Property Details screen displays three property attributes:
 <img src="aura-version-value.png" width="240">
 The *Current Value* attribute represents the host (application) software version because another attribute (not seen on this screen), <code>host_sw_version</code>, is set to <code>true</code>. The name <code>version</code> is non-essential.
 
-## Integer properties
+### Integer properties
 
 1. Tap the value to the right of the input property:
 <img src="aura-input.png" width="200">
@@ -52,7 +56,7 @@ Setting the input property sends an integer value *to the device*.
 <img src="aura-output.png" width="200">
 The host app (on the device) sets <code>output = input &#42; input</code>, and sends the integer *from the device*.
 
-## Decimal properties
+### Decimal properties
 
 1. Tap the value to the right of the decimal_in property:
 <img src="aura-decimal-in.png" width="200">
@@ -64,7 +68,7 @@ Setting the decimal_in property sends a decimal value *to the device*.
 <img src="aura-decimal-out.png" width="200">
 The host app (on the device) sets <code>decimal_out = decimal_in</code>, and sends the decimal *from the device*.
 
-## File properties
+### File properties
 
 The *stream_up* and *stream_down* properties are of type *file*. The following steps demonstrate their use with the aid of three integer properties: *stream_up_len*, *stream_down_len*, and *stream_down_len_match*.
 
@@ -113,6 +117,8 @@ A notification is a user-defined trigger associated with the condition of a devi
 
 ### Device Notifications
 
+Note: I need to verify this section.
+
 1. Tap "+".
 1. Tap "Device notification".
 1. Configure the following fields:
@@ -126,5 +132,5 @@ A notification is a user-defined trigger associated with the condition of a devi
 </table>
 1. Tap *Save Notifications*.
 1. Disconnect the Ayla Dev Kit, and wait for .... See a push notification similar to the following:
-<img src="aura-lost-connection.png" width="200">
+<!-- <img src="aura-lost-connection.png" width="200"> -->
 1. Uncheck *Send push ...*, and save again.

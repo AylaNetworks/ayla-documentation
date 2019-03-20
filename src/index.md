@@ -8,7 +8,9 @@ layout: page-homepage.html
     <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Getting Started](getting-started)</h2>
       <p>[Overview](getting-started/overview)</p>
+      <p>[Ayla Accounts](getting-started/ayla-accounts)</p>
       <p>[Ayla Developer Kit](getting-started/ayla-developer-kit)<span class="draft">Draft</span></p>
+      <p>[Ayla Module CLI](getting-started/ayla-module-cli)<span class="draft">Draft</span></p>
       <p>[Ayla on an ESP32 Dev Kit](getting-started/ayla-on-an-esp32devkit)<span class="draft">Draft</span></p>
     </div>
   </div>
@@ -42,7 +44,7 @@ layout: page-homepage.html
   <div class="col-md-3" style="background:ghostwhite;">
     <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Applications](apps)</h2>
-      <p>[Aura](/apps/aura)<span class="draft">Draft</span></p>
+      <p>[Aura Mobile App](/apps/aura-mobile-app)<span class="draft">Draft</span></p>
       <p>AMAP</p>
       <p>Ayla Developer Portal</p>
       <p>Ayla Dashboard Portal</p>
