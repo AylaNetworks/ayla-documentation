@@ -58,12 +58,6 @@ $ make flash
 $ make monitor
 </pre>
 </li>
-<li>Set OEM Secret:
-<pre>
-# oem key &lt;secret&gt;
-# save
-</pre>
-</li>
 <li>Create/obtain a dsn and key for your device ...</li>
 <li>Set dsn and key:
 <pre>
@@ -72,6 +66,7 @@ $ make monitor
 # esp-reboot
 </pre>
 </li>
+<!--
 <li>Set time:
 <pre>
 # time-set 2019 03 03 12 10 00
@@ -82,6 +77,13 @@ $ make monitor
 # factory-log
 factory-log line:
 3,1551808062,2019/03/05 17:47:42 UTC,label,0,AY008ESP1,AC000W123456789,30aea4dda048,esp32_wroom_32,p1,e53a7992d60645830,0dfc7900,ledevb,1,ADA demo customer,ayla_ledevb_demo 1.3 Mar  5 2019 12:45:19
+</pre>
+</li>
+-->
+<li>Set OEM Secret:
+<pre>
+# oem key &lt;secret&gt;
+# save
 </pre>
 </li>
 <li>Set up Wi-Fi:
