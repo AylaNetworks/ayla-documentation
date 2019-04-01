@@ -25,7 +25,7 @@ The Ayla Shield includes the following features:
 
 <img src="ayla-shield.png" width="560">
 
-The host app and the Ayla agent expose properties via the Ayla Cloud to authenticated clients such as [Aura Mobile App](/apps/aura-mobile-app), an Ayla tool used by developers to test connected devices:
+The host app and the Ayla agent expose properties via the Ayla Cloud to authenticated clients such as [Aura Mobile App](user-guide/aura-mobile-app), an Ayla tool used by developers to test connected devices:
 
 <img src="device-cloud-app.png" width="800">
 

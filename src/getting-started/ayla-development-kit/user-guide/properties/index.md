@@ -72,7 +72,5 @@ The host app (on the device) sets <code>decimal_out = decimal_in</code>, and sen
 
 ## File properties
 
-The *stream_up* and *stream_down* properties are of type *file*. The following steps demonstrate their use with the aid of three integer properties: *stream_up_len*, *stream_down_len*, and *stream_down_len_match*.
+See the **File properties** section on the [Ayla Developer Portal](../ayla-developer-portal) page to explore File properties.
 
-1. Set *stream_up_len* to 100000:
-<img src="aura-stream-up-len.png" width="200">
