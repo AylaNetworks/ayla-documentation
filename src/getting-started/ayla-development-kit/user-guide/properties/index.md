@@ -16,6 +16,10 @@ This page helps you explore each of the properties.
 <img src="aura-blue-led.png" width="200">
 The Blue LED on the dev kit illuminates. Tapping the slider sends an update *to the device*.
 <img src="kit-blue-led.png" width="300">
+1. Tap the Blue_LED slider On/Off several times to generate a history of values.
+1. Tap the Blue_LED name. The Property details screen appears. Pull down on the screen momentarily. The Datapoints list appears:
+<img src="aura-blue-led-details.png" width="200">
+A datapoint is a time-stamped property value.
 1. Tap the Green_LED property slider:
 <img src="aura-green-led.png" width="200">
 The Green LED on the dev kit illuminates. Tapping this slider also sends an update *to the device*.

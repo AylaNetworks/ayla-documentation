@@ -16,13 +16,21 @@ The diagram also shows two other <u>device</u> options for exploring the Ayla Cl
 
 This section provides a brief tour of relevant [Ayla Developer Portal](/apps/ayla-developer-portal) capabilities.
 
-1. Browse to the [Ayla Developer Portal](/apps/ayla-developer-portal), log in, and click View My Devices. The Devices list appears:
-<img src="view-my-devices.png" width="760">
-1. Click the Serial Number of your dev kit. The Device page appears with the Properties tab active:
-<img src="device-properties.png" width="800">
-You can click on any Current Value to change it.
-1. Click Blue_LED. The Property page appears with the Details tab active:
-<img src="blue-led.png" width="800">
+1. Browse to the [Ayla Developer Portal](/apps/ayla-developer-portal), log in, and click View My Devices. The Main Menu appears with the Devices tab active:
+<img src="main-menu.png" width="800">
+1. Click the Serial Number of your dev kit. The Device Menu appears with the Properties tab active:
+<img src="device-menu.png" width="800">
+You can click on any property's Current Value to change it.
+1. Click Blue_LED. The Property Menu appears with the Details tab active:
+<img src="property-menu.png" width="800">
+1. Click the Datapoints tab. A datapoints list appears similar to the Aura screen seen [here](../properties). A datapoint is a time-stamped property value.
+<img src="datapoints.png" width="280">
+1. Note the Notifications and Triggers tabs:
+<img src="notifications.png" width="540">
+Notifications are synonymous with Aura Device Notifications. Triggers are the same as Aura Property Notifications.
+1. Click the Device Details tab:
+<img src="device-details.png" width="800">
+The SW Version refers to the version of the Ayla Agent software running on the [Ayla Production Module](/devices/ayla-production-modules) on the Ayla Shield of the dev kit. The Host SW Version refers to the version of the host application running on the Nucleo board MCU of the dev kit. 
 
 ## Ayla Dashboard Portal
 

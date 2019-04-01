@@ -7,6 +7,8 @@ The <span style="font-weight: bold;">Ayla Development Kit</span> helps you explo
 
 To obtain a kit, email <code>support&#64;aylanetworks.com</code> with the subject <code>Ayla Development Kit</code>.
 
+To connect a kit to the Ayla Cloud, follow the directions on the [Connect](user-guide/connect) page.
+
 The kit consists of a [STM32 Nucleo Board](https://www.digikey.com/product-detail/en/stmicro/NUCLEO-F303RE/497-15105-ND/5052640&?gclid=EAIaIQobChMI8OT89a6E4QIVQtbACh3BJQLNEAkYBCABEgLKl_D_BwE) with an Ayla Shield, and a USB 2.0 A-Male to Mini-B Cable.
 
 <img src="ayla-dev-kit.png" width="340">
