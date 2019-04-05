@@ -6,7 +6,7 @@ a: block
 
 This page provides a brief tour of the Ayla Developer Portal.
 
-<img src="apps-developer.png" width="800">
+<img src="apps-developer.png" width="580">
 
 ## Menus
 

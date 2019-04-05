@@ -4,28 +4,52 @@ layout: ayla-development-kit.html
 a: block
 ---
 
+This page explains Ayla accounts and regions.
+
 ## Accounts
 
-1. Before connecting a device to the Ayla Cloud, you create an Ayla *user* account in an Ayla *cloud* account:
-<img src="ayla-accounts.png" width="200">
-1. Typically, you start by creating a [user account](https://developer.aylanetworks.com/registrations/new) with *EndUser* access rights in the Ayla Public Account:
+The [Connect](../connect) page describes how to use the [Aura Mobile App](../aura-mobile-app) to create a user account in the Ayla Public Account.
+
 <img src="ayla-public-account.png" width="200">
-1. The Ayla Public Account is available to everyone. In it, you can experiment with an [Ayla Development Kit](/getting-started/ayla-development-kit), [Ayla on an ESP32 Dev Kit](/getting-started/ayla-on-an-esp32-dev-kit), [Ayla on a Raspberry Pi](/getting-started/ayla-on-a-raspberry-pi), and/or other device. You *connect* your device to the cloud account, and you *register* the device to your user account:
+
+It also describes how to connect your Ayla Dev Kit to the Ayla Public Account, and how to register the kit to your user account:
+
 <img src="connect-register.png" width="200">
-1. You use the [Aura Mobile App](/apps/aura-mobile-app) and the [Ayla Developer Portal](/apps/ayla-developer-portal) to work with your device(s):
-<img src="dev-portal-aura.png" width="480">
-1. When you are ready, Ayla creates a dedicated cloud account for your company, migrates your user account, and increases your user rights:
+
+The Ayla Public Account enables you to experiment (to a certain extent) with your Ayla Dev Kit. 
+
+Ayla actually has two types of cloud accounts: The Ayla Public Account and a set of Ayla Customer Accounts:
+
+<img src="two-types-of-cloud-accounts.png" width="460">
+
+When you want to do more with your Ayla Dev Kit, or you want to connect other types of devices, the Ayla Professional Services team can create a customer account for your company, migrate your user account, and grant you additional access rights:
+
 <img src="migrate-user-account.png" width="410">
-1. Then, you migrate your device(s):
+
+(Contact pro.services&#64;aylanetworks.com).
+
+Then, you can migrate your dev kit:
+
 <img src="migrate-devices.png" width="410">
-1. And, you start using the Ayla Dashboard Portal to manage your company account:
-<img src="dev-dash-aura.png" width="700">
+
+Ayla Customer Accounts unlock additional Ayla functionality and device variety:
+
+<img src="additional-functionality.png" width="708">
 
 ## Regions
 
-1. Ayla divides the world into three centers: China, Europe, and the United States. Centers are further divided into development and field regions:
+The [Aura Mobile App](../aura-mobile-app) login screen includes a Gear icon leading to a Configuration screen listing default configurations:
+
+<img src="aura-configuration.png" width="370">
+
+Ayla divides the world into the US, CN, and EU centers as seen on the list (i.e. United States, China, and Europe) for reasons of proximity and security. It further divides each of these centers into regions: development and field. 
+
 <img src="ayla-regions.png" width="600">
-1. The Ayla Public Account is available in development regions:
+
+The Ayla Public Account is available in development regions:
+
 <img src="ayla-public-account-regions.png" width="600">
-1. An Ayla Customer Account might span several regions:
+
+An Ayla Customer Account might span several regions:
+
 <img src="ayla-customer-account-regions.png" width="600">

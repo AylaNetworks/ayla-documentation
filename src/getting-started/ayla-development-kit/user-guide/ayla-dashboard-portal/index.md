@@ -6,7 +6,7 @@ a: block
 
 This page provides a brief tour of the Ayla Dashboard Portal.
 
-<img src="apps-dashboard.png" width="800">
+<img src="apps-dashboard.png" width="580">
 
 **Important**: The features and capabilities available in the Ayla Dashboard Portal are governed by the access rights associated with a user account. The sign-up procedure on the [Connect](../connect) page of this guide, for example, yields a user account with very limited (EndUser) access rights. The following diagram provides a quick comparison:
 

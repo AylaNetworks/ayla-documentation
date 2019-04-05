@@ -4,17 +4,17 @@ layout: ayla-development-kit.html
 a: block
 ---
 
-This page provides a brief tour of the Aura Mobile app.
+This page provides a site map of the Aura Mobile app.
 
-<img src="apps-aura.png" width="800">
+<img src="apps-aura.png" width="440">
 
 ## Login Screen
 
-The Login screen includes links for signing up for a user account, and setting up Wi-Fi:
+The Login screen includes a Sign Up button, a Wi-Fi Setup button, and a gear icon:
 
 <img src="aura-login.png" width="720">
 
-It also includes a gear icon that displays a **Configuration** screen, important when you want to point Aura at an Ayla Customer Account. Note the Default Configurations and Custom Configurations sections. Each Default Configuration represents a region in the Ayla Public account. Tap a region to point Aura to that particular region. See the details for your chosen region at the bottom of the screen. You can also configure Aura to access an Ayla Customer account by creating a Custom Configuration like this:
+The gear icon displays a **Configuration** screen, important when you want to point Aura to an Ayla Customer Account. Note the Default Configurations and Custom Configurations sections. Each Default Configuration represents a region in the Ayla Public account. Tap a region to point Aura to that particular region. See the details for your chosen region at the bottom of the screen. You can also configure Aura to access an Ayla Customer account by creating a Custom Configuration like this:
 
 <ol>
 <li>Log into your Ayla Customer Account via the [Ayla Dashboard Portal](/apps/ayla-dashboard-portal/).</li>

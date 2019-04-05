@@ -64,4 +64,7 @@ layout: page-homepage.html
 -->
 <span><a href="authoring-guide">Authoring Guide</a></span>
 </div>
+<div class="col-12 text-center">
+<span style="font-size:80%;">Last updated on April 2, 2019</span>
+</div>
 </div>
