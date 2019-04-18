@@ -4,11 +4,15 @@ layout: ayla-development-kit.html
 a: block
 ---
 
-The Ayla Cloud sees your Ayla Development Kit as a set of properties:
+This page helps you explore Ayla device properties. To start with, the Ayla Shield on your Ayla Development Kit has several important landmarks:
 
-<img src="../../device-cloud-app.png" width="800">
+<img src="ayla-shield.png" width="540">
 
-This page helps you explore each of the properties.
+If you were the manufacturer of this device, you would decide which of these landmarks should be modeled in the Ayla Cloud. You might want the cloud to be aware when a user presses the blue button. And, you might want to cloud to be able to turn on/off the blue and green LEDs. So, you would designate these landmarks as device properties. The Ayla Cloud sees your Ayla Development Kit as a set of properties bundled into a digital twin:
+
+<img src="device-cloud-app.png" width="800">
+
+Some of these properties (e.g. Blue_LED) do, indeed, represent device landmarks. Others (e.g. input & output) exist simply to demonstrate various property types: boolean, string, integer, decimal, and file. The following sections help you explore these properties.
 
 ## Boolean properties
 
@@ -72,5 +76,5 @@ The host app (on the device) sets <code>decimal_out = decimal_in</code>, and sen
 
 ## File properties
 
-See the **File properties** section on the [Ayla Developer Portal](../ayla-developer-portal) page to explore File properties.
+To explore File properties, see the **File properties** section on the [Ayla Developer Portal](../ayla-developer-portal) page.
 

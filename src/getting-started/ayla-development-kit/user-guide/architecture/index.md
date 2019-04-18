@@ -48,6 +48,10 @@ The [Aura Mobile App](../aura-mobile-app), [Ayla Developer Portal](../ayla-devel
 
 <img src="apps-and-portals.png" width="700">
 
+### OTA updates
+
+Ayla provides a mechanism for performing over-the-air (OTA) updates in order to replace the Ayla Agent software and/or the host application software running on your device with different (usually newer) versions.
+
 ### Integrations
 
 The Ayla Cloud integrates with business systems via a WebSocket interface called the Datastream Service (DSS):

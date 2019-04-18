@@ -3,35 +3,19 @@ title: Ayla Development Kit
 layout: ayla-development-kit.html
 ---
 
-The <span style="font-weight: bold;">Ayla Development Kit</span> helps you explore the [Ayla IoT Cloud](https://www.aylanetworks.com/) as a user and developer. 
+Welcome, developers!
 
-To obtain a kit, email <code>support&#64;aylanetworks.com</code> with the subject <code>Ayla Development Kit</code>.
+The <span style="font-weight: bold;">Ayla Development Kit</span> is designed to help you explore the [Ayla IoT Cloud](https://www.aylanetworks.com/) in preparation for connecting your own devices.
 
-To connect a kit to the Ayla Cloud, follow the directions on the [Connect](user-guide/connect) page.
+<img src="ayla-dev-kit.png" width="360">
 
-The kit consists of a [STM32 Nucleo Board](https://www.digikey.com/product-detail/en/stmicro/NUCLEO-F303RE/497-15105-ND/5052640&?gclid=EAIaIQobChMI8OT89a6E4QIVQtbACh3BJQLNEAkYBCABEgLKl_D_BwE) with an Ayla Shield, and a USB 2.0 A-Male to Mini-B Cable.
+The kit consists of a [STM32 Nucleo Board](https://www.digikey.com/product-detail/en/stmicro/NUCLEO-F303RE/497-15105-ND/5052640&?gclid=EAIaIQobChMI8OT89a6E4QIVQtbACh3BJQLNEAkYBCABEgLKl_D_BwE) with an Ayla Shield, and a USB 2.0 A-Male to Mini-B Cable. To obtain a kit, email <code>support&#64;aylanetworks.com</code> with the subject "Ayla Development Kit." Then, follow the guides:
 
-<img src="ayla-dev-kit.png" width="340">
-
-The kit runs a host application on the Nucleo board MCU, and an Ayla agent on the [Ayla Production Module](/devices/ayla-production-modules) on the Ayla Shield:
-
-<img src="ayla-dev-kit-to-cloud.png" width="560">
-
-The host app is a reference implementation that you can download, modify, flash, run, and port. See [Developer Guide](developer-guide) and [Porting Guide](porting-guide).
-
-<img src="host-app-agent.png" width="560">
-
-The Ayla Shield includes the following features:
-
-<img src="ayla-shield.png" width="560">
-
-The host app and the Ayla agent expose properties via the Ayla Cloud to authenticated clients such as [Aura Mobile App](user-guide/aura-mobile-app), an Ayla tool used by developers to test connected devices:
-
-<img src="device-cloud-app.png" width="800">
-
-See the sidebar for the following:
-
-* [User Guide](user-guide) shows you how to connect the kit to the Ayla Cloud, and use the kit to explore Ayla. It also defines account, region, device, gateway, digital twin, template, property, datapoint, schedule, and several other Ayla terms.
-* [Programmer Guide](programmer-guide) helps you download and modify host application source code.
-* [Porting Guide](porting-guide) provides instructions for porting the host application to different chipsets.
-* [Reference](reference) contains API docs. 
+**Step 1.** The [User Guide](user-guide) helps you create an Ayla account, and connect, register, and explore your kit using Ayla apps and portals:
+<img src="connect-register-explore.png" width="540">
+**Step 2.** The [Developer Guide](developer-guide) helps you establish a Windows, Mac, or Linux development environment, download the Host Application Reference Code from the Ayla Github repository, and modify, build, flash, and run the code:
+<img src="dev-env.png" width="512">
+**Step 3.** The [Porting Guide](porting-guide) helps you move the Ayla Shield to another host board, and port the Host Application Reference Code to the corresponding chipset.
+<img src="port.png" width="408">
+**Step 4.** The [Account Guide](account-guide) shows you how to work with Ayla Support to create an Ayla Customer Account for your company, migrate your user account, and receive additional access rights. Then, you can migrate your kit to the new account where you can explore OTA updates, business system integrations, and additional edge solutions.
+<img src="migrate-user-and-device.png" width="442">

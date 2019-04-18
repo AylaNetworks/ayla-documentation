@@ -1,6 +1,6 @@
 ---
 title: Ayla Overview
-layout: page-full-width.html
+layout: ayla-overview.html
 ---
 
 The following video provides an overview of the Ayla IoT Platform.

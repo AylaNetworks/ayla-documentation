@@ -7,8 +7,8 @@ layout: page-homepage.html
   <div class="col-md-3" style="background:ghostwhite;">
     <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Getting Started](getting-started)</h2>
-      <p>[Ayla Overview](getting-started/ayla-overview)</p>
-      <p>[Ayla Development Kit](getting-started/ayla-development-kit)<span class="draft">Draft</span></p>
+      <p>[Ayla Overview](getting-started/ayla-overview)<span class="draft">Draft</span></p>
+      <p>[Ayla Development Kit](getting-started/ayla-development-kit)<span class="tutorials">User Guide</span></p>
       <p>[Ayla on an ESP32 Dev Kit](getting-started/ayla-on-an-esp32-dev-kit)<span class="draft">Draft</span></p>
       <p>[Ayla on a Raspberry Pi](getting-started/ayla-on-a-raspberry-pi)</p>
       <p>[Ayla Module CLI](getting-started/ayla-module-cli)<span class="draft">Draft</span></p>
@@ -29,22 +29,13 @@ layout: page-homepage.html
   <div class="col-md-3" style="background:ghostwhite;border-left:1px solid #e6e6ff;border-right:1px solid #e6e6ff;">
     <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Cloud](cloud)</h2>
-      <p>Ayla Application Service</p>
       <p>[Ayla Datastream Service](cloud/ayla-datastream-service)<span class="tutorials">Tutorials</span></p>
-      <p>Ayla Device Service</p>
-      <p>Ayla Factory Proxy Service</p>
-      <p>Ayla Image Service</p>
-      <p>Ayla Log Service</p>
-      <p>Ayla Notification Service</p>
-      <p>Ayla Rules Service</p>
-      <p>Ayla User Service</p>
-      <p>Ayla Zigbee Service</p>
     </div>
   </div>
   <div class="col-md-3" style="background:ghostwhite;">
     <div style="font-size: 90%;">
       <h2 style="margin-bottom: 18px">[Applications](apps)</h2>
-      <p>[Aura Mobile App](/apps/aura-mobile-app)<span class="draft">Draft</span></p>
+      <p>Aura Mobile App</p>
       <p>AMAP</p>
       <p>Ayla Developer Portal</p>
       <p>Ayla Dashboard Portal</p>
@@ -65,6 +56,6 @@ layout: page-homepage.html
 <span><a href="authoring-guide">Authoring Guide</a></span>
 </div>
 <div class="col-12 text-center">
-<span style="font-size:80%;">Last updated on April 2, 2019</span>
+<span style="font-size:80%;">Last updated on April 17, 2019</span>
 </div>
 </div>

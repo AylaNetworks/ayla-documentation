@@ -4,14 +4,16 @@ layout: ayla-development-kit.html
 a: block
 ---
 
-1. [Connect](connect) helps you connect your Ayla Dev Kit to the Ayla Cloud.
-1. [Properties](properties) shows you how to play with bells and whistles using the Aura Mobile App.
-1. [Schedules](schedules) demonstrates how to schedule events.
-1. [Notifications](notifications) guides you in creating text and email notifications.
-1. [Architecture](architecture) introduces you to essential Ayla concepts.
-1. [Accounts and Regions](accounts-and-regions) illustrates how Ayla structures the world.
-1. [Aura Mobile App](aura-mobile-app) provides a site map of this mobile app.
-1. [Ayla Developer Portal](ayla-developer-portal) introduces you to one essential Ayla portal.
-1. [Ayla Dashboard Portal](ayla-dashboard-portal) shows you the other essential portal.
-1. [Migrations](migrations) provides steps for migrating accounts and devices.
-1. [Updates](updates) details OTA updates.
+This guide helps you create a user account with EndUser access rights in the Ayla Public Account. 
+
+<img src="../enduser.png" width="216">
+
+Next, it shows you how to connect your kit to the Ayla Public Cloud Account, and register it to your user account:
+
+<img src="connect-register.png" width="216">
+
+Then, it helps you explore your kit using the [Aura Mobile App](aura-mobile-app), [Ayla Developer Portal](ayla-developer-portal), and [Ayla Dashboard Portal](ayla-dashboard-portal):
+
+<img src="explore.png" width="544">
+
+<table><tr><td class="under-review">Beta Testers, please add comments about the User Guide to [AD-55](https://aylanetworks.atlassian.net/browse/AD-55), or [Contact](/contact) us.</td></tr></table>

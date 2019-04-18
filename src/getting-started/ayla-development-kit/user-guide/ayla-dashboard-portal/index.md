@@ -4,11 +4,11 @@ layout: ayla-development-kit.html
 a: block
 ---
 
-This page provides a brief tour of the Ayla Dashboard Portal.
+This page briefly introduces the **Ayla Dashboard Portal**, one of the three primary clients for Ayla users.
 
-<img src="apps-dashboard.png" width="580">
+<img src="app-and-portals.png" width="700">
 
-**Important**: The features and capabilities available in the Ayla Dashboard Portal are governed by the access rights associated with a user account. The sign-up procedure on the [Connect](../connect) page of this guide, for example, yields a user account with very limited (EndUser) access rights. The following diagram provides a quick comparison:
+The primary purpose of the Dashboard Portal is to enable administrators to manage an Ayla <u>Customer</u> Account. A user account with EndUser access rights in the Ayla <u>Public</u> Account can do very little as illustrated in this diagram:
 
 <img src="dashboard-rights.png" width="260">
 
@@ -18,3 +18,4 @@ Browse to the [Ayla Dashboard Portal](/apps/ayla-dashboard-portal), and log in. 
 <img src="devices.png" width="800">
 Then, click the row with your device. The Device page appears:
 <img src="device.png" width="800">
+Many of the features available here are also available in Aura and the Ayla Developer Portal.

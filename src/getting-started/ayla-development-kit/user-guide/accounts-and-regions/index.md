@@ -26,7 +26,7 @@ When you want to do more with your Ayla Dev Kit, or you want to connect other ty
 
 <img src="migrate-user-account.png" width="410">
 
-(Contact pro.services&#64;aylanetworks.com).
+(Contact support&#64;aylanetworks.com.)
 
 Then, you can migrate your dev kit:
 

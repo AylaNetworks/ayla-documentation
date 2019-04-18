@@ -23,6 +23,8 @@ layout: notes.html
 
 [Git Tutorials](https://www.atlassian.com/git/tutorials)
 
+[Adobe Experience Cloud Help](https://marketing.adobe.com/resources/help/en_US/home/)
+
 ### Tools
 
 [pandoc](https://pandoc.org/index.html)
