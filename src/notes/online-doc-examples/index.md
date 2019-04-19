@@ -25,6 +25,12 @@ layout: notes.html
 
 [Adobe Experience Cloud Help](https://marketing.adobe.com/resources/help/en_US/home/)
 
+[IBM Cloud](https://cloud.ibm.com/docs)
+
+[Microsoft Azure](https://docs.microsoft.com/en-us/azure/index)
+
+[CommonMark](https://commonmark.org)
+
 ### Tools
 
 [pandoc](https://pandoc.org/index.html)
