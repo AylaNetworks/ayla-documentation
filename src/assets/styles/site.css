@@ -1,0 +1,27 @@
+#header-nav {background: green;}
+#header-nav a.nav-link {color: white;}
+
+#sidebar {background: white; border-right-color: gainsboro;}
+#sidebar a {color: #4d4d4d;}
+#sidebar a.title {background: #009900; color: white;} /* choice - 1 */
+#sidebar a.title:hover {background: green;} /* choice */
+#sidebar a.title.active {background: green;} /* choice */
+#sidebar a.chapter:hover, #sidebar a.page:hover {background: #f2f2f2;} /* black base + 1 */
+#sidebar a.chapter.active, #sidebar a.page.active {background: #f9ebd2;} /* wheat family */
+
+#core-title {color: black;}
+#core-title hr {border-color: gainsboro;}
+#core h1 {color: black;}
+#core h2 {color: steelblue;}
+#core h3 {color: black;}
+#core p {color: #4d4d4d;}
+#core pre {background: #1a1a1a !important; color: white !important;}
+#core code {color: #b36200;}
+
+footer {background: #f5f5f5; color: white;}
+
+#core button.btn-go, #core input.btn-go {
+  color: #fff;
+  background-color: green;
+  border-color: green;
+}
