@@ -17,7 +17,7 @@ The kit consists of a [STM32 Nucleo Board](https://www.digikey.com/product-detai
 
 <span style="color:red;font-weight:bold;">Important</span>: If you already have a user account in an Ayla <u>Customer</u> Account, then connect the kit to your customer account, and register it to your corresponding user account. There is no requirement to work with the Ayla Public Account.
 
-**Step 2.** The [Developer Guide](developer-guide) helps you establish a Windows, Mac, or Linux development environment, download the Host Application Reference Code from the Ayla Github repository, and modify, build, flash, and run the code:
+**Step 2.** The [Developer Guide](developer-guide) helps you establish a Windows, Mac, or Linux development environment, download the Ayla Host Library, and modify, build, flash, and run the code:
 
 <img src="dev-env.png" width="512">
 

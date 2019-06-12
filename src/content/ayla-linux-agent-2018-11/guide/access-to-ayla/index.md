@@ -17,14 +17,14 @@ The term "Ayla Account" can refer to an OEM account or a user account.
 
 ### Ayla OEM Account
 
-The Ayla OEM Account is special. Anyone can create a user account (with limited access rights) in the Ayla OEM Account. If, for example, in the past, you created a user account by clicking <code>Sign Up</code> on the [Ayla Developer Portal](/ayla-developer-portal/), then you have a user account in the publicly available Ayla OEM Account with enough access rights to experiment with the [Ayla Design Kit](/ayla-developer-portal/). 
+The Ayla OEM Account is special. Anyone can create a user account (with limited access rights) in the Ayla OEM Account. If, for example, in the past, you created a user account by clicking <code>Sign Up</code> on the [Ayla Developer Portal](/content/ayla-developer-portal/), then you have a user account in the publicly available Ayla OEM Account with enough access rights to experiment with the [Ayla Development Kit](/content/ayla-development-kit). 
 
 ### &lt;Your Company&gt; OEM Account
 
 To complete the Ayla Linux Agent tutorials, however, you need an OEM account admin to create for you a user account with Developer access rights in your company's OEM account so that you can access enough features in the following tools: 
 
-1. [Ayla Developer Portal](/ayla-developer-portal/)
-1. [Ayla Dashboard Portal](/ayla-dashboard-portal/)
+1. [Ayla Developer Portal](/content/ayla-developer-portal/)
+1. [Ayla Dashboard Portal](/content/ayla-dashboard-portal/)
 1. Aura Mobile App (iOS or Android)
 
 ### Configuring the Aura Mobile App
@@ -43,7 +43,7 @@ The Aura mobile app is pre-configured to access the Ayla OEM Account in the US D
 }
 </pre>
 </li>
-<li>Log into the [Ayla Dashboard Portal](/ayla-dashboard-portal/).</li>
+<li>Log into the [Ayla Dashboard Portal](/content/ayla-dashboard-portal/).</li>
 <li>Click OEM Profile in the sidebar.</li>
 <li>Click Apps in the horizontal menu.</li>
 <li>Create an app named Aura.</li>

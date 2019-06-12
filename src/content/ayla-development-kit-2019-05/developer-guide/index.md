@@ -10,7 +10,7 @@ This guide helps you establish a Windows, Mac, or Linux development environment,
 
 <img src="../dev-env.png" width="512">
 
-The host application runs on the MCU of the STM32 Nucleo board, and the Ayla Agent runs on the [Ayla Production Module](/ayla-edge-solutions/production-modules/) on the Ayla Shield:
+The host application runs on the MCU of the STM32 Nucleo board, and the Ayla Agent runs on the [Ayla Production Module](/content/ayla-edge-solutions-2019-02/production-modules/) on the Ayla Shield:
 
 <img src="ayla-dev-kit-to-cloud.png" width="560">
 

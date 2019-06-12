@@ -18,7 +18,7 @@ With an Ayla Customer Account, you can explore additional Ayla capabilities such
 
 <img src="ota-update.png" width="460">
 
-You can experiment with a range of [edge solutions](/ayla-edge-solutions):
+You can experiment with a range of [edge solutions](/content/ayla-edge-solutions):
 
 <img src="additional-solutions.png" width="216">
 

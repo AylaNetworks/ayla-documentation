@@ -4,7 +4,7 @@ layout: ayla-linux-agent-2018-11.html
 b: block
 ---
 
-This tutorial helps you explore host application (appd) source code, and the application's use of the [Ayla Linux Agent (devd) API](/ayla-linux-agent/reference/agent-api).
+This tutorial helps you explore host application (appd) source code, and the application's use of the [Ayla Linux Agent (devd) API](../../reference/agent-api).
 
 ## What does appd do?
 

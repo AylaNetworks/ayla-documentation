@@ -23,7 +23,7 @@ You can click on any property's Current Value to change it.
 <img src="datapoints.png" width="280">
 1. Click the Device Details tab:
 <img src="versions.png" width="700">
-SW Version refers to the version of the Ayla Agent software running on the [Ayla Production Module](/ayla-edge-solutions/production-modules) on the Ayla Shield of the dev kit. Host SW Version refers to the version of the host application running on the Nucleo board MCU of the dev kit. 
+SW Version refers to the version of the Ayla Agent software running on the [Ayla Production Module](/content/ayla-edge-solutions-2019-02/production-modules) on the Ayla Shield of the dev kit. Host SW Version refers to the version of the host application running on the Nucleo board MCU of the dev kit. 
 
 ## File properties
 

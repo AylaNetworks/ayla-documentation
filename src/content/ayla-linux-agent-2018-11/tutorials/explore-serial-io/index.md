@@ -224,7 +224,7 @@ LIBS = ssl crypto curl jansson wiringPi pthread
 ### Create the twin_led property
 
 <ol>
-<li>Browse to the [Ayla Devloper Portal](/ayla-developer-portal/), and log in.</li>
+<li>Browse to the [Ayla Devloper Portal](/content/ayla-developer-portal/), and log in.</li>
 <li>Click View My Devices.</li>
 <li>Click the serial number of your device.</li>
 <li>Click Add, and create a property with the following attributes:

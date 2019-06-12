@@ -4,6 +4,8 @@ layout: post.html
 contentVersion: "2019-04-02"
 ---
 
+<span class="by-line">Matt Hagen</span>
+
 This page shows you how to set up a [Raspberry Pi 3 Model B+](https://www.canakit.com/raspberry-pi-3-model-b-plus-ultimate-kit.html) for use with the Ayla Linux Agent or Ayla Dynamic Gateway Agent. Instructions encompass the following:
 
 |Topic|Options|

@@ -1,6 +1,6 @@
 ---
-title: Templates
+title: API
 layout: ayla-development-kit-2019-06.html
-b: block
+e: block
 ---
 
