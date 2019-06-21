@@ -94,7 +94,7 @@ This example shows how to implement a schedule property which receives (from the
 ## Run the example
 
 <ol>
-<li><code>cd ~/Ayla-host-lib-2.0-rc1</code>.</li>
+<li><code>cd ~/Ayla-host-lib-2.0</code>.</li>
 <li><code>nano example/app/ledevb/demo.c</code>, and replace the contents with the example.</li>
 <li><code>make</code> and <code>make download</code>.
 <li>Open a screen session with <code>screen /dev/ttyACM0 115200</code> or similar.</li>

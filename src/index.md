@@ -2,7 +2,6 @@
 title: Homepage
 coreWidth: width-narrow
 titleDisplay: none
-searchDisplay: none
 ---
 
 <div class="row justify-content-center" style="margin-top:24px;">
@@ -11,6 +10,7 @@ searchDisplay: none
 </div>
 </div>
 
+<!--
 <div class="row justify-content-center" style="margin-top:24px;">
 <div class="col-md-6">
 <div class="input-group mb-3">
@@ -21,6 +21,7 @@ searchDisplay: none
 </div>
 </div>
 </div>
+-->
 
 <div class="row">
 <div class="col-sm-12">

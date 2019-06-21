@@ -7,7 +7,7 @@ b: block
 Recall from the [Properties](../../user-guide/properties) page that the default host application includes <code>input</code> and <code>output</code> integer properties, and that when you set <code>input</code> to a value (e.g. <code>5</code>) the host application sets <code>output</code> to <code>input * input</code> (e.g. <code>25</code>). Changing this behavior so that the host application sets <code>output</code> to <code>input + input</code> (e.g. <code>10</code>) provides a simple way to test your build environment:
 
 <ol>
-<li><code>cd ~/Ayla-host-lib-2.0-rc1</code>.</li>
+<li><code>cd ~/Ayla-host-lib-2.0</code>.</li>
 <li><code>cp example/app/ledevb/demo.c example/app/ledevb/demo.orig</code>.</li>
 <li><code>nano example/app/ledevb/demo.c</code>.</li>
 <li>Find the <code>prop_table</code> array:

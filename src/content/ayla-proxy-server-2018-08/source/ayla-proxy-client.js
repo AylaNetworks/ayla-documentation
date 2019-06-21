@@ -252,7 +252,7 @@ displayMessage
 ------------------------------------------------------*/
 
 function displayError(status) {
-  displayMessage(status.code + ' ' + status.text)
+  //displayMessage(status.code + ' ' + status.text)
 }
 
 function displayMessage(msg) {

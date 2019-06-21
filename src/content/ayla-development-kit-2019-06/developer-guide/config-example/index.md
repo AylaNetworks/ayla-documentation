@@ -79,7 +79,7 @@ This example shows how to obtain and display configuration information from the 
 ## Run the example
 
 <ol>
-<li><code>cd ~/Ayla-host-lib-2.0-rc1</code>.</li>
+<li><code>cd ~/Ayla-host-lib-2.0</code>.</li>
 <li><code>nano example/app/ledevb/demo.c</code>, and replace the contents with the example.</li>
 <li><code>make</code> and <code>make download</code>.
 <li>Open a screen session with <code>screen /dev/ttyACM0 115200</code> or similar.</li>
@@ -119,7 +119,7 @@ static int conf_poll(void) {
 }
 </pre>
 
-<code>conf_dsn_rx</code> and <code>conf_model_rx</code> invoke <code>host_log</code> to write the DSN and model number respectively to the serial port for display by the serial terminal on your computer:
+<code>conf_dsn_rx</code> invokes <code>host_log</code> to write the DSN to the serial port for display by the serial terminal on your computer:
 
 <pre>
 static void conf_dsn_rx(void &ast;buf, size_t len) {
@@ -136,7 +136,11 @@ static void conf_dsn_rx(void &ast;buf, size_t len) {
   conf_dsn[tlv->len] = '\0';
   host_log("conf_dsn_rx: dsn %s", conf_dsn);
 }
+</pre>
 
+<code>conf_model_rx</code> also invokes <code>host_log</code>:
+
+<pre>
 static void conf_model_rx(void &ast;buf, size_t len) {
   struct ayla_tlv &ast;tlv;
 

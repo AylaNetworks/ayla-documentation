@@ -75,7 +75,7 @@ This example is a simplified version of the default <code>example/app/ledevb/dem
 ## Run the example
 
 <ol>
-<li><code>cd ~/Ayla-host-lib-2.0-rc1</code>.</li>
+<li><code>cd ~/Ayla-host-lib-2.0</code>.</li>
 <li>If necessary, <code>cp example/app/ledevb/demo.c example/app/ledevb/demo.orig</code>.</li>
 <li><code>nano example/app/ledevb/demo.c</code>, and replace the contents with the example.</li>
 <li><code>make</code> and <code>make download</code>.

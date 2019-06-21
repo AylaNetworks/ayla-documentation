@@ -4,7 +4,7 @@ layout: ayla-development-kit-2019-06.html
 b: block
 ---
 
-This guide helps you establish a Linux, Mac, or Windows build environment, download the Ayla Host Library, and iteratively modify, build, flash, and run the host application.
+This guide helps you establish a build environment, download the Ayla Host Library, and iteratively modify, build, flash, and run the host application.
 
 <img src="../dev-env.png" width="512">
 

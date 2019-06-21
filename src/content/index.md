@@ -216,7 +216,7 @@ title: Content
     </td>
   </tr>
   <tr>
-    <td><a href="/content/ayla-embedded-agent-for-embedded-systems">Ayla Embedded for Embedded Systems</a></td>
+    <td><a href="/content/ayla-embedded-agent-for-embedded-systems">Ayla Embedded Agent for Embedded Systems</a></td>
     <td>PDF</td>
     <td>
       <div class="dropdown">
@@ -571,6 +571,18 @@ title: Content
         <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-product-development-overview" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
         <div class="dropdown-menu" aria-labelledby="ayla-product-development-overview">
           <a class="dropdown-item" href="/content/ayla-product-development-overview-2016-02.pdf">v2016-02</a>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td><a href="/content/ayla-product-features">Ayla Product Features</a></td>
+    <td>PDF</td>
+    <td>
+      <div class="dropdown">
+        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-product-features" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
+        <div class="dropdown-menu" aria-labelledby="ayla-product-features">
+          <a class="dropdown-item" href="/content/ayla-product-features-2018-11.pdf">v2018-11</a>
         </div>
       </div>
     </td>

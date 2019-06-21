@@ -107,7 +107,7 @@ The purpose of this example is to show how to add a property to a host applicati
 <li>Add a <code>str_out</code> (from device) property.
 <img src="str-out-click-to-update.png" width="360">
 </li>
-<li>In a terminal, <code>cd ~/Ayla-host-lib-2.0-rc1</code>.</li>
+<li>In a terminal, <code>cd ~/Ayla-host-lib-2.0</code>.</li>
 <li><code>nano example/app/ledevb/demo.c</code>, and replace the contents with the example.</li>
 <li><code>make</code> and <code>make download</code>.
 <li>Open a screen session with <code>screen /dev/ttyACM0 115200</code> or similar.</li>
