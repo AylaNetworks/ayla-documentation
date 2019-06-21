@@ -1,5 +1,7 @@
 ---
-title: Theme
+title: Post by VM
+layout: post.html
+contentVersion: "2019-00-00"
 ---
 
 # Heading 1

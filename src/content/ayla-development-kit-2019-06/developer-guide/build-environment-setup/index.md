@@ -15,7 +15,7 @@ This page helps you set up a gcc build environment on VMware/Ubuntu so that you 
 <li>Complete the installation:
 <img src="complete-installation.png" width="360">
 </li>
-<li>Update software, and reboot:
+<li>Optionally, if prompted, update software, and reboot:
 <img src="update-software.png" width="360">
 </li>
 <li>Open a terminal:
