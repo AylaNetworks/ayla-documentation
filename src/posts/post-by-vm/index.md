@@ -113,27 +113,27 @@ $(function() {
 </pre>
 
 img-800.png
-<img src="/assets/images/img-800.png">
+<img src="img-800.png">
 
 img-600.png
-<img src="/assets/images/img-600.png">
+<img src="img-600.png">
 
 img-400.png
-<img src="/assets/images/img-400.png">
+<img src="img-400.png">
 
 img-200.png
-<img src="/assets/images/img-200.png">
+<img src="img-200.png">
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 1. img-800.png
-<img src="/assets/images/img-800.png">
+<img src="img-800.png">
 1. img-600.png
-<img src="/assets/images/img-600.png">
+<img src="img-600.png">
 1. img-400.png
-<img src="/assets/images/img-400.png">
+<img src="img-400.png">
 1. img-200.png
-<img src="/assets/images/img-200.png">
+<img src="img-200.png">
 1. This is preformatted code inside an ordered list:
 <pre>
 $ xcode-select --install
