@@ -8,17 +8,18 @@ contentVersion: "2019-07-05"
 
 # CLI commands to be implemented
 
-Commands that have been implemented  in examples/ayla_demo/main/command.c
-nvs-set
-nvs-get
-oem key
-factory-log 
-save
-setup_mode
-esp-reboot
+Commands that have been implemented in examples/ayla_demo/main/command.c
+•	nvs-set
+•	nvs-get
+•	oem key
+•	factory-log 
+•	save
+•	setup_mode
+•	esp-reboot
 
 Commands that need to be implemented
 •	command to set test_connect flag (defined in ada/ada_conf.h)
+
 
 
 ## Programming the device
