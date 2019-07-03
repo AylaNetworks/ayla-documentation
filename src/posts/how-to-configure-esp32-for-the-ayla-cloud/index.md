@@ -6,138 +6,41 @@ contentVersion: "2019-07-05"
 
 <span class="by-line">Leo Pereira</span>
 
-# Heading 1
+# CLI commands to be implemented
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Commands that have been implemented  in examples/ayla_demo/main/command.c
+•	nvs-set
+•	nvs-get
+•	oem key
+•	factory-log 
+•	save
+•	setup_mode
+•	esp-reboot
 
-## Heading 2
+Commands that need to be implemented
+•	command to set test_connect flag (defined in ada/ada_conf.h)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-### Heading 3
+## Programming the device
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+To program the device you will need to have console access to the device and execute the CLI in the exact order shown below:
 
-1. Tempor incididunt ut labore.
-1. Sed do eiusmod tempor incididunt.
-1. Voluptate velit esse cillum.
+1.	nvs-set "ada.f.id/dev_id"  <DSN>
+2.	nvs-set "ada.f.id/key"  <key>
+3.	save
+4.	esp-reboot
+5.	oem key  <oem secret>
+6.	save
+7.	setup_mode disable
+8.	save
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+### Provision the device on Ayla cloud
 
-* Tempor incididunt ut labore.
-* Sed do eiusmod tempor incididunt.
-* Voluptate velit esse cillum.
+To provision the device by sending the logs to Ayla you need to execute the factory-log command and put the output in the log file that you send to Ayla.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+To verify connectivity to the Ayla cloud and automatically provision the device on the Ayla cloud you will need to do the following
+•	set test_connect flag
+•	set up wifi profile to connect the device to the cloud
+•	verify the device successfully connected to the cloud and authenticated by checking for the message “OEM auth passed” on the console.
 
-|Lorem ipsum|Consectetur|Non Proident|
-|-|-|-|
-|Dolor in reprehenderit|Sed do|Est laborum|
-|Esse cillum|Ea commodo|Qui officia|
-|Deserunt mollit|Culpa qui|Proident|
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-See [Bootstrap Tables](https://getbootstrap.com/docs/4.0/content/tables/).
-
-<div class="table-responsive-md">
-  <table class="table table-sm table-hover">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Heading</th>
-        <th scope="col">Heading</th>
-        <th scope="col">Heading</th>
-        <th scope="col">Heading</th>
-        <th scope="col">Heading</th>
-        <th scope="col">Heading</th>
-        <th scope="col">Heading</th>
-        <th scope="col">Heading</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-        <td>Cell</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-Here is a link to the [Ayla Development Kit](/content/ayla-development-kit).
-
-Here is an inline code example: <code>cd &#126;/tree/cedar</code>.
-
-This is a pre block:
-
-<pre>
-$(function() {
-  $('#delete-events-btn').click(function(event) {
-    $('#events tr th input[type=checkbox]').prop('checked', false)
-    let checkboxes = $('#events tbody tr td input[type=checkbox]:checked')
-    $.each(checkboxes, function(index, checkbox) {
-      let tr1 = $(checkbox).closest('tr')
-      let tr2 = $(tr1).next()
-      $(tr1).remove()
-      $(tr2).remove()
-    })
-  })
-})
-</pre>
-
-img-800.png
-<img src="img-800.png">
-
-img-600.png
-<img src="img-600.png">
-
-img-400.png
-<img src="img-400.png">
-
-img-200.png
-<img src="img-200.png">
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-1. img-800.png
-<img src="img-800.png">
-1. img-600.png
-<img src="img-600.png">
-1. img-400.png
-<img src="img-400.png">
-1. img-200.png
-<img src="img-200.png">
-1. This is preformatted code inside an ordered list:
-<pre>
-$ xcode-select --install
-</pre>
 
