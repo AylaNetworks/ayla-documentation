@@ -1,10 +1,10 @@
 ---
-title: Post by VM
+title: How to configure ESP32 for the Ayla Cloud
 layout: post.html
-contentVersion: "2019-00-00"
+contentVersion: "2019-07-05"
 ---
 
-<span class="by-line">FName LName</span>
+<span class="by-line">Leo Pereira</span>
 
 # Heading 1
 
