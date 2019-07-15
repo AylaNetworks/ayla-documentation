@@ -4,6 +4,8 @@ layout: post.html
 contentVersion: "2019-07-12"
 ---
 
+<span class="by-line">Leo pereira</span>
+
 ## CLI commands to be implemented
 
 Commands that have been implemented in ```examples/ayla_demo/main/command.c```:
