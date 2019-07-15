@@ -1,7 +1,7 @@
 ---
 title: How to configure ESP32 for the Ayla Cloud
 layout: post.html
-contentVersion: "2019-07-05"
+contentVersion: "2019-07-12"
 ---
 
 ## CLI commands to be implemented
