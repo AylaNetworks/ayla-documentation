@@ -1,0 +1,363 @@
+html {height: 100%;} /* Enables h-100 to work. Without, must use 100vh */
+body {
+  font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  margin: 0;
+}
+h1 {font-size: 115%; margin-top: 24px; font-weight: bold;}
+h2 {font-size: 110%; margin-top: 24px; font-weight: bold;}
+h3 {font-size: 100%; margin-top: 24px; font-weight: bold;}
+h4 {font-size: 1.00rem;}
+h5 {font-size: 1.00rem;}
+h6 {font-size: 1.00rem;}
+p, th {color: #333333;}
+a {color: steelblue;}
+a:hover {color: #24435c;}
+a, a:hover, a:focus {text-decoration: none;}
+
+body:not(.tab-enabled) a:focus {
+  outline: none;
+}
+
+/******************************
+header nav
+******************************/
+
+#header-nav {min-height: 56px; z-index: 999;}
+#header-nav a img {padding:0; margin:0 12px 6px 0; width: 20px; height: 20px;}
+#header-nav li.nav-item.active > a {text-decoration: underline;}
+
+/******************************
+sidebar
+******************************/
+
+#sidebar {
+  position: fixed;
+  top: 56px; 
+  left: 0;
+  height: calc(100% - 56px);
+  width: 250px;
+  padding: 16px 0px 8px 0px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  overflow-y:auto;
+  z-index: 998;
+}
+
+#sidebar.collapsing {transition: height 0s !important;}
+
+@media (min-width: 0px) {
+  #sidebar.collapse:not(.show) {display: none;}
+}
+
+@media (min-width: 768px) {
+  #sidebar.collapse:not(.show) {display: block;} 
+}
+
+#sidebar a {
+  display:block;
+  padding: 4px 0px 4px 8px;
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+  overflow: hidden;
+  width: calc(100% - 20px); 
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+#sidebar a.title {
+  margin-bottom: 12px;
+  font-size: 95%;
+  float:left; 
+  clear:left; 
+}
+
+#sidebar a.chapter {
+  color: #330000;
+  font-size: 95%;
+  font-weight: bold;
+  float:left; 
+  clear:left;
+}
+
+#sidebar a.page {
+  padding-left: 10px;
+  font-size: 92%;
+  clear:both;
+}
+
+#sidebar img.title-icon, img.chapter-icon {
+  cursor: pointer; 
+  margin-top: 4px;
+  width:20px; 
+  height:20px;
+  float:right; 
+  clear:right; 
+}
+
+.sidebar-version-container {
+  background: white;
+  text-align: center;
+  padding: 6px;
+  margin-top: 12px;
+  width: calc(100% - 20px); 
+}
+
+.sidebar-version-container select {
+  border: 1px solid lightgray;
+  width: 100%;
+}
+
+.title-version-span {
+  margin-left: 6px;
+}
+
+.title-version-span select {
+}
+
+.version-select {
+  background: white;
+  border: none;
+  line-height: 1.3;
+  color: #333333;
+  font-size: 92%;
+}
+
+/******************************
+main, core-frame, core, etc.
+******************************/
+
+#core-title-line {padding-top: 6px;}
+#core-title {font-weight: bold; font-size: 115%;}
+#version-string {margin-left: 18px; font-size: 90%; display: inline;}
+#core span.by-line {font-style:italic; font-size:92%;}
+
+#core pre {
+  background: #1a1a1a !important;
+  color: white !important; 
+  border-style: none !important;
+  padding: 6px;
+  line-height: 1rem;
+  font-weight: normal;
+  font-size: 80%;
+  margin-bottom: 1rem;
+}
+
+#core li pre {margin-top: 12px;}
+
+#core pre.numbered {counter-reset: line;}
+#core pre.numbered span.highlight {color:yellow;}
+#core pre.numbered span:before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  border-right: 1px solid #888;
+  padding: 0 .5em;
+  margin-right: .5em;
+  text-align: right;
+  width: 30px;
+  color: #888;
+}
+#core pre.numbered span.blank:before {counter-increment: none; content: " ";}
+#core pre.numbered span.n15:before {counter-increment: none; content: "15";}
+#core pre.numbered span.n16:before {counter-increment: none; content: "16";}
+#core pre.numbered span.n18:before {counter-increment: none; content: "18";}
+#core pre.numbered span.n36:before {counter-increment: none; content: "36";}
+#core pre.numbered span.n40:before {counter-increment: none; content: "40";}
+#core pre.numbered span.n41:before {counter-increment: none; content: "41";}
+#core pre.numbered span.n55:before {counter-increment: none; content: "55";}
+#core pre.numbered span.n56:before {counter-increment: none; content: "56";}
+
+#core .code-line td:nth-child(1) {white-space: nowrap; font-size: 92%;}
+
+#core .line {color:purple;font-weight:bold;font-size:90%;}
+
+main li {margin-bottom: 4px; margin-top: 4px;}
+main ul.list-wrap {
+  -moz-column-count: 3;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 20px;
+  column-count: 3;
+  column-gap: 20px;
+  list-style-type:none;
+  padding-inline-start: 20px !important;
+}
+main ul.list-wrap li {
+  margin-top:0 !important;
+  font-size:95%;
+}
+
+#core table {
+  width:auto; font-size: 95%;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+  display: table;
+}
+#core table, #core table th, #core td {border: 1px solid #dee2e6;}
+#core table th, #core td {border: 1px solid #dee2e6; padding: 6px 8px; vertical-align: top;}
+#core table th {font-weight: bold;}
+#core li table {margin-top: 12px;}
+#core table.version-table div.dropdown button {padding-top: 0px; padding-bottom: 0px; color: steelblue;}
+#core table.version-table div.dropdown button:hover {text-decoration: none;}
+#core table.version-table div.dropdown.show button {text-decoration: none !important;}
+#core table.version-table div.dropdown a.dropdown-item {color: steelblue !important; font-size: 90% !important;}
+#core table.version-table td {vertical-align: middle;}
+#core table.version-table td:nth-child(2) {font-size: 92%; color: gray;}
+
+#core form label {font-weight: bold; font-size: 90%;}
+
+#core .heading-subtext {
+  margin-left: 12px;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+#core img {
+  display: block;
+  margin: 20px 0px;
+  max-width: 100%;
+  vertical-align: middle;
+  border-style: none;
+}
+#core li img {
+  display: block;
+  margin: 12px 0px 12px 0px;
+}
+#core iframe {display: block; margin: 20px 0px 20px 0px;}
+
+@media (min-width: 768px) {
+  #core img {
+    margin-left: 20px;
+  }  
+}
+
+#edit-icon img {
+  display:inline !important;
+  padding:0 !important;
+  margin:0 0 4px 18px !important;
+}
+
+.tagline {font-size: 140%}
+
+#core div.related-content {
+  border-radius: 6px;
+  border: 1px solid lightgray;
+  padding: 12px 18px; 
+  margin-bottom: 18px;
+  width: intrinsic;           /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content;    /* Firefox/Gecko */
+  width: -webkit-max-content; /* Chrome */
+}
+
+#core div.related-content ul {margin-bottom: 3px;}
+#core div.related-content ul li {margin-bottom: 3px; margin-top: 3px;}
+#core div.related-content div.title {font-weight: normal;font-style: italic;}
+/*
+#search-box:focus{
+  border-color: #ced4da;
+  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0);
+}
+*/
+/******************************
+main, core-frame, core x, y, widths, margins, padding
+******************************/
+
+#core-frame {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  margin-top: 56px;
+}
+
+#core {
+  width: 100%;
+  padding: 16px; /* Width must be minimum of 32px less than max-width. */
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#core-frame {max-width: 100%;}
+
+#core-frame.sidebar {margin-left: 0; width: 100%;}
+
+@media (min-width: 576px) { /* Small Devices */
+  #core.width-full {max-width: 100%;}
+  #core.width-medium {max-width: 540px;}
+  #core.width-narrow {max-width: 500px;}
+  #core.width-with-sidebar {max-width: 100%;}
+}
+
+@media (min-width: 768px) { /* Medium Devices (Menu Hamburger Point) */
+  #core.width-full {max-width: 100%;}
+  #core.width-medium {max-width: 676px;}
+  #core.width-narrow {max-width: 600px;}
+  #core.width-with-sidebar {padding-left: 40px; padding-right: 48px;}
+
+  #core-frame.sidebar {margin-left: 250px; width: calc(100% - 250px);}
+}
+
+@media (min-width: 992px) { /* Large Devices */
+  #core.width-full {max-width: 100%;}
+  #core.width-medium {max-width: 892px;}
+  #core.width-narrow {max-width: 700px;}
+  #core.width-with-sidebar {padding-left: 40px; padding-right: 48px;}
+}
+
+@media (min-width: 1200px) { /* Extra Large Devices */
+  #core.width-full {max-width: 100%;}
+  #core.width-medium {max-width: 1060px;}
+  #core.width-narrow {max-width: 800px;}
+  #core.width-with-sidebar {padding-left: 40px; padding-right: 48px; max-width: 1060px;}
+}
+
+/******************************
+footer
+******************************/
+
+footer {
+  text-align: center; 
+  font-size: 94%; 
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  z-index: 997;
+}
+
+@media (min-width: 0px) {
+  footer.sidebar {
+    width: 100%;
+    margin-left: 0px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  footer.sidebar {
+    width: calc(100% - 250px);
+    margin-left: 250px !important;
+  }
+}
+
+/******************************
+core-title color
+******************************/
+/*
+#core-title {color: red;}
+
+@media (min-width: 576px) {
+  #core-title {color: purple;}
+}
+
+@media (min-width: 768px) {
+  #core-title {color: green;}
+}
+
+@media (min-width: 992px) {
+  #core-title {color: blue;}
+}
+
+@media (min-width: 1200px) {
+  #core-title {color: black;}
+}
+*/
