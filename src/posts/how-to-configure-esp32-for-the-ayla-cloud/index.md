@@ -4,7 +4,7 @@ layout: post.html
 contentVersion: "2019-07-12"
 ---
 
-<span class="by-line">Leo pereira</span>
+<span class="by-line">Leo Pereira</span>
 
 ## CLI commands to be implemented
 
