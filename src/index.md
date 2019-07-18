@@ -27,11 +27,10 @@ titleDisplay: none
 <div class="col-sm-12">
 <h3>Recent Posts<span class="heading-subtext"><a href="/posts">See All.</a></span><span class="heading-subtext"><a href="/contact">Submit your idea for a post.</a></span></h3>
 <table style="width:100%;">
+<tr><td>2019-07-16</td><td><a href="/posts/how-to-contribute-content-to-ayla-docs">How to contribute content to Ayla Docs</td><td>Matt Hagen</td></tr>
 <tr><td>2019-06-24</td><td><a href="/posts/how-to-set-up-a-gnu-build-environment-on-vmware-ubuntu">How to set up a GNU build environment on VMware/Ubuntu</a></td><td>Matt Hagen</td></tr>
 <tr><td>2019-05-29</td><td><a href="/posts/about-ayla-accounts-and-regions">About Ayla Accounts and Regions</a></td><td>Matt Hagen</td></tr>
 <tr><td>2019-05-10</td><td><a href="/posts/how-to-create-a-configuration-file-for-the-ayla-linux-agent">How to create a configuration file for the Ayla Linux Agent</a></td><td>Matt Hagen</td></tr>
-<tr><td>2019-04-02</td><td><a href="/posts/how-to-set-up-a-raspberry-pi">How to set up a Raspberry Pi</a></td><td>Matt Hagen</td></tr>
-<tr><td>2019-03-27</td><td><a href="/posts/how-to-configure-the-aura-mobile-app">How to configure the Aura Mobile App</a></td><td>Matt Hagen</td></tr>
 </table>
 </div>
 </div>

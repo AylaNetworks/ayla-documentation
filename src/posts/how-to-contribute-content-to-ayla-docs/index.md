@@ -20,8 +20,8 @@ The contents of the file will resemble the following. Note the Pencil icon.
 1. Modify the file using [Github Markdown](https://guides.github.com/features/mastering-markdown/).
 1. Scroll to the bottom of the page, and propose a file change:
 <img src="propose-file-change.png" width="700">
-1. Verify head and base repositories, and click ```Create pull request```:
+1. Click ```Create pull request``` after verifying that the head repository is yours:
 <img src="create-pull-request.png" width="700">
-1. At the bottom of the form, click ```Create pull request``` again:
+1. Click ```Create pull request``` again:
 <img src="create-pull-request-form.png" width="700">
 1. Exit this particular Github page without clicking any other buttons. The Ayla Docs admin will evaluate the pull request, and then merge/publish the new content, or contact you for further discussion.
