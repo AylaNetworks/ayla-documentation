@@ -30,3 +30,7 @@ footer {background: #f5f5f5; color: white;}
 #core .post-on-list {margin-bottom: 24px;}
 #core .post-on-list .title {font-size: 115%; font-weight: bold;}
 #core .post-on-list .author, #core .post-on-list .date {font-weight: bold;}
+
+#core .tile {padding: 10px 18px; border: 1px solid #f2f2f2; box-shadow: 1px 1px #d9d9d9;}
+#core .tile-title {font-weight: bold; font-size: 105%; margin-bottom: 6px;}
+#core .tile-link {margin-bottom: 3px;}
