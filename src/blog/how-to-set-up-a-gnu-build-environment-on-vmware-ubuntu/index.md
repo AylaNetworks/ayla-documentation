@@ -4,6 +4,8 @@ layout: post.html
 contentVersion: "2019-06-24"
 ---
 
+<span class="by-line">Matt Hagen</span>
+
 This page explains how to set up a [GNU](https://en.wikipedia.org/wiki/GNU_toolchain) build environment on [VMware](https://en.wikipedia.org/wiki/VMware)/[Ubuntu](https://en.wikipedia.org/wiki/Ubuntu) for building Ayla edge solutions. The following instructions were tested using Ubuntu 19.04 running on VMware Fusion v10.1.6 hosted on a MacBook running OS X El Capitan v10.11.6.
 
 <ol>

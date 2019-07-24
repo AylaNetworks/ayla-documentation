@@ -9,6 +9,7 @@
 #sidebar a.chapter:hover, #sidebar a.page:hover {background: #f2f2f2;} /* black base + 1 */
 #sidebar a.chapter.active, #sidebar a.page.active {background: #f9ebd2;} /* wheat family */
 
+#core .tagline {font-weight: bold;}
 #core-title {color: black;}
 #core-title hr {border-color: gainsboro;}
 #core h1 {color: black;}
@@ -25,3 +26,7 @@ footer {background: #f5f5f5; color: white;}
   background-color: green;
   border-color: green;
 }
+
+#core .post-on-list {margin-bottom: 24px;}
+#core .post-on-list .title {font-size: 115%; font-weight: bold;}
+#core .post-on-list .author, #core .post-on-list .date {font-weight: bold;}
