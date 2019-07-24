@@ -8,7 +8,7 @@ searchDisplay: none
 <div class="row justify-content-center" style="margin-top:24px;">
 <div class="col-md-12">
 <div class="input-group">
-<input id="search-box" type="text" class="form-control" placeholder="Search">
+<input id="search-box" type="text" class="form-control" placeholder="Search Ayla Docs">
 <div class="input-group-append">
 <button id="search-button" class="btn btn-go" type="button"><img src="/assets/images/mag.png" width="16" style="margin:0 !important;"></button>
 </div>
