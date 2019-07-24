@@ -10,31 +10,6 @@ titleDisplay: none
 </div>
 </div>
 
-<!--
-<div class="row justify-content-center" style="margin-top:24px;">
-<div class="col-md-6">
-<div class="input-group mb-3">
-<input id="search-box" type="text" class="form-control" placeholder="Search">
-<div class="input-group-append">
-<button id="search-button" class="btn btn-go" type="button"><img src="/assets/images/mag.png" width="16" style="margin:0 !important;"></button>
-</div>
-</div>
-</div>
-</div>
--->
-
-<div class="row">
-<div class="col-sm-12">
-<h3>Recent Posts<span class="heading-subtext"><a href="/posts">See All.</a></span><span class="heading-subtext"><a href="/contact">Submit your idea for a post.</a></span></h3>
-<table style="width:100%;">
-<tr><td>2019-07-16</td><td><a href="/posts/how-to-contribute-content-to-ayla-docs">How to contribute content to Ayla Docs</td><td>Matt Hagen</td></tr>
-<tr><td>2019-06-24</td><td><a href="/posts/how-to-set-up-a-gnu-build-environment-on-vmware-ubuntu">How to set up a GNU build environment on VMware/Ubuntu</a></td><td>Matt Hagen</td></tr>
-<tr><td>2019-05-29</td><td><a href="/posts/about-ayla-accounts-and-regions">About Ayla Accounts and Regions</a></td><td>Matt Hagen</td></tr>
-<tr><td>2019-05-10</td><td><a href="/posts/how-to-create-a-configuration-file-for-the-ayla-linux-agent">How to create a configuration file for the Ayla Linux Agent</a></td><td>Matt Hagen</td></tr>
-</table>
-</div>
-</div>
-
 <div class="row">
 <div class="col-sm-12">
 <h3>Fast Links</h3>
