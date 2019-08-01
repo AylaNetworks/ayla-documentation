@@ -4,7 +4,7 @@ layout: ayla-development-kit-2019-06.html
 b: block
 ---
 
-The Ayla Host Library contains the source code and supporting files needed to customize, compile, link, download, and run the host application (<code>ledevb.img</code>) on the Ayla Dev Kit. See the [Build Environment](../build-environment) page to download the Ayla Host Library, and set up your development environment. The following diagram illustrates Ayla Host Library organization:
+The Ayla Host Library contains the source code and supporting files needed to customize, compile, link, download, and run the host application (<code>ledevb.img</code>) on the Ayla Dev Kit. See the [Build Environment](../build-environment-setup) page to download the Ayla Host Library, and set up your development environment. The following diagram illustrates Ayla Host Library organization:
 
 <img src="package-organization.png" width=640>
 

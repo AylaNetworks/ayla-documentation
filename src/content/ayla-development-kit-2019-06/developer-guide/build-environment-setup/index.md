@@ -7,7 +7,7 @@ b: block
 This page helps you set up a GNU build environment on VMware/Ubuntu so that you can iteratively modify and build the host application on your computer, and download and run it on the STM32 Nucleo board of your Ayla Dev Kit. 
 
 <ol>
-<li>[Set up a GNU build environment on VMware/Ubuntu](/posts/how-to-set-up-a-gnu-build-environment-on-vmware-ubuntu).</li>
+<li>[Set up a GNU build environment on VMware/Ubuntu](/blog/how-to-set-up-a-gnu-build-environment-on-vmware-ubuntu).</li>
 <li>Browse to <a href="https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads">ARM</a>, and download <code>gcc-arm-none-eabi-8-2018-q4-major-linux.tar.bz2</code>.</li>
 <li>Move the file to <code>/home/matt</code>, and extract:
 <pre>
