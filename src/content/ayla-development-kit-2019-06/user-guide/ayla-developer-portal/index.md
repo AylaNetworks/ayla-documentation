@@ -8,7 +8,7 @@ This page introduces the **Ayla Developer Portal**, one of the three primary cli
 
 <img src="app-and-portals.png" width="700">
 
-The Developer Portal enables engineers to work with the Ayla Cloud especially during development. It includes a superset of Aura capabilities except sharing, and it's the only Ayla client that enables you to create [templates](../../developer-guide/templates). In addition to Developer Portal menus, this page touches on file properties and email/text notifications, topics better demonstrated here than in Aura.
+The Developer Portal enables engineers to work with the Ayla Cloud especially during development. It includes a superset of Aura capabilities except sharing, and it's the only Ayla client that enables you to create templates. In addition to Developer Portal menus, this page touches on file properties and email/text notifications, topics better demonstrated here than in Aura.
 
 ## Menus
 

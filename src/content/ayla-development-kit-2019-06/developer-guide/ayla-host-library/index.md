@@ -38,7 +38,7 @@ The following table provides an introductory description of the components that 
 </tr>
 <tr>
 <td rowspan="2" nowrap><code>libcons.a</code></td>
-<td>This library enables serial communication, primarily for debugging purposes, between your computer and the host app running on the MCU of the host board. Run <code>screen /dev/ttyACM0 115200</code> or similar in a terminal to initiate communication, and press <code>Ctl-A + k + y</code> to terminate the session. Use the <code>demo_log</code> function to <code>printf</code> messages from the host app on the dev kit to a terminal on your computer. See the <code>console_cmds</code> array in <code>console.c</code> for a list of commands. See the [Baseline + console](../baseline-console) page for details.</td>
+<td>This library enables serial communication, primarily for debugging purposes, between your computer and the host app running on the MCU of the host board. Run <code>screen /dev/ttyACM0 115200</code> or similar in a terminal to initiate communication, and press <code>Ctl-A + k + y</code> to terminate the session. Use the <code>demo_log</code> function to <code>printf</code> messages from the host app on the dev kit to a terminal on your computer. See the <code>console_cmds</code> array in <code>console.c</code> for a list of commands.</td>
 </tr>
 <tr>
 <td>

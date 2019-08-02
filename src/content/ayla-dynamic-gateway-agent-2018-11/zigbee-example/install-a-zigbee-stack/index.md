@@ -7,7 +7,7 @@ a: block
 While Raspberry Pi 3 supports Bluetooth natively, it does not support Zigbee out of the box. Adding support to an RPi for a Zigbee network means adding a USB stick and a software stack. Here is one approach:
 
 <ol>
-<li>Buy a [Cel MeshConnect EM358 USB Stick](https://www.cortet.com/iot-hardware/cortet-usb-sticks/em358-usb-stick), and install it in a USB recepticle on your RPi.1. Download [Simplicity Studio IDE v4](https://www.silabs.com/products/development-tools/software/simplicity-studio) onto your computer, and use it to register and download [EmberZNet Protocol Stack](https://www.silabs.com/products/development-tools/software/emberznet-pro-zigbee-protocol-stack-software). Export the Zigbee stack:
+<li>Buy a [Cel MeshConnect EM358 USB Stick](https://www.digikey.com/en/product-highlight/c/cel/cortet-radio-em3588-usb-sticks), and install it in a USB recepticle on your RPi.1. Download [Simplicity Studio IDE v4](https://www.silabs.com/products/development-tools/software/simplicity-studio) onto your computer, and use it to register and download [EmberZNet Protocol Stack](https://www.silabs.com/products/development-tools/software/emberznet-pro-zigbee-protocol-stack-software). Export the Zigbee stack:
 <pre >
 app
   esf_common
