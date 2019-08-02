@@ -540,13 +540,13 @@ title: Content Versions
     </td>
   </tr>
   <tr>
-    <td><a href="/content/ayla-portable-device-agent-porting-guide">Ayla Portable Device Agent Porting Guide</a></td>
+    <td><a href="/content/ayla-portable-device-agent">Ayla Portable Device Agent</a></td>
     <td>PDF</td>
     <td>
       <div class="dropdown">
-        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-portable-device-agent-porting-guide" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
-        <div class="dropdown-menu" aria-labelledby="ayla-portable-device-agent-porting-guide">
-          <a class="dropdown-item" href="/content/ayla-portable-device-agent-porting-guide-2018-09.pdf">v2018-09</a>
+        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-portable-device-agent" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
+        <div class="dropdown-menu" aria-labelledby="ayla-portable-device-agent">
+          <a class="dropdown-item" href="/content/ayla-portable-device-agent-2018-09.pdf">v2018-09</a>
         </div>
       </div>
     </td>
