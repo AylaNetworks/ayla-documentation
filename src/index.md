@@ -35,7 +35,7 @@ titleDisplay: none
 <div class="tile-link"><a href="/content/ayla-on-an-esp32-dev-kit">Ayla on an ESP32 DevKit</a></div>
 <div class="tile-link"><a href="/content/ayla-module-and-mcu-interface-specification">Ayla Module and MCU Interface Specification</a></div>
 <div class="tile-link"><a href="/content/ayla-local-devices-developers-guide">Ayla Local Devices Developers Guide</a></div>
-<div class="tile-link"><a href="/content/ayla-portable-device-agent">Ayla Portable Device Agent</a></div>
+<div class="tile-link"><a href="/content/ayla-portable-agent">Ayla Portable Agent</a></div>
 <div><a data-toggle="collapse" href="#embedded">Ayla Embedded Agents</a></div>
 <div class="collapse" id="embedded">
 <div class="tile-link"><a href="/content/ayla-embedded-agent-for-android">Ayla Embedded Agent for Android</a></div>
