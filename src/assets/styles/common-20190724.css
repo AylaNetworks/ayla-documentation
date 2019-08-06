@@ -142,6 +142,10 @@ main, core-frame, core, etc.
   margin-bottom: 1rem;
 }
 
+#core pre code {
+  color: white;
+}
+
 #core li pre {margin-top: 12px;}
 
 #core pre.numbered {counter-reset: line;}
