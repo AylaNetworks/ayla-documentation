@@ -13,42 +13,57 @@ The steps below use two terminals: Host (```$```) and Docker (```#```).
     $ docker run --net=host -it ubuntu bash
     ```
 
-1. Enable multiarch environment (needed to compile Ayla executables):
-
-    ```
-    # dpkg --add-architecture i386
-    ```
-
-1. Install packages:
-
-    ```
-    # apt update
-    # apt install nano build-essential net-tools apt-file iproute2 iputils-ping python2.7 python-pip
-    # apt install libssl-dev libavahi-client-dev libc6-dev-i386 libssl-dev:i386 libavahi-client-dev:i386
-    ```
-
-1. Download pda-http-src-2.3.1-beta.tgz to your computer.
-
 1. Find the Docker Container ID:
 
     ```
     $ docker ps
-    CONTAINER ID    IMAGE       COMMAND     CREATED           STATUS            PORTS       NAMES
-    3fec6a3f3796    ubuntu      "bash"      5 seconds ago     Up 5 seconds                  romantic_bardeen
+CONTAINER ID    IMAGE       COMMAND     CREATED           STATUS            PORTS       NAMES
+ba820ce1a2d0    ubuntu      "bash"      5 seconds ago     Up 5 seconds                  romantic_bardeen
     ```
+
+1. Install build essentials, etc.:
+
+    ```
+    # apt update
+    # apt install nano build-essential net-tools apt-file iproute2 iputils-ping python2.7 python-pip python3.6
+    ```
+
+1. Download pda-http-src-2.3.1-beta.tgz to your computer.
 
 1. Copy pda-http-src-2.3.1-beta.tgz to your Docker container:
 
     ```
-    $ docker cp /home/matt/Downloads/pda-http-src-2.3.1-beta.tgz 3fec6a3f3796:/root
+    $ docker cp /home/matt/Downloads/pda-http-src-2.3.1-beta.tgz 447da344853a:/root
     ```
 
-1. Unzip the archive file, and change directory:
+1. Unzip the archive file:
 
     ```
-    # cd /root
+    # cd root
     # tar zxvf pda-http-src-2.3.1-beta.tgz
-    # cd /root/pda-http-src-2.3.1-beta
+    ```
+
+1. Install additional build libraries:
+
+    ```
+    # apt-get install -y libssl-dev
+    # apt-get install -y libavahi-client-dev
+    ```
+
+1. Install 32-bit libraries:
+
+    ```
+    # dpkg --add-architecture i386
+    # apt update
+    # apt-get install -y libc6-dev-i386
+    # apt-get install -y libssl-dev:i386
+    # apt-get install -y libavahi-client-dev:i386
+    ```
+
+1. Change directory:
+
+    ```
+    # cd pda-http-src-2.3.1-beta
     ```
 
 1. Edit ```ayla/src/libada/client.c```. Modify ```snprintf``` invocations to check for negative return values:
@@ -69,38 +84,18 @@ The steps below use two terminals: Host (```$```) and Docker (```#```).
 
 1. Edit ```examples/common/demo_cli_client.c```. Change ```if (lr.uri == '\0')``` to ```if (*lr.uri == '\0')```.
 
-1. Build the Ayla executables:
+1. Build ```ledevb```:
 
     ```
     # make
     ```
 
-1.  View the results here:
-
-    ```
-    # ls -1 ayla/bin/native  
-    altest
-    apptest
-    ledevb
-    wifisetup
-    ```
-
 1. Generate a configuration file:
 
     ```
-    # pip install rsa
     # cd platform/linux/utils
-    # python2.7 conf-gen.py -k 0123456789abcdef0123456789abcdef -r US /root/AC000W000000001.xml 1234abcd ledevb
-    ```
-
-    Command-line parameters:
-
-    ```
-    -k is the OEM Key/Secret.
-    -r is the region (e.g. US, CN, EU).
-    AC000W000000001.xml is the DSN file downloaded from Ayla Dashboard Portal.
-    1234abcd is the OEM ID.
-    ledevb is the OEM Model.
+    # pip install rsa
+    # python2.7 conf-gen.py -k 0123456789abcdef0123456789abcdef -r US AC000W000000001.xml 1234abcd ledevb
     ```
 
 1. View ```~/.pda/persist.conf```, the encrypted, generated configuration file:
