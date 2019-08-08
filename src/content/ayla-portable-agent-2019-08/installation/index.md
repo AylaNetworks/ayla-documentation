@@ -10,7 +10,7 @@ The steps below use two terminals: Host (```$```) and Docker (```#```).
 1. Run the [ubuntu](https://hub.docker.com/_/ubuntu) container image:
 
     ```
-    $ docker run --net=host -it ubuntu bash
+    $ docker run --net=host --name=Ayla_Portable_Agent -it ubuntu bash
     ```
 
 1. Enable multiarch environment (needed to compile Ayla executables):
@@ -23,24 +23,17 @@ The steps below use two terminals: Host (```$```) and Docker (```#```).
 
     ```
     # apt update
-    # apt install nano build-essential net-tools apt-file iproute2 iputils-ping python2.7 python-pip
-    # apt install libssl-dev libavahi-client-dev libc6-dev-i386 libssl-dev:i386 libavahi-client-dev:i386
+    # apt install nano build-essential net-tools apt-file iproute2 iputils-ping python2.7 python-pip tree \
+    wpasupplicant wireless-tools rfkill psmisc libssl-dev libavahi-client-dev libc6-dev-i386 libssl-dev:i386 \
+    libavahi-client-dev:i386
     ```
 
 1. Download pda-http-src-2.3.1-beta.tgz to your computer.
 
-1. Find the Docker Container ID:
-
-    ```
-    $ docker ps
-    CONTAINER ID    IMAGE       COMMAND     CREATED           STATUS            PORTS       NAMES
-    3fec6a3f3796    ubuntu      "bash"      5 seconds ago     Up 5 seconds                  romantic_bardeen
-    ```
-
 1. Copy pda-http-src-2.3.1-beta.tgz to your Docker container:
 
     ```
-    $ docker cp /home/matt/Downloads/pda-http-src-2.3.1-beta.tgz 3fec6a3f3796:/root
+    $ docker cp /home/matt/Downloads/pda-http-src-2.3.1-beta.tgz Ayla_Portable_Agent:root
     ```
 
 1. Unzip the archive file, and change directory:
@@ -51,7 +44,7 @@ The steps below use two terminals: Host (```$```) and Docker (```#```).
     # cd /root/pda-http-src-2.3.1-beta
     ```
 
-1. Edit ```ayla/src/libada/client.c```. Modify ```snprintf``` invocations to check for negative return values:
+1. Fix ```ayla/src/libada/client.c```. Modify ```snprintf``` invocations to check for negative return values:
 
     ```
     if(snprintf(...) < 0) {
@@ -65,19 +58,22 @@ The steps below use two terminals: Host (```$```) and Docker (```#```).
     * client_get_dp_loc_req
     * client_cmd_put_rsp
 
-1. Edit ```platform/linux/al_net_dns.c```. Add ```#include <signal.h>```.
+1. Fix ```platform/linux/al_net_dns.c```. Add ```#include <signal.h>```.
 
-1. Edit ```examples/common/demo_cli_client.c```. Change ```if (lr.uri == '\0')``` to ```if (*lr.uri == '\0')```.
+1. Fix ```examples/common/demo_cli_client.c```. Change ```if (lr.uri == '\0')``` to ```if (*lr.uri == '\0')```.
+
+1. Fix ```platform/linux/al_net_if.c```. Add the following to the ```al_net_if_get_kind``` function:
+
+    ```
+    else if (!memcmp(name, "wlp3s0", 6)) {
+      return AL_IF_K_WLAN;
+    }
+    ```
 
 1. Build the Ayla executables:
 
     ```
     # make
-    ```
-
-1.  View the results here:
-
-    ```
     # ls -1 ayla/bin/native  
     altest
     apptest
@@ -91,21 +87,15 @@ The steps below use two terminals: Host (```$```) and Docker (```#```).
     # pip install rsa
     # cd platform/linux/utils
     # python2.7 conf-gen.py -k 0123456789abcdef0123456789abcdef -r US /root/AC000W000000001.xml 1234abcd ledevb
-    ```
 
-    Command-line parameters:
-
-    ```
-    -k is the OEM Key/Secret.
-    -r is the region (e.g. US, CN, EU).
-    AC000W000000001.xml is the DSN file downloaded from Ayla Dashboard Portal.
-    1234abcd is the OEM ID.
-    ledevb is the OEM Model.
-    ```
-
-1. View ```~/.pda/persist.conf```, the encrypted, generated configuration file:
-
-    ```
+    The last three command-line parameters are positional:
+      -k is the OEM Key/Secret.
+      -r is the region (e.g. US, CN, EU).
+      AC000W000000001.xml is the DSN file downloaded from Ayla Dashboard Portal.
+      1234abcd is the OEM ID.
+      ledevb is the OEM Model.
+    
+    # cat ~/.pda/persist.conf
     {
       "factory": {
         "device_dsn": "QUMwMDBXMDA3MTI2ODEx", 
@@ -117,4 +107,22 @@ The steps below use two terminals: Host (```$```) and Docker (```#```).
       }, 
       "startup": {}
     }
+    ```
+
+1. Run ```ledevb```:
+
+    ```
+    # ./ayla/bin/native/ledevb
+    ```
+
+1. Configure the program for developer mode:
+
+    ```
+    PWB ledevb> conf set client/server/default 1
+    ```
+
+1. Activate the Ayla Agent:
+
+    ```
+    PWB ledevb> up
     ```
