@@ -1,44 +1,43 @@
 ---
-title: Installation
-layout: ayla-portable-agent-2019-08.html
+title: Ayla Portable Agent
+layout: ayla-device-developer-guide-2019-09.html
+c: block
 ---
 
-1. Reserve an Ayla Device Serial Number (DSN), download the associated archive file, and unzip it to obtain the xml file.
+1. Open two terminals on your computer referred to below as Host Terminal (```HT```) and Docker Terminal (```DT```).
 
-1. Open two terminals on your computer referred to below as (1) Host Terminal and (2) Docker Terminal.
+1. ```DT```: Install the [Docker Engine](https://docs.docker.com/get-started/) on your computer.
 
-1. In Docker Terminal, install the [Docker Engine](https://docs.docker.com/get-started/) on your computer.
-
-1. Run the Docker [ubuntu](https://hub.docker.com/_/ubuntu) container image:
+1. ```DT```: Run the Docker [ubuntu](https://hub.docker.com/_/ubuntu) container image:
 
     ```
     $ docker run --net=host --name=Ayla_Portable_Agent -it ubuntu bash
     ```
 
-1. Enable multiarch environment (needed to compile Ayla executables):
+1. ```DT```: Enable multiarch environment (needed to compile Ayla executables):
 
     ```
     # dpkg --add-architecture i386
     ```
 
-1. Install packages:
+1. ```DT```: Install packages:
 
     ```
     # apt update
-    # apt install nano build-essential net-tools apt-file iproute2 iputils-ping python2.7 python-pip tree \
+    # apt install nano build-essential net-tools apt-file iproute2 iputils-ping python2.7 python-pip \
     wpasupplicant wireless-tools rfkill psmisc libssl-dev libavahi-client-dev libc6-dev-i386 libssl-dev:i386 \
     libavahi-client-dev:i386
     ```
 
 1. Download the Ayla Portable Agent (pda-http-src-2.3.1-beta.tgz).
 
-1. In Host Terminal, copy the file to your Docker container:
+1. ```HT```: Copy the file to your Docker container:
 
     ```
     $ docker cp /home/matt/Downloads/pda-http-src-2.3.1-beta.tgz Ayla_Portable_Agent:root
     ```
 
-1. Unzip the archive file, and change directory:
+1. ```DT```: Unzip the archive file, and change directory:
 
     ```
     # cd /root
@@ -46,7 +45,7 @@ layout: ayla-portable-agent-2019-08.html
     # cd /root/pda-http-src-2.3.1-beta
     ```
 
-1. Fix ```ayla/src/libada/client.c```. Modify ```snprintf``` invocations to check for negative return values:
+1. ```DT```: Fix ```ayla/src/libada/client.c```. Modify ```snprintf``` invocations to check for negative return values:
 
     ```
     if(snprintf(...) < 0) {
@@ -60,11 +59,11 @@ layout: ayla-portable-agent-2019-08.html
     * client_get_dp_loc_req
     * client_cmd_put_rsp
 
-1. Fix ```platform/linux/al_net_dns.c```. Add ```#include <signal.h>```.
+1. ```DT```: Fix ```platform/linux/al_net_dns.c```. Add ```#include <signal.h>```.
 
-1. Fix ```examples/common/demo_cli_client.c```. Change ```if (lr.uri == '\0')``` to ```if (*lr.uri == '\0')```.
+1. ```DT```: Fix ```examples/common/demo_cli_client.c```. Change ```if (lr.uri == '\0')``` to ```if (*lr.uri == '\0')```.
 
-1. Fix ```platform/linux/al_net_if.c```. Add the following to the ```al_net_if_get_kind``` function:
+1. ```DT```: Fix ```platform/linux/al_net_if.c```. Add the following to the ```al_net_if_get_kind``` function:
 
     ```
     else if (!memcmp(name, "wlp3s0", 6)) {
@@ -72,7 +71,7 @@ layout: ayla-portable-agent-2019-08.html
     }
     ```
 
-1. Build the Ayla executables:
+1. ```DT```: Build the Ayla executables:
 
     ```
     # make
@@ -83,7 +82,13 @@ layout: ayla-portable-agent-2019-08.html
     wifisetup
     ```
 
-1. Generate a configuration file:
+1. ```HT```: Copy the DSN XML file to your Docker container:
+
+    ```
+    $ docker cp /home/matt/Downloads/AC000W000000001.xml Ayla_Portable_Agent:root
+    ```
+
+1. ```DT```: Generate a configuration file:
 
     ```
     # pip install rsa
@@ -111,19 +116,19 @@ layout: ayla-portable-agent-2019-08.html
     }
     ```
 
-1. Run ```ledevb```:
+1. ```DT```: Run ```ledevb```:
 
     ```
     # ./ayla/bin/native/ledevb
     ```
 
-1. Configure the program for developer mode:
+1. ```DT```: Configure the program for developer mode:
 
     ```
     PWB ledevb> conf set client/server/default 1
     ```
 
-1. Activate the Ayla Agent:
+1. ```DT```: Activate the Ayla Agent:
 
     ```
     PWB ledevb> up
