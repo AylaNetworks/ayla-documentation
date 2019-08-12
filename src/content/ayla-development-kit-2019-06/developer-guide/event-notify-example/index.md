@@ -108,3 +108,5 @@ demo: power timeout - staying up
 </pre>
 </li>
 </ol>
+
+Continue to [New property example](../new-property-example).

@@ -78,3 +78,4 @@ The host app (on the device) sets <code>decimal_out = decimal_in</code>, and sen
 
 To explore File properties, see the **File properties** section on the [Ayla Developer Portal](../ayla-developer-portal) page.
 
+Continue to [Schedules](../schedules).

@@ -80,3 +80,5 @@ The new application appears on the list:
 1. Power-off your dev kit, and wait for a few minutes.
 1. Check your email. You should receive one similar to the following:
 <img src="notification-email.png" width="320">
+
+Continue to [Ayla Dashboard Portal](../ayla-dashboard-portal).

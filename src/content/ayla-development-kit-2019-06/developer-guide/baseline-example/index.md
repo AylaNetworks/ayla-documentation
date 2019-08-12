@@ -239,3 +239,5 @@ The <code>oem_host_version</code> property helps to tell the Ayla Cloud which te
 <td>The <code>demo_poll</code> function processes callbacks and timers. It must be called within an infinite loop.</td>
 </tr>
 </table>
+
+Continue to [Console example](../console-example).

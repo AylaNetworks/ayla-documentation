@@ -23,3 +23,5 @@ Tap your device on the Aura Devices list, tap the gear (top-right), and tap Fact
 ### Physical factory reset
 
 <img src="reset.png" width=600>
+
+Continue to [Developer Guide](../../developer-guide).

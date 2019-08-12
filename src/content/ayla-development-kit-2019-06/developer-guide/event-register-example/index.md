@@ -127,3 +127,5 @@ enum host_event {
   _HEV_LIMIT              /* reserved - no trailing comma for Keil */
 };
 </pre>
+
+Continue to [Event notify example](../event-notify-example).

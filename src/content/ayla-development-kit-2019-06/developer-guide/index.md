@@ -39,3 +39,5 @@ static struct prop prop_table[] =   {
 When you connect your Ayla Dev Kit to the Ayla Cloud, the cloud instantiates a digital twin from a template (not shown) to model the kit. Client applications like Aura interact with the Ayla Dev Kit via the digital twin:
 
 <img src="demo-cloud-app.png" width="780">
+
+Continue to [Ayla Host Library](ayla-host-library).

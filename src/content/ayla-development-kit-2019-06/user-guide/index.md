@@ -12,6 +12,8 @@ Next, it shows you how to connect your kit to the Ayla Public Cloud Account, and
 
 <img src="connect-register.png" width="216">
 
-Then, it helps you explore your kit using the [Aura Mobile App](aura-mobile-app), [Ayla Developer Portal](ayla-developer-portal), and [Ayla Dashboard Portal](ayla-dashboard-portal):
+Then, it helps you explore your kit using the Aura Mobile App, Ayla Developer Portal, and Ayla Dashboard Portal:
 
 <img src="explore.png" width="544">
+
+Continue to [Connect](connect).

@@ -124,3 +124,5 @@ pushed version
 </pre>
 </li>
 </ol>
+
+Continue to [Serial mode](../serial-mode).

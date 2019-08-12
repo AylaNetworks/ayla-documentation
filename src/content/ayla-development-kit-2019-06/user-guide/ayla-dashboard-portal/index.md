@@ -19,3 +19,5 @@ Browse to the [Ayla Dashboard Portal](/content/ayla-dashboard-portal), and log i
 Then, click the row with your device. The Device page appears:
 <img src="device.png" width="800">
 Many of the features available here are also available in Aura and the Ayla Developer Portal.
+
+Continue to [Factory Reset](../factory-reset).

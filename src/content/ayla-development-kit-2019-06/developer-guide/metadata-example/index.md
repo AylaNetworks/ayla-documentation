@@ -100,3 +100,5 @@ This example shows how to include metadata with property value updates. By defau
 <img src="blue-button-metadata.png" width="400">
 </li>
 </ol>
+
+Continue to [Schedule example](../schedule-example).

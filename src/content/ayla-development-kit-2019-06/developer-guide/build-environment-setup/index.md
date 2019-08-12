@@ -84,3 +84,5 @@ $ make download
 </pre>
 </li>
 </ol>
+
+Continue to [Build environment test](../build-environment-test).

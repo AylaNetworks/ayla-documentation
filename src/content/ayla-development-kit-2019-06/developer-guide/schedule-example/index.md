@@ -121,3 +121,5 @@ demo: cloud set schedule_in (47 bytes)
 <li>Modify Start Time an End Time, and tap Save Schedule.</li>
 <li>Observe the green LED glow and dim.</li>
 </ol>
+
+Continue to [Config example](../config-example).

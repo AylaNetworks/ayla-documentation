@@ -45,3 +45,5 @@ Wait a few seconds before generating the next push notification.
 1. Disconnect the Ayla Dev Kit, and wait for a few minutes. See a push notification similar to the following:
 <img src="aura-lost-connection.png" width="200">
 1. Uncheck *Send push ...*, and save again.
+
+Continue to [Share a device](../share-a-device).

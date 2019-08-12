@@ -41,3 +41,5 @@ With default (read-only) access, most functionality will be disabled:
 <img src="shared-device-002.png" width="200">
 They will, however, receive notifications:
 <img src="../notifications/aura-green-led-changed.png" width="200">
+
+Continue to [Aura Mobile App](../aura-mobile-app).

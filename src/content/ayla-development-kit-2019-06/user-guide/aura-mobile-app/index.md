@@ -37,3 +37,5 @@ This User Guide has addressed several of these screens already. The LAN OTA and 
 Tapping a device on the Devices List reveals the Device screen:
 
 <img src="aura-device.png" width="720">
+
+Continue to [Ayla Developer Portal](../ayla-developer-portal).

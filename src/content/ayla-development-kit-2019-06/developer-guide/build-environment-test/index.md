@@ -42,3 +42,5 @@ static void set_input(struct prop &ast;prop, void &ast;arg, void &ast;valp, size
 <img src="input-output.png" width="200">
 </li>
 </ol>
+
+Continue to [Baseline example](../baseline-example).

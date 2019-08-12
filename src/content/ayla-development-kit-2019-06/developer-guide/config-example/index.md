@@ -156,3 +156,5 @@ static void conf_model_rx(void &ast;buf, size_t len) {
   host_log("conf_model_rx: model %s", conf_model);
 }
 </pre>
+
+Continue to [Event register example](../event-register-example).
