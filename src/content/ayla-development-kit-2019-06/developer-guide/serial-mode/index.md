@@ -22,4 +22,5 @@ $ make USE_UART=1
 
 The choice between SPI and UART depends on your choice of MCU. The STM32 Nucleo board of the Ayla Dev Kit supports both. 
 
-Continue to [Ayla Shield Schematic](../ayla-shield-schematic).
+<hr/>
+**Click [Ayla Shield Schematic](../ayla-shield-schematic) to continue**.

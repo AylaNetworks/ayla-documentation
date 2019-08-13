@@ -133,4 +133,5 @@ printf("demo: " fmt "\n", ##__VA_ARGS__)
 </tr>
 </table>
 
-Continue to [Ack example](../ack-example).
+<hr/>
+**Click [Ack example](../ack-example) to continue**.

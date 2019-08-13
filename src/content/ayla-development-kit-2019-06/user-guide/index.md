@@ -16,4 +16,5 @@ Then, it helps you explore your kit using the Aura Mobile App, Ayla Developer Po
 
 <img src="explore.png" width="544">
 
-Continue to [Connect](connect).
+<hr/>
+**Click [Connect](connect) to continue**.

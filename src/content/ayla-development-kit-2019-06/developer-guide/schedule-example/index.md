@@ -122,4 +122,5 @@ demo: cloud set schedule_in (47 bytes)
 <li>Observe the green LED glow and dim.</li>
 </ol>
 
-Continue to [Config example](../config-example).
+<hr/>
+**Click [Config example](../config-example) to continue**.

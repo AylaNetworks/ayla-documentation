@@ -85,4 +85,5 @@ $ make download
 </li>
 </ol>
 
-Continue to [Build environment test](../build-environment-test).
+<hr/>
+**Click [Build environment test](../build-environment-test) to continue**.

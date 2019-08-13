@@ -157,4 +157,5 @@ static void conf_model_rx(void &ast;buf, size_t len) {
 }
 </pre>
 
-Continue to [Event register example](../event-register-example).
+<hr/>
+**Click [Event register example](../event-register-example) to continue**.

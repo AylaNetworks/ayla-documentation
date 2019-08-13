@@ -109,4 +109,5 @@ demo: power timeout - staying up
 </li>
 </ol>
 
-Continue to [New property example](../new-property-example).
+<hr/>
+**Click [New property example](../new-property-example) to continue**.

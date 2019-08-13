@@ -125,4 +125,5 @@ pushed version
 </li>
 </ol>
 
-Continue to [Serial mode](../serial-mode).
+<hr/>
+**Click [Serial mode](../serial-mode) to continue**.

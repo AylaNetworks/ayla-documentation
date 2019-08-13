@@ -101,4 +101,5 @@ This example shows how to include metadata with property value updates. By defau
 </li>
 </ol>
 
-Continue to [Schedule example](../schedule-example).
+<hr/>
+**Click [Schedule example](../schedule-example) to continue**.

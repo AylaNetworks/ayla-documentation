@@ -42,4 +42,5 @@ With default (read-only) access, most functionality will be disabled:
 They will, however, receive notifications:
 <img src="../notifications/aura-green-led-changed.png" width="200">
 
-Continue to [Aura Mobile App](../aura-mobile-app).
+<hr/>
+**Click [Aura Mobile App](../aura-mobile-app) to continue**.

@@ -46,4 +46,5 @@ Wait a few seconds before generating the next push notification.
 <img src="aura-lost-connection.png" width="200">
 1. Uncheck *Send push ...*, and save again.
 
-Continue to [Share a device](../share-a-device).
+<hr/>
+**Click [Share a device](../share-a-device) to continue**.

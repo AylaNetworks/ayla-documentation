@@ -240,4 +240,5 @@ The <code>oem_host_version</code> property helps to tell the Ayla Cloud which te
 </tr>
 </table>
 
-Continue to [Console example](../console-example).
+<hr/>
+**Click [Console example](../console-example) to continue**.

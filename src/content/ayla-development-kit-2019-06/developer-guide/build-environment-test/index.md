@@ -43,4 +43,5 @@ static void set_input(struct prop &ast;prop, void &ast;arg, void &ast;valp, size
 </li>
 </ol>
 
-Continue to [Baseline example](../baseline-example).
+<hr/>
+**Click [Baseline example](../baseline-example) to continue**.

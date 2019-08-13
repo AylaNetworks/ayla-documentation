@@ -26,4 +26,5 @@ Connecting your dev kit to the Ayla Cloud takes only a few steps:
 1. Tap Done to see your new device on the Devices screen. Then, tap *Ayla Dev Kit* to see the Details screen:
 <img src="aura-003.png" height="340">
 
-Continue to [Properties](../properties).
+<hr/>
+**Click [Properties](../properties) to continue**.

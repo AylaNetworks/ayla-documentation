@@ -156,4 +156,5 @@ pushed output
 </li>
 </ol>
 
-Continue to [Metadata example](../metadata-example).
+<hr/>
+**Click [Metadata example](../metadata-example) to continue**.

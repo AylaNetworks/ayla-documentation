@@ -112,4 +112,5 @@ The following table provides an introductory description of the components that 
 </tr>
 </table>
 
-Continue to [Build environment setup](../build-environment-setup).
+<hr/>
+**Click [Build environment setup](../build-environment-setup) to continue**.

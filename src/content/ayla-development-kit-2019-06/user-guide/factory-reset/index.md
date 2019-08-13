@@ -24,4 +24,5 @@ Tap your device on the Aura Devices list, tap the gear (top-right), and tap Fact
 
 <img src="reset.png" width=600>
 
-Continue to [Developer Guide](../../developer-guide).
+<hr/>
+**Click [Developer Guide](../../developer-guide) to continue**.

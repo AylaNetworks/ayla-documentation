@@ -81,4 +81,5 @@ The new application appears on the list:
 1. Check your email. You should receive one similar to the following:
 <img src="notification-email.png" width="320">
 
-Continue to [Ayla Dashboard Portal](../ayla-dashboard-portal).
+<hr/>
+**Click [Ayla Dashboard Portal](../ayla-dashboard-portal) to continue**.

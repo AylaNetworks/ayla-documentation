@@ -40,4 +40,5 @@ When you connect your Ayla Dev Kit to the Ayla Cloud, the cloud instantiates a d
 
 <img src="demo-cloud-app.png" width="780">
 
-Continue to [Ayla Host Library](ayla-host-library).
+<hr/>
+**Click [Ayla Host Library](ayla-host-library) to continue**.

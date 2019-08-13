@@ -27,4 +27,5 @@ Note that this schedule sets Blue_LED to 1 at start date/time, and to 0 at end d
 1. Tap *Save Schedule* at the bottom of the screen.
 1. Observe (on the dev kit and in Aura) Blue_LED glow at start time, and dim at end time.
 
-Continue to [Notifications](../notifications).
+<hr/>
+**Click [Notifications](../notifications) to continue**.

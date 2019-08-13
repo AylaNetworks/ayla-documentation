@@ -128,4 +128,5 @@ enum host_event {
 };
 </pre>
 
-Continue to [Event notify example](../event-notify-example).
+<hr/>
+**Click [Event notify example](../event-notify-example) to continue**.
