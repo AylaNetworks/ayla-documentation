@@ -40,7 +40,7 @@ $ openocd --version
 Open On-Chip Debugger 0.10.0
 </pre>
 </li>
-<li>Download the Ayla Host Library archive file (e.g. Ayla-host-lib-2.0-rc4.zip) to <code>/home/matt</code>, and unzip:
+<li><a href="https://connection.aylanetworks.com/s/article/Ayla-Host-Library-and-Reference-Application">Download the Ayla Host Library</a> archive file (e.g. Ayla-host-lib-2.0.zip) to <code>/home/matt</code>, and unzip:
 <pre>
 $ unzip Ayla-host-lib-2.0-rc4.zip
 </pre>
