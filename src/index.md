@@ -56,7 +56,11 @@ titleDisplay: none
 <div class="tile">
 <div class="tile-title text-center">APIs</div>
 <div class="tile-link"><a href="/content/ayla-api-browser">Ayla API Browser</a></div>
+<div class="tile-link"><a href="/content/ayla-datastream-service">Ayla Datastream Service</a></div>
 <div class="tile-link"><a href="/content/ayla-factory-service-api-specification">Ayla Factory Service API Specification</a></div>
+<div class="tile-link"><a href="/content/ayla-rbac-api-specification">Ayla RBAC API Specification</a></div>
+<div class="tile-link"><a href="/content/ayla-rules-api-specification">Ayla Rules API Specification</a></div>
+<div class="tile-link"><a href="/content/ayla-service-api-specification">Ayla Service API Specification</a></div>
 </div>
 </div>
 

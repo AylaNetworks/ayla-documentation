@@ -600,6 +600,18 @@ title: Content Versions
     </td>
   </tr>
   <tr>
+    <td><a href="/content/ayla-rbac-api-specification">Ayla RBAC API Specification</a></td>
+    <td>PDF</td>
+    <td>
+      <div class="dropdown">
+        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-rbac-api-specification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
+        <div class="dropdown-menu" aria-labelledby="ayla-rbac-api-specification">
+          <a class="dropdown-item" href="/content/ayla-rbac-api-specification-2017-08.pdf">v2017-08</a>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
     <td><a href="/content/ayla-related-virtualization-user-guide">Ayla-related Virtualization User Guide</a></td>
     <td>PDF</td>
     <td>
