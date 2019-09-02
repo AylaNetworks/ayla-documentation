@@ -4,44 +4,82 @@ layout: ayla-developer-guide-2019-09.html
 b: block
 ---
 
+### Ayla Agents
 
-## Ayla Agents
+<table>
+<tr>
+<th>Name</th>
+<th>Guide</th>
+<th>Download</th>
+</tr>
+<tr>
+<td>Ayla Wi-Fi Production Agent</td>
+<td>[Connect Wi-Fi Modules](../../connect-wifi-modules)</td>
+<td>[Ayla-host-lib](https://connection.aylanetworks.com/s/article/Ayla-Host-Library-and-Reference-Application)</td>
+</tr>
+<tr>
+<td>Ayla Realtek Ameba SDK Agent</td>
+<td>&nbsp;</td>
+<td>[ada-ameba-src](https://connection.aylanetworks.com/s/article/2850627)</td>
+</tr>
+<tr>
+<td>Ayla Espressif ESP-IDF Agent</td>
+<td>[Connect ESP32 Devices](../../connect-esp32-devices)</td>
+<td>[ada-esp-idf-src](https://connection.aylanetworks.com/s/article/2648919)</td>
+</tr>
+<tr>
+<td>Ayla Qualcomm QCA4010 SDK Agent</td>
+<td>&nbsp;</td>
+<td>[ada-qca4010-src](https://connection.aylanetworks.com/s/article/2414390)</td>
+</tr>
+<tr>
+<td>Ayla Marvell WM SDK Agent</td>
+<td>&nbsp;</td>
+<td>[ada-wmsdk-src](https://connection.aylanetworks.com/s/article/2114497)</td>
+</tr>
+<tr>
+<td>Ayla Cellular Production Agent</td>
+<td>[Connect Cellular Modules](../../connect-cellular-modules)</td>
+<td>[prod_pkg-apca](https://connection.aylanetworks.com/s/article/Quectel-AY001QCT1-BG96-Production-Package)</td>
+</tr>
+<tr>
+<td>Ayla Cellular Integrated Agent</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Ayla Dynamic Gateway Agent</td>
+<td>[Connect Linux Gateways](../../connect-linux-gateways)</td>
+<td>[device_linux_gw_public](https://github.com/AylaNetworks/device_linux_gw_public)</td>
+</tr>
+<tr>
+<td>Ayla Static Gateway Agent</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Ayla Linux Agent</td>
+<td>[Connect Linux Devices](../../connect-linux-devices)</td>
+<td>[device_linux_public](https://github.com/AylaNetworks/device_linux_public)</td>
+</tr>
+<tr>
+<td>Ayla Android Agent</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Ayla Portable Agent</td>
+<td>[Connect Any Device](../../connect-any-device)</td>
+<td>[pda-http-src](https://connection.aylanetworks.com/s/article/Ayla-Portable-Device-Agent-Source-Code)</td>
+</tr>
+<tr>
+<td>Ayla Phone Agent</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
 
-1. Ayla Wi-Fi Device Agents
-    1. Ayla Wi-Fi Production Agent (see [Ayla for Wi-Fi Modules](ayla-for-wifi-modules))
-    1. Ayla Wi-Fi Integrated Agents
-        1. Ayla Realtek Ameba SDK Agent
-        1. Ayla Espressif ESP-IDF Agent (see [Ayla for ESP32](../../ayla-for-esp32))
-        1. Ayla Qualcomm QCA4010 SDK Agent
-        1. Ayla Marvell WM SDK Agent
-1. Ayla Cellular Device Agents
-    1. Ayla Cellular Production Agent (see [Ayla for Cellular Modules](ayla-for-cellular-modules))
-    1. Ayla Cellular Integrated Agent
-    1. Ayla Cellular Low-power Wide-area Agents
-1. Ayla Gateway Agents
-    1. Ayla Dynamic Gateway Agent
-    1. Ayla Static Gateway Agent
-1. Ayla Flexible Agents
-    1. Ayla Linux Agent (see [Ayla for Linux](../../ayla-for-linux))
-    1. Ayla Android Agent
-    1. Ayla Portable Agent (see [Ayla for Portability](../../ayla-for-portability))
-1. Ayla Phone Agent
-
-## Ayla Source Code Downloads
-
-|Link|Description|
-|-|-|
-|[ada-ameba-src](https://connection.aylanetworks.com/s/article/2850627)|Ayla agent and reference app for the Realtek Ameba SDK|
-|[ada-esp-idf-src](https://connection.aylanetworks.com/s/article/2648919)|Ayla agent and reference app for the [Espressif IoT Development Framework](https://github.com/espressif/esp-idf)|
-|[ada-qca4010-src](https://connection.aylanetworks.com/s/article/2414390)|Ayla agent and reference app for the Qualcomm QCA4010 SDK|
-|[ada-wmsdk-src](https://connection.aylanetworks.com/s/article/2114497)|Ayla agent and reference app for the Marvell WM SDK|
-|[Ayla-host-lib](https://connection.aylanetworks.com/s/article/Ayla-Host-Library-and-Reference-Application)|Ayla reference app for Wi-Fi production modules|
-|[device_linux_public](https://github.com/AylaNetworks/device_linux_public)|Ayla agent and reference app for Linux-based devices|
-|[device_linux_gw_public](https://github.com/AylaNetworks/device_linux_gw_public)|Ayla agent and reference app for Linux-based gateways|
-|[pda-http-src](https://connection.aylanetworks.com/s/article/Ayla-Portable-Device-Agent-Source-Code)|Ayla agent and reference app for porting to any platform|
-|[prod_pkg-apca](https://connection.aylanetworks.com/s/article/Quectel-AY001QCT1-BG96-Production-Package)|&nbsp;|
-
-## Ayla Firmware Downloads
+### Ayla Firmware Downloads
 
 * [Ampak: Module AY001MAB Firmware Download](https://connection.aylanetworks.com/s/article/AY001MAB-Firmware-Downloads)
 * [Azureware: AY001MWA CU300 Firmware Downloads](https://connection.aylanetworks.com/s/article/Azureware-AY001MWA-CU300-Firmware-Downloads)

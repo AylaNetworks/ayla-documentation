@@ -1,8 +1,10 @@
 ---
-title: Ayla ESP32 Solution v1.3.10-beta (Build on Ubuntu/Docker)
+title: Ayla ESP32 Solution v1.3.9
 layout: ayla-developer-guide-2019-09.html
 e: block
 ---
+
+This page provides directions for building an Ayla ESP32 v1.3.9 solution using a Ubuntu/Docker development environment.
 
 ## Build, Configure, Run, Connect, Register
 
@@ -12,34 +14,30 @@ e: block
 
 1. [Reserve a DSN](../../common-tasks/reserve-a-dsn).
 
-1. [Create a template](../../common-tasks/create-a-template) with the following properties and details:
+1. [Create a template](../../common-tasks/create-a-template) with the following details:
+    <table>
+    <tr><td>Visibility:</td><td>oem</td></tr>
+    <tr><td>Name:</td><td>ADA ESP v1.3.9</td></tr>
+    <tr><td>Description:</td><td>ADA ESP v1.3.9</td></tr>
+    <tr><td>Registration:</td><td>Dsn</td></tr>
+    <tr><td>Model:</td><td>ledevb</td></tr>
+    <tr><td>Version:</td><td>ada-esp-idf-src-1.3.9</td></tr>
+    <tr><td>Properties:</td>
+    <td style="padding:0; border-color:black;"><pre style="margin:0;">
+base_type,direction,name,scope
+boolean,output,Blue_button,user
+boolean,input,Blue_LED,user
+string,input,cmd,user
+decimal,input,decimal_in,user
+decimal,output,decimal_out,user
+boolean,input,Green_LED,user
+integer,input,input,user
+string,output,log,user
+integer,output,output,user
+string,output,version,user</pre></td></tr>
+    </table>
 
-    1. Properties:
-
-        ```
-      base_type,direction,name,scope
-      boolean,output,Blue_button,oem
-      boolean,input,Blue_LED,oem
-      string,input,cmd,oem
-      decimal,input,decimal_in,oem
-      decimal,output,decimal_out,oem
-      boolean,input,Green_LED,oem
-      integer,input,input,oem
-      string,output,log,oem
-      integer,output,output,oem
-      string,output,version,oem
-        ```
-
-    1. Details:
-
-        * Visibility: ```oem```
-        * Name: ```ADA ESP v1.3.10-beta```
-        * Description: ```ADA ESP v1.3.10-beta```
-        * Registration: ```Dsn```
-        * Model: ```ledevb```
-        * Version: ```ada-esp-idf-src-1.3.10-beta```
-
-1. Download [Ayla source code](https://connection.aylanetworks.com/s/article/2648919) (ada-esp-idf-src-1.3.10-beta.tgz).
+1. Download [Ayla source code](https://connection.aylanetworks.com/s/article/2648919) (ada-esp-idf-src-1.3.9.tgz).
 
 1. Determine the computer-to-ESP32 serial port:
 
@@ -105,19 +103,16 @@ e: block
       # export PATH=$HOME/esp/xtensa-esp32-elf/bin:$PATH
         ```
 
-    1. Install [Espressif IoT Development Framework](https://github.com/espressif/esp-idf):
+    1. Clone the [Espressif IoT Development Framework](https://github.com/espressif/esp-idf):
 
         ```
-      # git clone https://github.com/espressif/esp-idf.git
-      # cd esp-idf
-      # git checkout v3.1.4
-      # git submodule update --init --recursive
+      # git clone -b v3.1-beta1 --recursive https://github.com/espressif/esp-idf.git esp-idf-v3.1-beta1
         ```
 
     1. Create the ```IDF_PATH``` environment variable:
 
         ```
-      # export IDF_PATH=$HOME/esp/esp-idf
+      # export IDF_PATH=$HOME/esp/esp-idf-v3.1-beta1
         ```
 
 1. Test the development environment with the hello_world example:
@@ -125,7 +120,7 @@ e: block
     1. Change directory:
     
         ```
-      # cd /root/esp/esp-idf/examples/get-started/hello_world
+      # cd $IDF_PATH/examples/get-started/hello_world
         ```
 
     1. Customize configuration. (Defaults should be fine.)
@@ -162,23 +157,23 @@ e: block
 
 1. Install Ayla source code:
 
-    1. <span style="color:red;">In a host terminal</span>, copy ```ada-esp-idf-src-1.3.10-beta.tgz``` to your Docker container:
+    1. <span style="color:red;">In a host terminal</span>, copy ```ada-esp-idf-src-1.3.9.tgz``` to your Docker container:
 
         ```
-      $ docker cp /home/matt/Downloads/ada-esp-idf-src-1.3.10-beta.tgz esp:/root/esp
+      $ docker cp /home/matt/Downloads/ada-esp-idf-src-1.3.9.tgz esp:/root/esp
         ```
 
     1. In your Docker terminal, extract the archive file:
 
         ```
       # cd /root/esp
-      # tar zxvf ada-esp-idf-src-1.3.10-beta.tgz
+      # tar zxvf ada-esp-idf-src-1.3.9.tgz
         ```
 
-    1. Copy the ```ada-esp-idf-src-1.3.10-beta``` directory on top of the ```esp-idf``` directory:
+    1. Copy the ```ada-esp-idf-src-1.3.9``` directory on top of the ```esp-idf-v3.1-beta1``` directory:
 
         ```
-      # cp -R ada-esp-idf-src-1.3.10-beta/* ./esp-idf
+      # cp -R ada-esp-idf-src-1.3.9/* ./esp-idf-v3.1-beta1
         ```
 
         This diagram gives you an idea of where the Ayla files are copied:
@@ -190,26 +185,21 @@ e: block
     1. Change directory:
 
         ```
-      # cd esp-idf/examples/ayla_demo
+      # cd $IDF_PATH/examples/ayla_demo
         ```
 
     1. Edit ```./main/conf.h```. Set the following:
 
         ```
       #define DEMO_OEM_ID           "00000000" /* replace with your Ayla OEM ID */
-      #define DEMO_TEMPLATE_VERSION "ada-esp-idf-src-1.3.10-beta"
+      #define DEMO_TEMPLATE_VERSION "ada-esp-idf-src-1.3.9"
         ```
 
-    1. Optionally, erase flash, OTA, and NVS on the ESP32 DevKit:
-
-        ```
-      # make erase_flash
-        ```
-
-    1. Build, flash, and monitor. The build process may prompt you for parameters. Press Enter to accept default values.
+    1. Build, flash, and monitor:
 
         ```
       # make
+      # make erase_flash
       # make flash
       # make monitor
         ```

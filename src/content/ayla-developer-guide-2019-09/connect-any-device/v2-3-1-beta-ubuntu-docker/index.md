@@ -1,8 +1,10 @@
 ---
-title: Ayla Portable Solution v2.3.1-beta (Build on Ubuntu/Docker)
+title: Ayla Portable Solution v2.3.1-beta
 layout: ayla-developer-guide-2019-09.html
 g: block
 ---
+
+This page provides directions for building an Ayla Portable Solution v2.3.1-beta using a Ubuntu/Docker development environment.
 
 ## Build, Configure, Run, Connect, Register
 
@@ -10,32 +12,28 @@ g: block
 
 1. [Reserve a DSN](../../common-tasks/reserve-a-dsn).
 
-1. [Create a template](../../common-tasks/create-a-template) with the following properties and details:
-
-    1. Properties:
-
-        ```
-      base_type,direction,name,scope
-      boolean,output,Blue_button,oem
-      boolean,input,Blue_LED,oem
-      string,input,cmd,oem
-      decimal,input,decimal_in,oem
-      decimal,output,decimal_out,oem
-      boolean,input,Green_LED,oem
-      integer,input,input,oem
-      string,output,log,oem
-      integer,output,output,oem
-      string,output,version,oem
-        ```
-
-    1. Details:
-
-        * Visibility: ```oem```
-        * Name: ```PDA v2.3.1-beta```
-        * Description: ```PDA v2.3.1-beta```
-        * Registration: ```Dsn```
-        * Model: ```ledevb```
-        * Version: ```pda-http-src-2.3.1-beta```
+1. [Create a template](../../common-tasks/create-a-template) with the following details:
+    <table>
+    <tr><td>Visibility:</td><td>oem</td></tr>
+    <tr><td>Name:</td><td>PDA v2.3.1-beta</td></tr>
+    <tr><td>Description:</td><td>PDA v2.3.1-beta</td></tr>
+    <tr><td>Registration:</td><td>Dsn</td></tr>
+    <tr><td>Model:</td><td>ledevb</td></tr>
+    <tr><td>Version:</td><td>pda-http-src-2.3.1-beta</td></tr>
+    <tr><td>Properties:</td>
+    <td style="padding:0; border-color:black;"><pre style="margin:0;">
+base_type,direction,name,scope
+boolean,output,Blue_button,user
+boolean,input,Blue_LED,user
+string,input,cmd,user
+decimal,input,decimal_in,user
+decimal,output,decimal_out,user
+boolean,input,Green_LED,user
+integer,input,input,user
+string,output,log,user
+integer,output,output,user
+string,output,version,user</pre></td></tr>
+    </table>
 
 1. Download [Ayla source code](https://connection.aylanetworks.com/s/article/Ayla-Portable-Device-Agent-Source-Code) (pda-http-src-2.3.1-beta.tgz).
 
