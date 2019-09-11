@@ -1,6 +1,5 @@
 ---
 title: Homepage
-coreWidth: width-medium
 titleDisplay: none
 ---
 
