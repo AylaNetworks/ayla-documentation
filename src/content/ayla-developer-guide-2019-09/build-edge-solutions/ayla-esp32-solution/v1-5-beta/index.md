@@ -1,22 +1,57 @@
 ---
-title: Guide to Ayla ESP32 Solution v1.5-beta
+title: Ayla ESP32 Solution v1.5-beta
 layout: ayla-developer-guide-2019-09.html
 c: block
+classesFromPage: has-pagebar
 ---
 
-<a href="../"><img src="/assets/images/angle-left.svg" style="display:inline;margin:0px;" width="12px" height="24px">&nbsp;&nbsp;Ayla ESP32 Solution</a> summary page.
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li><a href="#core-title">ESP32 v1.5-beta</a></li>
+    <li><a href="#heading-a">Heading A</a></li>
+    <li><a href="#heading-b">Heading B</a></li>
+    <li><a href="#build-and-run">Build and Run</a>
+      <ul>
+        <li><a href="#gcc-ubuntu-docker">GCC/Ubuntu/Docker</a>
+        <li><a href="#gcc-windows">GCC/Windows</a>
+      </ul>
+    </li>
+  </ul>
+</aside>
 
-This page provides directions for building an Ayla ESP32 v1.5-beta solution using a GCC/Ubuntu/Docker development environment.
+<div class="dropdown mb-3">
+  <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a version</button>
+  <div class="dropdown-menu" aria-labelledby="versions">
+    <a class="dropdown-item" href="../v1-5-beta">v1.5-beta</a>
+    <a class="dropdown-item" href="../v1-3-10-beta">v1.3.10-beta</a>
+    <a class="dropdown-item" href="../v1-3-9">v1.3.9</a>
+    <a class="dropdown-item" href="../v1-3-8">v1.3.8</a>
+  </div>
+</div>
 
-## Build, Configure, Run, Connect, Register
+# Heading A
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# Heading B
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# Build and Run
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## GCC/Ubuntu/Docker
+
+This page provides directions for building an Ayla ESP32 Solution v1.5-beta using a GCC/Ubuntu/Docker development environment.
 
 1. Obtain an Espressif [ESP32-DevKitC](https://www.espressif.com/en/products/hardware/esp32-devkitc/overview) board.
 
-1. [Create an Ayla user account](../../../common-tasks/create-a-user-account).
+1. [Create an Ayla user account](../../common-tasks/create-a-user-account).
 
-1. [Reserve a DSN](../../../common-tasks/reserve-a-dsn).
+1. [Reserve a DSN](../../common-tasks/reserve-a-dsn).
 
-1. [Create a template](../../../common-tasks/create-a-template) with the following details:
+1. [Create a template](../../common-tasks/create-a-template) with the following details:
     <table>
     <tr><td>Visibility:</td><td>oem</td></tr>
     <tr><td>Name:</td><td>ADA ESP v1.5 Beta</td></tr>
@@ -180,7 +215,7 @@ string,output,version,user</pre></td></tr>
 
         This diagram gives you an idea of where the Ayla files are copied:
 
-        <img src="copy-ayla.png" width="700">
+        <img src="copy-ayla.png" width="694" height="300">
 
 1. Configure and build the Ayla agent and host application:
 
@@ -223,4 +258,8 @@ string,output,version,user</pre></td></tr>
       # save
         ```
 
-1. [Register your device](../../../common-tasks/register-a-device).
+1. [Register your device](../../common-tasks/register-a-device).
+
+## GCC/Windows
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

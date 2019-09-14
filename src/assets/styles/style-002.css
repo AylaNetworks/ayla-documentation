@@ -3,12 +3,12 @@ body {
   font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   margin: 0;
 }
-h1 {font-size: 115%;margin-top: 24px;font-weight: bold;}
+h1 {font-size: 120%;margin-top: 24px;font-weight: bold;}
 h2 {font-size: 110%;margin-top: 24px;font-weight: bold;}
 h3 {font-size: 100%;margin-top: 24px;font-weight: bold;}
-h4 {font-size: 1rem;}
-h5 {font-size: 1rem;}
-h6 {font-size: 1rem;}
+h4 {font-size: 100%;margin-top: 24px;}
+h5 {font-size: 100%;margin-top: 24px;}
+h6 {font-size: 100%;margin-top: 24px;}
 p, th {color: #333333;}
 a {color: steelblue;}
 a:hover {color: #24435c;}
@@ -234,7 +234,7 @@ pagebar
 
 #pagebar li ul {
   list-style: none;
-  padding-left: 16px;
+  padding-left: 12px;
 }
 
 #pagebar li a {
@@ -409,39 +409,19 @@ main ul.glossary li {
   padding: 6px 8px;
   vertical-align: top;
 }
-#core table th {
-  font-weight: bold;
-}
-#core li table {
-  margin-top: 12px;
-}
+#core table th {font-weight: bold;}
+#core li table {margin-top: 12px;}
 #core table.version-table div.dropdown button {
   padding-top: 0px;
   padding-bottom: 0px;
   color: steelblue;
 }
-#core table.version-table div.dropdown button:hover {
-  text-decoration: none;
-}
-#core table.version-table div.dropdown.show button {
-  text-decoration: none !important;
-}
-#core table.version-table div.dropdown a.dropdown-item {
-  color: steelblue !important;
-  font-size: 90% !important;
-}
-#core table.version-table td {
-  vertical-align: middle;
-}
-#core table.version-table td:nth-child(2) {
-  font-size: 92%;
-  color: gray;
-}
-
-#core form label {
-  font-weight: bold;
-  font-size: 90%;
-}
+#core table.version-table div.dropdown button:hover {text-decoration: none;}
+#core table.version-table div.dropdown.show button {text-decoration: none !important;}
+#core table.version-table div.dropdown a.dropdown-item {color: steelblue !important; font-size: 90% !important;}
+#core table.version-table td {vertical-align: middle;}
+#core table.version-table td:nth-child(2) {font-size: 92%; color: gray;}
+#core form label {font-weight: bold; font-size: 90%;}
 
 #core .heading-subtext {
   margin-left: 12px;
@@ -477,9 +457,7 @@ main ul.glossary li {
   margin: 0 0 4px 18px !important;
 }
 
-.tagline {
-  font-size: 140%;
-}
+.tagline {font-size: 140%;}
 
 #core div.related-content {
   border-radius: 6px;
@@ -516,8 +494,8 @@ main ul.glossary li {
 #core [id]:before {
   display: block;
   content: " ";
-  margin-top: -72px;
-  height: 72px;
+  margin-top: -78px;
+  height: 78px;
   visibility: hidden;
 }
 
@@ -582,17 +560,9 @@ footer {background: #f5f5f5; color: white;}
   border-color: green;
 }
 
-#core .post-on-list {
-  margin-bottom: 24px;
-}
-#core .post-on-list .title {
-  font-size: 115%;
-  font-weight: bold;
-}
-#core .post-on-list .author,
-#core .post-on-list .date {
-  font-weight: bold;
-}
+#core .post-on-list {margin-bottom: 24px;}
+#core .post-on-list .title {font-size: 115%; font-weight: bold;}
+#core .post-on-list .author, #core .post-on-list .date {font-weight: bold;}
 
 #core .tile {
   padding: 10px 18px;
@@ -604,9 +574,8 @@ footer {background: #f5f5f5; color: white;}
   font-size: 105%;
   margin-bottom: 6px;
 }
-#core .tile-link {
-  margin-bottom: 3px;
-}
+
+#core .tile-link {margin-bottom: 3px;}
 
 .ad-navbar-toggler {
   padding: 0.25rem 0.75rem;

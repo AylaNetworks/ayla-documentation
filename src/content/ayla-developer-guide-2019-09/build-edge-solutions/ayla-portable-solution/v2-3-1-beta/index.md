@@ -1,20 +1,52 @@
 ---
-title: Guide to Ayla Portable Solution v2.3.1-beta
+title: Ayla Portable Solution v2.3.1-beta
 layout: ayla-developer-guide-2019-09.html
 c: block
+classesFromPage: has-pagebar
 ---
 
-<a href="../"><img src="/assets/images/angle-left.svg" style="display:inline;margin:0px;" width="12px" height="24px">&nbsp;&nbsp;Ayla Portable Solution</a> summary page.
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li><a href="#core-title">Portable v2.3.1-beta</a></li>
+    <li><a href="#heading-a">Heading A</a></li>
+    <li><a href="#heading-b">Heading B</a></li>
+    <li><a href="#build-and-run">Build and Run</a>
+      <ul>
+        <li><a href="#gcc-ubuntu-docker">GCC/Ubuntu/Docker</a>
+        <li><a href="#gcc-windows">GCC/Windows</a>
+      </ul>
+    </li>
+  </ul>
+</aside>
+
+<div class="dropdown mb-3">
+  <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a version</button>
+  <div class="dropdown-menu" aria-labelledby="versions">
+    <a class="dropdown-item" href="../v2-3-1-beta">v2.3.1-beta</a>
+  </div>
+</div>
+
+# Heading A
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# Heading B
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# Build and Run
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## GCC/Ubuntu/Docker
 
 This page provides directions for building an Ayla Portable Solution v2.3.1-beta using a Ubuntu/Docker development environment.
 
-## Build, Configure, Run, Connect, Register
+1. [Create an Ayla user account](../../common-tasks/create-a-user-account).
 
-1. [Create an Ayla user account](../../../common-tasks/create-a-user-account).
+1. [Reserve a DSN](../../common-tasks/reserve-a-dsn).
 
-1. [Reserve a DSN](../../../common-tasks/reserve-a-dsn).
-
-1. [Create a template](../../../common-tasks/create-a-template) with the following details:
+1. [Create a template](../../common-tasks/create-a-template) with the following details:
     <table>
     <tr><td>Visibility:</td><td>oem</td></tr>
     <tr><td>Name:</td><td>PDA v2.3.1-beta</td></tr>
@@ -215,4 +247,9 @@ libssl-dev libssl-dev:i386 libavahi-client-dev libavahi-client-dev:i386 libc6-de
 
     The Ayla Cloud should create a digital twin (in the cloud) with all the properties defined in the template you specified, and it should pair ```ledevb``` with the new digital twin. As indicated in the output above, the unique id of this particular digital twin is ```1234567```, and both the DSN and the default name are ```AC000W000000001```.
 
-1. [Register your device](../../../common-tasks/register-a-device).
+1. [Register your device](../../common-tasks/register-a-device).
+
+
+## GCC/Windows
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

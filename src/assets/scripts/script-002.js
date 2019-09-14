@@ -1,7 +1,7 @@
+var updatePagebar = true;
+
 $(function() {
-  let tokens = ("#" + window.location.pathname.substring(1).slice(0, -1)).split(
-    "/"
-  );
+  let tokens = ("#" + window.location.pathname.substring(1).slice(0, -1)).split("/");
   var last = tokens[tokens.length - 1];
   if (last.length > 1) {
     if (last[0] === "v" && parseInt(last[1])) {
@@ -32,6 +32,12 @@ $(function() {
       $(selector).addClass("active");
       $(selector).focus();
     }
+  }
+
+  if ($("body.has-pagebar").length) {
+    updatePagebar = true;
+    $('#pagebar a[href="#core-title"]').addClass("active");
+    window.addEventListener("scroll", updatePagebarOnScroll);
   }
 });
 
@@ -70,13 +76,6 @@ $(function() {
   });
 });
 
-$(function() {
-  $("#pagebar ul li a").click(function(event) {
-    $("#pagebar ul li a").removeClass("active");
-    $(this).addClass("active");
-  });
-});
-
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
   name = name.replace(/[\[\]]/g, "\\$&");
@@ -112,3 +111,64 @@ $(function() {
     $("#core").addClass(this.value);
   });
 });
+
+/*
+$(window).scroll(function() {
+  var a = $("body.has-pagebar h1, body.has-pagebar h2");
+  if (a.length) {
+    var found = false;
+    for (var i = a.length - 1; i >= 0; i--) {
+      var rect = a[i].getBoundingClientRect();
+      if (rect.y <= 0.0) {
+        found = true;
+        if ($('#pagebar a[href="' + "#" + a[i].id + '"]').length) {
+          $('#pagebar a[href="#core-title"]').removeClass("active");
+          $("#pagebar a").removeClass("active");
+          $('#pagebar a[href="' + "#" + a[i].id + '"]').addClass("active");
+        }
+        break;
+      }
+    }
+    if(found == false) {
+      $("#pagebar a").removeClass("active");
+      $('#pagebar a[href="#core-title"]').addClass("active");
+    }
+  }
+});
+*/
+
+$(function() {
+  $("#pagebar ul li a").click(function(event) {
+    $("#pagebar ul li a").removeClass("active");
+    $(this).addClass("active");
+    updatePagebar = false;
+  });
+});
+
+function updatePagebarOnScroll() {
+  if (updatePagebar == false) {
+    updatePagebar = true;
+    return;
+  }
+
+  var a = $("#core h1, #core h2");
+  if (a.length) {
+    var found = false;
+    for (var i = a.length - 1; i >= 0; i--) {
+      var rect = a[i].getBoundingClientRect();
+      if (rect.y <= 0.0) {
+        found = true;
+        if ($('#pagebar a[href="' + "#" + a[i].id + '"]').length) {
+          $('#pagebar a[href="#core-title"]').removeClass("active");
+          $("#pagebar a").removeClass("active");
+          $('#pagebar a[href="' + "#" + a[i].id + '"]').addClass("active");
+        }
+        break;
+      }
+    }
+    if (found == false) {
+      $("#pagebar a").removeClass("active");
+      $('#pagebar a[href="#core-title"]').addClass("active");
+    }
+  }
+}

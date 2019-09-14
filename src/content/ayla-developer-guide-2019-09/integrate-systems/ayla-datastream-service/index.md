@@ -7,7 +7,7 @@ classesFromPage: has-pagebar
 
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
-    <li><a href="./">Ayla Datastream Service</a>
+    <li><a href="#core-title">Datastream Service</a>
     <ul>
       <li><a href="#events">Events</a>
       <li><a href="#access-rules">Access rules</a>
@@ -54,7 +54,7 @@ classesFromPage: has-pagebar
 
 This page provides a hands-on introduction to the Ayla Datastream Service (DSS), a WebSocket server that pushes device-related event notifications (in near real-time) from the Ayla Cloud to subscribing WebSocket clients. It also introduces two example clients, DSS Browser, a web application that displays event notifications, and DSS Collector, a Node.js application that persists event notifications. The diagram below provides a high-level overview:
 
-<img src="ayla-dss.png" width="500" class="img-fluid d-block">
+<img src="ayla-dss.png" width="500" height="345">
 
 In the diagram, the digital twin representing the walk-in freezer includes two properties: The <code>max_temp</code> integer property specifies the maximum safe temperature for the freezer (0<sup>o</sup>F). The <code>too_warm</code> boolean property (-10<sup>o</sup>F) indicates whether the temperature inside the freezer is above (true) or below (false) <code>max_temp</code>. Whenever <code>too_warm</code> changes, DSS can be configured to send an event notification to all subscribed WebSocket clients.
 
@@ -204,13 +204,13 @@ The JSON formats of the notifications are seen below:
 
 To receive event notifications, a user must be a member of a role (e.g. Admin, Staff, SupportEngineer) associated with a DSS event type. Admins can create access rules using the Ayla Dashboard Portal (as seen below) or via the [API](#api).
 
-<img src="dashboard-access-rules.png" width="500">
+<img src="dashboard-access-rules.png" width="500" height="266">
 
 ## Subscriptions
 
 To receive event notifications, clients must also possess a subscription key associated with a DSS event type. Admins can create subscription keys using the Ayla Dashboard Portal (as seen below) or via the [API](#api).
 
-<img src="dashboard-subscriptions.png" width="500">
+<img src="dashboard-subscriptions.png" width="500" height="264">
 
 Once created, a subscription looks like this:
 
@@ -650,7 +650,7 @@ const pool = mysql.createPool({
 </li>
 <li>Run DSS Collector, and generate too_warm events.</li>
 <li>Use phpMyAdmin (or similar) to check results:
-<img src="too-warm-events.png" width="480">
+<img src="too-warm-events.png" width="480" height="185">
 </li>
 </ol>
 

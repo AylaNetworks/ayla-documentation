@@ -15,7 +15,7 @@ The following diagram shows the Ayla Linux Agent (devd) and the sample host appl
 1. They remain aware of device state via "From Device" properties like the buttons.
 1. devd provides connectivity and security.
 
-The video below shows devd and appd in action on a Raspbery Pi:
+The video below shows devd and appd in action on a Raspberry Pi:
 
 <iframe 
   width="560" 

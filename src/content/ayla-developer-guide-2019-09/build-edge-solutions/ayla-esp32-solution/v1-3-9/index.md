@@ -1,29 +1,64 @@
 ---
-title: Guide to Ayla ESP32 Solution v1.3.8
+title: Ayla ESP32 Solution v1.3.9
 layout: ayla-developer-guide-2019-09.html
 c: block
+classesFromPage: has-pagebar
 ---
 
-<a href="../"><img src="/assets/images/angle-left.svg" style="display:inline;margin:0px;" width="12px" height="24px">&nbsp;&nbsp;Ayla ESP32 Solution</a> summary page.
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li><a href="#core-title">ESP32 v1.3.9</a></li>
+    <li><a href="#heading-a">Heading A</a></li>
+    <li><a href="#heading-b">Heading B</a></li>
+    <li><a href="#build-and-run">Build and Run</a>
+      <ul>
+        <li><a href="#gcc-ubuntu-docker">GCC/Ubuntu/Docker</a>
+        <li><a href="#gcc-windows">GCC/Windows</a>
+      </ul>
+    </li>
+  </ul>
+</aside>
 
-This page provides directions for building an Ayla ESP32 v1.3.8 solution using a GCC/Ubuntu/Docker development environment.
+<div class="dropdown mb-3">
+  <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a version</button>
+  <div class="dropdown-menu" aria-labelledby="versions">
+    <a class="dropdown-item" href="../v1-5-beta">v1.5-beta</a>
+    <a class="dropdown-item" href="../v1-3-10-beta">v1.3.10-beta</a>
+    <a class="dropdown-item" href="../v1-3-9">v1.3.9</a>
+    <a class="dropdown-item" href="../v1-3-8">v1.3.8</a>
+  </div>
+</div>
 
-## Build, Configure, Run, Connect, Register
+# Heading A
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# Heading B
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# Build and Run
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## GCC/Ubuntu/Docker
+
+This page provides directions for building an Ayla ESP32 Solution v1.3.9 using a GCC/Ubuntu/Docker development environment.
 
 1. Obtain an Espressif [ESP32-DevKitC](https://www.espressif.com/en/products/hardware/esp32-devkitc/overview) board.
 
-1. [Create an Ayla user account](../../../common-tasks/create-a-user-account).
+1. [Create an Ayla user account](../../common-tasks/create-a-user-account).
 
-1. [Reserve a DSN](../../../common-tasks/reserve-a-dsn).
+1. [Reserve a DSN](../../common-tasks/reserve-a-dsn).
 
-1. [Create a template](../../../common-tasks/create-a-template) with the following details:
+1. [Create a template](../../common-tasks/create-a-template) with the following details:
     <table>
     <tr><td>Visibility:</td><td>oem</td></tr>
-    <tr><td>Name:</td><td>ADA ESP v1.3.8</td></tr>
-    <tr><td>Description:</td><td>ADA ESP v1.3.8</td></tr>
+    <tr><td>Name:</td><td>ADA ESP v1.3.9</td></tr>
+    <tr><td>Description:</td><td>ADA ESP v1.3.9</td></tr>
     <tr><td>Registration:</td><td>Dsn</td></tr>
     <tr><td>Model:</td><td>ledevb</td></tr>
-    <tr><td>Version:</td><td>ada-esp-idf-src-1.3.8</td></tr>
+    <tr><td>Version:</td><td>ada-esp-idf-src-1.3.9</td></tr>
     <tr><td>Properties:</td>
     <td style="padding:0; border-color:black;"><pre style="margin:0;">
 base_type,direction,name,scope
@@ -39,7 +74,7 @@ integer,output,output,user
 string,output,version,user</pre></td></tr>
     </table>
 
-1. Download [Ayla source code](https://connection.aylanetworks.com/s/article/2648919) (ada-esp-idf-src-1.3.8.tgz).
+1. Download [Ayla source code](https://connection.aylanetworks.com/s/article/2648919) (ada-esp-idf-src-1.3.9.tgz).
 
 1. Determine the computer-to-ESP32 serial port:
 
@@ -159,28 +194,28 @@ string,output,version,user</pre></td></tr>
 
 1. Install Ayla source code:
 
-    1. <span style="color:red;">In a host terminal</span>, copy ```ada-esp-idf-src-1.3.8.tgz``` to your Docker container:
+    1. <span style="color:red;">In a host terminal</span>, copy ```ada-esp-idf-src-1.3.9.tgz``` to your Docker container:
 
         ```
-      $ docker cp /home/matt/Downloads/ada-esp-idf-src-1.3.8.tgz esp:/root/esp
+      $ docker cp /home/matt/Downloads/ada-esp-idf-src-1.3.9.tgz esp:/root/esp
         ```
 
     1. In your Docker terminal, extract the archive file:
 
         ```
       # cd /root/esp
-      # tar zxvf ada-esp-idf-src-1.3.8.tgz
+      # tar zxvf ada-esp-idf-src-1.3.9.tgz
         ```
 
-    1. Copy the ```ada-esp-idf-src-1.3.8``` directory on top of the ```esp-idf-v3.1-beta1``` directory:
+    1. Copy the ```ada-esp-idf-src-1.3.9``` directory on top of the ```esp-idf-v3.1-beta1``` directory:
 
         ```
-      # cp -R ada-esp-idf-src-1.3.8/* ./esp-idf-v3.1-beta1
+      # cp -R ada-esp-idf-src-1.3.9/* ./esp-idf-v3.1-beta1
         ```
 
         This diagram gives you an idea of where the Ayla files are copied:
 
-        <img src="copy-ayla.png" width="700">
+        <img src="copy-ayla.png" width="694" height="300">
 
 1. Configure and build the Ayla agent and host application:
 
@@ -194,7 +229,7 @@ string,output,version,user</pre></td></tr>
 
         ```
       #define DEMO_OEM_ID           "00000000" /* replace with your Ayla OEM ID */
-      #define DEMO_TEMPLATE_VERSION "ada-esp-idf-src-1.3.8"
+      #define DEMO_TEMPLATE_VERSION "ada-esp-idf-src-1.3.9"
         ```
 
     1. Build, flash, and monitor:
@@ -223,4 +258,8 @@ string,output,version,user</pre></td></tr>
       # save
         ```
 
-1. [Register your device](../../../common-tasks/register-a-device).
+1. [Register your device](../../common-tasks/register-a-device).
+
+## GCC/Windows
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
