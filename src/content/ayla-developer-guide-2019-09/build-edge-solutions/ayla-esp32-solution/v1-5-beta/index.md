@@ -43,7 +43,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## GCC/Ubuntu/Docker
 
-This page provides directions for building an Ayla ESP32 Solution v1.5-beta using a GCC/Ubuntu/Docker development environment.
+This section provides directions for building an Ayla ESP32 Solution v1.5-beta using a GCC/Ubuntu/Docker development environment.
 
 1. Obtain an Espressif [ESP32-DevKitC](https://www.espressif.com/en/products/hardware/esp32-devkitc/overview) board.
 
