@@ -455,6 +455,45 @@ Include how to create subscriptions programmatically using the REST API. Refer t
 1. Delete the event stream and the events.
 1. Create another event stream using the same stream key, but enter "0" in the <code>First Seq ID</code> field. DSS resends all events associated with the stream key starting with seq == 0. Start again, but this time include both a <code>First Seq ID</code> and a <code>Last Seq ID</code>.
 
+<p><a data-toggle="collapse" href="#create-event-stream-form" role="button" aria-expanded="false" aria-controls="create-event-stream-form">View workflow approach</a></p>
+<form id="create-event-stream-form" class="collapse" action="javascript:void(0);">
+  <ol>
+    <li><input id="event-stream-name" type="text" class="form-control form-control-sm mb-3" placeholder="Name the event stream" style="max-width: 300px;"></li>
+    <li><input id="stream-key" type="text" class="form-control form-control-sm mb-3" placeholder="Enter a DSS stream key" style="max-width: 300px;"></li>
+    </li>
+    <li><button type="submit" class="btn btn-secondary btn-sm">Create the event stream</button>
+      <table id="dss-event-streams" class="dss-browser-table">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>ES</th>
+            <th>Name</th>
+            <th>Events</th>
+            <th>HBs</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </li>
+    <li>Toggle property value (not implemented yet; use Aura):<br>
+      <label class="switch"><input id="property-value" type="checkbox" value=""><span class="slider round"></span></label>
+      <table id="dss-events" class="dss-browser-table">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>ES</th>
+            <th>Seq</th>
+            <th>Type</th>
+            <th>DSN</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </li>
+  </ol>
+</form>
+
 # DSS Collector
 
 DSS Collector is an example Node.js WebSocket client that detects and displays DSS events. It consists of one source file (<a href="dss-collector/collector.js" target="_blank">collector.js</a>) and one configuration file (<a href="dss-collector/config.json" target="_blank">config.json</a>). The directions below show you how to install, run, and modify DSS Collector:

@@ -120,7 +120,7 @@ sidebar
   left: 0;
   height: calc(100% - 56px);
   width: 249px;
-  padding: 16px 0px 8px 0px;
+  padding: 20px 0px 8px 0px;
   border-right-style: solid;
   border-right-width: 1px;
   overflow-y: auto;
@@ -619,4 +619,10 @@ core-title color
 @media (min-width: 1200px) {
   #core-title {color: black;}
 }
+*/
+
+#login-form, #logout-form {padding: 0.7rem 1.0rem 0 1.0rem;}
+/*
+#account-link {display: inline-block; min-width: 40px;}
+@media (min-width: 992px) {#account-link {text-align: right;}}
 */
