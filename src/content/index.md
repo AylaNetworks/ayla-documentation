@@ -1,5 +1,5 @@
 ---
-title: Content Versions
+title: Content
 ---
 
 <table class="version-table">

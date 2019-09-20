@@ -47,7 +47,7 @@ The following diagram provides an overview of components involved in the buildin
 
 <img src="inspect-installation.png" width="600">
 
-1. Review [How to create a configuration file for the Ayla Linux Agent](/blog/how-to-create-a-configuration-file-for-the-ayla-linux-agent/).
+1. Review [How to create a configuration file for the Ayla Linux Agent](/articles/how-to-create-a-configuration-file-for-the-ayla-linux-agent/).
 1. Source code for the Simulator Gateway (gatewayd). The installation process renames it to appd in <code>&sim;/ayla/bin</code>.
 1. Source code for the Ayla Gateway Agent (devd). 
 1. Source code for the libraries which become libapp.a, libayla.a, and libplatform.a in <code>build</code>.

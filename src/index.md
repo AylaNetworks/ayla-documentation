@@ -6,7 +6,7 @@ titleDisplay: none
 <div class="row" style="margin: 24px 0px;">
 <div class="col-md-12">
 <div class="tagline text-center">Ayla Documentation</div>
-<div class="text-center">Guides, tutorials, references, posts, and definitions.</div>
+<div class="text-center">Guides, tutorials, references, articles, and definitions for [Ayla Networks](https://www.aylanetworks.com).</div>
 </div>
 </div>
 

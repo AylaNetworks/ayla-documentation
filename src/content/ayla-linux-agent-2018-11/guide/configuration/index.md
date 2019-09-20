@@ -4,7 +4,7 @@ layout: ayla-linux-agent-2018-11.html
 a: block
 ---
 
-See [How to create a configuration file for the Ayla Linux Agent](/blog/how-to-create-a-configuration-file-for-the-ayla-linux-agent/).
+See [How to create a configuration file for the Ayla Linux Agent](/articles/how-to-create-a-configuration-file-for-the-ayla-linux-agent/).
 
 Then, reboot:
 

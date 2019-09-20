@@ -9,7 +9,7 @@ The Ayla Development Kit is designed to help you explore the Ayla IoT Cloud in p
 
 <img src="ayla-dev-kit.png" width="360">
 
-To request a kit, email <code>support&#64;aylanetworks.com</code> with the subject "Ayla Development Kit." 
+To request a kit, please visit the <a href="http://iot.aylanetworks.com/ayla-dev-kit-freel-trial-program.html" target="_blank">Ayla Free Trial Program</a> landing page.
 
 <hr/>
 **Click [User Guide](user-guide) to continue**.

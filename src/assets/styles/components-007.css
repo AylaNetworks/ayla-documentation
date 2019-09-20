@@ -1,0 +1,53 @@
+@media (min-width: 576px) {
+  div.cmpt form input, div.cmpt form select {max-width: 400px;}
+}
+
+div.cmpt form ol li div.label {margin: 9px 0px;}
+
+div.cmpt table {width: 100% !important; margin-bottom: 1.2rem !important;}
+div.cmpt table th, div.cmpt table td {border-collapse: collapse; vertical-align:top;}
+div.cmpt table {border: 1px solid lightgray;}
+div.cmpt table th {border-bottom: 1px solid lightgray;}
+div.cmpt table td {border-top: 1px solid lightgray;}
+div.cmpt table th, div.cmpt table td {padding: 3px 4px;}
+div.cmpt table th {font-size:90%; font-weight: normal; color: black;}
+div.cmpt table td {font-size:90%; font-weight: normal; color: gray;}
+div.cmpt table tr.summary td {cursor: pointer;}
+div.cmpt table tr.details td {border-color: white; padding:0px !important;}
+div.cmpt table tr.details td pre {
+  background: #333333;
+  padding: 6px;
+  border: none;
+  line-height: 1rem;
+  color: white;
+  font-weight: normal;
+  font-size: 85%;
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+  margin: 0px !important;
+}
+div.cmpt table tr th:nth-child(1) {width:24px;}
+div.cmpt table tr th:nth-child(2).es {width:42px;}
+div.cmpt table tr input[type='checkbox'] {vertical-align:middle;}
+
+#dss-event-streams th:nth-child(4), 
+#dss-event-streams th:nth-child(5),
+#dss-event-streams .numEvents, #dss-event-streams .numHBs {width:60px; text-align: right;}
+
+.link-btn {
+  color: CadetBlue;
+  cursor: pointer;
+  font-size: 85%;
+  margin-right: 12px;
+}
+.link-btn:hover {color: CadetBlue;}
+.link-btns {margin-bottom: .5rem;}
+
+div.cmpt form.steps {
+  background: #eff5f5; 
+  padding: 6px 12px 9px 12px;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 3px 3px 3px #d9d9d9; 
+}
+
+div.cmpt form.steps ol {margin-bottom: 0px;}
