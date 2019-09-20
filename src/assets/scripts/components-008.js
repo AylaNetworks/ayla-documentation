@@ -3,8 +3,120 @@ var streams = {}
 var nextStreamId = 1
 var streamPropFilter = ['url','key','beginningSeqId','endingSeqId','eventType','numEvents','numHBs']
 
+/*
+Login/Logout
+Access Rules
+Subscriptions
+Event Streams
+Stream class
+Events
+Generic
+*/
+
 /*------------------------------------------------------
-submit #create-access-rule-form
+Ayla Components: on load
+------------------------------------------------------*/
+
+$(function () {
+  if ($("body.has-ayla-components").length) {
+    displayMessage('Yes, this page has at least one Ayla component.')
+
+    $("#login-menu-item").removeClass("d-none")
+
+    if(MyAyla.isLoggedIn()) {
+      displayMessage('And, yes, the user is logged in.')
+      getAylaComponents()
+
+    } else {
+      displayMessage('But, no, the user is not logged in.')
+    }
+
+  } else {
+    displayMessage('No, this page does not have any Ayla components.')
+  }
+})
+
+/*------------------------------------------------------
+Ayla Components: get
+------------------------------------------------------*/
+
+function getAylaComponents() {
+  if ($('#access-rules').length) {getAccessRules()}
+  if ($('#subscriptions').length) {getSubscriptions()}
+}
+
+/*------------------------------------------------------
+Login/Logout: Login
+------------------------------------------------------*/
+
+$(function () {
+  $('#login-form').submit(function (event) {
+    event.preventDefault()
+    $('body').trigger('click')
+    var email = $('#email').val()
+    var password = $('#password').val()
+    var appId = $('#appId').val()
+    var appSecret = $('#appSecret').val()
+    MyAyla.login(email, password, appId, appSecret, function (data) {
+      $('#account-link').html('Logout')
+      // Can do stuff here.
+    }, displayError)
+  })
+})
+
+/*------------------------------------------------------
+Login/Logout: Logout
+------------------------------------------------------*/
+
+$(function () {
+  $('#logout-form').submit(function (event) {
+    event.preventDefault()
+    $('body').trigger('click')
+    // emptyAll()
+    MyAyla.logout(function (data) {
+      $('#account-link').html('Login')
+    }, displayError)
+  })
+})
+
+/*------------------------------------------------------
+Login/Logout: On Load
+------------------------------------------------------*/
+
+$(function() {
+  if(MyAyla.isLoggedIn()) {
+    $('#account-link').html('Logout')
+    //getAccount()
+  } else {
+    $('#account-link').html('Login')
+    //getServerConfiguration()
+  }
+})
+
+$(function() {$('.click-body').click(function(event) {$('body').trigger('click')})})
+
+/*------------------------------------------------------
+Login/Logout: On click menu item, show appropriate form.
+------------------------------------------------------*/
+
+$(function() {
+  $('#account-link').click(function(event) {
+    if(MyAyla.isLoggedIn()) {
+      $('#login-form').hide()
+      $('#logout-form').show()
+    } else {
+      let appId = MyAyla.getAppId()
+      if(appId) {$('#appId').val(appId)}
+      let appSecret = MyAyla.getAppSecret()
+      if(appSecret) {$('#appSecret').val(appSecret)}
+      $('#login-form').show()
+      $('#logout-form').hide()
+    }
+  })
+})
+
+/*------------------------------------------------------
+Access Rules: Create
 ------------------------------------------------------*/
 
 $(function() {
@@ -34,7 +146,7 @@ $(function() {
 })
 
 /*------------------------------------------------------
-getAccessRules
+Access Rules: Get
 ------------------------------------------------------*/
 
 function getAccessRules() {
@@ -49,7 +161,7 @@ function getAccessRules() {
 }
 
 /*------------------------------------------------------
-displayAccessRule
+Access Rules: Display
 ------------------------------------------------------*/
 
 function displayAccessRule(rule) {
@@ -68,7 +180,7 @@ function displayAccessRule(rule) {
 }
 
 /*------------------------------------------------------
-click #delete-access-rules-btn
+Access Rules: Delete
 ------------------------------------------------------*/
 
 $(function() {
@@ -89,7 +201,7 @@ $(function() {
 })
 
 /*------------------------------------------------------
-submit #create-subscription-form
+Subscriptions: Create
 ------------------------------------------------------*/
 
 $(function() {
@@ -128,7 +240,7 @@ $(function() {
 })
 
 /*------------------------------------------------------
-getSubscriptions
+Subscriptions: Get
 ------------------------------------------------------*/
 
 function getSubscriptions() {
@@ -143,28 +255,7 @@ function getSubscriptions() {
 }
 
 /*------------------------------------------------------
-displaySubscription
-------------------------------------------------------*/
-
-function displaySubscription(subscription) {
-  displayMessage('displaySubscription')
-
-  var tr = $('<tr/>').addClass('summary simple-details')
-  // var input = $('<input/>').prop('type', 'checkbox').val(subscription.id).data('details', subscription)
-  var input = $('<input/>').prop('type', 'checkbox').val(subscription.stream_key).data('details', subscription)
-  var td = $('<td/>').addClass('chk')
-  td.append(input)
-  tr.append(td)
-  tr.append('<td>' + subscription.name + '</td>')
-  $('#subscriptions > tbody').append(tr)
-  tr = $('<tr/>').addClass('details').css('display', 'none')
-  tr.append('<td>&nbsp;</td>')
-  tr.append('<td><pre>' + JSON.stringify(subscription, null, 2) + '</pre></td>')
-  $('#subscriptions > tbody').append(tr)
-}
-
-/*------------------------------------------------------
-Deploy Subscriptions
+Subscriptions: Deploy
 ------------------------------------------------------*/
 
 $(function() {
@@ -175,6 +266,7 @@ $(function() {
     let checkboxes = $('#subscriptions tbody tr td input[type=checkbox]:checked')
     $.each(checkboxes, function(index, checkbox) {
       $(checkbox).prop('checked', false).hide()
+      $(checkbox).next('img').css('display', 'inline')
       let subscription = $(checkbox).data('details')
       let name = subscription.name
       let key = subscription.stream_key
@@ -187,12 +279,12 @@ $(function() {
 })
 
 /*------------------------------------------------------
-click #copy-subscription-btn
+Subscriptions: Promote
 ------------------------------------------------------*/
 
 $(function() {
-  $('#copy-subscription-btn').click(function(event) {
-    displayMessage('click #copy-subscription-btn')
+  $('#promote-subscription-btn').click(function(event) {
+    displayMessage('click #promote-subscription-btn')
 
     $('#subscriptions tr th input[type=checkbox]').prop('checked', false)
     let checkboxes = $('#subscriptions tbody tr td input[type=checkbox]:checked')
@@ -203,12 +295,35 @@ $(function() {
       $('#event-stream-name').val(subscription.name)
       $('#stream-key').val(subscription.stream_key)
       $(checkboxes[0]).prop('checked', false)
+      $('#create-event-stream-form-collapse').collapse('show')
     }
   })
 })
 
 /*------------------------------------------------------
-click #delete-subscriptions-btn
+Subscriptions: Display
+------------------------------------------------------*/
+
+function displaySubscription(subscription) {
+  displayMessage('displaySubscription')
+
+  var tr = $('<tr/>').addClass('summary simple-details')
+  var input = $('<input/>').prop('type', 'checkbox').val(subscription.stream_key).data('details', subscription)
+  var image = '<img src="/assets/images/green-circle-16.png" style="display:none;">'
+  var td = $('<td/>').addClass('chk')
+  td.append(input)
+  td.append(image)
+  tr.append(td)
+  tr.append('<td>' + subscription.name + '</td>')
+  $('#subscriptions > tbody').append(tr)
+  tr = $('<tr/>').addClass('details').css('display', 'none')
+  tr.append('<td>&nbsp;</td>')
+  tr.append('<td><pre>' + JSON.stringify(subscription, null, 2) + '</pre></td>')
+  $('#subscriptions > tbody').append(tr)
+}
+
+/*------------------------------------------------------
+Subscriptions: Delete
 ------------------------------------------------------*/
 
 $(function() {
@@ -229,7 +344,7 @@ $(function() {
 })
 
 /*------------------------------------------------------
-submit #create-event-stream-form
+Event Streams: Create
 ------------------------------------------------------*/
 
 $(function() {
@@ -250,12 +365,18 @@ $(function() {
       name = $('#event-stream-name').prop('placeholder')
     }
 
-    // let bSeqId = $('#beginning-seqid').val()
-    let bSeqId = ''
-    // let eSeqId = $('#ending-seqid').val()
-    let eSeqId = ''
+    let bSeqId = $('#create-event-stream-beginning-seqid').val()
+    let eSeqId = $('#create-event-stream-ending-seqid').val()
 
-    streams[key] = new Stream(name, streamUrl, key)
+    var vs = $('#subscriptions input[type=checkbox]')
+    $.each(vs, function(index, v) {
+      if($(v).val() == key) {
+        $(v).hide()
+        $(v).next('img').css('display', 'inline')
+      }
+    })
+
+    streams[key] = new Stream(name, streamUrl, key, 'unknown', bSeqId, eSeqId)
     monitorEventStream(streams[key])
     displayEventStream(streams[key])
 
@@ -265,7 +386,71 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Stream
+Event Streams: Display
+------------------------------------------------------*/
+
+function displayEventStream(stream) {
+  let item = ''
+  + '<tr id="ID' + stream.key + '" class="summary">'
+  + '<td class="chk"><input type="checkbox" value="' + stream.key + '"></td>'
+  + '<td>' + stream.id + '</td>'
+  + '<td class="name">' + stream.name + '</td>'
+  + '<td class="numEvents">0</td>'
+  + '<td class="numHBs">0</td>'
+  + '</tr>'
+  + '<tr class="details" style="display:none;">'
+  + '<td>&nbsp;</td>'
+  + '<td colspan=4><pre>s</pre></td>'
+  + '</tr>'
+  $('#dss-event-streams > tbody').append(item)
+}
+
+/*------------------------------------------------------
+Event Streams: Display Details
+------------------------------------------------------*/
+
+$(function() {
+  $("#dss-event-streams").delegate('tr td:not(.chk)', "click", function(e) {
+    let tr1 = $(this).parent()
+    let tr2 = $(tr1).next()
+    let key = $(tr1).find('input').val()
+    let pre = $(tr2).find('pre')
+    $(pre).empty()
+    $(pre).append(JSON.stringify(streams[key], streamPropFilter, 2))
+    $(tr2).toggle()
+  })
+})
+
+/*------------------------------------------------------
+Event Streams: Delete
+------------------------------------------------------*/
+
+$(function() {
+  $('#delete-event-streams-btn').click(function(event) {
+    $('#dss-event-streams tr th input[type=checkbox]').prop('checked', false)
+    let checkboxes = $('#dss-event-streams tbody tr td input[type=checkbox]:checked')
+    $.each(checkboxes, function(index, checkbox) {
+      let key = $(checkbox).val()
+      streams[key].socket.close()
+      delete streams[key]
+      let tr1 = $(checkbox).closest('tr')
+      let tr2 = $(tr1).next()
+      $(tr1).remove()
+      $(tr2).remove()
+      //$('#subscriptions input[type=checkbox][value=' + key + ']').show()
+      var vs = $('#subscriptions input[type=checkbox]')
+      $.each(vs, function(index, v) {
+        if($(v).val() == key) {
+          $(v).show()
+          $(v).next('img').hide()
+        }
+      })
+    })
+  })
+})
+
+/*------------------------------------------------------
+Streams class: Constructor
 ------------------------------------------------------*/
 
 class Stream {
@@ -292,7 +477,7 @@ class Stream {
 }
 
 /*------------------------------------------------------
-processEvent
+Streams class: processEvent
 ------------------------------------------------------*/
 
 function processEvent(stream, event) {
@@ -331,7 +516,7 @@ function processEvent(stream, event) {
 }
 
 /*------------------------------------------------------
-monitorEventStream
+Streams class: monitorEventStream
 ------------------------------------------------------*/
 
 function monitorEventStream(stream) {
@@ -372,70 +557,7 @@ function monitorEventStream(stream) {
 }
 
 /*------------------------------------------------------
-displayEventStream
-------------------------------------------------------*/
-
-function displayEventStream(stream) {
-  let item = ''
-  + '<tr id="ID' + stream.key + '" class="summary">'
-  + '<td class="chk"><input type="checkbox" value="' + stream.key + '"></td>'
-  + '<td>' + stream.id + '</td>'
-  + '<td class="name">' + stream.name + '</td>'
-  + '<td class="numEvents">0</td>'
-  + '<td class="numHBs">0</td>'
-  + '</tr>'
-  + '<tr class="details" style="display:none;">'
-  + '<td>&nbsp;</td>'
-  + '<td colspan=4><pre>s</pre></td>'
-  + '</tr>'
-  $('#dss-event-streams > tbody').append(item)
-}
-
-/*------------------------------------------------------
-Display Event Stream Details
-------------------------------------------------------*/
-
-$(function() {
-  $("#dss-event-streams").delegate('tr td:not(.chk)', "click", function(e) {
-    let tr1 = $(this).parent()
-    let tr2 = $(tr1).next()
-    let key = $(tr1).find('input').val()
-    let pre = $(tr2).find('pre')
-    $(pre).empty()
-    $(pre).append(JSON.stringify(streams[key], streamPropFilter, 2))
-    $(tr2).toggle()
-  })
-})
-
-/*------------------------------------------------------
-Delete Event Streams
-------------------------------------------------------*/
-
-$(function() {
-  $('#delete-event-streams-btn').click(function(event) {
-    $('#dss-event-streams tr th input[type=checkbox]').prop('checked', false)
-    let checkboxes = $('#dss-event-streams tbody tr td input[type=checkbox]:checked')
-    $.each(checkboxes, function(index, checkbox) {
-      let key = $(checkbox).val()
-      streams[key].socket.close()
-      delete streams[key]
-      let tr1 = $(checkbox).closest('tr')
-      let tr2 = $(tr1).next()
-      $(tr1).remove()
-      $(tr2).remove()
-      //$('#subscriptions input[type=checkbox][value=' + key + ']').show()
-      var vs = $('#subscriptions input[type=checkbox]')
-      $.each(vs, function(index, v) {
-        if($(v).val() == key) {
-          $(v).show()
-        }
-      })
-    })
-  })
-})
-
-/*------------------------------------------------------
-displayEvent
+Events: Display
 ------------------------------------------------------*/
 
 function displayEvent(stream, event, value) {
@@ -456,7 +578,7 @@ function displayEvent(stream, event, value) {
 }
 
 /*------------------------------------------------------
-Display Event Details
+Events: Display Details
 ------------------------------------------------------*/
 
 $(function() {
@@ -466,7 +588,7 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Delete Events
+Events: Delete
 ------------------------------------------------------*/
 
 $(function() {
@@ -485,7 +607,7 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Display Details
+Generic: Display Details
 ------------------------------------------------------*/
 
 $(function() {
@@ -495,7 +617,7 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Select All / Deselect All
+Generic: Select All / Deselect All
 ------------------------------------------------------*/
 
 $(function() {

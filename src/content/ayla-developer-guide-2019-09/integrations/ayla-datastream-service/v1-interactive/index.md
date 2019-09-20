@@ -10,9 +10,7 @@ classesFromPage: has-pagebar
     <li><a href="#core-title">Datastream Service</a>
     <li><a href="#interactive-example">Interactive example</a>
     <ul>
-      <li><a href="#create-a-template">Create a template</a>
-      <li><a href="#create-a-device">Create a device</a>
-      <li><a href="#register-the-device">Register the device</a>
+      <li><a href="#choose-a-device">Choose a device</a>
       <li><a href="#create-access-rules">Create access rules</a>
       <li><a href="#create-subscriptions">Create subscriptions</a>
       <li><a href="#create-event-streams">Create event streams</a>
@@ -27,22 +25,7 @@ Use the [standard version](../) of this page.
 
 # Interactive example
 
-<div class="cmpt">
-  <div class="form-check ml-0 ml-sm-3 mb-3">
-    <input class="form-check-input" type="checkbox" value="" id="show-login-menu-item">
-    <label class="form-check-label" for="show-login-menu-item">Show Login/Logout menu item in the top navbar.</label>
-  </div>
-</div>
-
-## Create a template
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-## Create a device
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-## Register the device
+## Choose a device
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -58,7 +41,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     <span id="delete-access-rules-btn" class="link-btn">Delete</span>
     <span class="link-btn" onclick="getAccessRules()">Refresh</span>
   </div>
-  <div id="create-access-rule-form-collapse" class="collapse" style="margin-bottom: 1rem;">
+  <div id="create-access-rule-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
     <form id="create-access-rule-form" class="steps" action="javascript:void(0);">
       <ol>
         <li>
@@ -99,7 +82,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           <div class="label">Create the access rule, reset the fields, or close the form.</div>
           <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
           <button type="reset" class="btn btn-outline-secondary btn-sm">Reset</button>
-          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-access-rule-form-collapse').removeClass('show')">Close</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-access-rule-form-collapse').collapse('hide')">Close</button>
         </li>
       </ol>
     </form>
@@ -127,11 +110,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
   <div class="link-btns">
     <span id="create-subscription-btn" class="link-btn" data-toggle="collapse" data-target="#create-subscription-form-collapse">Create</span>
     <span id="deploy-subscriptions-btn" class="link-btn">Deploy</span>
-    <span id="copy-subscription-btn" class="link-btn">Copy</span>
+    <span id="promote-subscription-btn" class="link-btn">Promote</span>
     <span id="delete-subscriptions-btn" class="link-btn">Delete</span>
     <span class="link-btn" onclick="getSubscriptions()">Refresh</span>
   </div>
-  <div id="create-subscription-form-collapse" class="collapse" style="margin-bottom: 1rem;">
+  <div id="create-subscription-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
     <form id="create-subscription-form" class="steps" action="javascript:void(0);">
       <ol>
         <li>
@@ -175,7 +158,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           <div class="label">Create the subscription, reset the fields, or close the form.</div>
           <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
           <button type="reset" class="btn btn-outline-secondary btn-sm">Reset</button>
-          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-subscription-form-collapse').removeClass('show')">Close</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-subscription-form-collapse').collapse('hide')">Close</button>
         </li>
       </ol>
     </form>
@@ -202,7 +185,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     <span id="create-event-stream-btn" class="link-btn" data-toggle="collapse" data-target="#create-event-stream-form-collapse">Create</span>
     <span id="delete-event-streams-btn" class="link-btn">Delete</span>
   </div>
-  <div id="create-event-stream-form-collapse" class="collapse" style="margin-bottom: 1rem;">
+  <div id="create-event-stream-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
     <form id="create-event-stream-form" class="steps" action="javascript:void(0);">
       <ol>
         <li>
@@ -214,10 +197,18 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           <input id="stream-key" type="text" class="form-control form-control-sm" required>
         </li>
         <li>
+          <div class="label">Enter a beginning sequence number.</div>
+          <input id="create-event-stream-beginning-seqid" type="text" class="form-control form-control-sm">
+        </li>
+        <li>
+          <div class="label">Enter an ending sequence number.</div>
+          <input id="create-event-stream-ending-seqid" type="text" class="form-control form-control-sm">
+        </li>
+        <li>
           <div class="label">Create the event stream, reset the fields, or close the form.</div>
           <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
           <button type="reset" class="btn btn-outline-secondary btn-sm">Reset</button>
-          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-event-stream-form-collapse').removeClass('show')">Close</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-event-stream-form-collapse').collapse('hide')">Close</button>
         </li>
       </ol>
     </form>

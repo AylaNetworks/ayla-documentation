@@ -12,11 +12,6 @@ classesFromPage: has-pagebar
   </ul>
 </aside>
 
-<div class="form-check ml-0 ml-sm-3 mb-3">
-  <input class="form-check-input" type="checkbox" value="" id="show-login-menu-item">
-  <label class="form-check-label" for="show-login-menu-item">Show Login/Logout menu item in the top navbar.</label>
-</div>
-
 # Heading A
 
 # Heading B

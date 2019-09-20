@@ -47,7 +47,8 @@ div.cmpt form.steps {
   padding: 6px 12px 9px 12px;
   border-radius: 5px;
   display: inline-block;
-  box-shadow: 3px 3px 3px #d9d9d9; 
+  box-shadow: 3px 3px 3px #d9d9d9;
 }
 
 div.cmpt form.steps ol {margin-bottom: 0px;}
+div.cmpt td img {margin: 0 !important;}

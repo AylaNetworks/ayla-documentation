@@ -284,7 +284,7 @@ getAppId
 ------------------------------------------------------*/
 
 getAppId: function() {
-  return Cookies.get('app_id')
+  return localStorage.getItem('app_id')
 },
 
 /*------------------------------------------------------
@@ -292,7 +292,7 @@ getAppSecret
 ------------------------------------------------------*/
 
 getAppSecret: function() {
-  return Cookies.get('app_secret')
+  return localStorage.getItem('app_secret')
 },
 
 /*------------------------------------------------------
@@ -501,10 +501,7 @@ saveAuthToken
 ------------------------------------------------------*/
 
 function saveAuthToken(authToken) {
-  var date = new Date()
-  date.setMonth(date.getMonth() + 10)
-  var expires = date.toUTCString()
-  Cookies.set('auth_token', authToken, {expires: 7})
+  localStorage.setItem('auth_token', authToken)
 }
 
 /*------------------------------------------------------
@@ -512,7 +509,7 @@ getAuthToken
 ------------------------------------------------------*/
 
 function getAuthToken() {
-  return Cookies.get('auth_token')
+  return localStorage.getItem('auth_token')
 }
 
 /*------------------------------------------------------
@@ -520,7 +517,7 @@ deleteAuthToken
 ------------------------------------------------------*/
 
 function deleteAuthToken() {
-  Cookies.remove('auth_token')
+  localStorage.removeItem('auth_token')
 }
 
 /*------------------------------------------------------
@@ -528,10 +525,7 @@ saveAppId
 ------------------------------------------------------*/
 
 function saveAppId(appId) {
-  var date = new Date()
-  date.setMonth(date.getMonth() + 10)
-  var expires = date.toUTCString()
-  Cookies.set('app_id', appId, {expires: 7})
+  localStorage.setItem('app_id', appId)
 }
 
 /*------------------------------------------------------
@@ -539,8 +533,5 @@ saveAppSecret
 ------------------------------------------------------*/
 
 function saveAppSecret(appSecret) {
-  var date = new Date()
-  date.setMonth(date.getMonth() + 10)
-  var expires = date.toUTCString()
-  Cookies.set('app_secret', appSecret, {expires: 7})
+  localStorage.setItem('app_secret', appSecret)
 }
