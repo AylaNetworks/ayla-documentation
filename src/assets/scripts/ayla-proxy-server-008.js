@@ -208,7 +208,10 @@ getAccount: function(successCb=null, errorCb=null) {
       'Accept': 'application/json'
     }
   })
-  .then(function (response) {callSuccessCb(response, successCb)})
+  .then(function (response) {
+    saveUserId(response.data.uuid)
+    callSuccessCb(response, successCb)
+  })
   .catch(function (error) {callErrorCb(error, errorCb)})
 },
 
@@ -280,20 +283,12 @@ getDatapoints: function(propertyId, successCb=null, errorCb=null) {
 },
 
 /*------------------------------------------------------
-getAppId
+localStorage
 ------------------------------------------------------*/
 
-getAppId: function() {
-  return localStorage.getItem('app_id')
-},
-
-/*------------------------------------------------------
-getAppSecret
-------------------------------------------------------*/
-
-getAppSecret: function() {
-  return localStorage.getItem('app_secret')
-},
+getAppId: function() {return localStorage.getItem('app_id')},
+getAppSecret: function() {return localStorage.getItem('app_secret')},
+getUserId: function() {return localStorage.getItem('uuid')},
 
 /*------------------------------------------------------
 getCandidates
@@ -440,9 +435,10 @@ login: function(email, password, appId, appSecret, successCb=null, errorCb=null)
   })
   .then(function (response) {
     saveAuthToken(response.data.access_token)
+    saveRefreshToken(response.data.refresh_token)
     saveAppId(appId)
     saveAppSecret(appSecret)
-    callSuccessCb(response, successCb)
+    MyAyla.getAccount(successCb, errorCb)
   })
   .catch(function (error) {callErrorCb(error, errorCb)})
 },
@@ -465,6 +461,8 @@ logout: function(successCb=null, errorCb=null) {
   })
   .then(function (response) {
     deleteAuthToken()
+    deleteRefreshToken()
+    deleteUserId()
     callSuccessCb(response, successCb)
   })
   .catch(function (error) {callErrorCb(error, errorCb)})
@@ -497,41 +495,26 @@ function callErrorCb(error, errorCb) {
 }
 
 /*------------------------------------------------------
-saveAuthToken
+localStorage
 ------------------------------------------------------*/
 
-function saveAuthToken(authToken) {
-  localStorage.setItem('auth_token', authToken)
-}
+// app_id
+function saveAppId(appId) {localStorage.setItem('app_id', appId)}
 
-/*------------------------------------------------------
-getAuthToken
-------------------------------------------------------*/
+// app_secret
+function saveAppSecret(appSecret) {localStorage.setItem('app_secret', appSecret)}
 
-function getAuthToken() {
-  return localStorage.getItem('auth_token')
-}
+// auth_token
+function getAuthToken() {return localStorage.getItem('auth_token')}
+function deleteAuthToken() {localStorage.removeItem('auth_token')}
+function saveAuthToken(authToken) {localStorage.setItem('auth_token', authToken)}
 
-/*------------------------------------------------------
-deleteAuthToken
-------------------------------------------------------*/
+// refresh_token
+function getRefreshToken() {return localStorage.getItem('refresh_token')}
+function deleteRefreshToken() {localStorage.removeItem('refresh_token')}
+function saveRefreshToken(refreshToken) {localStorage.setItem('refresh_token', refreshToken)}
 
-function deleteAuthToken() {
-  localStorage.removeItem('auth_token')
-}
-
-/*------------------------------------------------------
-saveAppId
-------------------------------------------------------*/
-
-function saveAppId(appId) {
-  localStorage.setItem('app_id', appId)
-}
-
-/*------------------------------------------------------
-saveAppSecret
-------------------------------------------------------*/
-
-function saveAppSecret(appSecret) {
-  localStorage.setItem('app_secret', appSecret)
-}
+// uuid
+function getUserId() {return localStorage.getItem('uuid')}
+function deleteUserId() {localStorage.removeItem('uuid')}
+function saveUserId(uuid) {localStorage.setItem('uuid', uuid)}

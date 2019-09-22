@@ -10,12 +10,11 @@ classesFromPage: has-pagebar
     <li><a href="#core-title">Datastream Service</a>
     <li><a href="#interactive-example">Interactive example</a>
     <ul>
-      <li><a href="#choose-a-device">Choose a device</a>
+      <li><a href="#prepare-a-device">Prepare a device</a>
       <li><a href="#create-access-rules">Create access rules</a>
       <li><a href="#create-subscriptions">Create subscriptions</a>
       <li><a href="#create-event-streams">Create event streams</a>
       <li><a href="#monitor-events">Monitor events</a>
-      <li><a href="#trigger-events">Trigger events</a>
     </ul>
     </li>
   </ul>
@@ -25,7 +24,7 @@ Use the [standard version](../) of this page.
 
 # Interactive example
 
-## Choose a device
+## Prepare a device
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -33,9 +32,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-### Access Rules
-
 <div class="cmpt">
+  <h3>Access Rules</h3>
   <div class="link-btns">
     <span id="create-access-rule-btn" class="link-btn" data-toggle="collapse" data-target="#create-access-rule-form-collapse">Create</span>
     <span id="delete-access-rules-btn" class="link-btn">Delete</span>
@@ -87,7 +85,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
       </ol>
     </form>
   </div>
-  <table id="access-rules">
+  <table id="aylax-access-rules" class="populate-at-init">
     <thead>
       <tr>
         <th><input type="checkbox"></th>
@@ -104,9 +102,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-### Subscriptions
-
 <div class="cmpt">
+  <h3>Subscriptions</h3>
   <div class="link-btns">
     <span id="create-subscription-btn" class="link-btn" data-toggle="collapse" data-target="#create-subscription-form-collapse">Create</span>
     <span id="deploy-subscriptions-btn" class="link-btn">Deploy</span>
@@ -163,7 +160,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
       </ol>
     </form>
   </div>
-  <table id="subscriptions">
+  <table id="aylax-subscriptions" class="populate-at-init">
     <thead>
       <tr>
         <th><input type="checkbox" value="0"></th>
@@ -178,9 +175,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-### Event Streams
-
 <div class="cmpt">
+  <h3>Event Streams</h3>
   <div class="link-btns">
     <span id="create-event-stream-btn" class="link-btn" data-toggle="collapse" data-target="#create-event-stream-form-collapse">Create</span>
     <span id="delete-event-streams-btn" class="link-btn">Delete</span>
@@ -213,7 +209,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
       </ol>
     </form>
   </div>
-  <table id="dss-event-streams">
+  <table id="aylax-event-streams" class="populatable">
     <thead>
       <tr>
         <th><input type="checkbox"></th>
@@ -231,13 +227,30 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-### Events
+<div class="cmpt">
+  <h3>Value Update Tool</h3>
+  <div class="row">
+    <div class="col-sm-4">
+      <label>Devices</label>
+      <select id="aylax-devices" style="width:200px;" class="form-control form-control-sm populate-at-init"></select>
+    </div>
+    <div class="col-sm-4">
+      <label>Properties</label>
+      <input type="text" class="form-control form-control-sm">
+    </div>
+    <div class="col-sm-4">
+      <label>Value</label>
+      <input type="text" class="form-control form-control-sm">
+    </div>
+  </div>
+</div>
 
 <div class="cmpt">
+  <h3>Events</h3>
   <div class="link-btns">
     <span id="delete-events-btn" class="link-btn">Delete</span>
   </div>
-  <table id="dss-events">
+  <table id="aylax-events" class="populatable">
     <thead>
       <tr>
         <th><input type="checkbox"></th>
@@ -252,6 +265,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
   </table>
 </div>
 
-## Trigger events
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
