@@ -256,7 +256,7 @@ pagebar
   width: 0px !important;
 }
 
-#core ol {padding-inline-start: 20px;}
+#core ol {padding-inline-start: 26px;}
 #core ol ol {padding-inline-start: 6px;}
 
 @media (min-width: 768px) {
@@ -413,7 +413,6 @@ main ul.glossary li {
 }
 #core table th,
 #core td {
-  border: 1px solid #dee2e6;
   padding: 6px 8px;
   vertical-align: top;
 }

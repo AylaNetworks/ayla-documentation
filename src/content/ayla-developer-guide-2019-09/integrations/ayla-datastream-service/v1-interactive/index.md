@@ -7,16 +7,8 @@ classesFromPage: has-pagebar
 
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
-    <li><a href="#core-title">Datastream Service</a>
-    <li><a href="#interactive-example">Interactive example</a>
-    <ul>
-      <li><a href="#prepare-a-device">Prepare a device</a>
-      <li><a href="#create-access-rules">Create access rules</a>
-      <li><a href="#create-subscriptions">Create subscriptions</a>
-      <li><a href="#create-event-streams">Create event streams</a>
-      <li><a href="#monitor-events">Monitor events</a>
-    </ul>
-    </li>
+    <li><a href="#core-title">Datastream Service</a></li>
+    <li><a href="#interactive-example">Interactive example</a></li>
   </ul>
 </aside>
 
@@ -24,20 +16,106 @@ Use the [standard version](../) of this page.
 
 # Interactive example
 
-## Prepare a device
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-## Create access rules
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+1. Log into Ayla.
+1. Create a template.
+<div class="cmpt">
+  <h3>Templates</h3>
+  <div class="link-btns">
+    <span id="create-template-btn" class="link-btn" data-toggle="collapse" data-target="#create-template-form-collapse">Create</span>
+    <span id="delete-template-btn" class="link-btn">Delete</span>
+    <span class="link-btn" onclick="populateTemplates()">Refresh</span>
+    <span id="" class="link-btn" data-toggle="collapse" data-target="#template-details">Details</span>
+  </div>
+  <div id="create-template-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
+    <form id="create-template-form" class="steps" action="javascript:void(0);">
+      <ol>
+        <li>
+          <div class="label">Name the template.</div>
+          <input id="create-template-name" type="text" class="form-control form-control-sm" value="Virtual Device v1.0" required>
+        </li>
+        <li>
+          <div class="label">Write a description.</div>
+          <input id="create-template-description" type="text" class="form-control form-control-sm" value="Template for virtual devices." required>
+        </li>
+        <li>
+          <div class="label">Enter an OEM model.</div>
+          <input id="create-template-oem-model" type="text" class="form-control form-control-sm" value="virtual-device" required>
+        </li>
+        <li>
+          <div class="label">Enter a template version.</div>
+          <input id="create-template-version" type="text" class="form-control form-control-sm" value="virtual-device-v1.0" required>
+        </li>
+        <li>
+          <div class="label">Choose registration method.</div>
+          <select id="create-template-registration-method" class="form-control form-control-sm">
+            <option value='AP-Mode'>AP Mode</option>
+            <option value='Button-Push'>Button Push</option>
+            <option value='Display'>Display</option>
+            <option value='Dsn' selected>DSN</option>
+            <option value='Same-LAN'>Same LAN</option>
+            <option value='None' selected>None</option>
+          </select>
+        </li>
+        <li>
+          <div class="label">Choose visibility.</div>
+          <select id="create-template-visibility" class="form-control form-control-sm">
+            <option value='oem'>OEM</option>
+            <option value='private'>Private</option>
+          </select>
+        </li>
+        <li>
+          <div class="label">Choose template type.</div>
+          <select id="create-template-type" class="form-control form-control-sm">
+            <option value='sss'>Cluster</option>
+            <option value='sss'>Gateway</option>
+            <option value='sss'>Node</option>
+            <option value='sss'>Sensor</option>
+            <option value='wifi' selected>Wi-Fi</option>
+          </select>
+        </li>
+        <li>
+          <div class="label">Enter properties (one per row) in CSV format. Include a header row.</div>
+          <textarea id="template-properties" class="form-control" rows="5" value="test">
+base_type,direction,name,scope
+boolean,output,Blue_button,user
+boolean,input,Blue_LED,user
+string,input,cmd,user
+decimal,input,decimal_in,user
+decimal,output,decimal_out,user
+boolean,input,Green_LED,user
+integer,input,input,user
+string,output,log,user
+integer,output,output,user
+string,output,version,user
+          </textarea>
+        </li>
+        <li>
+          <div class="label">Create the template, reset the fields, or close the form.</div>
+          <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm">Reset</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-template-form-collapse').collapse('hide')">Close</button>
+        </li>
+      </ol>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col-auto">
+      <select id="select-template" class="form-control form-control-sm ayla-data populate-at-init" style="min-width:200px;"></select>
+    </div>
+  </div>
+  <pre id="template-details" class="collapse"></pre>
+</div>
+1. Create a virtual device.
+<div class="cmpt" style="min-height: 120px;"></div>
+1. Create access rules.
 <div class="cmpt">
   <h3>Access Rules</h3>
   <div class="link-btns">
     <span id="create-access-rule-btn" class="link-btn" data-toggle="collapse" data-target="#create-access-rule-form-collapse">Create</span>
     <span id="delete-access-rules-btn" class="link-btn">Delete</span>
-    <span class="link-btn" onclick="getAccessRules()">Refresh</span>
+    <span class="link-btn" onclick="populateAccessRules()">Refresh</span>
   </div>
   <div id="create-access-rule-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
     <form id="create-access-rule-form" class="steps" action="javascript:void(0);">
@@ -85,7 +163,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
       </ol>
     </form>
   </div>
-  <table id="aylax-access-rules" class="populate-at-init">
+  <table id="aylax-access-rules" class="ayla-data populate-at-init">
     <thead>
       <tr>
         <th><input type="checkbox"></th>
@@ -97,11 +175,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     <tbody></tbody>
   </table>
 </div>
-
-## Create subscriptions
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+1. Create subscriptions.
 <div class="cmpt">
   <h3>Subscriptions</h3>
   <div class="link-btns">
@@ -109,7 +183,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     <span id="deploy-subscriptions-btn" class="link-btn">Deploy</span>
     <span id="promote-subscription-btn" class="link-btn">Promote</span>
     <span id="delete-subscriptions-btn" class="link-btn">Delete</span>
-    <span class="link-btn" onclick="getSubscriptions()">Refresh</span>
+    <span class="link-btn" onclick="populateSubscriptions()">Refresh</span>
   </div>
   <div id="create-subscription-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
     <form id="create-subscription-form" class="steps" action="javascript:void(0);">
@@ -160,7 +234,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
       </ol>
     </form>
   </div>
-  <table id="aylax-subscriptions" class="populate-at-init">
+  <table id="aylax-subscriptions" class="ayla-data populate-at-init">
     <thead>
       <tr>
         <th><input type="checkbox" value="0"></th>
@@ -170,11 +244,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     <tbody></tbody>
   </table>
 </div>
-
-## Create event streams
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+1. Create event streams.
 <div class="cmpt">
   <h3>Event Streams</h3>
   <div class="link-btns">
@@ -209,7 +279,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
       </ol>
     </form>
   </div>
-  <table id="aylax-event-streams" class="populatable">
+  <table id="aylax-event-streams" class="ayla-data">
     <thead>
       <tr>
         <th><input type="checkbox"></th>
@@ -222,35 +292,59 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     <tbody></tbody>
   </table>
 </div>
-
-## Monitor events
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-<div class="cmpt">
-  <h3>Value Update Tool</h3>
+1. Generate events.
+<div id="myGroup" class="cmpt" style="margin-bottom:1rem;">
+  <h3 id="device-tool">Device Tool</h3>
   <div class="row">
     <div class="col-sm-4">
-      <label>Devices</label>
-      <select id="aylax-devices" style="width:200px;" class="form-control form-control-sm populate-at-init"></select>
+      <div class="link-btns">
+        <span class="link-btn">Device</span>
+        <span id="" class="link-btn" data-toggle="collapse" data-target="#device-details">Details</span>
+      </div>
+      <select id="select-device" class="form-control form-control-sm ayla-data populate-at-init"></select>
     </div>
-    <div class="col-sm-4">
-      <label>Properties</label>
-      <input type="text" class="form-control form-control-sm">
+    <div class="col-sm-4 mt-3 mt-sm-0">
+      <div class="link-btns">
+        <span class="link-btn">Property</span>
+        <span id="" class="link-btn" data-toggle="collapse" data-target="#property-details">Details</span>
+      </div>
+      <select id="select-property" class="form-control form-control-sm ayla-data"></select>
     </div>
-    <div class="col-sm-4">
-      <label>Value</label>
-      <input type="text" class="form-control form-control-sm">
+    <div class="col-sm-4 mt-3 mt-sm-0">
+      <div class="link-btns">
+        <span class="link-btn">Value</span>
+      </div>
+      <div class="row no-gutters">
+        <div class="col">
+          <div id="value-wrapper"></div>
+        </div>
+        <div class="col-auto ml-2" id="value-button-wrapper" style="display:none;">
+          <button id="save-property-value" type="button" class="btn btn-info btn-sm">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="row">
+      <div class="col-12">
+        <pre id="device-details" class="collapse" data-parent="#myGroup"></pre>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 d-none d-sm-block"></div>
+      <div class="col-12 col-sm-8">
+        <pre id="property-details" class="collapse" data-parent="#myGroup"></pre>
+      </div>
     </div>
   </div>
 </div>
-
+1. Monitor events.
 <div class="cmpt">
   <h3>Events</h3>
   <div class="link-btns">
     <span id="delete-events-btn" class="link-btn">Delete</span>
   </div>
-  <table id="aylax-events" class="populatable">
+  <table id="aylax-events" class="ayla-data">
     <thead>
       <tr>
         <th><input type="checkbox"></th>
@@ -265,16 +359,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
   </table>
 </div>
 
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>

@@ -3,6 +3,25 @@ var domain = window.location.origin
 var MyAyla = {
 
 /*------------------------------------------------------
+createTemplate
+------------------------------------------------------*/
+
+createTemplate: function(data, successCb=null, errorCb=null) {
+  axios({
+    method: 'post',
+    url: domain + '/api/v1/templates',
+    headers: {
+      'Authorization': 'auth_token ' + getAuthToken(),
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    data: JSON.stringify(data)
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
 createAccessRule
 ------------------------------------------------------*/
 
@@ -153,6 +172,40 @@ deleteSubscription: function(subscriptionId, successCb=null, errorCb=null) {
   axios({
     method: 'delete',
     url: domain + '/api/v1/dss/subscriptions/' + subscriptionId,
+    headers: {
+      'Authorization': 'auth_token ' + getAuthToken(),
+      'Accept': 'application/json'
+    }
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
+deleteTemplate
+------------------------------------------------------*/
+
+deleteTemplate: function(templateId, successCb=null, errorCb=null) {
+  axios({
+    method: 'delete',
+    url: domain + '/api/v1/templates/' + templateId,
+    headers: {
+      'Authorization': 'auth_token ' + getAuthToken(),
+      'Accept': 'application/json'
+    }
+  })
+  .then(function (response) {callSuccessCb(response, successCb)})
+  .catch(function (error) {callErrorCb(error, errorCb)})
+},
+
+/*------------------------------------------------------
+getTemplates
+------------------------------------------------------*/
+
+getTemplates: function(successCb=null, errorCb=null) {
+  axios({
+    method: 'get',
+    url: domain + '/api/v1/templates',
     headers: {
       'Authorization': 'auth_token ' + getAuthToken(),
       'Accept': 'application/json'

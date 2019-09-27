@@ -7,74 +7,76 @@ classesFromPage: has-pagebar
 
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
-    <li><a href="#core-title">Datastream Service</a>
-    <ul>
-      <li><a href="#events">Events</a>
-      <li><a href="#access-rules">Access rules</a>
-      <li><a href="#subscriptions">Subscriptions</a>
-      <li><a href="#websockets">WebSockets</a>
-      <li><a href="#messages">Messages</a>
-      <li><a href="#heartbeats">Heartbeats</a>
-    </ul>
+    <li><a href="#core-title">Datastream Service</a></li>
+    <li><a href="#events">Events</a>
+      <ul>
+        <li><a href="#connectivity">Connectivity</a></li>
+        <li><a href="#datapoint">Datapoint</a></li>
+        <li><a href="#datapointack">Datapointack</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#registration">Registration</a></li>
+      </ul>
     </li>
-    <li><a href="#hands-on-example">Hands-on example</a>
-    <ul>
-      <li><a href="#create-a-template">Create a template</a>
-      <li><a href="#create-a-virtual-device">Create a virtual device</a>
-      <li><a href="#register-the-device">Register the device</a>
-      <li><a href="#create-an-access-rule">Create an access rule</a>
-      <li><a href="#create-subscriptions">Create subscriptions</a>
-    </ul>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#technology">Technology</a>
+      <ul>
+        <li><a href="#websockets">WebSockets</a></li>
+        <li><a href="#messages">Messages</a></li>
+        <li><a href="#heartbeats">Heartbeats</a></li>
+      </ul>
     </li>
     <li><a href="#dss-browser">DSS Browser</a></li>
     <li><a href="#dss-collector">DSS Collector</a>
-    <ul>
-      <li><a href="#install-dss-collector">Install DSS Collector</a>
-      <li><a href="#run-dss-collector">Run DSS Collector</a>
-      <li><a href="#run-with-forever">Run with Forever</a>
-      <li><a href="#save-to-json-file">Save to JSON file</a>
-      <li><a href="#save-to-database">Save to database</a>
-    </ul>
+      <ul>
+        <li><a href="#install-dss-collector">Install DSS Collector</a></li>
+        <li><a href="#run-dss-collector">Run DSS Collector</a></li>
+        <li><a href="#run-with-forever">Run with Forever</a></li>
+        <li><a href="#save-to-json-file">Save to JSON file</a></li>
+        <li><a href="#save-to-database">Save to database</a></li>
+      </ul>
     </li>
     <li><a href="#api">API</a>
-    <ul>
-      <li><a href="#create-access-rule">Create Access Rule</a>
-      <li><a href="#create-subscription">Create Subscription</a>
-      <li><a href="#delete-access-rule">Delete Access Rule</a>
-      <li><a href="#delete-subscription">Delete Subscription</a>
-      <li><a href="#get-access-rule">Get Access Rule</a>
-      <li><a href="#get-access-rules">Get Access Rules</a>
-      <li><a href="#get-subscription">Get Subscription</a>
-      <li><a href="#get-subscriptions">Get Subscriptions</a>
-    </ul>
+      <ul>
+        <li><a href="#create-access-rule">Create Access Rule</a></li>
+        <li><a href="#create-subscription">Create Subscription</a></li>
+        <li><a href="#delete-access-rule">Delete Access Rule</a></li>
+        <li><a href="#delete-subscription">Delete Subscription</a></li>
+        <li><a href="#get-access-rule">Get Access Rule</a></li>
+        <li><a href="#get-access-rules">Get Access Rules</a></li>
+        <li><a href="#get-subscription">Get Subscription</a></li>
+        <li><a href="#get-subscriptions">Get Subscriptions</a></li>
+      </ul>
     </li>
     <li><a href="#regional-domains">Regional Domains</a></li>
   </ul>
 </aside>
 
-Use the [interactive version](v1-interactive) of this page.
-
-This page provides a hands-on introduction to the Ayla Datastream Service (DSS), a WebSocket server that pushes device-related event notifications (in near real-time) from the Ayla Cloud to subscribing WebSocket clients. It also introduces two example clients, DSS Browser, a web application that displays event notifications, and DSS Collector, a Node.js application that persists event notifications. The diagram below provides a high-level overview:
+The Ayla Datastream Service (DSS) is a WebSocket server that pushes device-related event notifications (in near real-time) from the Ayla Cloud to subscribing WebSocket clients. See the diagram:
 
 <img src="ayla-dss.png" width="500" height="345">
 
-In the diagram, the digital twin representing the walk-in freezer includes two properties: The <code>max_temp</code> integer property specifies the maximum safe temperature for the freezer (0<sup>o</sup>F). The <code>too_warm</code> boolean property (-10<sup>o</sup>F) indicates whether the temperature inside the freezer is above (true) or below (false) <code>max_temp</code>. Whenever <code>too_warm</code> changes, DSS can be configured to send an event notification to all subscribed WebSocket clients.
+The diagram shows the following:
+
+1. An example device with a green LED, red LED, and black button.
+1. A digital twin in the Ayla Cloud representing the device.
+1. A browser-based client ([DSS Browser](#dss-browser)) receiving/displaying events and sending acknowledgements. 
+1. A Node.js DSS client ([DSS Collector](#dss-collector)) receiving/persisting events and sending acks.
 
 ## Events
 
-DSS detects the following events, and then sends event notifications to subscribed clients.
+The DSS WebSocket server sends notifications of the following events to subscribed clients:
 
 |Event|Description|
 |-|-|
 |connectivity|The Ayla Cloud is able/not able to interact with a registered device.|
 |datapoint|A digital twin property value changed.|
-|datapointack|An Ayla Agent confirmed to the Ayla Cloud that a device property value changed.|
+|datapointack|A device-based Ayla Agent confirmed to the Ayla Cloud that a device property value changed.|
 |location|A digital twin latitute/longitude value changed.|
 |registration|The Ayla Cloud registered/unregistered a device.|
 
 The JSON formats of the notifications are seen below:
 
-### Connectivity Format
+## Connectivity
 
 <pre>
 {
@@ -94,7 +96,7 @@ The JSON formats of the notifications are seen below:
 } 
 </pre>
 
-### Datapoint Format
+## Datapoint
 
 <pre>
 {
@@ -123,7 +125,7 @@ The JSON formats of the notifications are seen below:
 }
 </pre>
 
-### Datapointack Format
+## Datapointack
 
 <pre>
 {
@@ -156,7 +158,7 @@ The JSON formats of the notifications are seen below:
 }
 </pre>
 
-### Location Format
+## Location
 
 <pre>
 {
@@ -180,7 +182,7 @@ The JSON formats of the notifications are seen below:
 }
 </pre>
 
-### Registration Format
+## Registration
 
 <pre>
 {
@@ -202,50 +204,11 @@ The JSON formats of the notifications are seen below:
 }
 </pre>
 
-## Access rules
+## Security
 
-To receive event notifications, a user must be a member of a role (e.g. Admin, Staff, SupportEngineer) associated with a DSS event type. Admins can create access rules using the Ayla Dashboard Portal (as seen below) or via the [API](#api).
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-<img src="dashboard-access-rules.png" width="500" height="266">
-
-## Subscriptions
-
-To receive event notifications, clients must also possess a subscription key associated with a DSS event type. Admins can create subscription keys using the Ayla Dashboard Portal (as seen below) or via the [API](#api).
-
-<img src="dashboard-subscriptions.png" width="500" height="264">
-
-Once created, a subscription looks like this:
-
-<pre>
-{
-  "subscription": {
-    "id": 50155,
-    "oem": "abcd1234",
-    "dsn": "*",
-    "name": "Test",
-    "description": "",
-    "property_name": "*",
-    "connection_status": "Offline",
-    "batch_size": 1,
-    "is_suspended": false,
-    "created_at": "2018-10-24T14:40:57Z",
-    "updated_at": "2018-10-24T14:40:57Z",
-    "date_suspended": null,
-    "user_uuid": "12345000-1234-1234-1234-000000012345",
-    "oem_model": "freezer-model",
-    "stream_key": "abcdef01234567890000000000000001",
-    "client_type": "cloud",
-    "subscription_type": "datapoint"
-  }
-}
-</pre>
-
-A subscription defines the following:
-
-1. The type of event that Ayla DSS will push on a particular event stream (connectivity, datapoint, etc.).
-1. Filters to limit events of the specified type (OEM, OEM models, DSNs, properties). 
-1. A user whose access rules further restrict events.
-1. A subscription key (similar to an Auth Token) that clients use when opening a WebSocket.
+# Technology
 
 ## WebSockets
 
@@ -338,124 +301,386 @@ socket.onmessage = function(msg) {
 }
 </pre>
 
-# Hands-on example
-
-This section shows you a simple way to trigger DSS events based on the freezer example.
-
-## Create a template
-
-1. In Developer Portal, click <code>View My Devices > Templates</code>.
-1. Click <code>Add</code>, and create a template with the following parameters:
-<table>
-<tr><th>Visibility:</th><td>oem</td></tr>
-<tr><th>Name:</th><td>Freezer</td></tr>
-<tr><th>Description:</th><td>Walk-in freezer</td></tr>
-<tr><th>Registation Type:</th><td>Same-LAN</td></tr>
-<tr><th>Model:</th><td>freezer-model</td></tr>
-<tr><th>Product Name:</th><td>freezer-product</td></tr>
-</table>
-1. On the template list, find and click your new template.
-1. Click <code>Properties</code>.
-1. Click <code>Add</code>, and create a property with the following parameters:
-<table>
-<tr><th>Property Type:</th><td>TemplateProperty</td></tr>
-<tr><th>Name:</th><td>max_temp</td></tr>
-<tr><th>Display Name:</th><td>Max Temp</td></tr>
-<tr><th>Base Type:</th><td>integer</td></tr>
-<tr><th>Direction:</th><td>To Device</td></tr>
-<tr><th>Scope:</th><td>oem</td></tr>
-</table>
-1. Click <code>Add</code>, and create another property with the following parameters:
-<table>
-<tr><th>Property Type:</th><td>TemplateProperty</td></tr>
-<tr><th>Name:</th><td>too_warm</td></tr>
-<tr><th>Display Name:</th><td>Too Warm</td></tr>
-<tr><th>Base Type:</th><td>boolean</td></tr>
-<tr><th>Direction:</th><td>From Device</td></tr>
-<tr><th>Scope:</th><td>oem</td></tr>
-</table>
-
-## Create a virtual device
-
-1. In Dashboard Portal, click <code>Devices > Virtual Devices</code>.
-1. Click <code>Create Virtual Device</code>, and create one with the following parameters:
-<table>
-<tr><th>Product Name:</th><td>Freezer</td></tr>
-<tr><th>OEM Model:</th><td>freezer-model</td></tr>
-</table>
-1. On the Virtual Devices list, find and click your new device.
-1. Click <code>Template</code>.
-1. Click <code>Edit</code>, select <code>Freezer</code> from <code>Associate a template</code>, and click <code>Update</code>.
-
-## Register the device
-
-1. In Dashboard Portal, click <code>Devices > Virtual Devices</code>.
-1. On the Virtual Devices list, select the checkbox for the <code>Freezer</code> device.
-1. Click <code>Assign/Change User</code>, fill in the form, and click <code>Update</code>.
-1. Browse to Developer Portal to view your new <code>Freezer</code> device.
-1. Click the device <code>Serial Number</code> to view the <code>Max Temp</code> and <code>Too Warm</code> properties.
-
-## Create an access rule
-
-1. In Dashboard Portal, click <code>DataStream</code>.
-1. Click <code>Access Rules</code>.
-1. Click <code>Create Access Rule</code>, and create one with the following parameters:
-<table>
-<tr><th>Role:</th><td>OEM::Admin (or your role)</td></tr>
-<tr><th>Model:</th><td>freezer-model</td></tr>
-<tr><th>Client Type:</th><td>cloud</td></tr>
-<tr><th>Type:</th><td>datapoint</td></tr>
-</table>
-
-## Create subscriptions
-
-Include how to create subscriptions programmatically using the REST API. Refer to the REST API section.
-
-1. In Dashboard Portal, click <code>DataStream</code>.
-1. Click <code>Subscriptions</code>.
-1. Click <code>Create Subscription</code>, and create one with the following parameters:
-<table>
-<tr><th>Name:</th><td>Freezer too_warm for DSS Browser</td></tr>
-<tr><th>Property Name:</th><td>too_warm</td></tr>
-<tr><th>OEM Model:</th><td>freezer-model</td></tr>
-<tr><th>Client Type:</th><td>cloud</td></tr>
-<tr><th>Subscription Type:</th><td>datapoint</td></tr>
-</table>
-1. Create a second subscription with the following parameters:
-<table>
-<tr><th>Name:</th><td>Freezer too_warm for DSS Collector</td></tr>
-<tr><th>Property Name:</th><td>too_warm</td></tr>
-<tr><th>OEM Model:</th><td>freezer-model</td></tr>
-<tr><th>Client Type:</th><td>cloud</td></tr>
-<tr><th>Subscription Type:</th><td>datapoint</td></tr>
-</table>
-1. Create a third subscription with the following parameters:
-<table>
-<tr><th>Name:</th><td>Freezer max_temp for DSS Collector</td></tr>
-<tr><th>Property Name:</th><td>max_temp</td></tr>
-<tr><th>OEM Model:</th><td>freezer-model</td></tr>
-<tr><th>Client Type:</th><td>cloud</td></tr>
-<tr><th>Subscription Type:</th><td>datapoint</td></tr>
-</table>
-
 # DSS Browser
 
-<a href="dss-browser/client.html" target="_blank">DSS Browser</a> is an example, browser-based, single-page, WebSocket client that detects and displays DSS events. It consists of three files: <a href="dss-browser/client.html" target="_blank">client.html</a>, <a href="dss-browser/client.css" target="_blank">client.css</a>, and <a href="dss-browser/client.js" target="_blank">client.js</a>. The following directions (based on the [Example Scenario](#example-scenario)) show you how to use DSS Browser to detect and display datapoint events:
+Complete the following steps to generate and monitor DSS events:
 
-1. Run <a href="dss-browser/client.html" target="_blank">DSS Browser</a>.
-1. For <code>Name the event stream</code>, enter <code>Freezer too_warm for DSS Browser</code>.
-1. For <code>Enter a stream key</code>, enter the appropriate subscription stream key that you defined in your Dashboard Portal.
-1. Click <code>Create</code>.
-1. Notice the new event stream on the Event Stream list.
-1. Notice the heartbeat counter (HBs) incrementing every 30 seconds or so.
-1. Click the new event stream to reveal details. Click again to hide details.
-1. In Developer Portal, change the value of the too_warm property several times.
-1. In DSS Browser, notice the new events on the Events list.
-1. Notice that the Event Stream event counter has incremented.
-1. Click an event row to reveal the JSON composition of a DSS "datapoint" event.
-1. Attempt to create another event stream with the same stream key. Close the message box.
-1. Delete the event stream and the events.
-1. Create another event stream using the same stream key, but enter "0" in the <code>First Seq ID</code> field. DSS resends all events associated with the stream key starting with seq == 0. Start again, but this time include both a <code>First Seq ID</code> and a <code>Last Seq ID</code>.
+1. Log into your Ayla account using the Login item in the top menu bar.
+1. Select an existing device, or create a virtual device.
+<div class="cmpt" style="min-height: 60px;">
+  <h3>Devices</h3>
+  <div class="link-btns">
+    <span id="create-virtual-device-btn" class="link-btn" data-toggle="collapse" data-target="#create-virtual-device-form-collapse">Create Virtual</span>
+    <span id="delete-virtual-device-btn" class="link-btn">Delete Virtual</span>
+    <span class="link-btn" onclick="">Refresh</span>
+    <span id="" class="link-btn" data-toggle="collapse" data-target="#devicex-details">Details</span>
+  </div>
+  <div id="create-virtual-device-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
+    <form id="create-virtual-device-form" class="steps" action="javascript:void(0);">
+      <ol>
+        <li>
+          <div class="label">Name the virtual device.</div>
+          <input id="create-virtual-device-name" type="text" class="form-control form-control-sm" value="Virtual Device" required>
+        </li>
+        <li>
+          <div class="label">Enter an OEM model.</div>
+          <input id="create-virtual-device-oem-model" type="text" class="form-control form-control-sm" value="virtual-device" required>
+        </li>
+        <li>
+          <div class="label">Select a template.</div>
+          <select id="" class="form-control form-control-sm ayla-data populate-at-init" style="min-width:200px;"></select>
+        </li>
+        <li>
+          <div class="label">Create the virtual devicer, reset the fields, or close the form.</div>
+          <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm">Reset</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-virtual-device-form-collapse').collapse('hide')">Close</button>
+        </li>
+      </ol>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col-auto">
+      <select id="" class="form-control form-control-sm ayla-data populate-at-init" style="min-width:200px;"></select>
+    </div>
+  </div>
+  <pre id="devicex-details" class="collapse">sss</pre>
+</div>
+<div>Before creating a virtual device, you may need to create a template:</div>
+<div class="cmpt">
+  <h3>Templates</h3>
+  <div class="link-btns">
+    <span id="create-template-btn" class="link-btn" data-toggle="collapse" data-target="#create-template-form-collapse">Create</span>
+    <span id="delete-template-btn" class="link-btn">Delete</span>
+    <span class="link-btn" onclick="populateTemplates()">Refresh</span>
+    <span id="" class="link-btn" data-toggle="collapse" data-target="#template-details">Details</span>
+  </div>
+  <div id="create-template-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
+    <form id="create-template-form" class="steps" action="javascript:void(0);">
+      <ol>
+        <li>
+          <div class="label">Name the template.</div>
+          <input id="create-template-name" type="text" class="form-control form-control-sm" value="Virtual Device v1.0" required>
+        </li>
+        <li>
+          <div class="label">Write a description.</div>
+          <input id="create-template-description" type="text" class="form-control form-control-sm" value="Template for virtual devices." required>
+        </li>
+        <li>
+          <div class="label">Enter an OEM model.</div>
+          <input id="create-template-oem-model" type="text" class="form-control form-control-sm" value="virtual-device" required>
+        </li>
+        <li>
+          <div class="label">Enter a template version.</div>
+          <input id="create-template-version" type="text" class="form-control form-control-sm" value="virtual-device-v1.0" required>
+        </li>
+        <li>
+          <div class="label">Choose registration method.</div>
+          <select id="create-template-registration-method" class="form-control form-control-sm">
+            <option value='AP-Mode'>AP Mode</option>
+            <option value='Button-Push'>Button Push</option>
+            <option value='Display'>Display</option>
+            <option value='Dsn' selected>DSN</option>
+            <option value='Same-LAN'>Same LAN</option>
+            <option value='None' selected>None</option>
+          </select>
+        </li>
+        <li>
+          <div class="label">Choose visibility.</div>
+          <select id="create-template-visibility" class="form-control form-control-sm">
+            <option value='oem'>OEM</option>
+            <option value='private'>Private</option>
+          </select>
+        </li>
+        <li>
+          <div class="label">Choose template type.</div>
+          <select id="create-template-type" class="form-control form-control-sm">
+            <option value='sss'>Cluster</option>
+            <option value='sss'>Gateway</option>
+            <option value='sss'>Node</option>
+            <option value='sss'>Sensor</option>
+            <option value='wifi' selected>Wi-Fi</option>
+          </select>
+        </li>
+        <li>
+          <div class="label">Enter properties (one per row) in CSV format. Include a header row.</div>
+          <textarea id="template-properties" class="form-control" rows="5" value="test">
+base_type,direction,name,scope
+boolean,input,Green_LED,user
+boolean,input,Red_LED,user
+boolean,output,Blue_button,user
+integer,input,input,user
+integer,output,output,user
+string,input,cmd,user
+string,output,log,user
+decimal,input,decimal_in,user
+decimal,output,decimal_out,user
+string,output,version,user
+          </textarea>
+        </li>
+        <li>
+          <div class="label">Create the template, reset the fields, or close the form.</div>
+          <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm">Reset</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-template-form-collapse').collapse('hide')">Close</button>
+        </li>
+      </ol>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col-auto">
+      <select id="select-template" class="form-control form-control-sm ayla-data populate-at-init" style="min-width:200px;"></select>
+    </div>
+  </div>
+  <pre id="template-details" class="collapse"></pre>
+</div>
+1. Create access rules.
+<div class="cmpt">
+  <h3>Access Rules</h3>
+  <div class="link-btns">
+    <span id="create-access-rule-btn" class="link-btn" data-toggle="collapse" data-target="#create-access-rule-form-collapse">Create</span>
+    <span id="delete-access-rules-btn" class="link-btn">Delete</span>
+    <span class="link-btn" onclick="populateAccessRules()">Refresh</span>
+  </div>
+  <div id="create-access-rule-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
+    <form id="create-access-rule-form" class="steps" action="javascript:void(0);">
+      <ol>
+        <li>
+          <div class="label">Choose a role.</div>
+          <select id="create-access-rule-role" class="form-control form-control-sm">
+            <option value='OEM::Admin'>OEM::Admin</option>
+            <option value='OEM::Staff'>OEM::Staff</option>
+            <option value='OEM::SupportEngineer'>OEM::SupportEngineer</option>
+            <option value='OEM::SupportManager'>OEM::SupportManager</option>
+          </select>
+        </li>
+        <li>
+          <div class="label">Choose a subscription type.</div>
+          <select id="create-access-rule-subscription-type" class="form-control form-control-sm">
+            <option value='connectivity'>connectivity</option>
+            <option value='datapoint' selected>datapoint</option>
+            <option value='datapointack'>datapointack</option>
+            <option value='location'>location</option>
+            <option value='registration'>registration</option>
+          </select>
+        </li>
+        <li>
+          <div class="label">Choose a client type.</div>
+          <select id="create-access-rule-client-type" class="form-control form-control-sm">
+            <option value='cloud'>cloud</option> 
+            <option value='user_opt_in'>user_opt_in</option> 
+          </select>
+        </li>
+        <li>
+          <div class="label">Enter an OEM model.</div>
+          <input id="create-access-rule-oem-model" type="text" class="form-control form-control-sm" required>
+        </li>
+        <li>
+          <div class="label">Enter a property name, or enter &#42; to target all properties.</div>
+          <input id="create-access-rule-property-name" type="text" class="form-control form-control-sm" placeholder="*">
+        </li>
+        <li>
+          <div class="label">Create the access rule, reset the fields, or close the form.</div>
+          <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm">Reset</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-access-rule-form-collapse').collapse('hide')">Close</button>
+        </li>
+      </ol>
+    </form>
+  </div>
+  <table id="aylax-access-rules" class="ayla-data populate-at-init">
+    <thead>
+      <tr>
+        <th><input type="checkbox"></th>
+        <th>OEM Model</th>
+        <th>Property</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+1. Create subscriptions.
+<div class="cmpt">
+  <h3>Subscriptions</h3>
+  <div class="link-btns">
+    <span id="create-subscription-btn" class="link-btn" data-toggle="collapse" data-target="#create-subscription-form-collapse">Create</span>
+    <span id="deploy-subscriptions-btn" class="link-btn">Deploy</span>
+    <span id="promote-subscription-btn" class="link-btn">Promote</span>
+    <span id="delete-subscriptions-btn" class="link-btn">Delete</span>
+    <span class="link-btn" onclick="populateSubscriptions()">Refresh</span>
+  </div>
+  <div id="create-subscription-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
+    <form id="create-subscription-form" class="steps" action="javascript:void(0);">
+      <ol>
+        <li>
+          <div class="label">Name the subscription. Spaces and special characters are acceptable.</div>
+          <input id="create-subscription-name" type="text" class="form-control form-control-sm" placeholder="New Subscription">
+        </li>
+        <li>
+          <div class="label">Write an optional description.</div>
+          <input id="create-subscription-description" type="text" class="form-control form-control-sm" placeholder="This is a description.">
+        </li>
+        <li>
+          <div class="label">Choose a subscription type.</div>
+          <select id="create-subscription-subscription-type" class="form-control form-control-sm">
+            <option value='connectivity'>connectivity</option>
+            <option value='datapoint' selected>datapoint</option>
+            <option value='datapointack'>datapointack</option>
+            <option value='location'>location</option>
+            <option value='registration'>registration</option>
+          </select>
+        </li>
+        <li>
+          <div class="label">Choose a client type.</div>
+          <select id="create-subscription-client-type" class="form-control form-control-sm">
+            <option value='cloud'>cloud</option> 
+            <option value='user_opt_in'>user_opt_in</option> 
+          </select>
+        </li>
+        <li>
+          <div class="label">Enter a DSN. Or, enter &#42; to target all DSNs, and specify an OEM model in the next step.</div>
+          <input id="create-subscription-dsn" type="text" class="form-control form-control-sm" placeholder="*">
+        </li>
+        <li>
+          <div class="label">Enter an OEM model. Or, enter &#42; to target all models, and specify a DSN in the previous step.</div>
+          <input id="create-subscription-oem-model" type="text" class="form-control form-control-sm" required>
+        </li>
+        <li>
+          <div class="label">Enter a property name, or enter &#42; to target all properties.</div>
+          <input id="create-subscription-property-name" type="text" class="form-control form-control-sm" placeholder="*">
+        </li>
+        <li>
+          <div class="label">Create the subscription, reset the fields, or close the form.</div>
+          <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm">Reset</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-subscription-form-collapse').collapse('hide')">Close</button>
+        </li>
+      </ol>
+    </form>
+  </div>
+  <table id="aylax-subscriptions" class="ayla-data populate-at-init">
+    <thead>
+      <tr>
+        <th><input type="checkbox" value="0"></th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+1. Create event streams.
+<div class="cmpt">
+  <h3>Event Streams</h3>
+  <div class="link-btns">
+    <span id="create-event-stream-btn" class="link-btn" data-toggle="collapse" data-target="#create-event-stream-form-collapse">Create</span>
+    <span id="delete-event-streams-btn" class="link-btn">Delete</span>
+  </div>
+  <div id="create-event-stream-form-collapse" class="collapse" style="margin-bottom: 1.2rem;">
+    <form id="create-event-stream-form" class="steps" action="javascript:void(0);">
+      <ol>
+        <li>
+          <div class="label">Name the event stream. Spaces and special characters are acceptable.</div>
+          <input id="event-stream-name" type="text" class="form-control form-control-sm" placeholder="New Event Stream">
+        </li>
+        <li>
+          <div class="label">Enter a DSS stream key.</div>
+          <input id="stream-key" type="text" class="form-control form-control-sm" required>
+        </li>
+        <li>
+          <div class="label">Enter a beginning sequence number.</div>
+          <input id="create-event-stream-beginning-seqid" type="text" class="form-control form-control-sm">
+        </li>
+        <li>
+          <div class="label">Enter an ending sequence number.</div>
+          <input id="create-event-stream-ending-seqid" type="text" class="form-control form-control-sm">
+        </li>
+        <li>
+          <div class="label">Create the event stream, reset the fields, or close the form.</div>
+          <button type="submit" class="btn btn-outline-secondary btn-sm">Create</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm">Reset</button>
+          <button type="reset" class="btn btn-outline-secondary btn-sm" onclick="$('#create-event-stream-form-collapse').collapse('hide')">Close</button>
+        </li>
+      </ol>
+    </form>
+  </div>
+  <table id="aylax-event-streams" class="ayla-data">
+    <thead>
+      <tr>
+        <th><input type="checkbox"></th>
+        <th class="es">ES</th>
+        <th>Name</th>
+        <th>Events</th>
+        <th>HBs</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+1. Generate events.
+<div id="dt-group" class="cmpt" style="margin-bottom:1rem;">
+  <h3 id="device-tool">Device Tool</h3>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="link-btns">
+        <span class="link-btn" data-toggle="collapse" data-target="#dt-device-details">Device Details</span>
+      </div>
+      <select id="dt-device-selector" class="form-control form-control-sm ayla-data populate-at-init"></select>
+    </div>
+    <div class="col-sm-4 mt-3 mt-sm-0">
+      <div class="link-btns">
+        <span class="link-btn" data-toggle="collapse" data-target="#dt-property-details">Property Details</span>
+      </div>
+      <select id="dt-property-selector" class="form-control form-control-sm ayla-data"></select>
+    </div>
+    <div class="col-sm-4 mt-3 mt-sm-0">
+      <div class="link-btns">
+        <span class="link-btn">Value</span>
+      </div>
+      <div class="row no-gutters">
+        <div class="col">
+          <div id="dt-value-wrapper"></div>
+        </div>
+        <div class="col-auto ml-2" id="dt-value-button-wrapper" style="display:none;">
+          <button id="dt-save-value-btn" type="button" class="btn btn-info btn-sm">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="row">
+      <div class="col-12">
+        <pre id="dt-device-details" class="collapse" data-parent="#dt-group"></pre>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 d-none d-sm-block"></div>
+      <div class="col-12 col-sm-8">
+        <pre id="dt-property-details" class="collapse" data-parent="#dt-group"></pre>
+      </div>
+    </div>
+  </div>
+</div>
+1. Monitor events.
+<div class="cmpt">
+  <h3>Events</h3>
+  <div class="link-btns">
+    <span id="delete-events-btn" class="link-btn">Delete</span>
+  </div>
+  <table id="aylax-events" class="ayla-data">
+    <thead>
+      <tr>
+        <th><input type="checkbox"></th>
+        <th class="es">ES</th>
+        <th>Seq</th>
+        <th>Type</th>
+        <th>DSN</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
 
 # DSS Collector
 
