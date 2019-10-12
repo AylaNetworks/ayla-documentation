@@ -72,7 +72,7 @@ If the Ayla Cloud cannot find the specified template, then it uses the first tem
 
 ## Defining a template
 
-1. Browse to the [Ayla Developer Portal](/content/ayla-developer-portal/), log in, click Design a Device, and click Add.
+1. Browse to the [Ayla Developer Portal](/archive/ayla-developer-portal/), log in, click Design a Device, and click Add.
 1. Enter the following details, and click Ok. For <code>Version</code>, see [appd_template_version](https://github.com/AylaNetworks/device_linux_public/blob/master/app/appd/appd.c).
 <table>
 <tr><th>Field</th><th>Value</th></tr>

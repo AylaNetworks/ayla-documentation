@@ -10,7 +10,7 @@ This page shows you how to change the Product Name and test the properties of yo
 
 ### Change the Product Name
 
-1. Browse to the [Ayla Developer Portal](/content/ayla-developer-portal/), log in, and click <code>View My Devices</code>. The Devices list appears. 
+1. Browse to the [Ayla Developer Portal](/archive/ayla-developer-portal/), log in, and click <code>View My Devices</code>. The Devices list appears. 
 <img src="product-name-is-dsn.png" width="400">
 The Product Name is, by default, the Serial Number.
 1. Click the Serial Number, and then click the <code>Details</code> tab:
@@ -60,7 +60,7 @@ appd has a version property where it stores the current appd software version. T
 
 ### Change the Product Name
 
-1. Browse to the [Ayla Dashboard Portal](/content/ayla-dashboard-portal/), and log in.
+1. Browse to the [Ayla Dashboard Portal](/archive/ayla-dashboard-portal/), and log in.
 1. Click Devices in the sidebar.
 1. Click your newly registered device on the All Devices list to view device details:
 <img src="dashboard-devices.png" width="640">

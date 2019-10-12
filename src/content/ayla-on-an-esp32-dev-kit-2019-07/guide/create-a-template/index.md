@@ -4,7 +4,7 @@ layout: ayla-on-an-esp32-dev-kit-2019-02.html
 a: block
 ---
 
-1. Browse to the [Ayla Developer Portal](/content/ayla-developer-portal/), log in, click Design a Device, and click Add.
+1. Browse to the [Ayla Developer Portal](/archive/ayla-developer-portal/), log in, click Design a Device, and click Add.
 1. Enter the following details, and click Ok.
 <table>
 <tr><th>Field</th><th>Value</th></tr>

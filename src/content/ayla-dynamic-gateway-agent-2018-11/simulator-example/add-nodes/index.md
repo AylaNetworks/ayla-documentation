@@ -43,7 +43,7 @@ In the Ayla Developer Portal, browse to View My Devices &gt; A Sim GW Node &gt; 
 
 ### Utilize the Ayla Datastream Service
 
-It takes only a few seconds to utilize the DSS Browser utility in the [Ayla Datastream Service](/content/ayla-datastream-service/).
+It takes only a few seconds to utilize the DSS Browser utility in the [Ayla Datastream Service](/archive/ayla-datastream-service/).
 
 ## Add nodes
 

@@ -11,7 +11,7 @@ When you move your user account and devices from the Ayla Public Account to an A
 Here are the steps for iOS users:
 
 <ol>
-<li>Log into your Ayla Customer Account via the [Ayla Dashboard Portal](/content/ayla-dashboard-portal/).</li>
+<li>Log into your Ayla Customer Account via the [Ayla Dashboard Portal](/bar/ayla-dashboard-portal/).</li>
 <li>Click OEM Profile in the sidebar.</li>
 <li>Click Apps in the horizontal menu.</li>
 <li>Create an app configuration named Aura.</li>

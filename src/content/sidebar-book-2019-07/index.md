@@ -66,7 +66,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-See [Bootstrap Tables](https://getbootstrap.com/docs/4.0/content/tables/).
+See [Bootstrap Tables](https://getbootstrap.com/docs/4.0/archive/tables/).
 
 <div class="table-responsive-md">
   <table class="table table-sm table-hover">
@@ -121,7 +121,7 @@ See [Bootstrap Tables](https://getbootstrap.com/docs/4.0/content/tables/).
   </table>
 </div>
 
-Here is a link to the [Ayla Development Kit](/content/ayla-development-kit).
+Here is a link to the [Ayla Development Kit](/archive/ayla-development-kit).
 
 Here is an inline code example: <code>cd &#126;/tree/cedar</code>.
 

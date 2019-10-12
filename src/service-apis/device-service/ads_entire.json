@@ -1,0 +1,1364 @@
+{
+  "apiVersion": "1",
+  "swaggerVersion": "1.2",
+  "basePath":  "",
+  "resourcePath": "/devices",
+  "produces": [
+    "application/json"
+  ],
+  "authorizations": {},
+  "consumes": [
+    "application/json"
+  ],
+  "apis": [
+    {
+      "path": "/apiv1/devices/register",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Retrieves a device registration candidate.",
+          "notes": "get_register",
+          "nickname": "getRegisterDevice",
+          "type": "GetRegistrationCandidateOutput",
+          "parameters": [
+            {
+              "name": "ip",
+              "description": "Public IP address of requesting client. If no IP address is passed, the service matches the requesting cient IP address. When web site implements device registration, it must pass the requesting client remote IP (to return proper candidate). If request originates from a mobile application (on the same network as the device), no IP parameter is required (the mobile device and the Ayla module share the same public IP.",
+              "required": false,
+              "type": "string",
+              "paramType": "query"
+            },
+            {
+              "name": "dsn",
+              "description": "Unique device serial number. If specified, device with this DSN is returned.",
+              "required": false,
+              "type": "string",
+              "paramType": "query"
+            },
+            {
+              "name": "regtype",
+              "description": "Device registration type: (required for 'Node' registration type - optional for 'Button-Push', 'Same-LAN'.<br>Valid input: 'Same-LAN', 'Button-Push', 'AP-Mode', 'Display', 'Dsn', 'None' (for OEM), 'Node' (for Gateway)",
+              "required": false,
+              "type": "string",
+              "paramType": "query"
+            },
+            {
+              "name": "time",
+              "description": "Time (in minutes) (default=5).",
+              "required": false,
+              "defaultValue": 5,
+              "type": "integer",
+              "paramType": "query"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found (Unable to find registrable device)"
+            },
+            {
+              "code": 412,
+              "message": "Precondition failed, Gateway Registration window is not open"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Retrieve devices for Login User",
+          "notes": "get_devices",
+          "type": "array",
+          "items": {
+            "$ref": "DeviceWrapper"
+          },
+          "nickname": "getDevicesOfLoginUser",
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            }
+          ]
+        },
+        {
+          "method": "POST",
+          "summary": "Register a Device",
+          "notes": "post_devices",
+          "type": "RegisterDeviceOutput",
+          "nickname": "registerDevice",
+          "parameters": [
+            {
+              "name": "body",
+              "description": "The device serial number.",
+              "required": true,
+              "paramType": "body",
+              "type": "RegisterDeviceInput"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Created"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Unable to find registrable device with user ID"
+            },
+            {
+              "code": 417,
+              "message": "User ID is nil or device registration candidate is invalid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices/{devId}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get Device",
+          "notes": "get_device",
+          "type": "Device",
+          "nickname": "getDevice",
+          "parameters": [
+            {
+              "name": "devId",
+              "description": "Device identifier or key.",
+              "required": true,
+              "type": "integer",
+              "format": "int64",
+              "paramType": "path"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices/search",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Search Devices",
+          "notes": "get_search",
+          "type": "DeviceSearchWrapper",
+          "nickname": "getDeviceBySearch",
+          "parameters": [
+            {
+              "name": "property_name",
+              "required": true,
+              "description": "User-friendly name of property to find.",
+              "type": "string",
+              "paramType": "query"
+            },
+            {
+              "name": "value",
+              "required": true,
+              "description": "Value of property to find.",
+              "type": "string",
+              "paramType": "query"
+            },
+            {
+              "name": "oem_id",
+              "required": true,
+              "description": "Ayla-assigned ID for OEM to find.",
+              "type": "string",
+              "paramType": "query"
+            },
+            {
+              "name": "oem_model",
+              "required": true,
+              "description": "Model number of OEM host application board  to find.",
+              "type": "string",
+              "paramType": "query"
+            },
+            {
+              "name": "is_forward_page",
+              "required": false,
+              "description": "Is search a forward page?",
+              "type": "boolean",
+              "paramType": "query"
+            },
+            {
+              "name": "match",
+              "required": false,
+              "description": "Is a search match?",
+              "type": "boolean",
+              "paramType": "query"
+            },
+            {
+              "name": "page",
+              "required": false,
+              "description": "Number of pages to retrieve.",
+              "type": "integer",
+              "paramType": "query"
+            },
+            {
+              "name": "paginated",
+              "required": false,
+              "description": "Is search result paginated?",
+              "type": "boolean",
+              "paramType": "query"
+            },
+            {
+              "name": "per_page",
+              "required": false,
+              "description": "Number of search results per page.",
+              "type": "integer",
+              "paramType": "query"
+            },
+            {
+              "name": "search_by_property",
+              "required": false,
+              "description": "Perform search by property?",
+              "type": "boolean",
+              "paramType": "query"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            },
+            {
+              "code": 422,
+              "message": "Unprocessable Entity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices/{devId}/registration_window",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Open Registration Window (Gateway Only)",
+          "notes": "post_regwindow",
+          "nickname": "openRegistrationWindow",
+          "parameters": [
+            {
+              "name": "devId",
+              "description": "Device identifier or key.",
+              "required": true,
+              "type": "integer",
+              "format": "int64",
+              "paramType": "path"
+            },
+            {
+              "name": "duration",
+              "description": "Registration window open duration (in seconds). Use value = 0 to immediately close window.",
+              "required": true,
+              "paramType": "body",
+              "type": "RegWindowDuration"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 401,
+              "message": "Failure - Property Not Found, or Method Not Allowed"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices/{devId}/identify",
+      "operations": [
+        {
+          "method": "PUT",
+          "summary": "Identify Device (Zigbee Node Only)",
+          "notes": "put_identify",
+          "nickname": "turnDevOnOffUsingNode",
+          "parameters": [
+            {
+              "name": "devId",
+              "description": "Device identifier or key.",
+              "required": true,
+              "type": "integer",
+              "format": "int64",
+              "paramType": "path"
+            },
+            {
+              "name": "body",
+              "description": "The time and value to turn device on or off.",
+              "required": true,
+              "type": "TurnDevOnOffUsingNodeInput",
+              "paramType": "body"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            },
+            {
+              "code": 405,
+              "message": "Method not allowed or not supported on this device"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices/{devId}",
+      "operations": [
+        {
+          "method": "PUT",
+          "summary": "Update Device Attribute",
+          "notes": "put_device",
+          "nickname": "updateDevice",
+          "type": "void",
+          "parameters": [
+            {
+              "name": "devId",
+              "description": "Device identifier or key.",
+              "required": true,
+              "type": "integer",
+              "format": "int64",
+              "paramType": "path"
+            },
+            {
+              "name": "device",
+              "description": "Device attribute to be updated on device.",
+              "required": true,
+              "type": "UpdateDeviceInput",
+              "paramType": "body"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 400,
+              "message": "Error"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            },
+            {
+              "code": 405,
+              "message": "Method not allowed or not supported on this device"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices/{devDsn}/transfer",
+      "operations": [
+        {
+          "method": "PUT",
+          "summary": "Transfer Ownership",
+          "notes": "put_transfer",
+          "nickname": "transferDevice",
+          "type": "TransferDeviceOutput",
+          "parameters": [
+            {
+              "name": "devDsn",
+              "description": "Device serial number of device to update.",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            },
+            {
+              "name": "target",
+              "description": "Email of target user.",
+              "required": true,
+              "type": "string",
+              "paramType": "query"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden, user does not have write access to a target user"
+            },
+            {
+              "code": 404,
+              "message": "Device with specified DSN Not Found or user with email or ID Not Found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices/{devId}/locations",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Set Device Location",
+          "notes": "post_locations",
+          "nickname": "updateDevLocation",
+          "type": "UpdateDeviceLocationOutput",
+          "parameters": [
+            {
+              "name": "devId",
+              "description": "Unique device identifier (returned when device is retrieved for a user).",
+              "required": true,
+              "type": "integer",
+              "paramType": "path"
+            },
+            {
+              "name": "body",
+              "description": "Device location information.",
+              "required": true,
+              "type": "UpdateDevLocationInput",
+              "paramType": "body"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "Created"
+            },
+            {
+              "code": 401,
+              "message": "User does not have write access to the device"
+            },
+            {
+              "code": 404,
+              "message": "Device with specified device ID Not Found, or user with email or ID Not Found"
+            },
+            {
+              "code": 422,
+              "message": "Location information not complete or not valid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices/{devId}/cmds/factory_reset",
+      "operations": [
+        {
+          "method": "PUT",
+          "summary": "Factory Reset",
+          "notes": "put_factoryreset",
+          "nickname": "factoryResetDevice",
+          "type": "void",
+          "parameters": [
+            {
+              "name": "devId",
+              "description": "Unique device identifier (returned when device retrieved for a user).",
+              "required": true,
+              "type": "integer",
+              "format": "int64",
+              "paramType": "path"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 403,
+              "message": "Forbidden, user does not have write access to a device"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            },
+            {
+              "code": 422,
+              "message": "Unprocessable Entity, software_version is lower than 1.6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices/{devId}",
+      "operations": [
+        {
+          "method": "DELETE",
+          "summary": "Unregister Device",
+          "notes": "delete_device",
+          "nickname": "unregisterDevice",
+          "parameters": [
+            {
+              "name": "devId",
+              "description": "Unique device identifier or key to delete/unregister.",
+              "required": true,
+              "type": "integer",
+              "format": "int64",
+              "paramType": "path"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/apiv1/devices/{devId}/nodes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Retrieves nodes for a given Gateway.",
+          "notes": "get_nodes",
+          "nickname": "getNodes",
+          "type": "Node",
+          "parameters": [
+            {
+              "name": "devId",
+              "description": "Device identifier or key.",
+              "required": true,
+              "type": "integer",
+              "format": "int64",
+              "paramType": "path"
+            },
+            {
+              "name": "all_nodes",
+              "description": "To get all nodes associated with the gateway. If set to false, It will give only registered nodes",
+              "required": false,
+              "type": "boolean",
+              "paramType": "query"
+            },
+            {
+              "name": "show_optimal",
+              "description": "To get the optimal attribute which includes node information only",
+              "required": false,
+              "type": "boolean",
+              "paramType": "query"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "OK"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found"
+            },
+            {
+              "code": 422,
+              "message": "Unprocessable Entity"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models": {
+    "PaginatedDevices": {
+      "id": "PaginatedDevices",
+      "description": "Paginated Devices",
+      "properties": {
+        "current_page_number": {
+          "type": "integer",
+          "description": "Current Page Number."
+        },
+        "start_count_on_page": {
+          "type": "integer",
+          "description": "Start Count On Page."
+        },
+        "end_count_on_page": {
+          "type": "integer",
+          "description": "End Count On Page."
+        },
+        "total": {
+          "type": "integer",
+          "description": "Total device count."
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "DeviceWrapper"
+          },
+          "description": "Device array."
+        }
+      }
+    },
+    "Devices": {
+      "id": "Devices",
+      "required":[
+        "itemCount","items"
+      ],
+      "description": "Array of devices.",
+      "properties": {
+        "itemCount": {
+          "type": "integer",
+          "description": "Number of result items."
+        },
+        "items": {
+          "type": "array",
+          "description": "Array of result items.",
+          "items": {
+            "$ref": "Device"
+          }
+        }
+      }
+    },
+    "DeviceSearchWrapper": {
+      "id": "DeviceSearchWrapper",
+      "description": "Device search results",
+      "properties": {
+        "previous_page": {
+          "type": "string",
+          "description": "DSN for device, on previous page."
+        },
+        "next_page": {
+          "type": "string",
+          "description": "DSN for device, on next page."
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "DeviceWrapper"
+          }
+        }
+      }
+    },
+    "DeviceWrapper": {
+      "id": "DeviceWrapper",
+      "description": "Wrapper object of a device.",
+      "properties": {
+        "device": {
+          "$ref": "Device"
+        }
+      }
+    },
+    "Device": {
+      "id": "Device",
+      "required":[
+        "dsn"
+      ],
+      "description": "A single device model.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Device identifier."
+        },
+        "product_name": {
+          "type": "string",
+          "description": "Device user-friendly product name."
+        },
+        "model": {
+          "type": "string",
+          "description": "Model number of Ayla module."
+        },
+        "dsn": {
+          "type": "string",
+          "description": "Unique device serial number."
+        },
+        "oem": {
+          "type": "string",
+          "description": "OEM company manufacturer name."
+        },
+        "oem_model": {
+          "type": "string",
+          "description": "Model number of OEM host application board."
+        },
+        "sw_version": {
+          "type": "string",
+          "description": "Software version (associated with the device)."
+        },
+        "user_id": {
+          "type": "string",
+          "description": "Ayla-asigned ID for the user (associated with the device)."
+        },
+        "user_uuid": {
+          "type": "string",
+          "description": "Universally Unique Identifier for the user."
+        },
+        "template_id": {
+          "type": "integer",
+          "description": "Unique ID assigned to the template."
+        },
+        "mac": {
+          "type": "string",
+          "description": "IP MAC address of the device."
+        },
+        "ip": {
+          "type": "string",
+          "description": "IP address of the device."
+        },
+        "lan_ip": {
+          "type": "string",
+          "description": "LAN IP of the device."
+        },
+        "ssid": {
+          "type": "string",
+          "description": "SSID of the device."
+        },
+        "connected_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Device connected at (timestamp) (ISO8601 Format)."
+        },
+        "key": {
+          "type": "integer",
+          "description": "Internal ID of the device."
+        },
+        "product_class": {
+          "type": "string",
+          "description": "Type of product (defined by OEM)."
+        },
+        "has_properties": {
+          "type": "boolean",
+          "description": "Does device have properties?"
+        },
+        "lan_enabled": {
+          "type": "boolean",
+          "description": "Is device LAN enabled?"
+        },
+        "enable_ssl": {
+          "type": "boolean",
+          "description": "Is device SSL enabled?"
+        },
+        "ans_enabled": {
+          "type": "boolean",
+          "description": "Is device ANS enabled?"
+        },
+        "ans_server": {
+          "type": "string",
+          "description": "ANS notification server URL."
+        },
+        "log_enabled": {
+          "type": "boolean",
+          "description": "Is device LOG enabled?"
+        },
+        "registered": {
+          "type": "boolean",
+          "description": "Is device registered?"
+        },
+        "connection_status": {
+          "type": "string",
+          "description": "Device connection status: ['Online', 'Offline', 'Initializing']."
+        },
+        "registration_type": {
+          "type": "string",
+          "description": "Type of registration: ['Same-LAN', 'Button-Push', 'AP Model', 'Display', 'Dsn', 'None']."
+        },
+        "lat": {
+          "type": "number",
+          "format": "decimal (10,6)",
+          "description": "Device location, latitude (in degrees)."
+        },
+        "lng": {
+          "type": "number",
+          "format": "decimal (10,6)",
+          "description": "Device location, longitude (in degrees)."
+        },
+        "locality": {
+          "type": "string",
+          "description": "Device locality."
+        },
+        "homekit": {
+          "type": "string",
+          "description": "Homekit info."
+        },
+        "module_updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Device module updated at (timestamp) (ISO8601 Format)."
+        },
+        "registrable": {
+          "type": "boolean",
+          "description": "Is device registrable?"
+        },
+        "regtoken": {
+          "type": "string",
+          "description": "Regtoken of the device."
+        },
+        "setup_token": {
+          "type": "string",
+          "description": "Setup token of the device."
+        },
+        "provisional": {
+          "type": "boolean",
+          "description": "Is device provisional?"
+        },
+        "device_type": {
+          "type": "string",
+          "description": "Type of device: ['Wifi', 'Gateway', 'Node']."
+        },
+        "activated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Device activated at (timestamp) (ISO8601 Format)."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Device created at (timestamp) (ISO8601 Format)."
+        },
+        "grant": {
+          "$ref": "Grant"
+        },
+        "gateway-type": {
+          "type": "string",
+          "description": "Gateway type (only if device is a gateway)."
+        }
+      }
+    },
+    "ReadOnlyDevice": {
+      "id": "ReadOnlyDevice",
+      "description": "A single user model.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email of the user."
+        },
+        "picture": {
+          "type": "string",
+          "description": "Thumbnail picture of the user."
+        }
+      }
+    },
+    "RegisterDeviceInput": {
+      "id": "RegisterDeviceInput",
+      "description": "Object of register device API.",
+      "properties": {
+        "device": {
+          "$ref": "RegisterDeviceInputDetail"
+        }
+      }
+    },
+    "RegisterDeviceInputDetail": {
+      "id": "RegisterDeviceInputDetail",
+      "description": "Detail object of register device API input.",
+      "required":[
+        "dsn"
+      ],
+      "properties": {
+        "dsn": {
+          "type": "string",
+          "description": "Unique device serial number (returned when device retrieved for a user). Required for all types except 'Display'."
+        }
+      }
+    },
+    "GetRegistrationCandidateOutput": {
+      "id": "GetRegistrationCandidateOutput",
+      "description": "Device that is the registration candidate.",
+      "properties": {
+        "device": {
+          "$ref": "GetRegistrationCandidateOutputDetail"
+        }
+      }
+    },
+    "GetRegistrationCandidateOutputDetail": {
+      "id": "GetRegistrationCandidateOutputDetail",
+      "description": "Detail response of registration candidate device",
+      "properties": {
+        "dsn": {
+          "type": "string",
+          "description": "Unique device serial number."
+        },
+        "lan_ip": {
+          "type": "string",
+          "description": "LAN IP of the device."
+        },
+        "model": {
+          "type": "string",
+          "description": "Model number of Ayla module."
+        },
+        "oem_model": {
+          "type": "string",
+          "description": "Model number of OEM host application board (associated with this DSN)."
+        },
+        "product_name": {
+          "type": "string",
+          "description": "Device user-friendly product name."
+        },
+        "connected_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Device connected at (timestamp) (ISO8601 Format)."
+        },
+        "product_class": {
+          "type": "string",
+          "description": "Type of product (defined by OEM)."
+        }
+      }
+    },
+    "RegisterDeviceOutput": {
+      "id": "RegisterDeviceOutput",
+      "description": "Device that was registered.",
+      "properties": {
+        "device": {
+          "$ref": "RegisterDeviceOutputDetail"
+        }
+      }
+    },
+    "RegisterDeviceOutputDetail": {
+      "id": "RegisterDeviceOutputDetail",
+      "description": "Detailed response of register device API.",
+      "properties": {
+        "dsn": {
+          "type": "string",
+          "description": "Unique device serial number."
+        },
+        "model": {
+          "type": "string",
+          "description": "Model number of Ayla module."
+        },
+        "product_name": {
+          "type": "string",
+          "description": "Device user-friendly product name."
+        },
+        "connected_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Device connected at (timestamp) (ISO8601 Format)."
+        },
+        "key": {
+          "type": "integer",
+          "description": "Device key."
+        }
+      }
+    },
+    "TurnDevOnOffUsingNodeInput": {
+      "id": "TurnDevOnOffUsingNodeInput",
+      "description": "An object that described input of turnDevOnOffUsingNode API call.",
+      "properties": {
+        "value": {
+          "description": "Value: ['On', 'Off'].",
+          "defaultValue": "On",
+          "type": "string"
+        },
+        "time": {
+          "description": "Time (in seconds).",
+          "defaultValue": 60,
+          "type": "integer"
+        }
+      }
+    },
+    "UpdateDeviceInput": {
+      "id": "UpdateDeviceInput",
+      "description": "Object of update device.",
+      "properties": {
+        "device": {
+          "$ref": "UpdateDeviceInputDetail"
+        }
+      }
+    },
+    "UpdateDeviceInputDetail": {
+      "id": "UpdateDeviceInputDetail",
+      "description": "Detail device object of update device.",
+      "properties": {
+        "product_name": {
+          "type": "string",
+          "description": "User-friendly product name."
+        }
+      }
+    },
+    "TransferDeviceOutput": {
+      "id": "TransferDeviceOutput",
+      "description": "Device object returns in transfer device API.",
+      "properties": {
+        "device": {
+          "$ref": "TransferDeviceOutputDetail"
+        }
+      }
+    },
+    "TransferDeviceOutputDetail": {
+      "id": "TransferDeviceOutputDetail",
+      "description": "Detailed device object returns in transfer device API.",
+      "properties": {
+        "product_name": {
+          "type": "string",
+          "description": "User-friendly product name."
+        },
+        "model": {
+          "type": "string",
+          "description": "Model number of Ayla module."
+        },
+        "dsn": {
+          "type": "string",
+          "description": "Unique device serial number."
+        },
+        "oem_model": {
+          "type": "string",
+          "description": "Model number of OEM host application board (associated with this DSN)."
+        },
+        "template_id": {
+          "type": "integer",
+          "description": "Unique ID assigned to the template."
+        },
+        "mac": {
+          "type": "string",
+          "description": "IP MAC address of the device."
+        },
+        "lan_ip": {
+          "type": "string",
+          "description": "LAN IP of the device."
+        },
+        "connected_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Device connected at (timestamp) (ISO8601 Format)."
+        },
+        "key": {
+          "type": "integer",
+          "description": "Device internal ID."
+        },
+        "lan_enabled": {
+          "type": "boolean",
+          "description": "Is device LAN enabled?"
+        },
+        "has_properties": {
+          "type": "boolean",
+          "description": "Does device have properties?"
+        },
+        "product_class": {
+          "type": "string",
+          "description": "Type of product (defined by OEM)."
+        },
+        "connection_status": {
+          "type": "string",
+          "description": "Device connection status: ['Online', 'Offline', 'Initializing']."
+        },
+        "device_type": {
+          "type": "string",
+          "description": "Type of device: ['Wifi', 'Gateway', 'Node']."
+        }
+      }
+    },
+    "UpdateDevLocationInput": {
+      "id": "UpdateDevLocationInput",
+      "description": "Input object of update device location.",
+      "properties": {
+        "location": {
+          "$ref": "UpdateDevLocationInputDetail"
+        }
+      }
+    },
+    "UpdateDevLocationInputDetail": {
+      "id": "UpdateDevLocationInputDetail",
+      "description": "Detail input object of update device.",
+      "properties": {
+        "lat": {
+          "type": "number",
+          "format": "float",
+          "description": "Device latitude (in degrees)."
+        },
+        "long": {
+          "type": "number",
+          "format": "float",
+          "description": "Device longitude (in degrees)."
+        }
+      }
+    },
+    "UpdateDeviceLocationOutput": {
+      "id": "UpdateDeviceLocationOutput",
+      "description": "Return object of update device location.",
+      "properties": {
+        "location": {
+          "$ref": "UpdateDeviceLocationOutputDetail"
+        }
+      }
+    },
+    "UpdateDeviceLocationOutputDetail": {
+      "id": "UpdateDeviceLocationOutputDetail",
+      "description": "Detail return object of update device location.",
+      "properties": {
+        "ap_ssid": {
+          "type": "string",
+          "description": "Access point SSID."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Location created at (timestamp) (ISO8601 Format)."
+        },
+        "device_id": {
+          "type": "integer",
+          "description": "Device identifier."
+        },
+        "id": {
+          "type": "integer",
+          "description": "Location object internal ID."
+        },
+        "ip": {
+          "type": "string",
+          "description": "IP address of the device."
+        },
+        "lat": {
+          "type": "number",
+          "format": "float",
+          "description": "Device latitude (in degrees)."
+        },
+        "locality": {
+          "type": "string",
+          "description": "Device locality."
+        },
+        "long": {
+          "type": "number",
+          "format": "float",
+          "description": "Device longitude (in degrees)."
+        },
+        "provider": {
+          "type": "string",
+          "description": "Location provider (i.e. user-based)."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Location updated at (timestamp) (ISO8601 Format)."
+        },
+        "wifi_scan": {
+          "type": "string",
+          "description": "Location by wifi scan."
+        }
+      }
+    },
+    "Grant": {
+      "id": "Grant",
+      "description": "Permission granted (if device is shared to the current user).",
+      "properties": {
+        "user-id": {
+          "type": "integer"
+        },
+        "start-date-at": {
+          "type": "string",
+          "format": "Date-time"
+        },
+        "end-date-at": {
+          "type": "string",
+          "format": "Date-time"
+        },
+        "operation": {
+          "type": "string"
+        }
+      }
+    },
+    "RegWindowDuration": {
+      "id": "RegWindowDuration",
+      "description": "Registration window duration.",
+      "properties": {
+        "duration": {
+          "type": "integer",
+          "defaultValue": "200"
+        }
+      }
+    },
+    "Node": {
+      "id": "Node",
+      "required":[
+        "product_name", "dsn", "oem_model", "key", "registered", "power", "ntwkaddr", "address", "device_type", "gateway_dsn", "node_type"
+      ],
+      "description": "A single Node.",
+      "properties": {
+        "product_name": {
+          "type": "string",
+          "description": "Device user-friendly product name."
+        },
+        "model": {
+          "type": "string",
+          "description": "Model number of Ayla module."
+        },
+        "dsn": {
+          "type": "string",
+          "description": "Unique device serial number."
+        },
+        "oem_model": {
+          "type": "string",
+          "description": "Model number of OEM host application board."
+        },
+        "user_id": {
+          "type": "string",
+          "description": "Ayla-asigned ID for the user (associated with the device)."
+        },
+        "user_uuid": {
+          "type": "string",
+          "description": "Universally Unique Identifier for the user."
+        },
+        "template_id": {
+          "type": "integer",
+          "description": "Unique ID assigned to the template."
+        },
+        "mac": {
+          "type": "string",
+          "description": "IP MAC address of the device."
+        },
+        "lan_ip": {
+          "type": "string",
+          "description": "LAN IP of the device."
+        },
+        "connected_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Device connected at (timestamp) (ISO8601 Format)."
+        },
+        "key": {
+          "type": "integer",
+          "description": "Internal ID of the device."
+        },
+        "product_class": {
+          "type": "string",
+          "description": "Type of product (defined by OEM)."
+        },
+        "has_properties": {
+          "type": "boolean",
+          "description": "Does device have properties?"
+        },
+        "lan_enabled": {
+          "type": "boolean",
+          "description": "Is device LAN enabled?"
+        },
+        "registered": {
+          "type": "boolean",
+          "description": "Is device registered?"
+        },
+        "connection_status": {
+          "type": "string",
+          "description": "Device connection status: ['Online', 'Offline', 'Initializing']."
+        },
+        "lat": {
+          "type": "number",
+          "format": "decimal (10,6)",
+          "description": "Device location, latitude (in degrees)."
+        },
+        "lng": {
+          "type": "number",
+          "format": "decimal (10,6)",
+          "description": "Device location, longitude (in degrees)."
+        },
+        "locality": {
+          "type": "string",
+          "description": "Device locality."
+        },
+        "device_type": {
+          "type": "string",
+          "description": "Type of device: ['Wifi', 'Gateway', 'Node']."
+        },
+        "gateway_dsn": {
+          "type": "string",
+          "description": "DSN of the parent Gateway."
+        },
+        "oem_authentication_failed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Oem authentication failed at (timestamp) (ISO8601 Format)."
+        },
+        "grant": {
+          "$ref": "Grant"
+        },
+        "power": {
+          "type": "integer",
+          "description": "Power of the node"
+        },
+        "ntwkaddr": {
+          "type": "string",
+          "description": "Network address of the node"
+        },
+        "address": {
+          "type": "string",
+          "description": "address of the node"
+        },
+        "node_type": {
+          "type": "string",
+          "description": "Type of node"
+        },
+        "properties": {
+          "type": "array",
+          "description": "The list of properties of the node."
+        }
+      }
+    }
+  }
+}
