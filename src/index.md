@@ -16,7 +16,7 @@ classesFromPage: has-pagebar
   </ul>
 </aside>
 
-Welcome to Ayla Docs! Please watch the following introductory video:
+Welcome to Ayla Docs! This video provides an introduction to the Ayla IoT Cloud: 
 
 <iframe 
   width="560" 
@@ -26,6 +26,8 @@ Welcome to Ayla Docs! Please watch the following introductory video:
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
 </iframe>
+
+After watching the video, you can [Set up your account](#set-up-your-account), [Access online tools](#access-online-tools), and [Find content](#find-content) that will help you build and manage connected devices.
 
 <hr/>
 
@@ -69,4 +71,14 @@ You will use all three when developing connected devices. The first two require 
 
 ## Find content
 
-sss
+To build a connected device or gateway, see [Edge Solutions](/edge-solutions).
+
+To manage your Ayla cloud account, see [System Administration](/system-administration).
+
+To integrate a business system with the Ayla Cloud, and manage data, see [Data Management](/data-management).
+
+To build an Ayla-aware mobile app, see [Front-end Solutions](/front-end-solutions).
+
+To work with Ayla Service APIs, see [Service APIs](/service-apis).
+
+To browse PDFs, see the [Archive](/archive).

@@ -6,18 +6,6 @@ layout: site.html
 <table class="version-table">
   <tr><th>Current</th><th>Type</th><th>Versions</th></tr>
   <tr>
-    <td><a href="/archive/ayla-api-browser">Ayla API Browser</a></td>
-    <td>PDF</td>
-    <td>
-      <div class="dropdown">
-        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-api-browser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
-        <div class="dropdown-menu" aria-labelledby="ayla-api-browser">
-          <a class="dropdown-item" href="/archive/ayla-api-browser-2018-05.pdf">v2018-05</a>
-        </div>
-      </div>
-    </td>
-  </tr>
-  <tr>
     <td><a href="/archive/ayla-connectivity-gatt-service">Ayla Connectivity GATT Service</a></td>
     <td>PDF</td>
     <td>
@@ -430,30 +418,6 @@ layout: site.html
     </td>
   </tr>
   <tr>
-    <td><a href="/archive/ayla-portable-agent">Ayla Portable Agent</a></td>
-    <td>PDF</td>
-    <td>
-      <div class="dropdown">
-        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-portable-agent" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
-        <div class="dropdown-menu" aria-labelledby="ayla-portable-agent">
-          <a class="dropdown-item" href="/archive/ayla-portable-agent-2018-09.pdf">v2018-09</a>
-        </div>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td><a href="/archive/ayla-product-architecture-comparison">Ayla Product Architecture Comparison</a></td>
-    <td>PDF</td>
-    <td>
-      <div class="dropdown">
-        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-product-architecture-comparison" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
-        <div class="dropdown-menu" aria-labelledby="ayla-product-architecture-comparison">
-          <a class="dropdown-item" href="/archive/ayla-product-architecture-comparison-2016-05.pdf">v2016-05</a>
-        </div>
-      </div>
-    </td>
-  </tr>
-  <tr>
     <td><a href="/archive/ayla-product-development-overview">Ayla Product Development Overview</a></td>
     <td>PDF</td>
     <td>
@@ -502,18 +466,6 @@ layout: site.html
     </td>
   </tr>
   <tr>
-    <td><a href="/archive/ayla-related-virtualization-user-guide">Ayla-related Virtualization User Guide</a></td>
-    <td>PDF</td>
-    <td>
-      <div class="dropdown">
-        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-related-virtualization-user-guide" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
-        <div class="dropdown-menu" aria-labelledby="ayla-related-virtualization-user-guide">
-          <a class="dropdown-item" href="/archive/ayla-related-virtualization-user-guide-2017-07.pdf">v2017-07</a>
-        </div>
-      </div>
-    </td>
-  </tr>
-  <tr>
     <td><a href="/archive/ayla-rules-api-specification">Ayla Rules API Specification</a></td>
     <td>PDF</td>
     <td>
@@ -557,18 +509,6 @@ layout: site.html
         <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-single-sign-on" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
         <div class="dropdown-menu" aria-labelledby="ayla-single-sign-on">
           <a class="dropdown-item" href="/archive/ayla-single-sign-on-2018-05.pdf">v2018-05</a>
-        </div>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td><a href="/archive/ayla-ubuntu-marvell-environment-install-guide">Ayla Ubuntu Marvell Environment Install Guide</a></td>
-    <td>PDF</td>
-    <td>
-      <div class="dropdown">
-        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-ubuntu-marvell-environment-install-guide" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
-        <div class="dropdown-menu" aria-labelledby="ayla-ubuntu-marvell-environment-install-guide">
-          <a class="dropdown-item" href="/archive/ayla-ubuntu-marvell-environment-install-guide-2017-11.pdf">v2017-11</a>
         </div>
       </div>
     </td>
@@ -634,7 +574,7 @@ layout: site.html
     </td>
   </tr>
   <tr>
-    <td><a href="/archive/enable-devices-on-ayla-field-service">Enable Devices on Ayla Field Services</a></td>
+    <td><a href="/archive/enable-devices-on-ayla-field-service">Enable Devices on Ayla Field Service</a></td>
     <td>PDF</td>
     <td>
       <div class="dropdown">
@@ -677,18 +617,6 @@ layout: site.html
         <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="property-access-for-device-activitation" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
         <div class="dropdown-menu" aria-labelledby="property-access-for-device-activitation">
           <a class="dropdown-item" href="/archive/property-access-for-device-activitation-2016-02.pdf">v2016-02</a>
-        </div>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td><a href="/archive/setting-up-and-enabling-alexa-for-ayla-devices">Setting Up and Enabling Alexa for Ayla Devices</a></td>
-    <td>PDF</td>
-    <td>
-      <div class="dropdown">
-        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="setting-up-and-enabling-alexa-for-ayla-devices" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
-        <div class="dropdown-menu" aria-labelledby="setting-up-and-enabling-alexa-for-ayla-devices">
-          <a class="dropdown-item" href="/archive/setting-up-and-enabling-alexa-for-ayla-devices-2018-01.pdf">v2018-01</a>
         </div>
       </div>
     </td>

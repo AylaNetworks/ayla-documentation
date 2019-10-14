@@ -66,7 +66,7 @@ Triggers = Aura Property Notifications. Notifications = Aura Device Notification
 <img src="green-led-triggers.png" width="700">
 1. Click Green_LED on the Triggers list. An applications list appears with (probably) one application:
 <img src="green-led-trigger.png" width="700">
-1. Click push_ios. An Edit Application window appears representing the Aura <u>property</u> notification created in [Notifications](../notifications).
+1. Click push_ios. An Edit Application window appears representing the Aura <u>property</u> notification.
 <img src="edit-property-app.png" width="300">
 1. Click Cancel. Then, click Add, create an email application similar to the following (substitute an email), and click OK.
 <img src="add-property-notification-app.png" width="300">
@@ -82,7 +82,7 @@ The new application appears on the list:
 <img src="notifications-list.png" width="700">
 1. Click on_connection_lost on the list. An application list appears with (probably) one application:
 <img src="on-connection-lost-apps.png" width="700">
-1. Click push_ios. An Edit Application window appears representing the Aura <u>device</u> notification created in [Notifications](../notifications).
+1. Click push_ios. An Edit Application window appears representing the Aura <u>device</u> notification.
 <img src="edit-device-app.png" width="300">
 1. Click Cancel. Then, click Add, create an email application similar to the following (substitute an email), and click OK.
 <img src="add-device-notification-app.png" width="300">

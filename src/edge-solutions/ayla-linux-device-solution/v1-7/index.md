@@ -73,13 +73,11 @@ classesFromPage: has-pagebar
 This guide helps you experiment with the Ayla Linux Device Solution on a Raspberry Pi. In this particular edge solution, the Ayla Agent is named ```devd``` and the Ayla Example App is named ```appd```. Both are implemented as background processes. The video explains more:
 
 <iframe 
-  class="ml-sm-4"
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/aDdyFeo2A5E?rel=0&amp;showinfo=0" 
+  src="https://www.youtube.com/embed/aDdyFeo2A5E?rel=0"
   frameborder="0" 
-  allow="autoplay; 
-  encrypted-media" 
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
 </iframe>
 
@@ -247,7 +245,7 @@ $ sudo ./ayla_install.sh -z
 
 ### 1. Create a dsn.xml file
 
-1. Browse to the [Ayla Dashboard Portal](/archive/ayla-dashboard-portal/), and log in.
+1. Browse to the [Ayla Dashboard Portal](/system-administration/ayla-dashboard-portal/), and log in.
 1. Click Factory Actions in the sidebar.
 1. Click the Reserve DSNs button.
 1. For Model, select <code>AY001MRT1-Linux Software Agent</code>.
@@ -1091,10 +1089,9 @@ The 2-second interval means this schedule will wake up every 2 seconds. The 1-se
 <iframe 
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/FbwP8tM3pgg?rel=0&amp;showinfo=0" 
+  src="https://www.youtube.com/embed/FbwP8tM3pgg?rel=0"
   frameborder="0" 
-  allow="autoplay; 
-  encrypted-media" 
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
 </iframe>
 </li>
@@ -1107,16 +1104,14 @@ To demonstrates serial I/O between your host application (appd) running on your 
 <a href="rpi-arduino-serial.png"><img src="rpi-arduino-serial.png" width="740"></a>
 
 The following video demonstrates:
-
 <iframe 
-  width="560"
+  width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/vhugySJ9kXA?rel=0&amp;showinfo=0" 
+  src="https://www.youtube.com/embed/vhugySJ9kXA?rel=0"
   frameborder="0" 
-  allow="autoplay; encrypted-media" 
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
 </iframe>
-
 The tutorial builds the use case in three phases:
 
 1. Build an Arduino program that turns the Arduino LED on/off.
@@ -1188,10 +1183,9 @@ void button_isr() {
 <iframe 
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/ejlnBJJxWHg?rel=0&amp;showinfo=0" 
+  src="https://www.youtube.com/embed/ejlnBJJxWHg?rel=0"
   frameborder="0" 
-  allow="autoplay; 
-  encrypted-media" 
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
 </iframe>
 </li>
@@ -1294,10 +1288,9 @@ Alternately, you can run the program in the background with <code>./rpi-side & d
 <iframe 
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/E8ZBXUGqDhA?rel=0&amp;showinfo=0" 
+  src="https://www.youtube.com/embed/E8ZBXUGqDhA?rel=0"
   frameborder="0" 
-  allow="autoplay; 
-  encrypted-media" 
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
 </iframe>
 </li>
@@ -1322,7 +1315,7 @@ LIBS = ssl crypto curl jansson wiringPi pthread
 ### Create the twin_led property
 
 <ol>
-<li>Browse to the [Ayla Devloper Portal](/archive/ayla-developer-portal/), and log in.</li>
+<li>Browse to the [Ayla Devloper Portal](/system-administration/ayla-developer-portal/), and log in.</li>
 <li>Click View My Devices.</li>
 <li>Click the serial number of your device.</li>
 <li>Click Add, and create a property with the following attributes:
@@ -1461,10 +1454,9 @@ Your modified <code>appd</code> interacts with the <code>arduino-side</code> ske
 <iframe 
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/2pwZxI7TSJQ?rel=0&amp;showinfo=0" 
+  src="https://www.youtube.com/embed/2pwZxI7TSJQ?rel=0"
   frameborder="0" 
-  allow="autoplay; 
-  encrypted-media" 
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
 </iframe>
 </li>
@@ -1472,7 +1464,7 @@ Your modified <code>appd</code> interacts with the <code>arduino-side</code> ske
 
 # Perform OTA Updates
 
-Ayla provides a mechanism for performing over-the-air (OTA) updates in order to replace the Ayla Agent (devd) and/or the host application (appd) running on your Ayla device with different (often newer) versions. This page discusses OTA updates. See also [Versioning](../../guide/versioning).
+Ayla provides a mechanism for performing over-the-air (OTA) updates in order to replace the Ayla Agent (devd) and/or the host application (appd) running on your Ayla device with different (often newer) versions. This page discusses OTA updates.
 
 ## How OTA updates work
 

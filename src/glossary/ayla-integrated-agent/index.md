@@ -1,4 +1,0 @@
----
-title: Ayla Integrated Agent
----
-

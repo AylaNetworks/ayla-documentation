@@ -1,4 +1,0 @@
----
-title: Ayla Cloud Service
----
-

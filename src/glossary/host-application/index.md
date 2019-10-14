@@ -1,4 +1,0 @@
----
-title: Host Application
----
-

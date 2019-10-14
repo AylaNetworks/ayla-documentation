@@ -67,7 +67,7 @@ The Login screen includes a Sign Up button, a Wi-Fi Setup button, and a gear ico
 
 * The Sign Up button enables a new user to create a user account with EndUser access rights in the Ayla Public (Cloud) Account. 
 * The Wi-Fi Setup button enables users to navigate to the Settings screen of the mobile device. 
-* The gear icon displays a **Configuration** screen, important when you want to point Aura to an Ayla Customer Account. Configuration parameters appear at the bottom of the screen. See [Configure Aura](../../account-guide/configure-aura) for details.
+* The gear icon displays a **Configuration** screen, important when you want to point Aura to an Ayla Customer Account. Configuration parameters appear at the bottom of the screen. See [Configuration](#configuration) for details.
 
 ## Main Menu
 
@@ -78,8 +78,6 @@ Once logged in, tap the hamburger:
 The Main Menu appears. The following diagram shows the structure of the Aura Mobile App:
 
 <img src="aura-menu.png" width="720">
-
-This User Guide has addressed several of these screens already. The LAN OTA and Test Runner screens are covered in the [Developer Guide](../../developer-guide).
 
 ## Device Screen
 

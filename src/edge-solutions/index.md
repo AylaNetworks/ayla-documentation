@@ -15,7 +15,7 @@ classesFromPage: has-pagebar
   </ul>
 </aside>
 
-Welcome, edge developers! Please watch the following video about <a href="https://www.aylanetworks.com/edge-connectivity" target="_blank">Ayla Edge Solutions</a> common concepts.
+Welcome, edge developers! This video explains concepts that are common to all <a href="https://www.aylanetworks.com/edge-connectivity" target="_blank">Ayla Edge Solutions</a>:
 
 <iframe 
   width="563" 
@@ -25,6 +25,8 @@ Welcome, edge developers! Please watch the following video about <a href="https:
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
 </iframe>
+
+After watching the video, [Choose a guide](#choose-a-guide).
 
 <hr/>
 
