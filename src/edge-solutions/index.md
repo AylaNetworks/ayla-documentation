@@ -26,7 +26,7 @@ Welcome, edge developers! This video explains concepts that are common to all <a
   allowfullscreen>
 </iframe>
 
-After watching the video, [Choose a guide](#choose-a-guide).
+After watching the video, you can [Choose a guide](#choose-a-guide).
 
 <hr/>
 

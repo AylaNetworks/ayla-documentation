@@ -43,3 +43,12 @@ This is not correct:
   }
 }
 ```
+
+### About APIs
+
+See these examples:
+
+* [Amazon Services and APIs](https://developer.amazon.com/apps-and-games/services-and-apis)
+* [Google Cloud APIs](https://cloud.google.com/apis/docs/overview)
+* [Azure REST API Reference](https://docs.microsoft.com/en-us/rest/api/azure/)
+* [Facebook Marketing API](https://developers.facebook.com/docs/marketing-apis/)
