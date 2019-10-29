@@ -79,6 +79,6 @@ To integrate a business system with the Ayla Cloud, and manage data, see [Data M
 
 To build an Ayla-aware mobile app, see [Front-end Solutions](/front-end-solutions).
 
-To work with Ayla Service APIs, see [Service APIs](/service-apis).
+To work with Ayla Cloud APIs, see [Cloud API](/cloud-api).
 
 To browse PDFs, see the [Archive](/archive).

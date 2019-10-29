@@ -1,0 +1,206 @@
+div.swagger-ui .wrapper {padding: 0 !important;}
+
+div.swagger-ui .opblock {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+div.swagger-ui .opblock-body {
+  padding-top: 16px;
+}
+
+div.swagger-ui .opblock-tag {
+  color: #ff6680 !important;
+  font-size: 100% !important;
+  font-weight: bold !important;
+  margin-bottom: 12px !important;
+  padding: 6px 14px 6px 0px !important;
+}
+
+div.swagger-ui .opblock-summary {padding: 0px !important;}
+div.swagger-ui .opblock-summary-path {font-size: 12px !important;}
+div.swagger-ui .opblock-summary-method {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 3px 9px !important;
+  border-radius: 0px !important;
+  text-shadow: none;
+}
+
+div.swagger-ui .opblock.is-open .opblock-summary {border-bottom: none !important;}
+
+div.swagger-ui .opblock-summary-description {
+  text-align: right;
+  padding-right: 12px;
+  font-weight: bold;
+}
+
+div.swagger-ui .operation-servers select {
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  background:white;
+  padding: 5px;
+  border: 1px solid white !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+div.swagger-ui .operation-servers select::-ms-expand {display: none;}
+
+div.swagger-ui .scheme-container {
+  padding: 0;
+  box-shadow: none;
+}
+
+div.swagger-ui button.authorization__btn {
+  display:none;
+}
+
+div.swagger-ui .opblock-description-wrapper, 
+div.swagger-ui .opblock-external-docs-wrapper, 
+div.swagger-ui .opblock-title_normal {
+  padding: 3px 12px !important;
+}
+
+div.swagger-ui .opblock-description-wrapper h4.message {
+  display:none;
+}
+
+div.swagger-ui .opblock-section-header {
+  box-shadow: none !important;
+  padding: 3px 12px !important;
+  background: transparent !important;
+  min-height: 0 !important;
+}
+
+div.swagger-ui .opblock-section-header h4 {
+  font-weight: bold;
+}
+
+div.swagger-ui .opblock .tab-header .tab-item.active h4 span:after {
+  content: none !important;
+}
+
+div.swagger-ui .execute-wrapper {
+  padding: 3px 12px !important;
+  /*text-align: left;*/
+}
+
+div.swagger-ui .execute-wrapper .btn {
+  /*width: auto !important;*/
+  padding: .375rem .75rem !important;
+}
+
+div.swagger-ui .btn {
+  padding: .375rem .75rem !important;
+}
+
+div.swagger-ui .responses-inner,
+div.swagger-ui .table-container,
+div.swagger-ui .btn-group {
+  padding: 3px 12px !important;
+}
+
+div.swagger-ui .servers>label {
+  margin: 0 !important;
+}
+
+div.swagger-ui .markdown p, 
+div.swagger-ui .markdown pre, 
+div.swagger-ui .renderedMarkdown p, 
+div.swagger-ui .renderedMarkdown pre {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+div.swagger-ui table,
+div.swagger-ui th,
+div.swagger-ui td {
+  border-color: #e6e6e6 !important;
+}
+
+.swagger-ui .parameters-col_description input[type=text] {
+  width: 100%;
+  max-width: 340px;
+}
+
+div.swagger-ui .parameters-col_description input[type=text]::placeholder {
+  color: transparent !important;
+}
+
+div.swagger-ui .parameter__name.required:after {
+  content: none !important;
+}
+
+div.swagger-ui .information-container {display: none;}
+div.swagger-ui .scheme-container {display: none;}
+div.swagger-ui .scheme-container .servers-title {display:none;}
+div.swagger-ui .scheme-container .servers {display:none;}
+div.swagger-ui section.response-controls {display: none;}
+
+div.swagger-ui div.opblock-section-request-body div.body-param-content-type {display:none;}
+
+div.swagger-ui .model-example .model-title,
+div.swagger-ui .model-example table td {
+  font-size: 95% !important;
+  font-weight: normal !important;
+  font-family: sans-serif !important;
+}
+
+div.swagger-ui .model-box {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* GET */
+div.swagger-ui .opblock-get {background: AliceBlue}
+div.swagger-ui .opblock-get .opblock-summary-get {background: AliceBlue;}
+div.swagger-ui .opblock-get.is-open .opblock-summary-get {background: #cce7ff;}
+div.swagger-ui .opblock-get .opblock-summary-get .opblock-summary-method {background: #33a0ff;}
+div.swagger-ui .opblock-get table, div.swagger-ui .opblock-get th, div.swagger-ui .opblock-get td {border-color: #cce7ff !important;}
+/*div.swagger-ui .opblock-get button.execute {background: #33a0ff; border-color: #33a0ff;}*/
+
+/* POST */
+div.swagger-ui .opblock-post {background: #eafaea}
+div.swagger-ui .opblock-post .opblock-summary-post {background: #eafaea;}
+div.swagger-ui .opblock-post.is-open .opblock-summary-post {background: #d6f5d6;}
+div.swagger-ui .opblock-post .opblock-summary-post .opblock-summary-method {background: LimeGreen;}
+div.swagger-ui .opblock-post table, div.swagger-ui .opblock-post th, div.swagger-ui .opblock-post td {border-color: #d6f5d6 !important;}
+/*div.swagger-ui .opblock-post button.execute {background: LimeGreen; border-color: LimeGreen;}*/
+
+/* PUT */
+div.swagger-ui .opblock-put {background: #fff6e6}
+div.swagger-ui .opblock-put .opblock-summary-put {background: #fff6e6;}
+div.swagger-ui .opblock-put.is-open .opblock-summary-put {background: #ffedcc;}
+div.swagger-ui .opblock-put .opblock-summary-put .opblock-summary-method {background: orange;}
+div.swagger-ui .opblock-put table, div.swagger-ui .opblock-put th, div.swagger-ui .opblock-put td {border-color: #ffedcc !important;}
+/*div.swagger-ui .opblock-put button.execute {background: orange; border-color: orange;}*/
+
+/* DELETE */
+div.swagger-ui .opblock-delete {background: #ffe6e6}
+div.swagger-ui .opblock-delete .opblock-summary-delete {background: #ffe6e6;}
+div.swagger-ui .opblock-delete.is-open .opblock-summary-delete {background: #ffcccc;}
+div.swagger-ui .opblock-delete .opblock-summary-delete .opblock-summary-method {background: #ff1a1a;}
+div.swagger-ui .opblock-delete table, div.swagger-ui .opblock-delete th, div.swagger-ui .opblock-delete td {border-color: #ffcccc !important;}
+/*div.swagger-ui .opblock-delete button.execute {background: #ff1a1a; border-color: #ff1a1a;}*/
+
+#input-auth-token {font-family: 'Courier New', Courier, monospace}
+
+div.swagger-ui .execute-wrapper button.execute,
+div.swagger-ui .btn-group button.execute,
+div.swagger-ui .try-out button {background: #262626; border-color: #262626; color:white;}
+div.swagger-ui .btn-group button.btn-clear,
+div.swagger-ui .btn.cancel {background: #ffc107; border-color: #ffc107; color: #332b00;}
+
+div.swagger-ui .operation-servers .opblock-section-header {display:none;}
+
+div.swagger-ui .opblock-description-wrapper textarea {
+  min-height: 120px !important;
+}
+
+div.swagger-ui .wrapper section.col-12 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+div.swagger-ui section.models {display: none;}

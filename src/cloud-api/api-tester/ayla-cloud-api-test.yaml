@@ -1,0 +1,180 @@
+openapi: 3.0.2
+info:
+  title: Ayla Cloud API Test
+  description: This is the description.
+  version: "005"
+servers:
+- url: /
+security:
+- auth_token: []
+paths:
+  /apiv1/devices:
+    get:
+      tags:
+      - Device Service
+      summary: getDevices
+      description: This is the description.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceWrapper'
+        401:
+          description: Unauthorized
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+components:
+  schemas:
+    DeviceWrapper:
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+    Device:
+      properties:
+        id:
+          type: integer
+          description: Device identifier.
+        product_name:
+          type: string
+          description: Device user-friendly product name.
+        model:
+          type: string
+          description: Model number of Ayla module.
+        dsn:
+          type: string
+          description: Unique device serial number.
+        oem:
+          type: string
+          description: OEM company manufacturer name.
+        oem_model:
+          type: string
+          description: Model number of OEM host application board.
+        sw_version:
+          type: string
+          description: Software version (associated with the device).
+        user_id:
+          type: string
+          description: Ayla-asigned ID for the user (associated with the device).
+        user_uuid:
+          type: string
+          description: Universally Unique Identifier for the user.
+        template_id:
+          type: integer
+          description: Unique ID assigned to the template.
+        mac:
+          type: string
+          description: IP MAC address of the device.
+        ip:
+          type: string
+          description: IP address of the device.
+        lan_ip:
+          type: string
+          description: LAN IP of the device.
+        ssid:
+          type: string
+          description: SSID of the device.
+        connected_at:
+          type: string
+          description: Device connected at (timestamp) (ISO8601 Format).
+          format: date-time
+        key:
+          type: integer
+          description: Device identifier.
+        product_class:
+          type: string
+          description: Type of product (defined by OEM).
+        has_properties:
+          type: boolean
+          description: Does device have properties?"
+        lan_enabled:
+          type: boolean
+          description: Is device LAN enabled?"
+        enable_ssl:
+          type: boolean
+          description: Is device SSL enabled?"
+        ans_enabled:
+          type: boolean
+          description: Is device ANS enabled?"
+        ans_server:
+          type: string
+          description: ANS notification server URL.
+        log_enabled:
+          type: boolean
+          description: Is device LOG enabled?"
+        registered:
+          type: boolean
+          description: Is device registered?"
+        connection_status:
+          type: string
+          description: Device connection status ['Online', 'Offline', 'Initializing'].
+        registration_type:
+          type: string
+          description: Type of registration ['Same-LAN', 'Button-Push', 'AP Model',
+            'Display', 'Dsn', 'None'].
+        lat:
+          type: number
+          description: Device location, latitude (in degrees).
+          format: decimal (10,6)
+        lng:
+          type: number
+          description: Device location, longitude (in degrees).
+          format: decimal (10,6)
+        locality:
+          type: string
+          description: Device locality.
+        homekit:
+          type: string
+          description: Homekit info.
+        module_updated_at:
+          type: string
+          description: Device module updated at (timestamp) (ISO8601 Format).
+          format: date-time
+        registrable:
+          type: boolean
+          description: Is device registrable?"
+        regtoken:
+          type: string
+          description: Regtoken of the device.
+        setup_token:
+          type: string
+          description: Setup token of the device.
+        provisional:
+          type: boolean
+          description: Is device provisional?"
+        device_type:
+          type: string
+          description: Type of device ['Wifi', 'Gateway', 'Node'].
+        activated_at:
+          type: string
+          description: Device activated at (timestamp) (ISO8601 Format).
+          format: date-time
+        created_at:
+          type: string
+          description: Device created at (timestamp) (ISO8601 Format).
+          format: date-time
+        grant:
+          $ref: '#/components/schemas/Grant'
+        gateway-type:
+          type: string
+          description: Gateway type (only if device is a gateway).
+    Grant:
+      properties:
+        user-id:
+          type: integer
+        start-date-at:
+          type: string
+          format: Date-time
+        end-date-at:
+          type: string
+          format: Date-time
+        operation:
+          type: string
+  securitySchemes:
+    auth_token:
+      type: apiKey
+      in: header
+      name: Authorization

@@ -1,7 +1,6 @@
 ---
 title: Change Log
 layout: site.html
-e: block
 classesFromPage: has-pagebar
 ---
 
@@ -13,7 +12,7 @@ classesFromPage: has-pagebar
   </ul>
 </aside>
 
-This page lists changes to Ayla Cloud APIs under the effective dates.
+This page lists changes to Ayla Cloud API operations under the effective dates.
 
 ### Key
 |||Meaning|
@@ -135,4 +134,4 @@ This page lists changes to Ayla Cloud APIs under the effective dates.
 |<span class="different">&rlarr;</span>||```POST```|```/users/confirmation```|<small>1</small>|
 |<span class="different">&rlarr;</span>||```POST```|```/users/shares```|<small>1</small>|
 
-1. These four APIs cause emails to be sent to a user who creates an account, changes a password, needs to confirm account information, or participates in device sharing. These APIs no longer support the ```email_subject``` parameter for the subject line of the email, nor the ```email_body_html``` parameter for any customized text embedded in the body of the email. 
+1. These four APIs, which cause emails to be sent to users who create accounts, change passwords, need to confirm account information, or participate in device sharing, no longer support the ```email_subject``` parameter for specifying email subject lines, nor the ```email_body_html``` parameter for embedding customized text in emails.

@@ -1,0 +1,1968 @@
+openapi: 3.0.2
+info:
+  title: Ayla Cloud API
+  description: The Ayla Cloud provides a REST Application Programming Interface (API)
+    for ten services across five regions.
+  version: "006"
+servers:
+- url: /
+security:
+- auth_token: []
+paths:
+  /api/v1/oemAccessRules:
+    get:
+      tags:
+      - Datastream Service
+      summary: getAccessRules
+      description: This API returns an array of access rules associated with the caller's role(s). A DSS access rule permits members of a role to create DSS subscriptions associated with an oem model, device property, client type, and subscription type.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OemAccessRuleWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    post:
+      tags:
+      - Datastream Service
+      summary: createAccessRule
+      description: This API creates a DSS access rule which permits members of the specified role to create DSS subscriptions associated with the specified oem model(s), device prop(s), client type, and subscription type.
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccessRuleRequest'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OemAccessRuleWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://stream.aylanetworks.com
+  /api/v1/oemAccessRules/{id}:
+    get:
+      tags:
+      - Datastream Service
+      summary: getAccessRule
+      description: This API returns the specified access rule.
+      parameters:
+      - $ref: '#/components/parameters/pAccessRuleId'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OemAccessRuleWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    delete:
+      tags:
+      - Datastream Service
+      summary: deleteAccessRule
+      description: This API deletes the specified access rule.
+      parameters:
+      - $ref: '#/components/parameters/pAccessRuleId'
+      responses:
+        204:
+          description: The access rule was successfully deleted.
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://stream.aylanetworks.com
+  /api/v1/subscriptions.json:
+    get:
+      tags:
+      - Datastream Service
+      summary: getSubscriptions
+      description: This API returns an array of subscriptions associated with the
+        caller.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscriptionWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    post:
+      tags:
+      - Datastream Service
+      summary: createSubscription
+      description: This API creates a DSS subscription which includes a stream key
+        requred by a client to open a WebSocket and listen for DSS events.
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubscriptionRequest'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://stream.aylanetworks.com
+  /api/v1/subscriptions/{id}.json:
+    get:
+      tags:
+      - Datastream Service
+      summary: getSubscription
+      description: This API returns the specified subscription.
+      parameters:
+      - $ref: '#/components/parameters/pSubscriptionId'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    delete:
+      tags:
+      - Datastream Service
+      summary: deleteSubscription
+      description: This API deletes the specified subscription.
+      parameters:
+      - $ref: '#/components/parameters/pSubscriptionId'
+      responses:
+        204:
+          description: The subscription was successfully deleted.
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://stream.aylanetworks.com
+  /apiv1/devices:
+    get:
+      tags:
+      - Device Service
+      summary: getDevices
+      description: This API returns an array of devices registered to, or shared with, the caller. The **key** value in the Response Body is the unique device id, so use this value in calls to other operations that require a device **id** parameter.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceWrapper'
+        401:
+          description: Unauthorized
+    post:
+      tags:
+      - Device Service
+      summary: registerDevice
+      description: This API registers the specified device to the caller.
+      requestBody:
+        description: The request body requires the device serial number (DSN).
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterDeviceRequestWrapper'
+      responses:
+        201:
+          description: Created
+        401:
+          description: Unauthorized
+        404:
+          description: Unable to find registrable device with user ID
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/devices/{deviceId}:
+    get:
+      tags:
+      - Device Service
+      summary: getDevice
+      description: This API returns the specified device if it is owned by, or shared with, the caller.
+      parameters:
+      - $ref: '#/components/parameters/pDeviceId'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    put:
+      tags:
+      - Device Service
+      summary: renameDevice
+      description: This API renames a device.
+      parameters:
+      - $ref: '#/components/parameters/pDeviceId'
+      requestBody:
+        description: This is the description.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceProductNameWrapper'
+      responses:
+        200:
+          description: OK
+        400:
+          description: Error
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        405:
+          description: Not allowed and/or not supported on this device
+        422:
+          description: Unprocessable Entity
+    delete:
+      tags:
+      - Device Service
+      summary: unregisterDevice
+      description: Unregisters the specified device from the caller.
+      parameters:
+      - $ref: '#/components/parameters/pDeviceId'
+      responses:
+        200:
+          description: The device was unregistered.
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/devices/{deviceId}/cmds/factory_reset:
+    put:
+      tags:
+      - Device Service
+      summary: factoryResetDevice
+      description: sss.
+      parameters:
+      - $ref: '#/components/parameters/pDeviceId'
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/devices/{deviceId}/identify:
+    put:
+      tags:
+      - Device Service
+      summary: identifyZigbeeNode
+      description: This API is used only with Zigbee nodes. A command is sent to the specified Zigbee node with a turn-on for a defined time (in seconds). The update needs to identify one node among many nodes in a Zigbee gateway.
+      parameters:
+      - $ref: '#/components/parameters/pDeviceId'
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/devices/{deviceId}/locations:
+    post:
+      tags:
+      - Device Service
+      summary: updateDeviceLocation
+      description: sss.
+      parameters:
+      - $ref: '#/components/parameters/pDeviceId'
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/devices/{deviceId}/nodes:
+    get:
+      tags:
+      - Device Service
+      summary: getNodes
+      description: sss.
+      parameters:
+      - $ref: '#/components/parameters/pDeviceId'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/devices/{deviceId}/registration_window:
+    post:
+      tags:
+      - Device Service
+      summary: openRegistrationWindow
+      description: This API opens and polls the registration window (only applies to Zigbee gateways).
+      parameters:
+      - $ref: '#/components/parameters/pDeviceId'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DurationRequest'
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/devices/{dsn}/transfer:
+    put:
+      tags:
+      - Device Service
+      summary: transferRegistration
+      description: sss.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/devices/register:
+    get:
+      tags:
+      - Device Service
+      summary: getRegistrableDevice
+      description: This API returns the registration candidate that matches the input
+        parameters. If the DSN is passed, there must be an exact match. If multiple
+        devices are found, only the most recently connected candidate is returned.
+      parameters:
+      - $ref: '#/components/parameters/qIpAddress'
+      - $ref: '#/components/parameters/qDsn'
+      - $ref: '#/components/parameters/qRegType'
+      - name: time
+        in: query
+        description: Time in minutes.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 5
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found (Unable to find registrable device)
+        412:
+          description: Precondition failed, Gateway Registration window is not open
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/devices/search:
+    get:
+      tags:
+      - Device Service
+      summary: searchDevices
+      description: This API obtains details about devices that match the search criteria. The caller's right to view device information is based on ownership, device sharing, and/or role.
+      parameters:
+      - $ref: '#/components/parameters/qPropertyName'
+      - name: value
+        in: query
+        description: The value of the device property.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/qOemId'
+      - $ref: '#/components/parameters/qOemModel'
+      - name: is_forward_page
+        in: query
+        description: sss.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      - name: match
+        in: query
+        description: sss.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/qPaginated'
+      - $ref: '#/components/parameters/qPage'
+      - $ref: '#/components/parameters/qPerPage'
+      - name: search_by_property
+        in: query
+        description: sss.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceSearchResults'
+        401:
+          description: Authorization Required
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/dsns/{dsn}:
+    get:
+      tags:
+      - Device Service
+      summary: getDevice
+      description: This API returns details of the specified device.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceWrapper'
+        401:
+          description: Authorization Required
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+    put:
+      tags:
+      - Device Service
+      summary: renameDevice
+      description: This API renames a device.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      requestBody:
+        description: This is the description.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceProductNameWrapper'
+      responses:
+        200:
+          description: OK
+        400:
+          description: Error
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        405:
+          description: Not allowed and/or not supported on this device
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/dsns/{dsn}/data:
+    get:
+      tags:
+      - Device Service
+      summary: getDeviceMetadata
+      description: This is the description.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      - name: keys
+        in: query
+        description: Pattern format can be '%' marks before and after pattern. '%s' means select all data ending with letter 's'. 's%' means select all data beginning with letter 's'. '%input%' means select all data with pattern 'input'.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResponseDatumWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    post:
+      tags:
+      - Device Service
+      summary: createDeviceMetadatum
+      description: This is the description.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestDatumWrapper'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDatumWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        422:
+          description: Cannot parse request data.
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/dsns/{dsn}/data/{key}:
+    get:
+      tags:
+      - Device Service
+      summary: getDeviceMetadatum
+      description: This is the description.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      - $ref: '#/components/parameters/pMetadatumKey'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDatumWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    put:
+      tags:
+      - Device Service
+      summary: updateDeviceMetadatum
+      description: This is the description.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      - $ref: '#/components/parameters/pMetadatumKey'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestDatumWrapper'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDatumWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    delete:
+      tags:
+      - Device Service
+      summary: deleteDeviceMetadatum
+      description: This is the description.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      - $ref: '#/components/parameters/pMetadatumKey'
+      responses:
+        200:
+          description: Successfully Deleted
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/dsns/{dsn}/registered_nodes:
+    get:
+      tags:
+      - Device Service
+      summary: getNodes
+      description: This API returns an array of nodes for a gateway.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        405:
+          description: Method not allowed
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/groups:
+    get:
+      tags:
+      - Device Service
+      summary: getGroups
+      description: This API returns an array of groups.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    post:
+      tags:
+      - Device Service
+      summary: createGroup
+      description: This API creates a new group for the caller.
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupRequestWrapper'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupWithDevicesWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal server error.
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/groups/{groupId}:
+    get:
+      tags:
+      - Device Service
+      summary: getGroup
+      description: This API returns the specified group.
+      parameters:
+      - $ref: '#/components/parameters/pGroupId'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupWithDevicesWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    put:
+      tags:
+      - Device Service
+      summary: renameGroup
+      description: This API renames a group.
+      parameters:
+      - $ref: '#/components/parameters/pGroupId'
+      requestBody:
+        description: This is the description.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupNameWrapper'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupWithDevicesWrapper'
+        400:
+          description: Error
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        405:
+          description: Not allowed and/or not supported on this device
+        422:
+          description: Unprocessable Entity
+    delete:
+      tags:
+      - Device Service
+      summary: deleteGroup
+      description: This API deletes a group.
+      parameters:
+      - $ref: '#/components/parameters/pGroupId'
+      responses:
+        200:
+          description: Successfully Deleted
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/groups/{groupId}/devices:
+    post:
+      tags:
+      - Device Service
+      summary: addDeviceToGroup
+      description: This API adds a device to a group.
+      parameters:
+      - $ref: '#/components/parameters/pGroupId'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceId'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupWithDevicesWrapper'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/groups/{groupId}/devices/{deviceId}:
+    delete:
+      tags:
+      - Device Service
+      summary: removeDeviceFromGroup
+      description: This API removes a device from a group.
+      parameters:
+      - $ref: '#/components/parameters/pGroupId'
+      - $ref: '#/components/parameters/pDeviceId'
+      responses:
+        200:
+          description: Successfully Removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupWithDevicesWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/groups/{groupId}/batched_datapoints:
+    post:
+      tags:
+      - Device Service
+      summary: updatePropsValuesInGroup
+      description: This API updates the values of one or more properties of one or more devices in the specified device group.
+      parameters:
+      - $ref: '#/components/parameters/pGroupId'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceIdPropertiesArrayWrapper'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DevicePropValue'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/groups/{groupId}/datapoints:
+    get:
+      tags:
+      - Device Service
+      summary: getPropsValuesInGroup
+      description: This API ...
+      parameters:
+      - $ref: '#/components/parameters/pGroupId'
+      - name: property_names[]
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DevicesPropertiesValuesWrapper'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        422:
+          description: Unprocessable Entity
+    post:
+      tags:
+      - Device Service
+      summary: updatePropValuesInGroup
+      description: This API updates the values of single property in one or more devices in the specified device group.
+      parameters:
+      - $ref: '#/components/parameters/pGroupId'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropNameValueArrayWrapper'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DevicePropValue'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /api/v1/users/contacts:
+    get:
+      tags:
+      - User Service
+      summary: getContacts
+      description: This API returns a list of all contacts associated with the caller. 
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: DSN or Key Not Found
+        422:
+          description: Invalid parameters
+    post:
+      tags:
+      - User Service
+      summary: createContact
+      description: This API creates a new contact.
+      requestBody:
+        description: This is the description.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactRequest'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactWrapper'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://user-dev.aylanetworks.com
+  /api/v1/users/contacts/{contactId}:
+    get:
+      tags:
+      - User Service
+      summary: getContact
+      description: This API returns details about a contact.
+      parameters:
+      - $ref: '#/components/parameters/pContactId'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactWrapper'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    put:
+      tags:
+      - User Service
+      summary: updateContact
+      description: This API updates details for the contact.
+      parameters:
+      - $ref: '#/components/parameters/pContactId'
+      requestBody:
+        description: This is the description.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactWrapper'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        422:
+          description: Unprocessable Entity
+    delete:
+      tags:
+      - User Service
+      summary: deleteContact
+      description: This API deletes a contact.
+      parameters:
+      - $ref: '#/components/parameters/pContactId'
+      responses:
+        204:
+          description: The contact was deleted.
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://user-dev.aylanetworks.com
+  /users:
+    delete:
+      tags:
+      - User Service
+      summary: deleteMyUserAccount
+      description: Deletes the caller's user account.
+      responses:
+        204:
+          description: No Content (Success)
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://user-dev.aylanetworks.com
+  /users/get_user_profile:
+    get:
+      tags:
+      - User Service
+      summary: getMyUserProfile
+      description: Returns information about the caller's user profile.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        401:
+          description: Unauthorized
+    servers:
+    - url: https://user-dev.aylanetworks.com
+  /users/sign_in:
+    post:
+      tags:
+      - User Service
+      summary: login
+      description: Returns an access_token and refresh_token that can be used in subsequent
+        API calls.
+      requestBody:
+        description: This is the description.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSignInRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInResponse'
+        401:
+          description: Unauthorized
+        404:
+          description: The app_id and/or app_secret are invalid.
+    servers:
+    - url: https://user-dev.aylanetworks.com
+components:
+  schemas:
+    CreateContactRequest:
+      properties:
+        display_name:
+          type: string
+          example: Jane Doe
+        firstname:
+          type: string
+          example: Jane
+        lastname:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: jane.doe@acme.com
+        phone_country_code:
+          type: string
+          description: E.164 Country Code. Leading + can be provided, but is removed when stored.
+          example: "1"
+        phone_number:
+          type: string
+          description: E.164 Subscriber Number. Only valid digits with a minimum of 6.
+          example: "4085551212"
+        street_address:
+          type: string
+          example: 123 Main Street
+        zip_code:
+          type: string
+          example: "94122"
+        country:
+          type: string
+          example: United States
+        metadata:
+          type: string
+          example: Additional information
+    ContactWrapper:
+      properties:
+        contact:
+          $ref: '#/components/schemas/Contact'
+    Contact:
+      properties:
+        id:
+          type: integer
+          description: Contact Id.
+        display_name:
+          type: string
+          description: s
+        firstname:
+          type: string
+          description: s
+        lastname:
+          type: string
+          description: s
+        email:
+          type: string
+          description: s
+        phone_country_code:
+          type: string
+          description: s
+        phone_number:
+          type: string
+          description: s
+        street_address:
+          type: string
+          description: s
+        zip_code:
+          type: string
+          description: s
+        country:
+          type: string
+          description: s
+        updated_at:
+          type: string
+          description: e.g. 2018-11-20T15:36:59Z
+          format: date-time
+        metadata:
+          type: string
+          description: Additional information.
+        sms_accept:
+          type: string
+          description: SMS accept.
+        email_accept:
+          type: string
+          description: Email accept.
+        notes:
+          type: string
+          description: Notes
+        sms_notification:
+          type: boolean
+          description: SMS notification enabled.
+        email_notification:
+          type: boolean
+          description: Email notification enabled.
+        push_notification:
+          type: boolean
+          description: Push notification enabled.
+        oem_models:
+          type: array
+          description: Oem model array.
+          items:
+            type: string
+    CreateGroupRequestWrapper:
+      properties:
+        group:
+          $ref: '#/components/schemas/CreateGroupRequest'
+    CreateGroupRequest:
+      properties:
+        name:
+          type: string
+          description: Group Name.
+        devices:
+          $ref: '#/components/schemas/DeviceIdArray'
+    DeviceIdArray:
+      properties:
+        device_id:
+          type: array
+          description: Array of device Ids.
+          items:
+            type: integer
+    GroupNameWrapper:
+      properties:
+        group:
+          $ref: '#/components/schemas/Name'
+    Name:
+      properties:
+        name:
+          type: string
+    CreateAccessRuleRequest:
+      properties:
+        role:
+          type: string
+          description: OEM::Admin, OEM::Staff, OEM::SupportEngineer, OEM::SupportManager
+        oem_model:
+          type: string
+          description: \* or a comma-separated list of oem models
+        property_name:
+          type: string
+          description: \* or a comma-separated list of property names
+        client_type:
+          type: string
+          description: cloud or user_opt_in
+        subscription_type:
+          type: string
+          description: connectivity, datapoint, datapointack, location, or registration
+    OemAccessRuleWrapper:
+      properties:
+        OemAccessRule:
+          $ref: '#/components/schemas/OemAccessRule'
+    OemAccessRule:
+      properties:
+        id:
+          type: integer
+          description: Access rule identifier.
+        role:
+          type: string
+          description: e.g. OEM::Admin.
+        oem:
+          type: string
+          description: oem id.
+        property_name:
+          type: string
+          description: name of device property.
+        oem_model:
+          type: string
+          description: e.g. linuxevb
+        client_type:
+          type: string
+          description: e.g. cloud
+        subscription_type:
+          type: string
+          description: connectivity, datapoint, datapointack, location, registration
+        access_grant:
+          type: boolean
+          description: true means grant access and false means revoke access
+        created_at:
+          type: string
+          description: e.g. 2018-11-20T15:36:59Z
+          format: date-time
+        updated_at:
+          type: string
+          description: e.g. 2018-11-20T15:36:59Z
+          format: date-time
+    CreateSubscriptionRequest:
+      properties:
+        name:
+          type: string
+          description: User-chosen name of subscription.
+        description:
+          type: string
+          description: Description of the DSS subscription.
+        dsn:
+          type: string
+          description: \* or a comma-separated list of dsns. Required if oem_model
+            == \*.
+        oem_model:
+          type: string
+          description: \* or a comma-separated list of oem models
+        property_name:
+          type: string
+          description: \* or a comma-separated list of property names
+        client_type:
+          type: string
+          description: cloud or user_opt_in
+        subscription_type:
+          type: string
+          description: connectivity, datapoint, datapointack, location, or registration
+    SubscriptionWrapper:
+      properties:
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+    Subscription:
+      properties:
+        id:
+          type: integer
+          description: Subscription identifier.
+        oem:
+          type: string
+          description: oem id.
+        dsn:
+          type: string
+          description: Specified in the request.
+        name:
+          type: string
+          description: Specified in the request.
+        description:
+          type: string
+          description: Specified in the request.
+        property_name:
+          type: string
+          description: Specified in the request.
+        connection_status:
+          type: string
+          description: Offline or Online.
+        batch_size:
+          type: string
+          description: e.g. 1.
+        is_suspended:
+          type: boolean
+          description: Whether the subscription is suspended.
+        created_at:
+          type: string
+          description: e.g. 2018-11-20T15:36:59Z
+          format: date-time
+        updated_at:
+          type: string
+          description: e.g. 2018-11-20T15:36:59Z
+          format: date-time
+        date_suspended:
+          type: string
+          description: e.g. 2018-11-20T15:36:59Z
+          format: date-time
+        user_uuid:
+          type: string
+          description: User Id.
+        oem_model:
+          type: string
+          description: Specified in the request.
+        stream_key:
+          type: string
+          description: Use when instantiating a WebSocket.
+        client_type:
+          type: string
+          description: Specified in the request.
+        subscription_type:
+          type: string
+          description: Specified in the request.
+    ResponseDatumWrapper:
+      properties:
+        datum:
+          $ref: '#/components/schemas/ResponseDatum'
+    ResponseDatum:
+      properties:
+        created_at:
+          type: string
+          description: e.g. 2018-11-20T15:36:59Z
+          format: date-time
+        key:
+          type: string
+          description: This is the description.
+        updated_at:
+          type: string
+          description: e.g. 2018-11-20T15:36:59Z
+          format: date-time
+        value:
+          type: string
+          description: This is the description.
+        dsn:
+          type: string
+          description: This is the description.
+    RequestDatumWrapper:
+      properties:
+        datum:
+          $ref: '#/components/schemas/RequestDatum'
+    RequestDatum:
+      properties:
+        key:
+          type: string
+          description: This is the description.
+        value:
+          type: string
+          description: This is the description.
+    GroupWrapper:
+      properties:
+        group:
+          $ref: '#/components/schemas/Group'
+    Group:
+      properties:
+        name:
+          type: string
+          description: Group Name.
+        key:
+          type: integer
+          description: Group Id.
+        device_count:
+          type: integer
+          description: Number of devices in group.
+    GroupWithDevicesWrapper:
+      properties:
+        group:
+          $ref: '#/components/schemas/GroupWithDevices'
+    GroupWithDevices:
+      properties:
+        name:
+          type: string
+          description: Group Name.
+        key:
+          type: integer
+          description: Group Id.
+        device_count:
+          type: integer
+          description: Number of devices in group.
+        devices:
+          type: array
+          description: Device Array.
+          items:
+            $ref: '#/components/schemas/Device'
+    DevicePropValue:
+      properties:
+        deviceId:
+          type: integer
+        propId:
+          type: integer
+        value:
+          type: string
+    DevicesPropertiesValuesWrapper:
+      properties:
+        datapoints:
+          $ref: '#/components/schemas/DevicesPropertiesValues'
+    DevicesPropertiesValues:
+      properties:
+        devices:
+          $ref: '#/components/schemas/DeviceIdPropertyNamesArray'
+    DeviceIdPropertyNamesArray:
+      properties:
+        device:
+          type: array
+          items: 
+            $ref: '#/components/schemas/DeviceIdPropertyNames'
+    DeviceIdPropertyNames:
+      properties:
+        id:
+          type: integer
+        properties:
+          $ref: '#/components/schemas/PropIdNameValueArray'
+    PropIdNameValueArray:
+      properties:
+        property:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PropIdNameValue'
+    PropIdNameValue:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        value:
+          type: string
+    DeviceSearchResults:
+      properties:
+        previous_page:
+          type: integer
+          description: sss
+        previous:
+          type: boolean
+          description: sss
+        next_page:
+          type: integer
+          description: sss
+        next:
+          type: boolean
+          description: sss
+        is_forward:
+          type: boolean
+          description: sss
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceWrapper'
+    DeviceId:
+      properties:
+        device_id:
+          type: integer
+          description: Device Id.
+          example: 0
+    DeviceWrapper:
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+    Device:
+      properties:
+        id:
+          type: integer
+          description: Device identifier.
+        product_name:
+          type: string
+          description: Device user-friendly product name.
+        model:
+          type: string
+          description: Model number of Ayla module.
+        dsn:
+          type: string
+          description: Unique device serial number.
+        oem:
+          type: string
+          description: OEM company manufacturer name.
+        oem_model:
+          type: string
+          description: Model number of OEM host application board.
+        sw_version:
+          type: string
+          description: Software version (associated with the device).
+        user_id:
+          type: string
+          description: Ayla-asigned ID for the user (associated with the device).
+        user_uuid:
+          type: string
+          description: Universally Unique Identifier for the user.
+        template_id:
+          type: integer
+          description: Unique ID assigned to the template.
+        mac:
+          type: string
+          description: IP MAC address of the device.
+        ip:
+          type: string
+          description: IP address of the device.
+        lan_ip:
+          type: string
+          description: LAN IP of the device.
+        ssid:
+          type: string
+          description: SSID of the device.
+        connected_at:
+          type: string
+          description: Device connected at (timestamp) (ISO8601 Format).
+          format: date-time
+        key:
+          type: integer
+          description: Device identifier.
+        product_class:
+          type: string
+          description: Type of product (defined by OEM).
+        has_properties:
+          type: boolean
+          description: Does device have properties?"
+        lan_enabled:
+          type: boolean
+          description: Is device LAN enabled?"
+        enable_ssl:
+          type: boolean
+          description: Is device SSL enabled?"
+        ans_enabled:
+          type: boolean
+          description: Is device ANS enabled?"
+        ans_server:
+          type: string
+          description: ANS notification server URL.
+        log_enabled:
+          type: boolean
+          description: Is device LOG enabled?"
+        registered:
+          type: boolean
+          description: Is device registered?"
+        connection_status:
+          type: string
+          description: Device connection status ['Online', 'Offline', 'Initializing'].
+        registration_type:
+          type: string
+          description: Type of registration ['Same-LAN', 'Button-Push', 'AP Model',
+            'Display', 'Dsn', 'None'].
+        lat:
+          type: number
+          description: Device location, latitude (in degrees).
+          format: decimal (10,6)
+        lng:
+          type: number
+          description: Device location, longitude (in degrees).
+          format: decimal (10,6)
+        locality:
+          type: string
+          description: Device locality.
+        homekit:
+          type: string
+          description: Homekit info.
+        module_updated_at:
+          type: string
+          description: Device module updated at (timestamp) (ISO8601 Format).
+          format: date-time
+        registrable:
+          type: boolean
+          description: Is device registrable?"
+        regtoken:
+          type: string
+          description: Regtoken of the device.
+        setup_token:
+          type: string
+          description: Setup token of the device.
+        provisional:
+          type: boolean
+          description: Is device provisional?"
+        device_type:
+          type: string
+          description: Type of device ['Wifi', 'Gateway', 'Node'].
+        activated_at:
+          type: string
+          description: Device activated at (timestamp) (ISO8601 Format).
+          format: date-time
+        created_at:
+          type: string
+          description: Device created at (timestamp) (ISO8601 Format).
+          format: date-time
+        grant:
+          $ref: '#/components/schemas/Grant'
+        gateway-type:
+          type: string
+          description: Gateway type (only if device is a gateway).
+    DeviceProductNameWrapper:
+      properties:
+        device:
+          $ref: '#/components/schemas/ProductName'
+    ProductName:
+      properties:
+        product_name:
+          type: string
+          description: Product Name.
+    Grant:
+      properties:
+        user-id:
+          type: integer
+        start-date-at:
+          type: string
+          format: Date-time
+        end-date-at:
+          type: string
+          format: Date-time
+        operation:
+          type: string
+    UserProfile:
+      properties:
+        approved:
+          type: boolean
+          description: sss
+        confirmed:
+          type: boolean
+          description: sss
+        city:
+          type: string
+          description: sss
+        company:
+          type: string
+          description: sss
+        confirmed_at:
+          type: string
+          description: sss
+          format: date-time
+        country:
+          type: string
+          description: sss
+        created_at:
+          type: string
+          description: sss
+          format: date-time
+        email:
+          type: string
+          description: sss
+        firstname:
+          type: string
+          description: sss
+        lastname:
+          type: string
+          description: sss
+        phone_country_code:
+          type: string
+          description: sss
+        phone:
+          type: string
+          description: sss
+        state:
+          type: string
+          description: sss
+        street:
+          type: string
+          description: sss
+        updated_at:
+          type: string
+          description: sss
+          format: date-time
+        uuid:
+          type: string
+          description: sss
+        zip:
+          type: string
+          description: sss
+    UserSignInRequest:
+      properties:
+        user:
+          $ref: '#/components/schemas/SignInRequest'
+    SignInRequest:
+      properties:
+        email:
+          type: string
+          description: sss
+        password:
+          type: string
+          description: sss
+        application:
+          $ref: '#/components/schemas/AppIdSecret'
+    AppIdSecret:
+      properties:
+        app_id:
+          type: string
+          description: sss
+        app_secret:
+          type: string
+          description: sss
+    SignInResponse:
+      properties:
+        access_token:
+          type: string
+          description: sss
+        refresh_token:
+          type: string
+          description: sss
+        expires_in:
+          type: integer
+          description: sss
+        role:
+          type: string
+          description: sss
+        role_tags:
+          type: array
+          description: sss
+          items:
+            type: string
+    RegisterDeviceRequestWrapper:
+      properties:
+        device:
+          $ref: '#/components/schemas/RegisterDeviceRequest'
+    RegisterDeviceRequest:
+      properties:
+        dsn:
+          type: string
+          description: Unique device serial number.          
+    DurationRequest:
+      properties:
+        duration:
+          type: integer
+          description: Registration window duration.
+          default: 200
+    DeviceIdPropertiesArrayWrapper:
+      properties:
+        devices:
+          $ref: '#/components/schemas/DeviceIdPropertiesArray'
+    DeviceIdPropertiesArray:
+      properties:
+        device:
+          type: array
+          items: 
+            $ref: '#/components/schemas/DeviceIdProperties'
+    DeviceIdProperties:
+      properties:
+        device_id:
+          type: integer
+        properties:
+          $ref: '#/components/schemas/PropIdValueArray'
+    PropIdValueArray:
+      properties:
+        property:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PropIdValue'
+    PropIdValue:
+      properties:
+        prop_id:
+          type: integer
+        prop_value:
+          type: string
+    PropNameValueArrayWrapper:
+      properties:
+        datapoints:
+          $ref: '#/components/schemas/PropNameValueArray'
+    PropNameValueArray:
+      properties:
+        datapoint:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PropNameValue'
+    PropNameValue:
+      properties:
+        property_name:
+          type: string
+        value:
+          type: string
+  parameters:
+    pAccessRuleId:
+      name: id
+      in: path
+      description: Access Rule Id.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
+    pDeviceId:
+      name: deviceId
+      in: path
+      description: Device Id.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
+    pGroupId:
+      name: groupId
+      in: path
+      description: Group Id.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
+    pContactId:
+      name: contactId
+      in: path
+      description: Contact Id.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
+    pDsn:
+      name: dsn
+      in: path
+      description: Device Serial Number.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    pMetadatumKey:
+      name: key
+      in: path
+      description: Metadatum Key.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    qDsn:
+      name: dsn
+      in: query
+      description: Device Serial Number.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+    qIpAddress:
+      name: ip
+      in: query
+      description: Device IP Address.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        format: ipv4
+    qOemId:
+      name: oem_id
+      in: query
+      description: Oem Id.
+      required: true
+      style: form
+      explode: false
+      schema:
+        type: string
+    qOemModel:
+      name: oem_model
+      in: query
+      description: Oem Model.
+      required: true
+      style: form
+      explode: false
+      schema:
+        type: string
+    qPage:
+      name: page
+      in: query
+      description: One-based index into paginated results.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: integer
+        minimum: 1
+    qPaginated:
+      name: paginated
+      in: query
+      description: True means each response contains a subset of the full results.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: boolean
+    qPerPage:
+      name: per_page
+      in: query
+      description: Number of records to return per page (max 100).
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: integer
+        maximum: 100
+    qPropertyName:
+      name: property_name
+      in: query
+      description: Device Property Name.
+      required: true
+      style: form
+      explode: false
+      schema:
+        type: string
+    qRegType:
+      name: regType
+      in: query
+      description: Device Registration Type.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+        enum: [AP-Mode, Button-Push, Display, Dsn, Node, None, Same-LAN]
+    pSubscriptionId:
+      name: id
+      in: path
+      description: Subscription Id.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
+  securitySchemes:
+    auth_token:
+      type: apiKey
+      in: header
+      name: Authorization

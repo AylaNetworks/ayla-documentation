@@ -668,17 +668,3 @@ table.developer-guides th {
 span.past {color:red;font-weight:bold;}
 span.future {color:green;font-weight:bold;}
 span.different {color:black;font-weight:bold;}
-
-/******************************
-Swagger
-******************************/
-
-.swagger-ui .opblock-tag {
-  color: #ff6680 !important;
-  font-size: 120% !important;
-  font-weight: bold !important;
-}
-
-.swagger-ui .opblock-summary-path {
-  font-size: 14px !important;
-}

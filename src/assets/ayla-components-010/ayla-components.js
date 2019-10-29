@@ -1045,10 +1045,13 @@ On Page Load
 ------------------------------------------------------*/
 
 $(function () {
-  if(getPopulateAtInitCount()) {
+  if(getPopulateAtInitCount() || $('#input-auth-token').length) {
     if(MyAyla.isLoggedIn()) {
       $('#account-link').html('Logout')
       populate()
+      if($('#input-auth-token').length) {
+        $('#input-auth-token').val(getAuthToken());
+      }
     } else {
       $('#account-link').html('Login')
     }
@@ -1071,6 +1074,9 @@ $(function () {
     MyAyla.login(email, password, appId, appSecret, function (data) {
       $('#account-link').html('Logout')
       populate()
+      if($('#input-auth-token').length) {
+        $('#input-auth-token').val(getAuthToken());
+      }
     }, displayError)
   })
 })
@@ -1086,6 +1092,9 @@ $(function () {
     MyAyla.logout(function (data) {
       $('#account-link').html('Login')
       depopulate()
+      if($('#input-auth-token').length) {
+        $('#input-auth-token').val('');
+      }
     }, displayError)
   })
 })
