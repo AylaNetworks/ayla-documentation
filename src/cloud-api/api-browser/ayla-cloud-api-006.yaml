@@ -23,7 +23,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/OemAccessRuleWrapper'
+                  $ref: '#/components/schemas/OemAccessRule'
         401:
           description: Unauthorized
         404:
@@ -45,7 +45,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OemAccessRuleWrapper'
+                $ref: '#/components/schemas/OemAccessRule'
         401:
           description: Unauthorized
         404:
@@ -66,7 +66,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OemAccessRuleWrapper'
+                $ref: '#/components/schemas/OemAccessRule'
         401:
           description: Unauthorized
         404:
@@ -181,7 +181,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DeviceWrapper'
+                  $ref: '#/components/schemas/Device'
         401:
           description: Unauthorized
     post:
@@ -194,10 +194,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterDeviceRequestWrapper'
+              properties:
+                device:
+                  properties:
+                    dsn:
+                      type: string
+                      description: Unique device serial number.          
       responses:
         201:
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
         401:
           description: Unauthorized
         404:
@@ -218,7 +227,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeviceWrapper'
+                $ref: '#/components/schemas/Device'
         401:
           description: Unauthorized
         404:
@@ -235,7 +244,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DeviceProductNameWrapper'
+              $ref: '#/components/schemas/DeviceProductName'
       responses:
         200:
           description: OK
@@ -307,13 +316,56 @@ paths:
       description: sss.
       parameters:
       - $ref: '#/components/parameters/pDeviceId'
+      requestBody:
+        description: This is the description.
+        content:
+          application/json:
+            schema:
+              properties:
+                location:
+                  properties:
+                    lat:
+                      type: number
+                    long:
+                      type: number
       responses:
-        200:
-          description: OK
+        201:
+          description: Device location updated.
+          content:
+            application/json:
+              schema:
+                properties:
+                  location:
+                    properties:
+                      ap_ssid:
+                        type: string
+                      created_at:
+                        type: string
+                      device_id:
+                        type: integer
+                      id:
+                        type: integer
+                      ip:
+                        type: string
+                      lat:
+                        type: number
+                      locality:
+                        type: string
+                      long:
+                        type: number
+                      provider:
+                        type: string
+                      updated_at:
+                        type: string
+                        format: date-time
+                      wifi_scan:
+                        type: string
         401:
           description: Unauthorized
         404:
           description: Not Found
+        422:
+          description: Location information invalid.
     servers:
     - url: https://ads-dev.aylanetworks.com
   /apiv1/devices/{deviceId}/nodes:
@@ -332,7 +384,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DeviceWrapper'
+                  $ref: '#/components/schemas/Device'
         401:
           description: Unauthorized
         404:
@@ -488,7 +540,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeviceWrapper'
+                $ref: '#/components/schemas/Device'
         401:
           description: Authorization Required
         403:
@@ -507,7 +559,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DeviceProductNameWrapper'
+              $ref: '#/components/schemas/DeviceProductName'
       responses:
         200:
           description: OK
@@ -658,7 +710,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DeviceWrapper'
+                  $ref: '#/components/schemas/Device'
         401:
           description: Unauthorized
         404:
@@ -681,7 +733,18 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/GroupWrapper'
+                  properties:
+                    group:
+                      properties:
+                        name:
+                          type: string
+                          description: Group Name.
+                        key:
+                          type: integer
+                          description: Group Id.
+                        device_count:
+                          type: integer
+                          description: Number of devices in group.
         401:
           description: Unauthorized
         404:
@@ -703,7 +766,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GroupWithDevicesWrapper'
+                $ref: '#/components/schemas/Group'
         401:
           description: Unauthorized
         404:
@@ -728,7 +791,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GroupWithDevicesWrapper'
+                $ref: '#/components/schemas/Group'
         401:
           description: Unauthorized
         404:
@@ -745,14 +808,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GroupNameWrapper'
+              properties:
+                group:
+                  properties:
+                    name:
+                      type: string
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GroupWithDevicesWrapper'
+                $ref: '#/components/schemas/Group'
         400:
           description: Error
         401:
@@ -799,7 +866,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GroupWithDevicesWrapper'
+                $ref: '#/components/schemas/Group'
         400:
           description: Bad Request
         401:
@@ -825,7 +892,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GroupWithDevicesWrapper'
+                $ref: '#/components/schemas/Group'
         401:
           description: Unauthorized
         404:
@@ -845,7 +912,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DeviceIdPropertiesArrayWrapper'
+              properties:
+                devices:
+                  properties:
+                    device:
+                      type: array
+                      items: 
+                        properties:
+                          device_id:
+                            type: integer
+                          properties:
+                            properties:
+                              property:
+                                type: array
+                                items: 
+                                  properties:
+                                    prop_id:
+                                      type: integer
+                                    prop_value:
+                                      type: string
       responses:
         200:
           description: OK
@@ -890,7 +975,29 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DevicesPropertiesValuesWrapper'
+                  properties:
+                    datapoints:
+                      properties:
+                        devices:
+                          properties:
+                            device:
+                              type: array
+                              items:
+                                properties:
+                                  id:
+                                    type: integer
+                                  properties:
+                                    properties:
+                                      property:
+                                        type: array
+                                        items: 
+                                          properties:
+                                            id:
+                                              type: integer
+                                            name:
+                                              type: string
+                                            value:
+                                              type: string
         400:
           description: Bad Request
         401:
@@ -911,7 +1018,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PropNameValueArrayWrapper'
+              properties:
+                datapoints:
+                  properties:
+                    datapoint:
+                      type: array
+                      items: 
+                        properties:
+                          property_name:
+                            type: string
+                          value:
+                            type: string
       responses:
         200:
           description: OK
@@ -1217,14 +1334,6 @@ components:
           description: Array of device Ids.
           items:
             type: integer
-    GroupNameWrapper:
-      properties:
-        group:
-          $ref: '#/components/schemas/Name'
-    Name:
-      properties:
-        name:
-          type: string
     CreateAccessRuleRequest:
       properties:
         role:
@@ -1242,44 +1351,42 @@ components:
         subscription_type:
           type: string
           description: connectivity, datapoint, datapointack, location, or registration
-    OemAccessRuleWrapper:
-      properties:
-        OemAccessRule:
-          $ref: '#/components/schemas/OemAccessRule'
     OemAccessRule:
       properties:
-        id:
-          type: integer
-          description: Access rule identifier.
-        role:
-          type: string
-          description: e.g. OEM::Admin.
-        oem:
-          type: string
-          description: oem id.
-        property_name:
-          type: string
-          description: name of device property.
-        oem_model:
-          type: string
-          description: e.g. linuxevb
-        client_type:
-          type: string
-          description: e.g. cloud
-        subscription_type:
-          type: string
-          description: connectivity, datapoint, datapointack, location, registration
-        access_grant:
-          type: boolean
-          description: true means grant access and false means revoke access
-        created_at:
-          type: string
-          description: e.g. 2018-11-20T15:36:59Z
-          format: date-time
-        updated_at:
-          type: string
-          description: e.g. 2018-11-20T15:36:59Z
-          format: date-time
+        OemAccessRule:
+          properties:
+            id:
+              type: integer
+              description: Access rule identifier.
+            role:
+              type: string
+              description: e.g. OEM::Admin.
+            oem:
+              type: string
+              description: oem id.
+            property_name:
+              type: string
+              description: name of device property.
+            oem_model:
+              type: string
+              description: e.g. linuxevb
+            client_type:
+              type: string
+              description: e.g. cloud
+            subscription_type:
+              type: string
+              description: connectivity, datapoint, datapointack, location, registration
+            access_grant:
+              type: boolean
+              description: true means grant access and false means revoke access
+            created_at:
+              type: string
+              description: e.g. 2018-11-20T15:36:59Z
+              format: date-time
+            updated_at:
+              type: string
+              description: e.g. 2018-11-20T15:36:59Z
+              format: date-time
     CreateSubscriptionRequest:
       properties:
         name:
@@ -1399,81 +1506,48 @@ components:
         value:
           type: string
           description: This is the description.
-    GroupWrapper:
-      properties:
-        group:
-          $ref: '#/components/schemas/Group'
     Group:
       properties:
-        name:
-          type: string
-          description: Group Name.
-        key:
-          type: integer
-          description: Group Id.
-        device_count:
-          type: integer
-          description: Number of devices in group.
-    GroupWithDevicesWrapper:
-      properties:
         group:
-          $ref: '#/components/schemas/GroupWithDevices'
-    GroupWithDevices:
-      properties:
-        name:
-          type: string
-          description: Group Name.
-        key:
-          type: integer
-          description: Group Id.
-        device_count:
-          type: integer
-          description: Number of devices in group.
-        devices:
-          type: array
-          description: Device Array.
-          items:
-            $ref: '#/components/schemas/Device'
+          properties:
+            name:
+              type: string
+              description: Group Name.
+            key:
+              type: integer
+              description: Group Id.
+            device_count:
+              type: integer
+              description: Number of devices in group.
+            devices:
+              type: array
+              description: Device Array.
+              items:
+                properties:
+                  product_name:
+                    type: string
+                    description: Device user-friendly product name.
+                  dsn:
+                    type: string
+                    description: Unique device serial number.
+                  oem_model:
+                    type: string
+                    description: Model number of OEM host application board.
+                  key:
+                    type: integer
+                    description: Device identifier.
+                  product_class:
+                    type: string
+                    description: Type of product (defined by OEM).
+                  connection_status:
+                    type: string
+                    description: Device connection status ['Online', 'Offline', 'Initializing'].
     DevicePropValue:
       properties:
         deviceId:
           type: integer
         propId:
           type: integer
-        value:
-          type: string
-    DevicesPropertiesValuesWrapper:
-      properties:
-        datapoints:
-          $ref: '#/components/schemas/DevicesPropertiesValues'
-    DevicesPropertiesValues:
-      properties:
-        devices:
-          $ref: '#/components/schemas/DeviceIdPropertyNamesArray'
-    DeviceIdPropertyNamesArray:
-      properties:
-        device:
-          type: array
-          items: 
-            $ref: '#/components/schemas/DeviceIdPropertyNames'
-    DeviceIdPropertyNames:
-      properties:
-        id:
-          type: integer
-        properties:
-          $ref: '#/components/schemas/PropIdNameValueArray'
-    PropIdNameValueArray:
-      properties:
-        property:
-          type: array
-          items: 
-            $ref: '#/components/schemas/PropIdNameValue'
-    PropIdNameValue:
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
         value:
           type: string
     DeviceSearchResults:
@@ -1496,154 +1570,150 @@ components:
         devices:
           type: array
           items:
-            $ref: '#/components/schemas/DeviceWrapper'
+            $ref: '#/components/schemas/Device'
     DeviceId:
       properties:
         device_id:
           type: integer
           description: Device Id.
           example: 0
-    DeviceWrapper:
-      properties:
-        device:
-          $ref: '#/components/schemas/Device'
     Device:
       properties:
-        id:
-          type: integer
-          description: Device identifier.
-        product_name:
-          type: string
-          description: Device user-friendly product name.
-        model:
-          type: string
-          description: Model number of Ayla module.
-        dsn:
-          type: string
-          description: Unique device serial number.
-        oem:
-          type: string
-          description: OEM company manufacturer name.
-        oem_model:
-          type: string
-          description: Model number of OEM host application board.
-        sw_version:
-          type: string
-          description: Software version (associated with the device).
-        user_id:
-          type: string
-          description: Ayla-asigned ID for the user (associated with the device).
-        user_uuid:
-          type: string
-          description: Universally Unique Identifier for the user.
-        template_id:
-          type: integer
-          description: Unique ID assigned to the template.
-        mac:
-          type: string
-          description: IP MAC address of the device.
-        ip:
-          type: string
-          description: IP address of the device.
-        lan_ip:
-          type: string
-          description: LAN IP of the device.
-        ssid:
-          type: string
-          description: SSID of the device.
-        connected_at:
-          type: string
-          description: Device connected at (timestamp) (ISO8601 Format).
-          format: date-time
-        key:
-          type: integer
-          description: Device identifier.
-        product_class:
-          type: string
-          description: Type of product (defined by OEM).
-        has_properties:
-          type: boolean
-          description: Does device have properties?"
-        lan_enabled:
-          type: boolean
-          description: Is device LAN enabled?"
-        enable_ssl:
-          type: boolean
-          description: Is device SSL enabled?"
-        ans_enabled:
-          type: boolean
-          description: Is device ANS enabled?"
-        ans_server:
-          type: string
-          description: ANS notification server URL.
-        log_enabled:
-          type: boolean
-          description: Is device LOG enabled?"
-        registered:
-          type: boolean
-          description: Is device registered?"
-        connection_status:
-          type: string
-          description: Device connection status ['Online', 'Offline', 'Initializing'].
-        registration_type:
-          type: string
-          description: Type of registration ['Same-LAN', 'Button-Push', 'AP Model',
-            'Display', 'Dsn', 'None'].
-        lat:
-          type: number
-          description: Device location, latitude (in degrees).
-          format: decimal (10,6)
-        lng:
-          type: number
-          description: Device location, longitude (in degrees).
-          format: decimal (10,6)
-        locality:
-          type: string
-          description: Device locality.
-        homekit:
-          type: string
-          description: Homekit info.
-        module_updated_at:
-          type: string
-          description: Device module updated at (timestamp) (ISO8601 Format).
-          format: date-time
-        registrable:
-          type: boolean
-          description: Is device registrable?"
-        regtoken:
-          type: string
-          description: Regtoken of the device.
-        setup_token:
-          type: string
-          description: Setup token of the device.
-        provisional:
-          type: boolean
-          description: Is device provisional?"
-        device_type:
-          type: string
-          description: Type of device ['Wifi', 'Gateway', 'Node'].
-        activated_at:
-          type: string
-          description: Device activated at (timestamp) (ISO8601 Format).
-          format: date-time
-        created_at:
-          type: string
-          description: Device created at (timestamp) (ISO8601 Format).
-          format: date-time
-        grant:
-          $ref: '#/components/schemas/Grant'
-        gateway-type:
-          type: string
-          description: Gateway type (only if device is a gateway).
-    DeviceProductNameWrapper:
+        device:
+          properties:
+            id:
+              type: integer
+              description: Device identifier.
+            product_name:
+              type: string
+              description: Device user-friendly product name.
+            model:
+              type: string
+              description: Model number of Ayla module.
+            dsn:
+              type: string
+              description: Unique device serial number.
+            oem:
+              type: string
+              description: OEM company manufacturer name.
+            oem_model:
+              type: string
+              description: Model number of OEM host application board.
+            sw_version:
+              type: string
+              description: Software version (associated with the device).
+            user_id:
+              type: string
+              description: Ayla-asigned ID for the user (associated with the device).
+            user_uuid:
+              type: string
+              description: Universally Unique Identifier for the user.
+            template_id:
+              type: integer
+              description: Unique ID assigned to the template.
+            mac:
+              type: string
+              description: IP MAC address of the device.
+            ip:
+              type: string
+              description: IP address of the device.
+            lan_ip:
+              type: string
+              description: LAN IP of the device.
+            ssid:
+              type: string
+              description: SSID of the device.
+            connected_at:
+              type: string
+              description: Device connected at (timestamp) (ISO8601 Format).
+              format: date-time
+            key:
+              type: integer
+              description: Device identifier.
+            product_class:
+              type: string
+              description: Type of product (defined by OEM).
+            has_properties:
+              type: boolean
+              description: Does device have properties?"
+            lan_enabled:
+              type: boolean
+              description: Is device LAN enabled?"
+            enable_ssl:
+              type: boolean
+              description: Is device SSL enabled?"
+            ans_enabled:
+              type: boolean
+              description: Is device ANS enabled?"
+            ans_server:
+              type: string
+              description: ANS notification server URL.
+            log_enabled:
+              type: boolean
+              description: Is device LOG enabled?"
+            registered:
+              type: boolean
+              description: Is device registered?"
+            connection_status:
+              type: string
+              description: Device connection status ['Online', 'Offline', 'Initializing'].
+            registration_type:
+              type: string
+              description: Type of registration ['Same-LAN', 'Button-Push', 'AP Model',
+                'Display', 'Dsn', 'None'].
+            lat:
+              type: number
+              description: Device location, latitude (in degrees).
+              format: decimal (10,6)
+            lng:
+              type: number
+              description: Device location, longitude (in degrees).
+              format: decimal (10,6)
+            locality:
+              type: string
+              description: Device locality.
+            homekit:
+              type: string
+              description: Homekit info.
+            module_updated_at:
+              type: string
+              description: Device module updated at (timestamp) (ISO8601 Format).
+              format: date-time
+            registrable:
+              type: boolean
+              description: Is device registrable?"
+            regtoken:
+              type: string
+              description: Regtoken of the device.
+            setup_token:
+              type: string
+              description: Setup token of the device.
+            provisional:
+              type: boolean
+              description: Is device provisional?"
+            device_type:
+              type: string
+              description: Type of device ['Wifi', 'Gateway', 'Node'].
+            activated_at:
+              type: string
+              description: Device activated at (timestamp) (ISO8601 Format).
+              format: date-time
+            created_at:
+              type: string
+              description: Device created at (timestamp) (ISO8601 Format).
+              format: date-time
+            grant:
+              $ref: '#/components/schemas/Grant'
+            gateway-type:
+              type: string
+              description: Gateway type (only if device is a gateway).
+    DeviceProductName:
       properties:
         device:
-          $ref: '#/components/schemas/ProductName'
-    ProductName:
-      properties:
-        product_name:
-          type: string
-          description: Product Name.
+          properties:
+            product_name:
+              type: string
+              description: Product Name.
     Grant:
       properties:
         user-id:
@@ -1753,65 +1823,12 @@ components:
           description: sss
           items:
             type: string
-    RegisterDeviceRequestWrapper:
-      properties:
-        device:
-          $ref: '#/components/schemas/RegisterDeviceRequest'
-    RegisterDeviceRequest:
-      properties:
-        dsn:
-          type: string
-          description: Unique device serial number.          
     DurationRequest:
       properties:
         duration:
           type: integer
           description: Registration window duration.
           default: 200
-    DeviceIdPropertiesArrayWrapper:
-      properties:
-        devices:
-          $ref: '#/components/schemas/DeviceIdPropertiesArray'
-    DeviceIdPropertiesArray:
-      properties:
-        device:
-          type: array
-          items: 
-            $ref: '#/components/schemas/DeviceIdProperties'
-    DeviceIdProperties:
-      properties:
-        device_id:
-          type: integer
-        properties:
-          $ref: '#/components/schemas/PropIdValueArray'
-    PropIdValueArray:
-      properties:
-        property:
-          type: array
-          items: 
-            $ref: '#/components/schemas/PropIdValue'
-    PropIdValue:
-      properties:
-        prop_id:
-          type: integer
-        prop_value:
-          type: string
-    PropNameValueArrayWrapper:
-      properties:
-        datapoints:
-          $ref: '#/components/schemas/PropNameValueArray'
-    PropNameValueArray:
-      properties:
-        datapoint:
-          type: array
-          items: 
-            $ref: '#/components/schemas/PropNameValue'
-    PropNameValue:
-      properties:
-        property_name:
-          type: string
-        value:
-          type: string
   parameters:
     pAccessRuleId:
       name: id
@@ -1825,7 +1842,6 @@ components:
     pDeviceId:
       name: deviceId
       in: path
-      description: Device Id.
       required: true
       style: simple
       explode: false
