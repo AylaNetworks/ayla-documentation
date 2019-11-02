@@ -1,7 +1,7 @@
 ---
-title: API Browser
+title: API Browser v0.01
 layout: api.html
-apiFile: ayla-cloud-api-006.yaml
+apiFile: ayla-cloud-api-007.yaml
 classesFromPage: has-pagebar
 ---
 
@@ -11,40 +11,53 @@ classesFromPage: has-pagebar
   </ul>
 </aside>
 
-## Authorization
-
-Click Login to populate the box with an auth_token required by most APIs:
-
-<div class="row">
+<div class="mb-1" style="color:steelblue;cursor:pointer;" data-toggle="collapse" href="#collapseExample">Click for directions.</div>
+<div id="collapseExample" class="collapse mb-4">
+<div class="card card-body" style="background:#f2f2f2;border-color:#e6e6e6;">
+<div>This API Browser enables you to explore each Ayla Cloud API individually.</div>
+<h3 class="mt-3">Authentication</h3>
+<p>Click Login in the top menu to populate the following textbox with an auth_token required by most APIs:</p>
+<div class="row mb-3">
 <div class="col-auto">
-<input id="input-auth-token" class="form-control form-control-sm" type="text" style="width:300px;" disabled>
+<input id="input-auth-token" class="form-control form-control-sm" type="text" style="width:300px;" placeholder="auth_token" disabled>
 </div>
 </div>
-
-## Current Limitations
-
-1. Supported regions: ```US Dev```.
-1. Supported media types: ```application/json```.
-
-## Device Tool
+<div>You need not specify an appId nor appSecret when logging into the Ayla Public Account.</div>
+<h3 class="mt-3">Current Limitations</h3>
+<ol class="mb-0">
+<li>Supported regions: ```US Dev```. Support for ```US Field``` will be added soon.</li>
+<li>Supported media types: ```application/json```.</li>
+<li>Feedback is welcome. Contact matt&#64;aylanetworks.com.</li>
+</ol>
+<h3 class="mt-2">Device Tool</h3>
+<div>The Device Tool below is provided as a convenience. When logged in, the Device Tool displays information about all devices registered to you. True, you can obtain this information by calling individual APIs, and we recommend that you do so. But, once you are familiar with basic device, property, and datapoint APIs, you may find the Device Tool helpful for obtaining Device IDs, Property IDs, and DSNs, or for modifying property values, as you explore other APIs. If you run an API to, for example, register or unregister a device, rename a device, change device location information, or change a property value, update the Device Tool by clicking one of the refresh options.</div>
+</div>
+</div>
 
 <div id="dt-group" class="cmpt" style="margin-bottom:1rem;">
+  <h3>Device Tool
+    <span id="dt-group-refresh-all" class="link-btn ml-3" style="font-weight:normal;">Refresh All</span>
+  </h3>
   <div class="row">
     <div class="col-sm-4">
       <div class="link-btns">
-        <span class="link-btn" data-toggle="collapse" data-target="#dt-device-details">Device Details</span>
+        <span style="font-size:85%;font-weight:bold;margin:0 12px 0 3px;">Device</span>
+        <span class="link-btn" data-toggle="collapse" data-target="#dt-device-details">Details</span>
+        <span id="dt-group-refresh-device" class="link-btn">Refresh</span>
       </div>
       <select id="dt-device-selector" class="form-control form-control-sm ayla-data populate-at-init"></select>
     </div>
     <div class="col-sm-4 mt-3 mt-sm-0">
       <div class="link-btns">
-        <span class="link-btn" data-toggle="collapse" data-target="#dt-property-details">Property Details</span>
+        <span style="font-size:85%;font-weight:bold;margin:0 12px 0 3px;">Property</span>
+        <span class="link-btn" data-toggle="collapse" data-target="#dt-property-details">Details</span>
+        <span id="dt-group-refresh-property" class="link-btn">Refresh</span>
       </div>
       <select id="dt-property-selector" class="form-control form-control-sm ayla-data"></select>
     </div>
     <div class="col-sm-4 mt-3 mt-sm-0">
       <div class="link-btns">
-        <span class="link-btn">Value</span>
+        <span style="font-size:85%;font-weight:bold;margin:0 12px 0 3px;">Value</span>
       </div>
       <div class="row no-gutters">
         <div class="col">
@@ -102,7 +115,5 @@ Click Login to populate the box with an auth_token required by most APIs:
 </table>
 </div>
 -->
-
-## Service APIs
 
 <div id="swagger-ui"></div>

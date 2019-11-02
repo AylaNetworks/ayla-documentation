@@ -187,7 +187,7 @@ populateDevices
 
 function populateDevices() {
   let filter = {}
-  filter.per_page = 10
+  filter.per_page = 50
   filter.page = 1
   filter.order_by = 'product_name'
   filter.order = 'asc'
@@ -216,6 +216,7 @@ populateDevice
 
 function populateDevice(deviceId) {
   MyAyla.getDevice(deviceId, function (data) {
+    $('#dt-device-selector option:selected').text(data.device.product_name)
     $('#dt-device-details').text(JSON.stringify(data.device, null, 2))
   }, displayError)
   populateProperties(deviceId)
@@ -297,6 +298,7 @@ populateProperty
 
 function populateProperty(propertyId) {
   MyAyla.getProperty(propertyId, function (data) {
+    $('#dt-property-selector option:selected').text(data.property.name)
     $('#dt-property-details').text(JSON.stringify(data.property, null, 2))
     displayPropertyValue(data.property.base_type, data.property.value, data.property.direction)
   }, displayError)
@@ -1071,6 +1073,10 @@ $(function () {
     var password = $('#password').val()
     var appId = $('#appId').val()
     var appSecret = $('#appSecret').val()
+
+    if(!appId) {appId = 'alya-api-browser-id'}
+    if(!appSecret) {appSecret = 'alya-api-browser-2tFsUL41FELUlyfrSMEZ4kNKwJg'}
+
     MyAyla.login(email, password, appId, appSecret, function (data) {
       $('#account-link').html('Logout')
       populate()
@@ -1161,3 +1167,29 @@ displayError and displayMessage
 
 function displayError(status) {displayMessage(status.code + ' ' + status.text)}
 function displayMessage(msg) {console.log(msg)}
+
+/*------------------------------------------------------
+Added later.
+------------------------------------------------------*/
+
+$(function() {
+  $('#dt-group-refresh-all').click(function(event) {
+    populateDevices()
+  })
+})
+
+$(function() {
+  $('#dt-group-refresh-device').click(function(event) {
+    let selected = $('#dt-device-selector option:selected')
+    let deviceId = $(selected).val()
+    populateDevice(deviceId)
+  })
+})
+
+$(function() {
+  $('#dt-group-refresh-property').click(function(event) {
+    let selected = $('#dt-property-selector option:selected')
+    let propertyId = $(selected).val()
+    populateProperty(propertyId)
+  })
+})
