@@ -1,4 +1,5 @@
 div.swagger-ui .wrapper {padding: 0 !important;}
+div.swagger-ui .wrapper section.col-12 {padding-right: 0;padding-left: 0;}
 
 div.swagger-ui .opblock {
   box-shadow: none !important;
@@ -10,12 +11,14 @@ div.swagger-ui .opblock-body {
 }
 
 div.swagger-ui .opblock-tag {
-  color: #ff6680 !important;
+  color: #262626 !important;
   font-size: 100% !important;
   font-weight: bold !important;
   margin-bottom: 12px !important;
   padding: 6px 14px 6px 0px !important;
 }
+
+.swagger-ui .opblock-tag small {padding-left: 5px !important;}
 
 div.swagger-ui .opblock-summary {padding: 0px !important;}
 div.swagger-ui .opblock-summary-path {font-size: 12px !important;}
@@ -195,12 +198,14 @@ div.swagger-ui .btn.cancel {background: #ffc107; border-color: #ffc107; color: #
 div.swagger-ui .operation-servers .opblock-section-header {display:none;}
 
 div.swagger-ui .opblock-description-wrapper textarea {
-  min-height: 120px !important;
+  min-height: 200px !important;
+  background: #1a1a1a !important;
+  color: white !important;
+  border-style: none !important;
+  padding: 6px !important;
+  line-height: 1rem !important;
+  font-weight: normal !important;
+  font-size: 80% !important;
+  margin-bottom: 1rem !important;
+  font-family: monospace !important;
 }
-
-div.swagger-ui .wrapper section.col-12 {
-  padding-right: 0;
-  padding-left: 0;
-}
-
-/* div.swagger-ui section.models {display: none;} */

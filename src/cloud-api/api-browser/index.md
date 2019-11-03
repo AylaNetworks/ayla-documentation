@@ -1,5 +1,5 @@
 ---
-title: API Browser v0.01
+title: API Browser v0.04
 layout: api.html
 apiFile: ayla-cloud-api-007.yaml
 classesFromPage: has-pagebar
@@ -30,34 +30,34 @@ classesFromPage: has-pagebar
 <li>Feedback is welcome. Contact matt&#64;aylanetworks.com.</li>
 </ol>
 <h3 class="mt-2">Device Tool</h3>
-<div>The Device Tool below is provided as a convenience. When logged in, the Device Tool displays information about all devices registered to you. True, you can obtain this information by calling individual APIs, and we recommend that you do so. But, once you are familiar with basic device, property, and datapoint APIs, you may find the Device Tool helpful for obtaining Device IDs, Property IDs, and DSNs, or for modifying property values, as you explore other APIs. If you run an API to, for example, register or unregister a device, rename a device, change device location information, or change a property value, update the Device Tool by clicking one of the refresh options.</div>
+<div>The Device Tool below is provided as a convenience. When logged in, the Device Tool displays information about all devices registered to you. True, you can obtain this information by calling individual APIs, and we recommend that you do so. But, once you are familiar with basic device, property, and datapoint APIs, you may find the Device Tool helpful. Click <img style="display:inline;margin:0 0 2px 0;" src="/assets/images/info.png" width="16" height="16"> to obtain Device IDs, Property IDs, DSNs, etc. Click <img style="display:inline;margin:0 0 2px 0;" src="/assets/images/refresh.png" width="19" height="15"> to reload the current device, current property, or the entire tool. And, change "To Device" property values.</div>
 </div>
 </div>
 
 <div id="dt-group" class="cmpt" style="margin-bottom:1rem;">
-  <h3>Device Tool
-    <span id="dt-group-refresh-all" class="link-btn ml-3" style="font-weight:normal;">Refresh All</span>
+  <h3 style="margin-left:2px;">Device Tool
+    <span id="dt-group-refresh-all" class="link-btn ml-3" style="font-weight:normal;float:right;"><img style="display:inline;margin:0 0 2px 0;" src="/assets/images/refresh.png" width="19" height="15"></span>
   </h3>
-  <div class="row">
+  <div class="row" style="clear:right;">
     <div class="col-sm-4">
       <div class="link-btns">
-        <span style="font-size:85%;font-weight:bold;margin:0 12px 0 3px;">Device</span>
-        <span class="link-btn" data-toggle="collapse" data-target="#dt-device-details">Details</span>
-        <span id="dt-group-refresh-device" class="link-btn">Refresh</span>
+        <span style="font-size:95%;font-weight:bold;margin:0 12px 0 3px;color:#4d4d4d;">Device</span>
+        <span class="link-btn" data-toggle="collapse" data-target="#dt-device-details"><img style="display:inline;margin:0 0 2px 0;" src="/assets/images/info.png" width="16" height="16"></span>
+        <span id="dt-group-refresh-device" class="link-btn"><img style="display:inline;margin:0 0 2px 0;" src="/assets/images/refresh.png" width="19" height="15"></span>
       </div>
       <select id="dt-device-selector" class="form-control form-control-sm ayla-data populate-at-init"></select>
     </div>
     <div class="col-sm-4 mt-3 mt-sm-0">
       <div class="link-btns">
-        <span style="font-size:85%;font-weight:bold;margin:0 12px 0 3px;">Property</span>
-        <span class="link-btn" data-toggle="collapse" data-target="#dt-property-details">Details</span>
-        <span id="dt-group-refresh-property" class="link-btn">Refresh</span>
+        <span style="font-size:95%;font-weight:bold;margin:0 12px 0 3px;color:#4d4d4d;">Property</span>
+        <span class="link-btn" data-toggle="collapse" data-target="#dt-property-details"><img style="display:inline;margin:0 0 2px 0;" src="/assets/images/info.png" width="16" height="16"></span>
+        <span id="dt-group-refresh-property" class="link-btn"><img style="display:inline;margin:0 0 2px 0;" src="/assets/images/refresh.png" width="19" height="15"></span>
       </div>
       <select id="dt-property-selector" class="form-control form-control-sm ayla-data"></select>
     </div>
     <div class="col-sm-4 mt-3 mt-sm-0">
       <div class="link-btns">
-        <span style="font-size:85%;font-weight:bold;margin:0 12px 0 3px;">Value</span>
+        <span style="font-size:95%;font-weight:bold;margin:0 12px 0 3px;color:#4d4d4d;">Value</span>
       </div>
       <div class="row no-gutters">
         <div class="col">
