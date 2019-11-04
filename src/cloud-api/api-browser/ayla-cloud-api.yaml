@@ -3,9 +3,9 @@ info:
   title: Ayla Cloud API
   description: The Ayla Cloud provides a REST Application Programming Interface (API)
     for ten services across five regions.
-  version: "0"
+  version: "1.0"
 servers:
-- url: /
+- url: https://acme.com
 security:
 - auth_token: []
 tags:
