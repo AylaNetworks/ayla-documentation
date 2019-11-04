@@ -2247,7 +2247,7 @@ paths:
       summary: updateUserAccount
       description: This API changes the password or updates other account information.
       requestBody:
-        description: If changing password, send only the first two fields. 
+        description: If changing password, send only the first two fields. Otherwise, delete these two fields.
         content:
           application/json:
             schema:
@@ -2291,16 +2291,31 @@ paths:
                 properties:
                   errors:
                     properties:
-                      password: 
-                        example: "[is too short (min: 6 characters)]"
-                      current_password: 
-                        example: "[is invalid]"
-                      email: 
-                        example: "[can't be blank | is invalid | has already been taken]"
-                      firstname: 
-                        example: "[can't be blank]"
-                      lastname: 
-                        example: "[can't be blank]"
+                      password:
+                        type: array
+                        items:
+                          type: string
+                          example: "is too short (min: 6 characters)"
+                      current_password:
+                        type: array
+                        items:
+                          type: string
+                          example: "is invalid"
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: "can't be blank | is invalid | has already been taken"
+                      firstname:
+                        type: array
+                        items:
+                          type: string
+                          example: "can't be blank"
+                      lastname:
+                        type: array
+                        items:
+                          type: string
+                          example: "can't be blank"
     delete:
       tags:
       - A-Z
@@ -2347,24 +2362,58 @@ paths:
                       type: string
       responses:
         201:
-          description: Created
+          description: Confirmation sent
         404:
           description: Failure
         422:
           description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: "can't be blank | not found | was already confirmed, please try signing in"
+                      origin_oem_id:
+                        type: array
+                        items:
+                          type: string
+                          example: "can't be blank | not found"
     put:
       tags:
       - A-Z
       - User Accounts
       summary: confirmUserAccount
-      description: This API ...
+      description: This API confirms account based on the confirmation token supplied.
+      parameters:
+      - name: confirmation_token
+        in: query
+        description: Confirmation token received by user in confirmation email.
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: string
       responses:
-        204:
+        200:
           description: OK
-        401:
-          description: Unauthorized
         422:
           description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    properties:
+                      confirmation_token:
+                        type: array
+                        items:
+                          type: string
+                          example: is invalid
     servers:
     - url: https://user-dev.aylanetworks.com
   /users/get_user_profile:
@@ -2391,12 +2440,55 @@ paths:
       - A-Z
       - User Accounts
       summary: sendHowToReset
-      description: This API ...
+      description: This API resends password reset instructions.
+      requestBody:
+        description: This is a description.
+        content:
+          application/json:
+            schema:
+              properties:
+                users:
+                  properties:
+                    email:
+                      type: string
+                    application:
+                      properties:
+                        app_id:
+                          type: string
+                          description: Application ID.
+                          example: alya-api-browser-id
+                        app_secret:
+                          type: string
+                          description: Application Secret.
+                          example: alya-api-browser-2tFsUL41FELUlyfrSMEZ4kNKwJg
+                    email_template_id:
+                      type: string
       responses:
         201:
           description: Created
         422:
           description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: "can't be blank | not found"
+                      origin_oem_id:
+                        type: array
+                        items:
+                          type: string
+                          example: "can't be blank | not found"
+                      base:
+                        type: array
+                        items:
+                          type: string
+                          example: "You will receive an email if this account is registered. | You have to confirm your account before continuing."
     put:
       tags:
       - A-Z
