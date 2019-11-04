@@ -2219,9 +2219,19 @@ paths:
       - User Accounts
       summary: createUserAccount
       description: This API creates a user account in the Ayla Public Account.
+      requestBody:
+        description: This is the description.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAccountRequest'
       responses:
         201:
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserAccountResponse'
         400:
           description: Bad Request
         401:
@@ -2234,8 +2244,40 @@ paths:
       tags:
       - A-Z
       - User Accounts
-      summary: changePassword
-      description: This API changes the password for the caller.
+      summary: updateUserAccount
+      description: This API changes the password or updates other account information.
+      requestBody:
+        description: If changing password, send only the first two fields. 
+        content:
+          application/json:
+            schema:
+              properties:
+                users:
+                  properties:
+                    current_password:
+                      type: string
+                      format: password
+                    password:
+                      type: string
+                      format: password
+                    email:
+                      type: string
+                    firstname:
+                      type: string
+                    lastname:
+                      type: string
+                    country:
+                      type: string
+                    city:
+                      type: string
+                    street:
+                      type: string
+                    zip:
+                      type: string
+                    phone_country_code:
+                      type: string
+                    phone:
+                      type: string
       responses:
         204:
           description: OK
@@ -2243,6 +2285,22 @@ paths:
           description: Unauthorized
         422:
           description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    properties:
+                      password: 
+                        example: "[is too short (min: 6 characters)]"
+                      current_password: 
+                        example: "[is invalid]"
+                      email: 
+                        example: "[can't be blank | is invalid | has already been taken]"
+                      firstname: 
+                        example: "[can't be blank]"
+                      lastname: 
+                        example: "[can't be blank]"
     delete:
       tags:
       - A-Z
@@ -2264,7 +2322,29 @@ paths:
       - A-Z
       - User Accounts
       summary: sendHowToConfirm
-      description: This API ...
+      description: This API sends confirmation instructions.
+      requestBody:
+        description: This is a description.
+        content:
+          application/json:
+            schema:
+              properties:
+                users:
+                  properties:
+                    email:
+                      type: string
+                    application:
+                      properties:
+                        app_id:
+                          type: string
+                          description: Application ID.
+                          example: alya-api-browser-id
+                        app_secret:
+                          type: string
+                          description: Application Secret.
+                          example: alya-api-browser-2tFsUL41FELUlyfrSMEZ4kNKwJg
+                    email_template_id:
+                      type: string
       responses:
         201:
           description: Created
@@ -2975,6 +3055,7 @@ components:
               description: Duration of scheduled event in seconds.
             end_date:
               type: string
+              format: date
               description: Date when schedule ends using yyyy-mm-dd.
               example: "2019-10-05"
             end_time_each_day:
@@ -2999,6 +3080,7 @@ components:
               example: Schedule A
             start_date:
               type: string
+              format: date
               description: Date when schedule starts using yyyy-mm-dd.
               example: "2019-10-01"
             start_time_each_day:
@@ -3085,6 +3167,7 @@ components:
               description: Duration of scheduled event in seconds.
             end_date:
               type: string
+              format: date
               description: Date when schedule ends using yyyy-mm-dd.
             end_time_each_day: 
               type: string
@@ -3105,6 +3188,7 @@ components:
               description: Name of schedule.
             start_date:
               type: string
+              format: date
               description: Date when schedule starts using yyyy-mm-dd.
             start_time_each_day:
               type: string
@@ -3328,6 +3412,106 @@ components:
             subscription_type:
               type: string
               description: Specified in the request.
+    UserAccountRequest:
+      properties:
+        user:
+          properties:
+            email:
+              type: string
+              description: Email of the the user.
+            password:
+              type: string
+              description: At least 1 lower case letter, 1 upper case letter, 1 digit.
+            firstname:
+              type: string
+              description: First name of account user.
+            lastname:
+              type: string
+              description: Last name of account user.
+            application:
+              properties:
+                app_id:
+                  type: string
+                  description: Application ID.
+                  example: alya-api-browser-id
+                app_secret:
+                  type: string
+                  description: Application Secret.
+                  example: alya-api-browser-2tFsUL41FELUlyfrSMEZ4kNKwJg
+            country:
+              type: string
+              description: Country of the user.
+            city:
+              type: string
+              description: City of the user.
+            street:
+              type: string
+              description: Street address of the user.
+            zip:
+              type: string
+              description: Zip code of the user.
+            phone_country_code:
+              type: string
+              description: Phone country code.
+            phone:
+              type: string
+              description: Phone number.
+    UserAccountResponse:
+      properties:
+        admin:
+          type: boolean
+          description: True means the user account has admin privileges.
+        approved:
+          type: boolean
+          description: True means the user account has been approved.
+        ayla_dev_kit_num:
+          type: string
+          description: Ayla Dev Kit number associated with user.
+        city:
+          type: string
+        country:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          description: Date/time of user account creation.
+        email:
+          type: string
+        firstname:
+          type: string
+        id:
+          type: integer
+          description: Unique user id.
+        lastname:
+          type: string
+        oem_approved:
+          type: boolean
+          description: True means the user account has been approved by OEM.
+        origin_oem_id:
+          type: integer
+          description: OEM ID for user account.
+        phone:
+          type: string
+        phone_country_code:
+          type: string
+        street:
+          type: string
+        terms_accepted:
+          type: boolean
+          description: True means the user accepted user account terms and conditions. 
+        terms_accepted_at:
+          type: string
+          format: date-time
+          description: Date/time user accepted terms and conditions.
+        updated_at:
+          type: string
+          format: date-time
+          description: Date/time of last update to this account.
+        uuid:
+          type: string
+          description: Universally Unique Identifier for the user.
+        zip:
+          type: string
     UserProfileResponse:
       properties:
         approved:

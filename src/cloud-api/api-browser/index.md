@@ -1,5 +1,5 @@
 ---
-title: API Browser v0.04
+title: API Browser
 layout: api.html
 e: block
 apiFile: ayla-cloud-api.yaml
@@ -62,7 +62,7 @@ classesFromPage: has-pagebar
       </div>
       <div class="row no-gutters">
         <div class="col">
-          <div id="dt-value-wrapper"></div>
+          <div id="dt-value-wrapper"><input type="text" class="form-control form-control-sm" disabled></div>
         </div>
         <div class="col-auto ml-2" id="dt-value-button-wrapper" style="display:none;">
           <button id="dt-save-value-btn" type="button" class="btn btn-info btn-sm">Save</button>
