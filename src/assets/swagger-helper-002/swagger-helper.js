@@ -1,26 +1,4 @@
 /*
-window.onload = function() {
-  const ui = SwaggerUIBundle({
-    //url: "{{ apiFile }}",
-    url: "/cloud-api/api-browser/ayla-cloud-api-006.yaml",
-    dom_id: '#swagger-ui',
-    deepLinking: true,
-    docExpansion: "none",
-    presets: [
-      SwaggerUIBundle.presets.apis,
-      SwaggerUIStandalonePreset
-    ],
-    plugins: [
-      SwaggerUIBundle.plugins.DownloadUrl
-    ],
-    layout: "BaseLayout",
-    onComplete: function() {
-      ui.preauthorizeApiKey("auth_token", "123");
-    }
-  })
-  window.ui = ui
-}
-
 var serviceUrls = new Array();
 serviceUrls[0] = new Array(); //china-dev
 serviceUrls[0]['application'] = "https://application.ayla.com.cn";
@@ -80,6 +58,7 @@ serviceUrls[4]['zigbee'] = "https://zigbee-field.aylanetworks.com";
 
 $(function () {
   writeServiceUrls();
+  console.log('here')
 });
 
 $(function () {
@@ -101,14 +80,14 @@ function writeServiceUrls() {
   $('#user-service-url').text(serviceUrls[region]['user']);
   $('#zigbee-service-url').text(serviceUrls[region]['zigbee']);
   
-  //const options = $('div.operation-servers option:selected');
-  //observer.disconnect();
-  //$.each(options, function(key, option) {
-  //  var service = $(option).data('service');
-  //  $(option).val(serviceUrls[region][service]);
-  //  $(option).html(serviceUrls[region][service]);
-  //});
-  //observer.observe(targetNode, config);
+  const options = $('div.operation-servers option:selected');
+  observer.disconnect();
+  $.each(options, function(key, option) {
+    var service = $(option).data('service');
+    $(option).val(serviceUrls[region][service]);
+    $(option).html(serviceUrls[region][service]);
+  });
+  observer.observe(targetNode, config);
 }
 
 var observer = new MutationObserver(function(mutations) {

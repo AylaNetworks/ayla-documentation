@@ -18,7 +18,7 @@ div.swagger-ui .opblock-tag {
   padding: 6px 14px 6px 0px !important;
 }
 
-.swagger-ui .opblock-tag small {padding-left: 5px !important;}
+/*.swagger-ui .opblock-tag small {padding-left: 5px !important;}*/
 
 div.swagger-ui .opblock-summary {padding: 0px !important;}
 div.swagger-ui .opblock-summary-path {font-size: 12px !important;}

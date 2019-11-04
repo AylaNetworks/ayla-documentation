@@ -1,7 +1,8 @@
 ---
 title: API Browser v0.04
 layout: api.html
-apiFile: ayla-cloud-api-007.yaml
+e: block
+apiFile: ayla-cloud-api.yaml
 classesFromPage: has-pagebar
 ---
 
@@ -30,7 +31,7 @@ classesFromPage: has-pagebar
 <li>Feedback is welcome. Contact matt&#64;aylanetworks.com.</li>
 </ol>
 <h3 class="mt-2">Device Tool</h3>
-<div>The Device Tool below is provided as a convenience. When logged in, the Device Tool displays information about all devices registered to you. True, you can obtain this information by calling individual APIs, and we recommend that you do so. But, once you are familiar with basic device, property, and datapoint APIs, you may find the Device Tool helpful. Click <img style="display:inline;margin:0 0 2px 0;" src="/assets/images/info.png" width="16" height="16"> to obtain Device IDs, Property IDs, DSNs, etc. Click <img style="display:inline;margin:0 0 2px 0;" src="/assets/images/refresh.png" width="19" height="15"> to reload the current device, current property, or the entire tool. And, change "To Device" property values.</div>
+<div>The Device Tool below is provided as a convenience. When logged in, the Device Tool displays information about all devices registered to you. True, you can obtain this information by calling individual APIs, and we recommend that you do so. But, once you are familiar with basic device, property, and datapoint APIs, you may find the Device Tool helpful. Click <img style="display:inline;margin:0 0 2px 0;" src="/assets/images/info.png" width="16" height="16"> to obtain Device IDs, Property IDs, DSNs, etc. Click <img style="display:inline;margin:0 0 2px 0;" src="/assets/images/refresh.png" width="19" height="15"> to reload the current device, current property, or the entire tool. And, you can update "To Device" property values, too.</div>
 </div>
 </div>
 
@@ -83,37 +84,5 @@ classesFromPage: has-pagebar
     </div>
   </div>
 </div>
-
-<!--
-<div class="row">
-<div class="col-auto">
-<select class="form-control form-control-sm mb-3 service-region" style="min-width: 200px;">
-  <option value=0>China Development</option>
-  <option value=1>China Field</option>
-  <option value=2>EU Field</option>
-  <option value=3 selected>US Development</option>
-  <option value=4>US Field</option>
-</select>
-</div>
-<div class="col-auto">
-<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#service-urls-collapse" aria-expanded="false" aria-controls="service-urls-collapse">View service region urls</button>
-</div>
-</div>
-<div class="collapse" id="service-urls-collapse">
-<table id="service-urls">
-<tr><th>Service</th><th style="min-width:250px;">URL</th></tr>
-<tr><td>Application</td><td><code id="application-service-url"></code></td></tr>
-<tr><td>Datastream</td><td><code id="datastream-service-url"></code></td></tr>
-<tr><td>Device</td><td><code id="device-service-url"></code></td></tr>
-<tr><td>Factory Proxy</td><td><code id="factory-proxy-service-url"></code></td></tr>
-<tr><td>Image</td><td><code id="image-service-url"></code></td></tr>
-<tr><td>Log</td><td><code id="log-service-url"></code></td></tr>
-<tr><td>Notification</td><td><code id="notification-service-url"></code></td></tr>
-<tr><td>Rules</td><td><code id="rules-service-url"></code></td></tr>
-<tr><td>User</td><td><code id="user-service-url"></code></td></tr>
-<tr><td>Zigbee</td><td><code id="zigbee-service-url"></code></td></tr>
-</table>
-</div>
--->
 
 <div id="swagger-ui"></div>

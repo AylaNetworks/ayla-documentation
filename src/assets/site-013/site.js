@@ -1,4 +1,22 @@
 /*------------------------------------------------------
+On Load for pure JS
+------------------------------------------------------*/
+
+function ready(callbackFunc) {
+  if (document.readyState !== 'loading') {
+    callbackFunc();
+  } else if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', callbackFunc);
+  } else {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState === 'complete') {
+        callbackFunc();
+      }
+    });
+  }
+}
+
+/*------------------------------------------------------
 On Load: Assign active and focus.
 ------------------------------------------------------*/
 

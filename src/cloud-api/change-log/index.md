@@ -1,6 +1,7 @@
 ---
 title: Change Log
 layout: site.html
+e: block
 classesFromPage: has-pagebar
 ---
 

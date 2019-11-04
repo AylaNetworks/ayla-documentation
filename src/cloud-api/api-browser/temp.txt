@@ -1,0 +1,47 @@
+
+
+/users
+x post
+x put
+put
+x delete
+
+/users/confirmation
+x post
+x put
+
+/users/get_user_profile
+x get
+
+/users/password
+x post
+x put
+
+/users/refresh_token
+x post
+
+/users/sign_in
+x post
+
+/users/sign_out
+x post
+
+/users/update_email
+x put
+
+<!--
+Topics to include on this page:
+
+* Explanation of the API organization, schema, filters, pagination, throttling.
+* Authentication
+* Available client libraries that wrap the API.
+* Link to the new [API Browser](api-browser).
+* Link to the [Change Log](change-log).
+* Explanation of API-related terminology.
+  * Resource is ```/users``` or ```/users/{userId}```.
+  * Method is ```GET```, ```POST```, etc.
+  * Operation is ```GET /users/{userId}```.
+  * API is all operations. 
+* API Terms of Service
+* [CommonMark](https://commonmark.org/help/)
+-->

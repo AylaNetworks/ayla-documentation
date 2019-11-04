@@ -1,4 +1,4 @@
-openapi: 3.0.2 
+openapi: 3.0.2
 info:
   title: Ayla Cloud API
   description: The Ayla Cloud provides a REST Application Programming Interface (API)
@@ -10,22 +10,33 @@ security:
 - auth_token: []
 tags:
   - name: A-Z
-    description: by url
+    description: All Services
   - name: Access Rules
-    description: for DSS
+    description: Datastream Service
   - name: Contacts
+    description: User Service
   - name: Datapoints
+    description: Device Service
   - name: Devices
+    description: Device Service
   - name: Device Groups
+    description: Device Service
   - name: Device Metadata
+    description: Device Service
   - name: Gateways
+    description: Device Service
   - name: Properties
+    description: Device Service
   - name: Shares
+    description: User Service
   - name: Schedules
+    description: Device Service
   - name: Schedule Actions
+    description: Device Service
   - name: Subscriptions
-    description: for DSS
-  - name: Users
+    description: Datastream Service
+  - name: User Accounts
+    description: User Service
 paths:
   /api/v1/oemAccessRules:
     get:
@@ -193,6 +204,41 @@ paths:
           description: Not Found
     servers:
     - url: https://stream.aylanetworks.com
+  /api/v1/token_sign_in:
+    post:
+      tags:
+      - A-Z
+      - User Accounts
+      summary: login
+      description: This API authenticates an SSO application.
+      requestBody:
+        description: This is the description.
+        content:
+          application/json:
+            schema:
+              properties:
+                app_id:
+                  type: string
+                  description: SSO application id from the Ayla Service.
+                app_secret:
+                  type: string
+                  description: SSO application secret from the Ayla Service.
+                token:
+                  type: string
+                  description: Token issued by the Identify Provider obtained during the initial phase of login.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInResponse'
+        401:
+          description: Unauthorized
+        404:
+          description: appId or appSecret invalid
+    servers:
+    - url: https://user-dev.aylanetworks.com
   /apiv1/batch_datapoints:
     post:
       tags:
@@ -2167,11 +2213,41 @@ paths:
     servers:
     - url: https://user-dev.aylanetworks.com
   /users:
+    post:
+      tags:
+      - A-Z
+      - User Accounts
+      summary: createUserAccount
+      description: This API creates a user account in the Ayla Public Account.
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        422:
+          description: Unprocessable Entity
+    put:
+      tags:
+      - A-Z
+      - User Accounts
+      summary: changePassword
+      description: This API changes the password for the caller.
+      responses:
+        204:
+          description: OK
+        401:
+          description: Unauthorized
+        422:
+          description: Unprocessable Entity
     delete:
       tags:
       - A-Z
-      - Users
-      summary: deleteMyUserAccount
+      - User Accounts
+      summary: deleteUserAccount
       description: Deletes the caller's user account.
       responses:
         204:
@@ -2182,12 +2258,41 @@ paths:
           description: Not Found
     servers:
     - url: https://user-dev.aylanetworks.com
+  /users/confirmation:
+    post:
+      tags:
+      - A-Z
+      - User Accounts
+      summary: sendHowToConfirm
+      description: This API ...
+      responses:
+        201:
+          description: Created
+        404:
+          description: Failure
+        422:
+          description: Unprocessable Entity
+    put:
+      tags:
+      - A-Z
+      - User Accounts
+      summary: confirmUserAccount
+      description: This API ...
+      responses:
+        204:
+          description: OK
+        401:
+          description: Unauthorized
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://user-dev.aylanetworks.com
   /users/get_user_profile:
     get:
       tags:
       - A-Z
-      - Users
-      summary: getMyUserProfile
+      - User Accounts
+      summary: getUserProfile
       description: Returns information about the caller's user profile.
       responses:
         200:
@@ -2200,11 +2305,52 @@ paths:
           description: Unauthorized
     servers:
     - url: https://user-dev.aylanetworks.com
+  /users/password:
+    post:
+      tags:
+      - A-Z
+      - User Accounts
+      summary: sendHowToReset
+      description: This API ...
+      responses:
+        201:
+          description: Created
+        422:
+          description: Unprocessable Entity
+    put:
+      tags:
+      - A-Z
+      - User Accounts
+      summary: resetPassword
+      description: This API ...
+      responses:
+        204:
+          description: OK
+        401:
+          description: Unauthorized
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://user-dev.aylanetworks.com
+  /users/refresh_token:
+    post:
+      tags:
+      - A-Z
+      - User Accounts
+      summary: refreshToken
+      description: This API ...
+      responses:
+        200:
+          description: Success
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://user-dev.aylanetworks.com
   /users/sign_in:
     post:
       tags:
       - A-Z
-      - Users
+      - User Accounts
       summary: login
       description: Returns an access_token and refresh_token that can be used in subsequent
         API calls.
@@ -2225,6 +2371,34 @@ paths:
           description: Unauthorized
         404:
           description: The app_id and/or app_secret are invalid.
+    servers:
+    - url: https://user-dev.aylanetworks.com
+  /users/sign_out:
+    post:
+      tags:
+      - A-Z
+      - User Accounts
+      summary: logout
+      description: This API ...
+      responses:
+        200:
+          description: Success
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://user-dev.aylanetworks.com
+  /users/update_email:
+    put:
+      tags:
+      - A-Z
+      - User Accounts
+      summary: updateEmail
+      description: This API ...
+      responses:
+        204:
+          description: OK
+        401:
+          description: Unauthorized
     servers:
     - url: https://user-dev.aylanetworks.com
 components:
@@ -3232,21 +3406,31 @@ components:
       properties:
         access_token:
           type: string
-          description: sss
+          description: Unique access token for user session.
         refresh_token:
           type: string
-          description: sss
+          description: Unique refresh token for user session.
         expires_in:
           type: integer
-          description: sss
+          description: Seconds in the future. 
+          default: 86400
         role:
           type: string
-          description: sss
+          description: Role for the user.
         role_tags:
           type: array
-          description: sss
+          description: Role Tags are used to build a hierarchical RBAC.
           items:
-            type: string
+            properties:
+              namespace:
+                type: string
+                description: Namespace of the role tag.
+              key:
+                type: string
+                description: Key of the key/value pair tag for the role.
+              value:
+                type: string
+                description: Value of the key/value pair tag for the role.
     TriggerAppResponse:
       properties:
         trigger_app:
