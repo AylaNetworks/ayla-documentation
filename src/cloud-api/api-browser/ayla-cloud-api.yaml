@@ -2388,7 +2388,7 @@ paths:
       - A-Z
       - User Accounts
       summary: confirmUserAccount
-      description: This API confirms account based on the confirmation token supplied.
+      description: This API confirms the user account based on the confirmation token supplied.
       parameters:
       - name: confirmation_token
         in: query
@@ -2422,7 +2422,7 @@ paths:
       - A-Z
       - User Accounts
       summary: getUserProfile
-      description: Returns information about the caller's user profile.
+      description: This API returns information about the caller's user profile.
       responses:
         200:
           description: OK
@@ -2494,7 +2494,23 @@ paths:
       - A-Z
       - User Accounts
       summary: resetPassword
-      description: This API ...
+      description: This API verifies the password reset token, and then resets the password.
+      requestBody:
+        description: This is a description.
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  properties:
+                    reset_password_token:
+                      type: string
+                    password:
+                      type: string
+                      format: password
+                    password_confirmation:
+                      type: string
+                      format: password
       responses:
         204:
           description: OK
@@ -2502,6 +2518,17 @@ paths:
           description: Unauthorized
         422:
           description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    properties:
+                      reset_password_tokens:
+                        type: array
+                        items:
+                          type: string
+                          example: "can't be blank | not found"
     servers:
     - url: https://user-dev.aylanetworks.com
   /users/refresh_token:
@@ -2510,12 +2537,29 @@ paths:
       - A-Z
       - User Accounts
       summary: refreshToken
-      description: This API ...
+      description: This API returns a new access_token and refresh_token.
+      requestBody:
+        description: This is a description.
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  properties:
+                    refresh_token:
+                      type: string
       responses:
         200:
           description: Success
         422:
           description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Your refresh token is invalid
     servers:
     - url: https://user-dev.aylanetworks.com
   /users/sign_in:
@@ -2551,12 +2595,24 @@ paths:
       - A-Z
       - User Accounts
       summary: logout
-      description: This API ...
+      description: This API expires the specified access_token.
+      requestBody:
+        description: This is a description.
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  properties:
+                    access_token:
+                      type: string
       responses:
         200:
           description: Success
-        422:
+        400:
           description: Unprocessable Entity
+        401:
+          description: Unauthorized
     servers:
     - url: https://user-dev.aylanetworks.com
   /users/update_email:
@@ -2565,7 +2621,16 @@ paths:
       - A-Z
       - User Accounts
       summary: updateEmail
-      description: This API ...
+      description: This API updates the caller's email.
+      parameters:
+        - name: email
+          in: query
+          description: New email address.
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
       responses:
         204:
           description: OK
