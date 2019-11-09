@@ -1,0 +1,198 @@
+---
+title: Test
+layout: test.html
+e: block
+---
+
+<div class="row">
+<div class="col-auto">
+<select class="form-control form-control-sm mb-3 ayla-region" style="min-width: 200px;">
+  <option value="cndev">China Development</option>
+  <option value="cnfield">China Field</option>
+  <option value="eufield">EU Field</option>
+  <option value="usdev" selected>US Development</option>
+  <option value="usfield">US Field</option>
+</select>
+</div>
+<div class="col-auto">
+<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#ayla-region-details" aria-expanded="false" aria-controls="ayla-region-details-collapse">Details</button>
+</div>
+</div>
+<div id="ayla-region-details" class="collapse" style="padding:12px;background:#f2f2f2;margin-bottom:18px;border-radius:3px;">
+  <form autocomplete="new-password">
+    <div class="form-row">
+      <div class="form-group col-12 col-lg-3">
+        <label>email</label>
+        <input id="region-email" type="text" class="form-control form-control-sm" required>
+      </div>
+      <div class="form-group col-12 col-lg-3">
+        <label>password</label>
+        <input id="region-password" type="password" class="form-control form-control-sm" required>
+      </div>
+      <div class="form-group col-12 col-lg-3">
+        <label>app-id</label>
+        <input id="region-app-id" type="text" class="form-control form-control-sm">
+      </div>
+      <div class="form-group col-12 col-lg-3">
+        <label>app-secret</label>
+        <input id="region-app-secret" type="text" class="form-control form-control-sm">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-12 col-lg-3">
+        <button id="region-login-logout" type="button" class="btn btn-success btn-sm btn-block">Login</button>
+      </div>
+      <div class="form-group col-12 col-lg-3">
+        <button id="region-forget" type="button" class="btn btn-danger btn-sm btn-block">Forget</button>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-12 col-lg-3">
+        <label>access_token</label>
+        <input id="region-access-token" type="text" class="form-control form-control-sm">
+      </div>
+      <div class="form-group col-12 col-lg-3">
+        <label>refresh_token</label>
+        <input id="region-refresh-token" type="text" class="form-control form-control-sm">
+      </div>
+      <div class="form-group col-12 col-lg-3">
+        <label>userId</label>
+        <input id="region-user-id" type="text" class="form-control form-control-sm">
+      </div>
+      <div class="form-group col-12 col-lg-3">
+        <label>uuid</label>
+        <input id="region-uuid" type="text" class="form-control form-control-sm">
+      </div>
+    </div>
+  </form>
+  <div><a data-toggle="collapse" href="#ayla-region-urls">Click to view regional urls</a>.</div>
+  <div id="ayla-region-urls" class="collapse">
+  <table style="margin-bottom:0 !important;margin-top:12px;">
+  <tr><th>Service</th><th style="min-width:250px;">URL</th></tr>
+  <tr><td>Application</td><td><code id="application-service-url"></code></td></tr>
+  <tr><td>Datastream</td><td><code id="datastream-service-url"></code></td></tr>
+  <tr><td>Device</td><td><code id="device-service-url"></code></td></tr>
+  <tr><td>Factory Proxy</td><td><code id="factory-proxy-service-url"></code></td></tr>
+  <tr><td>Image</td><td><code id="image-service-url"></code></td></tr>
+  <tr><td>Log</td><td><code id="log-service-url"></code></td></tr>
+  <tr><td>Notification</td><td><code id="notification-service-url"></code></td></tr>
+  <tr><td>Rules</td><td><code id="rules-service-url"></code></td></tr>
+  <tr><td>User</td><td><code id="user-service-url"></code></td></tr>
+  <tr><td>Zigbee</td><td><code id="zigbee-service-url"></code></td></tr>
+  </table>
+  </div>
+</div>
+
+<div class="api get">
+  <div class="api-title" data-toggle="collapse" href="#get-apiv1-devices">
+    <span class="api-method">GET</span>
+    <span class="api-url">/apiv1/devices</span>
+    <span class="api-service">Device</span>
+  </div>
+  <div id="get-apiv1-devices" class="api-content collapse">
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
+      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="api-response-body"></pre>
+  </div>
+</div>
+
+<div class="api get">
+  <div class="api-title" data-toggle="collapse" href="#get-apiv1-devices-deviceid">
+    <span class="api-method">GET</span>
+    <span class="api-url">/apiv1/devices/{deviceId}</span>
+    <span class="api-service">Device</span>
+  </div>
+  <div id="get-apiv1-devices-deviceid" class="api-content collapse">
+    <input class="api-parameter" type="text" placeholder="deviceId">
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
+      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="api-response-body"></pre>
+  </div>
+</div>
+
+<div class="api get">
+  <div class="api-title" data-toggle="collapse" href="#get-apiv1-devices-deviceid-properties">
+    <span class="api-method">GET</span>
+    <span class="api-url">/apiv1/devices/{deviceId}/properties</span>
+    <span class="api-service">Device</span>
+  </div>
+  <div id="get-apiv1-devices-deviceid-properties" class="api-content collapse">
+    <input class="api-parameter" type="text" placeholder="deviceId">
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
+      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="api-response-body"></pre>
+  </div>
+</div>
+
+<div class="api post">
+  <div class="api-title" data-toggle="collapse" href="#post-apiv1-devices-deviceId-properties-propertyName-datapoints">
+    <span class="api-method">POST</span>
+    <span class="api-url">/apiv1/devices/{deviceId}/properties/{propertyName}/datapoints</span>
+    <span class="api-service">Device</span>
+  </div>
+  <div id="post-apiv1-devices-deviceId-properties-propertyName-datapoints" class="api-content collapse">
+    <input class="api-parameter" type="text" placeholder="deviceId">
+    <input class="api-parameter" type="text" placeholder="propertyName">
+    <pre class="api-request-body" contenteditable="true">{
+  "datapoint": {
+    "value": "string",
+    "metadata": {
+      "key1": "string",
+      "key2": "string"
+    }
+  }
+}</pre>
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
+      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="api-response-body"></pre>
+  </div>
+</div>
+
+<div class="api get">
+  <div class="api-title" data-toggle="collapse" href="#get-apiv1-dsns-dsn">
+    <span class="api-method">GET</span>
+    <span class="api-url">/apiv1/dsns/{dsn}</span>
+    <span class="api-service">Device</span>
+  </div>
+  <div id="get-apiv1-dsns-dsn" class="api-content collapse">
+    <input class="api-parameter" type="text" placeholder="dsn">
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
+      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="api-response-body"></pre>
+  </div>
+</div>
+
+<div class="api post">
+  <div class="api-title" data-toggle="collapse" href="#post-users-sign-in">
+    <span class="api-method">POST</span>
+    <span class="api-url">/users/sign_in</span>
+    <span class="api-service">User</span>
+  </div>
+  <div id="post-users-sign-in" class="api-content collapse">
+    <pre class="api-request-body" contenteditable="true">{
+  "user": {
+    "email": "string",
+    "password": "string",
+    "application": {
+      "app_id": "string",
+      "app_secret": "string"
+    }
+  }
+}</pre>
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
+      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="api-response-body"></pre>
+  </div>
+</div>

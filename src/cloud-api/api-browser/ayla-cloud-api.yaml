@@ -9,8 +9,8 @@ servers:
 security:
 - auth_token: []
 tags:
-  - name: A-Z
-    description: All Services
+  - name: All
+    description: A-Z by URL
   - name: Access Rules
     description: Datastream Service
   - name: Contacts
@@ -35,13 +35,15 @@ tags:
     description: Device Service
   - name: Subscriptions
     description: Datastream Service
+  - name: Time Zones
+    description: Device Service
   - name: User Accounts
     description: User Service
 paths:
   /api/v1/oemAccessRules:
     get:
       tags:
-      - A-Z
+      - All
       - Access Rules
       summary: getAccessRules
       description: This API returns an array of access rules associated with the caller's role(s). A DSS access rule permits members of a role to create DSS subscriptions associated with an oem model, device property, client type, and subscription type.
@@ -60,7 +62,7 @@ paths:
           description: Not Found
     post:
       tags:
-      - A-Z
+      - All
       - Access Rules
       summary: createAccessRule
       description: This API creates a DSS access rule which permits members of the specified role to create DSS subscriptions associated with the specified oem model(s), device prop(s), client type, and subscription type.
@@ -86,7 +88,7 @@ paths:
   /api/v1/oemAccessRules/{id}:
     get:
       tags:
-      - A-Z
+      - All
       - Access Rules
       summary: getAccessRule
       description: This API returns the specified access rule.
@@ -105,7 +107,7 @@ paths:
           description: Not Found
     delete:
       tags:
-      - A-Z
+      - All
       - Access Rules
       summary: deleteAccessRule
       description: This API deletes the specified access rule.
@@ -123,7 +125,7 @@ paths:
   /api/v1/subscriptions.json:
     get:
       tags:
-      - A-Z
+      - All
       - Subscriptions
       summary: getSubscriptions
       description: This API returns an array of subscriptions associated with the
@@ -143,7 +145,7 @@ paths:
           description: Not Found
     post:
       tags:
-      - A-Z
+      - All
       - Subscriptions
       summary: createSubscription
       description: This API creates a DSS subscription which includes a stream key
@@ -170,7 +172,7 @@ paths:
   /api/v1/subscriptions/{id}.json:
     get:
       tags:
-      - A-Z
+      - All
       - Subscriptions
       summary: getSubscription
       description: This API returns the specified subscription.
@@ -189,7 +191,7 @@ paths:
           description: Not Found
     delete:
       tags:
-      - A-Z
+      - All
       - Subscriptions
       summary: deleteSubscription
       description: This API deletes the specified subscription.
@@ -207,7 +209,7 @@ paths:
   /api/v1/token_sign_in:
     post:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: login
       description: This API authenticates an SSO application.
@@ -242,7 +244,7 @@ paths:
   /apiv1/batch_datapoints:
     post:
       tags:
-      - A-Z
+      - All
       - Datapoints
       summary: createDatapoints
       description: This API creates one or more datapoints.
@@ -282,7 +284,7 @@ paths:
   /apiv1/devices:
     get:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: getDevices
       description: This API returns an array of devices registered to, or shared with, the caller. The **key** value in the Response Body is the unique device id, so use this value in calls to other operations that require a device **id** parameter.
@@ -299,7 +301,7 @@ paths:
           description: Unauthorized
     post:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: registerDevice
       description: This API registers the specified device to the caller.
@@ -330,7 +332,7 @@ paths:
   /apiv1/devices/{deviceId}:
     get:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: getDevice
       description: This API returns the specified device if it is owned by, or shared with, the caller.
@@ -349,7 +351,7 @@ paths:
           description: Not Found
     put:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: renameDevice
       description: This API renames a device.
@@ -376,7 +378,7 @@ paths:
           description: Unprocessable Entity
     delete:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: unregisterDevice
       description: Unregisters the specified device from the caller.
@@ -394,7 +396,7 @@ paths:
   /apiv1/devices/{deviceId}/cmds/factory_reset:
     put:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: factoryResetDevice
       description: sss.
@@ -412,7 +414,7 @@ paths:
   /apiv1/devices/{deviceId}/identify:
     put:
       tags:
-      - A-Z
+      - All
       - Gateways
       summary: identifyZigbeeNode
       description: This API is used only with Zigbee nodes. A command is sent to the specified Zigbee node with a turn-on for a defined time (in seconds). The update needs to identify one node among many nodes in a Zigbee gateway.
@@ -430,7 +432,7 @@ paths:
   /apiv1/devices/{deviceId}/locations:
     post:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: updateDeviceLocation
       description: sss.
@@ -491,7 +493,7 @@ paths:
   /apiv1/devices/{deviceId}/nodes:
     get:
       tags:
-      - A-Z
+      - All
       - Gateways
       summary: getNodes
       description: sss.
@@ -515,7 +517,7 @@ paths:
   /apiv1/devices/{deviceId}/properties:
     get:
       tags:
-      - A-Z
+      - All
       - Properties
       summary: getProperties
       description: This API returns all properties for a specified device.
@@ -547,7 +549,7 @@ paths:
   /apiv1/devices/{deviceId}/properties/{propertyName}:
     get:
       tags:
-      - A-Z
+      - All
       - Properties
       summary: getProperty
       description: This API returns the specified property.
@@ -567,10 +569,41 @@ paths:
           description: Not Found
     servers:
     - url: https://ads-dev.aylanetworks.com
+  /apiv1/devices/{deviceId}/properties/{propertyName}/datapoints:
+    post:
+      tags:
+      - All
+      - Datapoints
+      summary: createDatapoint
+      description: This API creates a datapoint for the specified property.
+      parameters:
+      - $ref: '#/components/parameters/pDeviceId'
+      - $ref: '#/components/parameters/pPropertyName'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatapointRequest'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatapointResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
   /apiv1/devices/{deviceId}/registration_window:
     post:
       tags:
-      - A-Z
+      - All
       - Gateways
       summary: openRegistrationWindow
       description: This API opens and polls the registration window (only applies to Zigbee gateways).
@@ -598,7 +631,7 @@ paths:
   /apiv1/devices/{deviceId}/schedules:
     get:
       tags:
-      - A-Z
+      - All
       - Schedules
       summary: getSchedules
       description: This API returns an array of schedules for the specified device.
@@ -619,7 +652,7 @@ paths:
           description: Not Found
     post:
       tags:
-      - A-Z
+      - All
       - Schedules
       summary: createSchedule
       description: This API creates a schedule.
@@ -649,7 +682,7 @@ paths:
   /apiv1/devices/{deviceId}/schedules/find_by_name:
     get:
       tags:
-      - A-Z
+      - All
       - Schedules
       summary: getSchedule
       description: This API returns a schedule by name of the specified device.
@@ -679,7 +712,7 @@ paths:
   /apiv1/devices/{deviceId}/schedules/{scheduleId}:
     put:
       tags:
-      - A-Z
+      - All
       - Schedules
       summary: updateSchedule
       description: This API updates a schedule.
@@ -712,7 +745,7 @@ paths:
   /apiv1/devices/{dsn}/transfer:
     put:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: transferRegistration
       description: sss.
@@ -730,7 +763,7 @@ paths:
   /apiv1/devices/register:
     get:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: getRegistrableDevice
       description: This API returns the registration candidate that matches the input
@@ -787,7 +820,7 @@ paths:
   /apiv1/devices/search:
     get:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: searchDevices
       description: This API obtains details about devices that match the search criteria. The caller's right to view device information is based on ownership, device sharing, and/or role.
@@ -913,7 +946,7 @@ paths:
   /apiv1/dsns/{dsn}:
     get:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: getDevice
       description: This API returns details of the specified device.
@@ -934,7 +967,7 @@ paths:
           description: Not Found
     put:
       tags:
-      - A-Z
+      - All
       - Devices
       summary: renameDevice
       description: This API renames a device.
@@ -964,7 +997,7 @@ paths:
   /apiv1/dsns/{dsn}/data:
     get:
       tags:
-      - A-Z
+      - All
       - Device Metadata
       summary: getDeviceMetadata
       description: This is the description.
@@ -993,7 +1026,7 @@ paths:
           description: Not Found
     post:
       tags:
-      - A-Z
+      - All
       - Device Metadata
       summary: createDeviceMetadatum
       description: This is the description.
@@ -1023,7 +1056,7 @@ paths:
   /apiv1/dsns/{dsn}/data/{key}:
     get:
       tags:
-      - A-Z
+      - All
       - Device Metadata
       summary: getDeviceMetadatum
       description: This is the description.
@@ -1043,7 +1076,7 @@ paths:
           description: Not Found
     put:
       tags:
-      - A-Z
+      - All
       - Device Metadata
       summary: updateDeviceMetadatum
       description: This is the description.
@@ -1069,7 +1102,7 @@ paths:
           description: Not Found
     delete:
       tags:
-      - A-Z
+      - All
       - Device Metadata
       summary: deleteDeviceMetadatum
       description: This is the description.
@@ -1088,7 +1121,7 @@ paths:
   /apiv1/dsns/{dsn}/properties:
     get:
       tags:
-      - A-Z
+      - All
       - Properties
       summary: getProperties
       description: This API returns all properties for a specified device.
@@ -1120,7 +1153,7 @@ paths:
   /apiv1/dsns/{dsn}/properties/{propertyName}:
     get:
       tags:
-      - A-Z
+      - All
       - Properties
       summary: getProperty
       description: This API returns the specified property.
@@ -1141,9 +1174,109 @@ paths:
     servers:
     - url: https://ads-dev.aylanetworks.com
   /apiv1/dsns/{dsn}/properties/{propertyName}/datapoints:
+    get:
+      tags:
+      - All
+      - Datapoints
+      summary: getDatapoints
+      description: This API returns datapoints for the specified property.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      - $ref: '#/components/parameters/pPropertyName'
+      - name: per_page
+        in: query
+        description: Number of records to return per page (max 100).
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: integer
+          maximum: 100
+          default: 100
+      - name: next
+        in: query
+        description: ID of last datapoint in current page.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+      - name: previous
+        in: query
+        description: ID of first datapoint in current page.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+      - name: is_forward_page
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: boolean
+          default: true
+      - name: paginated
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: boolean
+          default: true
+      - name: limit
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: integer
+      - name: filter[created_at_since_date]
+        in: query
+        description: e.g. 2018-11-20T15:36:59Z
+        schema:
+          type: string
+          format: date-time
+      - name: filter[created_at_end_date]
+        in: query
+        description: e.g. 2018-11-20T15:36:59Z
+        schema:
+          type: string
+          format: date-time
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    meta:
+                      properties:
+                        previous-page:
+                          type: string
+                          description: Previous page.
+                        next_page:
+                          type: string
+                          description: Next page.
+                        current_page_number:
+                          type: integer
+                          description: Current page number.
+                    datapoints:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/DatapointResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
     post:
       tags:
-      - A-Z
+      - All
       - Datapoints
       summary: createDatapoint
       description: This API creates a datapoint for the specified property.
@@ -1171,10 +1304,111 @@ paths:
           description: Not Found
     servers:
     - url: https://ads-dev.aylanetworks.com
+  /apiv1/dsns/{dsn}/properties/{propertyName}/datapoints/time_range_filter:
+    get:
+      tags:
+      - All
+      - Datapoints
+      summary: getDatapoints
+      description: This API returns datapoints created within the specified time range.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      - $ref: '#/components/parameters/pPropertyName'
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/dsns/{dsn}/properties/{propertyName}/triggers:
+    get:
+      tags:
+      - All
+      - Properties
+      summary: getPropertyTriggers
+      description: This API returns triggers attached to the specified property.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      - $ref: '#/components/parameters/pPropertyName'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TriggerResponse'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    post:
+      tags:
+      - All
+      - Properties
+      summary: createPropertyTrigger
+      description: This API creates a trigger for the specified property.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      - $ref: '#/components/parameters/pPropertyName'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerRequest'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TriggerResponse'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/dsns/{dsn}/properties/{propertyName}/triggers/all:
+    get:
+      tags:
+      - All
+      - Properties
+      summary: getPropertyTriggers
+      description: This API returns triggers attached to the specified property.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      - $ref: '#/components/parameters/pPropertyName'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TriggerResponse'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
   /apiv1/dsns/{dsn}/registered_nodes:
     get:
       tags:
-      - A-Z
+      - All
       - Gateways
       summary: getNodes
       description: This API returns an array of nodes for a gateway.
@@ -1197,10 +1431,60 @@ paths:
           description: Method not allowed
     servers:
     - url: https://ads-dev.aylanetworks.com
+  /apiv1/dsns/{dsn}/time_zones:
+    get:
+      tags:
+      - All
+      - Time Zones
+      summary: getDeviceTimeZone
+      description: This API returns the time zone of the device's location.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeZoneResponse'
+    put:
+      tags:
+      - All
+      - Time Zones
+      summary: setDeviceTimeZone
+      description: This API updates the time zone of the device's location.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              properties:
+                tz_id:
+                  type: string
+                  description: Time Zone id.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeZoneResponse'
+        401:
+          description: Success
+        403:
+          description: Unauthorized
+        404:
+          description: Forbiddin
+        422:
+          description: Invalid Parameters
+    servers:
+    - url: https://ads-dev.aylanetworks.com
   /apiv1/groups:
     get:
       tags:
-      - A-Z
+      - All
       - Device Groups
       summary: getGroups
       description: This API returns an array of groups.
@@ -1230,7 +1514,7 @@ paths:
           description: Not Found
     post:
       tags:
-      - A-Z
+      - All
       - Device Groups
       summary: createGroup
       description: This API creates a device group.
@@ -1260,7 +1544,7 @@ paths:
   /apiv1/groups/{groupId}:
     get:
       tags:
-      - A-Z
+      - All
       - Device Groups
       summary: getGroup
       description: This API returns the specified group.
@@ -1279,7 +1563,7 @@ paths:
           description: Not Found
     put:
       tags:
-      - A-Z
+      - All
       - Device Groups
       summary: renameGroup
       description: This API renames a group.
@@ -1314,7 +1598,7 @@ paths:
           description: Unprocessable Entity
     delete:
       tags:
-      - A-Z
+      - All
       - Device Groups
       summary: deleteGroup
       description: This API deletes a group.
@@ -1332,7 +1616,7 @@ paths:
   /apiv1/groups/{groupId}/devices:
     post:
       tags:
-      - A-Z
+      - All
       - Device Groups
       summary: addDeviceToGroup
       description: This API adds a device to a group.
@@ -1368,7 +1652,7 @@ paths:
   /apiv1/groups/{groupId}/devices/{deviceId}:
     delete:
       tags:
-      - A-Z
+      - All
       - Device Groups
       summary: removeDeviceFromGroup
       description: This API removes a device from a group.
@@ -1391,7 +1675,7 @@ paths:
   /apiv1/groups/{groupId}/batched_datapoints:
     post:
       tags:
-      - A-Z
+      - All
       - Datapoints
       summary: updateDatapointsInGroup
       description: This API updates the values of one or more properties of one or more devices in the specified device group.
@@ -1443,7 +1727,7 @@ paths:
   /apiv1/groups/{groupId}/datapoints:
     get:
       tags:
-      - A-Z
+      - All
       - Datapoints
       summary: getDatapointsInGroup
       description: This API ...
@@ -1499,7 +1783,7 @@ paths:
           description: Unprocessable Entity
     post:
       tags:
-      - A-Z
+      - All
       - Datapoints
       summary: updateDatapointInGroup
       description: This API updates the values of single property in one or more devices in the specified device group.
@@ -1540,165 +1824,10 @@ paths:
           description: Unprocessable Entity
     servers:
     - url: https://ads-dev.aylanetworks.com
-  /apiv1/properties/{propertyId}:
-    get:
-      tags:
-      - A-Z
-      - Properties
-      summary: getProperty
-      description: This API returns the specified property.
-      parameters:
-      - $ref: '#/components/parameters/pPropertyId'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PropertyResponse'
-        401:
-          description: Unauthorized
-        404:
-          description: Not Found
-    servers:
-    - url: https://ads-dev.aylanetworks.com
-  /apiv1/properties/{propertyId}/datapoints:
-    get:
-      tags:
-      - A-Z
-      - Datapoints
-      summary: getDatapoints
-      description: This API returns datapoints for the specified property.
-      parameters:
-      - $ref: '#/components/parameters/pPropertyId'
-      - name: per_page
-        in: query
-        description: Number of records to return per page (max 100).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: integer
-          maximum: 100
-          default: 100
-      - name: next
-        in: query
-        description: ID of last datapoint in current page (available in the <metadata> section of the previous response).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-      - name: previous
-        in: query
-        description: ID of first datapoint in current page (available in the <metadata> section of the previous response).
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: string
-      - name: is_forward_page
-        in: query
-        description: sss
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: boolean
-          default: true
-      - name: paginated
-        in: query
-        description: sss
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: boolean
-          default: true
-      - name: limit
-        in: query
-        description: sss
-        required: false
-        style: form
-        explode: false
-        schema:
-          type: integer
-      - name: filter[created_at_since_date]
-        in: query
-        description: e.g. 2018-11-20T15:36:59Z
-        schema:
-          type: string
-          format: date-time
-      - name: filter[created_at_end_date]
-        in: query
-        description: e.g. 2018-11-20T15:36:59Z
-        schema:
-          type: string
-          format: date-time
-      responses:
-        200:
-          description: OK
-        401:
-          description: Unauthorized
-        404:
-          description: Not Found
-    post:
-      tags:
-      - A-Z
-      - Datapoints
-      summary: createDatapoint
-      description: This API creates a datapoint for the specified property.
-      parameters:
-      - $ref: '#/components/parameters/pPropertyId'
-      requestBody:
-        description: Click schema to view details.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DatapointRequest'
-      responses:
-        201:
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DatapointResponse'
-        401:
-          description: Unauthorized
-        403:
-          description: Forbidden
-        404:
-          description: Not Found
-    servers:
-    - url: https://ads-dev.aylanetworks.com
-  /apiv1/properties/{propertyId}/trigger_apps:
-    get:
-      tags:
-      - A-Z
-      - Properties
-      summary: getPropertyTriggerApps
-      description: This API returns trigger apps attached to the specified property.
-      parameters:
-      - $ref: '#/components/parameters/pPropertyId'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TriggerAppResponse'
-        401:
-          description: Unauthorized
-        404:
-          description: Not Found
-    servers:
-    - url: https://ads-dev.aylanetworks.com
   /apiv1/schedules/{scheduleId}:
     get:
       tags:
-      - A-Z
+      - All
       - Schedules
       summary: getSchedule
       description: This API returns the specified schedule.
@@ -1722,7 +1851,7 @@ paths:
   /apiv1/schedules/{scheduleId}/clear:
     put:
       tags:
-      - A-Z
+      - All
       - Schedules
       summary: clearSchedule
       description: This API clears a schedule.
@@ -1744,7 +1873,7 @@ paths:
   /apiv1/schedules/{scheduleId}/schedule_actions:
     get:
       tags:
-      - A-Z
+      - All
       - Schedule Actions
       summary: getScheduleActions
       description: This API returns an array of schedule actions. 
@@ -1765,7 +1894,7 @@ paths:
           description: Not Found
     post:
       tags:
-      - A-Z
+      - All
       - Schedule Actions
       summary: createScheduleAction
       description: This API creates a schedule action.
@@ -1795,7 +1924,7 @@ paths:
   /apiv1/schedules/{scheduleId}/schedule_actions/find_by_name:
     get:
       tags:
-      - A-Z
+      - All
       - Schedule Actions
       summary: getScheduleAction
       description: This API returns a schedule action. 
@@ -1825,7 +1954,7 @@ paths:
   /apiv1/schedules/all/by_user:
     get:
       tags:
-      - A-Z
+      - All
       - Schedules
       summary: getSchedules
       description: This API returns schedules accessible by user.
@@ -1847,7 +1976,7 @@ paths:
   /apiv1/schedule_actions/{scheduleActionId}:
     get:
       tags:
-      - A-Z
+      - All
       - Schedule Actions
       summary: getScheduleAction
       description: This API returns a schedule action.
@@ -1868,7 +1997,7 @@ paths:
           description: Invalid parameters
     put:
       tags:
-      - A-Z
+      - All
       - Schedule Actions
       summary: updateScheduleAction
       description: This API updates a schedule action. 
@@ -1895,7 +2024,7 @@ paths:
           description: Invalid parameters
     delete:
       tags:
-      - A-Z
+      - All
       - Schedule Actions
       summary: deleteScheduleAction
       description: This API deletes a schedule action.
@@ -1920,10 +2049,56 @@ paths:
           description: Not Found
     servers:
     - url: https://ads-dev.aylanetworks.com
+  /apiv1/time_zones:
+    get:
+      tags:
+      - All
+      - Time Zones
+      summary: getTimeZone
+      description: This API returns information about the specified time zone.
+      parameters:
+      - name: tz_id
+        in: query
+        description: See [List of tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  "Base UTC Offset":
+                    type: string
+                    description: Offset for UTC based on location.
+                  "DST":
+                    type: boolean
+                    description: True means location uses DST.
+                  "DST Active":
+                    type: boolean
+                    description: True means DST is active.
+                  "DST Next Change Date":
+                    type: string
+                    description: Future date when DST will change state.
+                  "DST Next Change Time":
+                    type: string
+                    description: Future time when DST will change state.
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
   /api/v1/users/contacts:
     get:
       tags:
-      - A-Z
+      - All
       - Contacts
       summary: getContacts
       description: This API returns an array of all contacts associated with the caller. 
@@ -1944,7 +2119,7 @@ paths:
           description: Invalid parameters
     post:
       tags:
-      - A-Z
+      - All
       - Contacts
       summary: createContact
       description: This API creates a contact.
@@ -1976,7 +2151,7 @@ paths:
   /api/v1/users/contacts/{contactId}:
     get:
       tags:
-      - A-Z
+      - All
       - Contacts
       summary: getContact
       description: This API returns details about a contact.
@@ -1995,7 +2170,7 @@ paths:
           description: Not Found
     put:
       tags:
-      - A-Z
+      - All
       - Contacts
       summary: updateContact
       description: This API updates details for the contact.
@@ -2024,7 +2199,7 @@ paths:
           description: Unprocessable Entity
     delete:
       tags:
-      - A-Z
+      - All
       - Contacts
       summary: deleteContact
       description: This API deletes a contact.
@@ -2039,10 +2214,66 @@ paths:
           description: Not Found
     servers:
     - url: https://user-dev.aylanetworks.com
+  /api/v1/users/link:
+    post:
+      tags:
+      - All
+      - User Accounts
+      summary: linkUserAccounts
+      description: This API creates an association between two user accounts in different OEM accounts.
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  properties:
+                    email:
+                      type: string
+                      description: Email address of the account to link.
+                    password:
+                      type: string
+                      format: password
+                      description: Password of the account to link.
+                    origin_oem_id:
+                      type: string
+                      description: OEM ID of the account to link.
+      responses:
+        201:
+          description: OK
+        400:
+          description: Bad Request
+        401:
+          description: Success
+        404:
+          description: Not Found
+        422:
+          description: Unprocessable Entity
+    servers:
+    - url: https://user-dev.aylanetworks.com
+  /api/v1/users/link/{userId}:
+    delete:
+      tags:
+      - All
+      - User Accounts
+      summary: unlinkUserAccounts
+      description: This API unlinks the user account of the caller from the user account specified by the User ID parameter.
+      parameters:
+      - $ref: '#/components/parameters/pUserId'
+      responses:
+        200:
+          description: Success
+        401:
+          description: Not Authorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://user-dev.aylanetworks.com
   /api/v1/users/shares:
     get:
       tags:
-      - A-Z
+      - All
       - Shares
       summary: getShares
       description: This API returns an array of resources (e.g. devices, groups) shared by the caller.
@@ -2061,7 +2292,7 @@ paths:
           description: Not Found
     post:
       tags:
-      - A-Z
+      - All
       - Shares
       summary: createShare
       description: This API creates a shared resource.
@@ -2088,7 +2319,7 @@ paths:
           description: Invalid Parameter Supplied
     delete:
       tags:
-      - A-Z
+      - All
       - Shares
       summary: deleteShare
       description: This API unshares from userId the resource specified by resource_name and resource_id.
@@ -2129,7 +2360,7 @@ paths:
   /api/v1/users/shares/{shareId}:
     get:
       tags:
-      - A-Z
+      - All
       - Shares
       summary: getShare
       description: This API ... 
@@ -2148,7 +2379,7 @@ paths:
           description: Not Found
     put:
       tags:
-      - A-Z
+      - All
       - Shares
       summary: updateShare
       description: This API modifies an existing share.
@@ -2175,7 +2406,7 @@ paths:
           description: Not Found
     delete:
       tags:
-      - A-Z
+      - All
       - Shares
       summary: deleteShare
       description: This API unshares the specified resource. 
@@ -2193,7 +2424,7 @@ paths:
   /api/v1/users/shares/received:
     get:
       tags:
-      - A-Z
+      - All
       - Shares
       summary: getReceivedShares
       description: This API returns an array of resources shared with the user. 
@@ -2215,7 +2446,7 @@ paths:
   /users:
     post:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: createUserAccount
       description: This API creates a user account in the Ayla Public Account.
@@ -2242,7 +2473,7 @@ paths:
           description: Unprocessable Entity
     put:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: updateUserAccount
       description: This API changes the password or updates other account information.
@@ -2318,7 +2549,7 @@ paths:
                           example: "can't be blank"
     delete:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: deleteUserAccount
       description: Deletes the caller's user account.
@@ -2334,7 +2565,7 @@ paths:
   /users/confirmation:
     post:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: sendHowToConfirm
       description: This API sends confirmation instructions.
@@ -2385,7 +2616,7 @@ paths:
                           example: "can't be blank | not found"
     put:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: confirmUserAccount
       description: This API confirms the user account based on the confirmation token supplied.
@@ -2419,7 +2650,7 @@ paths:
   /users/get_user_profile:
     get:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: getUserProfile
       description: This API returns information about the caller's user profile.
@@ -2437,7 +2668,7 @@ paths:
   /users/password:
     post:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: sendHowToReset
       description: This API resends password reset instructions.
@@ -2491,7 +2722,7 @@ paths:
                           example: "You will receive an email if this account is registered. | You have to confirm your account before continuing."
     put:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: resetPassword
       description: This API verifies the password reset token, and then resets the password.
@@ -2534,7 +2765,7 @@ paths:
   /users/refresh_token:
     post:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: refreshToken
       description: This API returns a new access_token and refresh_token.
@@ -2565,7 +2796,7 @@ paths:
   /users/sign_in:
     post:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: login
       description: Returns an access_token and refresh_token that can be used in subsequent
@@ -2592,7 +2823,7 @@ paths:
   /users/sign_out:
     post:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: logout
       description: This API expires the specified access_token.
@@ -2618,7 +2849,7 @@ paths:
   /users/update_email:
     put:
       tags:
-      - A-Z
+      - All
       - User Accounts
       summary: updateEmail
       description: This API updates the caller's email.
@@ -2754,17 +2985,31 @@ components:
       properties:
         datapoint:
           properties:
+            updated_at:
+              type: string
+              description: e.g. 2018-11-20T15:36:59Z
+              format: date-time
             created_at:
               type: string
               description: e.g. 2018-11-20T15:36:59Z
               format: date-time
-            updated_at:
+            created_at_from_device:
               type: string
               description: e.g. 2018-11-20T15:36:59Z
               format: date-time
             echo:
               type: boolean
             value:
+              type: string
+            id:
+              type: string
+            acked_at:
+              type: string
+              description: e.g. 2018-11-20T15:36:59Z
+              format: date-time
+            ack_status:
+              type: string
+            ack_message:
               type: string
             metadata:
               properties:
@@ -3488,6 +3733,53 @@ components:
               properties:
                 name:
                   type: string
+    SignInRequest:
+      properties:
+        user:
+          properties:
+            email:
+              type: string
+              description: sss
+            password:
+              type: string
+              description: sss
+            application:
+              properties:
+                app_id:
+                  type: string
+                  description: sss
+                app_secret:
+                  type: string
+                  description: sss
+    SignInResponse:
+      properties:
+        access_token:
+          type: string
+          description: Unique access token for user session.
+        refresh_token:
+          type: string
+          description: Unique refresh token for user session.
+        expires_in:
+          type: integer
+          description: Seconds in the future. 
+          default: 86400
+        role:
+          type: string
+          description: Role for the user.
+        role_tags:
+          type: array
+          description: Role Tags are used to build a hierarchical RBAC.
+          items:
+            properties:
+              namespace:
+                type: string
+                description: Namespace of the role tag.
+              key:
+                type: string
+                description: Key of the key/value pair tag for the role.
+              value:
+                type: string
+                description: Value of the key/value pair tag for the role.
     SubscriptionRequest:
       properties:
         name:
@@ -3569,6 +3861,151 @@ components:
             subscription_type:
               type: string
               description: Specified in the request.
+    TimeZoneResponse:
+      properties:
+        time_zone:
+          properties:
+            dst:
+              type: boolean
+              description: True means location uses DST.
+            dst_active:
+              type: boolean
+              description: True means DST is active.
+            dst_next_change_date:
+              type: string
+              description: Future date when DST will change state.
+            dst_next_change_time:
+              type: string
+              description: Future time when DST will change state.
+            tz_id:
+              type: string
+              description: Time Zone id.
+            utc_offset:
+              type: string
+              description: Offset for UTC based on location.
+            key:
+              type: integer
+              description: Key of device time zone.
+    TriggerRequest:
+      properties:
+            device_nickname:
+              type: string
+            property_nickname:
+              type: string
+            compare_type:
+              type: string
+              description: "'==' | '>' | '<' | '>=' | '<='"
+            trigger_type:
+              type: string
+              description: "'always' | 'compare_absolute' | 'on_change'"
+            value:
+              type: string
+            active:
+              type: boolean
+            trigger_apps:
+              type: array
+              items:
+                properties:
+                  name:
+                    type: string
+                    description: "email | sms | forward | push_ios | push_android | push_baidu"
+                  nickname:
+                    type: string
+                  username:
+                    type: string
+                  repeat_freq:
+                    type: integer
+                  param1:
+                    type: string
+                  param2:
+                    type: string
+                  param3:
+                    type: string
+                  param4:
+                    type: string
+                  param5:
+                    type: string
+                  contact_id:
+                    type: integer
+                  push_sound:
+                    type: string
+                  push_mdata:
+                    type: string
+                  email_template_id:
+                    type: string
+                  asset:
+                    type: string
+                  requires_acceptance:
+                    type: boolean
+    TriggerResponse:
+      properties:
+        trigger:
+          properties:
+            device_nickname:
+              type: string
+            property_nickname:
+              type: string
+            compare_type:
+              type: string
+            period:
+              type: string
+            trigger_type:
+              type: string
+            base_type:
+              type: string
+            value:
+              type: string
+            triggered_at:
+              type: string
+              format: date-time
+            user_id:
+              type: integer
+            user_uuid:
+              type: string
+            key:
+              type: integer
+            property_key:
+              type: integer
+            property_name:
+              type: string
+            asset:
+              type: boolean
+            active:
+              type: boolean
+            trigger_apps:
+              type: array
+              items:
+                properties:
+                  name:
+                    type: string
+                  nickname:
+                    type: string
+                  key:
+                    type: integer
+                  trigger_key:
+                    type: integer
+                  username:
+                    type: string
+                  repeat_freq:
+                    type: integer
+                  param1:
+                    type: string
+                  param2:
+                    type: string
+                  param3:
+                    type: string
+                  param4:
+                    type: string
+                  param5:
+                    type: string
+                  email_template_id:
+                    type: string
+                  email_body_html:
+                    type: string
+                  email_subject:
+                    type: string
+                  contact_id:
+                    type: integer
     UserAccountRequest:
       properties:
         user:
@@ -3725,111 +4162,6 @@ components:
         zip:
           type: string
           description: sss
-    SignInRequest:
-      properties:
-        user:
-          properties:
-            email:
-              type: string
-              description: sss
-            password:
-              type: string
-              description: sss
-            application:
-              properties:
-                app_id:
-                  type: string
-                  description: sss
-                app_secret:
-                  type: string
-                  description: sss
-    SignInResponse:
-      properties:
-        access_token:
-          type: string
-          description: Unique access token for user session.
-        refresh_token:
-          type: string
-          description: Unique refresh token for user session.
-        expires_in:
-          type: integer
-          description: Seconds in the future. 
-          default: 86400
-        role:
-          type: string
-          description: Role for the user.
-        role_tags:
-          type: array
-          description: Role Tags are used to build a hierarchical RBAC.
-          items:
-            properties:
-              namespace:
-                type: string
-                description: Namespace of the role tag.
-              key:
-                type: string
-                description: Key of the key/value pair tag for the role.
-              value:
-                type: string
-                description: Value of the key/value pair tag for the role.
-    TriggerAppResponse:
-      properties:
-        trigger_app:
-          properties:
-            acceptance_at:
-              type: string
-              format: date-time
-            acceptance_token:
-              type: string
-            accepted:
-              type: string
-            contact_id:
-              type: string
-            created_at:
-              type: string
-              format: date-time
-            email_body_html:
-              type: string
-            email_subject:
-              type: string
-            email_template_id:
-              type: integer
-            id:
-              type: integer
-            name:
-              type: string
-            nickname:
-              type: string
-            param1:
-              type: string
-            param2:
-              type: string
-            param3:
-              type: string
-            param4:
-              type: string
-            param5:
-              type: string
-            push_mdata:
-              type: string
-            push_sound:
-              type: string
-            rejection_token:
-              type: integer
-            repeat_freq:
-              type: integer
-            requires_acceptance:
-              type: boolean
-            trigger_id:
-              type: integer
-            triggered_at:
-              type: string
-              format: date-time
-            updated_at:
-              type: string
-              format: date-time
-            username:
-              type: string
   parameters:
     pAccessRuleId:
       name: id
@@ -3860,7 +4192,6 @@ components:
     pDsn:
       name: dsn
       in: path
-      description: Device Serial Number.
       required: true
       style: simple
       explode: false
@@ -3884,14 +4215,6 @@ components:
       explode: false
       schema:
         type: string
-    pPropertyId:
-      name: propertyId
-      in: path
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: integer
     pPropertyName:
       name: propertyName
       in: path
@@ -3931,6 +4254,15 @@ components:
       name: id
       in: path
       description: Subscription Id.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
+    pUserId:
+      name: userId
+      in: path
+      description: User Id.
       required: true
       style: simple
       explode: false

@@ -214,6 +214,18 @@ layout: site.html
     </td>
   </tr>
   <tr>
+    <td><a href="/archive/ayla-iot-command-center-api">Ayla IoT Command Center API</a></td>
+    <td>PDF</td>
+    <td>
+      <div class="dropdown">
+        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-iot-command-center-api" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
+        <div class="dropdown-menu" aria-labelledby="ayla-iot-command-center-api">
+          <a class="dropdown-item" href="/archive/ayla-iot-command-center-api-2019-11.pdf">v2019-11</a>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
     <td><a href="/archive/ayla-lan-mode-mobile">Ayla LAN Mode Mobile</a></td>
     <td>PDF</td>
     <td>

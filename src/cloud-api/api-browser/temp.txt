@@ -1,47 +1,274 @@
+    post:
+      tags:
+      - All
+      - Time Zones
+      summary: setDeviceTimeZone
+      description: This API sets the time zone of the device's location.
+      parameters:
+      - $ref: '#/components/parameters/pDsn'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimeZoneRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeZoneResponse'
+        401:
+          description: Success
+        403:
+          description: Unauthorized
+        404:
+          description: Forbiddin
+        422:
+          description: Invalid Parameters
 
+    TimeZoneRequest:
+      properties:
+        time_zone:
+          properties:
+            dst:
+              type: boolean
+              description: True means location uses DST.
+            dst_active:
+              type: boolean
+              description: True means DST is active.
+            dst_next_change_date:
+              type: string
+              description: Future date when DST will change state.
+            dst_next_change_time:
+              type: string
+              description: Future time when DST will change state.
+            tz_id:
+              type: string
+              description: Time Zone id.
+            utc_offset:
+              type: string
+              description: Offset for UTC based on location.
 
-/users
-x post
-x put
-put
-x delete
-
-/users/confirmation
-x post
-x put
-
-/users/get_user_profile
-x get
-
-/users/password
-x post
-x put
-
-/users/refresh_token
-x post
-
-/users/sign_in
-x post
-
-/users/sign_out
-x post
-
-/users/update_email
-x put
-
-<!--
-Topics to include on this page:
-
-* Explanation of the API organization, schema, filters, pagination, throttling.
-* Authentication
-* Available client libraries that wrap the API.
-* Link to the new [API Browser](api-browser).
-* Link to the [Change Log](change-log).
-* Explanation of API-related terminology.
-  * Resource is ```/users``` or ```/users/{userId}```.
-  * Method is ```GET```, ```POST```, etc.
-  * Operation is ```GET /users/{userId}```.
-  * API is all operations. 
-* API Terms of Service
-* [CommonMark](https://commonmark.org/help/)
--->
+  /apiv1/properties/{propertyId}/datapoints:
+    get:
+      tags:
+      - All
+      - Datapoints
+      summary: getDatapoints
+      description: This API returns datapoints for the specified property.
+      parameters:
+      - $ref: '#/components/parameters/pPropertyId'
+      - name: per_page
+        in: query
+        description: Number of records to return per page (max 100).
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: integer
+          maximum: 100
+          default: 100
+      - name: next
+        in: query
+        description: ID of last datapoint in current page (available in the <metadata> section of the previous response).
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+      - name: previous
+        in: query
+        description: ID of first datapoint in current page (available in the <metadata> section of the previous response).
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+      - name: is_forward_page
+        in: query
+        description: sss
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: boolean
+          default: true
+      - name: paginated
+        in: query
+        description: sss
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: boolean
+          default: true
+      - name: limit
+        in: query
+        description: sss
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: integer
+      - name: filter[created_at_since_date]
+        in: query
+        description: e.g. 2018-11-20T15:36:59Z
+        schema:
+          type: string
+          format: date-time
+      - name: filter[created_at_end_date]
+        in: query
+        description: e.g. 2018-11-20T15:36:59Z
+        schema:
+          type: string
+          format: date-time
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    post:
+      tags:
+      - All
+      - Datapoints
+      summary: createDatapoint
+      description: This API creates a datapoint for the specified property.
+      parameters:
+      - $ref: '#/components/parameters/pPropertyId'
+      requestBody:
+        description: Click schema to view details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatapointRequest'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatapointResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/properties/{propertyId}:
+    get:
+      tags:
+      - All
+      - Properties
+      summary: getProperty
+      description: This API returns the specified property.
+      parameters:
+      - $ref: '#/components/parameters/pPropertyId'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyResponse'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+  /apiv1/properties/{propertyId}/trigger_apps:
+    get:
+      tags:
+      - All
+      - Properties
+      summary: getPropertyTriggerApps
+      description: This API returns trigger apps attached to the specified property.
+      parameters:
+      - $ref: '#/components/parameters/pPropertyId'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TriggerAppResponse'
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+    servers:
+    - url: https://ads-dev.aylanetworks.com
+    pPropertyId:
+      name: propertyId
+      in: path
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
+    TriggerAppResponse:
+      properties:
+        trigger_app:
+          properties:
+            acceptance_at:
+              type: string
+              format: date-time
+            acceptance_token:
+              type: string
+            accepted:
+              type: string
+            contact_id:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            email_body_html:
+              type: string
+            email_subject:
+              type: string
+            email_template_id:
+              type: string
+            id:
+              type: integer
+            name:
+              type: string
+            nickname:
+              type: string
+            param1:
+              type: string
+            param2:
+              type: string
+            param3:
+              type: string
+            param4:
+              type: string
+            param5:
+              type: string
+            push_mdata:
+              type: string
+            push_sound:
+              type: string
+            rejection_token:
+              type: integer
+            repeat_freq:
+              type: integer
+            requires_acceptance:
+              type: boolean
+            trigger_id:
+              type: integer
+            triggered_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+            username:
+              type: string

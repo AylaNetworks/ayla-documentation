@@ -1,0 +1,72 @@
+div.api {
+  margin-bottom: 6px;
+}
+
+div.api div.api-title {
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+}
+
+div.api span.api-method {
+  color: white;
+  font-size: 85%;
+  font-weight: bold;
+  min-width: 80px;
+  padding: 3px 0;
+  text-align: center;
+  width: 80px;
+}
+
+div.api span.api-url {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 80%;
+  padding-left: 9px;
+}
+
+div.api span.api-service {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 85%;
+  padding-right: 9px;
+  text-align: right;
+}
+
+div.api input.api-path-parameter {
+  display: block;
+  font-size: 85%;
+  margin-top: 6px;
+  padding: 0 3px;
+}
+
+div.api pre.api-request-body {
+  background: white;
+  border:1px solid #e0e0e0; 
+  margin: 6px 0 0 0 !important;
+}
+
+div.api div.btn-group {
+  margin-top: 6px;
+}
+
+div.api div.btn-group button {
+  width: 60px;
+}
+
+div.api pre.api-response-body {
+  max-height: 800px;
+  min-height: 50px;
+  margin: 6px 0 0 0 !important;
+}
+
+div.api.get {background: #edf3f8;}
+div.api.get div.api-title {background: #dae7f1;}
+div.api.get span.api-method {background: steelblue;}
+
+div.api.post {background: #e6ffe6;}
+div.api.post div.api-title {background: #ccffcc;}
+div.api.post span.api-method {background: green;}
+
+#ayla-region-accounts label {margin-bottom: .1rem;}
