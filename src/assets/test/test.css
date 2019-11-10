@@ -69,4 +69,9 @@ div.api.post {background: #e6ffe6;}
 div.api.post div.api-title {background: #ccffcc;}
 div.api.post span.api-method {background: green;}
 
-#ayla-region-accounts label {margin-bottom: .1rem;}
+#ayla-account-details label {
+  font-size:75%;
+  font-weight:bold;
+  margin-bottom: .1rem;
+  padding-left:3px;
+}

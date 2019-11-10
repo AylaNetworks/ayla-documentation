@@ -6,7 +6,7 @@ e: block
 
 <div class="form-row">
   <div class="form-group col-auto">
-    <select class="form-control form-control-sm ayla-region" style="min-width: 200px;">
+    <select class="form-control form-control-sm ayla-regions" style="min-width: 200px;">
       <option value="cndev">China Development</option>
       <option value="cnfield">China Field</option>
       <option value="eufield">EU Field</option>
@@ -18,54 +18,79 @@ e: block
     <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#ayla-region-urls" aria-expanded="false">URLs</button>
   </div>
   <div class="form-group col-auto">
-    <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#ayla-region-accounts" aria-expanded="false">Accounts</button>
+    <select class="form-control form-control-sm ayla-accounts" style="min-width: 200px;">
+      <option value="b95384c0-8165-11e8-929b-0a27c1b236f4">Acme Inc</option>
+    </select>
+  </div>
+  <div class="form-group col-auto">
+    <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#ayla-account-details" aria-expanded="false">Details</button>
   </div>
 </div>
-<div id="ayla-region-urls" class="collapse" style="padding:12px;background:#f2f2f2;margin-bottom:18px;border-radius:3px;">
-  <table class="mb-0">
-  <tr><th>Service</th><th style="min-width:250px;">URL</th></tr>
-  <tr><td>Application</td><td><code id="application-service-url"></code></td></tr>
-  <tr><td>Datastream</td><td><code id="datastream-service-url"></code></td></tr>
-  <tr><td>Device</td><td><code id="device-service-url"></code></td></tr>
-  <tr><td>Factory Proxy</td><td><code id="factory-proxy-service-url"></code></td></tr>
-  <tr><td>Image</td><td><code id="image-service-url"></code></td></tr>
-  <tr><td>Log</td><td><code id="log-service-url"></code></td></tr>
-  <tr><td>Notification</td><td><code id="notification-service-url"></code></td></tr>
-  <tr><td>Rules</td><td><code id="rules-service-url"></code></td></tr>
-  <tr><td>User</td><td><code id="user-service-url"></code></td></tr>
-  <tr><td>Zigbee</td><td><code id="zigbee-service-url"></code></td></tr>
+<div id="ayla-region-urls" class="collapse">
+  <table>
+    <tr><th>Service</th><th style="min-width:250px;">URL</th></tr>
+    <tr><td>Application</td><td><code id="application-service-url"></code></td></tr>
+    <tr><td>Datastream</td><td><code id="datastream-service-url"></code></td></tr>
+    <tr><td>Device</td><td><code id="device-service-url"></code></td></tr>
+    <tr><td>Factory Proxy</td><td><code id="factory-proxy-service-url"></code></td></tr>
+    <tr><td>Image</td><td><code id="image-service-url"></code></td></tr>
+    <tr><td>Log</td><td><code id="log-service-url"></code></td></tr>
+    <tr><td>Notification</td><td><code id="notification-service-url"></code></td></tr>
+    <tr><td>Rules</td><td><code id="rules-service-url"></code></td></tr>
+    <tr><td>User</td><td><code id="user-service-url"></code></td></tr>
+    <tr><td>Zigbee</td><td><code id="zigbee-service-url"></code></td></tr>
   </table>
 </div>
-<div id="ayla-region-accounts" class="collapse" style="padding:16px 12px 0 12px;background:#f2f2f2;margin-bottom:18px;border-radius:3px;">
+<div id="ayla-account-details" class="collapse" style="padding:9px 12px 0 12px;background:#f2f2f2;margin-bottom:18px;border-radius:3px;">
   <div class="form-row">
     <div class="form-group col-12 col-lg-3">
-      <input id="region-email" type="text" class="form-control form-control-sm" placeholder="email">
+      <label>email</label>
+      <input id="ayla-account-email" type="text" class="form-control form-control-sm">
     </div>
     <div class="form-group col-12 col-lg-3">
-      <input id="region-password" type="text" class="form-control form-control-sm" placeholder="password">
+      <label>password</label>
+      <input id="ayla-account-password" type="text" class="form-control form-control-sm">
     </div>
     <div class="form-group col-12 col-lg-3">
-      <input id="region-app-id" type="text" class="form-control form-control-sm" placeholder="app_id">
+      <label>app_id</label>
+      <input id="ayla-account-app-id" type="text" class="form-control form-control-sm">
     </div>
     <div class="form-group col-12 col-lg-3">
-      <input id="region-app-secret" type="text" class="form-control form-control-sm" placeholder="app_secret">
+      <label>app_secret</label>
+      <input id="ayla-account-app-secret" type="text" class="form-control form-control-sm">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-12 col-lg-3">
-      <button id="region-tokens-btn" type="button" class="btn btn-sm btn-block">&nbsp;</button>
+      <button id="ayla-account-tokens-btn" type="button" class="btn btn-sm btn-block">&nbsp;</button>
     </div>
     <div class="form-group col-12 col-lg-3">
-      <input id="region-access-token" type="text" class="form-control form-control-sm" placeholder="access_token">
+      <button id="ayla-account-forget-btn" type="button" class="btn btn-danger btn-sm btn-block">Forget Account</button>
     </div>
     <div class="form-group col-12 col-lg-3">
-      <input id="region-refresh-token" type="text" class="form-control form-control-sm" placeholder="refresh_token">
+      <button id="ayla-test-btn" type="button" class="btn btn-secondary btn-sm btn-block">Test</button>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-12 col-lg-3">
+      <label>access_token</label>
+      <input id="ayla-account-access-token" type="text" class="form-control form-control-sm" disabled>
     </div>
     <div class="form-group col-12 col-lg-3">
-      <button id="region-forget-btn" type="button" class="btn btn-danger btn-sm btn-block">Forget Account</button>
+      <label>refresh_token</label>
+      <input id="ayla-account-refresh-token" type="text" class="form-control form-control-sm" disabled>
+    </div>
+    <div class="form-group col-12 col-lg-3">
+      <label>user_id</label>
+      <input id="ayla-account-user-id" type="text" class="form-control form-control-sm" disabled>
+    </div>
+    <div class="form-group col-12 col-lg-3">
+      <label>uuid</label>
+      <input id="ayla-account-uuid" type="text" class="form-control form-control-sm" disabled>
     </div>
   </div>
 </div>
+
 <div class="api get">
   <div class="api-title" data-toggle="collapse" href="#get-apiv1-devices">
     <span class="api-method">GET</span>

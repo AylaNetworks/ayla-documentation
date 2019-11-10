@@ -1,3 +1,7 @@
+/*------------------------------------------------------
+Axios Functions
+------------------------------------------------------*/
+
 var AYLA = {
   getApiv1Devices: function(server, token, successCb=null, errorCb=null) {
     axios({
@@ -125,13 +129,13 @@ var AYLA = {
 }
 
 /*------------------------------------------------------
-Run Functions
+API On-click Functions
 ------------------------------------------------------*/
 
 $(function() {
   $('#get-apiv1-devices button.api-run').click(function(event) {
     let api = $(this).closest('div.api')
-    let regionName = $("select.ayla-region option:selected").val()
+    let regionName = $("select.ayla-regions option:selected").val()
     let service = $(api).find('span.api-service').text().toLowerCase()
     let server = serviceUrls[regionName][service]
     let token = getAylaRegion(regionName).access_token
@@ -147,7 +151,7 @@ $(function() {
 $(function() {
   $('#get-apiv1-devices-deviceid button.api-run').click(function(event) {
     let api = $(this).closest('div.api')
-    let regionName = $("select.ayla-region option:selected").val()
+    let regionName = $("select.ayla-regions option:selected").val()
     let service = $(api).find('span.api-service').text().toLowerCase()
     let server = serviceUrls[regionName][service]
     let token = getAylaRegion(regionName).access_token
@@ -164,7 +168,7 @@ $(function() {
 $(function() {
   $('#get-apiv1-devices-deviceid-properties button.api-run').click(function(event) {
     let api = $(this).closest('div.api')
-    let regionName = $("select.ayla-region option:selected").val()
+    let regionName = $("select.ayla-regions option:selected").val()
     let service = $(api).find('span.api-service').text().toLowerCase()
     let server = serviceUrls[regionName][service]
     let token = getAylaRegion(regionName).access_token
@@ -181,7 +185,7 @@ $(function() {
 $(function() {
   $('#post-apiv1-devices-deviceId-properties-propertyName-datapoints button.api-run').click(function(event) {
     let api = $(this).closest('div.api')
-    let regionName = $("select.ayla-region option:selected").val()
+    let regionName = $("select.ayla-regions option:selected").val()
     let service = $(api).find('span.api-service').text().toLowerCase()
     let server = serviceUrls[regionName][service]
     let token = getAylaRegion(regionName).access_token
@@ -199,7 +203,7 @@ $(function() {
 $(function() {
   $('#get-apiv1-dsns-dsn button.api-run').click(function(event) {
     let api = $(this).closest('div.api')
-    let regionName = $("select.ayla-region option:selected").val()
+    let regionName = $("select.ayla-regions option:selected").val()
     let service = $(api).find('span.api-service').text().toLowerCase()
     let server = serviceUrls[regionName][service]
     let token = getAylaRegion(regionName).access_token
@@ -216,7 +220,7 @@ $(function() {
 $(function() {
   $('#get-users-get-user-profile button.api-run').click(function(event) {
     let api = $(this).closest('div.api')
-    let regionName = $("select.ayla-region option:selected").val()
+    let regionName = $("select.ayla-regions option:selected").val()
     let service = $(api).find('span.api-service').text().toLowerCase()
     let server = serviceUrls[regionName][service]
     let token = getAylaRegion(regionName).access_token
@@ -232,7 +236,7 @@ $(function() {
 $(function() {
   $('#post-users-sign-in button.api-run').click(function(event) {
     let api = $(this).closest('div.api')
-    let regionName = $("select.ayla-region option:selected").val()
+    let regionName = $("select.ayla-regions option:selected").val()
     let service = $(api).find('span.api-service').text().toLowerCase()
     let server = serviceUrls[regionName][service]
     let requestBody = $(api).find('pre.api-request-body')
@@ -248,7 +252,7 @@ $(function() {
 $(function() {
   $('#post-users-sign-out button.api-run').click(function(event) {
     let api = $(this).closest('div.api')
-    let regionName = $("select.ayla-region option:selected").val()
+    let regionName = $("select.ayla-regions option:selected").val()
     let service = $(api).find('span.api-service').text().toLowerCase()
     let server = serviceUrls[regionName][service]
     let requestBody = $(api).find('pre.api-request-body')
@@ -264,7 +268,7 @@ $(function() {
 $(function() {
   $('#get-users-uuid button.api-run').click(function(event) {
     let api = $(this).closest('div.api')
-    let regionName = $("select.ayla-region option:selected").val()
+    let regionName = $("select.ayla-regions option:selected").val()
     let service = $(api).find('span.api-service').text().toLowerCase()
     let server = serviceUrls[regionName][service]
     let token = getAylaRegion(regionName).access_token
@@ -279,7 +283,7 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Utilities
+Clear Response Body
 ------------------------------------------------------*/
 
 $(function() {
@@ -290,30 +294,40 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Login/Logout
+Local Storage
 ------------------------------------------------------*/
 
 function getAylaRegion(name) {return JSON.parse(localStorage.getItem(name))}
-function createAylaRegion(name, email, password, appId, appSecret, accessToken, refreshToken) {
-  let region = {}
-  region.name = name
-  region.email = email
-  region.password = password
-  region.app_id = appId
-  region.app_secret = appSecret
-  region.access_token = accessToken
-  region.refresh_token = refreshToken
-  setAylaRegion(region)
-}
 function setAylaRegion(region) {localStorage.setItem(region.name, JSON.stringify(region))}
 function deleteAylaRegion(name) {localStorage.removeItem(name)}
 
+function getAylaRegions(name) {
+  let str = localStorage.getItem('regions')
+  let regions = {}
+  if(str) {
+    regions = JSON.parse(str)
+  } else {
+    regions.cndev = []
+    regions.cnfield = []
+    regions.eufield = []
+    regions.usdev = []
+    regions.usfield = []
+  }
+  return regions
+}
+
+/*------------------------------------------------------
+Get/Discard Tokens
+------------------------------------------------------*/
+
 $(function() {
-  $('#region-tokens-btn').click(function(event) {
-    let regionName = $("select.ayla-region option:selected").val()
+  $('#ayla-account-tokens-btn').click(function(event) {
+    let regionName = $("select.ayla-regions option:selected").val()
     let server = serviceUrls[regionName]['user']
     let region = getAylaRegion(regionName)
-    if(region && region.access_token) { // logout
+
+    // Discard Tokens
+    if(region && region.access_token) {
       let user = {}
       user.access_token = region.access_token
       let data = {}
@@ -322,37 +336,53 @@ $(function() {
         region.access_token = ''
         region.refresh_token = ''
         setAylaRegion(region)
-        $('#region-access-token').val('')
-        $('#region-refresh-token').val('')
-        $('#region-tokens-btn').text('Get Tokens')
-        $('#region-tokens-btn').removeClass('btn-warning').addClass('btn-success')  
+        $('#ayla-account-access-token').val('')
+        $('#ayla-account-refresh-token').val('')
+        $('#ayla-account-tokens-btn').text('Get Tokens')
+        $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')  
       }, function(error) {
         console.log(JSON.stringify(error, null, 2))
       })
-    } else { // login
+    } 
+    
+    // Get Account and Tokens
+    else {
       let application = {}
-      application.app_id = $('#region-app-id').val()
-      application.app_secret = $('#region-app-secret').val()
+      application.app_id = $('#ayla-account-app-id').val()
+      application.app_secret = $('#ayla-account-app-secret').val()
       let user = {}
-      user.email = $('#region-email').val()
-      user.password = $('#region-password').val()
+      user.email = $('#ayla-account-email').val()
+      user.password = $('#ayla-account-password').val()
       user.application = application
       let data = {}
       data.user = user
       AYLA.postUsersSignIn(server, data, function(response) {
         region = {}
-        region.name = $('select.ayla-region option:selected').val()
-        region.email = $('#region-email').val()
-        region.password = $('#region-password').val()
-        region.app_id = $('#region-app-id').val()
-        region.app_secret = $('#region-app-secret').val()
+        region.name = $('select.ayla-regions option:selected').val()
+        region.email = $('#ayla-account-email').val()
+        region.password = $('#ayla-account-password').val()
+        region.app_id = $('#ayla-account-app-id').val()
+        region.app_secret = $('#ayla-account-app-secret').val()
         region.access_token = response.data.access_token
         region.refresh_token = response.data.refresh_token
-        setAylaRegion(region)
-        $('#region-access-token').val(response.data.access_token)
-        $('#region-refresh-token').val(response.data.refresh_token)
-        $('#region-tokens-btn').text('Expire Tokens')
-        $('#region-tokens-btn').removeClass('btn-success').addClass('btn-warning')
+        AYLA.getUsersGetUserProfile(server, region.access_token, function(response) {
+          region.uuid = response.data.uuid
+          AYLA.getUsersUuid(server, region.access_token, region.uuid, function(response) {
+            region.user_id = response.data.id
+            region.account_name = response.data.origin_oem_name
+            setAylaRegion(region)
+            $('#ayla-account-access-token').val(region.access_token)
+            $('#ayla-account-refresh-token').val(region.refresh_token)
+            $('#ayla-account-user-id').val(region.user_id)
+            $('#ayla-account-uuid').val(region.uuid)
+            $('#ayla-account-tokens-btn').text('Discard Tokens')
+            $('#ayla-account-tokens-btn').removeClass('btn-success').addClass('btn-warning')
+          }, function(error) {
+            console.log(JSON.stringify(error, null, 2))
+          })
+        }, function(error) {
+          console.log(JSON.stringify(error, null, 2))
+        })
       }, function(error) {
         console.log(JSON.stringify(error, null, 2))
       })
@@ -360,23 +390,54 @@ $(function() {
   })
 })
 
+/*------------------------------------------------------
+Account Forget Button
+------------------------------------------------------*/
+
 $(function() {
-  $('#region-forget-btn').click(function(event) {
-    var regionName = $("select.ayla-region option:selected").val()
+  $('#ayla-account-forget-btn').click(function(event) {
+    let regionName = $("select.ayla-regions option:selected").val()
     deleteAylaRegion(regionName)
-    $('#region-email').val('')
-    $('#region-password').val('')
-    $('#region-app-id').val('')
-    $('#region-app-secret').val('')
-    $('#region-access-token').val('')
-    $('#region-refresh-token').val('')
-    $('#region-tokens-btn').text('Get Tokens')
-    $('#region-tokens-btn').removeClass('btn-warning').addClass('btn-success')  
+    initAccountForm()
   })
 })
 
 /*------------------------------------------------------
-Servers
+Test Button
+------------------------------------------------------*/
+
+$(function() {
+  $('#ayla-test-btn').click(function(event) {
+
+    let regions = getAylaRegions()
+    let regionName = $("select.ayla-regions option:selected").val()
+    let account = {}
+    account.email = 'matt@aylauniversity.com'
+    account.password = '123456'
+    account.uuid = 'b95384c0-8165-11e8-929b-0a27c1b236f4'
+    regions[regionName].push(account)
+    account.email = 'matt@aylanetworks.com'
+    account.password = 'abcdef'
+    account.uuid = '12ab34cd-1809-12a2-456b-01ac45e472bc'
+    regions[regionName].push(account)
+
+
+
+    /*
+    let regions = getAylaRegions()
+    let regionName = $("select.ayla-regions option:selected").val()
+    let region = regions[regionName]
+    let uuid = 'b95384c0-8165-11e8-929b-0a27c1b236f4'
+    region[uuid] = {}
+    region[uuid].email = 'matt@aylauniversity.com'
+    */
+
+    console.log(JSON.stringify(regions, null, 2))
+  })
+})
+
+/*------------------------------------------------------
+Region/Service/URL array
 ------------------------------------------------------*/
 
 var serviceUrls = new Array()
@@ -436,20 +497,24 @@ serviceUrls['usfield']['rules'] = "https://rulesservice-field.aylanetworks.com"
 serviceUrls['usfield']['user'] = "https://user-field.aylanetworks.com"
 serviceUrls['usfield']['zigbee'] = "https://zigbee-field.aylanetworks.com"
 
+/*------------------------------------------------------
+Fill forms on-load & on-click
+------------------------------------------------------*/
+
 $(function() {
   writeRegionUrls()
-  writeSessionInfo()
+  fillAccountForm()
 })
 
 $(function() {
-  $("select.ayla-region").change(function () {
+  $("select.ayla-regions").change(function () {
     writeRegionUrls()
-    writeSessionInfo()
+    fillAccountForm()
   })
 })
 
 function writeRegionUrls() {
-  var regionName = $("select.ayla-region option:selected").val()
+  let regionName = $("select.ayla-regions option:selected").val()
   $('#application-service-url').text(serviceUrls[regionName]['application'])
   $('#datastream-service-url').text(serviceUrls[regionName]['datastream'])
   $('#device-service-url').text(serviceUrls[regionName]['device'])
@@ -462,31 +527,39 @@ function writeRegionUrls() {
   $('#zigbee-service-url').text(serviceUrls[regionName]['zigbee'])
 }
 
-function writeSessionInfo() {
-  let regionName = $("select.ayla-region option:selected").val()
+function fillAccountForm() {
+  let regionName = $("select.ayla-regions option:selected").val()
   let region = getAylaRegion(regionName)
   if(region) {
-    $('#region-email').val(region.email)
-    $('#region-password').val(region.password)
-    $('#region-app-id').val(region.app_id)
-    $('#region-app-secret').val(region.app_secret)
-    $('#region-access-token').val(region.access_token)
-    $('#region-refresh-token').val(region.refresh_token)
+    $('#ayla-account-email').val(region.email)
+    $('#ayla-account-password').val(region.password)
+    $('#ayla-account-app-id').val(region.app_id)
+    $('#ayla-account-app-secret').val(region.app_secret)
+    $('#ayla-account-access-token').val(region.access_token)
+    $('#ayla-account-refresh-token').val(region.refresh_token)
     if(region.access_token) {
-      $('#region-tokens-btn').text('Expire Tokens')
-      $('#region-tokens-btn').removeClass('btn-success').addClass('btn-warning')
+      $('#ayla-account-tokens-btn').text('Discard Tokens')
+      $('#ayla-account-tokens-btn').removeClass('btn-success').addClass('btn-warning')
     } else {
-      $('#region-tokens-btn').text('Get Tokens')
-      $('#region-tokens-btn').removeClass('btn-warning').addClass('btn-success')
+      $('#ayla-account-tokens-btn').text('Get Tokens')
+      $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')
     }
+    $('#ayla-account-user-id').val(region.user_id)
+    $('#ayla-account-uuid').val(region.uuid)
   } else {
-    $('#region-email').val('')
-    $('#region-password').val('')
-    $('#region-app-id').val('')
-    $('#region-app-secret').val('')
-    $('#region-access-token').val('')
-    $('#region-refresh-token').val('')
-    $('#region-tokens-btn').text('Get Tokens')
-    $('#region-tokens-btn').removeClass('btn-warning').addClass('btn-success')
+    initAccountForm()
+  }
 }
+
+function initAccountForm() {
+  $('#ayla-account-email').val('')
+  $('#ayla-account-password').val('')
+  $('#ayla-account-app-id').val('')
+  $('#ayla-account-app-secret').val('')
+  $('#ayla-account-access-token').val('')
+  $('#ayla-account-refresh-token').val('')
+  $('#ayla-account-user-id').val('')
+  $('#ayla-account-uuid').val('')
+  $('#ayla-account-tokens-btn').text('Get Tokens')
+  $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')
 }
