@@ -1,77 +1,138 @@
 div.api {
   margin-bottom: 6px;
+  box-shadow: 0 1px 2px #cccccc;
 }
 
-div.api div.api-title {
+div.api div.header {
   align-items: center;
-  box-sizing: border-box;
   cursor: pointer;
-  display: flex;
 }
 
-div.api span.api-method {
+div.api div.header div.method {
   color: white;
   font-size: 85%;
   font-weight: bold;
+  line-height: 26px;
   min-width: 80px;
-  padding: 3px 0;
   text-align: center;
-  width: 80px;
 }
 
-div.api span.api-url {
+div.api div.header div.url {
   font-family: 'Courier New', Courier, monospace;
+  font-size: 76%;
+  line-height: 26px;
+  padding: 0 6px !important;
+  word-break: break-all;
+}
+
+div.api div.header div.name {
   font-size: 80%;
-  padding-left: 9px;
+  line-height: 26px;
+  padding: 0 6px !important;
 }
 
-div.api span.api-service {
-  box-sizing: border-box;
-  flex: 1 1 auto;
-  font-family: 'Courier New', Courier, monospace;
+div.api div.content {
+  padding: .8rem .8rem .5rem .8rem;
+}
+
+div.api div.content div.service {
   font-size: 85%;
-  padding-right: 9px;
-  text-align: right;
+  font-weight: bold;
+  margin-bottom: .5rem;
 }
 
-div.api input.api-path-parameter {
-  display: block;
-  font-size: 85%;
-  margin-top: 6px;
-  padding: 0 3px;
+div.api div.content div.description {
+  font-size: 90%;
+  margin-bottom: .5rem;
 }
 
-div.api pre.api-request-body {
+div.api div.content div.heading {
+  font-size: 105%;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+div.api div.content div.subheading {
+  font-size: 90%;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+div.api div.content div.path-parameter {margin-bottom: .5rem;}
+div.api div.content div.path-parameter span.name {font-size: 90%; font-weight: bold;}
+div.api div.content div.path-parameter span.text {font-size: 90%;}
+
+div.api div.content input {
+  margin-bottom: .5rem;
+}
+
+div.api div.content pre {margin:0 0 .5rem 0 !important;}
+
+div.api div.content pre.request-data-element {
   background: white;
   border:1px solid #e0e0e0; 
-  margin: 6px 0 0 0 !important;
 }
 
-div.api div.btn-group {
-  margin-top: 6px;
+div.api div.content pre.request-data-element span.optional {
+  color: yellow;
 }
 
-div.api div.btn-group button {
-  width: 60px;
+div.api div.content button {
+  margin-bottom: .5rem;
 }
 
-div.api pre.api-response-body {
-  max-height: 800px;
-  min-height: 50px;
-  margin: 6px 0 0 0 !important;
+div.api div.content div.btn-group button {
+  min-width: 60px;
+}
+
+div.api div.content button.run {
+  width: 100%;
+}
+
+div.api div.content pre.response-data-element {
+  min-height: 80px;
+}
+
+div.api div.content div.status-codes div.status-code div.code,
+div.api div.content div.status-codes div.status-code div.text {
+  line-height: 24px;
+  font-size: 85%;
+}
+div.api div.content div.status-codes div.status-code div.code {
+  text-align: center;
 }
 
 div.api.get {background: #edf3f8;}
-div.api.get div.api-title {background: #dae7f1;}
-div.api.get span.api-method {background: steelblue;}
+div.api.get div.header.collapsed {background: #edf3f8; color: #212529}
+div.api.get div.header {background: steelblue; color: white;}
+div.api.get div.header div.method {background: steelblue;}
+div.api.get div.content div.subheading {color: #325d81;}
 
 div.api.post {background: #e6ffe6;}
-div.api.post div.api-title {background: #ccffcc;}
-div.api.post span.api-method {background: green;}
+div.api.post div.header.collapsed {background: #e6ffe6; color: #212529}
+div.api.post div.header {background: green; color: white;}
+div.api.post div.header div.method {background: green;}
+div.api.post div.content div.subheading {color: #006600;}
 
-#ayla-account-details label {
+div.api.put {background: #fff6e6;}
+div.api.put div.header.collapsed {background: #fff6e6; color: #212529}
+div.api.put div.header {background: orange; color: white;}
+div.api.put div.header div.method {background: orange;}
+div.api.put div.content div.subheading {color: #cc8500;}
+
+div.api.delete {background: #fbeaea;}
+div.api.delete div.header.collapsed {background: #fbeaea; color: #212529}
+div.api.delete div.header {background: FireBrick; color: white;}
+div.api.delete div.header div.method {background: FireBrick;}
+div.api.delete div.content div.subheading {color: #961d1d;}
+
+#ayla-region-urls label, #ayla-account-details label {
   font-size:75%;
   font-weight:bold;
   margin-bottom: .1rem;
   padding-left:3px;
+}
+
+#ayla-region-urls input[type="text"]:disabled, #ayla-account-details input[type="text"]:disabled {
+  background: white;
 }

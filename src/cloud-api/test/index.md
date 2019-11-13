@@ -2,7 +2,14 @@
 title: Test
 layout: test.html
 e: block
+classesFromPage: has-pagebar
 ---
+
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li><a href="#core-title">Test</a></li>
+  </ul>
+</aside>
 
 <div class="form-row">
   <div class="form-group col-auto">
@@ -19,29 +26,71 @@ e: block
   </div>
   <div class="form-group col-auto">
     <select class="form-control form-control-sm ayla-accounts" style="min-width: 200px;">
-      <option value="b95384c0-8165-11e8-929b-0a27c1b236f4">Acme Inc</option>
     </select>
   </div>
   <div class="form-group col-auto">
     <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#ayla-account-details" aria-expanded="false">Details</button>
   </div>
+  <div class="form-group col-auto">
+    <button id="ayla-add-account-btn" type="button" class="btn btn-secondary btn-sm">Add</button>
+  </div>
+  <div class="form-group col-auto">
+    <button id="ayla-remove-account-btn" type="button" class="btn btn-secondary btn-sm">Remove</button>
+  </div>
 </div>
-<div id="ayla-region-urls" class="collapse">
-  <table>
-    <tr><th>Service</th><th style="min-width:250px;">URL</th></tr>
-    <tr><td>Application</td><td><code id="application-service-url"></code></td></tr>
-    <tr><td>Datastream</td><td><code id="datastream-service-url"></code></td></tr>
-    <tr><td>Device</td><td><code id="device-service-url"></code></td></tr>
-    <tr><td>Factory Proxy</td><td><code id="factory-proxy-service-url"></code></td></tr>
-    <tr><td>Image</td><td><code id="image-service-url"></code></td></tr>
-    <tr><td>Log</td><td><code id="log-service-url"></code></td></tr>
-    <tr><td>Notification</td><td><code id="notification-service-url"></code></td></tr>
-    <tr><td>Rules</td><td><code id="rules-service-url"></code></td></tr>
-    <tr><td>User</td><td><code id="user-service-url"></code></td></tr>
-    <tr><td>Zigbee</td><td><code id="zigbee-service-url"></code></td></tr>
-  </table>
+<div id="ayla-region-urls" class="collapse" style="padding:9px 12px;background:#d8f3ea;margin-bottom:18px;border-radius:4px;">
+  <div class="form-row">
+    <div class="col-12 col-lg-6 mb-2">
+      <label>Application Service</label>
+      <input id="application-service-url" type="text" class="form-control form-control-sm" disabled>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+      <label>Log Service</label>
+      <input id="log-service-url" type="text" class="form-control form-control-sm" disabled>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-12 col-lg-6 mb-2">
+      <label>Datastream Service</label>
+      <input id="datastream-service-url" type="text" class="form-control form-control-sm" disabled>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+      <label>Notification Service</label>
+      <input id="notification-service-url" type="text" class="form-control form-control-sm" disabled>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-12 col-lg-6 mb-2">
+      <label>Device Service</label>
+      <input id="device-service-url" type="text" class="form-control form-control-sm" disabled>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+      <label>Rules Service</label>
+      <input id="rules-service-url" type="text" class="form-control form-control-sm" disabled>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-12 col-lg-6 mb-2">
+      <label>Factory Proxy Service</label>
+      <input id="factory-proxy-service-url" type="text" class="form-control form-control-sm" disabled>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+      <label>User Service</label>
+      <input id="user-service-url" type="text" class="form-control form-control-sm" disabled>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-12 col-lg-6 mb-2">
+      <label>Image Service</label>
+      <input id="image-service-url" type="text" class="form-control form-control-sm" disabled>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+      <label>Zigbee Service</label>
+      <input id="zigbee-service-url" type="text" class="form-control form-control-sm" disabled>
+    </div>
+  </div>
 </div>
-<div id="ayla-account-details" class="collapse" style="padding:9px 12px 0 12px;background:#f2f2f2;margin-bottom:18px;border-radius:3px;">
+<div id="ayla-account-details" class="collapse" style="padding:9px 12px 0 12px;background:#f9ebd2;margin-bottom:18px;border-radius:4px;">
   <div class="form-row">
     <div class="form-group col-12 col-lg-3">
       <label>email</label>
@@ -49,7 +98,7 @@ e: block
     </div>
     <div class="form-group col-12 col-lg-3">
       <label>password</label>
-      <input id="ayla-account-password" type="text" class="form-control form-control-sm">
+      <input id="ayla-account-password" type="password" class="form-control form-control-sm" autocomplete='new-password'>
     </div>
     <div class="form-group col-12 col-lg-3">
       <label>app_id</label>
@@ -64,12 +113,6 @@ e: block
     <div class="form-group col-12 col-lg-3">
       <button id="ayla-account-tokens-btn" type="button" class="btn btn-sm btn-block">&nbsp;</button>
     </div>
-    <div class="form-group col-12 col-lg-3">
-      <button id="ayla-account-forget-btn" type="button" class="btn btn-danger btn-sm btn-block">Forget Account</button>
-    </div>
-    <div class="form-group col-12 col-lg-3">
-      <button id="ayla-test-btn" type="button" class="btn btn-secondary btn-sm btn-block">Test</button>
-    </div>
   </div>
   <div class="form-row">
     <div class="form-group col-12 col-lg-3">
@@ -81,128 +124,315 @@ e: block
       <input id="ayla-account-refresh-token" type="text" class="form-control form-control-sm" disabled>
     </div>
     <div class="form-group col-12 col-lg-3">
-      <label>user_id</label>
-      <input id="ayla-account-user-id" type="text" class="form-control form-control-sm" disabled>
-    </div>
-    <div class="form-group col-12 col-lg-3">
       <label>uuid</label>
       <input id="ayla-account-uuid" type="text" class="form-control form-control-sm" disabled>
     </div>
+    <div class="form-group col-12 col-lg-3">
+      <label>user_id</label>
+      <input id="ayla-account-user-id" type="text" class="form-control form-control-sm" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-auto">
+    <select class="form-control form-control-sm devices" style="min-width: 200px;"></select>
+  </div>
+  <div class="form-group col-auto">
+    <select class="form-control form-control-sm properties" style="min-width: 200px;"></select>
   </div>
 </div>
 
 <div class="api get">
-  <div class="api-title" data-toggle="collapse" href="#get-apiv1-devices">
-    <span class="api-method">GET</span>
-    <span class="api-url">/apiv1/devices</span>
-    <span class="api-service">Device</span>
-  </div>
-  <div id="get-apiv1-devices" class="api-content collapse">
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
-      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+  <div class="header collapsed" data-toggle="collapse" href="#get-apiv1-devices">
+    <div class="row align-items-center no-gutters">
+      <div class="col-12 col-md-auto method">GET</div>
+      <div class="col-12 col-md url">/apiv1/devices</div>
+      <div class="col-12 col-md-auto name">getDevices</div>
     </div>
-    <pre class="api-response-body"></pre>
+  </div>
+  <div class="content collapse" id="get-apiv1-devices">
+    <div class="form-row">
+      <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      <div class="col-12 col-sm-auto service">Device Service</div>
+    </div>
+    <div class="form-row">
+      <div class="col-3">
+        <button type="button" class="btn btn-warning btn-sm run">Run</button>
+      </div>
+    </div>
+    <div class="heading">Response</div>
+    <div class="subheading">Body</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="response-data-element" style="display:none;"></pre>
+    <div class="subheading">Status Codes</div>
+    <div class="status-codes">
+      <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
+      <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
+      <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
+      <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
+    </div>
   </div>
 </div>
 
 <div class="api get">
-  <div class="api-title" data-toggle="collapse" href="#get-apiv1-devices-deviceid">
-    <span class="api-method">GET</span>
-    <span class="api-url">/apiv1/devices/{deviceId}</span>
-    <span class="api-service">Device</span>
-  </div>
-  <div id="get-apiv1-devices-deviceid" class="api-content collapse">
-    <input class="api-path-parameter" type="text" placeholder="deviceId">
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
-      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+  <div class="header collapsed" data-toggle="collapse" href="#get-apiv1-devices-devid">
+    <div class="row align-items-center no-gutters">
+      <div class="col-12 col-md-auto method">GET</div>
+      <div class="col-12 col-md url">/apiv1/devices/{devId}</div>
+      <div class="col-12 col-md-auto name">getDeviceByDevId</div>
     </div>
-    <pre class="api-response-body"></pre>
+  </div>
+  <div class="content collapse" id="get-apiv1-devices-devid">
+    <div class="form-row">
+      <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      <div class="col-12 col-sm-auto service">Device Service</div>
+    </div>
+    <div class="heading">Request</div>
+    <div class="subheading">Path Parameters</div>
+    <div class="form-row path-parameter">
+      <div class="col-12 col-lg-3">
+        <input type="text" class="form-control form-control-sm value" placeholder="devId">
+      </div>
+      <div class="col-12 col-lg-9">
+        <div><span class="name">devId</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-3">
+        <button type="button" class="btn btn-warning btn-sm run">Run</button>
+      </div>
+    </div>
+    <div class="heading">Response</div>
+    <div class="subheading">Body</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="response-data-element" style="display:none;"></pre>
+    <div class="subheading">Status Codes</div>
+    <div class="status-codes">
+      <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
+      <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
+      <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
+      <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
+    </div>
   </div>
 </div>
 
 <div class="api get">
-  <div class="api-title" data-toggle="collapse" href="#get-apiv1-devices-deviceid-properties">
-    <span class="api-method">GET</span>
-    <span class="api-url">/apiv1/devices/{deviceId}/properties</span>
-    <span class="api-service">Device</span>
-  </div>
-  <div id="get-apiv1-devices-deviceid-properties" class="api-content collapse">
-    <input class="api-path-parameter" type="text" placeholder="deviceId">
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
-      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+  <div class="header collapsed" data-toggle="collapse" href="#get-apiv1-devices-devid-properties">
+    <div class="row align-items-center no-gutters">
+      <div class="col-12 col-md-auto method">GET</div>
+      <div class="col-12 col-md url">/apiv1/devices/{devId}/properties</div>
+      <div class="col-12 col-md-auto name">getPropertiesByDevId</div>
     </div>
-    <pre class="api-response-body"></pre>
+  </div>
+  <div class="content collapse" id="get-apiv1-devices-devid-properties">
+    <div class="form-row">
+      <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      <div class="col-12 col-sm-auto service">Device Service</div>
+    </div>
+    <div class="heading">Request</div>
+    <div class="form-row path-parameter">
+      <div class="col-12 col-lg-3">
+        <input type="text" class="form-control form-control-sm value" placeholder="devId">
+      </div>
+      <div class="col-12 col-lg-9">
+        <div><span class="name">devId</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-3">
+        <button type="button" class="btn btn-warning btn-sm run">Run</button>
+      </div>
+    </div>
+    <div class="heading">Response</div>
+    <div class="subheading">Body</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="response-data-element" style="display:none;"></pre>
+    <div class="subheading">Status Codes</div>
+    <div class="status-codes">
+      <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
+      <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
+      <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
+      <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
+    </div>
   </div>
 </div>
 
 <div class="api post">
-  <div class="api-title" data-toggle="collapse" href="#post-apiv1-devices-deviceId-properties-propertyName-datapoints">
-    <span class="api-method">POST</span>
-    <span class="api-url">/apiv1/devices/{deviceId}/properties/{propertyName}/datapoints</span>
-    <span class="api-service">Device</span>
+  <div class="header collapsed" data-toggle="collapse" href="#post-apiv1-devices-devId-properties-propName-datapoints">
+    <div class="row align-items-center no-gutters">
+      <div class="col-12 col-md-auto method">POST</div>
+      <div class="col-12 col-md url">/apiv1/devices/{devId}/properties/{propName}/datapoints</div>
+      <div class="col-12 col-md-auto name">createDatapointByDevId</div>
+    </div>
   </div>
-  <div id="post-apiv1-devices-deviceId-properties-propertyName-datapoints" class="api-content collapse">
-    <input class="api-path-parameter" type="text" placeholder="deviceId">
-    <input class="api-path-parameter" type="text" placeholder="propertyName">
-    <pre class="api-request-body" contenteditable="true">{
+  <div class="content collapse" id="post-apiv1-devices-devId-properties-propName-datapoints">
+    <div class="form-row">
+      <div class="col-12 col-sm description">This API creates a datapoint for the specified property. The metadata in the request data is optional.</div>
+      <div class="col-12 col-sm-auto service">Device Service</div>
+    </div>
+    <div class="heading">Request</div>
+    <div class="subheading">Path Parameters</div>
+    <div class="form-row path-parameter">
+      <div class="col-12 col-lg-3">
+        <input type="text" class="form-control form-control-sm value" placeholder="devId">
+      </div>
+      <div class="col-12 col-lg-9">
+        <div><span class="name">devId</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
+      </div>
+    </div>
+    <div class="form-row path-parameter">
+      <div class="col-12 col-lg-3">
+        <input type="text" class="form-control form-control-sm value" placeholder="propName">
+      </div>
+      <div class="col-12 col-lg-9">
+        <div><span class="name">propName</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
+      </div>
+    </div>
+    <div class="subheading">Data</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-request-data-element">Hide</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm">Reset</button>
+    </div>
+    <pre class="request-data-element" contenteditable="true">{
   "datapoint": {
-    "value": "string",
+    "value": "string"<span class="optional">,
     "metadata": {
       "key1": "string",
       "key2": "string"
-    }
+    }</span>
   }
 }</pre>
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
-      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+    <div class="form-row">
+      <div class="col-3">
+        <button type="button" class="btn btn-warning btn-sm run">Run</button>
+      </div>
     </div>
-    <pre class="api-response-body"></pre>
+    <div class="heading">Response</div>
+    <div class="subheading">Body</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="response-data-element" style="display:none;"></pre>
+    <div class="subheading">Status Codes</div>
+    <div class="status-codes">
+      <div class="form-row status-code sc201"><div class="col-1 code">201</div><div class="col-11 text">Created</div></div>
+      <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
+      <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
+      <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
+    </div>
   </div>
 </div>
 
 <div class="api get">
-  <div class="api-title" data-toggle="collapse" href="#get-apiv1-dsns-dsn">
-    <span class="api-method">GET</span>
-    <span class="api-url">/apiv1/dsns/{dsn}</span>
-    <span class="api-service">Device</span>
-  </div>
-  <div id="get-apiv1-dsns-dsn" class="api-content collapse">
-    <input class="api-path-parameter" type="text" placeholder="dsn">
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
-      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+  <div class="header collapsed" data-toggle="collapse" href="#get-apiv1-dsns-dsn">
+    <div class="row align-items-center no-gutters">
+      <div class="col-12 col-md-auto method">GET</div>
+      <div class="col-12 col-md url">/apiv1/dsns/{dsn}</div>
+      <div class="col-12 col-md-auto name">getDeviceByDsn</div>
     </div>
-    <pre class="api-response-body"></pre>
+  </div>
+  <div class="content collapse" id="get-apiv1-dsns-dsn">
+    <div class="form-row">
+      <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      <div class="col-12 col-sm-auto service">Device Service</div>
+    </div>
+    <div class="heading">Request</div>
+    <div class="form-row path-parameter">
+      <div class="col-12 col-lg-3">
+        <input type="text" class="form-control form-control-sm value" placeholder="dsn">
+      </div>
+      <div class="col-12 col-lg-9">
+        <div><span class="name">dsn</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-3">
+        <button type="button" class="btn btn-warning btn-sm run">Run</button>
+      </div>
+    </div>
+    <div class="heading">Response</div>
+    <div class="subheading">Body</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="response-data-element" style="display:none;"></pre>
+    <div class="subheading">Status Codes</div>
+    <div class="status-codes">
+      <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
+      <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
+      <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
+      <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
+    </div>
   </div>
 </div>
 
 <div class="api get">
-  <div class="api-title" data-toggle="collapse" href="#get-users-get-user-profile">
-    <span class="api-method">GET</span>
-    <span class="api-url">/users/get_user_profile</span>
-    <span class="api-service">User</span>
-  </div>
-  <div id="get-users-get-user-profile" class="api-content collapse">
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
-      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+  <div class="header collapsed" data-toggle="collapse" href="#get-users-get-user-profile">
+    <div class="row align-items-center no-gutters">
+      <div class="col-12 col-md-auto method">GET</div>
+      <div class="col-12 col-md url">/users/get_user_profile</div>
+      <div class="col-12 col-md-auto name">getUserProfile</div>
     </div>
-    <pre class="api-response-body"></pre>
+  </div>
+  <div class="content collapse" id="get-users-get-user-profile">
+    <div class="form-row">
+      <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      <div class="col-12 col-sm-auto service">User Service</div>
+    </div>
+    <div class="form-row">
+      <div class="col-3">
+        <button type="button" class="btn btn-warning btn-sm run">Run</button>
+      </div>
+    </div>
+    <div class="heading">Response</div>
+    <div class="subheading">Body</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="response-data-element" style="display:none;"></pre>
+    <div class="subheading">Status Codes</div>
+    <div class="status-codes">
+      <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
+      <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
+      <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
+      <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
+    </div>
   </div>
 </div>
 
 <div class="api post">
-  <div class="api-title" data-toggle="collapse" href="#post-users-sign-in">
-    <span class="api-method">POST</span>
-    <span class="api-url">/users/sign_in</span>
-    <span class="api-service">User</span>
+  <div class="header collapsed" data-toggle="collapse" href="#post-users-sign-in">
+    <div class="row align-items-center no-gutters">
+      <div class="col-12 col-md-auto method">POST</div>
+      <div class="col-12 col-md url">/users/sign_in</div>
+      <div class="col-12 col-md-auto name">getTokens</div>
+    </div>
   </div>
-  <div id="post-users-sign-in" class="api-content collapse">
-<pre class="api-request-body" contenteditable="true">{
+  <div class="content collapse" id="post-users-sign-in">
+    <div class="form-row">
+      <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      <div class="col-12 col-sm-auto service">User Service</div>
+    </div>
+    <div class="heading">Request</div>
+    <div class="subheading">Data</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-request-data-element">Hide</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm">Reset</button>
+    </div>
+<pre class="request-data-element" contenteditable="true">{
   "user": {
     "email": "string",
     "password": "string",
@@ -212,46 +442,114 @@ e: block
     }
   }
 }</pre>
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
-      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+    <div class="form-row">
+      <div class="col-3">
+        <button type="button" class="btn btn-warning btn-sm run">Run</button>
+      </div>
     </div>
-    <pre class="api-response-body"></pre>
+    <div class="heading">Response</div>
+    <div class="subheading">Body</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="response-data-element" style="display:none;"></pre>
+    <div class="subheading">Status Codes</div>
+    <div class="status-codes">
+      <div class="form-row status-code sc201"><div class="col-1 code">201</div><div class="col-11 text">Created</div></div>
+      <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
+      <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
+      <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
+    </div>
   </div>
 </div>
 
 <div class="api post">
-  <div class="api-title" data-toggle="collapse" href="#post-users-sign-out">
-    <span class="api-method">POST</span>
-    <span class="api-url">/users/sign_out</span>
-    <span class="api-service">User</span>
+  <div class="header collapsed" data-toggle="collapse" href="#post-users-sign-out">
+    <div class="row align-items-center no-gutters">
+      <div class="col-12 col-md-auto method">POST</div>
+      <div class="col-12 col-md url">/users/sign_out</div>
+      <div class="col-12 col-md-auto name">returnTokens</div>
+    </div>
   </div>
-  <div id="post-users-sign-out" class="api-content collapse">
-<pre class="api-request-body" contenteditable="true">{
+  <div class="content collapse" id="post-users-sign-out">
+    <div class="form-row">
+      <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      <div class="col-12 col-sm-auto service">User Service</div>
+    </div>
+    <div class="heading">Request</div>
+    <div class="subheading">Data</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-request-data-element">Hide</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm">Reset</button>
+    </div>
+<pre class="request-data-element" contenteditable="true">{
   "user": {
     "access_token": ""
   }
 }</pre>
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
-      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+    <div class="form-row">
+      <div class="col-3">
+        <button type="button" class="btn btn-warning btn-sm run">Run</button>
+      </div>
     </div>
-    <pre class="api-response-body"></pre>
+    <div class="heading">Response</div>
+    <div class="subheading">Body</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="response-data-element" style="display:none;"></pre>
+    <div class="subheading">Status Codes</div>
+    <div class="status-codes">
+      <div class="form-row status-code sc201"><div class="col-1 code">201</div><div class="col-11 text">Created</div></div>
+      <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
+      <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
+      <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
+    </div>
   </div>
 </div>
 
 <div class="api get">
-  <div class="api-title" data-toggle="collapse" href="#get-users-uuid">
-    <span class="api-method">GET</span>
-    <span class="api-url">/users/{uuid}</span>
-    <span class="api-service">User</span>
-  </div>
-  <div id="get-users-uuid" class="api-content collapse">
-    <input class="api-path-parameter" type="text" placeholder="uuid">
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm api-run">Run</button>
-      <button type="button" class="btn btn-warning btn-sm api-clear">Clear</button>
+  <div class="header collapsed" data-toggle="collapse" href="#get-users-uuid">
+    <div class="row align-items-center no-gutters">
+      <div class="col-12 col-md-auto method">GET</div>
+      <div class="col-12 col-md url">/users/{uuid}</div>
+      <div class="col-12 col-md-auto name">getUserByUuid</div>
     </div>
-    <pre class="api-response-body"></pre>
+  </div>
+  <div class="content collapse" id="get-users-uuid">
+    <div class="form-row">
+      <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      <div class="col-12 col-sm-auto service">User Service</div>
+    </div>
+    <div class="heading">Request</div>
+    <div class="form-row path-parameter">
+      <div class="col-12 col-lg-3">
+        <input type="text" class="form-control form-control-sm value" placeholder="uuid">
+      </div>
+      <div class="col-12 col-lg-9">
+        <div><span class="name">uuid</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-3">
+        <button type="button" class="btn btn-warning btn-sm run">Run</button>
+      </div>
+    </div>
+    <div class="heading">Response</div>
+    <div class="subheading">Body</div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm api-clear">Clear</button>
+    </div>
+    <pre class="response-data-element" style="display:none;"></pre>
+    <div class="subheading">Status Codes</div>
+    <div class="status-codes">
+      <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
+      <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
+      <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
+      <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
+    </div>
   </div>
 </div>

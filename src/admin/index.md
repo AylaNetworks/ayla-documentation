@@ -52,3 +52,15 @@ See these examples:
 * [Google Cloud APIs](https://cloud.google.com/apis/docs/overview)
 * [Azure REST API Reference](https://docs.microsoft.com/en-us/rest/api/azure/)
 * [Facebook Marketing API](https://developers.facebook.com/docs/marketing-apis/)
+
+### About Bitnami Lightsail 404 Redirects
+
+Create ```.htaccess``` with the following content in ```/opt/bitnami/apache2/htdocs```. 
+
+```
+ErrorDocument 404 https://docs.aylanetworks.com/
+```
+
+Restart Apache with ```sudo /opt/bitnami/ctlscript.sh restart apache```.
+
+```.htaccess``` overrides all the Apache config files.
