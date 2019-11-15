@@ -21,11 +21,11 @@ var AYLA = {
         'Accept': 'application/json'
       }
     })
-    .then(function (response) {AYLA.callSuccessCb(response, successCb)})
-    .catch(function (error) {AYLA.callErrorCb(error.response, errorCb)})
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
-  getApiv1DevicesDeviceId: function(server, token, devId, successCb=null, errorCb=null) {
+  getApiv1DevicesDevId: function(server, token, devId, successCb=null, errorCb=null) {
     axios({
       method: 'get',
       url: server + '/apiv1/devices/' + devId,
@@ -34,11 +34,11 @@ var AYLA = {
         'Accept': 'application/json'
       }
     })
-    .then(function (response) {AYLA.callSuccessCb(response, successCb)})
-    .catch(function (error) {AYLA.callErrorCb(error.response, errorCb)})
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
-  getApiv1DevicesDeviceIdProperties: function(server, token, devId, successCb=null, errorCb=null) {
+  getApiv1DevicesDevIdProperties: function(server, token, devId, successCb=null, errorCb=null) {
     axios({
       method: 'get',
       url: server + '/apiv1/devices/' + devId + '/properties',
@@ -47,11 +47,24 @@ var AYLA = {
         'Accept': 'application/json'
       }
     })
-    .then(function (response) {AYLA.callSuccessCb(response, successCb)})
-    .catch(function (error) {AYLA.callErrorCb(error.response, errorCb)})
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
-  postApiv1DevicesDeviceIdPropertiesPropertyNameDatapoints: function(server, token, devId, propName, requestData, successCb=null, errorCb=null) {
+  getApiv1DevicesDevIdPropertiesPropName: function(server, token, devId, propName, successCb=null, errorCb=null) {
+    axios({
+      method: 'get',
+      url: server + '/apiv1/devices/' + devId + '/properties/' + propName,
+      headers: {
+        'Authorization': 'auth_token ' + token,
+        'Accept': 'application/json'
+      }
+    })
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
+  },
+
+  postApiv1DevicesDevIdPropertiesPropertyNameDatapoints: function(server, token, devId, propName, requestData, successCb=null, errorCb=null) {
     axios({
       method: 'post',
       url: server + '/apiv1/devices/' + devId + '/properties/' + propName + '/datapoints',
@@ -62,8 +75,8 @@ var AYLA = {
       },
       data: JSON.stringify(requestData)
     })
-    .then(function (response) {AYLA.callSuccessCb(response, successCb)})
-    .catch(function (error) {AYLA.callErrorCb(error.response, errorCb)})
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
   getApiv1DsnsDsn: function(server, token, dsn, successCb=null, errorCb=null) {
@@ -75,8 +88,8 @@ var AYLA = {
         'Accept': 'application/json'
       }
     })
-    .then(function (response) {AYLA.callSuccessCb(response, successCb)})
-    .catch(function (error) {AYLA.callErrorCb(error.response, errorCb)})
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
   getUsersGetUserProfile: function(server, token, successCb=null, errorCb=null) {
@@ -88,8 +101,8 @@ var AYLA = {
         'Accept': 'application/json'
       }
     })
-    .then(function (response) {AYLA.callSuccessCb(response, successCb)})
-    .catch(function (error) {AYLA.callErrorCb(error.response, errorCb)})
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
   postUsersSignIn: function(server, requestData, successCb=null, errorCb=null) {
@@ -102,8 +115,8 @@ var AYLA = {
       },
       data: JSON.stringify(requestData)
     })
-    .then(function (response) {AYLA.callSuccessCb(response, successCb)})
-    .catch(function (error) {AYLA.callErrorCb(error.response, errorCb)})
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
   postUsersSignOut: function(server, requestData, successCb=null, errorCb=null) {
@@ -116,8 +129,8 @@ var AYLA = {
       },
       data: JSON.stringify(requestData)
     })
-    .then(function (response) {AYLA.callSuccessCb(response, successCb)})
-    .catch(function (error) {AYLA.callErrorCb(error.response, errorCb)})
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
   getUsersUuid: function(server, token, uuid, successCb=null, errorCb=null) {
@@ -129,8 +142,8 @@ var AYLA = {
         'Accept': 'application/json'
       }
     })
-    .then(function (response) {AYLA.callSuccessCb(response, successCb)})
-    .catch(function (error) {AYLA.callErrorCb(error.response, errorCb)})
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
   callSuccessCb: function(response, successCb) {if(successCb) {successCb(response)}},
@@ -167,11 +180,11 @@ $(function() {
       },
       data: requestData
     })
-    .then(function (response) {
+    .then(function(response) {
       $(responseElement).text(JSON.stringify(response, null, 2))
       setStatus(statusCodes, response.status)
     })
-    .catch(function (error) {
+    .catch(function(error) {
       $(responseElement).text(JSON.stringify(error.response, null, 2))
       setStatus(statusCodes, error.response.status)
     })
@@ -259,7 +272,7 @@ Clear Response Element
 ------------------------------------------------------*/
 
 $(function() {
-  $('div.api button.api-clear').click(function(event) {
+  $('div.api div.content button.clear').click(function(event) {
     let content = $(this).closest('div.content')
     $(content).find('pre.response-data-element').empty()
     clearStatus($(content).find('div.status-codes'))
@@ -325,6 +338,8 @@ $(function() {
     let server = serviceUrls[regionId]['user']
     let account = {}
     if(accountId != 'add') {account = getCurrentAccount(regions)}
+
+    // Return tokens.
     if(account.access_token) {
       let user = {}
       user.access_token = account.access_token
@@ -337,10 +352,14 @@ $(function() {
         $('#ayla-account-access-token').val('')
         $('#ayla-account-refresh-token').val('')
         $('#ayla-account-tokens-btn').text('Get Tokens')
-        $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')  
+        $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')
+        clearAuthUserFields()
+        clearDevicesPropertiesValue()
       }, function(error) {
         console.log(JSON.stringify(error, null, 2))
       })
+
+    // Get tokens.
     } else {
       account.email = $('#ayla-account-email').val()
       account.password = $('#ayla-account-password').val()
@@ -375,15 +394,18 @@ $(function() {
               $("select.ayla-accounts option[value='add']").remove()
               $('select.ayla-accounts').append(option)
               $(option).prop('selected', true)
+              setUserFields(account)
+              $('#ayla-account-uuid').val(account.uuid)
+              $('#ayla-account-user-id').val(account.user_id)
             }            
             setRegions(regions)
    
             $('#ayla-account-access-token').val(account.access_token)
             $('#ayla-account-refresh-token').val(account.refresh_token)
-            $('#ayla-account-uuid').val(account.uuid)
-            $('#ayla-account-user-id').val(account.user_id)
             $('#ayla-account-tokens-btn').text('Return Tokens')
             $('#ayla-account-tokens-btn').removeClass('btn-success').addClass('btn-warning')
+            setAuthUserFields(account)
+            populateDevices()
 
           }, function(error) {
             console.log(JSON.stringify(error, null, 2))
@@ -407,7 +429,7 @@ $(function() {
     if($("select.ayla-accounts option:selected").val() != 'add') {
       addAddAccountOption()
     }
-    $('#ayla-account-details').collapse('show')    
+    //$('#ayla-account-details').collapse('show')    
   })
 })
 
@@ -527,7 +549,7 @@ On Change Region
 ------------------------------------------------------*/
 
 $(function() {
-  $("select.ayla-regions").change(function () {
+  $("select.ayla-regions").change(function() {
     writeRegionUrls()
     displayAccounts()
   })
@@ -579,7 +601,7 @@ On Change Account
 ------------------------------------------------------*/
 
 $(function() {
-  $("select.ayla-accounts").change(function () {
+  $("select.ayla-accounts").change(function() {
     removeAddAccountOption()
     let account = getCurrentAccount(getRegions())
     fillAccountForm(account)
@@ -597,15 +619,19 @@ function fillAccountForm(account) {
   $('#ayla-account-app-secret').val(account.app_secret)
   $('#ayla-account-access-token').val(account.access_token)
   $('#ayla-account-refresh-token').val(account.refresh_token)
+  $('#ayla-account-uuid').val(account.uuid)
+  $('#ayla-account-user-id').val(account.user_id)
+  setUserFields(account)
   if(account.access_token) {
     $('#ayla-account-tokens-btn').text('Return Tokens')
     $('#ayla-account-tokens-btn').removeClass('btn-success').addClass('btn-warning')
+    setAuthUserFields(account)
+    populateDevices()
   } else {
     $('#ayla-account-tokens-btn').text('Get Tokens')
     $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')
+    clearAuthUserFields()
   }
-  $('#ayla-account-uuid').val(account.uuid)
-  $('#ayla-account-user-id').val(account.user_id)
 }
 
 /*------------------------------------------------------
@@ -625,22 +651,404 @@ function initAccountForm() {
   $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')
 }
 
+/*------------------------------------------------------
+setUserFields / clearUserFields
+------------------------------------------------------*/
+
+function setUserFields(account) {
+  let emailSpans = $('pre.request-data-element span.email')
+  for(let i=0; i < emailSpans.length; i++) { 
+    $(emailSpans.eq(i)).text(account.email)
+  }
+  let appIdSpans = $('pre.request-data-element span.app-id')
+  for(let i=0; i < appIdSpans.length; i++) { 
+    $(appIdSpans.eq(i)).text(account.app_id)
+  }
+  let appSecretSpans = $('pre.request-data-element span.app-secret')
+  for(let i=0; i < appSecretSpans.length; i++) { 
+    $(appSecretSpans.eq(i)).text(account.app_secret)
+  }
+}
+
+function clearUserFields() {
+  let emailSpans = $('pre.request-data-element span.email')
+  for(let i=0; i < emailSpans.length; i++) { 
+    $(emailSpans.eq(i)).text('')
+  }
+  let appIdSpans = $('pre.request-data-element span.app-id')
+  for(let i=0; i < appIdSpans.length; i++) { 
+    $(appIdSpans.eq(i)).text('')
+  }
+  let appSecretSpans = $('pre.request-data-element span.app-secret')
+  for(let i=0; i < appSecretSpans.length; i++) { 
+    $(appSecretSpans.eq(i)).text('')
+  }
+}
+
+/*------------------------------------------------------
+setAuthUserFields / clearAuthUserFields
+------------------------------------------------------*/
+
+function setAuthUserFields(account) {
+  let uuidInputs = $('div.path-parameter input[placeholder = "uuid"]')
+  for(let i=0; i < uuidInputs.length; i++) { 
+    $(uuidInputs.eq(i)).val(account.uuid)
+  }
+  let accessTokenSpans = $('pre.request-data-element span.access-token')
+  for(let i=0; i < accessTokenSpans.length; i++) { 
+    $(accessTokenSpans.eq(i)).text(account.access_token)
+  }
+}
+
+function clearAuthUserFields() {
+  let uuidInputs = $('div.path-parameter input[placeholder = "uuid"]')
+  for(let i=0; i < uuidInputs.length; i++) { 
+    $(uuidInputs.eq(i)).val('')
+  }
+  let accessTokenSpans = $('pre.request-data-element span.access-token')
+  for(let i=0; i < accessTokenSpans.length; i++) { 
+    $(accessTokenSpans.eq(i)).text('')
+  }
+}
+
+/*------------------------------------------------------
+setDeviceFields / clearDeviceFields
+------------------------------------------------------*/
+
+function setDeviceFields(device) {
+  let devIdInputs = $('div.path-parameter input[placeholder = "devId"]')
+  for(let i=0; i < devIdInputs.length; i++) { 
+    $(devIdInputs.eq(i)).val(device.key)
+  }
+  let dsnInputs = $('div.path-parameter input[placeholder = "dsn"]')
+  for(let i=0; i < dsnInputs.length; i++) { 
+    $(dsnInputs.eq(i)).val(device.dsn)
+  }
+}
+
+function clearDeviceFields() {
+  let devIdInputs = $('div.path-parameter input[placeholder = "devId"]')
+  for(let i=0; i < devIdInputs.length; i++) { 
+    $(devIdInputs.eq(i)).val('')
+  }
+  let dsnInputs = $('div.path-parameter input[placeholder = "dsn"]')
+  for(let i=0; i < dsnInputs.length; i++) { 
+    $(dsnInputs.eq(i)).val('')
+  }
+}
+
+/*------------------------------------------------------
+setPropertyFields / clearPropertyFields
+------------------------------------------------------*/
+
+function setPropertyFields(property) {
+  let propNameInputs = $('div.path-parameter input[placeholder = "propName"]')
+  for(let i=0; i < propNameInputs.length; i++) { 
+    $(propNameInputs.eq(i)).val(property.name)
+  }
+}
+
+function clearPropertyFields() {
+  let propNameInputs = $('div.path-parameter input[placeholder = "propName"]')
+  for(let i=0; i < propNameInputs.length; i++) { 
+    $(propNameInputs.eq(i)).val('')
+  }
+}
+
+/*------------------------------------------------------
+Functions related to collapse
+------------------------------------------------------*/
+
 $(function() {
-  $('#test-btn').click(function(event) {
-    let url = 'https://ads-dev.aylanetworks.com/apiv1/devices/{devId}/properties/{propName}/datapoints'
-    //let arr = url.split('/{(.*?)}/')
-
-    //var re = /\s*(\{[0-9]+\})\s*/g;
-    //var splt = "{0} Hello World {1}".split(re).filter(Boolean);
-  
-    //var re = /\s*(\{[a-z|A-Z]+\})\s*/g;
-    //var splt = url.split(re).filter(Boolean);
-    //console.log(JSON.stringify(splt, null, 2))
-
-    var re = /\{[a-z|A-Z]+\}/g;
-    var urlParts = url.split(re).filter(Boolean);
-    console.log(JSON.stringify(urlParts, null, 2))
-
+  $('#ayla-region-urls').on('show.bs.collapse', function() {
+    $('#ayla-account-details').collapse('hide')
   })
 })
 
+$(function() {
+  $('#ayla-account-details').on('show.bs.collapse', function() {
+    $('#ayla-region-urls').collapse('hide')
+  })
+})
+
+$(function() {
+  $('#dt-device-details').on('show.bs.collapse', function() {
+    $('#dt-property-details').collapse('hide')
+  })
+})
+
+$(function() {
+  $('#dt-property-details').on('show.bs.collapse', function() {
+    $('#dt-device-details').collapse('hide')
+  })
+})
+
+/*------------------------------------------------------
+clearDevicesPropertiesValue
+------------------------------------------------------*/
+
+function clearDevicesPropertiesValue() {
+  removeDevices()
+  removeProperties()
+  removeValue()
+}
+
+/*------------------------------------------------------
+populateDevices
+------------------------------------------------------*/
+
+function populateDevices() {
+  let regionId = $("select.ayla-regions option:selected").val()
+  let server = serviceUrls[regionId]['device']
+  let token = getCurrentAccount(getRegions()).access_token
+  AYLA.getApiv1Devices(server, token, function(response) {
+    removeDevices()
+    if(response.data.length) {
+      addDevices(response.data)
+      populateDevice(response.data[0].device.key)
+    }
+  }, function(response) {
+    console.log(JSON.stringify(response, null, 2))
+  })
+}
+
+/*------------------------------------------------------
+addDevices
+------------------------------------------------------*/
+
+function addDevices(devices) {
+  devices.forEach(function(data) {
+    addDevice(data.device)
+  })
+}
+
+/*------------------------------------------------------
+addDevice
+------------------------------------------------------*/
+
+function addDevice(device) {
+  var option = $('<option/>')
+  option.text(device.product_name)
+  option.val(device.key)
+  $('#dt-device-selector').append(option)
+}
+
+/*------------------------------------------------------
+removeDevices
+------------------------------------------------------*/
+
+function removeDevices() {
+  $('#dt-device-selector').empty()
+  $('#dt-device-details').text('')
+  clearDeviceFields()
+}
+
+/*------------------------------------------------------
+On Change Device
+------------------------------------------------------*/
+
+$(function() {
+  $( "#dt-device-selector" ).change(function() {
+    let devId = $('#dt-device-selector option:selected').val()
+    populateDevice(devId)
+  })
+})
+
+/*------------------------------------------------------
+populateDevice
+------------------------------------------------------*/
+
+function populateDevice(devId) {
+  let regionId = $("select.ayla-regions option:selected").val()
+  let server = serviceUrls[regionId]['device']
+  let token = getCurrentAccount(getRegions()).access_token
+  AYLA.getApiv1DevicesDevId(server, token, devId, function(response) {
+    let option = $('#dt-device-selector option:selected')
+    $(option).text(response.data.device.product_name)
+    $(option).data('details', response.data.device)
+    $('#dt-device-details').text(JSON.stringify(response.data.device, null, 2))
+    setDeviceFields(response.data.device)
+  }, function(response) {
+    console.log(JSON.stringify(response, null, 2))
+  })
+  populateProperties(devId)
+}
+
+/*------------------------------------------------------
+populateProperties
+------------------------------------------------------*/
+
+function populateProperties(devId) {
+  let regionId = $("select.ayla-regions option:selected").val()
+  let server = serviceUrls[regionId]['device']
+  let token = getCurrentAccount(getRegions()).access_token
+  AYLA.getApiv1DevicesDevIdProperties(server, token, devId, function(response) {
+    removeProperties()
+    if(response.data.length) {
+      addProperties(response.data)
+      populateProperty(devId, response.data[0].property.name)
+    }
+  }, function(response) {
+    console.log(JSON.stringify(response, null, 2))
+  })
+}
+
+/*------------------------------------------------------
+addProperties
+------------------------------------------------------*/
+
+function addProperties(properties) {
+  properties.forEach(function(wrapper) {
+    addProperty(wrapper.property)
+  })
+}
+
+/*------------------------------------------------------
+addProperty
+------------------------------------------------------*/
+
+function addProperty(property) {
+  var option = $('<option/>')
+  option.text(property.display_name)
+  option.val(property.name)
+  $('#dt-property-selector').append(option)
+}
+
+/*------------------------------------------------------
+removeProperties
+------------------------------------------------------*/
+
+function removeProperties() {
+  $('#dt-property-selector').empty()
+  $('#dt-property-details').text('')
+  clearPropertyFields()
+}
+
+/*------------------------------------------------------
+On Change Property
+------------------------------------------------------*/
+
+$(function() {
+  $( "#dt-property-selector" ).change(function() {
+    let devId = $('#dt-device-selector option:selected').val()
+    let propName = $('#dt-property-selector option:selected').val()
+    populateProperty(devId, propName)
+  })
+})
+
+/*------------------------------------------------------
+populateProperty
+------------------------------------------------------*/
+
+function populateProperty(devId, propName) {
+  let regionId = $("select.ayla-regions option:selected").val()
+  let server = serviceUrls[regionId]['device']
+  let token = getCurrentAccount(getRegions()).access_token
+  AYLA.getApiv1DevicesDevIdPropertiesPropName(server, token, devId, propName, function(response) {
+    let option = $('#dt-property-selector option:selected')
+    $(option).text(response.data.property.name)
+    $(option).data('details', response.data.property)
+    $('#dt-property-details').text(JSON.stringify(response.data.property, null, 2))
+    displayPropertyValue(
+      response.data.property.base_type, 
+      response.data.property.value, 
+      response.data.property.direction)
+      setPropertyFields(response.data.property)
+    }, function(response) {
+    console.log(JSON.stringify(response, null, 2))
+  })
+}
+
+/*------------------------------------------------------
+displayPropertyValue
+------------------------------------------------------*/
+
+function displayPropertyValue(type, value, direction) {
+  let status = (direction==='input') ? '>' : ' disabled>'
+
+  switch(type) {
+    case 'boolean':
+    $('#dt-value-button-wrapper').hide()
+
+    let checked = (value===1) ? ' checked' : ''
+
+    $('#dt-value-wrapper').empty().append(''
+      + '<label class="switch" style="margin-bottom:0;">'
+      + '<input id="property-value" type="checkbox" value="' + value + '"' + checked + status
+      + '<span class="slider round"></span>'
+      + '</label>')
+    break
+
+    default:
+    $('#dt-value-wrapper').empty().append('<input id="property-value" type="text" class="form-control form-control-sm" value="' + value + '"' + status)
+    if(direction==='input') {
+      $('#dt-value-button-wrapper').show()
+    } else {
+      $('#dt-value-button-wrapper').hide()
+    }
+    break
+  }
+}
+
+/*------------------------------------------------------
+On Change Datapoint (for boolean properties)
+On Click Datapoint (for non-boolean properties)
+------------------------------------------------------*/
+
+$(function() {
+  $('#dt-value-wrapper').delegate('input:checkbox', "change", function(event) {
+    let regionId = $("select.ayla-regions option:selected").val()
+    let server = serviceUrls[regionId]['device']
+    let token = getCurrentAccount(getRegions()).access_token
+    let devId = $('#dt-device-selector option:selected').val()
+    let propName = $('#dt-property-selector option:selected').val()
+    let value = $(this).prop('checked') + 0
+    let datapoint = {}
+    datapoint.value = value
+    let requestData = {}
+    requestData.datapoint = datapoint
+    AYLA.postApiv1DevicesDevIdPropertiesPropertyNameDatapoints(server, token, devId, propName, requestData, function(response) {
+      console.log(JSON.stringify(response.data, null, 2))
+    }, function(response) {
+      console.log(JSON.stringify(response, null, 2))
+    })
+  })
+})
+
+$(function() {
+  $('#dt-save-value-btn').click(function(event) {
+    let regionId = $("select.ayla-regions option:selected").val()
+    let server = serviceUrls[regionId]['device']
+    let token = getCurrentAccount(getRegions()).access_token
+    let devId = $('#dt-device-selector option:selected').val()
+    let propName = $('#dt-property-selector option:selected').val()
+    let value = $('#dt-value-wrapper input').val()
+    let datapoint = {}
+    datapoint.value = value
+    let requestData = {}
+    requestData.datapoint = datapoint
+    AYLA.postApiv1DevicesDevIdPropertiesPropertyNameDatapoints(server, token, devId, propName, requestData, function(response) {
+      console.log(JSON.stringify(response.data, null, 2))
+    }, function(response) {
+      console.log(JSON.stringify(response, null, 2))
+    })
+  })
+})
+
+/*------------------------------------------------------
+removeValue
+------------------------------------------------------*/
+
+function removeValue() {
+  $('#dt-value-wrapper').empty().append('<input type="text" class="form-control form-control-sm" disabled>')
+  $('#dt-value-button-wrapper').hide()
+}
+
+/*------------------------------------------------------
+On Click test-btn
+------------------------------------------------------*/
+
+$(function() {
+  $('#test-btn').click(function(event) {
+  })
+})

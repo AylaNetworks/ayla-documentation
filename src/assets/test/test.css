@@ -1,3 +1,65 @@
+div.panel {
+  border-radius:4px;
+  margin-bottom:18px;
+  padding:9px 12px;
+}
+
+#accounts-tab-pane {background:#f9ebd2;}
+#devices-tab-pane {background:beige;}
+
+ul.nav-tabs a.nav-link {color: #495057; font-size: 90%;}
+
+div.panel label {
+  font-size:75%;
+  font-weight:bold;
+  margin-bottom: .1rem;
+  padding-left:3px;
+}
+
+div.panel div.title {
+  color: black;
+  font-weight: bold;
+  margin-top: 12px;
+  padding-left: 3px;
+}
+
+div.panel pre {
+  margin:0 0 0 0 !important;
+}
+
+#ayla-region-urls input[type="text"]:disabled, 
+#ayla-account-details input[type="text"]:disabled,
+#dt-value-wrapper input[type="text"]:disabled {
+  background: white;
+}
+
+/**************************/
+
+h1.api-category {
+  border-bottom: 1px solid #cccccc; 
+  margin: 0 0 6px 0 !important;
+}
+
+h1.api-category:hover {
+  /*background: #fbfbfb;*/
+  cursor: pointer;
+}
+
+h1.api-category div.name {
+  padding: 6px 0; 
+  font-size: 1rem !important;
+  font-weight: bold !important;
+  line-height: 26px !important;
+}
+
+h1.api-category div.service {
+  padding: 6px 0; 
+  font-size: .9rem;
+  font-weight: normal !important;
+  line-height: 26px;
+}
+
+/**************************/
 div.api {
   margin-bottom: 6px;
   box-shadow: 0 1px 2px #cccccc;
@@ -10,7 +72,7 @@ div.api div.header {
 
 div.api div.header div.method {
   color: white;
-  font-size: 85%;
+  font-size: 82%;
   font-weight: bold;
   line-height: 26px;
   min-width: 80px;
@@ -26,7 +88,8 @@ div.api div.header div.url {
 }
 
 div.api div.header div.name {
-  font-size: 80%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 76%;
   line-height: 26px;
   padding: 0 6px !important;
 }
@@ -86,7 +149,7 @@ div.api div.content div.btn-group button {
 }
 
 div.api div.content button.run {
-  width: 100%;
+  width: 100px;
 }
 
 div.api div.content pre.response-data-element {
@@ -126,13 +189,49 @@ div.api.delete div.header {background: FireBrick; color: white;}
 div.api.delete div.header div.method {background: FireBrick;}
 div.api.delete div.content div.subheading {color: #961d1d;}
 
-#ayla-region-urls label, #ayla-account-details label {
-  font-size:75%;
-  font-weight:bold;
-  margin-bottom: .1rem;
-  padding-left:3px;
+/* BEGIN SLIDER */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 25px; /* 34 */
 }
 
-#ayla-region-urls input[type="text"]:disabled, #ayla-account-details input[type="text"]:disabled {
-  background: white;
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #595959;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 19px; /* 26 */
+  width: 19px; /* 26 */
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {background-color: #2196F3;}
+input:focus + .slider {box-shadow: 0 0 1px #2196F3;}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(94px);
+  -ms-transform: translateX(94px);
+  transform: translateX(94px);
+}
+
+.slider.round {border-radius: 30px;}
+.slider.round:before {border-radius: 50%;}
+/* END SLIDER */
