@@ -8,20 +8,20 @@ classesFromPage: has-pagebar
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
     <li><a href="#core-title">API Browser</a></li>
-    <li><a href="#access-rules-category-name">Access Rules</a></li>
-    <li><a href="#contacts-category-name">Contacts</a></li>
-    <li><a href="#datapoints-category-name">Datapoints</a></li>
-    <li><a href="#devices-category-name">Devices</a></li>
-    <li><a href="#gateways-category-name">Gateways</a></li>
-    <li><a href="#groups-category-name">Groups</a></li>
-    <li><a href="#metadata-category-name">Metadata</a></li>
-    <li><a href="#properties-category-name">Properties</a></li>
-    <li><a href="#shares-category-name">Shares</a></li>
-    <li><a href="#schedules-category-name">Schedules</a></li>
-    <li><a href="#schedule-actions-category-name">Schedule Actions</a></li>
-    <li><a href="#subscriptions-category-name">Subscriptions</a></li>
-    <li><a href="#time-zones-category-name">Time Zones</a></li>
-    <li><a href="#user-accounts-category-name">User Accounts</a></li>
+    <li><a href="#access-rules-header">Access Rules</a></li>
+    <li><a href="#contacts-header">Contacts</a></li>
+    <li><a href="#datapoints-header">Datapoints</a></li>
+    <li><a href="#devices-header">Devices</a></li>
+    <li><a href="#gateways-header">Gateways</a></li>
+    <li><a href="#groups-header">Groups</a></li>
+    <li><a href="#metadata-header">Metadata</a></li>
+    <li><a href="#properties-header">Properties</a></li>
+    <li><a href="#shares-header">Shares</a></li>
+    <li><a href="#schedules-header">Schedules</a></li>
+    <li><a href="#schedule-actions-header">Schedule Actions</a></li>
+    <li><a href="#subscriptions-header">Subscriptions</a></li>
+    <li><a href="#time-zones-header">Time Zones</a></li>
+    <li><a href="#user-accounts-header">User Accounts</a></li>
   </ul>
 </aside>
 
@@ -230,207 +230,30 @@ classesFromPage: has-pagebar
   </div>
 </div>
 
-<h1 id="access-rules-category-name" class="api-category" data-toggle="collapse" href="#access-rules-category">
+<h1 id="access-rules-header" class="api-category" data-toggle="collapse" href="#access-rules-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Access Rules</div></div>
     <div class="col-sm-9"><div class="service">Datastream Service</div></div>
   </div>
 </h1>
+<div class="collapse" id="access-rules-content"></div>
 
-<div class="collapse" id="access-rules-category">
-  <div class="api get">
-    <div class="header collapsed" data-toggle="collapse" href="#get-api-v1-oemaccessrules">
-      <div class="row align-items-center no-gutters">
-        <div class="col-12 col-md-auto method">GET</div>
-        <div class="col-12 col-md url">/api/v1/oemAccessRules</div>
-        <div class="col-12 col-md-auto name">getAccessRules</div>
-      </div>
-    </div>
-    <div class="content collapse" id="get-api-v1-oemaccessrules">
-      <div class="form-row">
-        <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="col-12 col-sm-auto service">Datastream</div>
-      </div>
-      <div class="form-row">
-        <div class="col-12">
-          <button type="button" class="btn btn-danger btn-sm run">Run</button>
-        </div>
-      </div>
-      <div class="heading">Response</div>
-      <div class="subheading">Body</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>
-      </div>
-      <pre class="response-data-element" style="display:none;"></pre>
-      <div class="subheading">Status Codes</div>
-      <div class="status-codes">
-        <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
-        <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
-        <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
-        <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="api post">
-    <div class="header collapsed" data-toggle="collapse" href="#post-api-v1-oemaccessrules">
-      <div class="row align-items-center no-gutters">
-        <div class="col-12 col-md-auto method">POST</div>
-        <div class="col-12 col-md url">/api/v1/oemAccessRules</div>
-        <div class="col-12 col-md-auto name">createAccessRule</div>
-      </div>
-    </div>
-    <div class="content collapse" id="post-api-v1-oemaccessrules">
-      <div class="form-row">
-        <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="col-12 col-sm-auto service">Datastream</div>
-      </div>
-      <div class="heading">Request</div>
-      <div class="subheading">Data</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-request-data-element">Hide</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm">Reset</button>
-      </div>
-      <pre class="request-data-element" contenteditable="true">{
-  "role": "string",
-  "oem_model": "string",
-  "property_name": "string",
-  "client_type": "string",
-  "subscription_type": "string"
-}</pre>
-      <div class="form-row">
-        <div class="col-12">
-          <button type="button" class="btn btn-danger btn-sm run">Run</button>
-        </div>
-      </div>
-      <div class="heading">Response</div>
-      <div class="subheading">Body</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>
-      </div>
-      <pre class="response-data-element" style="display:none;"></pre>
-      <div class="subheading">Status Codes</div>
-      <div class="status-codes">
-        <div class="form-row status-code sc201"><div class="col-1 code">201</div><div class="col-11 text">Created</div></div>
-        <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
-        <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
-        <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="api get">
-    <div class="header collapsed" data-toggle="collapse" href="#get-api-v1-oemaccessrules-accessruleid">
-      <div class="row align-items-center no-gutters">
-        <div class="col-12 col-md-auto method">GET</div>
-        <div class="col-12 col-md url">/api/v1/oemAccessRules/{accessRuleId}</div>
-        <div class="col-12 col-md-auto name">getAccessRule</div>
-      </div>
-    </div>
-    <div class="content collapse" id="get-api-v1-oemaccessrules-accessruleid">
-      <div class="form-row">
-        <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="col-12 col-sm-auto service">Datastream</div>
-      </div>
-      <div class="heading">Request</div>
-      <div class="subheading">Path Parameters</div>
-      <div class="form-row path-parameter">
-        <div class="col-12 col-lg-3">
-          <input type="text" class="form-control form-control-sm value" placeholder="accessRuleId">
-        </div>
-        <div class="col-12 col-lg-9">
-          <div><span class="name">accessRuleId</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-12">
-          <button type="button" class="btn btn-danger btn-sm run">Run</button>
-        </div>
-      </div>
-      <div class="heading">Response</div>
-      <div class="subheading">Body</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>
-      </div>
-      <pre class="response-data-element" style="display:none;"></pre>
-      <div class="subheading">Status Codes</div>
-      <div class="status-codes">
-        <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
-        <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
-        <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
-        <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="api delete">
-    <div class="header collapsed" data-toggle="collapse" href="#delete-api-v1-oemaccessrules-accessruleid">
-      <div class="row align-items-center no-gutters">
-        <div class="col-12 col-md-auto method">DELETE</div>
-        <div class="col-12 col-md url">/api/v1/oemAccessRules/{accessRuleId}</div>
-        <div class="col-12 col-md-auto name">deleteAccessRules</div>
-      </div>
-    </div>
-    <div class="content collapse" id="delete-api-v1-oemaccessrules-accessruleid">
-      <div class="form-row">
-        <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="col-12 col-sm-auto service">Datastream</div>
-      </div>
-      <div class="heading">Request</div>
-      <div class="subheading">Path Parameters</div>
-      <div class="form-row path-parameter">
-        <div class="col-12 col-lg-3">
-          <input type="text" class="form-control form-control-sm value" placeholder="accessRuleId">
-        </div>
-        <div class="col-12 col-lg-9">
-          <div><span class="name">accessRuleId</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-12">
-          <button type="button" class="btn btn-danger btn-sm run">Run</button>
-        </div>
-      </div>
-      <div class="heading">Response</div>
-      <div class="subheading">Body</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>
-      </div>
-      <pre class="response-data-element" style="display:none;"></pre>
-      <div class="subheading">Status Codes</div>
-      <div class="status-codes">
-        <div class="form-row status-code sc204"><div class="col-1 code">204</div><div class="col-11 text">No Content</div></div>
-        <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
-        <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
-        <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h1 id="contacts-category-name" class="api-category" data-toggle="collapse" href="#contacts-category">
+<h1 id="contacts-header" class="api-category" data-toggle="collapse" href="#contacts-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Contacts</div></div>
     <div class="col-sm-9"><div class="service">User Service</div></div>
   </div>
 </h1>
+<div class="collapse" id="contacts-content"></div>
 
-<div class="collapse" id="contacts-category">
-sss
-</div>
-
-<h1 id="datapoints-category-name" class="api-category" data-toggle="collapse" href="#datapoints-category">
+<h1 id="datapoints-header" class="api-category" data-toggle="collapse" href="#datapoints-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Datapoints</div></div>
     <div class="col-sm-9"><div class="service">Device Service</div></div>
   </div>
 </h1>
 
-<div class="collapse" id="datapoints-category">
+<div class="collapse" id="datapoints-content">
   <div class="api post">
     <div class="header collapsed" data-toggle="collapse" href="#post-apiv1-devices-devId-properties-propName-datapoints">
       <div class="row align-items-center no-gutters">
@@ -499,49 +322,14 @@ sss
   </div>
 </div>
 
-<h1 id="devices-category-name" class="api-category" data-toggle="collapse" href="#devices-category">
+<h1 id="devices-header" class="api-category" data-toggle="collapse" href="#devices-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Devices</div></div>
     <div class="col-sm-9"><div class="service">Device Service</div></div>
   </div>
 </h1>
 
-<div class="collapse" id="devices-category">
-  <div class="api get">
-    <div class="header collapsed" data-toggle="collapse" href="#get-apiv1-devices">
-      <div class="row align-items-center no-gutters">
-        <div class="col-12 col-md-auto method">GET</div>
-        <div class="col-12 col-md url">/apiv1/devices</div>
-        <div class="col-12 col-md-auto name">getDevices</div>
-      </div>
-    </div>
-    <div class="content collapse" id="get-apiv1-devices">
-      <div class="form-row">
-        <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="col-12 col-sm-auto service">Device Service</div>
-      </div>
-      <div class="form-row">
-        <div class="col-12">
-          <button type="button" class="btn btn-danger btn-sm run">Run</button>
-        </div>
-      </div>
-      <div class="heading">Response</div>
-      <div class="subheading">Body</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>
-      </div>
-      <pre class="response-data-element" style="display:none;"></pre>
-      <div class="subheading">Status Codes</div>
-      <div class="status-codes">
-        <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
-        <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
-        <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
-        <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
-      </div>
-    </div>
-  </div>
-
+<div class="collapse" id="devices-content">
   <div class="api get">
     <div class="header collapsed" data-toggle="collapse" href="#get-apiv1-devices-devid">
       <div class="row align-items-center no-gutters">
@@ -632,47 +420,38 @@ sss
   </div>
 </div>
 
-<h1 id="gateways-category-name" class="api-category" data-toggle="collapse" href="#gateways-category">
+<h1 id="gateways-header" class="api-category" data-toggle="collapse" href="#gateways-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Gateways</div></div>
     <div class="col-sm-9"><div class="service">Device Service</div></div>
   </div>
 </h1>
+<div class="collapse" id="gateways-content"></div>
 
-<div class="collapse" id="gateways-category">
-sss
-</div>
-
-<h1 id="groups-category-name" class="api-category" data-toggle="collapse" href="#groups-category">
+<h1 id="groups-header" class="api-category" data-toggle="collapse" href="#groups-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Groups</div></div>
     <div class="col-sm-9"><div class="service">Device Service</div></div>
   </div>
 </h1>
+<div class="collapse" id="groups-content"></div>
 
-<div class="collapse" id="groups-category">
-sss
-</div>
-
-<h1 id="metadata-category-name" class="api-category" data-toggle="collapse" href="#metadata-category">
+<h1 id="metadata-header" class="api-category" data-toggle="collapse" href="#metadata-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Metadata</div></div>
     <div class="col-sm-9"><div class="service">Device Service</div></div>
   </div>
 </h1>
+<div class="collapse" id="metadata-content"></div>
 
-<div class="collapse" id="metadata-category">
-sss
-</div>
-
-<h1 id="properties-category-name" class="api-category" data-toggle="collapse" href="#properties-category">
+<h1 id="properties-header" class="api-category" data-toggle="collapse" href="#properties-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Properties</div></div>
     <div class="col-sm-9"><div class="service">Device Service</div></div>
   </div>
 </h1>
 
-<div class="collapse" id="properties-category">
+<div class="collapse" id="properties-content">
   <div class="api get">
     <div class="header collapsed" data-toggle="collapse" href="#get-apiv1-devices-devid-properties">
       <div class="row align-items-center no-gutters">
@@ -770,243 +549,54 @@ sss
   </div>
 </div>
 
-<h1 id="shares-category-name" class="api-category" data-toggle="collapse" href="#shares-category">
+<h1 id="shares-header" class="api-category" data-toggle="collapse" href="#shares-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Shares</div></div>
     <div class="col-sm-9"><div class="service">User Service</div></div>
   </div>
 </h1>
+<div class="collapse" id="shares-content"></div>
 
-<div class="collapse" id="shares-category">
-sss
-</div>
-
-<h1 id="schedules-category-name" class="api-category" data-toggle="collapse" href="#schedules-category">
+<h1 id="schedules-header" class="api-category" data-toggle="collapse" href="#schedules-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Schedules</div></div>
     <div class="col-sm-9"><div class="service">Device Service</div></div>
   </div>
 </h1>
+<div class="collapse" id="schedules-content"></div>
 
-<div class="collapse" id="schedules-category">
-sss
-</div>
-
-<h1 id="schedule-actions-category-name" class="api-category" data-toggle="collapse" href="#schedule-actions-category">
+<h1 id="schedule-actions-header" class="api-category" data-toggle="collapse" href="#schedule-actions-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Schedule Actions</div></div>
     <div class="col-sm-9"><div class="service">Device Service</div></div>
   </div>
 </h1>
+<div class="collapse" id="schedule-actions-content"></div>
 
-<div class="collapse" id="schedule-actions-category">
-sss
-</div>
-
-<h1 id="subscriptions-category-name" class="api-category" data-toggle="collapse" href="#subscriptions-category">
+<h1 id="subscriptions-header" class="api-category" data-toggle="collapse" href="#subscriptions-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Subscriptions</div></div>
     <div class="col-sm-9"><div class="service">Datastream Service</div></div>
   </div>
 </h1>
+<div class="collapse" id="subscriptions-content"></div>
 
-<div class="collapse" id="subscriptions-category">
-  <div class="api get">
-    <div class="header collapsed" data-toggle="collapse" href="#get-api-v1-subscriptions-json">
-      <div class="row align-items-center no-gutters">
-        <div class="col-12 col-md-auto method">GET</div>
-        <div class="col-12 col-md url">/api/v1/subscriptions.json</div>
-        <div class="col-12 col-md-auto name">getSubscriptions</div>
-      </div>
-    </div>
-    <div class="content collapse" id="get-api-v1-subscriptions-json">
-      <div class="form-row">
-        <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="col-12 col-sm-auto service">Datastream</div>
-      </div>
-      <div class="form-row">
-        <div class="col-12">
-          <button type="button" class="btn btn-danger btn-sm run">Run</button>
-        </div>
-      </div>
-      <div class="heading">Response</div>
-      <div class="subheading">Body</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>
-      </div>
-      <pre class="response-data-element" style="display:none;"></pre>
-      <div class="subheading">Status Codes</div>
-      <div class="status-codes">
-        <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
-        <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
-        <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
-        <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="api post">
-    <div class="header collapsed" data-toggle="collapse" href="#post-api-v1-subscriptions-json">
-      <div class="row align-items-center no-gutters">
-        <div class="col-12 col-md-auto method">POST</div>
-        <div class="col-12 col-md url">/api/v1/subscriptions.json</div>
-        <div class="col-12 col-md-auto name">createSubscription</div>
-      </div>
-    </div>
-    <div class="content collapse" id="post-api-v1-subscriptions-json">
-      <div class="form-row">
-        <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="col-12 col-sm-auto service">Datastream</div>
-      </div>
-      <div class="heading">Request</div>
-      <div class="subheading">Data</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-request-data-element">Hide</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm">Reset</button>
-      </div>
-      <pre class="request-data-element" contenteditable="true">{
-  "name": "string",
-  "description": "string",
-  "dsn": "string",
-  "oem_model": "string",
-  "property_name": "string",
-  "client_type": "string",
-  "subscription_type": "string"
-}</pre>
-      <div class="form-row">
-        <div class="col-12">
-          <button type="button" class="btn btn-danger btn-sm run">Run</button>
-        </div>
-      </div>
-      <div class="heading">Response</div>
-      <div class="subheading">Body</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>
-      </div>
-      <pre class="response-data-element" style="display:none;"></pre>
-      <div class="subheading">Status Codes</div>
-      <div class="status-codes">
-        <div class="form-row status-code sc201"><div class="col-1 code">201</div><div class="col-11 text">Created</div></div>
-        <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
-        <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
-        <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
-        <div class="form-row status-code sc422"><div class="col-1 code">422</div><div class="col-11 text">Must provided either the DSN or an OEM_Model</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="api get">
-    <div class="header collapsed" data-toggle="collapse" href="#get-api-v1-subscriptions-subscriptionid-json">
-      <div class="row align-items-center no-gutters">
-        <div class="col-12 col-md-auto method">GET</div>
-        <div class="col-12 col-md url">/api/v1/subscriptions/{subscriptionId}.json</div>
-        <div class="col-12 col-md-auto name">getSubscription</div>
-      </div>
-    </div>
-    <div class="content collapse" id="get-api-v1-subscriptions-subscriptionid-json">
-      <div class="form-row">
-        <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="col-12 col-sm-auto service">Datastream</div>
-      </div>
-      <div class="heading">Request</div>
-      <div class="subheading">Path Parameters</div>
-      <div class="form-row path-parameter">
-        <div class="col-12 col-lg-3">
-          <input type="text" class="form-control form-control-sm value" placeholder="subscriptionId">
-        </div>
-        <div class="col-12 col-lg-9">
-          <div><span class="name">subscriptionId</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-12">
-          <button type="button" class="btn btn-danger btn-sm run">Run</button>
-        </div>
-      </div>
-      <div class="heading">Response</div>
-      <div class="subheading">Body</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>
-      </div>
-      <pre class="response-data-element" style="display:none;"></pre>
-      <div class="subheading">Status Codes</div>
-      <div class="status-codes">
-        <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
-        <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
-        <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
-        <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="api delete">
-    <div class="header collapsed" data-toggle="collapse" href="#delete-api-v1-subscriptions-subscriptionid-json">
-      <div class="row align-items-center no-gutters">
-        <div class="col-12 col-md-auto method">DELETE</div>
-        <div class="col-12 col-md url">/api/v1/subscriptions/{subscriptionId}.json</div>
-        <div class="col-12 col-md-auto name">deleteAccessRules</div>
-      </div>
-    </div>
-    <div class="content collapse" id="delete-api-v1-subscriptions-subscriptionid-json">
-      <div class="form-row">
-        <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="col-12 col-sm-auto service">Datastream</div>
-      </div>
-      <div class="heading">Request</div>
-      <div class="subheading">Path Parameters</div>
-      <div class="form-row path-parameter">
-        <div class="col-12 col-lg-3">
-          <input type="text" class="form-control form-control-sm value" placeholder="subscriptionId">
-        </div>
-        <div class="col-12 col-lg-9">
-          <div><span class="name">subscriptionId</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-12">
-          <button type="button" class="btn btn-danger btn-sm run">Run</button>
-        </div>
-      </div>
-      <div class="heading">Response</div>
-      <div class="subheading">Body</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>
-      </div>
-      <pre class="response-data-element" style="display:none;"></pre>
-      <div class="subheading">Status Codes</div>
-      <div class="status-codes">
-        <div class="form-row status-code sc204"><div class="col-1 code">204</div><div class="col-11 text">No Content</div></div>
-        <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
-        <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
-        <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h1 id="time-zones-category-name" class="api-category" data-toggle="collapse" href="#time-zones-category">
+<h1 id="time-zones-header" class="api-category" data-toggle="collapse" href="#time-zones-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">Time Zones</div></div>
     <div class="col-sm-9"><div class="service">Device Service</div></div>
   </div>
 </h1>
+<div class="collapse" id="time-zones-content"></div>
 
-<div class="collapse" id="time-zones-category">
-sss
-</div>
-
-<h1 id="user-accounts-category-name" class="api-category" data-toggle="collapse" href="#user-accounts-category">
+<h1 id="user-accounts-header" class="api-category" data-toggle="collapse" href="#user-accounts-content">
   <div class="row">
     <div class="col-sm-3"><div class="name">User Accounts</div></div>
     <div class="col-sm-9"><div class="service">User Service</div></div>
   </div>
 </h1>
 
-<div class="collapse" id="user-accounts-category">
+<div class="collapse" id="user-accounts-content">
   <div class="api get">
     <div class="header collapsed" data-toggle="collapse" href="#get-users-uuid">
       <div class="row align-items-center no-gutters">
@@ -1028,41 +618,6 @@ sss
         <div class="col-12 col-lg-9">
           <div><span class="name">uuid</span>. <span  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="col-12">
-          <button type="button" class="btn btn-danger btn-sm run">Run</button>
-        </div>
-      </div>
-      <div class="heading">Response</div>
-      <div class="subheading">Body</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>
-      </div>
-      <pre class="response-data-element" style="display:none;"></pre>
-      <div class="subheading">Status Codes</div>
-      <div class="status-codes">
-        <div class="form-row status-code sc200"><div class="col-1 code">200</div><div class="col-11 text">OK</div></div>
-        <div class="form-row status-code sc401"><div class="col-1 code">401</div><div class="col-11 text">Unauthorized</div></div>
-        <div class="form-row status-code sc403"><div class="col-1 code">403</div><div class="col-11 text">Forbidden</div></div>
-        <div class="form-row status-code sc404"><div class="col-1 code">404</div><div class="col-11 text">Not Found</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="api get">
-    <div class="header collapsed" data-toggle="collapse" href="#get-users-get-user-profile">
-      <div class="row align-items-center no-gutters">
-        <div class="col-12 col-md-auto method">GET</div>
-        <div class="col-12 col-md url">/users/get_user_profile</div>
-        <div class="col-12 col-md-auto name">getUserProfile</div>
-      </div>
-    </div>
-    <div class="content collapse" id="get-users-get-user-profile">
-      <div class="form-row">
-        <div class="col-12 col-sm description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="col-12 col-sm-auto service">User Service</div>
       </div>
       <div class="form-row">
         <div class="col-12">

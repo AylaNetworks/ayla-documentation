@@ -3,6 +3,7 @@ On Load
 ------------------------------------------------------*/
 
 $(function() {
+  renderApis()
   writeRegionUrls()
   displayAccounts()
 })
@@ -1052,3 +1053,338 @@ $(function() {
   $('#test-btn').click(function(event) {
   })
 })
+
+/*------------------------------------------------------
+renderApis
+------------------------------------------------------*/
+
+function renderApis() {
+
+  let accessRuleId = {}
+  accessRuleId.name = 'accessRuleId'
+  accessRuleId.text = 'Unique access rule identifier.'
+
+  let devId = {}
+  devId.name = 'devId'
+  devId.text = 'Unique device identifier. AKA key.'
+
+  let subscriptionId = {}
+  subscriptionId.name = 'subscriptionId'
+  subscriptionId.text = 'Unique subscription identifier.'
+
+  let accessRuleRequest = JSON.parse('{"role":"OEM::Admin","oem_model":"*","property_name":"*","client_type":"cloud","subscription_type":""}')
+  let subscriptionRuleRequest = JSON.parse('{"name":"","description":"","dsn":"","oem_model":"","property_name":"","client_type":"cloud","subscription_type":""}')
+
+  let sc200 = {}
+  sc200.code = 200
+  sc200.text = 'OK'
+
+  let sc201 = {}
+  sc201.code = 201
+  sc201.text = 'Created'
+
+  let sc204 = {}
+  sc204.code = 204
+  sc204.text = 'No Content'
+
+  let sc401 = {}
+  sc401.code = 401
+  sc401.text = 'Unauthorized'
+
+  let sc403 = {}
+  sc403.code = 403
+  sc403.text = 'Forbidden'
+
+  let sc404 = {}
+  sc404.code = 404
+  sc404.text = 'Not Found'
+
+  let sc422 = {}
+  sc422.code = 422
+  sc422.text = 'Unprocessable Entity'
+
+  renderApi(
+    'access-rules',
+    'get',
+    '/api/v1/oemAccessRules',
+    'getAccessRules',
+    'This API returns an array of access rules associated with the caller\'s role(s). A DSS access rule permits members of a role to create DSS subscriptions associated with an oem model, device property, client type, and subscription type.',
+    'Datastream',
+    null,
+    null,
+    [sc200, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'access-rules',
+    'post',
+    '/api/v1/oemAccessRules',
+    'createAccessRule',
+    'This API creates an access rule.',
+    'Datastream',
+    null,
+    accessRuleRequest,
+    [sc201, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'access-rules',
+    'get',
+    '/api/v1/oemAccessRules/{accessRuleId}',
+    'getAccessRule',
+    'This API returns the specified access rule.',
+    'Datastream',
+    [accessRuleId],
+    null,
+    [sc200, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'access-rules',
+    'delete',
+    '/api/v1/oemAccessRules/{accessRuleId}',
+    'deleteAccessRule',
+    'This API deletes the specified access rule.',
+    'Datastream',
+    [accessRuleId],
+    null,
+    [sc204, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'contacts',
+    'get',
+    '/api/v1/users/contacts',
+    'getContacts',
+    'This API returns an array of all contacts associated with the caller.',
+    'User',
+    null,
+    null,
+    [sc200, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'devices',
+    'get',
+    '/apiv1/devices',
+    'getDevices',
+    'This API returns an array of devices registered to, or shared with, the caller. The key value in the Response Body is the unique device id, so use this value in calls to other operations that require a device id parameter.',
+    'Device',
+    null,
+    null,
+    [sc200, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'groups',
+    'get',
+    '/apiv1/groups',
+    'getGroups',
+    'This API returns an array of device groups.',
+    'Device',
+    null,
+    null,
+    [sc200, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'shares',
+    'get',
+    '/api/v1/users/shares',
+    'getShares',
+    'This API returns an array of resources (e.g. devices, groups) shared by the caller.',
+    'User',
+    null,
+    null,
+    [sc200, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'shares',
+    'get',
+    '/api/v1/users/shares/received',
+    'getReceivedShares',
+    'This API returns an array of resources shared with the user.',
+    'User',
+    null,
+    null,
+    [sc200, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'subscriptions',
+    'get',
+    '/api/v1/subscriptions.json',
+    'getSubscriptions',
+    'This API returns an array of subscriptions each associated with a corresponding access rule.',
+    'Datastream',
+    null,
+    null,
+    [sc200, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'subscriptions',
+    'post',
+    '/api/v1/subscriptions.json',
+    'createSubscription',
+    'This API creates a subscription associated with a corresponding access rule.',
+    'Datastream',
+    null,
+    subscriptionRuleRequest,
+    [sc201, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'subscriptions',
+    'get',
+    '/api/v1/subscriptions/{subscriptionId}.json',
+    'getSubscription',
+    'This API returns a subscription associated with a corresponding access rule.',
+    'Datastream',
+    [subscriptionId],
+    null,
+    [sc200, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'subscriptions',
+    'delete',
+    '/api/v1/subscriptions/{subscriptionId}.json',
+    'deleteSubscription',
+    'This API deletes the specified subscription.',
+    'Datastream',
+    [subscriptionId],
+    null,
+    [sc204, sc401, sc403, sc404]
+  )
+
+  renderApi(
+    'user-accounts',
+    'get',
+    '/users/get_user_profile',
+    'getUserProfile',
+    'This API returns information about the caller\'s user profile.',
+    'User',
+    null,
+    null,
+    [sc200, sc401, sc403, sc404]
+  )
+}
+
+/*------------------------------------------------------
+renderApi
+------------------------------------------------------*/
+
+function renderApi(category, method, url, name, description, service, pathParameters=null, requestData=null, statusCodes=null) {
+  let collapseId = method + url
+    .replace(/\//g, '-')
+    .replace(/\./g, '-')
+    .replace(/\_/g, '-')
+    .replace(/\{/g, '')
+    .replace(/\}/g, '')
+    .toLowerCase()
+
+  let api = $('<div class="api ' + method + '">')
+
+  let header = $('<div class="header collapsed" data-toggle="collapse" href="' + '#' + collapseId + '">')
+
+  header.append(''
+    + '<div class="row align-items-center no-gutters">'
+    + '<div class="col-12 col-md-auto method">' + method.toUpperCase() + '</div>'
+    + '<div class="col-12 col-md url">' + url + '</div>'
+    + '<div class="col-12 col-md-auto name">' + name + '</div>'
+    + '</div>'
+  )
+
+  let content = $('<div class="content collapse" id="' + collapseId + '">')
+
+  content.append(''
+    + '<div class="form-row">'
+    + '<div class="col-12 col-sm description">' + description + '</div>'
+    + '<div class="col-12 col-sm-auto service">' + service + '</div>'
+    + '</div>'
+  )
+
+  if(pathParameters || requestData) {
+    content.append('<div class="heading">Request</div>')
+    if(pathParameters) {
+      content.append('<div class="subheading">Path Parameters</div>')
+      for(let i=0; i < pathParameters.length; i++) { 
+        content.append(createPathParameter(pathParameters[i]))
+      }
+    }
+    if(requestData) {
+      content.append(''
+        + '<div class="subheading">Data</div>'
+        + '<div class="btn-group">'
+        + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-request-data-element">Hide</button>'
+        + '<button type="button" class="btn btn-outline-secondary btn-sm">Reset</button>'
+        + '</div>'
+        + '<pre class="request-data-element" contenteditable="true">' + JSON.stringify(requestData, null, 2) + '</pre>'
+      )
+    }
+  }
+
+  content.append(''
+    + '<div class="form-row">'
+    + '<div class="col-12">'
+    + '<button type="button" class="btn btn-danger btn-sm run">Run</button>'
+    + '</div>'
+    + '</div>'
+  )
+
+  content.append(createResponseSection())
+
+  if(statusCodes) {
+    content.append('<div class="subheading">Status Codes</div>')
+    let sc = $('<div class="status-codes">')
+    for(let i=0; i < statusCodes.length; i++) {
+      sc.append(createStatusCode(statusCodes[i]))
+    }
+    content.append(sc)
+  }
+
+  api.append(header)
+  api.append(content)
+  $('#' + category + '-content').append(api)
+}
+
+/*------------------------------------------------------
+createPathParameter
+------------------------------------------------------*/
+
+function createPathParameter(pathParameter) {
+  return ''
+  + '<div class="form-row path-parameter">'
+  + '<div class="col-12 col-lg-3">'
+  + '<input type="text" class="form-control form-control-sm value" placeholder="' + pathParameter.name + '">'
+  + '</div>'
+  + '<div class="col-12 col-lg-9">'
+  + '<div><span class="name">' + pathParameter.name + '</span>. <span  class="text">' + pathParameter.text + '</span></div>'
+  + '</div>'
+  + '</div>'
+}
+
+/*------------------------------------------------------
+createResponseSection
+------------------------------------------------------*/
+
+function createResponseSection() {
+  return ''
+    + '<div class="heading">Response</div>'
+    + '<div class="subheading">Body</div>'
+    + '<div class="btn-group">'
+    + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>'
+    + '<button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>'
+    + '</div>'
+    + '<pre class="response-data-element" style="display:none;"></pre>'
+}
+
+/*------------------------------------------------------
+createStatusCode
+------------------------------------------------------*/
+
+function createStatusCode(statusCode) {
+  return '<div class="form-row status-code sc' + statusCode.code + '"><div class="col-1 code">' + statusCode.code + '</div><div class="col-11 text">' + statusCode.text + '</div></div>'
+}
