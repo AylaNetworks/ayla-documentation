@@ -1,14 +1,4 @@
 /*------------------------------------------------------
-On Load
-------------------------------------------------------*/
-
-$(function() {
-  renderApis()
-  writeRegionUrls()
-  displayAccounts()
-})
-
-/*------------------------------------------------------
 Axios Functions
 ------------------------------------------------------*/
 
@@ -156,7 +146,7 @@ API Run
 ------------------------------------------------------*/
 
 $(function() {
-  $('div.api div.content button.run').click(function(event) {
+  $("#core-content").delegate("div.api div.content button.run", "click", function(event) {
     let api = $(this).closest('div.api')
     let regionId = $("select.ayla-regions option:selected").val()
     let service = $(api).find('div.content div.service').text().toLowerCase().split(' ')[0]
@@ -233,11 +223,11 @@ function clearStatus(statusCodes) {
 }
 
 /*------------------------------------------------------
-Toggle Request Data Element
+Toggle Request Data Element Visibility
 ------------------------------------------------------*/
 
 $(function() {
-  $('div.api button.toggle-request-data-element').click(function(event) {
+  $("#core-content").delegate("div.api button.toggle-request-data-element", "click", function(event) {
     let content = $(this).closest('div.content')
     let el = $(content).find('pre.request-data-element')
     if($(el).is(':visible')) {
@@ -251,11 +241,11 @@ $(function() {
 })
 
 /*------------------------------------------------------
-Toggle Response Data Element
+Toggle Response Data Element Visibility
 ------------------------------------------------------*/
 
 $(function() {
-  $('div.api button.toggle-response-data-element').click(function(event) {
+  $("#core-content").delegate("div.api button.toggle-response-data-element", "click", function(event) {
     let content = $(this).closest('div.content')
     let el = $(content).find('pre.response-data-element')
     if($(el).is(':visible')) {
@@ -273,7 +263,7 @@ Clear Response Element
 ------------------------------------------------------*/
 
 $(function() {
-  $('div.api div.content button.clear').click(function(event) {
+  $("#core-content").delegate("div.api div.content button.clear", "click", function(event) {
     let content = $(this).closest('div.content')
     $(content).find('pre.response-data-element').empty()
     clearStatus($(content).find('div.status-codes'))
@@ -1046,237 +1036,38 @@ function removeValue() {
 }
 
 /*------------------------------------------------------
-On Click test-btn
-------------------------------------------------------*/
-
-$(function() {
-  $('#test-btn').click(function(event) {
-  })
-})
-
-/*------------------------------------------------------
 renderApis
 ------------------------------------------------------*/
 
-function renderApis() {
+function renderApis(componentsTsv, apisTsv) {
 
-  let accessRuleId = {}
-  accessRuleId.name = 'accessRuleId'
-  accessRuleId.text = 'Unique access rule identifier.'
+  console.log(componentsTsv)
+  console.log(apisTsv)
 
-  let devId = {}
-  devId.name = 'devId'
-  devId.text = 'Unique device identifier. AKA key.'
+  let components = createComponentMap(componentsTsv)
+  let apis = createApiArray(apisTsv)
 
-  let subscriptionId = {}
-  subscriptionId.name = 'subscriptionId'
-  subscriptionId.text = 'Unique subscription identifier.'
-
-  let accessRuleRequest = JSON.parse('{"role":"OEM::Admin","oem_model":"*","property_name":"*","client_type":"cloud","subscription_type":""}')
-  let subscriptionRuleRequest = JSON.parse('{"name":"","description":"","dsn":"","oem_model":"","property_name":"","client_type":"cloud","subscription_type":""}')
-
-  let sc200 = {}
-  sc200.code = 200
-  sc200.text = 'OK'
-
-  let sc201 = {}
-  sc201.code = 201
-  sc201.text = 'Created'
-
-  let sc204 = {}
-  sc204.code = 204
-  sc204.text = 'No Content'
-
-  let sc401 = {}
-  sc401.code = 401
-  sc401.text = 'Unauthorized'
-
-  let sc403 = {}
-  sc403.code = 403
-  sc403.text = 'Forbidden'
-
-  let sc404 = {}
-  sc404.code = 404
-  sc404.text = 'Not Found'
-
-  let sc422 = {}
-  sc422.code = 422
-  sc422.text = 'Unprocessable Entity'
-
-  renderApi(
-    'access-rules',
-    'get',
-    '/api/v1/oemAccessRules',
-    'getAccessRules',
-    'This API returns an array of access rules associated with the caller\'s role(s). A DSS access rule permits members of a role to create DSS subscriptions associated with an oem model, device property, client type, and subscription type.',
-    'Datastream',
-    null,
-    null,
-    [sc200, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'access-rules',
-    'post',
-    '/api/v1/oemAccessRules',
-    'createAccessRule',
-    'This API creates an access rule.',
-    'Datastream',
-    null,
-    accessRuleRequest,
-    [sc201, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'access-rules',
-    'get',
-    '/api/v1/oemAccessRules/{accessRuleId}',
-    'getAccessRule',
-    'This API returns the specified access rule.',
-    'Datastream',
-    [accessRuleId],
-    null,
-    [sc200, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'access-rules',
-    'delete',
-    '/api/v1/oemAccessRules/{accessRuleId}',
-    'deleteAccessRule',
-    'This API deletes the specified access rule.',
-    'Datastream',
-    [accessRuleId],
-    null,
-    [sc204, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'contacts',
-    'get',
-    '/api/v1/users/contacts',
-    'getContacts',
-    'This API returns an array of all contacts associated with the caller.',
-    'User',
-    null,
-    null,
-    [sc200, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'devices',
-    'get',
-    '/apiv1/devices',
-    'getDevices',
-    'This API returns an array of devices registered to, or shared with, the caller. The key value in the Response Body is the unique device id, so use this value in calls to other operations that require a device id parameter.',
-    'Device',
-    null,
-    null,
-    [sc200, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'groups',
-    'get',
-    '/apiv1/groups',
-    'getGroups',
-    'This API returns an array of device groups.',
-    'Device',
-    null,
-    null,
-    [sc200, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'shares',
-    'get',
-    '/api/v1/users/shares',
-    'getShares',
-    'This API returns an array of resources (e.g. devices, groups) shared by the caller.',
-    'User',
-    null,
-    null,
-    [sc200, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'shares',
-    'get',
-    '/api/v1/users/shares/received',
-    'getReceivedShares',
-    'This API returns an array of resources shared with the user.',
-    'User',
-    null,
-    null,
-    [sc200, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'subscriptions',
-    'get',
-    '/api/v1/subscriptions.json',
-    'getSubscriptions',
-    'This API returns an array of subscriptions each associated with a corresponding access rule.',
-    'Datastream',
-    null,
-    null,
-    [sc200, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'subscriptions',
-    'post',
-    '/api/v1/subscriptions.json',
-    'createSubscription',
-    'This API creates a subscription associated with a corresponding access rule.',
-    'Datastream',
-    null,
-    subscriptionRuleRequest,
-    [sc201, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'subscriptions',
-    'get',
-    '/api/v1/subscriptions/{subscriptionId}.json',
-    'getSubscription',
-    'This API returns a subscription associated with a corresponding access rule.',
-    'Datastream',
-    [subscriptionId],
-    null,
-    [sc200, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'subscriptions',
-    'delete',
-    '/api/v1/subscriptions/{subscriptionId}.json',
-    'deleteSubscription',
-    'This API deletes the specified subscription.',
-    'Datastream',
-    [subscriptionId],
-    null,
-    [sc204, sc401, sc403, sc404]
-  )
-
-  renderApi(
-    'user-accounts',
-    'get',
-    '/users/get_user_profile',
-    'getUserProfile',
-    'This API returns information about the caller\'s user profile.',
-    'User',
-    null,
-    null,
-    [sc200, sc401, sc403, sc404]
-  )
+  for(let i = 0; i < apis.length; i++) {
+    let api = apis[i]
+    renderApi(
+      api.category,
+      api.method,
+      api.url,
+      api.name,
+      api.description,
+      api.service,
+      createComponentArray(components, api.path_parameters),
+      components.get(api.request_data),
+      createStatusCodeArray(api.status_codes)
+    )
+  }
 }
 
 /*------------------------------------------------------
 renderApi
 ------------------------------------------------------*/
 
-function renderApi(category, method, url, name, description, service, pathParameters=null, requestData=null, statusCodes=null) {
+function renderApi(category, method, url, name, description, service, pathParameters, requestData, statusCodes) {
   let collapseId = method + url
     .replace(/\//g, '-')
     .replace(/\./g, '-')
@@ -1306,9 +1097,9 @@ function renderApi(category, method, url, name, description, service, pathParame
     + '</div>'
   )
 
-  if(pathParameters || requestData) {
+  if(pathParameters.length || requestData) {
     content.append('<div class="heading">Request</div>')
-    if(pathParameters) {
+    if(pathParameters.length) {
       content.append('<div class="subheading">Path Parameters</div>')
       for(let i=0; i < pathParameters.length; i++) { 
         content.append(createPathParameter(pathParameters[i]))
@@ -1386,5 +1177,167 @@ createStatusCode
 ------------------------------------------------------*/
 
 function createStatusCode(statusCode) {
-  return '<div class="form-row status-code sc' + statusCode.code + '"><div class="col-1 code">' + statusCode.code + '</div><div class="col-11 text">' + statusCode.text + '</div></div>'
+  return '<div class="form-row status-code sc' + statusCode + '"><div class="col-1 code">' + statusCode + '</div><div class="col-11 text">' + statusCodeMap.get(statusCode) + '</div></div>'
 }
+
+/*------------------------------------------------------
+createComponentMap
+------------------------------------------------------*/
+
+function createComponentMap(tsv) {
+  let rows = tsv.split('\n')
+  let map = new Map()
+  for(let i = 1; i < rows.length; i++) {
+    let row = rows[i].split('\t')
+    map.set(row[0], JSON.parse(row[1]))
+  }
+  return map
+}
+
+/*------------------------------------------------------
+createComponentArray
+------------------------------------------------------*/
+
+function createComponentArray(components, str) {
+  let arr = []
+  if(str) {
+    let names = str.split(',')
+    for(let i = 0; i < names.length; i++) {
+      arr.push(components.get(names[i]))
+    }
+  }
+  return arr
+}
+
+/*------------------------------------------------------
+createApiArray
+------------------------------------------------------*/
+
+function createApiArray(tsv) {
+  let rows = tsv.split('\n')
+  let arr = []
+  let headers = rows[0].split('\t')
+  for(let i = 1; i < rows.length; i++) {
+    let row = rows[i].split('\t')
+    let obj = {}
+    for(let j = 0; j < row.length; j++) {
+      obj[headers[j].trim()] = row[j].trim()
+    }
+    arr.push(obj)
+  }
+  return arr
+}
+
+/*------------------------------------------------------
+createStatusCodeArray
+------------------------------------------------------*/
+
+function createStatusCodeArray(str) {
+  let names = str.split(',')
+  let arr = []
+  for(let i = 0; i < names.length; i++) {
+    arr.push(names[i])
+  }
+  return arr
+}
+
+/*------------------------------------------------------
+statusCodeMap
+------------------------------------------------------*/
+
+var statusCodeMap = new Map()
+statusCodeMap.set('200', 'OK')
+statusCodeMap.set('201', 'Created')
+statusCodeMap.set('202', 'Accepted')
+statusCodeMap.set('203', 'Non-authoritative Information')
+statusCodeMap.set('204', 'No Content')
+statusCodeMap.set('205', 'Reset Content')
+statusCodeMap.set('206', 'Partial Content')
+statusCodeMap.set('207', 'Multi-Status')
+statusCodeMap.set('208', 'Already Reported')
+statusCodeMap.set('226', 'IM Used')
+statusCodeMap.set('300', 'Multiple Choices')
+statusCodeMap.set('301', 'Moved Permanently')
+statusCodeMap.set('302', 'Found')
+statusCodeMap.set('303', 'See Other')
+statusCodeMap.set('304', 'Not Modified')
+statusCodeMap.set('305', 'Use Proxy')
+statusCodeMap.set('307', 'Temporary Redirect')
+statusCodeMap.set('308', 'Permanent Redirect')
+statusCodeMap.set('400', 'Bad Request')
+statusCodeMap.set('401', 'Unauthorized')
+statusCodeMap.set('402', 'Payment Required')
+statusCodeMap.set('403', 'Forbidden')
+statusCodeMap.set('404', 'Not Found')
+statusCodeMap.set('405', 'Method Not Allowed')
+statusCodeMap.set('406', 'Not Acceptable')
+statusCodeMap.set('407', 'Proxy Authentication Required')
+statusCodeMap.set('408', 'Request Timeout')
+statusCodeMap.set('409', 'Conflict')
+statusCodeMap.set('410', 'Gone')
+statusCodeMap.set('411', 'Length Required')
+statusCodeMap.set('412', 'Precondition Failed')
+statusCodeMap.set('413', 'Payload Too Large')
+statusCodeMap.set('414', 'Request-URI Too Long')
+statusCodeMap.set('415', 'Unsupported Media Type')
+statusCodeMap.set('416', 'Requested Range Not Satisfiable')
+statusCodeMap.set('417', 'Expectation Failed')
+statusCodeMap.set('418', 'I\'m a teapot')
+statusCodeMap.set('421', 'Misdirected Request')
+statusCodeMap.set('422', 'Unprocessable Entity')
+statusCodeMap.set('423', 'Locked')
+statusCodeMap.set('424', 'Failed Dependency')
+statusCodeMap.set('426', 'Upgrade Required')
+statusCodeMap.set('428', 'Precondition Required')
+statusCodeMap.set('429', 'Too Many Requests')
+statusCodeMap.set('431', 'Request Header Fields Too Large')
+statusCodeMap.set('444', 'Connection Closed Without Response')
+statusCodeMap.set('451', 'Unavailable For Legal Reasons')
+statusCodeMap.set('499', 'Client Closed Request')
+statusCodeMap.set('500', 'Internal Server Error')
+statusCodeMap.set('501', 'Not Implemented')
+statusCodeMap.set('502', 'Bad Gateway')
+statusCodeMap.set('503', 'Service Unavailable')
+statusCodeMap.set('504', 'Gateway Timeout')
+statusCodeMap.set('505', 'HTTP Version Not Supported')
+statusCodeMap.set('506', 'Variant Also Negotiates')
+statusCodeMap.set('507', 'Insufficient Storage')
+statusCodeMap.set('508', 'Loop Detected')
+statusCodeMap.set('510', 'Not Extended')
+statusCodeMap.set('511', 'Network Authentication Required')
+statusCodeMap.set('599', 'Network Connect Timeout Error')
+
+/*------------------------------------------------------
+On Load
+------------------------------------------------------*/
+
+$(function() {
+  axios({
+    method: 'get',
+    url: 'https://docs.aylanetworks.com/cloud-api/test/components.tsv',
+    headers: {
+      'Accept': 'application/csv'
+    }
+  })
+  .then(function(response) {
+    let ctsv = response.data
+    axios({
+      method: 'get',
+      url: 'https://docs.aylanetworks.com/cloud-api/test/apis.tsv',
+      headers: {
+        'Accept': 'application/csv'
+      }
+    })
+    .then(function(response) {
+      renderApis(ctsv, response.data)
+      writeRegionUrls()
+      displayAccounts()
+    })
+    .catch(function(error) {
+      console.log(error.response)
+    })
+  })
+  .catch(function(error) {
+    console.log(error.response)
+  })
+})

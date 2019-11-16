@@ -5,7 +5,7 @@ div.panel {
 }
 
 #accounts-tab-pane {background:#f9ebd2;}
-#devices-tab-pane {background:beige;}
+#devices-tab-pane {background:#e2e6e9;}
 
 ul.nav-tabs a.nav-link {color: #495057; font-size: 90%;}
 
@@ -36,24 +36,30 @@ div.panel pre {
 /**************************/
 
 h1.api-category {
-  border-bottom: 1px solid #cccccc; 
-  margin: 0 0 6px 0 !important;
+  margin: 0 !important;
 }
 
-h1.api-category:hover {
-  /*background: #fbfbfb;*/
+div.api-category {
+  background: #f9f9eb;  /* beige*/
+  margin-bottom: 6px;
+}
+
+div.api-category:hover {
   cursor: pointer;
+  background: beige;
 }
 
 h1.api-category div.name {
-  padding: 6px 0; 
-  font-size: 1rem !important;
+  color: black;
+  padding: 4px 12px; 
+  font-size: .90rem !important;
   font-weight: bold !important;
   line-height: 26px !important;
 }
 
 h1.api-category div.service {
-  padding: 6px 0; 
+  color: black;
+  padding: 4px 12px; 
   font-size: .85rem;
   font-weight: normal !important;
   line-height: 26px;

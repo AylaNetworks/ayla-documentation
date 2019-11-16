@@ -1,0 +1,12 @@
+name	content
+accessRuleId	{"name": "accessRuleId","text": "Unique access rule identifier."}
+accessRulePostRequest	{"role":"OEM::Admin","oem_model":"*","property_name":"*","client_type":"cloud","subscription_type":""}
+datapointPostRequest	{"datapoint":{"value":"","metadata":{"key1":"","key2":""}}}
+devId	{"name": "devId","text": "Unique device identifier. AKA key."}
+dsn	{"name": "dsn","text": "Unique device serial number."}
+propName	{"name": "propName","text": "Device property name field."}
+signInPostRequest	{"user":{"email":"<span class='email'></span>","password":"","application":{"app_id":"<span class='app-id'></span>","app_secret":"<span class='app-secret'></span>"}}}
+signOutPostRequest	{"user":{"access_token":"<span class='access-token'></span>"}}
+subscriptionId	{"name": "subscriptionId","text": "Unique subscription identifier."}
+subscriptionPostRequest	{"name":"","description":"","dsn":"","oem_model":"","property_name":"","client_type":"cloud","subscription_type":""}
+uuid	{"name": "uuid","text": "Universal user id."}
