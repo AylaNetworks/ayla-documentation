@@ -5,6 +5,8 @@ contactId	{"name": "contactId","text": "Unique contact identifier."}
 contactPostRequest	{"display_name":"Jane Doe","firstname":"Jane","lastname":"Doe","email":"jane.doe@acme.com","phone_country_code":"1","phone_number":"4085551212","street_address":"123 Main Street","zip_code":"94122","country":"United States","metadata":"Additional information"}
 contactPutRequest	{"id":"","display_name":"","firstname":"","lastname":"","email":"","phone_country_code":"","phone_number":"","street_address":"","zip_code":"","country":"","metadata":""}
 datapointPostRequest	{"datapoint":{"value":"","metadata":{"key1":"","key2":""}}}
+deviceRenameRequest	{"device":{"product_name":"string"}}
+deviceUpdateLocationRequest	{"location":{"lat":"0","long":"0"}}
 devId	{"name": "devId","text": "Unique device identifier. AKA key."}
 dsn	{"name": "dsn","text": "Unique device serial number."}
 groupAddDeviceRequest	{"device_id": ""}
@@ -16,6 +18,10 @@ metadatumKey	{"name": "metadatumKey","text": "Unique metadatum identifier."}
 metadatumPostRequest	{"datum":{"key":"","value":""}}
 metadatumPutRequest	{"datum":{"key":"","value":""}}
 propName	{"name": "propName","text": "Device property name field."}
+scheduleActionId	{"name": "scheduleActionId","text": "Unique schedule action identifier."}
+scheduleActionName	{"name": "name","text": "Schedule action name."}
+scheduleActionPostRequest	{"schedule_action":{"key":"","name":"","type":"SchedulePropertyAction","base_type":"","in_range":"false","at_start":"false","at_end":"false","active":"false","value":""}}
+scheduleActionPutRequest	{"schedule_action":{"name":"input","type":"string","base_type":"integer","in_range": false,"at_start": true,"at_end": false,"active": true,"value": 5}}
 scheduleId	{"name": "scheduleId","text": "Unique schedule identifier."}
 scheduleName	{"name": "name","text": "Schedule name."}
 schedulePostRequest	{"schedule":{"active":true,"day_occur_of_month":[],"days_of_month":[],"days_of_week":[],"direction":"input","display_name":"string","duration":0,"end_date":"2019-10-05","end_time_each_day":"17:00:00","fixed_actions":false,"interval":0,"months_of_year":[],"name":"Schedule A","start_date":"2019-10-01","start_time_each_day":"08:00:00","time_before_end":"","utc":true,"version":"string","schedule_actions":[{"name":"input","base_type":"integer","in_range":false,"at_start":true,"at_end":false,"active":true,"key":false,"value":5}]}}

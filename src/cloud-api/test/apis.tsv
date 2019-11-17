@@ -16,6 +16,7 @@ getShares	get	/api/v1/users/shares	User	shares	This API returns an array of reso
 getReceivedShares	get	/api/v1/users/shares/received	User	shares	This API returns an array of resources shared with the user.						200,401,403,404
 getDevices	get	/apiv1/devices	Device	devices	This API returns an array of devices registered to, or shared with, the caller. The key value in the Response Body is the unique device id, so use this value in calls to other operations that require a device id parameter.						200,401,403,404
 getDeviceByDevId	get	/apiv1/devices/{devId}	Device	devices	This API returns the specified device.	devId					200,401,403,404
+updateDeviceLocation	post	/apiv1/devices/{devId}/locations	Device	devices	This API updates device location.	devId			deviceUpdateLocationRequest		201,401,403,405
 getPropertiesByDevId	get	/apiv1/devices/{devId}/properties	Device	properties	This API returns an array of properties for the specified device.	devId					200,401,403,404
 getPropertyByDevId	get	/apiv1/devices/{devId}/properties/{propName}	Device	properties	This API returns a property for the specified device.	devId,propName					200,401,403,404
 createDatapointByDevId	post	/apiv1/devices/{devId}/properties/{propName}/datapoints	Device	datapoints	This API creates a datapoint for the specified property. The metadata in the request data is optional.	devId,propName			datapointPostRequest		201,401,403,404
@@ -24,6 +25,7 @@ createSchedule	post	/apiv1/devices/{devId}/schedules	Device	schedules	This API c
 updateSchedule	put	/apiv1/devices/{devId}/schedules/{scheduleId}	Device	schedules	This API updates a schedule.	devId,scheduleId			schedulePutRequest		200,401,403,404
 getScheduleByName	get	/apiv1/devices/{devId}/schedules/find_by_name	Device	schedules	This API returns a schedule by name of the specified device.	devId	scheduleName				200,401,403,404
 getDeviceByDsn	get	/apiv1/dsns/{dsn}	Device	devices	This API returns the specified device.	dsn					200,401,403,404
+renameDeviceByDsn	put	/apiv1/dsns/{dsn}	Device	devices	This API renames a device.	dsn			deviceRenameRequest		200,401,403,404
 getDeviceMetadata	get	/apiv1/dsns/{dsn}/data	Device	metadata	This API returns metadata associated with the specified device.	dsn	metadataKeys				200,400,401,403,404
 createDeviceMetadatum	post	/apiv1/dsns/{dsn}/data	Device	metadata	This API creates metadata for the specified device.	dsn			metadatumPostRequest		201,401,403,404
 getDeviceMetadatum	get	/apiv1/dsns/{dsn}/data/{metadatumKey}	Device	metadata	This API returns a single metadatum for the specified device.	dsn,metadatumKey					200,401,403,404
@@ -36,10 +38,17 @@ renameGroup	put	/apiv1/groups/{groupId}	Device	groups	This API renames the speci
 deleteGroup	delete	/apiv1/groups/{groupId}	Device	groups	This API deletes the specified group.	groupId					204,401,403,404
 addDeviceToGroup	post	/apiv1/groups/{groupId}/devices	Device	groups	This API adds a device to a group.	groupId			groupAddDeviceRequest		200,401,403,404
 removeDeviceFromGroup	delete	/apiv1/groups/{groupId}/devices/{devId}	Device	groups	This API removes a device from a group.	groupId,devId					200,401,403,404
+getScheduleAction	get	/apiv1/schedule_actions/{scheduleActionId}	Device	schedule-actions	This API returns a schedule action.	scheduleActionId					200,401,403,404
+updateScheduleAction	put	/apiv1/schedule_actions/{scheduleActionId}	Device	schedule-actions	This API updates a schedule action.	scheduleActionId			scheduleActionPutRequest		200,401,403,404
+deleteScheduleAction	delete	/apiv1/schedule_actions/{scheduleActionId}	Device	schedule-actions	This API deletes a schedule action.	scheduleActionId					200,401,403,404
 getSchedule	get	/apiv1/schedules/{scheduleId}	Device	schedules	This API returns the specified schedule.	scheduleId					200,401,403,404
 clearSchedule	put	/apiv1/schedules/{scheduleId}/clear	Device	schedules	This API clears a schedule.	scheduleId					200,401,403,404
+createScheduleAction	post	/apiv1/schedules/{scheduleId}/schedule_actions	Device	schedule-actions	This API creates a schedule action.	scheduleId			scheduleActionPostRequest		201,401,403,404,422
+getScheduleActions	get	/apiv1/schedules/{scheduleId}/schedule_actions	Device	schedule-actions	This API returns an array of schedule actions.	scheduleId					200,401,403,404
+getScheduleAction	get	/apiv1/schedules/{scheduleId}/schedule_actions/find_by_name	Device	schedule-actions	This API returns a schedule action.	scheduleId	scheduleActionName				200,401,403,404
 getSchedulesForUser	get	/apiv1/schedules/all/by_user	Device	schedules	This API returns schedules accessible by user.						200,401,403,404
 getUserByUuid	get	/users/{uuid}	User	user-accounts	This API returns information about the specified user.	uuid					200,401,403,404
 getUserProfile	get	/users/get_user_profile	User	user-accounts	This API returns information about the caller\'s user profile.						200,401,403,404
 getTokens	post	/users/sign_in	User	user-accounts	This API returns an access token and a refresh token.				signInPostRequest		201,401,403,404
 returnTokens	post	/users/sign_out	User	user-accounts	This API expires the access tokens.				signOutPostRequest		201,401,403,404
+renameDeviceByDevId	put	/apiv1/devices/{devId}	Device	devices		devId			deviceRenameRequest		
