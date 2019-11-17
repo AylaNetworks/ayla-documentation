@@ -1,6 +1,9 @@
-name	content
+key	value
 accessRuleId	{"name": "accessRuleId","text": "Unique access rule identifier."}
 accessRulePostRequest	{"role":"OEM::Admin","oem_model":"*","property_name":"*","client_type":"cloud","subscription_type":""}
+contactId	{"name": "contactId","text": "Unique contact identifier."}
+contactPostRequest	{"display_name":"Jane Doe","firstname":"Jane","lastname":"Doe","email":"jane.doe@acme.com","phone_country_code":"1","phone_number":"4085551212","street_address":"123 Main Street","zip_code":"94122","country":"United States","metadata":"Additional information"}
+contactPutRequest	{"id":"","display_name":"","firstname":"","lastname":"","email":"","phone_country_code":"","phone_number":"","street_address":"","zip_code":"","country":"","metadata":""}
 datapointPostRequest	{"datapoint":{"value":"","metadata":{"key1":"","key2":""}}}
 devId	{"name": "devId","text": "Unique device identifier. AKA key."}
 dsn	{"name": "dsn","text": "Unique device serial number."}

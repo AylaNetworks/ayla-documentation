@@ -1,23 +1,27 @@
-category	method	url	name	description	service	path_parameters	request_data	status_codes
-access-rules	get	/api/v1/oemAccessRules	getAccessRules	This API returns an array of access rules associated with the rolls of the caller. A DSS access rule permits members of a role to create DSS subscriptions associated with an oem model, device property, client type, and subscription type.	Datastream			200,401,403,404
-access-rules	post	/api/v1/oemAccessRules	createAccessRule	This API creates an access rule.	Datastream		accessRulePostRequest	201,401,403,404
-access-rules	get	/api/v1/oemAccessRules/{accessRuleId}	getAccessRule	This API returns the specified access rule.	Datastream	accessRuleId		200,401,403,404
-access-rules	delete	/api/v1/oemAccessRules/{accessRuleId}	deleteAccessRule	This API deletes the specified access rule.	Datastream	accessRuleId		204,401,403,404
-subscriptions	get	/api/v1/subscriptions.json	getSubscriptions	This API returns an array of subscriptions each associated with a corresponding access rule.	Datastream			200,401,403,404
-subscriptions	post	/api/v1/subscriptions.json	createSubscription	This API creates a subscription associated with a corresponding access rule.	Datastream		subscriptionPostRequest	201,401,403,404
-subscriptions	get	/api/v1/subscriptions/{subscriptionId}.json	getSubscription	This API returns a subscription associated with a corresponding access rule.	Datastream	subscriptionId		200,401,403,404
-subscriptions	delete	/api/v1/subscriptions/{subscriptionId}.json	deleteSubscription	This API deletes the specified subscription.	Datastream	subscriptionId		204,401,403,404
-contacts	get	/api/v1/users/contacts	getContacts	This API returns an array of all contacts associated with the caller.	User			200,401,403,404
-shares	get	/api/v1/users/shares	getShares	This API returns an array of resources (e.g. devices, groups) shared by the caller.	User			200,401,403,404
-shares	get	/api/v1/users/shares/received	getReceivedShares	This API returns an array of resources shared with the user.	User			200,401,403,404
-devices	get	/apiv1/devices	getDevices	This API returns an array of devices registered to, or shared with, the caller. The key value in the Response Body is the unique device id, so use this value in calls to other operations that require a device id parameter.	Device			200,401,403,404
-devices	get	/apiv1/devices/{devId}	getDeviceByDevId	This API returns the specified device.	Device	devId		200,401,403,404
-properties	get	/apiv1/devices/{devId}/properties	getPropertiesByDevId	This API returns an array of properties for the specified device.	Device	devId		200,401,403,404
-properties	get	/apiv1/devices/{devId}/properties/{propName}	getPropertyByDevId	This API returns a property for the specified device.	Device	devId,propName		200,401,403,404
-datapoints	post	/apiv1/devices/{devId}/properties/{propName}/datapoints	createDatapointByDevId	This API creates a datapoint for the specified property. The metadata in the request data is optional.	Device	devId,propName	datapointPostRequest	201,401,403,404
-devices	get	/apiv1/dsns/{dsn}	getDeviceByDsn	This API returns the specified device.	Device	dsn		200,401,403,404
-groups	get	/apiv1/groups	getGroups	This API returns an array of device groups.	Device			200,401,403,404
-user-accounts	get	/users/{uuid}	getUserByUuid	This API returns information about the specified user.	User	uuid		200,401,403,404
-user-accounts	get	/users/get_user_profile	getUserProfile	This API returns information about the caller\'s user profile.	User			200,401,403,404
-user-accounts	post	/users/sign_in	getTokens	This API returns an access token and a refresh token.	User		signInPostRequest	201,401,403,404
-user-accounts	post	/users/sign_out	returnTokens	This API expires the access tokens.	User		signOutPostRequest	201,401,403,404
+category	method	url	name	description	service	path_parameters	request_data_text	request_data	status_codes
+access-rules	get	/api/v1/oemAccessRules	getAccessRules	This API returns an array of access rules associated with the rolls of the caller. A DSS access rule permits members of a role to create DSS subscriptions associated with an oem model, device property, client type, and subscription type.	Datastream				200,401,403,404
+access-rules	post	/api/v1/oemAccessRules	createAccessRule	This API creates an access rule.	Datastream			accessRulePostRequest	201,401,403,404
+access-rules	get	/api/v1/oemAccessRules/{accessRuleId}	getAccessRule	This API returns the specified access rule.	Datastream	accessRuleId			200,401,403,404
+access-rules	delete	/api/v1/oemAccessRules/{accessRuleId}	deleteAccessRule	This API deletes the specified access rule.	Datastream	accessRuleId			204,401,403,404
+subscriptions	get	/api/v1/subscriptions.json	getSubscriptions	This API returns an array of subscriptions each associated with a corresponding access rule.	Datastream				200,401,403,404
+subscriptions	post	/api/v1/subscriptions.json	createSubscription	This API creates a subscription associated with a corresponding access rule.	Datastream			subscriptionPostRequest	201,401,403,404
+subscriptions	get	/api/v1/subscriptions/{subscriptionId}.json	getSubscription	This API returns a subscription associated with a corresponding access rule.	Datastream	subscriptionId			200,401,403,404
+subscriptions	delete	/api/v1/subscriptions/{subscriptionId}.json	deleteSubscription	This API deletes the specified subscription.	Datastream	subscriptionId			204,401,403,404
+contacts	get	/api/v1/users/contacts	getContacts	This API returns an array of all contacts associated with the caller.	User				200,401,403,404
+contacts	post	/api/v1/users/contacts	createContact	This API creates a contact.	User			contactPostRequest	201,401,403,404
+contacts	get	/api/v1/users/contacts/{contactId}	getContact	This API returns details about a contact.	User	contactId			200,401,403,404
+contacts	put	/api/v1/users/contacts/{contactId}	updateContact	This API updates details for the contact.	User	contactId	This is the put request text.	contactPutRequest	200,401,403,404
+contacts	delete	/api/v1/users/contacts/{contactId}	deleteContact	This API deletes a contact.	User	contactId			204,401,403,404
+shares	get	/api/v1/users/shares	getShares	This API returns an array of resources (e.g. devices, groups) shared by the caller.	User				200,401,403,404
+shares	get	/api/v1/users/shares/received	getReceivedShares	This API returns an array of resources shared with the user.	User				200,401,403,404
+devices	get	/apiv1/devices	getDevices	This API returns an array of devices registered to, or shared with, the caller. The key value in the Response Body is the unique device id, so use this value in calls to other operations that require a device id parameter.	Device				200,401,403,404
+devices	get	/apiv1/devices/{devId}	getDeviceByDevId	This API returns the specified device.	Device	devId			200,401,403,404
+properties	get	/apiv1/devices/{devId}/properties	getPropertiesByDevId	This API returns an array of properties for the specified device.	Device	devId			200,401,403,404
+properties	get	/apiv1/devices/{devId}/properties/{propName}	getPropertyByDevId	This API returns a property for the specified device.	Device	devId,propName			200,401,403,404
+datapoints	post	/apiv1/devices/{devId}/properties/{propName}/datapoints	createDatapointByDevId	This API creates a datapoint for the specified property. The metadata in the request data is optional.	Device	devId,propName		datapointPostRequest	201,401,403,404
+devices	get	/apiv1/dsns/{dsn}	getDeviceByDsn	This API returns the specified device.	Device	dsn			200,401,403,404
+groups	get	/apiv1/groups	getGroups	This API returns an array of device groups.	Device				200,401,403,404
+user-accounts	get	/users/{uuid}	getUserByUuid	This API returns information about the specified user.	User	uuid			200,401,403,404
+user-accounts	get	/users/get_user_profile	getUserProfile	This API returns information about the caller\'s user profile.	User				200,401,403,404
+user-accounts	post	/users/sign_in	getTokens	This API returns an access token and a refresh token.	User			signInPostRequest	201,401,403,404
+user-accounts	post	/users/sign_out	returnTokens	This API expires the access tokens.	User			signOutPostRequest	201,401,403,404

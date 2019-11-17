@@ -1057,6 +1057,7 @@ function renderApis(componentsTsv, apisTsv) {
       api.description,
       api.service,
       createComponentArray(components, api.path_parameters),
+      api.request_data_text,
       components.get(api.request_data),
       createStatusCodeArray(api.status_codes)
     )
@@ -1067,7 +1068,7 @@ function renderApis(componentsTsv, apisTsv) {
 renderApi
 ------------------------------------------------------*/
 
-function renderApi(category, method, url, name, description, service, pathParameters, requestData, statusCodes) {
+function renderApi(category, method, url, name, description, service, pathParameters, requestDataText, requestData, statusCodes) {
   let collapseId = method + url
     .replace(/\//g, '-')
     .replace(/\./g, '-')
@@ -1106,8 +1107,13 @@ function renderApi(category, method, url, name, description, service, pathParame
       }
     }
     if(requestData) {
+      content.append('<div class="subheading">Data</div>')
+
+      if(requestDataText) {
+        content.append('<div class="request-data-text">' + requestDataText + '</div>')
+      }
+
       content.append(''
-        + '<div class="subheading">Data</div>'
         + '<div class="btn-group">'
         + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-request-data-element">Hide</button>'
         + '<button type="button" class="btn btn-outline-secondary btn-sm">Reset</button>'
