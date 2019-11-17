@@ -131,13 +131,22 @@ div.api div.content div.path-parameter {margin-bottom: .5rem;}
 div.api div.content div.path-parameter span.name {font-size: 90%; font-weight: bold;}
 div.api div.content div.path-parameter span.text {font-size: 90%;}
 
+div.api div.content div.query-parameter {margin-bottom: .5rem;}
+div.api div.content div.query-parameter span.name {font-size: 90%; font-weight: bold;}
+div.api div.content div.query-parameter span.text {font-size: 90%;}
+
 div.api div.content input {
   margin-bottom: .5rem;
 }
 
 div.api div.content pre {margin:0 0 .5rem 0 !important;}
 
-div.api div.content div.request-data-text {
+div.api div.content div.request-description {
+  font-size: 90%;
+  margin-bottom: .5rem;
+}
+
+div.api div.content div.response-description {
   font-size: 90%;
   margin-bottom: .5rem;
 }
@@ -190,8 +199,8 @@ div.api.post div.content div.subheading {color: #006600;}
 
 div.api.put {background: #fff6e6;}
 div.api.put div.header.collapsed {background: #fff6e6; color: #212529}
-div.api.put div.header {background: orange; color: white;}
-div.api.put div.header div.method {background: orange;}
+div.api.put div.header {background: #e69500; color: white;}
+div.api.put div.header div.method {background: #e69500;}
 div.api.put div.content div.subheading {color: #cc8500;}
 
 div.api.delete {background: #fbeaea;}

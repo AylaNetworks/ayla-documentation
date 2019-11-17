@@ -7,7 +7,19 @@ contactPutRequest	{"id":"","display_name":"","firstname":"","lastname":"","email
 datapointPostRequest	{"datapoint":{"value":"","metadata":{"key1":"","key2":""}}}
 devId	{"name": "devId","text": "Unique device identifier. AKA key."}
 dsn	{"name": "dsn","text": "Unique device serial number."}
+groupAddDeviceRequest	{"device_id": ""}
+groupId	{"name": "groupId","text": "Unique group identifier."}
+groupPostRequest	{"group":{"name":"string","devices":{"device_id":[]}}}
+groupPutRequest	{"group":{"name":"string"}}
+metadataKeys	{"name": "keys","text": "Explain pattern matching."}
+metadatumKey	{"name": "metadatumKey","text": "Unique metadatum identifier."}
+metadatumPostRequest	{"datum":{"key":"","value":""}}
+metadatumPutRequest	{"datum":{"key":"","value":""}}
 propName	{"name": "propName","text": "Device property name field."}
+scheduleId	{"name": "scheduleId","text": "Unique schedule identifier."}
+scheduleName	{"name": "name","text": "Schedule name."}
+schedulePostRequest	{"schedule":{"active":true,"day_occur_of_month":[],"days_of_month":[],"days_of_week":[],"direction":"input","display_name":"string","duration":0,"end_date":"2019-10-05","end_time_each_day":"17:00:00","fixed_actions":false,"interval":0,"months_of_year":[],"name":"Schedule A","start_date":"2019-10-01","start_time_each_day":"08:00:00","time_before_end":"","utc":true,"version":"string","schedule_actions":[{"name":"input","base_type":"integer","in_range":false,"at_start":true,"at_end":false,"active":true,"key":false,"value":5}]}}
+schedulePutRequest	{"schedule":{"active":true,"day_occur_of_month":[],"days_of_month":[],"days_of_week":[],"direction":"input","display_name":"string","duration":0,"end_date":"2019-10-05","end_time_each_day":"17:00:00","fixed_actions":false,"interval":0,"months_of_year":[],"name":"Schedule A","start_date":"2019-10-01","start_time_each_day":"08:00:00","time_before_end":"","utc":true,"version":"string","schedule_actions":[{"name":"input","base_type":"integer","in_range":false,"at_start":true,"at_end":false,"active":true,"key":false,"value":5}]}}
 signInPostRequest	{"user":{"email":"<span class='email'></span>","password":"","application":{"app_id":"<span class='app-id'></span>","app_secret":"<span class='app-secret'></span>"}}}
 signOutPostRequest	{"user":{"access_token":"<span class='access-token'></span>"}}
 subscriptionId	{"name": "subscriptionId","text": "Unique subscription identifier."}

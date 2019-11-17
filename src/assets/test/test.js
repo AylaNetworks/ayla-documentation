@@ -188,8 +188,9 @@ formatUrl
 
 function formatUrl(api) {
   var url = $(api).find('div.header div.url').text()
+
   let pathParameters = $(api).find('div.path-parameter input.value')
-  if(pathParameters) {
+  if(pathParameters.length) {
     let re = /\{[a-z|A-Z]+\}/g;
     let urlParts = url.split(re).filter(Boolean)
     let i = 0
@@ -201,6 +202,18 @@ function formatUrl(api) {
       url = url + urlParts[i]
     }
   }
+
+  let queryParameters = $(api).find('div.query-parameter input.value')
+  if(queryParameters.length) {
+    url = url + '?'
+    for(let i = 0; i < queryParameters.length; i++) {
+      if(i > 0) {url = url + '&'}
+      let key = $(queryParameters.eq(i)).attr('placeholder')
+      let value = $(queryParameters.eq(i)).val()
+      url = url + key + '=' + value.replace(' ', '%20')
+    }
+  }
+
   return url
 }
 
@@ -1039,13 +1052,13 @@ function removeValue() {
 renderApis
 ------------------------------------------------------*/
 
-function renderApis(componentsTsv, apisTsv) {
+function renderApis(apisTsv, componentsTsv) {
 
-  console.log(componentsTsv)
-  console.log(apisTsv)
+  //console.log(apisTsv)
+  //console.log(componentsTsv)
 
-  let components = createComponentMap(componentsTsv)
   let apis = createApiArray(apisTsv)
+  let components = createComponentMap(componentsTsv)
 
   for(let i = 0; i < apis.length; i++) {
     let api = apis[i]
@@ -1056,9 +1069,11 @@ function renderApis(componentsTsv, apisTsv) {
       api.name,
       api.description,
       api.service,
+      api.request_description,
       createComponentArray(components, api.path_parameters),
-      api.request_data_text,
+      createComponentArray(components, api.query_parameters),
       components.get(api.request_data),
+      api.response_description,
       createStatusCodeArray(api.status_codes)
     )
   }
@@ -1068,14 +1083,27 @@ function renderApis(componentsTsv, apisTsv) {
 renderApi
 ------------------------------------------------------*/
 
-function renderApi(category, method, url, name, description, service, pathParameters, requestDataText, requestData, statusCodes) {
+function renderApi(
+  category, 
+  method, 
+  url, 
+  name, 
+  description, 
+  service, 
+  requestDescription, 
+  pathParameters, 
+  queryParameters, 
+  requestData, 
+  responseDescription, 
+  statusCodes) {
+    
   let collapseId = method + url
-    .replace(/\//g, '-')
-    .replace(/\./g, '-')
-    .replace(/\_/g, '-')
-    .replace(/\{/g, '')
-    .replace(/\}/g, '')
-    .toLowerCase()
+  .replace(/\//g, '-')
+  .replace(/\./g, '-')
+  .replace(/\_/g, '-')
+  .replace(/\{/g, '')
+  .replace(/\}/g, '')
+  .toLowerCase()
 
   let api = $('<div class="api ' + method + '">')
 
@@ -1098,19 +1126,30 @@ function renderApi(category, method, url, name, description, service, pathParame
     + '</div>'
   )
 
-  if(pathParameters.length || requestData) {
+  if(pathParameters.length || queryParameters.length || requestData) {
     content.append('<div class="heading">Request</div>')
+
     if(pathParameters.length) {
       content.append('<div class="subheading">Path Parameters</div>')
+
       for(let i=0; i < pathParameters.length; i++) { 
         content.append(createPathParameter(pathParameters[i]))
       }
     }
+
+    if(queryParameters.length) {
+      content.append('<div class="subheading">Query Parameters</div>')
+
+      for(let i=0; i < queryParameters.length; i++) { 
+        content.append(createQueryParameter(queryParameters[i]))
+      }
+    }
+
     if(requestData) {
       content.append('<div class="subheading">Data</div>')
 
-      if(requestDataText) {
-        content.append('<div class="request-data-text">' + requestDataText + '</div>')
+      if(requestDescription) {
+        content.append('<div class="request-description">' + requestDescription + '</div>')
       }
 
       content.append(''
@@ -1131,7 +1170,22 @@ function renderApi(category, method, url, name, description, service, pathParame
     + '</div>'
   )
 
-  content.append(createResponseSection())
+  content.append(''
+    + '<div class="heading">Response</div>'
+    + '<div class="subheading">Body</div>'
+  )
+
+  if(responseDescription) {
+    content.append('<div class="response-description">' + responseDescription + '</div>')
+  }
+
+  content.append(''
+    + '<div class="btn-group">'
+    + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>'
+    + '<button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>'
+    + '</div>'
+    + '<pre class="response-data-element" style="display:none;"></pre>'
+  )
 
   if(statusCodes) {
     content.append('<div class="subheading">Status Codes</div>')
@@ -1145,6 +1199,39 @@ function renderApi(category, method, url, name, description, service, pathParame
   api.append(header)
   api.append(content)
   $('#' + category + '-content').append(api)
+}
+
+/*------------------------------------------------------
+createApiArray
+------------------------------------------------------*/
+
+function createApiArray(tsv) {
+  let rows = tsv.split('\n')
+  let arr = []
+  let headers = rows[0].split('\t')
+  for(let i = 1; i < rows.length; i++) {
+    let row = rows[i].split('\t')
+    let obj = {}
+    for(let j = 0; j < row.length; j++) {
+      obj[headers[j].trim()] = row[j].trim()
+    }
+    arr.push(obj)
+  }
+  return arr
+}
+
+/*------------------------------------------------------
+createComponentMap
+------------------------------------------------------*/
+
+function createComponentMap(tsv) {
+  let rows = tsv.split('\n')
+  let map = new Map()
+  for(let i = 1; i < rows.length; i++) {
+    let row = rows[i].split('\t')
+    map.set(row[0], JSON.parse(row[1]))
+  }
+  return map
 }
 
 /*------------------------------------------------------
@@ -1164,18 +1251,19 @@ function createPathParameter(pathParameter) {
 }
 
 /*------------------------------------------------------
-createResponseSection
+createQueryParameter
 ------------------------------------------------------*/
 
-function createResponseSection() {
+function createQueryParameter(queryParameter) {
   return ''
-    + '<div class="heading">Response</div>'
-    + '<div class="subheading">Body</div>'
-    + '<div class="btn-group">'
-    + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>'
-    + '<button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>'
-    + '</div>'
-    + '<pre class="response-data-element" style="display:none;"></pre>'
+  + '<div class="form-row query-parameter">'
+  + '<div class="col-12 col-lg-3">'
+  + '<input type="text" class="form-control form-control-sm value" placeholder="' + queryParameter.name + '">'
+  + '</div>'
+  + '<div class="col-12 col-lg-9">'
+  + '<div><span class="name">' + queryParameter.name + '</span>. <span  class="text">' + queryParameter.text + '</span></div>'
+  + '</div>'
+  + '</div>'
 }
 
 /*------------------------------------------------------
@@ -1184,20 +1272,6 @@ createStatusCode
 
 function createStatusCode(statusCode) {
   return '<div class="form-row status-code sc' + statusCode + '"><div class="col-1 code">' + statusCode + '</div><div class="col-11 text">' + statusCodeMap.get(statusCode) + '</div></div>'
-}
-
-/*------------------------------------------------------
-createComponentMap
-------------------------------------------------------*/
-
-function createComponentMap(tsv) {
-  let rows = tsv.split('\n')
-  let map = new Map()
-  for(let i = 1; i < rows.length; i++) {
-    let row = rows[i].split('\t')
-    map.set(row[0], JSON.parse(row[1]))
-  }
-  return map
 }
 
 /*------------------------------------------------------
@@ -1211,25 +1285,6 @@ function createComponentArray(components, str) {
     for(let i = 0; i < names.length; i++) {
       arr.push(components.get(names[i]))
     }
-  }
-  return arr
-}
-
-/*------------------------------------------------------
-createApiArray
-------------------------------------------------------*/
-
-function createApiArray(tsv) {
-  let rows = tsv.split('\n')
-  let arr = []
-  let headers = rows[0].split('\t')
-  for(let i = 1; i < rows.length; i++) {
-    let row = rows[i].split('\t')
-    let obj = {}
-    for(let j = 0; j < row.length; j++) {
-      obj[headers[j].trim()] = row[j].trim()
-    }
-    arr.push(obj)
   }
   return arr
 }
@@ -1335,7 +1390,7 @@ $(function() {
       }
     })
     .then(function(response) {
-      renderApis(ctsv, response.data)
+      renderApis(response.data, ctsv)
       writeRegionUrls()
       displayAccounts()
     })

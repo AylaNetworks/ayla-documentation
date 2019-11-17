@@ -1,27 +1,45 @@
-category	method	url	name	description	service	path_parameters	request_data_text	request_data	status_codes
-access-rules	get	/api/v1/oemAccessRules	getAccessRules	This API returns an array of access rules associated with the rolls of the caller. A DSS access rule permits members of a role to create DSS subscriptions associated with an oem model, device property, client type, and subscription type.	Datastream				200,401,403,404
-access-rules	post	/api/v1/oemAccessRules	createAccessRule	This API creates an access rule.	Datastream			accessRulePostRequest	201,401,403,404
-access-rules	get	/api/v1/oemAccessRules/{accessRuleId}	getAccessRule	This API returns the specified access rule.	Datastream	accessRuleId			200,401,403,404
-access-rules	delete	/api/v1/oemAccessRules/{accessRuleId}	deleteAccessRule	This API deletes the specified access rule.	Datastream	accessRuleId			204,401,403,404
-subscriptions	get	/api/v1/subscriptions.json	getSubscriptions	This API returns an array of subscriptions each associated with a corresponding access rule.	Datastream				200,401,403,404
-subscriptions	post	/api/v1/subscriptions.json	createSubscription	This API creates a subscription associated with a corresponding access rule.	Datastream			subscriptionPostRequest	201,401,403,404
-subscriptions	get	/api/v1/subscriptions/{subscriptionId}.json	getSubscription	This API returns a subscription associated with a corresponding access rule.	Datastream	subscriptionId			200,401,403,404
-subscriptions	delete	/api/v1/subscriptions/{subscriptionId}.json	deleteSubscription	This API deletes the specified subscription.	Datastream	subscriptionId			204,401,403,404
-contacts	get	/api/v1/users/contacts	getContacts	This API returns an array of all contacts associated with the caller.	User				200,401,403,404
-contacts	post	/api/v1/users/contacts	createContact	This API creates a contact.	User			contactPostRequest	201,401,403,404
-contacts	get	/api/v1/users/contacts/{contactId}	getContact	This API returns details about a contact.	User	contactId			200,401,403,404
-contacts	put	/api/v1/users/contacts/{contactId}	updateContact	This API updates details for the contact.	User	contactId	This is the put request text.	contactPutRequest	200,401,403,404
-contacts	delete	/api/v1/users/contacts/{contactId}	deleteContact	This API deletes a contact.	User	contactId			204,401,403,404
-shares	get	/api/v1/users/shares	getShares	This API returns an array of resources (e.g. devices, groups) shared by the caller.	User				200,401,403,404
-shares	get	/api/v1/users/shares/received	getReceivedShares	This API returns an array of resources shared with the user.	User				200,401,403,404
-devices	get	/apiv1/devices	getDevices	This API returns an array of devices registered to, or shared with, the caller. The key value in the Response Body is the unique device id, so use this value in calls to other operations that require a device id parameter.	Device				200,401,403,404
-devices	get	/apiv1/devices/{devId}	getDeviceByDevId	This API returns the specified device.	Device	devId			200,401,403,404
-properties	get	/apiv1/devices/{devId}/properties	getPropertiesByDevId	This API returns an array of properties for the specified device.	Device	devId			200,401,403,404
-properties	get	/apiv1/devices/{devId}/properties/{propName}	getPropertyByDevId	This API returns a property for the specified device.	Device	devId,propName			200,401,403,404
-datapoints	post	/apiv1/devices/{devId}/properties/{propName}/datapoints	createDatapointByDevId	This API creates a datapoint for the specified property. The metadata in the request data is optional.	Device	devId,propName		datapointPostRequest	201,401,403,404
-devices	get	/apiv1/dsns/{dsn}	getDeviceByDsn	This API returns the specified device.	Device	dsn			200,401,403,404
-groups	get	/apiv1/groups	getGroups	This API returns an array of device groups.	Device				200,401,403,404
-user-accounts	get	/users/{uuid}	getUserByUuid	This API returns information about the specified user.	User	uuid			200,401,403,404
-user-accounts	get	/users/get_user_profile	getUserProfile	This API returns information about the caller\'s user profile.	User				200,401,403,404
-user-accounts	post	/users/sign_in	getTokens	This API returns an access token and a refresh token.	User			signInPostRequest	201,401,403,404
-user-accounts	post	/users/sign_out	returnTokens	This API expires the access tokens.	User			signOutPostRequest	201,401,403,404
+name	method	url	service	category	description	path_parameters	query_parameters	request_description	request_data	response_description	status_codes
+getAccessRules	get	/api/v1/oemAccessRules	Datastream	access-rules	This API returns an array of access rules associated with the rolls of the caller. A DSS access rule permits members of a role to create DSS subscriptions associated with an oem model, device property, client type, and subscription type.						200,401,403,404
+createAccessRule	post	/api/v1/oemAccessRules	Datastream	access-rules	This API creates an access rule.				accessRulePostRequest		201,401,403,404
+getAccessRule	get	/api/v1/oemAccessRules/{accessRuleId}	Datastream	access-rules	This API returns the specified access rule.	accessRuleId					200,401,403,404
+deleteAccessRule	delete	/api/v1/oemAccessRules/{accessRuleId}	Datastream	access-rules	This API deletes the specified access rule.	accessRuleId					204,401,403,404
+getSubscriptions	get	/api/v1/subscriptions.json	Datastream	subscriptions	This API returns an array of subscriptions each associated with a corresponding access rule.						200,401,403,404
+createSubscription	post	/api/v1/subscriptions.json	Datastream	subscriptions	This API creates a subscription associated with a corresponding access rule.				subscriptionPostRequest		201,401,403,404
+getSubscription	get	/api/v1/subscriptions/{subscriptionId}.json	Datastream	subscriptions	This API returns a subscription associated with a corresponding access rule.	subscriptionId					200,401,403,404
+deleteSubscription	delete	/api/v1/subscriptions/{subscriptionId}.json	Datastream	subscriptions	This API deletes the specified subscription.	subscriptionId					204,401,403,404
+getContacts	get	/api/v1/users/contacts	User	contacts	This API returns an array of all contacts associated with the caller.						200,401,403,404
+createContact	post	/api/v1/users/contacts	User	contacts	This API creates a contact.				contactPostRequest		201,401,403,404
+getContact	get	/api/v1/users/contacts/{contactId}	User	contacts	This API returns details about a contact.	contactId					200,401,403,404
+updateContact	put	/api/v1/users/contacts/{contactId}	User	contacts	This API updates details for the contact.	contactId		The request data should include only the contactId and the fields to modify. 	contactPutRequest		200,401,403,404
+deleteContact	delete	/api/v1/users/contacts/{contactId}	User	contacts	This API deletes a contact.	contactId					204,401,403,404
+getShares	get	/api/v1/users/shares	User	shares	This API returns an array of resources (e.g. devices, groups) shared by the caller.						200,401,403,404
+getReceivedShares	get	/api/v1/users/shares/received	User	shares	This API returns an array of resources shared with the user.						200,401,403,404
+getDevices	get	/apiv1/devices	Device	devices	This API returns an array of devices registered to, or shared with, the caller. The key value in the Response Body is the unique device id, so use this value in calls to other operations that require a device id parameter.						200,401,403,404
+getDeviceByDevId	get	/apiv1/devices/{devId}	Device	devices	This API returns the specified device.	devId					200,401,403,404
+getPropertiesByDevId	get	/apiv1/devices/{devId}/properties	Device	properties	This API returns an array of properties for the specified device.	devId					200,401,403,404
+getPropertyByDevId	get	/apiv1/devices/{devId}/properties/{propName}	Device	properties	This API returns a property for the specified device.	devId,propName					200,401,403,404
+createDatapointByDevId	post	/apiv1/devices/{devId}/properties/{propName}/datapoints	Device	datapoints	This API creates a datapoint for the specified property. The metadata in the request data is optional.	devId,propName			datapointPostRequest		201,401,403,404
+getSchedules	get	/apiv1/devices/{devId}/schedules	Device	schedules	This API returns an array of schedules for the specified device.	devId					200,401,403,404
+createSchedule	post	/apiv1/devices/{devId}/schedules	Device	schedules	This API creates a schedule.	devId			schedulePostRequest		200,401,403,404,422
+updateSchedule	put	/apiv1/devices/{devId}/schedules/{scheduleId}	Device	schedules	This API updates a schedule.	devId,scheduleId			schedulePutRequest		200,401,403,404
+getScheduleByName	get	/apiv1/devices/{devId}/schedules/find_by_name	Device	schedules	This API returns a schedule by name of the specified device.	devId	scheduleName				200,401,403,404
+getDeviceByDsn	get	/apiv1/dsns/{dsn}	Device	devices	This API returns the specified device.	dsn					200,401,403,404
+getDeviceMetadata	get	/apiv1/dsns/{dsn}/data	Device	metadata	This API returns metadata associated with the specified device.	dsn	metadataKeys				200,400,401,403,404
+createDeviceMetadatum	post	/apiv1/dsns/{dsn}/data	Device	metadata	This API creates metadata for the specified device.	dsn			metadatumPostRequest		201,401,403,404
+getDeviceMetadatum	get	/apiv1/dsns/{dsn}/data/{metadatumKey}	Device	metadata	This API returns a single metadatum for the specified device.	dsn,metadatumKey					200,401,403,404
+updateDeviceMetadatum	put	/apiv1/dsns/{dsn}/data/{metadatumKey}	Device	metadata	This API updates a single metadatum for the specified device.	dsn,metadatumKey			metadatumPutRequest		200,401,403,404
+deleteDeviceMetadatum	delete	/apiv1/dsns/{dsn}/data/{metadatumKey}	Device	metadata	This API deletes a single metadatum for the specified device.	dsn,metadatumKey					200,401,403,404
+getGroups	get	/apiv1/groups	Device	groups	This API returns an array of device groups.						200,401,403,404
+createGroup	post	/apiv1​/groups	Device	groups	This API creates a device group.				groupPostRequest		201,401,403,404
+getGroup	get	/apiv1/groups/{groupId}	Device	groups	This API returns the specified group.	groupId					200,401,403,404
+renameGroup	put	/apiv1/groups/{groupId}	Device	groups	This API renames the specified group.	groupId			groupPutRequest		200,400,401,403,404,405,422
+deleteGroup	delete	/apiv1/groups/{groupId}	Device	groups	This API deletes the specified group.	groupId					204,401,403,404
+addDeviceToGroup	post	/apiv1/groups/{groupId}/devices	Device	groups	This API adds a device to a group.	groupId			groupAddDeviceRequest		200,401,403,404
+removeDeviceFromGroup	delete	/apiv1/groups/{groupId}/devices/{devId}	Device	groups	This API removes a device from a group.	groupId,devId					200,401,403,404
+getSchedule	get	/apiv1/schedules/{scheduleId}	Device	schedules	This API returns the specified schedule.	scheduleId					200,401,403,404
+clearSchedule	put	/apiv1/schedules/{scheduleId}/clear	Device	schedules	This API clears a schedule.	scheduleId					200,401,403,404
+getSchedulesForUser	get	/apiv1/schedules/all/by_user	Device	schedules	This API returns schedules accessible by user.						200,401,403,404
+getUserByUuid	get	/users/{uuid}	User	user-accounts	This API returns information about the specified user.	uuid					200,401,403,404
+getUserProfile	get	/users/get_user_profile	User	user-accounts	This API returns information about the caller\'s user profile.						200,401,403,404
+getTokens	post	/users/sign_in	User	user-accounts	This API returns an access token and a refresh token.				signInPostRequest		201,401,403,404
+returnTokens	post	/users/sign_out	User	user-accounts	This API expires the access tokens.				signOutPostRequest		201,401,403,404
