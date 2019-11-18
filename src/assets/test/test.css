@@ -6,6 +6,7 @@ div.panel {
 
 #accounts-tab-pane {background:#f9ebd2;}
 #devices-tab-pane {background:#e2e6e9;}
+#directions-tab-pane p, #directions-tab-pane li {font-size: 90%;}
 
 ul.nav-tabs a.nav-link {color: #495057; font-size: 90%;}
 

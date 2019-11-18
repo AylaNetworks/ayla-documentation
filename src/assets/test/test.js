@@ -96,6 +96,20 @@ var AYLA = {
     .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
+  postUsersRefreshToken: function(server, requestData, successCb=null, errorCb=null) {
+    axios({
+      method: 'post',
+      url: server + '/users/refresh_token',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
+  },
+
   postUsersSignIn: function(server, requestData, successCb=null, errorCb=null) {
     axios({
       method: 'post',
@@ -142,7 +156,7 @@ var AYLA = {
 }
 
 /*------------------------------------------------------
-API Run
+On Click button-run
 ------------------------------------------------------*/
 
 $(function() {
@@ -153,7 +167,8 @@ $(function() {
     let server = serviceUrls[regionId][service]
     let method = $(api).find('div.header div.method').text()
     let url = formatUrl(api)
-    let token = getCurrentAccount(getRegions()).access_token
+    let accessToken = $('#ayla-account-access-token').val()
+    let refreshToken = $('#ayla-account-refresh-token').val()
     let requestData = ''
     let requestElement = $(api).find('pre.request-data-element')
     if(requestElement.length) {
@@ -161,26 +176,74 @@ $(function() {
     }
     let responseElement = $(api).find('pre.response-data-element')
     let statusCodes = $(api).find('div.status-codes')
-    axios({
-      method: method,
-      url: server + url,
-      headers: {
-        'Authorization': 'auth_token ' + token,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      data: requestData
-    })
-    .then(function(response) {
-      $(responseElement).text(JSON.stringify(response, null, 2))
-      setStatus(statusCodes, response.status)
-    })
-    .catch(function(error) {
-      $(responseElement).text(JSON.stringify(error.response, null, 2))
-      setStatus(statusCodes, error.response.status)
-    })
+    runApi(method, server, url, accessToken, refreshToken, requestData, responseElement, statusCodes)
   })
 })
+
+/*------------------------------------------------------
+runApi
+------------------------------------------------------*/
+
+function runApi(method, server, url, accessToken, refreshToken, requestData, responseElement, statusCodes, refresh=true) {
+  axios({
+    method: method,
+    url: server + url,
+    headers: {
+      'Authorization': 'auth_token ' + accessToken,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    data: requestData
+  })
+  .then(function(response) {
+    $(responseElement).text(JSON.stringify(response, null, 2))
+    setStatus(statusCodes, response.status)
+  })
+  .catch(function(error) {
+    if(error.response.status == '401' && refresh) {
+      refreshTokens(method, server, url, refreshToken, requestData, responseElement, statusCodes, error.response, error.response.status)
+    } else {
+      $(responseElement).text(JSON.stringify(error.response, null, 2))
+      setStatus(statusCodes, error.response.status)
+    }
+  })
+}
+
+/*------------------------------------------------------
+refreshTokens
+------------------------------------------------------*/
+
+function refreshTokens(method, server, url, refreshToken, requestData, responseElement, statusCodes, responseBody, status) {
+  let regions = getRegions()
+  let account = getCurrentAccount(regions)
+
+  let user = {}
+  user.refresh_token = refreshToken
+  let data = {}
+  data.user = user
+
+  AYLA.postUsersRefreshToken(server, data, function(response) {
+    account.access_token = response.data.access_token
+    account.refresh_token = response.data.refresh_token
+    setRegions(regions)
+
+    $('#ayla-account-access-token').val(account.access_token)
+    $('#ayla-account-refresh-token').val(account.refresh_token)
+    setAuthUserFields(account)
+    runApi(method, server, url, account.access_token, account.refresh_token, requestData, responseElement, statusCodes, false)
+
+  }, function(error) {
+    account.access_token = ''
+    account.refresh_token = ''
+    setRegions(regions)
+    setStatus(statusCodes, status)
+    setTokenState()
+
+    let s = JSON.stringify(error, null, 2)
+    let t = JSON.stringify(responseBody, null, 2)
+    $(responseElement).text(s + '\n'  + t)
+  })
+}
 
 /*------------------------------------------------------
 formatUrl
@@ -206,11 +269,15 @@ function formatUrl(api) {
   let queryParameters = $(api).find('div.query-parameter input.value')
   if(queryParameters.length) {
     url = url + '?'
+    let count = 0
     for(let i = 0; i < queryParameters.length; i++) {
-      if(i > 0) {url = url + '&'}
       let key = $(queryParameters.eq(i)).attr('placeholder')
       let value = $(queryParameters.eq(i)).val()
-      url = url + key + '=' + value.replace(' ', '%20')
+      if(value) {
+        if(count > 0) {url = url + '&'}
+        url = url + key + '=' + value.replace(' ', '%20')
+        count++
+      }
     }
   }
 
@@ -331,6 +398,28 @@ function getCurrentAccount(regions) {
 }
 
 /*------------------------------------------------------
+setTokenState
+------------------------------------------------------*/
+
+function setTokenState(account=null) {
+  if(account) {
+    $('#ayla-account-access-token').val(account.access_token)
+    $('#ayla-account-refresh-token').val(account.refresh_token)
+    $('#ayla-account-tokens-btn').text('Return Tokens')
+    $('#ayla-account-tokens-btn').removeClass('btn-success').addClass('btn-warning')
+    setAuthUserFields(account)
+    populateDevices()
+  } else {
+    $('#ayla-account-access-token').val('')
+    $('#ayla-account-refresh-token').val('')
+    $('#ayla-account-tokens-btn').text('Get Tokens')
+    $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')
+    clearAuthUserFields()
+    clearDevicesPropertiesValue()
+  }
+}
+
+/*------------------------------------------------------
 Create new account with tokens or get/return tokens
 ------------------------------------------------------*/
 
@@ -353,12 +442,7 @@ $(function() {
         account.access_token = ''
         account.refresh_token = ''
         setRegions(regions)
-        $('#ayla-account-access-token').val('')
-        $('#ayla-account-refresh-token').val('')
-        $('#ayla-account-tokens-btn').text('Get Tokens')
-        $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')
-        clearAuthUserFields()
-        clearDevicesPropertiesValue()
+        setTokenState()
       }, function(error) {
         console.log(JSON.stringify(error, null, 2))
       })
@@ -367,9 +451,12 @@ $(function() {
     } else {
       account.email = $('#ayla-account-email').val()
       account.password = $('#ayla-account-password').val()
-      account.app_id = $('#ayla-account-app-id').val()
-      account.app_secret = $('#ayla-account-app-secret').val()
-
+      let aid = $('#ayla-account-app-id').val()
+      if(aid) {account.app_id = aid}
+      else {account.app_id = 'alya-api-browser-id'}
+      let asecret = $('#ayla-account-app-secret').val()
+      if(asecret) {account.app_secret = asecret}
+      else {account.app_secret = 'alya-api-browser-2tFsUL41FELUlyfrSMEZ4kNKwJg'}
       let application = {}
       application.app_id = account.app_id
       application.app_secret = account.app_secret
@@ -381,36 +468,35 @@ $(function() {
       data.user = user
 
       AYLA.postUsersSignIn(server, data, function(response) {
+
+        // Account already exists in local storage.
         account.access_token = response.data.access_token
         account.refresh_token = response.data.refresh_token
+        if(accountId != 'add') {
+          setRegions(regions)
+          setTokenState(account)
+          return
+        }
 
+        // Account does not already exist in local storage.
         AYLA.getUsersGetUserProfile(server, account.access_token, function(response) {
           account.uuid = response.data.uuid
 
           AYLA.getUsersUuid(server, account.access_token, account.uuid, function(response) {
             account.user_id = response.data.id
             account.account_name = response.data.origin_oem_name
-            if(accountId == 'add') {
-              regions[regionId].push(account)
-              let option = $('<option/>')
-              option.text(account.account_name)
-              option.val(account.uuid)
-              $("select.ayla-accounts option[value='add']").remove()
-              $('select.ayla-accounts').append(option)
-              $(option).prop('selected', true)
-              setUserFields(account)
-              $('#ayla-account-uuid').val(account.uuid)
-              $('#ayla-account-user-id').val(account.user_id)
-            }            
+            regions[regionId].push(account)
+            let option = $('<option/>')
+            option.text(account.account_name)
+            option.val(account.uuid)
+            $("select.ayla-accounts option[value='add']").remove()
+            $('select.ayla-accounts').append(option)
+            $(option).prop('selected', true)
+            $('#ayla-account-uuid').val(account.uuid)
+            $('#ayla-account-user-id').val(account.user_id)
             setRegions(regions)
-   
-            $('#ayla-account-access-token').val(account.access_token)
-            $('#ayla-account-refresh-token').val(account.refresh_token)
-            $('#ayla-account-tokens-btn').text('Return Tokens')
-            $('#ayla-account-tokens-btn').removeClass('btn-success').addClass('btn-warning')
-            setAuthUserFields(account)
-            populateDevices()
-
+            setUserFields(account)
+            setTokenState(account)
           }, function(error) {
             console.log(JSON.stringify(error, null, 2))
           })
@@ -621,20 +707,13 @@ function fillAccountForm(account) {
   $('#ayla-account-password').val(account.password)
   $('#ayla-account-app-id').val(account.app_id)
   $('#ayla-account-app-secret').val(account.app_secret)
-  $('#ayla-account-access-token').val(account.access_token)
-  $('#ayla-account-refresh-token').val(account.refresh_token)
   $('#ayla-account-uuid').val(account.uuid)
   $('#ayla-account-user-id').val(account.user_id)
   setUserFields(account)
   if(account.access_token) {
-    $('#ayla-account-tokens-btn').text('Return Tokens')
-    $('#ayla-account-tokens-btn').removeClass('btn-success').addClass('btn-warning')
-    setAuthUserFields(account)
-    populateDevices()
+    setTokenState(account)
   } else {
-    $('#ayla-account-tokens-btn').text('Get Tokens')
-    $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')
-    clearAuthUserFields()
+    setTokenState()
   }
 }
 
@@ -647,16 +726,14 @@ function initAccountForm() {
   $('#ayla-account-password').val('')
   $('#ayla-account-app-id').val('')
   $('#ayla-account-app-secret').val('')
-  $('#ayla-account-access-token').val('')
-  $('#ayla-account-refresh-token').val('')
   $('#ayla-account-user-id').val('')
   $('#ayla-account-uuid').val('')
-  $('#ayla-account-tokens-btn').text('Get Tokens')
-  $('#ayla-account-tokens-btn').removeClass('btn-warning').addClass('btn-success')
+  clearUserFields()
+  setTokenState()
 }
 
 /*------------------------------------------------------
-setUserFields / clearUserFields
+setUserFields
 ------------------------------------------------------*/
 
 function setUserFields(account) {
@@ -674,6 +751,10 @@ function setUserFields(account) {
   }
 }
 
+/*------------------------------------------------------
+clearUserFields
+------------------------------------------------------*/
+
 function clearUserFields() {
   let emailSpans = $('pre.request-data-element span.email')
   for(let i=0; i < emailSpans.length; i++) { 
@@ -690,7 +771,7 @@ function clearUserFields() {
 }
 
 /*------------------------------------------------------
-setAuthUserFields / clearAuthUserFields
+setAuthUserFields
 ------------------------------------------------------*/
 
 function setAuthUserFields(account) {
@@ -703,6 +784,10 @@ function setAuthUserFields(account) {
     $(accessTokenSpans.eq(i)).text(account.access_token)
   }
 }
+
+/*------------------------------------------------------
+clearAuthUserFields
+------------------------------------------------------*/
 
 function clearAuthUserFields() {
   let uuidInputs = $('div.path-parameter input[placeholder = "uuid"]')
@@ -1375,7 +1460,7 @@ On Load
 $(function() {
   axios({
     method: 'get',
-    url: 'https://docs.aylanetworks.com/cloud-api/test/components.tsv',
+    url: 'https://docs.aylanetworks.com/cloud-api/api-browser/components.tsv',
     headers: {
       'Accept': 'application/csv'
     }
@@ -1384,7 +1469,7 @@ $(function() {
     let ctsv = response.data
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/cloud-api/test/apis.tsv',
+      url: 'https://docs.aylanetworks.com/cloud-api/api-browser/apis.tsv',
       headers: {
         'Accept': 'application/csv'
       }

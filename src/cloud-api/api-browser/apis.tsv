@@ -15,7 +15,11 @@ deleteContact	delete	/api/v1/users/contacts/{contactId}	User	contacts	This API d
 getShares	get	/api/v1/users/shares	User	shares	This API returns an array of resources (e.g. devices, groups) shared by the caller.						200,401,403,404
 getReceivedShares	get	/api/v1/users/shares/received	User	shares	This API returns an array of resources shared with the user.						200,401,403,404
 getDevices	get	/apiv1/devices	Device	devices	This API returns an array of devices registered to, or shared with, the caller. The key value in the Response Body is the unique device id, so use this value in calls to other operations that require a device id parameter.						200,401,403,404
+registerDevice	post	/apiv1/devices	Device	devices	This API registers the device to the caller.				deviceRegisterRequest		201,401,403,404
 getDeviceByDevId	get	/apiv1/devices/{devId}	Device	devices	This API returns the specified device.	devId					200,401,403,404
+renameDeviceByDevId	put	/apiv1/devices/{devId}	Device	devices		devId			deviceRenameRequest		200,401,403,404
+unregisterDevice	delete	/apiv1/devices/{devId}	Device	devices	This API unregisters the specified device from the caller.	devId					200,401,403,404
+factoryResetDevice	put	/apiv1/devices/{devId}/cmds/factory_reset	Device	devices	This API resets device settings to factory defaults.	devId					200,401,403,404
 updateDeviceLocation	post	/apiv1/devices/{devId}/locations	Device	devices	This API updates device location.	devId			deviceUpdateLocationRequest		201,401,403,405
 getPropertiesByDevId	get	/apiv1/devices/{devId}/properties	Device	properties	This API returns an array of properties for the specified device.	devId					200,401,403,404
 getPropertyByDevId	get	/apiv1/devices/{devId}/properties/{propName}	Device	properties	This API returns a property for the specified device.	devId,propName					200,401,403,404
@@ -24,6 +28,8 @@ getSchedules	get	/apiv1/devices/{devId}/schedules	Device	schedules	This API retu
 createSchedule	post	/apiv1/devices/{devId}/schedules	Device	schedules	This API creates a schedule.	devId			schedulePostRequest		200,401,403,404,422
 updateSchedule	put	/apiv1/devices/{devId}/schedules/{scheduleId}	Device	schedules	This API updates a schedule.	devId,scheduleId			schedulePutRequest		200,401,403,404
 getScheduleByName	get	/apiv1/devices/{devId}/schedules/find_by_name	Device	schedules	This API returns a schedule by name of the specified device.	devId	scheduleName				200,401,403,404
+transferRegistration	put	/apiv1/devices/{dsn}/transfer	Device	devices	This API transfers registration from the caller to the specified user.	dsn	targetEmail				200,401,403,404
+getRegistrableDevice	get	/apiv1/devices/register	Device	devices	This API returns the registration candidate that matches the input parameters. If the DSN is passed, there must be an exact match. If multiple devices are found, only the most recently connected candidate is returned.		ip,dsn,regtype,time				200,401,403,404
 getDeviceByDsn	get	/apiv1/dsns/{dsn}	Device	devices	This API returns the specified device.	dsn					200,401,403,404
 renameDeviceByDsn	put	/apiv1/dsns/{dsn}	Device	devices	This API renames a device.	dsn			deviceRenameRequest		200,401,403,404
 getDeviceMetadata	get	/apiv1/dsns/{dsn}/data	Device	metadata	This API returns metadata associated with the specified device.	dsn	metadataKeys				200,400,401,403,404
@@ -51,4 +57,4 @@ getUserByUuid	get	/users/{uuid}	User	user-accounts	This API returns information 
 getUserProfile	get	/users/get_user_profile	User	user-accounts	This API returns information about the caller\'s user profile.						200,401,403,404
 getTokens	post	/users/sign_in	User	user-accounts	This API returns an access token and a refresh token.				signInPostRequest		201,401,403,404
 returnTokens	post	/users/sign_out	User	user-accounts	This API expires the access tokens.				signOutPostRequest		201,401,403,404
-renameDeviceByDevId	put	/apiv1/devices/{devId}	Device	devices		devId			deviceRenameRequest		
+searchDevices	get	/apiv1/devices/search	Device	devices	This API obtains details about devices that match the search criteria. The caller's right to view device information is based on ownership, device sharing, role.						200,401,403,404,422

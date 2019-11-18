@@ -5,6 +5,7 @@ contactId	{"name": "contactId","text": "Unique contact identifier."}
 contactPostRequest	{"display_name":"Jane Doe","firstname":"Jane","lastname":"Doe","email":"jane.doe@acme.com","phone_country_code":"1","phone_number":"4085551212","street_address":"123 Main Street","zip_code":"94122","country":"United States","metadata":"Additional information"}
 contactPutRequest	{"id":"","display_name":"","firstname":"","lastname":"","email":"","phone_country_code":"","phone_number":"","street_address":"","zip_code":"","country":"","metadata":""}
 datapointPostRequest	{"datapoint":{"value":"","metadata":{"key1":"","key2":""}}}
+deviceRegisterRequest	{"device":{"dsn":"string"}}
 deviceRenameRequest	{"device":{"product_name":"string"}}
 deviceUpdateLocationRequest	{"location":{"lat":"0","long":"0"}}
 devId	{"name": "devId","text": "Unique device identifier. AKA key."}
@@ -30,4 +31,8 @@ signInPostRequest	{"user":{"email":"<span class='email'></span>","password":"","
 signOutPostRequest	{"user":{"access_token":"<span class='access-token'></span>"}}
 subscriptionId	{"name": "subscriptionId","text": "Unique subscription identifier."}
 subscriptionPostRequest	{"name":"","description":"","dsn":"","oem_model":"","property_name":"","client_type":"cloud","subscription_type":""}
+targetEmail	{"name": "target","text": "Email address of the new device registrant."}
 uuid	{"name": "uuid","text": "Universal user id."}
+ip	{"name": "ip","text": "IP Address."}
+regtype	{"name": "regtype","text": "Registration type may be Same LAN, Button Push, Dsn, or Node."}
+time	{"name": "time","text": "Time in minutes."}
