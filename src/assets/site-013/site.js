@@ -163,8 +163,7 @@ function updatePagebarOnScroll() {
 search stuff
 ------------------------------------------------------*/
 
-// Get this from ayla-proxy-server.js
-// var domain = window.location.origin
+var domain = window.location.origin
 
 $(function () {
   $('#search-box').keypress(function (event) {

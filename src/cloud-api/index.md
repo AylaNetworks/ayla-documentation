@@ -1,6 +1,6 @@
 ---
 title: Cloud API
-layout: service-urls.html
+layout: site.html
 e: block
 ---
 

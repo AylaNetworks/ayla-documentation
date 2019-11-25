@@ -1,0 +1,137 @@
+drop procedure if exists getApis;
+delimiter //
+create procedure getApis()
+begin
+  select 
+  api.id as id,
+  api.name as name,
+  api.method as method,
+  path.path as path,
+  service.name as service,
+  concat('[', group_concat(distinct concat('{"name":"', tag.name, '"}')), ']') as tags,
+  api.description as description,
+  api.request_description as request_description,
+  concat('[', group_concat(distinct ifnull(concat('{"id":"', pp.id, '","name":"', pp.name, '","type":"', pp.type, '","description":"', pp.description, '","alt_description":"', appmap.description, '"}'),'') order by appmap.position asc), ']') as path_parameters,
+  concat('[', group_concat(distinct ifnull(concat('{"id":"', qp.id, '","name":"', qp.name, '","type":"', qp.type, '","description":"', qp.description, '","alt_description":"', aqpmap.description, '"}'),'') order by aqpmap.position asc), ']') as query_parameters,
+  ifnull(request_data.json, '') as request_data,
+  api.response_description as response_description,
+  concat('[', group_concat(distinct concat('{"code":"', sc.code, '","text":"', sc.text, '","alt_text":"', ascmap.text, '"}') order by sc.code asc), ']') as status_codes,
+  api.status as status
+  from api
+  left join path on api.path_id = path.id
+  left join service on api.service_id = service.id
+  left join api_tag_map tagmap on api.id = tagmap.api_id
+  left join tag on tagmap.tag_id = tag.id
+  left join api_path_parameter_map appmap on api.id = appmap.api_id
+  left join parameter pp on appmap.parameter_id = pp.id
+  left join api_query_parameter_map aqpmap on api.id = aqpmap.api_id
+  left join parameter qp on aqpmap.parameter_id = qp.id
+  left join api_request_data_map ardmap on api.id = ardmap.api_id
+  left join request_data on ardmap.request_data_id = request_data.id
+  left join api_status_code_map ascmap on api.id = ascmap.api_id
+  left join status_code sc on ascmap.code = sc.code
+  group by api.id
+  order by path.path asc, field(api.method, 'get', 'post', 'put', 'delete');
+end //
+delimiter ;
+
+drop procedure if exists getApiById;
+delimiter //
+create procedure getApiById(in apiId int)
+begin
+  select 
+  api.id as id,
+  api.name as name,
+  api.method as method,
+  path.path as path,
+  service.name as service,
+  concat('[', group_concat(distinct concat('{"name":"', tag.name, '"}')), ']') as tags,
+  api.description as description,
+  api.request_description as request_description,
+  concat('[', group_concat(distinct ifnull(concat('{"id":"', pp.id, '","name":"', pp.name, '","type":"', pp.type, '","description":"', pp.description, '","alt_description":"', appmap.description, '"}'),'') order by appmap.position asc), ']') as path_parameters,
+  concat('[', group_concat(distinct ifnull(concat('{"id":"', qp.id, '","name":"', qp.name, '","type":"', qp.type, '","description":"', qp.description, '","alt_description":"', aqpmap.description, '"}'),'') order by aqpmap.position asc), ']') as query_parameters,
+  ifnull(request_data.json, '') as request_data,
+  api.response_description as response_description,
+  concat('[', group_concat(distinct concat('{"code":"', sc.code, '","text":"', sc.text, '","alt_text":"', ascmap.text, '"}') order by sc.code asc), ']') as status_codes,
+  api.status as status
+  from api
+  left join path on api.path_id = path.id
+  left join service on api.service_id = service.id
+  left join api_tag_map tagmap on api.id = tagmap.api_id
+  left join tag on tagmap.tag_id = tag.id
+  left join api_path_parameter_map appmap on api.id = appmap.api_id
+  left join parameter pp on appmap.parameter_id = pp.id
+  left join api_query_parameter_map aqpmap on api.id = aqpmap.api_id
+  left join parameter qp on aqpmap.parameter_id = qp.id
+  left join api_request_data_map ardmap on api.id = ardmap.api_id
+  left join request_data on ardmap.request_data_id = request_data.id
+  left join api_status_code_map ascmap on api.id = ascmap.api_id
+  left join status_code sc on ascmap.code = sc.code
+  where api.id = apiId
+  group by api.id;
+end //
+delimiter ;
+
+drop procedure if exists getApiRequestData;
+delimiter //
+create procedure getApiRequestData(in apiId int)
+begin
+  select rd.id, rd.json 
+  from api
+  left join api_request_data_map ardmap on api.id = ardmap.api_id
+  left join request_data rd on ardmap.request_data_id = rd.id
+  where api.id = apiId;
+end //
+delimiter ;
+
+drop procedure if exists getApiPath;
+delimiter //
+create procedure getApiPath(in apiId int)
+begin
+  select path.id, path.path
+  from api
+  left join path on api.path_id = path.id
+  where api.id = apiId;
+end //
+delimiter ;
+
+drop procedure if exists updateRequestData;
+delimiter //
+create procedure updateRequestData(in requestId int, in newJson text)
+begin
+  update request_data set json = newJson where id = requestId;
+end //
+delimiter ;
+
+drop procedure if exists updatePath;
+delimiter //
+create procedure updatePath(in pathId int, in newPath text)
+begin
+  update path set path = newPath where id = pathId;
+end //
+delimiter ;
+
+drop procedure if exists updateApiStatusCode;
+delimiter //
+create procedure updateApiStatusCode(in apiId int, in oldCode int, in newCode int)
+begin
+  update api_status_code_map set code = newCode where api_id = apiId and code = oldCode;
+end //
+delimiter ;
+
+drop procedure if exists replaceApiTag;
+delimiter //
+create procedure replaceApiTag(in apiId int, in oldTag int, in newTag int)
+begin
+  update api_tag_map set tag_id = newTag where api_id = apiId and tag_id = oldTag;
+end //
+delimiter ;
+
+drop procedure if exists getParameters;
+delimiter //
+create procedure getParameters()
+begin
+  select id, name, type, description from parameter order by name;
+end //
+delimiter ;
+

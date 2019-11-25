@@ -2,15 +2,15 @@
 title: Admin
 ---
 
-### About certificates
+### Certificates
 
 See [these instructions](https://docs.bitnami.com/aws/how-to/generate-install-lets-encrypt-ssl/#step-5-renew-the-let-s-encrypt-certificate) to renew HTTPS certificates from [Let's Encrypt](https://letsencrypt.org/).
 
-### About broken links
+### Broken links
 
 See [Online Broken Link Checker](https://www.brokenlinkcheck.com/) to find broken links.
 
-### About search
+### Search
 
 A document id and a document url must be generic. The index.html file at the location will redirect to the document with the current version. This is correct:
 
@@ -44,16 +44,7 @@ This is not correct:
 }
 ```
 
-### About APIs
-
-See these examples:
-
-* [Amazon Services and APIs](https://developer.amazon.com/apps-and-games/services-and-apis)
-* [Google Cloud APIs](https://cloud.google.com/apis/docs/overview)
-* [Azure REST API Reference](https://docs.microsoft.com/en-us/rest/api/azure/)
-* [Facebook Marketing API](https://developers.facebook.com/docs/marketing-apis/)
-
-### About Bitnami Lightsail 404 Redirects
+### Bitnami Lightsail 404 Redirects
 
 Create ```.htaccess``` with the following content in ```/opt/bitnami/apache2/htdocs```. 
 
@@ -64,3 +55,59 @@ ErrorDocument 404 https://docs.aylanetworks.com/
 Restart Apache with ```sudo /opt/bitnami/ctlscript.sh restart apache```.
 
 ```.htaccess``` overrides all the Apache config files.
+
+### Ayla Docs Server
+
+Start the service:
+
+<pre>
+$ forever -o output.log -e error.log --minUptime 1000ms --spinSleepTime 1000ms start server.js
+</pre>
+
+View the service:
+
+<pre>
+$ forever list
+info:    Forever processes running
+data:        uid  command                                          script    forever pid   id logfile                         uptime     
+data:    [0] WsJb /home/bitnami/.nvm/versions/node/v9.8.0/bin/node server.js 22736   22746    /home/bitnami/.forever/WsJb.log 0:0:0:8.52
+</pre>
+
+Tail the service log files with the forever utility:
+
+<pre>
+$ forever logs 0
+data:    server.js:22746 - Running server
+data:    server.js:22746 - login
+data:    server.js:22746 - getDevices
+data:    server.js:22746 - getDevice
+data:    server.js:22746 - getProperties
+data:    server.js:22746 - getProperty
+</pre>
+
+Tail the service log files with tail:
+
+<pre>
+$ tail -f output.log
+Running server
+login
+getDevices
+getDevice
+getProperties
+getProperty
+</pre>
+
+Stop the service:
+
+<pre>
+$ forever stop <Id|Uid|Pid|Index|Script>
+</pre>
+
+### ayla_cloud_api database
+
+See [How to Back Up and Restore a MySQL Database](https://webcheatsheet.com/SQL/mysql_backup_restore.php).
+
+```mysql -u root -s -N -p```
+
+```mysqldump -u root -p ayla_cloud_api > ayla-cloud-api-`date '+%Y-%m-%d'`.sql```
+

@@ -1,0 +1,285 @@
+div.control-btns {
+  margin-bottom: 18px;
+}
+
+div.panel {
+  border-radius:4px;
+  margin-bottom:18px;
+  padding:9px 12px;
+}
+
+div.panel h3{
+  color: black !important;
+  margin-top: 0px !important;
+  font-size: .9rem;
+  font-weight: bold;
+}
+
+#accounts-section {display:none;}
+#accounts-section div.panel {background:#f9ebd2;}
+#devices-section {display:none;}
+#devices-section div.panel {background:#f9ebd2;}
+#directions-section {display:none;}
+#directions-section p, 
+#directions-section li {font-size: 90%;}
+
+ul.nav-tabs a.nav-link {color: #495057; font-size: 90%;}
+
+div.panel label {
+  font-size:75%;
+  font-weight:bold;
+  margin-bottom: .1rem;
+  padding-left:3px;
+}
+
+div.panel div.title {
+  color: black;
+  font-weight: bold;
+  margin-top: 12px;
+  padding-left: 3px;
+}
+
+div.panel pre {
+  margin:0 0 0 0 !important;
+}
+
+#ayla-region-urls input[type="text"]:disabled, 
+#ayla-account-details input[type="text"]:disabled,
+#dt-value-wrapper input[type="text"]:disabled {
+  background: white;
+}
+
+/**************************/
+
+h1.api-service {
+  margin: 0 !important;
+}
+
+div.api-service {
+  background: #f9f9eb;  /* beige*/
+  margin-bottom: 6px;
+}
+
+div.api-service:hover {
+  cursor: pointer;
+  background: beige;
+}
+
+h1.api-service div.name {
+  color: black;
+  padding: 4px 12px; 
+  font-size: .90rem !important;
+  font-weight: bold !important;
+  line-height: 26px !important;
+}
+
+h1.api-service div.count {
+  color: black;
+  padding: 4px 12px; 
+  font-size: .85rem;
+  font-weight: normal !important;
+  line-height: 26px;
+}
+
+h1.api-service input.count {
+  color: black;
+  padding: 0px 12px; 
+  font-size: .85rem;
+  font-weight: normal !important;
+  line-height: 33px;
+  width: 60px;
+  text-align: right;
+  border: none;
+  background: transparent;
+}
+
+/**************************/
+div.api {
+  margin-bottom: 6px;
+  box-shadow: 0 1px 2px #cccccc;
+}
+
+div.api div.header {
+  align-items: center;
+  cursor: pointer;
+}
+
+div.api div.header div.method {
+  color: white;
+  font-size: 82%;
+  font-weight: bold;
+  line-height: 26px;
+  min-width: 80px;
+  text-align: center;
+}
+
+div.api div.header div.url {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 76%;
+  line-height: 26px;
+  padding: 0 6px !important;
+  word-break: break-all;
+}
+
+div.api div.header div.name {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 76%;
+  line-height: 26px;
+  padding: 0 6px !important;
+}
+
+div.api div.content {
+  padding: .8rem .8rem .5rem .8rem;
+}
+
+div.api div.content div.service {
+  font-size: 85%;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+div.api div.content div.description {
+  font-size: 90%;
+  margin-bottom: .5rem;
+}
+
+div.api div.content div.heading {
+  font-size: 105%;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+div.api div.content div.subheading {
+  font-size: 90%;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+div.api div.content div.path-parameter {margin-bottom: .5rem;}
+div.api div.content div.path-parameter span.name {font-size: 90%; font-weight: bold;}
+div.api div.content div.path-parameter span.text {font-size: 90%;}
+
+div.api div.content div.query-parameter {margin-bottom: .5rem;}
+div.api div.content div.query-parameter span.name {font-size: 90%; font-weight: bold;}
+div.api div.content div.query-parameter span.text {font-size: 90%;}
+
+div.api div.content input {
+  margin-bottom: .5rem;
+}
+
+div.api div.content pre {margin:0 0 .5rem 0 !important;}
+
+div.api div.content div.request-description {
+  font-size: 90%;
+  margin-bottom: .5rem;
+}
+
+div.api div.content div.response-description {
+  font-size: 90%;
+  margin-bottom: .5rem;
+}
+
+div.api div.content pre.request-data-element {
+  background: white;
+  border:1px solid #e0e0e0; 
+}
+
+div.api div.content pre.request-data-element span.optional {
+  color: yellow;
+}
+
+div.api div.content button {
+  margin-bottom: .5rem;
+}
+
+div.api div.content div.btn-group button {
+  min-width: 60px;
+}
+
+div.api div.content button.run {
+  width: 100px;
+}
+
+div.api div.content pre.response-data-element {
+  min-height: 80px;
+}
+
+div.api div.content div.status-codes div.status-code div.code,
+div.api div.content div.status-codes div.status-code div.text {
+  line-height: 24px;
+  font-size: 85%;
+}
+div.api div.content div.status-codes div.status-code div.code {
+  text-align: center;
+}
+
+div.api.get {background: #edf3f8;}
+div.api.get div.header.collapsed {background: #edf3f8; color: #212529}
+div.api.get div.header {background: steelblue; color: white;}
+div.api.get div.header div.method {background: steelblue;}
+div.api.get div.content div.subheading {color: #325d81;}
+
+div.api.post {background: #e6ffe6;}
+div.api.post div.header.collapsed {background: #e6ffe6; color: #212529}
+div.api.post div.header {background: green; color: white;}
+div.api.post div.header div.method {background: green;}
+div.api.post div.content div.subheading {color: #006600;}
+
+div.api.put {background: #fff6e6;}
+div.api.put div.header.collapsed {background: #fff6e6; color: #212529}
+div.api.put div.header {background: #e69500; color: white;}
+div.api.put div.header div.method {background: #e69500;}
+div.api.put div.content div.subheading {color: #cc8500;}
+
+div.api.delete {background: #fbeaea;}
+div.api.delete div.header.collapsed {background: #fbeaea; color: #212529}
+div.api.delete div.header {background: FireBrick; color: white;}
+div.api.delete div.header div.method {background: FireBrick;}
+div.api.delete div.content div.subheading {color: #961d1d;}
+
+/* BEGIN SLIDER */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 25px; /* 34 */
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #595959;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 19px; /* 26 */
+  width: 19px; /* 26 */
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {background-color: #2196F3;}
+input:focus + .slider {box-shadow: 0 0 1px #2196F3;}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(94px);
+  -ms-transform: translateX(94px);
+  transform: translateX(94px);
+}
+
+.slider.round {border-radius: 30px;}
+.slider.round:before {border-radius: 50%;}
+/* END SLIDER */

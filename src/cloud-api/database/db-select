@@ -1,0 +1,232 @@
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+
+select 
+api.id as 'id',
+api.name as 'name',
+p.name as 'parm_name',
+apmap.type as 'parm_type',
+rd.name as 'req_data_name',
+sc.code,
+sc.text as 'status_text'
+from api
+join api_parameter_map apmap on api.id = apmap.api_id
+join parameter p on apmap.parameter_id = p.id
+join api_request_data_map ardmap on api.id = ardmap.api_id
+join request_data rd on ardmap.request_data_id = rd.id
+join api_status_code_map ascmap on api.id = ascmap.api_id
+join status_code sc on ascmap.code = sc.code
+where api.name = 'createDatapointByDevId'
+group by api.id;
+
+#----------------------------------------------------------------
+# GET ALL APIS
+#----------------------------------------------------------------
+
+select 
+api.id as id,
+api.name as name,
+api.method as method,
+path.path as path,
+service.name as service,
+api.description as description,
+api.request_description as request_description,
+group_concat(distinct appmap.parameter_id) as path_parameter_ids,
+group_concat(distinct aqpmap.parameter_id) as query_parameter_ids,
+request_data.json as request_data,
+api.response_description as response_description,
+group_concat(distinct sc.code order by sc.code) as status_codes
+from api
+left join path on api.path_id = path.id
+left join service on api.service_id = service.id
+left join api_path_parameter_map appmap on api.id = appmap.api_id
+left join parameter pp on appmap.parameter_id = pp.id
+left join api_query_parameter_map aqpmap on api.id = aqpmap.api_id
+left join parameter qp on aqpmap.parameter_id = qp.id
+left join api_request_data_map ardmap on api.id = ardmap.api_id
+left join request_data on ardmap.request_data_id = request_data.id
+left join api_status_code_map ascmap on api.id = ascmap.api_id
+left join status_code sc on ascmap.code = sc.code
+group by api.id;
+
+select concat(
+  '{'
+    '"id":"', api.id, '",' 
+    '"name":"', api.name, '",'
+    '"method":"', api.method, '",'
+    '"path":"', path.path, '",'
+    '"service":"', service.name, '",'
+    '"description":"', api.description, '",'
+    '"request_description":"', ifnull(api.request_description,''), '",'
+    '"path_parameters":[', group_concat(distinct ifnull(appmap.parameter_id,'')), '],'
+    '"query_parameters":[', group_concat(distinct ifnull(aqpmap.parameter_id,'')), '],'
+    '"request_data":', ifnull(rd.json,'""'), ','
+    '"response_description":"', ifnull(api.response_description,''), '",'
+    '"status_codes":[', group_concat(distinct sc.code order by sc.code), ']'
+  '},'
+) as api_object
+from api
+left join path on api.path_id = path.id
+left join service on api.service_id = service.id
+left join api_path_parameter_map appmap on api.id = appmap.api_id
+left join parameter pp on appmap.parameter_id = pp.id
+left join api_query_parameter_map aqpmap on api.id = aqpmap.api_id
+left join parameter qp on aqpmap.parameter_id = qp.id
+left join api_request_data_map ardmap on api.id = ardmap.api_id
+left join request_data rd on ardmap.request_data_id = rd.id
+left join api_status_code_map ascmap on api.id = ascmap.api_id
+left join status_code sc on ascmap.code = sc.code
+group by api.id;
+
+select concat(
+  '{'
+    '"id":"', api.id, '",' 
+    '"name":"', api.name, '",'
+    '"method":"', api.method, '",'
+    '"path":"', path.path, '",'
+    '"service":"', service.name, '",'
+    '"description":"', api.description, '",'
+    '"request_description":"', ifnull(api.request_description,''), '",'
+    '"path_parameters":[', group_concat(distinct ifnull(concat('{"id":"', pp.id, '","name":"', pp.name, '","description":"', pp.description, '"}'),'')), '],'
+    '"query_parameters":[', group_concat(distinct ifnull(concat('{"id":"', qp.id, '","name":"', qp.name, '","description":"', qp.description, '"}'),'')), '],'
+    '"request_data":', ifnull(rd.json,'""'), ','
+    '"response_description":"', ifnull(api.response_description,''), '",'
+    '"status_codes":[', group_concat(distinct concat('{"code":"', sc.code, '","text":"', sc.text, '"}')), ']'
+  '},'
+) as api_object
+into outfile '~/test.json'
+from api
+left join path on api.path_id = path.id
+left join service on api.service_id = service.id
+left join api_path_parameter_map appmap on api.id = appmap.api_id
+left join parameter pp on appmap.parameter_id = pp.id
+left join api_query_parameter_map aqpmap on api.id = aqpmap.api_id
+left join parameter qp on aqpmap.parameter_id = qp.id
+left join api_request_data_map ardmap on api.id = ardmap.api_id
+left join request_data rd on ardmap.request_data_id = rd.id
+left join api_status_code_map ascmap on api.id = ascmap.api_id
+left join status_code sc on ascmap.code = sc.code
+group by api.id;
+
+#----------------------------------------------------------------
+# JSON Model
+#----------------------------------------------------------------
+
+select concat(
+  '[', json_object, ']'
+  ) as json_array FROM (
+  select group_concat(
+    '{', json_fields, '}' SEPARATOR ','
+    ) as json_object FROM (
+    select concat(
+      '"id":"', id, '",' 
+      '"name":"', name, '",'
+      '"method":"', method, '"'
+    ) as json_fields
+    from api
+  ) as json_object_alias
+) as json_array_alias;
+
+select concat('[', json_object, ']') as json_array FROM (
+  select group_concat(json_fields SEPARATOR ',') as json_object FROM (
+    select concat('{"id":"', id, '",' '"name":"', name, '",' '"method":"', method, '"}') as json_fields
+    from api
+  ) as json_object_alias
+) as json_array_alias;
+
+#----------------------------------------------------------------
+# Get simple API 
+#----------------------------------------------------------------
+
+select concat(
+  '{'
+    '"id":"', api.id, '",' 
+    '"name":"', api.name, '",'
+    '"method":"' , api.method, '",'
+    '"path":"' , path.path, '",'
+    '"service":"' , service.name, '",'
+    '"description":"' , api.description, '"'
+  '},'
+)
+from api
+join path on api.path_id = path.id
+join service on api.service_id = service.id
+group by api.id;
+
+#----------------------------------------------------------------
+# Status Code experiment
+#----------------------------------------------------------------
+
+select group_concat('{', status_code_fields, '}' SEPARATOR ',') AS status_code_object FROM (
+  select concat(
+    '"id":', '"', id, '"', ',' 
+    '"name":', '"', name, '"', ','
+    '"method":', '"', method, '"'
+  ) as status_code_fields
+  from api
+  join api_status_code_map ascmap on api.id = ascmap.api_id
+  join status_code sc on ascmap.code = sc.code
+) as status_code_object_alias;
+
+select api.id, group_concat(sc.code) as status_code_array
+from api
+join api_status_code_map ascmap on api.id = ascmap.api_id
+join status_code sc on ascmap.code = sc.code
+group by api.id;
+
+select concat(sc.code) as status_code_object
+from api
+join api_status_code_map ascmap on api.id = ascmap.api_id
+join status_code sc on ascmap.code = sc.code
+
+
+
+select concat(
+  '{'
+    '"code":', '"', sc.code, '"', ',' 
+    '"text":', '"', sc.text, '"', 
+  '}'
+) as status_code
+from api
+join api_status_code_map ascmap on api.id = ascmap.api_id
+join status_code sc on ascmap.code = sc.code
+where api.id = 85 or api.id = 86;
+
+
+
+
+
+
+
+
+
+
+
+
+
+select at.id, at.name, st.name, tt.name from apis at join apis_services ast on at.id = ast.api_id join services st on ast.service_id = st.id join apis_tags att on at.id = att.api_id join tags tt on att.tag_id = tt.id limit 10;
+
+select count(url) as counter, url from apis group by url;
+
+select apis.id as id, apis.name as name, apis.method as method, paths.id as path_id, apis_services.service_id as service_id, apis.description from apis join paths on apis.url = paths.path join apis_services on apis.id = apis_services.api_id;
+
+select apis.id as id, paths.id as path_id, apis_services.service_id as service_id from apis join paths on apis.url = paths.path join apis_services on apis.id = apis_services.api_id;
+
+select a.name, p.path, s.name from apis a join paths p on a.path_id = p.id join services s on a.service_id = s.id;
+
+select a.id, a.name, p.path from apis a join paths p on a.path_id = p.id where p.path like '%{%';
+
+select a.name, p.path from apis a join paths p on a.path_id = p.id where p.path like '%{%{%';
+
+select a.id, a.name, p.path from apis a join paths p on a.path_id = p.id where p.path like '%{devId}%';
+
+select a.id, a.name as 'api name', p.name as 'parameter name', app.position from apis a join apis_path_parameters app on a.id = app.api_id join parameters p on app.parameter_id = p.id;
+
+select a.id, a.name, p.name, aqp.position from apis a join apis_query_parameters aqp on a.id = aqp.api_id join parameters p on aqp.parameter_id = p.id where a.id = 102;
+
+select a.id from apis a where a.name in ('createAccessRule', 'createSubscription', 'login', 'createContact', 'updateContact', 'linkUserAccounts', 'createShare', 'updateShare', 'createDatapoints', 'registerDevice', 'renameDeviceByDevId', 'updateDeviceLocation', 'createDatapointByDevId', 'createSchedule', 'updateSchedule', 'renameDeviceByDsn', 'createDeviceMetadatum', 'updateDeviceMetadatum', 'createDatapointByDsn', 'createPropertyTrigger', 'setDeviceTimeZone', 'createGroup', 'renameGroup', 'createDatapointsInGroup', 'createDatapointInGroup', 'addDeviceToGroup', 'updateScheduleAction', 'createScheduleAction', 'createUserAccount', 'updateUserAccount', 'sendHowToConfirm', 'resetPassword', 'sendHowToReset', 'refreshToken', 'getTokens', 'returnTokens');
+
+select rd.id, rd.name from request_data rd where rd.name in ('accessRulePostRequest', 'subscriptionPostRequest', 'loginPostRequest', 'contactPostRequest', 'contactPutRequest', 'accountLinkPostRequest', 'sharePostRequest', 'sharePutRequest', 'datapointsPostRequest', 'deviceRegisterRequest', 'deviceRenameRequest', 'deviceUpdateLocationRequest', 'datapointPostRequest', 'schedulePostRequest', 'schedulePutRequest', 'deviceRenameRequest', 'metadatumPostRequest', 'metadatumPutRequest', 'datapointPostRequest', 'propTriggerPostRequest', 'timeZonePutRequest', 'groupPostRequest', 'groupPutRequest', 'datapointsGroupPostRequest', 'datapointGroupPostRequest', 'groupAddDeviceRequest', 'scheduleActionPutRequest', 'scheduleActionPostRequest', 'accountPostRequest', 'accountPutRequest', 'confirmPostRequest', 'passwordPutRequest', 'confirmPostRequest', 'refreshPostRequest', 'signInPostRequest', 'signOutPostRequest');
+
+select a.id, a.name, p.path, pm.name from apis a join paths p on a.path_id = p.id join apis_path_parameters app on a.id = app.api_id join parameters pm on app.parameter_id = pm.id join apis_request_data ard on a.id = ard.api_id join request_data rd on ard.request_data_id = rd.id where a.name = 'createDatapointByDevId';
+
