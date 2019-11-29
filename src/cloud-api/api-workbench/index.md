@@ -6,248 +6,259 @@ e: block
 
 <form class="api-workbench">
   <div class="form-row">
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <div class="form-row">
         <div class="col-sm-12">
-          <label>id</label>
+          <label>Mode</label>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
-          <input id="api-id-input" type="text" class="form-control form-control-sm">
-        </div>
-        <div class="form-group col-auto">
-          <button id="api-id-btn" type="button" class="btn btn-sm btn-block btn-success">Get</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="form-row">
-        <div class="col-sm-12">
-          <label>status</label>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col">
-          <select id="api-status-select" class="form-control form-control-sm">
-            <option selected value>&nbsp;</option>
-            <option value="experimental">Experimental</option>
-            <option value="trusted">Trusted</option>
-            <option value="needs-improvement">Needs Improvement</option>
-            <option value="deprecated">Deprecated</option>
-            <option value="removed">Removed</option>
-            <option value="unknown">Unknown</option>
+          <select id="api-mode-select" class="form-control form-control-sm">
+            <option value="inspect">Inspect</option>
+            <option value="create">Create</option>
+            <option value="edit">Edit</option>
           </select>
         </div>
-        <div class="form-group col-auto">
-          <button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label>ID</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <input id="api-id-input" type="text" class="form-control form-control-sm" value="178">
         </div>
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-5">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label>&nbsp;</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-auto">
+          <div class="btn-group" role="group">
+            <button id="api-get-btn" type="button" class="btn btn-sm btn-info" style="width:60px;">Get</button>
+            <button id="api-clear-btn" type="button" class="btn btn-sm btn-info" style="width:60px;">Clear</button>
+            <button id="api-save-btn" type="button" class="btn btn-sm btn-info" style="width:60px;" disabled>Save</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 access-token-div">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label>Access Token</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <input id="aca-access-token" type="password" class="form-control form-control-sm" autocomplete='new-password'>
+        </div>
+      </div>
     </div>
   </div>
   <div class="form-row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="form-row">
         <div class="col-sm-12">
-          <label>method</label>
+          <label>Method</label>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
-          <select id="api-method-select" class="form-control form-control-sm">
-            <option selected value>&nbsp;</option>
-            <option value="get">GET</option>
-            <option value="post">POST</option>
-            <option value="put">PUT</option>
-            <option value="delete">DELETE</option>
-          </select>
+          <select id="api-method-select" class="form-control form-control-sm"></select>
         </div>
-        <div class="form-group col-auto">
-          <button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button>
+        <div class="form-group col-auto save-div">
+          <button id="api-method-btn" type="button" class="btn btn-sm btn-block btn-warning">Save</button>
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-8">
       <div class="form-row">
         <div class="col-sm-12">
-          <label>path</label>
+          <label>Path</label>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
           <input id="api-path-input" type="text" class="form-control form-control-sm">
         </div>
-        <div class="form-group col-auto">
-          <button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button>
+        <div class="form-group col-auto save-div">
+          <button id="api-path-btn" type="button" class="btn btn-sm btn-block btn-warning">Save</button>
         </div>
       </div>
     </div>
   </div>
   <div class="form-row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="form-row">
         <div class="col-sm-12">
-          <label>name</label>
+          <label>Name</label>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
           <input id="api-name-input" type="text" class="form-control form-control-sm">
         </div>
-        <div class="form-group col-auto">
-          <button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button>
+        <div class="form-group col-auto save-div">
+          <button id="api-name-btn" type="button" class="btn btn-sm btn-block btn-warning">Save</button>
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="form-row">
         <div class="col-sm-12">
-          <label>service</label>
+          <label>Service</label>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
-          <select id="api-service-select" class="form-control form-control-sm">
-            <option selected value>&nbsp;</option>
-            <option value="application">Application</option>
-            <option value="datastream">Datastream</option>
-            <option value="device">Device</option>
-            <option value="factory-proxy">Factory Proxy</option>
-            <option value="image">Image</option>
-            <option value="log">Log</option>
-            <option value="notification">Notification</option>
-            <option value="rules">Rules</option>
-            <option value="user">User</option>
-            <option value="zigbee">Zigbee</option>
-          </select>
+          <select id="api-service-select" class="form-control form-control-sm"></select>
         </div>
-        <div class="form-group col-auto">
-          <button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button>
+        <div class="form-group col-auto save-div">
+          <button id="api-service-btn" type="button" class="btn btn-sm btn-block btn-warning">Save</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label>Status</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <select id="api-status-select" class="form-control form-control-sm"></select>
+        </div>
+        <div class="form-group col-auto save-div">
+          <button id="api-status-btn" type="button" class="btn btn-sm btn-block btn-warning">Save</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="form-row"><div class="col-12"><label>description</label></div></div>
+  <div class="form-row"><div class="col-12"><label>Description</label></div></div>
   <div class="form-row">
     <div class="form-group col"><textarea id="api-description-textarea" class="form-control form-control-sm" rows="1"></textarea></div>
-    <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+    <div class="form-group col-auto save-div"><button id="api-description-btn" type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
   </div>
-  <div class="form-row"><div class="col-12"><label>request_description</label></div></div>
+  <div class="form-row"><div class="col-12"><label>Request Description</label></div></div>
   <div class="form-row">
     <div class="form-group col"><textarea id="api-request-description-textarea" class="form-control form-control-sm" rows="1"></textarea></div>
-    <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+    <div class="form-group col-auto save-div"><button id="api-request-description-btn" type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
   </div>
-  <div class="form-row"><div class="col-12"><label>path_parameters</label></div></div>
+  <div class="form-row"><div class="col-12"><label>Path Parameters</label></div></div>
   <div id="api-path-parameter-divs">
     <div class="form-row api-path-parameter-div">
-      <div class="form-group col-sm-2"><select class="form-control form-control-sm parameters"><option selected value>&nbsp;</option></select></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm path-parameters"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
       <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-path-parameter-div">
-      <div class="form-group col-sm-2"><select class="form-control form-control-sm parameters"><option selected value>&nbsp;</option></select></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm path-parameters"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
       <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-path-parameter-div">
-      <div class="form-group col-sm-2"><select class="form-control form-control-sm parameters"><option selected value>&nbsp;</option></select></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm path-parameters"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
       <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-path-parameter-div">
-      <div class="form-group col-sm-2"><select class="form-control form-control-sm parameters"><option selected value>&nbsp;</option></select></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm path-parameters"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
       <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
   </div>
-  <div class="form-row"><div class="col-12"><label>query_parameters</label></div></div>
+  <div class="form-row"><div class="col-12"><label>Query Parameters</label></div></div>
   <div id="api-query-parameter-divs">
     <div class="form-row api-query-parameter-div">
-      <div class="form-group col-sm-2"><select class="form-control form-control-sm parameters"><option selected value>&nbsp;</option></select></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm query-parameters"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
       <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-query-parameter-div">
-      <div class="form-group col-sm-2"><select class="form-control form-control-sm parameters"><option selected value>&nbsp;</option></select></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm query-parameters"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
       <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-query-parameter-div">
-      <div class="form-group col-sm-2"><select class="form-control form-control-sm parameters"><option selected value>&nbsp;</option></select></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm query-parameters"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
       <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-query-parameter-div">
-      <div class="form-group col-sm-2"><select class="form-control form-control-sm parameters"><option selected value>&nbsp;</option></select></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm query-parameters"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
       <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-query-parameter-div">
-      <div class="form-group col-sm-2"><select class="form-control form-control-sm parameters"><option selected value>&nbsp;</option></select></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm query-parameters"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
       <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-query-parameter-div">
-      <div class="form-group col-sm-2"><select class="form-control form-control-sm parameters"><option selected value>&nbsp;</option></select></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm query-parameters"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
       <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
   </div>
-  <div class="form-row"><div class="col-12"><label>request_data</label></div></div>
+  <div class="form-row"><div class="col-12"><label>Request Data</label></div></div>
   <div class="form-row">
     <div class="form-group col"><textarea id="api-request-data-textarea" class="form-control form-control-sm" rows="3"></textarea></div>
-    <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+    <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
   </div>
-  <div class="form-row"><div class="col-12"><label>response_description</label></div></div>
+  <div class="form-row"><div class="col-12"><label>Response Description</label></div></div>
   <div class="form-row">
     <div class="form-group col"><textarea id="api-response-description-textarea" class="form-control form-control-sm" rows="1"></textarea></div>
-    <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+    <div class="form-group col-auto save-div"><button id="api-response-description-btn" type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
   </div>
-  <div class="form-row"><div class="col-12"><label>status_codes</label></div></div>
+  <div class="form-row"><div class="col-12"><label>Status Codes</label></div></div>
   <div id="api-status-code-divs">
     <div class="form-row api-status-code-div">
-      <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm code"></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm status-codes"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm text"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-status-code-div">
-      <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm code"></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm status-codes"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm text"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-status-code-div">
-      <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm code"></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm status-codes"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm text"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-status-code-div">
-      <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm code"></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm status-codes"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm text"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-status-code-div">
-      <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm code"></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm status-codes"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm text"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
     <div class="form-row api-status-code-div">
-      <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm code"></div>
+      <div class="form-group col-sm-2"><select class="form-control form-control-sm status-codes"></select></div>
       <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm text"></div>
-      <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary">Save</button></div>
+      <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
   </div>
 </form>

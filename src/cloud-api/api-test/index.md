@@ -8,19 +8,27 @@ classesFromPage: has-pagebar
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
     <li><a href="#core-title">API Browser</a></li>
+    <li><a href="#application-service-header">Application Service</a></li>
     <li><a href="#datastream-service-header">Datastream Service</a></li>
     <li><a href="#device-service-header">Device Service</a></li>
+    <li><a href="#factory-proxy-service-header">Factory Proxy Service</a></li>
+    <li><a href="#image-service-header">Image Service</a></li>
+    <li><a href="#log-service-header">Log Service</a></li>
+    <li><a href="#notification-service-header">Notification Service</a></li>
+    <li><a href="#rules-service-header">Rules Service</a></li>
     <li><a href="#user-service-header">User Service</a></li>
+    <li><a href="#zigbee-service-header">Zigbee Service</a></li>
   </ul>
 </aside>
 
 <div class="btn-group control-btns">
+  <button id="directions-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Directions</button>
   <button id="accounts-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Accounts</button>
   <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
-  <button id="directions-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Directions</button>
+  <button id="filter-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Filter</button>
 </div>
 <div id="directions-section">
-  <p>The API Browser helps you use Ayla Cloud APIs to explore and manipulate devices, properties, datapoints, schedules, access rules, subscriptions, and many other Ayla data structures. To get started, follow these steps:
+  <p>The API Browser helps you use Ayla Cloud APIs to explore and manipulate devices, properties, datapoints, schedules, access rules, subscriptions, and many other Ayla data structures. To get started, follow these steps:</p>
   <ol>
     <li>Click the Account button.</li>
     <li>Choose a Region.</li>
@@ -228,6 +236,18 @@ classesFromPage: has-pagebar
     <pre id="dt-property-details" class="collapse"></pre>
   </div>
 </div>
+<div id="filter-section">
+  <p>This is the filter section.</p>
+</div>
+<h1 id="application-service-header" class="api-service">
+  <div class="api-service" data-toggle="collapse" href="#application-service-content">
+    <div class="row">
+      <div class="col-sm"><div class="name">Application Service</div></div>
+      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="application-service-content"></div>
 <h1 id="datastream-service-header" class="api-service">
   <div class="api-service" data-toggle="collapse" href="#datastream-service-content">
     <div class="row">
@@ -246,6 +266,51 @@ classesFromPage: has-pagebar
   </div>
 </h1>
 <div class="collapse" id="device-service-content"></div>
+<h1 id="factory-proxy-service-header" class="api-service">
+  <div class="api-service" data-toggle="collapse" href="#factory-proxy-service-content">
+    <div class="row">
+      <div class="col-sm"><div class="name">Factory Proxy Service</div></div>
+      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="factory-proxy-service-content"></div>
+<h1 id="image-service-header" class="api-service">
+  <div class="api-service" data-toggle="collapse" href="#image-service-content">
+    <div class="row">
+      <div class="col-sm"><div class="name">Image Service</div></div>
+      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="image-service-content"></div>
+<h1 id="log-service-header" class="api-service">
+  <div class="api-service" data-toggle="collapse" href="#log-service-content">
+    <div class="row">
+      <div class="col-sm"><div class="name">Log Service</div></div>
+      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="log-service-content"></div>
+<h1 id="notification-service-header" class="api-service">
+  <div class="api-service" data-toggle="collapse" href="#notification-service-content">
+    <div class="row">
+      <div class="col-sm"><div class="name">Notification Service</div></div>
+      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="notification-service-content"></div>
+<h1 id="rules-service-header" class="api-service">
+  <div class="api-service" data-toggle="collapse" href="#rules-service-content">
+    <div class="row">
+      <div class="col-sm"><div class="name">Rules Service</div></div>
+      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="rules-service-content"></div>
 <h1 id="user-service-header" class="api-service">
   <div class="api-service" data-toggle="collapse" href="#user-service-content">
     <div class="row">
@@ -255,3 +320,13 @@ classesFromPage: has-pagebar
   </div>
 </h1>
 <div class="collapse" id="user-service-content"></div>
+<h1 id="zigbee-service-header" class="api-service">
+  <div class="api-service" data-toggle="collapse" href="#zigbee-service-content">
+    <div class="row">
+      <div class="col-sm"><div class="name">Zigbee Service</div></div>
+      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="zigbee-service-content"></div>
+  

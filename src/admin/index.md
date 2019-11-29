@@ -107,7 +107,12 @@ $ forever stop <Id|Uid|Pid|Index|Script>
 
 See [How to Back Up and Restore a MySQL Database](https://webcheatsheet.com/SQL/mysql_backup_restore.php).
 
-```mysql -u root -s -N -p```
+<pre>
+mysql -u root -s -N -p
+</pre>
 
-```mysqldump -u root -p ayla_cloud_api > ayla-cloud-api-`date '+%Y-%m-%d'`.sql```
+<pre>
+mysqldump -u root -p ayla_cloud_api > ayla-cloud-api-`date '+%Y-%m-%d'`.sql
+</pre>
 
+[Google JSON Style Guide](https://google.github.io/styleguide/jsoncstyleguide.xml)

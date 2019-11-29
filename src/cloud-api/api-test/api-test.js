@@ -748,6 +748,12 @@ $(function() {
 })
 
 $(function () {
+  $("#directions-button").click(function (event) {
+    $('#directions-section').toggle()
+  })
+})
+
+$(function () {
   $("#accounts-button").click(function (event) {
     $('#accounts-section').toggle()
   })
@@ -760,8 +766,14 @@ $(function () {
 })
 
 $(function () {
-  $("#directions-button").click(function (event) {
-    $('#directions-section').toggle()
+  $("#filter-button").click(function (event) {
+    $('#filter-section').toggle()
+  })
+})
+
+$(function () {
+  $("#stats-button").click(function (event) {
+    $('#stats-section').toggle()
   })
 })
 
@@ -1027,19 +1039,14 @@ function removeValue() {
 }
 
 /*------------------------------------------------------
-renderApi
+buildApi
 ------------------------------------------------------*/
 
-function renderApi(api) {
-  // console.log(JSON.stringify(api, null, 2))
+function buildApi(apiElement, api, collapsed=true) {
 
-  //let tags = api.tags
-  //if(!tags.length) {return}
-  //let tagName = tags[0].name.toLowerCase().replace(' ', '-')
+  let serviceName = api.service.name.toLowerCase().replace(' ', '-')
 
-  let serviceName = api.service.toLowerCase().replace(' ', '-')
-
-  let collapseId = api.method + api.path
+  let collapseId = api.method.name + api.path.text
   .replace(/\//g, '-')
   .replace(/\./g, '-')
   .replace(/\_/g, '-')
@@ -1047,52 +1054,53 @@ function renderApi(api) {
   .replace(/\}/g, '')
   .toLowerCase()
 
-  let header = $('<div class="header collapsed" data-toggle="collapse" href="' + '#' + collapseId + '">')
+  let header = $('<div class="header" data-toggle="collapse" href="' + '#' + collapseId + '">')
+  if(collapsed) {$(header).addClass('collapsed')}
 
   header.append(''
     + '<div class="row align-items-center no-gutters">'
-    + '<div class="col-12 col-md-auto method">' + api.method.toUpperCase() + '</div>'
-    + '<div class="col-12 col-md url">' + api.path + '</div>'
+    + '<div class="col-12 col-md-auto method">' + api.method.name.toUpperCase() + '</div>'
+    + '<div class="col-12 col-md url">' + api.path.text + '</div>'
     + '<div class="col-12 col-md-auto name">' + api.name + ' (id=' + api.id + ')' + '</div>'
     + '</div>'
   )
 
   let content = $('<div class="content collapse" id="' + collapseId + '">')
+  if(!collapsed) {$(content).addClass('show')}
 
   content.append(''
     + '<div class="form-row">'
-    + '<div class="col-12 col-sm description">' + api.description + '</div>'
+    + '<div class="col description">' + api.description + '</div>'
+    + '<div class="col-auto refresh">' + '<img src="/assets/images/refresh.png" width="20" height="16">' + '</div>'
     + '</div>'
   )
 
-  if(api.path_parameters.length || api.query_parameters.length || api.request_data) {
+  if(api.pathParameters || api.queryParameters || api.requestData) {
     content.append('<div class="heading">Request</div>')
+    if(api.requestDescription) {content.append('<div class="request-description">' + api.requestDescription + '</div>')}
 
-    if(api.path_parameters.length) {
+    if(api.pathParameters) {
       content.append('<div class="subheading">Path Parameters</div>')
-      for(let i=0; i < api.path_parameters.length; i++) { 
-        content.append(createPathParameter(api.path_parameters[i]))
+      for(let i=0; i < api.pathParameters.length; i++) { 
+        content.append(createPathParameter(api.pathParameters[i]))
       }
     }
 
-    if(api.query_parameters.length) {
+    if(api.queryParameters) {
       content.append('<div class="subheading">Query Parameters</div>')
-      for(let i=0; i < api.query_parameters.length; i++) { 
-        content.append(createQueryParameter(api.query_parameters[i]))
+      for(let i=0; i < api.queryParameters.length; i++) { 
+        content.append(createQueryParameter(api.queryParameters[i]))
       }
     }
 
-    if(api.request_data) {
+    if(api.requestData) {
       content.append('<div class="subheading">Data</div>')
-      if(api.request_description) {
-        content.append('<div class="request-description">' + api.request_description + '</div>')
-      }
       content.append(''
         + '<div class="btn-group">'
         + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-request-data-element">Hide</button>'
         + '<button type="button" class="btn btn-outline-secondary btn-sm">Reset</button>'
         + '</div>'
-        + '<pre class="request-data-element" contenteditable="true">' + JSON.stringify(api.request_data, null, 2) + '</pre>'
+        + '<pre class="request-data-element" contenteditable="true">' + JSON.stringify(api.requestData, null, 2) + '</pre>'
       )
     }
   }
@@ -1105,15 +1113,10 @@ function renderApi(api) {
     + '</div>'
   )
 
-  content.append(''
-    + '<div class="heading">Response</div>'
-    + '<div class="subheading">Body</div>'
-  )
+  content.append('<div class="heading">Response</div>')
+  if(api.responseDescription) {content.append('<div class="response-description">' + api.responseDescription + '</div>')}
 
-  if(api.response_description) {
-    content.append('<div class="response-description">' + api.response_description + '</div>')
-  }
-
+  content.append('<div class="subheading">Body</div>')
   content.append(''
     + '<div class="btn-group">'
     + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>'
@@ -1122,25 +1125,58 @@ function renderApi(api) {
     + '<pre class="response-data-element" style="display:none;"></pre>'
   )
 
-  if(api.status_codes) {
+  if(api.statusCodes) {
     content.append('<div class="subheading">Status Codes</div>')
     let sc = $('<div class="status-codes">')
-    for(let i=0; i < api.status_codes.length; i++) {
-      sc.append(createStatusCode(api.status_codes[i]))
+    for(let i=0; i < api.statusCodes.length; i++) {
+      sc.append(createStatusCode(api.statusCodes[i]))
     }
     content.append(sc)
   }
 
-  let apiElement = $('<div class="api ' + api.method + '">')
+  $(apiElement).empty()
+  $(apiElement).removeClass()
+  $(apiElement).addClass('api')
+  $(apiElement).addClass(api.method.name)
+  $(apiElement).data('id', api.id)
   $(apiElement).data('service', serviceName)
   apiElement.append(header)
   apiElement.append(content)
+  return apiElement
+}
+
+/*------------------------------------------------------
+renderApi
+------------------------------------------------------*/
+
+function renderApi(api) {
+
+  let apiElement = $('<div/>')
+  buildApi(apiElement, api)
+  let serviceName = api.service.name.toLowerCase().replace(' ', '-')
   let serviceContentElement = $('#' + serviceName + '-service-content')
   $(serviceContentElement).append(apiElement)
   let serviceHeaderElement = $('#' + serviceName + '-service-header')
   let counter = $(serviceHeaderElement).find('input.count')
   $(counter).val(parseInt($(counter).val()) + 1)
 }
+
+/*------------------------------------------------------
+Refresh API
+------------------------------------------------------*/
+
+$(function() {
+  $("#core-content").delegate("div.api div.content div.refresh img", "click", function(event) {
+    let apiElement = $(this).closest('div.api')
+    let apiId = $(apiElement).data('id')
+    DOCS.getApi(apiId, function (response) {
+      console.log(JSON.stringify(response.data, null, 2))
+      buildApi(apiElement, response.data, false)
+    }, function (error) {
+      console.log(JSON.stringify(error, null, 2))
+    })    
+  })
+})
 
 /*------------------------------------------------------
 createPathParameter
@@ -1153,7 +1189,9 @@ function createPathParameter(pathParameter) {
   + '<input type="text" class="form-control form-control-sm value" placeholder="' + pathParameter.name + '">'
   + '</div>'
   + '<div class="col-12 col-lg-9">'
-  + '<div><span class="name">' + pathParameter.name + '</span>. <span  class="text">' + pathParameter.description + '</span></div>'
+  + '<div>'
+  + '<span class="name">' + pathParameter.name + '</span>. '
+  + '<span  class="text">' + (pathParameter.customText ? pathParameter.customText : pathParameter.baseText) + '</span></div>'
   + '</div>'
   + '</div>'
 }
@@ -1169,7 +1207,9 @@ function createQueryParameter(queryParameter) {
   + '<input type="text" class="form-control form-control-sm value" placeholder="' + queryParameter.name + '">'
   + '</div>'
   + '<div class="col-12 col-lg-9">'
-  + '<div><span class="name">' + queryParameter.name + '</span>. <span  class="text">' + queryParameter.description + '</span></div>'
+  + '<div>'
+  + '<span class="name">' + queryParameter.name + '</span>. '
+  + '<span  class="text">' + (queryParameter.customText ? queryParameter.customText : queryParameter.baseText) + '</span></div>'
   + '</div>'
   + '</div>'
 }
@@ -1182,16 +1222,45 @@ function createStatusCode(sc) {
   return ''
   + '<div class="form-row status-code sc' + sc.code + '">'
   + '<div class="col-1 code">' + sc.code + '</div>'
-  + '<div class="col-11 text">' + (sc.alt_text ? sc.alt_text : sc.text) + '</div>'
+  + '<div class="col-11 text">' + (sc.customText ? sc.customText : sc.baseText) + '</div>'
   + '</div>'
 }
 
+/*------------------------------------------------------
+renderServices
+------------------------------------------------------*/
+/*
+function renderServices() {
+  DOCS.getServices(function(response) {
+    let services = response.data
+    let servicesElement = $('#ayla-services')
+    for(let i=0; i < services.length; i++) {
+      let hyphenName = services[i].name.toLowerCase().replace(' ', '-')
+      let header = $('<h1 id="' + hyphenName + '-service-header" class="api-service"></h1>')
+      $(header).append(''
+        + '<div class="api-service" data-toggle="collapse" href="#' + hyphenName + '-content">'
+        + '<div class="row">'
+        + '<div class="col-sm"><div class="name">' + services[i].name + ' Service</div></div>'
+        + '<div class="col-auto"><input type="text" class="count" value=0 disabled></div>'
+        + '</div>'
+        + '</div>'
+      )
+      let content = '<div class="collapse" id="' + hyphenName + '-content"></div>'
+      $(servicesElement).append(header)
+      $(servicesElement).append(content)
+    }
+  }, function(error) {
+    console.log(error)
+  })
+}
+*/
 /*------------------------------------------------------
 On Load
 ------------------------------------------------------*/
 
 $(function() {
-  DOCS.getApiV1Apis(function(response) {
+  //renderServices()
+  DOCS.getApis(function(response) {
     for(let i = 0; i < response.data.length; i++) {
       renderApi(response.data[i])
     }
