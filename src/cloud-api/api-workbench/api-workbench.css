@@ -4,7 +4,7 @@ form.api-workbench label {
   margin-bottom: 3px;
 }
 
-form.api-workbench div.save-div {display: none;}
+form.api-workbench div.edit-mode {display: none;}
 
 #api-path-input {
   font-family: 'Courier New', Courier, monospace;

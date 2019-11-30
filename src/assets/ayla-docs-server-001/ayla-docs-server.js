@@ -185,6 +185,23 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
+  putApiStatusCode: function(apiId, code, text, accessToken, successCb=null, errorCb=null) {
+    let requestData = {}
+    requestData.text = text
+    axios({
+      method: 'put',
+      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status-codes/' + code,
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
   getMethods: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',

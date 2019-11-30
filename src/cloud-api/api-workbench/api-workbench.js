@@ -1,17 +1,3 @@
-var prevMode = 'create'
-
-function setActiveMode(btnElement) {
-  $(btnElement).removeClass('btn-outline-dark').addClass('btn-dark')
-  $(btnElement).siblings().removeClass('btn-dark').addClass('btn-outline-dark')
-  if($('#api-id-input').val()) {$('#api-edit-btn').prop('disabled', false)}
-  else {$('#api-edit-btn').prop('disabled', true)}
-}
-
-function setActionBtnState(id, on) {
-  if(on) {$('#' + id).prop('disabled', false).removeClass('btn-outline-primary').addClass('btn-primary')}
-  else {$('#' + id).prop('disabled', true).removeClass('btn-primary').addClass('btn-outline-primary')}
-}
-
 /*------------------------------------------------------
 On Click Create
 ------------------------------------------------------*/
@@ -24,34 +10,7 @@ $(function () {
     setActionBtnState('api-get-btn', false)
     setActionBtnState('api-clear-btn', true)
     $('#api-id-input').prop('disabled', true)
-    $('form.api-workbench div.save-div').hide()
-
-    /*
-    $('#api-create-btn').prop('disabled', false)
-    $('#api-inspect-btn').prop('disabled', false)
-    $('#api-edit-btn').prop('disabled', true)
-
-    $('#api-save-btn').removeClass('btn-outline-primary').addClass('btn-primary')
-    $('#api-get-btn').removeClass('btn-primary').addClass('btn-outline-primary')
-    $('#api-clear-btn').removeClass('btn-outline-primary').addClass('btn-primary')
-
-    $('#api-save-btn').prop('disabled', false)
-    $('#api-get-btn').prop('disabled', true)
-    $('#api-clear-btn').prop('disabled', false)
-
-    $('#api-id-input').prop('disabled', true)
-    */
-
-    /*
-    reset()
-    $('#api-id-input').val('')
-    $('form.api-workbench div.save-div').hide()
-    $('form.api-workbench div.get-div').hide()
-    $('#api-id-input').prop('disabled', true)
-    $('#api-get-btn').prop('disabled', true)
-    $('#api-save-btn').prop('disabled', false)
-    prevMode = 'create'
-    */
+    $('form.api-workbench div.edit-mode').hide()
   })
 })
 
@@ -67,23 +26,7 @@ $(function () {
     setActionBtnState('api-get-btn', true)
     setActionBtnState('api-clear-btn', true)
     $('#api-id-input').prop('disabled', false)
-    $('form.api-workbench div.save-div').hide()
-
-    /*
-    $('#api-save-btn').prop('disabled', true).removeClass('btn-primary').addClass('btn-outline-primary')
-    $('#api-get-btn').prop('disabled', false).removeClass('btn-outline-primary').addClass('btn-primary')
-    $('#api-clear-btn').prop('disabled', false).removeClass('btn-outline-primary').addClass('btn-primary')
-
-    $('#api-id-input').prop('disabled', false)
-    */
-
-    /*
-    $('form.api-workbench div.save-div').hide()
-    $('form.api-workbench div.get-div').show()
-    $('#api-id-input').prop('disabled', false)
-    if(prevMode == 'create') {reset()}
-    prevMode = 'inspect'
-    */
+    $('form.api-workbench div.edit-mode').hide()
   })
 })
 
@@ -99,25 +42,29 @@ $(function () {
     setActionBtnState('api-get-btn', false)
     setActionBtnState('api-clear-btn', false)
     $('#api-id-input').prop('disabled', true)
-    $('form.api-workbench div.save-div').show()
+    $('form.api-workbench div.edit-mode').show()
+  })
+})
 
-    /*
-    $('#api-save-btn').prop('disabled', true).removeClass('btn-primary').addClass('btn-outline-primary')
-    $('#api-get-btn').prop('disabled', true).removeClass('btn-primary').addClass('btn-outline-primary')
-    $('#api-clear-btn').prop('disabled', false).removeClass('btn-outline-primary').addClass('btn-primary')
+/*------------------------------------------------------
+On Click Save
+------------------------------------------------------*/
 
-    $('#api-id-input').prop('disabled', true)
-    */
+$(function () {
+  $('#api-save-btn').click(function (event) {
+    console.log('Save')
+  })
+})
 
-    /*
-    $('form.api-workbench div.save-div').show()
-    $('form.api-workbench div.get-div').show()
-    $('#api-id-input').prop('disabled', false)
-    $('#api-get-btn').prop('disabled', false)
-    $('#api-save-btn').prop('disabled', true)
-    if(prevMode == 'create') {reset()}
-    prevMode = 'edit'
-    */
+/*------------------------------------------------------
+On Click Clear
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-clear-btn').click(function (event) {
+    $('#api-id-input').val('')
+    reset()
+    $('#api-edit-btn').prop('disabled', true)
   })
 })
 
@@ -166,13 +113,24 @@ $(function () {
 
         $('#api-response-description-textarea').val(api.responseDescription)
 
-        let statusCodeDivs = $('#api-status-code-divs').find('div.api-status-code-div')
-        if(api.statusCodes) {
-          for (let i = 0; i < api.statusCodes.length; i++) {
-            $(statusCodeDivs.eq(i)).find('select.status-codes').val(api.statusCodes[i].code)
-            $(statusCodeDivs.eq(i)).find('input.text').attr('placeholder', api.statusCodes[i].baseText)
-            $(statusCodeDivs.eq(i)).find('input.text').val(api.statusCodes[i].customText)
-          }
+        for (let i = 0; i < api.statusCodes.length; i++) {
+          let codeInput = $('<input type="text" class="form-control form-control-sm code" disabled>')
+          $(codeInput).val(api.statusCodes[i].code)
+          let codeDiv = $('<div class="form-group col-sm-2"></div>')
+          codeDiv.append(codeInput)
+          let textInput = $('<input type="text" class="form-control form-control-sm text">')
+          $(textInput).val(api.statusCodes[i].customText)
+          $(textInput).attr('placeholder', api.statusCodes[i].baseText)
+          let textDiv = $('<div class="form-group col-sm-3"></div>')
+          textDiv.append(textInput)
+          let saveBtn = $('<div class="form-group col-auto edit-mode"><button type="button" class="btn btn-sm btn-block btn-warning save">Save</button></div>')
+          let deleteBtn = $('<div class="form-group col-auto edit-mode"><button type="button" class="btn btn-sm btn-block btn-danger delete">Delete</button></div>')
+          let scElement = $('<div class="form-row api-status-code-div">')
+          scElement.append(codeDiv)
+          scElement.append(textDiv)
+          scElement.append(saveBtn)
+          scElement.append(deleteBtn)
+          $('#api-status-code-divs').append(scElement)
         }
 
         $('#api-status-select').val(api.status.id)
@@ -190,25 +148,24 @@ $(function () {
 })
 
 /*------------------------------------------------------
-On Click Clear
+setActiveMode
 ------------------------------------------------------*/
 
-$(function () {
-  $('#api-clear-btn').click(function (event) {
-    $('#api-id-input').val('')
-    reset()
-  })
-})
+function setActiveMode(btnElement) {
+  $(btnElement).removeClass('btn-outline-dark').addClass('btn-dark')
+  $(btnElement).siblings().removeClass('btn-dark').addClass('btn-outline-dark')
+  if($('#api-id-input').val()) {$('#api-edit-btn').prop('disabled', false)}
+  else {$('#api-edit-btn').prop('disabled', true)}
+}
 
 /*------------------------------------------------------
-On Click Save
+setActionBtnState
 ------------------------------------------------------*/
 
-$(function () {
-  $('#api-save-btn').click(function (event) {
-    console.log('Save')
-  })
-})
+function setActionBtnState(id, on) {
+  if(on) {$('#' + id).prop('disabled', false).removeClass('btn-outline-primary').addClass('btn-primary')}
+  else {$('#' + id).prop('disabled', true).removeClass('btn-primary').addClass('btn-outline-primary')}
+}
 
 /*------------------------------------------------------
 reset
@@ -240,17 +197,17 @@ function reset() {
   }
   let statusCodeDivs = $('#api-status-code-divs').find('div.api-status-code-div')
   for (let i = 0; i < statusCodeDivs.length; i++) {
-    $(statusCodeDivs.eq(i)).find('select.status-codes').val('')
+    $(statusCodeDivs.eq(i)).find('input.code').val('')
     $(statusCodeDivs.eq(i)).find('input.text').attr('placeholder', '')
     $(statusCodeDivs.eq(i)).find('input.text').val('')
   }
   $('#api-status-select').val('')
   $('#api-notes-textarea').val('')
-  $('form.api-workbench div.save-div button').removeClass('btn-success btn-danger').addClass('btn-warning')
+  $('form.api-workbench div.edit-mode button.save').removeClass('btn-success btn-danger').addClass('btn-warning')
 }
 
 /*------------------------------------------------------
-On Click Save
+On Click btn
 ------------------------------------------------------*/
 
 $(function () {
@@ -388,6 +345,35 @@ $(function () {
   })
 })
 
+$(function () {
+  $('button.add').click(function (event) {
+    console.log('Add Status Code')
+  })
+})
+
+$(function () {
+  $('#api-status-code-divs').delegate('button.save', 'click', function(event) {
+    let btnElement = this
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#aca-access-token').val()
+    if(apiId) {
+      let statusCodeDiv = $(this).closest('div.api-status-code-div')
+      let code = $(statusCodeDiv).find('input.code').val()
+      let text = $(statusCodeDiv).find('input.text').val()
+      DOCS.putApiStatusCode(apiId, code, text, accessToken,
+        function(response) {saveSuccessCb(btnElement, response)}, 
+        function(error) {saveErrorCb(btnElement, error)}
+      )
+    }
+  })
+})
+
+$(function () {
+  $('#api-status-code-divs').delegate('button.delete', 'click', function(event) {
+    console.log('Delete Status Code')
+  })
+})
+
 function saveSuccessCb(btnElement, response) {
   $(btnElement).removeClass('btn-warning').addClass('btn-success')
   console.log(JSON.stringify(response.data, null, 2))
@@ -423,10 +409,10 @@ $(function() {
 })
 
 $(function() {
-  $('select.status-codes').change(function() {
+  $('#api-status-codes-select').change(function() {
     let option = $("option:selected", this)
     let details = $(option).data('details')
-    let div = $(option).closest('div.api-status-code-div')
+    let div = $(option).closest('div.form-row')
     $(div).find('input.text').attr('placeholder', details.text)
   })
 })
@@ -498,15 +484,13 @@ $(function() {
   }, function(error) {console.log(error)})
 
   DOCS.getStatusCodes(function(response) {
-    let selectElements = $('select.status-codes')
-    for(let i = 0; i < selectElements.length; i++) {
-      let option = $('<option/>').text('---')
-      $(option).data('details', JSON.parse('{"code":"","text":""}'))
-      $(selectElements.eq(i)).append(option)
-      for(let j=0; j < response.data.length; j++) {
-        option = $('<option/>').text(response.data[j].code).data('details', response.data[j])
-        $(selectElements.eq(i)).append(option)
-      }
+    let selectElement = $('#api-status-codes-select')
+    let option = $('<option/>').text('---')
+    $(option).data('details', JSON.parse('{"code":"","text":""}'))
+    $(selectElement).append(option)
+    for(let j=0; j < response.data.length; j++) {
+      option = $('<option/>').text(response.data[j].code).data('details', response.data[j])
+      $(selectElement).append(option)
     }
   }, function(error) {console.log(error)})
 })
