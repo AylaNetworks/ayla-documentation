@@ -6,23 +6,39 @@ e: block
 
 <form class="api-workbench">
   <div class="form-row">
-    <div class="col-sm-2">
+    <div class="col-sm-3">
       <div class="form-row">
         <div class="col-sm-12">
-          <label>Mode</label>
+          <label>Modes</label>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
-          <select id="api-mode-select" class="form-control form-control-sm">
-            <option value="inspect">Inspect</option>
-            <option value="create">Create</option>
-            <option value="edit">Edit</option>
-          </select>
+          <div class="btn-group special" role="group">
+            <button id="api-create-btn" type="button" class="btn btn-sm btn-dark">Create</button>
+            <button id="api-inspect-btn" type="button" class="btn btn-sm btn-outline-dark">Inspect</button>
+            <button id="api-edit-btn" type="button" class="btn btn-sm btn-outline-dark" disabled>Edit</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-3">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label>Actions</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <div class="btn-group special" role="group">
+            <button id="api-save-btn" type="button" class="btn btn-sm btn-primary">Save</button>
+            <button id="api-clear-btn" type="button" class="btn btn-sm btn-primary">Clear</button>
+            <button id="api-get-btn" type="button" class="btn btn-sm btn-outline-primary" disabled>Get</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
       <div class="form-row">
         <div class="col-sm-12">
           <label>ID</label>
@@ -30,27 +46,11 @@ e: block
       </div>
       <div class="form-row">
         <div class="form-group col">
-          <input id="api-id-input" type="text" class="form-control form-control-sm" value="178">
+          <input id="api-id-input" type="text" class="form-control form-control-sm" disabled>
         </div>
       </div>
     </div>
-    <div class="col-sm-5">
-      <div class="form-row">
-        <div class="col-sm-12">
-          <label>&nbsp;</label>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-auto">
-          <div class="btn-group" role="group">
-            <button id="api-get-btn" type="button" class="btn btn-sm btn-info" style="width:60px;">Get</button>
-            <button id="api-clear-btn" type="button" class="btn btn-sm btn-info" style="width:60px;">Clear</button>
-            <button id="api-save-btn" type="button" class="btn btn-sm btn-info" style="width:60px;" disabled>Save</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-3 access-token-div">
+    <div class="col-sm-3">
       <div class="form-row">
         <div class="col-sm-12">
           <label>Access Token</label>
@@ -261,4 +261,10 @@ e: block
       <div class="form-group col-auto save-div"><button type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
     </div>
   </div>
+  <div class="form-row"><div class="col-12"><label>Notes</label></div></div>
+  <div class="form-row">
+    <div class="form-group col"><textarea id="api-notes-textarea" class="form-control form-control-sm" rows="3"></textarea></div>
+    <div class="form-group col-auto save-div"><button id="api-notes-btn" type="button" class="btn btn-sm btn-block btn-warning">Save</button></div>
+  </div>
+
 </form>

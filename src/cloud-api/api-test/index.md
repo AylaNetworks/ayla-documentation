@@ -27,6 +27,7 @@ classesFromPage: has-pagebar
   <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
   <button id="filter-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Filter</button>
 </div>
+<p style="font-size:90%;">If account tokens expire, click ```Accounts > Account > Details > Return Tokens > Get Tokens```.</p>
 <div id="directions-section">
   <p>The API Browser helps you use Ayla Cloud APIs to explore and manipulate devices, properties, datapoints, schedules, access rules, subscriptions, and many other Ayla data structures. To get started, follow these steps:</p>
   <ol>
@@ -38,7 +39,7 @@ classesFromPage: has-pagebar
     <li>To add additional accounts, click <code>Blank Form</code>.</li>
     <li>To test access, expand Device Services below, and run the getDevices API.</li>
   </ol>
-  <p><span style="color:red;">IMPORTANT</span>: After selecting a region and an account in the Accounts panel, your devices should be listed in the Devices panel. If not, or if they are devices from another account, refresh your tokens by clicking ```Return Tokens``` and then ```Get Tokens``` under ```Details``` in the Acccounts panel.</p>
+  <p>Click the Directions button above to close this panel.</p>
 </div>
 <div id="accounts-section">
   <div class="panel">

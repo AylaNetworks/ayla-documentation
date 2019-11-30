@@ -1,39 +1,123 @@
+var prevMode = 'create'
+
+function setActiveMode(btnElement) {
+  $(btnElement).removeClass('btn-outline-dark').addClass('btn-dark')
+  $(btnElement).siblings().removeClass('btn-dark').addClass('btn-outline-dark')
+  if($('#api-id-input').val()) {$('#api-edit-btn').prop('disabled', false)}
+  else {$('#api-edit-btn').prop('disabled', true)}
+}
+
+function setActionBtnState(id, on) {
+  if(on) {$('#' + id).prop('disabled', false).removeClass('btn-outline-primary').addClass('btn-primary')}
+  else {$('#' + id).prop('disabled', true).removeClass('btn-primary').addClass('btn-outline-primary')}
+}
+
 /*------------------------------------------------------
-On Change action
+On Click Create
 ------------------------------------------------------*/
 
-var prevMode = 'inspect'
+$(function () {
+  $('#api-create-btn').click(function (event) {
+    if($(this).hasClass('btn-dark')) {return}
+    setActiveMode(this)
+    setActionBtnState('api-save-btn', true)
+    setActionBtnState('api-get-btn', false)
+    setActionBtnState('api-clear-btn', true)
+    $('#api-id-input').prop('disabled', true)
+    $('form.api-workbench div.save-div').hide()
 
-$(function() {
-  $('#api-mode-select').change(function() {
-    let mode = $('#api-mode-select option:selected').val()
-    if(mode == 'inspect') {
-      $('form.api-workbench div.save-div').hide()
-      $('form.api-workbench div.get-div').show()
-      $('form.api-workbench div.access-token-div').hide()
-      $('#api-id-input').prop('disabled', false)
-      $('#api-get-btn').prop('disabled', false)
-      $('#api-save-btn').prop('disabled', true)
-      if(prevMode == 'create') {reset()}
-    } else if(mode == 'create') {
-      reset()
-      $('#api-id-input').val('')
-      $('form.api-workbench div.save-div').hide()
-      $('form.api-workbench div.get-div').hide()
-      $('form.api-workbench div.access-token-div').show()
-      $('#api-id-input').prop('disabled', true)
-      $('#api-get-btn').prop('disabled', true)
-      $('#api-save-btn').prop('disabled', false)
-    } else if(mode == 'edit') {
-      $('form.api-workbench div.save-div').show()
-      $('form.api-workbench div.get-div').show()
-      $('form.api-workbench div.access-token-div').show()
-      $('#api-id-input').prop('disabled', false)
-      $('#api-get-btn').prop('disabled', false)
-      $('#api-save-btn').prop('disabled', true)
-      if(prevMode == 'create') {reset()}
-    }
-    prevMode = mode
+    /*
+    $('#api-create-btn').prop('disabled', false)
+    $('#api-inspect-btn').prop('disabled', false)
+    $('#api-edit-btn').prop('disabled', true)
+
+    $('#api-save-btn').removeClass('btn-outline-primary').addClass('btn-primary')
+    $('#api-get-btn').removeClass('btn-primary').addClass('btn-outline-primary')
+    $('#api-clear-btn').removeClass('btn-outline-primary').addClass('btn-primary')
+
+    $('#api-save-btn').prop('disabled', false)
+    $('#api-get-btn').prop('disabled', true)
+    $('#api-clear-btn').prop('disabled', false)
+
+    $('#api-id-input').prop('disabled', true)
+    */
+
+    /*
+    reset()
+    $('#api-id-input').val('')
+    $('form.api-workbench div.save-div').hide()
+    $('form.api-workbench div.get-div').hide()
+    $('#api-id-input').prop('disabled', true)
+    $('#api-get-btn').prop('disabled', true)
+    $('#api-save-btn').prop('disabled', false)
+    prevMode = 'create'
+    */
+  })
+})
+
+/*------------------------------------------------------
+On Click Inspect
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-inspect-btn').click(function (event) {
+    if($(this).hasClass('btn-dark')) {return}
+    setActiveMode(this)
+    setActionBtnState('api-save-btn', false)
+    setActionBtnState('api-get-btn', true)
+    setActionBtnState('api-clear-btn', true)
+    $('#api-id-input').prop('disabled', false)
+    $('form.api-workbench div.save-div').hide()
+
+    /*
+    $('#api-save-btn').prop('disabled', true).removeClass('btn-primary').addClass('btn-outline-primary')
+    $('#api-get-btn').prop('disabled', false).removeClass('btn-outline-primary').addClass('btn-primary')
+    $('#api-clear-btn').prop('disabled', false).removeClass('btn-outline-primary').addClass('btn-primary')
+
+    $('#api-id-input').prop('disabled', false)
+    */
+
+    /*
+    $('form.api-workbench div.save-div').hide()
+    $('form.api-workbench div.get-div').show()
+    $('#api-id-input').prop('disabled', false)
+    if(prevMode == 'create') {reset()}
+    prevMode = 'inspect'
+    */
+  })
+})
+
+/*------------------------------------------------------
+On Click Edit
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-edit-btn').click(function (event) {
+    if($(this).hasClass('btn-dark')) {return}
+    setActiveMode(this)
+    setActionBtnState('api-save-btn', false)
+    setActionBtnState('api-get-btn', false)
+    setActionBtnState('api-clear-btn', false)
+    $('#api-id-input').prop('disabled', true)
+    $('form.api-workbench div.save-div').show()
+
+    /*
+    $('#api-save-btn').prop('disabled', true).removeClass('btn-primary').addClass('btn-outline-primary')
+    $('#api-get-btn').prop('disabled', true).removeClass('btn-primary').addClass('btn-outline-primary')
+    $('#api-clear-btn').prop('disabled', false).removeClass('btn-outline-primary').addClass('btn-primary')
+
+    $('#api-id-input').prop('disabled', true)
+    */
+
+    /*
+    $('form.api-workbench div.save-div').show()
+    $('form.api-workbench div.get-div').show()
+    $('#api-id-input').prop('disabled', false)
+    $('#api-get-btn').prop('disabled', false)
+    $('#api-save-btn').prop('disabled', true)
+    if(prevMode == 'create') {reset()}
+    prevMode = 'edit'
+    */
   })
 })
 
@@ -92,6 +176,8 @@ $(function () {
         }
 
         $('#api-status-select').val(api.status.id)
+        $('#api-notes-textarea').val(api.notes)
+        $('#api-edit-btn').prop('disabled', false)
 
       }, function (error) {
         console.log(JSON.stringify(error, null, 2))
@@ -109,6 +195,7 @@ On Click Clear
 
 $(function () {
   $('#api-clear-btn').click(function (event) {
+    $('#api-id-input').val('')
     reset()
   })
 })
@@ -158,6 +245,8 @@ function reset() {
     $(statusCodeDivs.eq(i)).find('input.text').val('')
   }
   $('#api-status-select').val('')
+  $('#api-notes-textarea').val('')
+  $('form.api-workbench div.save-div button').removeClass('btn-success btn-danger').addClass('btn-warning')
 }
 
 /*------------------------------------------------------
@@ -202,6 +291,21 @@ $(function () {
     if(apiId) {
       let name = $('#api-name-input').val()
       DOCS.putApiName(apiId, name, accessToken,
+        function(response) {saveSuccessCb(btnElement, response)}, 
+        function(error) {saveErrorCb(btnElement, error)}
+      )
+    }
+  })
+})
+
+$(function () {
+  $('#api-notes-btn').click(function (event) {
+    let btnElement = this
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#aca-access-token').val()
+    if(apiId) {
+      let notes = $('#api-notes-textarea').val()
+      DOCS.putApiNotes(apiId, notes, accessToken,
         function(response) {saveSuccessCb(btnElement, response)}, 
         function(error) {saveErrorCb(btnElement, error)}
       )

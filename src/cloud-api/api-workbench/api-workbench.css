@@ -1,13 +1,15 @@
 form.api-workbench label {
-  color: dodgerblue;
+  color: black;
   font-size: 14px !important;
   margin-bottom: 3px;
 }
 
 form.api-workbench div.save-div {display: none;}
-form.api-workbench div.access-token-div {display: none;}
 
 #api-path-input {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 76%;
+  font-size: 80%;
 }
+
+div.btn-group.special {display: flex;}
+div.btn-group.special .btn {flex: 1}
