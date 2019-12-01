@@ -12,6 +12,20 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
+  postApi: function(accessToken, successCb=null, errorCb=null) {
+    axios({
+      method: 'post',
+      url: 'https://docs.aylanetworks.com/api/v1/aca/apis',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
   getApi: function(apiId, successCb=null, errorCb=null) {
     axios({
       method: 'get',
@@ -185,18 +199,48 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
-  putApiStatusCode: function(apiId, code, text, accessToken, successCb=null, errorCb=null) {
+  postApiStatusCode: function(apiId, statusCode, customText, accessToken, successCb=null, errorCb=null) {
     let requestData = {}
-    requestData.text = text
+    requestData.customText = customText
     axios({
-      method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status-codes/' + code,
+      method: 'post',
+      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status-codes/' + statusCode,
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  putApiStatusCode: function(apiId, statusCode, customText, accessToken, successCb=null, errorCb=null) {
+    let requestData = {}
+    requestData.customText = customText
+    axios({
+      method: 'put',
+      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status-codes/' + statusCode,
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  deleteApiStatusCode: function(apiId, statusCode, accessToken, successCb=null, errorCb=null) {
+    axios({
+      method: 'delete',
+      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status-codes/' + statusCode,
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json'
+      }
     })
     .then(function(response) {DOCS.callSuccessCb(response, successCb)})
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})

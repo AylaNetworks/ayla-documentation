@@ -13,3 +13,4 @@ form.api-workbench div.edit-mode {display: none;}
 
 div.btn-group.special {display: flex;}
 div.btn-group.special .btn {flex: 1}
+input.pos {text-align: center;}
