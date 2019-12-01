@@ -130,6 +130,7 @@ e: block
     <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
     <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
     <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary add-path-parameter">Add</button></div>
+    <div class="form-group col-auto edit-mode"><button type="button" class="btn btn-sm btn-block btn-outline-secondary save-all">Save All</button></div>
   </div>
   <div class="form-row"><div class="col-12"><label>Query Parameters</label></div></div>
   <div id="api-query-parameter-divs"></div>
@@ -139,6 +140,7 @@ e: block
     <div class="form-group col-sm-2"><input type="text" class="form-control form-control-sm type" disabled></div>
     <div class="form-group col-sm-4"><input type="text" class="form-control form-control-sm description"></div>
     <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary add-query-parameter">Add</button></div>
+    <div class="form-group col-auto edit-mode"><button type="button" class="btn btn-sm btn-block btn-outline-secondary save-all">Save All</button></div>
   </div>
   <div class="form-row"><div class="col-12"><label>Request Data</label></div></div>
   <div class="form-row">
@@ -156,6 +158,7 @@ e: block
     <div class="form-group col-sm-2"><select id="api-status-codes-select" class="form-control form-control-sm"></select></div>
     <div class="form-group col-sm-3"><input type="text" class="form-control form-control-sm text"></div>
     <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary add-status-code">Add</button></div>
+    <div class="form-group col-auto edit-mode"><button type="button" class="btn btn-sm btn-block btn-outline-secondary save-all">Save All</button></div>
   </div>
   <div class="form-row"><div class="col-12"><label>Notes</label></div></div>
   <div class="form-row">
