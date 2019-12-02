@@ -106,13 +106,13 @@ function reset() {
   $('#api-description-textarea').val('')
   $('#api-request-description-textarea').val('')
   resetPathParametersSelect()
-  $('#api-path-parameter-divs').empty()
+  $('#api-path-parameter-rows').empty()
   resetQueryParametersSelect()
-  $('#api-query-parameter-divs').empty()
+  $('#api-query-parameter-rows').empty()
   $('#api-request-data-textarea').val('')
   $('#api-response-description-textarea').val('')
   resetStatusCodesSelect()
-  $('#api-status-code-divs').empty()
+  $('#api-status-code-rows').empty()
   $('#api-notes-textarea').val('')
 }
 
@@ -121,8 +121,8 @@ appendPathParameter
 ------------------------------------------------------*/
 
 function appendPathParameter(id, name, type, baseText, customText, pos) {
-  let itemDiv = createPathParameter(id, name, type, baseText, customText, pos)
-  $('#api-path-parameter-divs').append(itemDiv)
+  let row = createPathParameter(id, name, type, baseText, customText, pos)
+  $('#api-path-parameter-rows').append(row)
 }
 
 /*------------------------------------------------------
@@ -130,13 +130,13 @@ insertPathParameter
 ------------------------------------------------------*/
 
 function insertPathParameter(id, name, type, baseText, customText, pos) {
-  let itemDiv = createPathParameter(id, name, type, baseText, customText, pos)
-  let itemDivs = $('#api-path-parameter-divs div.api-path-parameter-div')
-  if(itemDivs.length && pos < itemDivs.length) {$(itemDiv).insertBefore($(itemDivs.eq(pos)))}
-  else {$('#api-path-parameter-divs').append(itemDiv)}
-  itemDivs = $('#api-path-parameter-divs div.api-path-parameter-div')
-  for(let i=0; i<itemDivs.length; i++) {
-    $(itemDivs.eq(i)).find('input.pos').val(i)
+  let row = createPathParameter(id, name, type, baseText, customText, pos)
+  let rows = $('#api-path-parameter-rows div.api-path-parameter-row')
+  if(rows.length && pos < rows.length) {$(row).insertBefore($(rows.eq(pos)))}
+  else {$('#api-path-parameter-rows').append(row)}
+  rows = $('#api-path-parameter-rows div.api-path-parameter-row')
+  for(let i=0; i<rows.length; i++) {
+    $(rows.eq(i)).find('input.pos').val(i)
   }
 }
 
@@ -165,14 +165,14 @@ function createPathParameter(id, name, type, baseText, customText, pos) {
   let removeBtn = '<button type="button" class="btn btn-sm btn-block btn-outline-secondary remove">Remove</button>'
   let removeDiv = $('<div class="form-group col-auto"></div>')
   removeDiv.append(removeBtn)
-  let itemDiv = $('<div class="form-row api-path-parameter-div">')
-  $(itemDiv).data('id', id)
-  itemDiv.append(nameDiv)
-  itemDiv.append(posDiv)
-  itemDiv.append(typeDiv)
-  itemDiv.append(descriptionDiv)
-  itemDiv.append(removeDiv)
-  return itemDiv
+  let row = $('<div class="form-row api-path-parameter-row">')
+  $(row).data('id', id)
+  row.append(nameDiv)
+  row.append(posDiv)
+  row.append(typeDiv)
+  row.append(descriptionDiv)
+  row.append(removeDiv)
+  return row
 }
 
 /*------------------------------------------------------
@@ -180,12 +180,11 @@ resetPathParametersSelect
 ------------------------------------------------------*/
 
 function resetPathParametersSelect() {
-  $('#api-path-parameters-select').val('---')
-  let row = $('#api-path-parameters-select').closest('div.form-row')
-  $(row).find('input.pos').val('')
-  $(row).find('input.type').val('')
-  $(row).find('input.description').val('')
-  $(row).find('input.description').attr('placeholder', '')
+  $('#api-path-parameter-ctl-row select').val('---')
+  $('#api-path-parameter-ctl-row input.pos').val('')
+  $('#api-path-parameter-ctl-row input.type').val('')
+  $('#api-path-parameter-ctl-row input.description').val('')
+  $('#api-path-parameter-ctl-row input.description').attr('placeholder', '')
 }
 
 /*------------------------------------------------------
@@ -193,8 +192,8 @@ appendQueryParameter
 ------------------------------------------------------*/
 
 function appendQueryParameter(id, name, type, baseText, customText, pos) {
-  let itemDiv = createQueryParameter(id, name, type, baseText, customText, pos)
-  $('#api-query-parameter-divs').append(itemDiv)
+  let row = createQueryParameter(id, name, type, baseText, customText, pos)
+  $('#api-query-parameter-rows').append(row)
 }
 
 /*------------------------------------------------------
@@ -202,13 +201,13 @@ insertQueryParameter
 ------------------------------------------------------*/
 
 function insertQueryParameter(id, name, type, baseText, customText, pos) {
-  let itemDiv = createQueryParameter(id, name, type, baseText, customText, pos)
-  let itemDivs = $('#api-query-parameter-divs div.api-query-parameter-div')
-  if(itemDivs.length && pos < itemDivs.length) {$(itemDiv).insertBefore($(itemDivs.eq(pos)))}
-  else {$('#api-query-parameter-divs').append(itemDiv)}
-  itemDivs = $('#api-query-parameter-divs div.api-query-parameter-div')
-  for(let i=0; i<itemDivs.length; i++) {
-    $(itemDivs.eq(i)).find('input.pos').val(i)
+  let row = createQueryParameter(id, name, type, baseText, customText, pos)
+  let rows = $('#api-query-parameter-rows div.api-query-parameter-row')
+  if(rows.length && pos < rows.length) {$(row).insertBefore($(rows.eq(pos)))}
+  else {$('#api-query-parameter-rows').append(row)}
+  rows = $('#api-query-parameter-rows div.api-query-parameter-row')
+  for(let i=0; i<rows.length; i++) {
+    $(rows.eq(i)).find('input.pos').val(i)
   }
 }
 
@@ -237,14 +236,14 @@ function createQueryParameter(id, name, type, baseText, customText, pos) {
   let removeBtn = '<button type="button" class="btn btn-sm btn-block btn-outline-secondary remove">Remove</button>'
   let removeDiv = $('<div class="form-group col-auto"></div>')
   removeDiv.append(removeBtn)
-  let itemDiv = $('<div class="form-row api-query-parameter-div">')
-  $(itemDiv).data('id', id)
-  itemDiv.append(nameDiv)
-  itemDiv.append(posDiv)
-  itemDiv.append(typeDiv)
-  itemDiv.append(descriptionDiv)
-  itemDiv.append(removeDiv)
-  return itemDiv
+  let row = $('<div class="form-row api-query-parameter-row">')
+  $(row).data('id', id)
+  row.append(nameDiv)
+  row.append(posDiv)
+  row.append(typeDiv)
+  row.append(descriptionDiv)
+  row.append(removeDiv)
+  return row
 }
 
 /*------------------------------------------------------
@@ -252,12 +251,11 @@ resetQueryParametersSelect
 ------------------------------------------------------*/
 
 function resetQueryParametersSelect() {
-  $('#api-query-parameters-select').val('---')
-  let row = $('#api-query-parameters-select').closest('div.form-row')
-  $(row).find('input.pos').val('')
-  $(row).find('input.type').val('')
-  $(row).find('input.description').val('')
-  $(row).find('input.description').attr('placeholder', '')
+  $('#api-query-parameter-ctl-row select').val('---')
+  $('#api-query-parameter-ctl-row input.pos').val('')
+  $('#api-query-parameter-ctl-row input.type').val('')
+  $('#api-query-parameter-ctl-row input.description').val('')
+  $('#api-query-parameter-ctl-row input.description').attr('placeholder', '')
 }
 
 /*------------------------------------------------------
@@ -265,8 +263,8 @@ appendStatusCode
 ------------------------------------------------------*/
 
 function appendStatusCode(code, baseText, customText) {
-  let itemDiv = createStatusCode(code, baseText, customText)
-  $('#api-status-code-divs').append(itemDiv)
+  let row = createStatusCode(code, baseText, customText)
+  $('#api-status-code-rows').append(row)
 }
 
 /*------------------------------------------------------
@@ -274,20 +272,20 @@ insertStatusCode
 ------------------------------------------------------*/
 
 function insertStatusCode(code, baseText, customText) {
-  let itemDiv = createStatusCode(code, baseText, customText)
-  let itemDivs = $('#api-status-code-divs div.api-status-code-div')
-  if(itemDivs.length) {
-    for(let i=0; i<itemDivs.length; i++) {
-      if(code < $(itemDivs.eq(i)).find('input.code').val()) {
-        $(itemDiv).insertBefore($(itemDivs.eq(i))); break
-      } else if (i == (itemDivs.length-1)) {
-        $(itemDiv).insertAfter($(itemDivs.eq(i))); break
+  let row = createStatusCode(code, baseText, customText)
+  let rows = $('#api-status-code-rows div.api-status-code-row')
+  if(rows.length) {
+    for(let i=0; i<rows.length; i++) {
+      if(code < $(rows.eq(i)).find('input.code').val()) {
+        $(row).insertBefore($(rows.eq(i))); break
+      } else if (i == (rows.length-1)) {
+        $(row).insertAfter($(rows.eq(i))); break
       }
     }
   } else {
-    $('#api-status-code-divs').append(itemDiv)
+    $('#api-status-code-rows').append(row)
   }
-  $(itemDiv).find('div.edit-mode').show()
+  $(row).find('div.edit-mode').show()
 }
 
 /*------------------------------------------------------
@@ -307,11 +305,11 @@ function createStatusCode(code, baseText, customText) {
   let removeBtn = '<button type="button" class="btn btn-sm btn-block btn-outline-secondary remove">Remove</button>'
   let removeDiv = $('<div class="form-group col-auto edit-mode"></div>')
   removeDiv.append(removeBtn)
-  let itemDiv = $('<div class="form-row api-status-code-div">')
-  itemDiv.append(codeDiv)
-  itemDiv.append(textDiv)
-  itemDiv.append(removeDiv)
-  return itemDiv
+  let row = $('<div class="form-row api-status-code-row">')
+  row.append(codeDiv)
+  row.append(textDiv)
+  row.append(removeDiv)
+  return row
 }
 
 /*------------------------------------------------------
@@ -319,10 +317,9 @@ resetStatusCodesSelect
 ------------------------------------------------------*/
 
 function resetStatusCodesSelect() {
-  $('#api-status-codes-select').val('---')
-  let row = $('#api-status-codes-select').closest('div.form-row')
-  $(row).find('input.text').val('')
-  $(row).find('input.text').attr('placeholder', '')
+  $('#api-status-code-ctl-row select').val('---')
+  $('#api-status-code-ctl-row input.text').val('')
+  $('#api-status-code-ctl-row input.text').attr('placeholder', '')
 }
 
 /*------------------------------------------------------
@@ -477,14 +474,13 @@ Add, Remove, Save path parameters
 ------------------------------------------------------*/
 
 $(function () {
-  $('button.add-path-parameter').click(function (event) {
-    let id = $('#api-path-parameters-select option:selected').data('details').id
-    let name = $('#api-path-parameters-select option:selected').val()
-    let selectRow = $(this).closest('div.form-row')
-    let pos = $(selectRow).find('input.pos').val()
-    let type = $(selectRow).find('input.type').val()
-    let baseText = $(selectRow).find('input.description').attr('placeholder')
-    let customText = $(selectRow).find('input.description').val()
+  $('#api-path-parameter-ctl-row button.add').click(function (event) {
+    let id = $('#api-path-parameter-ctl-row select option:selected').data('details').id
+    let name = $('#api-path-parameter-ctl-row select option:selected').val()
+    let pos = $('#api-path-parameter-ctl-row input.pos').val()
+    let type = $('#api-path-parameter-ctl-row input.type').val()
+    let baseText = $('#api-path-parameter-ctl-row input.description').attr('placeholder')
+    let customText = $('#api-path-parameter-ctl-row input.description').val()
     console.log(id + ' ' + name + ' ' + pos + ' ' + type + ' ' + baseText + ' ' + customText)
     insertPathParameter(id, name, type, baseText, customText, pos)
     resetPathParametersSelect()
@@ -492,14 +488,34 @@ $(function () {
 })
 
 $(function () {
-  $('#api-path-parameter-divs').delegate('button.remove', 'click', function(event) {
-    $(this).closest('div.api-path-parameter-div').remove()
+  $('#api-path-parameter-rows').delegate('button.remove', 'click', function(event) {
+    $(this).closest('div.api-path-parameter-row').remove()
   })
 })
 
 $(function () {
-  $('#api-path-parameter-divs').delegate('button.save-all', 'click', function(event) {
-    console.log('Save path-parameter')
+  $('#api-path-parameter-ctl-row button.save-all').click(function (event) {
+    let btnElement = this
+    let arr = []
+    let rows = $('#api-path-parameter-rows div.api-path-parameter-row')
+    for(let i=0; i<rows.length; i++) {
+      let obj = {}
+      obj.id = $(rows).eq(i).data('id')
+      obj.name = $(rows).eq(i).find('input.name').val()
+      obj.type = $(rows).eq(i).find('input.type').val()
+      obj.baseText = $(rows).eq(i).find('input.description').attr('placeholder')
+      obj.customText = $(rows).eq(i).find('input.description').val()
+      arr.push(obj)
+    }
+    let requestData = {}
+    requestData.pathParameters = arr
+    //console.log(JSON.stringify(requestData, null, 2))
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#aca-access-token').val()
+    DOCS.putApiPathParameters(apiId, requestData, accessToken,
+      function(response) {saveSuccessCb(btnElement, response)}, 
+      function(error) {saveErrorCb(btnElement, error)}
+    )
   })
 })
 
@@ -508,14 +524,13 @@ Add, Remove, Save query parameters
 ------------------------------------------------------*/
 
 $(function () {
-  $('button.add-query-parameter').click(function (event) {
-    let id = $('#api-query-parameters-select option:selected').data('details').id
-    let name = $('#api-query-parameters-select option:selected').val()
-    let selectRow = $(this).closest('div.form-row')
-    let pos = $(selectRow).find('input.pos').val()
-    let type = $(selectRow).find('input.type').val()
-    let baseText = $(selectRow).find('input.description').attr('placeholder')
-    let customText = $(selectRow).find('input.description').val()
+  $('#api-query-parameter-ctl-row button.add').click(function (event) {
+    let id = $('#api-query-parameter-ctl-row select option:selected').data('details').id
+    let name = $('#api-query-parameter-ctl-row select option:selected').val()
+    let pos = $('#api-query-parameter-ctl-row input.pos').val()
+    let type = $('#api-query-parameter-ctl-row input.type').val()
+    let baseText = $('#api-query-parameter-ctl-row input.description').attr('placeholder')
+    let customText = $('#api-query-parameter-ctl-row input.description').val()
     console.log(id + ' ' + name + ' ' + pos + ' ' + type + ' ' + baseText + ' ' + customText)
     insertQueryParameter(id, name, type, baseText, customText, pos)
     resetQueryParametersSelect()
@@ -523,14 +538,34 @@ $(function () {
 })
 
 $(function () {
-  $('#api-query-parameter-divs').delegate('button.remove', 'click', function(event) {
-    $(this).closest('div.api-query-parameter-div').remove()
+  $('#api-query-parameter-rows').delegate('button.remove', 'click', function(event) {
+    $(this).closest('div.api-query-parameter-row').remove()
   })
 })
 
 $(function () {
-  $('#api-query-parameter-divs').delegate('button.save-all', 'click', function(event) {
-    console.log('Save query-parameter')
+  $('#api-query-parameter-ctl-row button.save-all').click(function (event) {
+    let btnElement = this
+    let arr = []
+    let rows = $('#api-query-parameter-rows div.api-query-parameter-row')
+    for(let i=0; i<rows.length; i++) {
+      let obj = {}
+      obj.id = $(rows).eq(i).data('id')
+      obj.name = $(rows).eq(i).find('input.name').val()
+      obj.type = $(rows).eq(i).find('input.type').val()
+      obj.baseText = $(rows).eq(i).find('input.description').attr('placeholder')
+      obj.customText = $(rows).eq(i).find('input.description').val()
+      arr.push(obj)
+    }
+    let requestData = {}
+    requestData.queryParameters = arr
+    //console.log(JSON.stringify(requestData, null, 2))
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#aca-access-token').val()
+    DOCS.putApiQueryParameters(apiId, requestData, accessToken,
+      function(response) {saveSuccessCb(btnElement, response)}, 
+      function(error) {saveErrorCb(btnElement, error)}
+    )
   })
 })
 
@@ -539,37 +574,44 @@ Add, Remove, Save status codes
 ------------------------------------------------------*/
 
 $(function () {
-  $('button.add-status-code').click(function (event) {
-    let code = $('#api-status-codes-select option:selected').val()
-    let selectRow = $(this).closest('div.form-row')
-    let baseText = $(selectRow).find('input.text').attr('placeholder')
-    let customText = $(selectRow).find('input.text').val()
+  $('#api-status-code-ctl-row button.add').click(function (event) {
+    let code = $('#api-status-code-ctl-row select option:selected').val()
+    let baseText = $('#api-status-code-ctl-row input.text').attr('placeholder')
+    let customText = $('#api-status-code-ctl-row input.text').val()
     console.log(code + ' ' + baseText + ' ' + customText)
     insertStatusCode(code, baseText, customText)
     resetStatusCodesSelect()
   })
 })
 
+
 $(function () {
-  $('#api-status-code-divs').delegate('button.remove', 'click', function(event) {
-    $(this).closest('div.api-status-code-div').remove()
+  $('#api-status-code-rows').delegate('button.remove', 'click', function(event) {
+    $(this).closest('div.api-status-code-row').remove()
   })
 })
 
 $(function () {
-  $('#api-status-code-divs').delegate('button.save-all', 'click', function(event) {
+  $('#api-status-code-ctl-row button.save-all').click(function (event) {
     let btnElement = this
+    let arr = []
+    let rows = $('#api-status-code-rows div.api-status-code-row')
+    for(let i=0; i<rows.length; i++) {
+      let obj = {}
+      obj.code = $(rows).eq(i).find('input.code').val()
+      obj.baseText = $(rows).eq(i).find('input.text').attr('placeholder')
+      obj.customText = $(rows).eq(i).find('input.text').val()
+      arr.push(obj)
+    }
+    let requestData = {}
+    requestData.statusCodes = arr
+    // console.log(JSON.stringify(requestData, null, 2))
     let apiId = $('form.api-workbench').data('id')
     let accessToken = $('#aca-access-token').val()
-    if(apiId) {
-      let statusCodeDiv = $(this).closest('div.api-status-code-div')
-      let statusCode = $(statusCodeDiv).find('input.code').val()
-      let customText = $(statusCodeDiv).find('input.text').val()
-      DOCS.putApiStatusCode(apiId, statusCode, customText, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
-      )
-    }
+    DOCS.putApiStatusCodes(apiId, requestData, accessToken,
+      function(response) {saveSuccessCb(btnElement, response)}, 
+      function(error) {saveErrorCb(btnElement, error)}
+    )
   })
 })
 
@@ -593,33 +635,29 @@ On Change Select
 ------------------------------------------------------*/
 
 $(function() {
-  $('#api-path-parameters-select').change(function() {
-    let option = $("option:selected", this)
-    let details = $(option).data('details')
-    let div = $(option).closest('div.form-row')
-    $(div).find('input.pos').val($('#api-path-parameter-divs div.api-path-parameter-div').length)
-    $(div).find('input.type').val(details.type)
-    $(div).find('input.description').attr('placeholder', details.text)
+  $('#api-path-parameter-ctl-row select').change(function() {
+    let details = $("option:selected", this).data('details')
+    let pos = $('#api-path-parameter-rows div.api-path-parameter-row').length
+    $('#api-path-parameter-ctl-row input.pos').val(pos)
+    $('#api-path-parameter-ctl-row input.type').val(details.type)
+    $('#api-path-parameter-ctl-row input.description').attr('placeholder', details.text)
   })
 })
 
 $(function() {
-  $('#api-query-parameters-select').change(function() {
-    let option = $("option:selected", this)
-    let details = $(option).data('details')
-    let div = $(option).closest('div.form-row')
-    $(div).find('input.pos').val($('#api-query-parameter-divs div.api-query-parameter-div').length)
-    $(div).find('input.type').val(details.type)
-    $(div).find('input.description').attr('placeholder', details.text)
+  $('#api-query-parameter-ctl-row select').change(function() {
+    let details = $("option:selected", this).data('details')
+    let pos = $('#api-query-parameter-rows div.api-query-parameter-row').length
+    $('#api-query-parameter-ctl-row input.pos').val(pos)
+    $('#api-query-parameter-ctl-row input.type').val(details.type)
+    $('#api-query-parameter-ctl-row input.description').attr('placeholder', details.text)
   })
 })
 
 $(function() {
-  $('#api-status-codes-select').change(function() {
-    let option = $("option:selected", this)
-    let details = $(option).data('details')
-    let div = $(option).closest('div.form-row')
-    $(div).find('input.text').attr('placeholder', details.text)
+  $('#api-status-code-ctl-row select').change(function() {
+    let details = $("option:selected", this).data('details')
+    $('#api-status-code-ctl-row input.text').attr('placeholder', details.text)
   })
 })
 
@@ -642,7 +680,7 @@ $(function() {
   }, function(error) {console.log(error)})
 
   DOCS.getPathParameters(function(response) {
-    let selectElement = $('#api-path-parameters-select')
+    let selectElement = $('#api-path-parameter-ctl-row select')
     let option = $('<option/>').text('---')
     $(option).data('details', JSON.parse('{"id":"","name":"","type":"","text":""}'))
     $(selectElement).append(option)
@@ -653,7 +691,7 @@ $(function() {
   }, function(error) {console.log(error)})
 
   DOCS.getQueryParameters(function(response) {
-    let selectElement = $('#api-query-parameters-select')
+    let selectElement = $('#api-query-parameter-ctl-row select')
     let option = $('<option/>').text('---')
     $(option).data('details', JSON.parse('{"id":"","name":"","type":"","text":""}'))
     $(selectElement).append(option)
@@ -686,7 +724,7 @@ $(function() {
   }, function(error) {console.log(error)})
 
   DOCS.getStatusCodes(function(response) {
-    let selectElement = $('#api-status-codes-select')
+    let selectElement = $('#api-status-code-ctl-row select')
     let option = $('<option/>').text('---')
     $(option).data('details', JSON.parse('{"code":"","text":""}'))
     $(selectElement).append(option)

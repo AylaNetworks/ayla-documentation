@@ -127,6 +127,36 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
+  putApiPathParameters: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
+    axios({
+      method: 'put',
+      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/path-parameters',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  putApiQueryParameters: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
+    axios({
+      method: 'put',
+      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/query-parameters',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
   putApiRequestDescription: function(apiId, requestDescription, accessToken, successCb=null, errorCb=null) {
     let requestData = {}
     requestData.requestDescription = requestDescription
@@ -241,6 +271,21 @@ var DOCS = {
         'Authorization': accessToken,
         'Accept': 'application/json'
       }
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  putApiStatusCodes: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
+    axios({
+      method: 'put',
+      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status-codes',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
     })
     .then(function(response) {DOCS.callSuccessCb(response, successCb)})
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
