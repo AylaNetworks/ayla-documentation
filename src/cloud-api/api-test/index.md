@@ -27,7 +27,7 @@ classesFromPage: has-pagebar
   <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
   <button id="filter-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Filter</button>
 </div>
-<p style="font-size:90%;">If account tokens expire, click ```Accounts > Account > Details > Return Tokens > Get Tokens```.</p>
+<p style="font-size:90%;">Note: If account tokens expire, click ```Accounts > Account > Details > Return Tokens > Get Tokens```.</p>
 <div id="directions-section">
   <p>The API Browser helps you use Ayla Cloud APIs to explore and manipulate devices, properties, datapoints, schedules, access rules, subscriptions, and many other Ayla data structures. To get started, follow these steps:</p>
   <ol>
@@ -240,6 +240,17 @@ classesFromPage: has-pagebar
 <div id="filter-section">
   <p>This is the filter section.</p>
 </div>
+<!--
+<h1 id="api-documentation-service-header" class="api-service">
+  <div class="api-service" data-toggle="collapse" href="#api-documentation-service-content">
+    <div class="row">
+      <div class="col-sm"><div class="name">API Documentation Service</div></div>
+      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="api-documentation-service-content"></div>
+-->
 <h1 id="application-service-header" class="api-service">
   <div class="api-service" data-toggle="collapse" href="#application-service-content">
     <div class="row">
@@ -330,4 +341,3 @@ classesFromPage: has-pagebar
   </div>
 </h1>
 <div class="collapse" id="zigbee-service-content"></div>
-  

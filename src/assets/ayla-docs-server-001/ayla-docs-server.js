@@ -3,7 +3,7 @@ var DOCS = {
   getApis: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis',
       headers: {
         'Accept': 'application/json'
       }
@@ -12,15 +12,16 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
-  postApi: function(accessToken, successCb=null, errorCb=null) {
+  postApi: function(requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'post',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      }
+      },
+      data: JSON.stringify(requestData)
     })
     .then(function(response) {DOCS.callSuccessCb(response, successCb)})
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
@@ -29,7 +30,7 @@ var DOCS = {
   getApi: function(apiId, successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId,
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId,
       headers: {
         'Accept': 'application/json'
       }
@@ -43,7 +44,7 @@ var DOCS = {
     requestData.description = description
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/description',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/description',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -62,7 +63,7 @@ var DOCS = {
     requestData.method = method
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/method',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/method',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -79,7 +80,7 @@ var DOCS = {
     requestData.name = name
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/name',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/name',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -96,7 +97,7 @@ var DOCS = {
     requestData.notes = notes
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/notes',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/notes',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -108,14 +109,12 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
-  putApiPath: function(apiId, text, accessToken, successCb=null, errorCb=null) {
-    let path = {}
-    path.text = text
+  putApiPath: function(apiId, path, accessToken, successCb=null, errorCb=null) {
     let requestData = {}
     requestData.path = path
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/path',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/path',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -130,7 +129,7 @@ var DOCS = {
   putApiPathParameters: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/path-parameters',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/path-parameters',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -145,7 +144,24 @@ var DOCS = {
   putApiQueryParameters: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/query-parameters',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/query-parameters',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  putApiRequestData: function(apiId, requestDataIn, accessToken, successCb=null, errorCb=null) {
+    let requestData = {}
+    requestData.requestData = requestDataIn
+    axios({
+      method: 'put',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/request-data',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -162,7 +178,7 @@ var DOCS = {
     requestData.requestDescription = requestDescription
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/request-description',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/request-description',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -179,7 +195,7 @@ var DOCS = {
     requestData.responseDescription = responseDescription
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/response-description',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/response-description',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -198,7 +214,7 @@ var DOCS = {
     requestData.service = service
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/service',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/service',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -217,7 +233,7 @@ var DOCS = {
     requestData.status = status
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/status',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -234,7 +250,7 @@ var DOCS = {
     requestData.customText = customText
     axios({
       method: 'post',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status-codes/' + statusCode,
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/status-codes/' + statusCode,
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -251,7 +267,7 @@ var DOCS = {
     requestData.customText = customText
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status-codes/' + statusCode,
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/status-codes/' + statusCode,
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -266,7 +282,7 @@ var DOCS = {
   deleteApiStatusCode: function(apiId, statusCode, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'delete',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status-codes/' + statusCode,
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/status-codes/' + statusCode,
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json'
@@ -279,7 +295,7 @@ var DOCS = {
   putApiStatusCodes: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/apis/' + apiId + '/status-codes',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/status-codes',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -291,10 +307,22 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
+  getFieldByName: function(name, successCb=null, errorCb=null) {
+    axios({
+      method: 'get',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/fields/' + name,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
   getMethods: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/methods',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/methods',
       headers: {
         'Accept': 'application/json'
       }
@@ -306,7 +334,7 @@ var DOCS = {
   getPaths: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/paths',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/paths',
       headers: {
         'Accept': 'application/json'
       }
@@ -318,7 +346,7 @@ var DOCS = {
   getPathParameters: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/path-parameters',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/path-parameters',
       headers: {
         'Accept': 'application/json'
       }
@@ -330,7 +358,7 @@ var DOCS = {
   getQueryParameters: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/query-parameters',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/query-parameters',
       headers: {
         'Accept': 'application/json'
       }
@@ -342,7 +370,7 @@ var DOCS = {
   getServices: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/services',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/services',
       headers: {
         'Accept': 'application/json'
       }
@@ -354,7 +382,7 @@ var DOCS = {
   getStatuses: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/statuses',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/statuses',
       headers: {
         'Accept': 'application/json'
       }
@@ -366,7 +394,7 @@ var DOCS = {
   getStatusCodes: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aca/status-codes',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/status-codes',
       headers: {
         'Accept': 'application/json'
       }

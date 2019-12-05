@@ -284,3 +284,25 @@ input:checked + .slider:before {
 .slider.round {border-radius: 30px;}
 .slider.round:before {border-radius: 50%;}
 /* END SLIDER */
+
+div.field {
+  position: relative;
+  display: inline-block;
+}
+
+span.field-text {
+  visibility: hidden;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  border-radius: 3px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+div.field:hover span.field-text {
+  visibility: visible;
+}

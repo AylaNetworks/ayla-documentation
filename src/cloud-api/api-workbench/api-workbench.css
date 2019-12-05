@@ -13,4 +13,19 @@ form.api-workbench div.edit-mode {display: none;}
 
 div.btn-group.special {display: flex;}
 div.btn-group.special .btn {flex: 1}
+
 input.pos {text-align: center;}
+
+#msg-box {
+  background: #1a1a1a;
+  margin-bottom: 24px;
+  padding: 12px;
+  border-radius: 3px 3px;
+  font-size: 90%;
+}
+#msg-box pre {margin:0; padding:0;}
+
+#api-request-data-textarea {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 80%;
+}

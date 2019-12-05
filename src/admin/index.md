@@ -6,6 +6,12 @@ title: Admin
 
 See [these instructions](https://docs.bitnami.com/aws/how-to/generate-install-lets-encrypt-ssl/#step-5-renew-the-let-s-encrypt-certificate) to renew HTTPS certificates from [Let's Encrypt](https://letsencrypt.org/).
 
+```
+sudo /opt/bitnami/ctlscript.sh stop apache
+sudo /opt/bitnami/letsencrypt/lego --tls --email="sarah@acme.com" --domains="docs.aylanetworks.com" --path="/opt/bitnami/letsencrypt" renew --days 90
+sudo /opt/bitnami/ctlscript.sh start apache
+```
+
 ### Broken links
 
 See [Online Broken Link Checker](https://www.brokenlinkcheck.com/) to find broken links.
@@ -112,7 +118,7 @@ mysql -u root -s -N -p
 </pre>
 
 <pre>
-mysqldump -u root -p ayla_cloud_api > ayla-cloud-api-`date '+%Y-%m-%d'`.sql
+mysqldump -u root -p ayla_api_documentation > ayla_api_documentation-`date '+%Y-%m-%d'`.sql
 </pre>
 
 [Google JSON Style Guide](https://google.github.io/styleguide/jsoncstyleguide.xml)

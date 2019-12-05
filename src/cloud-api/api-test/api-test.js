@@ -122,7 +122,7 @@ function formatUrl(api) {
       let value = $(queryParameters.eq(i)).val()
       if(value) {
         if(count > 0) {url = url + '&'}
-        url = url + key + '=' + value.replace(' ', '%20')
+        url = url + key + '=' + value.replace(/ /g, '%20')
         count++
       }
     }
@@ -447,6 +447,7 @@ serviceUrls['cndev']['notification'] = "https://ans.ayla.com.cn"
 serviceUrls['cndev']['rules'] = "https://rulesservice-dev.ayla.com.cn"
 serviceUrls['cndev']['user'] = "https://user-dev.ayla.com.cn"
 serviceUrls['cndev']['zigbee'] = "https://zigbee.ayla.com.cn"
+serviceUrls['cndev']['api-documentation'] = "https://docs.aylanetworks.com"
 serviceUrls['cnfield'] = new Array()
 serviceUrls['cnfield']['application'] = "https://app-field.ayla.com.cn"
 serviceUrls['cnfield']['datastream'] = "https://stream-field.ayla.com.cn"
@@ -458,6 +459,7 @@ serviceUrls['cnfield']['notification'] = "https://ans-field.ayla.com.cn"
 serviceUrls['cnfield']['rules'] = "https://rulesservice-field.ayla.com.cn"
 serviceUrls['cnfield']['user'] = "https://user-field.ayla.com.cn"
 serviceUrls['cnfield']['zigbee'] = "https://zigbee-field.ayla.com.cn"
+serviceUrls['cnfield']['api-documentation'] = "https://docs.aylanetworks.com"
 serviceUrls['eufield'] = new Array()
 serviceUrls['eufield']['application'] = "https://app-field-eu.aylanetworks.com"
 serviceUrls['eufield']['datastream'] = "https://stream-field-eu.aylanetworks.com"
@@ -469,6 +471,7 @@ serviceUrls['eufield']['notification'] = "https://ans-field-eu.aylanetworks.com"
 serviceUrls['eufield']['rules'] = "https://rulesservice-field-eu.aylanetworks.com"
 serviceUrls['eufield']['user'] = "https://user-field-eu.aylanetworks.com"
 serviceUrls['eufield']['zigbee'] = "https://zigbee-field-eu.aylanetworks.com"
+serviceUrls['eufield']['api-documentation'] = "https://docs.aylanetworks.com"
 serviceUrls['usdev'] = new Array()
 serviceUrls['usdev']['application'] = "https://application.aylanetworks.com"
 serviceUrls['usdev']['datastream'] = "https://stream.aylanetworks.com"
@@ -480,6 +483,7 @@ serviceUrls['usdev']['notification'] = "https://ans.aylanetworks.com"
 serviceUrls['usdev']['rules'] = "https://rulesservice-dev.aylanetworks.com"
 serviceUrls['usdev']['user'] = "https://user-dev.aylanetworks.com"
 serviceUrls['usdev']['zigbee'] = "https://zigbee.aylanetworks.com"
+serviceUrls['usdev']['api-documentation'] = "https://docs.aylanetworks.com"
 serviceUrls['usfield'] = new Array()
 serviceUrls['usfield']['application'] = "https://app-field.aylanetworks.com"
 serviceUrls['usfield']['datastream'] = "https://stream-field.aylanetworks.com"
@@ -491,6 +495,7 @@ serviceUrls['usfield']['notification'] = "https://ans-field.aylanetworks.com"
 serviceUrls['usfield']['rules'] = "https://rulesservice-field.aylanetworks.com"
 serviceUrls['usfield']['user'] = "https://user-field.aylanetworks.com"
 serviceUrls['usfield']['zigbee'] = "https://zigbee-field.aylanetworks.com"
+serviceUrls['usfield']['api-documentation'] = "https://docs.aylanetworks.com"
 
 /*------------------------------------------------------
 On Change Region
@@ -1044,14 +1049,15 @@ buildApi
 
 function buildApi(apiElement, api, collapsed=true) {
 
-  let serviceName = api.service.name.toLowerCase().replace(' ', '-')
+  let serviceName = api.service.name.toLowerCase().replace(/ /g, "-")
 
-  let collapseId = api.method.name + api.path.text
+  let collapseId = api.method.name + api.path
   .replace(/\//g, '-')
   .replace(/\./g, '-')
   .replace(/\_/g, '-')
   .replace(/\{/g, '')
   .replace(/\}/g, '')
+  .replace(/\:/g, '')
   .toLowerCase()
 
   let header = $('<div class="header" data-toggle="collapse" href="' + '#' + collapseId + '">')
@@ -1060,7 +1066,7 @@ function buildApi(apiElement, api, collapsed=true) {
   header.append(''
     + '<div class="row align-items-center no-gutters">'
     + '<div class="col-12 col-md-auto method">' + api.method.name.toUpperCase() + '</div>'
-    + '<div class="col-12 col-md url">' + api.path.text + '</div>'
+    + '<div class="col-12 col-md url">' + api.path + '</div>'
     + '<div class="col-12 col-md-auto name">' + api.name + ' (id=' + api.id + ')' + '</div>'
     + '</div>'
   )
@@ -1075,32 +1081,33 @@ function buildApi(apiElement, api, collapsed=true) {
     + '</div>'
   )
 
-  if(api.pathParameters || api.queryParameters || api.requestData) {
+  if(api.pathParameters.length || api.queryParameters.length || api.requestData.length) {
     content.append('<div class="heading">Request</div>')
     if(api.requestDescription) {content.append('<div class="request-description">' + api.requestDescription + '</div>')}
 
-    if(api.pathParameters) {
+    if(api.pathParameters.length) {
       content.append('<div class="subheading">Path Parameters</div>')
       for(let i=0; i < api.pathParameters.length; i++) { 
         content.append(createPathParameter(api.pathParameters[i]))
       }
     }
 
-    if(api.queryParameters) {
+    if(api.queryParameters.length) {
       content.append('<div class="subheading">Query Parameters</div>')
       for(let i=0; i < api.queryParameters.length; i++) { 
         content.append(createQueryParameter(api.queryParameters[i]))
       }
     }
 
-    if(api.requestData) {
-      content.append('<div class="subheading">Data</div>')
+    if(api.requestData.length) {
+      content.append('<div class="subheading">Request Data</div>')
       content.append(''
         + '<div class="btn-group">'
         + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-request-data-element">Hide</button>'
         + '<button type="button" class="btn btn-outline-secondary btn-sm">Reset</button>'
         + '</div>'
-        + '<pre class="request-data-element" contenteditable="true">' + JSON.stringify(api.requestData, null, 2) + '</pre>'
+        //+ '<pre class="request-data-element" contenteditable="true">' + JSON.stringify(api.requestData, null, 2) + '</pre>'
+        + '<pre class="request-data-element" contenteditable="true">' + JSON.stringify(JSON.parse(api.requestData), null, 2) + '</pre>'
       )
     }
   }
@@ -1116,7 +1123,7 @@ function buildApi(apiElement, api, collapsed=true) {
   content.append('<div class="heading">Response</div>')
   if(api.responseDescription) {content.append('<div class="response-description">' + api.responseDescription + '</div>')}
 
-  content.append('<div class="subheading">Body</div>')
+  content.append('<div class="subheading">Response Data</div>')
   content.append(''
     + '<div class="btn-group">'
     + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>'
@@ -1153,7 +1160,7 @@ function renderApi(api) {
 
   let apiElement = $('<div/>')
   buildApi(apiElement, api)
-  let serviceName = api.service.name.toLowerCase().replace(' ', '-')
+  let serviceName = api.service.name.toLowerCase().replace(/ /g, "-")
   let serviceContentElement = $('#' + serviceName + '-service-content')
   $(serviceContentElement).append(apiElement)
   let serviceHeaderElement = $('#' + serviceName + '-service-header')
@@ -1235,7 +1242,7 @@ function renderServices() {
     let services = response.data
     let servicesElement = $('#ayla-services')
     for(let i=0; i < services.length; i++) {
-      let hyphenName = services[i].name.toLowerCase().replace(' ', '-')
+      let hyphenName = services[i].name.toLowerCase().replace(/ /g, "-")
       let header = $('<h1 id="' + hyphenName + '-service-header" class="api-service"></h1>')
       $(header).append(''
         + '<div class="api-service" data-toggle="collapse" href="#' + hyphenName + '-content">'
@@ -1271,3 +1278,21 @@ $(function() {
   })
 })
 
+/*------------------------------------------------------
+Testing Mouseover Fields
+------------------------------------------------------*/
+
+$(function() {
+  $('#core-content').delegate('pre div.field', 'mouseover', function(event) {
+    let name = $(this).data('field-name')
+    let text = $(this).children('span')
+    DOCS.getFieldByName(name, function(response) {
+      $(text).html(response.data)
+    }, function(error) {console.log(error)})
+  })
+
+  $('#core-content').delegate('pre div.field', 'mouseout', function(event) {
+    let text = $(this).children('span')
+    $(text).html('')
+  })
+})
