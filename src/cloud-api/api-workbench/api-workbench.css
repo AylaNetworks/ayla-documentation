@@ -29,3 +29,8 @@ input.pos {text-align: center;}
   font-family: 'Courier New', Courier, monospace;
   font-size: 80%;
 }
+
+#api-request-data-textarea {
+  overflow: auto;
+  white-space: nowrap;
+}

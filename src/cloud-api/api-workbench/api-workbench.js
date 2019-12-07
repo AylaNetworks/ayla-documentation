@@ -56,6 +56,10 @@ $(function () {
             appendStatusCode(api.statusCodes[i].code, api.statusCodes[i].baseText, api.statusCodes[i].customText)
           }
 
+          for (let i = 0; i < api.tags.length; i++) {
+            appendTag(api.tags[i].id, api.tags[i].name)
+          }
+
           $('#api-notes-textarea').val(api.notes)
 
           $('form.api-workbench div.edit-mode').show()
@@ -238,7 +242,37 @@ function reset() {
   $('#api-status-select').val('')
   $('#api-status-code-rows').empty()
   resetStatusCodesSelect()
+  $('#api-tag-rows').empty()
+  resetTagsSelect()
 }
+
+/*------------------------------------------------------
+Add Path Parameter
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-path-parameter-ctl-row button.add').click(function (event) {
+    let id = $('#api-path-parameter-ctl-row select option:selected').data('details').id
+    let name = $('#api-path-parameter-ctl-row select option:selected').val()
+    let pos = $('#api-path-parameter-ctl-row input.pos').val()
+    let type = $('#api-path-parameter-ctl-row input.type').val()
+    let baseText = $('#api-path-parameter-ctl-row input.description').attr('placeholder')
+    let customText = $('#api-path-parameter-ctl-row input.description').val()
+    console.log(id + ' ' + name + ' ' + pos + ' ' + type + ' ' + baseText + ' ' + customText)
+    insertPathParameter(id, name, type, baseText, customText, pos)
+    resetPathParametersSelect()
+  })
+})
+
+/*------------------------------------------------------
+Remove Path Parameter
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-path-parameter-rows').delegate('button.remove', 'click', function(event) {
+    $(this).closest('div.api-path-parameter-row').remove()
+  })
+})
 
 /*------------------------------------------------------
 appendPathParameter
@@ -312,6 +346,34 @@ function resetPathParametersSelect() {
 }
 
 /*------------------------------------------------------
+Add Query Parameter
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-query-parameter-ctl-row button.add').click(function (event) {
+    let id = $('#api-query-parameter-ctl-row select option:selected').data('details').id
+    let name = $('#api-query-parameter-ctl-row select option:selected').val()
+    let pos = $('#api-query-parameter-ctl-row input.pos').val()
+    let type = $('#api-query-parameter-ctl-row input.type').val()
+    let baseText = $('#api-query-parameter-ctl-row input.description').attr('placeholder')
+    let customText = $('#api-query-parameter-ctl-row input.description').val()
+    console.log(id + ' ' + name + ' ' + pos + ' ' + type + ' ' + baseText + ' ' + customText)
+    insertQueryParameter(id, name, type, baseText, customText, pos)
+    resetQueryParametersSelect()
+  })
+})
+
+/*------------------------------------------------------
+Remove Query Parameter
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-query-parameter-rows').delegate('button.remove', 'click', function(event) {
+    $(this).closest('div.api-query-parameter-row').remove()
+  })
+})
+
+/*------------------------------------------------------
 appendQueryParameter
 ------------------------------------------------------*/
 
@@ -383,6 +445,31 @@ function resetQueryParametersSelect() {
 }
 
 /*------------------------------------------------------
+Add Status Code
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-status-code-ctl-row button.add').click(function (event) {
+    let code = $('#api-status-code-ctl-row select option:selected').val()
+    let baseText = $('#api-status-code-ctl-row input.text').attr('placeholder')
+    let customText = $('#api-status-code-ctl-row input.text').val()
+    console.log(code + ' ' + baseText + ' ' + customText)
+    insertStatusCode(code, baseText, customText)
+    resetStatusCodesSelect()
+  })
+})
+
+/*------------------------------------------------------
+Remove Status Code
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-status-code-rows').delegate('button.remove', 'click', function(event) {
+    $(this).closest('div.api-status-code-row').remove()
+  })
+})
+
+/*------------------------------------------------------
 appendStatusCode
 ------------------------------------------------------*/
 
@@ -447,16 +534,87 @@ function resetStatusCodesSelect() {
 }
 
 /*------------------------------------------------------
-putApiDescription
-putApiMethod
-putApiName
-putApiNotes
-putApiPath
-putApiRequestData
-putApiRequestDescription
-putApiResponseDescription
-putApiService
-putApiStatus
+Add Tags
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-tag-ctl-row button.add').click(function (event) {
+    let id = $('#api-tag-ctl-row select option:selected').val()
+    let name = $('#api-tag-ctl-row select option:selected').text()
+    insertTag(id, name)
+    resetTagsSelect()
+  })
+})
+
+/*------------------------------------------------------
+Remove Tags
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-tag-rows').delegate('button.remove', 'click', function(event) {
+    $(this).closest('div.api-tag-row').remove()
+  })
+})
+
+/*------------------------------------------------------
+appendTag
+------------------------------------------------------*/
+
+function appendTag(id, name) {
+  let row = createTag(id, name)
+  $('#api-tag-rows').append(row)
+}
+
+/*------------------------------------------------------
+insertTag
+------------------------------------------------------*/
+
+function insertTag(id, name) {
+  let row = createTag(id, name)
+  let rows = $('#api-tag-rows div.api-tag-row')
+  if(rows.length) {
+    for(let i=0; i<rows.length; i++) {
+      if(name < $(rows.eq(i)).find('input.name').val()) {
+        $(row).insertBefore($(rows.eq(i))); break
+      } else if (i == (rows.length-1)) {
+        $(row).insertAfter($(rows.eq(i))); break
+      }
+    }
+  } else {
+    $('#api-tag-rows').append(row)
+  }
+  $(row).find('div.edit-mode').show()
+}
+
+/*------------------------------------------------------
+createTag
+------------------------------------------------------*/
+
+function createTag(id, name) {
+  let nameInput = $('<input type="text" class="form-control form-control-sm name" disabled>')
+  $(nameInput).val(name)
+  let nameDiv = $('<div class="form-group col-sm-3"></div>')
+  nameDiv.append(nameInput)
+  let removeBtn = '<button type="button" class="btn btn-sm btn-block btn-outline-secondary remove">&ndash;</button>'
+  let removeDiv = $('<div class="form-group col-auto edit-mode"></div>')
+  removeDiv.append(removeBtn)
+  let row = $('<div class="form-row api-tag-row">')
+  $(row).data('id', id)
+  row.append(nameDiv)
+  row.append(removeDiv)
+  return row
+}
+
+/*------------------------------------------------------
+resetTagsSelect
+------------------------------------------------------*/
+
+function resetTagsSelect() {
+  $('#api-tag-ctl-row select').val('')
+}
+
+/*------------------------------------------------------
+Save Description
 ------------------------------------------------------*/
 
 $(function () {
@@ -474,6 +632,10 @@ $(function () {
   })
 })
 
+/*------------------------------------------------------
+Save Method
+------------------------------------------------------*/
+
 $(function () {
   $('#api-method-btn').click(function (event) {
     let btnElement = this
@@ -488,6 +650,10 @@ $(function () {
     }
   })
 })
+
+/*------------------------------------------------------
+Save Name
+------------------------------------------------------*/
 
 $(function () {
   $('#api-name-btn').click(function (event) {
@@ -504,6 +670,10 @@ $(function () {
   })
 })
 
+/*------------------------------------------------------
+Save Notes
+------------------------------------------------------*/
+
 $(function () {
   $('#api-notes-btn').click(function (event) {
     let btnElement = this
@@ -519,6 +689,10 @@ $(function () {
   })
 })
 
+/*------------------------------------------------------
+Save Path
+------------------------------------------------------*/
+
 $(function () {
   $('#api-path-btn').click(function (event) {
     let btnElement = this
@@ -533,6 +707,68 @@ $(function () {
     }
   })
 })
+
+/*------------------------------------------------------
+Save Path Parameters
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-path-parameter-ctl-row button.save').click(function (event) {
+    let btnElement = this
+    let arr = []
+    let rows = $('#api-path-parameter-rows div.api-path-parameter-row')
+    for(let i=0; i<rows.length; i++) {
+      let obj = {}
+      obj.id = $(rows).eq(i).data('id')
+      obj.name = $(rows).eq(i).find('input.name').val()
+      obj.type = $(rows).eq(i).find('input.type').val()
+      obj.baseText = $(rows).eq(i).find('input.description').attr('placeholder')
+      obj.customText = $(rows).eq(i).find('input.description').val()
+      arr.push(obj)
+    }
+    let requestData = {}
+    requestData.pathParameters = arr
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#aca-access-token').val()
+    DOCS.putApiPathParameters(apiId, requestData, accessToken,
+      function(response) {saveSuccessCb(btnElement, response)}, 
+      function(error) {saveErrorCb(btnElement, error)}
+    )
+  })
+})
+
+/*------------------------------------------------------
+Save Query Parameters
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-query-parameter-ctl-row button.save').click(function (event) {
+    let btnElement = this
+    let arr = []
+    let rows = $('#api-query-parameter-rows div.api-query-parameter-row')
+    for(let i=0; i<rows.length; i++) {
+      let obj = {}
+      obj.id = $(rows).eq(i).data('id')
+      obj.name = $(rows).eq(i).find('input.name').val()
+      obj.type = $(rows).eq(i).find('input.type').val()
+      obj.baseText = $(rows).eq(i).find('input.description').attr('placeholder')
+      obj.customText = $(rows).eq(i).find('input.description').val()
+      arr.push(obj)
+    }
+    let requestData = {}
+    requestData.queryParameters = arr
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#aca-access-token').val()
+    DOCS.putApiQueryParameters(apiId, requestData, accessToken,
+      function(response) {saveSuccessCb(btnElement, response)}, 
+      function(error) {saveErrorCb(btnElement, error)}
+    )
+  })
+})
+
+/*------------------------------------------------------
+Save Request Data
+------------------------------------------------------*/
 
 $(function () {
   $('#api-request-data-btn').click(function (event) {
@@ -551,6 +787,10 @@ $(function () {
   })
 })
 
+/*------------------------------------------------------
+Save Request Description
+------------------------------------------------------*/
+
 $(function () {
   $('#api-request-description-btn').click(function (event) {
     let btnElement = this
@@ -565,6 +805,10 @@ $(function () {
     }
   })
 })
+
+/*------------------------------------------------------
+Save Response Description
+------------------------------------------------------*/
 
 $(function () {
   $('#api-response-description-btn').click(function (event) {
@@ -581,6 +825,10 @@ $(function () {
   })
 })
 
+/*------------------------------------------------------
+Save Service
+------------------------------------------------------*/
+
 $(function () {
   $('#api-service-btn').click(function (event) {
     let btnElement = this
@@ -595,6 +843,10 @@ $(function () {
     }
   })
 })
+
+/*------------------------------------------------------
+Save Status
+------------------------------------------------------*/
 
 $(function () {
   $('#api-status-btn').click(function (event) {
@@ -612,126 +864,8 @@ $(function () {
 })
 
 /*------------------------------------------------------
-Add, Remove, Save path parameters
+Save Status Codes
 ------------------------------------------------------*/
-
-$(function () {
-  $('#api-path-parameter-ctl-row button.add').click(function (event) {
-    let id = $('#api-path-parameter-ctl-row select option:selected').data('details').id
-    let name = $('#api-path-parameter-ctl-row select option:selected').val()
-    let pos = $('#api-path-parameter-ctl-row input.pos').val()
-    let type = $('#api-path-parameter-ctl-row input.type').val()
-    let baseText = $('#api-path-parameter-ctl-row input.description').attr('placeholder')
-    let customText = $('#api-path-parameter-ctl-row input.description').val()
-    console.log(id + ' ' + name + ' ' + pos + ' ' + type + ' ' + baseText + ' ' + customText)
-    insertPathParameter(id, name, type, baseText, customText, pos)
-    resetPathParametersSelect()
-  })
-})
-
-$(function () {
-  $('#api-path-parameter-rows').delegate('button.remove', 'click', function(event) {
-    $(this).closest('div.api-path-parameter-row').remove()
-  })
-})
-
-$(function () {
-  $('#api-path-parameter-ctl-row button.save').click(function (event) {
-    let btnElement = this
-    let arr = []
-    let rows = $('#api-path-parameter-rows div.api-path-parameter-row')
-    for(let i=0; i<rows.length; i++) {
-      let obj = {}
-      obj.id = $(rows).eq(i).data('id')
-      obj.name = $(rows).eq(i).find('input.name').val()
-      obj.type = $(rows).eq(i).find('input.type').val()
-      obj.baseText = $(rows).eq(i).find('input.description').attr('placeholder')
-      obj.customText = $(rows).eq(i).find('input.description').val()
-      arr.push(obj)
-    }
-    let requestData = {}
-    requestData.pathParameters = arr
-    //console.log(JSON.stringify(requestData, null, 2))
-    let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
-    DOCS.putApiPathParameters(apiId, requestData, accessToken,
-      function(response) {saveSuccessCb(btnElement, response)}, 
-      function(error) {saveErrorCb(btnElement, error)}
-    )
-  })
-})
-
-/*------------------------------------------------------
-Add, Remove, Save query parameters
-------------------------------------------------------*/
-
-$(function () {
-  $('#api-query-parameter-ctl-row button.add').click(function (event) {
-    let id = $('#api-query-parameter-ctl-row select option:selected').data('details').id
-    let name = $('#api-query-parameter-ctl-row select option:selected').val()
-    let pos = $('#api-query-parameter-ctl-row input.pos').val()
-    let type = $('#api-query-parameter-ctl-row input.type').val()
-    let baseText = $('#api-query-parameter-ctl-row input.description').attr('placeholder')
-    let customText = $('#api-query-parameter-ctl-row input.description').val()
-    console.log(id + ' ' + name + ' ' + pos + ' ' + type + ' ' + baseText + ' ' + customText)
-    insertQueryParameter(id, name, type, baseText, customText, pos)
-    resetQueryParametersSelect()
-  })
-})
-
-$(function () {
-  $('#api-query-parameter-rows').delegate('button.remove', 'click', function(event) {
-    $(this).closest('div.api-query-parameter-row').remove()
-  })
-})
-
-$(function () {
-  $('#api-query-parameter-ctl-row button.save').click(function (event) {
-    let btnElement = this
-    let arr = []
-    let rows = $('#api-query-parameter-rows div.api-query-parameter-row')
-    for(let i=0; i<rows.length; i++) {
-      let obj = {}
-      obj.id = $(rows).eq(i).data('id')
-      obj.name = $(rows).eq(i).find('input.name').val()
-      obj.type = $(rows).eq(i).find('input.type').val()
-      obj.baseText = $(rows).eq(i).find('input.description').attr('placeholder')
-      obj.customText = $(rows).eq(i).find('input.description').val()
-      arr.push(obj)
-    }
-    let requestData = {}
-    requestData.queryParameters = arr
-    //console.log(JSON.stringify(requestData, null, 2))
-    let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
-    DOCS.putApiQueryParameters(apiId, requestData, accessToken,
-      function(response) {saveSuccessCb(btnElement, response)}, 
-      function(error) {saveErrorCb(btnElement, error)}
-    )
-  })
-})
-
-/*------------------------------------------------------
-Add, Remove, Save status codes
-------------------------------------------------------*/
-
-$(function () {
-  $('#api-status-code-ctl-row button.add').click(function (event) {
-    let code = $('#api-status-code-ctl-row select option:selected').val()
-    let baseText = $('#api-status-code-ctl-row input.text').attr('placeholder')
-    let customText = $('#api-status-code-ctl-row input.text').val()
-    console.log(code + ' ' + baseText + ' ' + customText)
-    insertStatusCode(code, baseText, customText)
-    resetStatusCodesSelect()
-  })
-})
-
-
-$(function () {
-  $('#api-status-code-rows').delegate('button.remove', 'click', function(event) {
-    $(this).closest('div.api-status-code-row').remove()
-  })
-})
 
 $(function () {
   $('#api-status-code-ctl-row button.save').click(function (event) {
@@ -747,10 +881,35 @@ $(function () {
     }
     let requestData = {}
     requestData.statusCodes = arr
-    // console.log(JSON.stringify(requestData, null, 2))
     let apiId = $('form.api-workbench').data('id')
     let accessToken = $('#aca-access-token').val()
     DOCS.putApiStatusCodes(apiId, requestData, accessToken,
+      function(response) {saveSuccessCb(btnElement, response)}, 
+      function(error) {saveErrorCb(btnElement, error)}
+    )
+  })
+})
+
+/*------------------------------------------------------
+Save Tags
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-tag-ctl-row button.save').click(function (event) {
+    let btnElement = this
+    let arr = []
+    let rows = $('#api-tag-rows div.api-tag-row')
+    for(let i=0; i<rows.length; i++) {
+      let obj = {}
+      obj.id = $(rows).eq(i).data('id')
+      obj.name = $(rows).eq(i).find('input.name').val()
+      arr.push(obj)
+    }
+    let requestData = {}
+    requestData.tags = arr
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#aca-access-token').val()
+    DOCS.putApiTags(apiId, requestData, accessToken,
       function(response) {saveSuccessCb(btnElement, response)}, 
       function(error) {saveErrorCb(btnElement, error)}
     )
@@ -830,7 +989,7 @@ $(function() {
     $(option).val('')
     $(selectElement).append(option)
     for(let j=0; j < response.data.length; j++) {
-      let option = $('<option/>').text(response.data[j].name.toUpperCase()).val(response.data[j].id)
+      option = $('<option/>').text(response.data[j].name.toUpperCase()).val(response.data[j].id)
       $(selectElement).append(option)
     }
   }, function(error) {console.log(error)})
@@ -863,7 +1022,7 @@ $(function() {
     $(option).val('')
     $(selectElement).append(option)
     for(let j=0; j < response.data.length; j++) {
-      let option = $('<option/>').text(response.data[j].name).val(response.data[j].id)
+      option = $('<option/>').text(response.data[j].name).val(response.data[j].id)
       $(selectElement).append(option)
     }
   }, function(error) {console.log(error)})
@@ -874,7 +1033,7 @@ $(function() {
     $(option).val('')
     $(selectElement).append(option)
     for(let j=0; j < response.data.length; j++) {
-      let option = $('<option/>').text(response.data[j].name).val(response.data[j].id)
+      option = $('<option/>').text(response.data[j].name).val(response.data[j].id)
       $(selectElement).append(option)
     }
   }, function(error) {console.log(error)})
@@ -889,4 +1048,16 @@ $(function() {
       $(selectElement).append(option)
     }
   }, function(error) {console.log(error)})
+
+  DOCS.getTags(function(response) {
+    let selectElement = $('#api-tag-ctl-row select')
+    let option = $('<option/>').text('---')
+    $(option).val('')
+    $(selectElement).append(option)
+    for(let j=0; j < response.data.length; j++) {
+      option = $('<option/>').text(response.data[j].name).val(response.data[j].id)
+      $(selectElement).append(option)
+    }
+  }, function(error) {console.log(error)})
+
 })

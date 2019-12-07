@@ -23,6 +23,7 @@ div.panel h3{
 #devices-section {display:none;}
 #devices-section div.panel {background:#f9ebd2;}
 #filter-section {display:none;}
+#filter-section div.panel {background:#f9ebd2;}
 
 ul.nav-tabs a.nav-link {color: #495057; font-size: 90%;}
 
@@ -31,6 +32,16 @@ div.panel label {
   font-weight:bold;
   margin-bottom: .1rem;
   padding-left:3px;
+}
+
+div.panel input.form-check-input {
+  margin-top: 6px;
+}
+
+div.panel label.form-check-label {
+  font-size:90%;
+  font-weight:normal;
+  margin-bottom: 0;
 }
 
 div.panel div.title {

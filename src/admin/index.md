@@ -106,7 +106,7 @@ getProperty
 Stop the service:
 
 <pre>
-$ forever stop <Id|Uid|Pid|Index|Script>
+$ forever stop &lt;Id|Uid|Pid|Index|Script&gt;
 </pre>
 
 ### ayla_cloud_api database
@@ -118,7 +118,7 @@ mysql -u root -s -N -p
 </pre>
 
 <pre>
-mysqldump -u root -p ayla_api_documentation > ayla_api_documentation-`date '+%Y-%m-%d'`.sql
+mysqldump -u root -p ayla_api_documentation > ayla_api_documentation-`date '+%FT%T'`.sql
 </pre>
 
 [Google JSON Style Guide](https://google.github.io/styleguide/jsoncstyleguide.xml)

@@ -99,35 +99,49 @@ formatUrl
 function formatUrl(api) {
   var url = $(api).find('div.header div.url').text()
 
-  let pathParameters = $(api).find('div.path-parameter input.value')
-  if(pathParameters.length) {
+  let ppInputElements = $(api).find('div.path-parameter input.value')
+  if(ppInputElements.length) {
     let re = /\{[a-z|A-Z]+\}/g;
     let urlParts = url.split(re).filter(Boolean)
     let i = 0
     url = ''
-    for(; i < pathParameters.length; i++) { 
-      url = url + urlParts[i] + $(pathParameters.eq(i)).val()
+    for(; i < ppInputElements.length; i++) { 
+      url = url + urlParts[i] + $(ppInputElements.eq(i)).val()
     }
     if((i+1) == urlParts.length) {
       url = url + urlParts[i]
     }
   }
 
-  let queryParameters = $(api).find('div.query-parameter input.value')
-  if(queryParameters.length) {
-    url = url + '?'
-    let count = 0
-    for(let i = 0; i < queryParameters.length; i++) {
-      let key = $(queryParameters.eq(i)).attr('placeholder')
-      let value = $(queryParameters.eq(i)).val()
-      if(value) {
-        if(count > 0) {url = url + '&'}
-        url = url + key + '=' + value.replace(/ /g, '%20')
-        count++
+  let qpInputElements = $(api).find('div.query-parameter input.value')
+  for(let i = 0, count=0; i < qpInputElements.length; i++) {
+    let details = $(qpInputElements.eq(i)).data('details')
+    let value = $(qpInputElements.eq(i)).val()
+
+    if(details.type == 'array') {
+      let values = value.split(',')
+      for(let j=0; j<values.length; j++) {
+        url = addQueryParameter(count++, url, details.name, values[j].trim())
       }
+    } else {
+      url = addQueryParameter(count++, url, details.name, value)
     }
   }
 
+  return url
+}
+
+/*------------------------------------------------------
+addQueryParameter
+------------------------------------------------------*/
+
+function addQueryParameter(count, url, name, value) {
+  if(count==0) {url = url + '?'}
+  else {url = url + '&'}
+  url = url + name
+  if(value && value.length) {
+    url = url + '=' + value.replace(/ /g, '%20')
+  }
   return url
 }
 
@@ -1145,6 +1159,18 @@ function buildApi(apiElement, api, collapsed=true) {
   $(apiElement).removeClass()
   $(apiElement).addClass('api')
   $(apiElement).addClass(api.method.name)
+
+  if(!api.tags.length) {
+    console.log('No tags on ' + api.name)
+  } else {
+    for(let i=0; i<api.tags.length; i++) {
+      let tagClass = 'tag-' + api.tags[i].id
+      let tagShowClass = 'tag-show-' + api.tags[i].id
+      $(apiElement).addClass(tagClass)
+      $(apiElement).addClass(tagShowClass)
+    }
+  }
+
   $(apiElement).data('id', api.id)
   $(apiElement).data('service', serviceName)
   apiElement.append(header)
@@ -1198,7 +1224,8 @@ function createPathParameter(pathParameter) {
   + '<div class="col-12 col-lg-9">'
   + '<div>'
   + '<span class="name">' + pathParameter.name + '</span>. '
-  + '<span  class="text">' + (pathParameter.customText ? pathParameter.customText : pathParameter.baseText) + '</span></div>'
+  + '<span  class="text">' + (pathParameter.customText ? pathParameter.customText : pathParameter.baseText) + '</span>'
+  + '</div>'
   + '</div>'
   + '</div>'
 }
@@ -1208,6 +1235,23 @@ createQueryParameter
 ------------------------------------------------------*/
 
 function createQueryParameter(queryParameter) {
+  let inputEl = $('<input type="text" class="form-control form-control-sm value" placeholder="' + queryParameter.name + '">')
+  inputEl.data('details', queryParameter)
+  let inputElCol = $('<div class="col-12 col-lg-3">')
+  inputElCol.append(inputEl)
+  let row = $('<div class="form-row query-parameter">')
+  row.append(inputElCol)
+  row.append(''
+    + '<div class="col-12 col-lg-9">'
+    + '<div>'
+    + '<span class="name">' + queryParameter.name + '</span>. '
+    + '<span  class="text">' + (queryParameter.customText ? queryParameter.customText : queryParameter.baseText) + '</span>'
+    + '</div>'
+    + '</div>'
+  )
+  return row
+
+  /*
   return ''
   + '<div class="form-row query-parameter">'
   + '<div class="col-12 col-lg-3">'
@@ -1216,9 +1260,11 @@ function createQueryParameter(queryParameter) {
   + '<div class="col-12 col-lg-9">'
   + '<div>'
   + '<span class="name">' + queryParameter.name + '</span>. '
-  + '<span  class="text">' + (queryParameter.customText ? queryParameter.customText : queryParameter.baseText) + '</span></div>'
+  + '<span  class="text">' + (queryParameter.customText ? queryParameter.customText : queryParameter.baseText) + '</span>'
   + '</div>'
   + '</div>'
+  + '</div>'
+  */
 }
 
 /*------------------------------------------------------
@@ -1294,5 +1340,28 @@ $(function() {
   $('#core-content').delegate('pre div.field', 'mouseout', function(event) {
     let text = $(this).children('span')
     $(text).html('')
+  })
+})
+
+/*------------------------------------------------------
+Tags
+------------------------------------------------------*/
+
+$(function() {
+  $('#filter-section input:checkbox').bind('change', function() {
+    let tagClass = 'tag-' + $(this).val()
+    let tagShowClass = 'tag-show-' + $(this).val()
+    if($(this).prop('checked')) {
+      $('div.api.' + tagClass).addClass(tagShowClass).show()
+    } else {
+      $('div.api.' + tagClass).removeClass(tagShowClass)
+      $('div.api:not([class*=" tag-show-"])').hide()
+    }
+    let apiServiceHeaders = $('h1.api-service')
+    for(let i=0; i<apiServiceHeaders.length; i++) {
+      let apiServiceContent = $(apiServiceHeaders.eq(i)).next('div')
+      let count = $(apiServiceContent).children('div.api:not([style*="display: none"])').length
+      $(apiServiceHeaders.eq(i)).find('input.count').val(count)
+    }
   })
 })

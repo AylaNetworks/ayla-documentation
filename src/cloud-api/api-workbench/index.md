@@ -13,7 +13,6 @@ e: block
     <div class="col"><pre class="msg"></pre></div>
   </div>
 </div>
-<h2>Editor</h2>
 <form class="api-workbench">
   <div class="form-row">
     <div class="col-sm-2">
@@ -187,6 +186,18 @@ e: block
     </div>
   </div>
   <div id="api-status-code-rows"></div>
+  <div class="form-row"><div class="col-12"><label>Tags</label></div></div>
+  <div id="api-tag-ctl-row" class="form-row">
+    <div class="form-group col-sm-3"><select class="form-control form-control-sm"></select></div>
+    <div class="col-sm-9">
+      <div class="form-row">
+        <div class="form-group col-auto"><button type="button" class="btn btn-sm btn-block btn-outline-secondary add">+</button></div>
+        <div class="form-group col">&nbsp;</div>
+        <div class="form-group col-auto edit-mode"><button type="button" class="btn btn-sm btn-block btn-outline-secondary save">&#x2714;</button></div>
+      </div>
+    </div>
+  </div>
+  <div id="api-tag-rows"></div>
   <div class="form-row"><div class="col-12"><label>Notes</label></div></div>
   <div class="form-row">
     <div class="form-group col"><textarea id="api-notes-textarea" class="form-control form-control-sm" rows="3"></textarea></div>

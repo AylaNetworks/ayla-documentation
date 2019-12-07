@@ -20,14 +20,13 @@ classesFromPage: has-pagebar
     <li><a href="#zigbee-service-header">Zigbee Service</a></li>
   </ul>
 </aside>
-
+<p style="font-size:90%;">If account tokens expire, click ```Accounts > Account > Details > Return Tokens > Get Tokens```.</p>
 <div class="btn-group control-btns">
   <button id="directions-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Directions</button>
   <button id="accounts-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Accounts</button>
   <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
   <button id="filter-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Filter</button>
 </div>
-<p style="font-size:90%;">Note: If account tokens expire, click ```Accounts > Account > Details > Return Tokens > Get Tokens```.</p>
 <div id="directions-section">
   <p>The API Browser helps you use Ayla Cloud APIs to explore and manipulate devices, properties, datapoints, schedules, access rules, subscriptions, and many other Ayla data structures. To get started, follow these steps:</p>
   <ol>
@@ -39,12 +38,12 @@ classesFromPage: has-pagebar
     <li>To add additional accounts, click <code>Blank Form</code>.</li>
     <li>To test access, expand Device Services below, and run the getDevices API.</li>
   </ol>
-  <p>Click the Directions button above to close this panel.</p>
+  <p>Please send feedback to **matt&#64;aylanetworks.com**.</p>
 </div>
 <div id="accounts-section">
   <div class="panel">
     <h3>Accounts</h3>
-    <div class="form-row ">
+    <div class="form-row">
       <div class="col-12 col-sm-6">
         <div class="form-row">
           <div class="col-12">
@@ -190,7 +189,7 @@ classesFromPage: has-pagebar
 <div id="devices-section">
   <div class="panel">
     <h3>Devices</h3>
-    <div class="form-row ">
+    <div class="form-row">
       <div class="col-12 col-md-4">
         <div class="form-row">
           <div class="col-12">
@@ -238,7 +237,85 @@ classesFromPage: has-pagebar
   </div>
 </div>
 <div id="filter-section">
-  <p>This is the filter section.</p>
+  <div class="panel">
+    <div class="form-row mb-2">
+      <div class="col-auto">
+         <h3 style="margin:0 !important;line-height:1.9;">Filter</h3>
+      </div>
+      <div class="col">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlinetags" value="option1" checked>
+          <label class="form-check-label">All</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlinetags" value="option1">
+          <label class="form-check-label">None</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-6">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="1" checked>
+          <label class="form-check-label">Access Rules</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="2" checked>
+          <label class="form-check-label">Contacts</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="3" checked>
+          <label class="form-check-label">Datapoints</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="4" checked>
+          <label class="form-check-label">Devices</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="5" checked>
+          <label class="form-check-label">Gateways</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="6" checked>
+          <label class="form-check-label">Groups</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="7" checked>
+          <label class="form-check-label">Metadata</label>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="8" checked>
+          <label class="form-check-label">Properties</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="9" checked>
+          <label class="form-check-label">Shares</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="10" checked>
+          <label class="form-check-label">Schedules</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="11" checked>
+          <label class="form-check-label">schedule-actions</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="12" checked>
+          <label class="form-check-label">subscriptions</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="13" checked>
+          <label class="form-check-label">time-zones</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="14" checked>
+          <label class="form-check-label">user-accounts</label>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!--
 <h1 id="api-documentation-service-header" class="api-service">

@@ -307,6 +307,21 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
+  putApiTags: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
+    axios({
+      method: 'put',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/tags',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
   getFieldByName: function(name, successCb=null, errorCb=null) {
     axios({
       method: 'get',
@@ -395,6 +410,18 @@ var DOCS = {
     axios({
       method: 'get',
       url: 'https://docs.aylanetworks.com/api/v1/aad/status-codes',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  getTags: function(successCb=null, errorCb=null) {
+    axios({
+      method: 'get',
+      url: 'https://docs.aylanetworks.com/api/v1/aad/tags',
       headers: {
         'Accept': 'application/json'
       }
