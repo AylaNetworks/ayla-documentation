@@ -13,6 +13,7 @@ classesFromPage: has-pagebar
     <li><a href="#device-service-header">Device Service</a></li>
     <li><a href="#factory-proxy-service-header">Factory Proxy Service</a></li>
     <li><a href="#image-service-header">Image Service</a></li>
+    <li><a href="#iot-command-center-service-header">IoT Command Center</a></li>
     <li><a href="#log-service-header">Log Service</a></li>
     <li><a href="#notification-service-header">Notification Service</a></li>
     <li><a href="#rules-service-header">Rules Service</a></li>
@@ -240,180 +241,132 @@ classesFromPage: has-pagebar
   <div class="panel">
     <div class="form-row mb-2">
       <div class="col-auto">
-         <h3 style="margin:0 !important;line-height:1.9;">Filter</h3>
+         <h3 style="margin:0 !important;line-height:1.4;">Filter</h3>
       </div>
       <div class="col">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlinetags" value="option1" checked>
+          <input class="form-check-input" type="radio" name="inlinetags" value="all" checked>
           <label class="form-check-label">All</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlinetags" value="option1">
+          <input class="form-check-input" type="radio" name="inlinetags" value="none">
           <label class="form-check-label">None</label>
         </div>
       </div>
     </div>
-    <div class="form-row">
-      <div class="col-6">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="1" checked>
-          <label class="form-check-label">Access Rules</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="2" checked>
-          <label class="form-check-label">Contacts</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="3" checked>
-          <label class="form-check-label">Datapoints</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="4" checked>
-          <label class="form-check-label">Devices</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="5" checked>
-          <label class="form-check-label">Gateways</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="6" checked>
-          <label class="form-check-label">Groups</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="7" checked>
-          <label class="form-check-label">Metadata</label>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="8" checked>
-          <label class="form-check-label">Properties</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="9" checked>
-          <label class="form-check-label">Shares</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="10" checked>
-          <label class="form-check-label">Schedules</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="11" checked>
-          <label class="form-check-label">schedule-actions</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="12" checked>
-          <label class="form-check-label">subscriptions</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="13" checked>
-          <label class="form-check-label">time-zones</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="14" checked>
-          <label class="form-check-label">user-accounts</label>
-        </div>
-      </div>
+    <div class="form-row tag-row">
+      <div class="col-4"></div>
+      <div class="col-4"></div>
+      <div class="col-4"></div>
     </div>
   </div>
 </div>
 <!--
 <h1 id="api-documentation-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#api-documentation-service-content">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">API Documentation Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col-sm" data-toggle="collapse" href="#adms-service-content"><div class="name">ADMS</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="api-documentation-service-content"></div>
+<div class="collapse" id="adms-service-content"></div>
 -->
 <h1 id="application-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#application-service-content">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Application Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col" data-toggle="collapse" href="#application-service-content"><div class="name">Application Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
 <div class="collapse" id="application-service-content"></div>
 <h1 id="datastream-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#datastream-service-content">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Datastream Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col" data-toggle="collapse" href="#datastream-service-content"><div class="name">Datastream Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
 <div class="collapse" id="datastream-service-content"></div>
 <h1 id="device-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#device-service-content">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Device Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col" data-toggle="collapse" href="#device-service-content"><div class="name">Device Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
 <div class="collapse" id="device-service-content"></div>
 <h1 id="factory-proxy-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#factory-proxy-service-content">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Factory Proxy Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col" data-toggle="collapse" href="#factory-proxy-service-content"><div class="name">Factory Proxy Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
 <div class="collapse" id="factory-proxy-service-content"></div>
 <h1 id="image-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#image-service-content">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Image Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col" data-toggle="collapse" href="#image-service-content"><div class="name">Image Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
 <div class="collapse" id="image-service-content"></div>
-<h1 id="log-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#log-service-content">
+<h1 id="iot-command-center-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Log Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col" data-toggle="collapse" href="#iot-command-center-service-content"><div class="name">IoT Command Center</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="iot-command-center-service-content"></div>
+<h1 id="log-service-header" class="api-service">
+  <div class="api-service">
+    <div class="row">
+      <div class="col" data-toggle="collapse" href="#log-service-content"><div class="name">Log Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
 <div class="collapse" id="log-service-content"></div>
 <h1 id="notification-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#notification-service-content">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Notification Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col" data-toggle="collapse" href="#notification-service-content"><div class="name">Notification Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
 <div class="collapse" id="notification-service-content"></div>
 <h1 id="rules-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#rules-service-content">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Rules Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col" data-toggle="collapse" href="#rules-service-content"><div class="name">Rules Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
 <div class="collapse" id="rules-service-content"></div>
 <h1 id="user-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#user-service-content">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">User Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col" data-toggle="collapse" href="#user-service-content"><div class="name">User Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
 <div class="collapse" id="user-service-content"></div>
 <h1 id="zigbee-service-header" class="api-service">
-  <div class="api-service" data-toggle="collapse" href="#zigbee-service-content">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Zigbee Service</div></div>
-      <div class="col-auto"><input type="text" class="count" value=0 disabled></div>
+      <div class="col" data-toggle="collapse" href="#zigbee-service-content"><div class="name">Zigbee Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>

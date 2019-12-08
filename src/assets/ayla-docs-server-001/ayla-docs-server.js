@@ -1,9 +1,11 @@
+var adserver = 'https://docs.aylanetworks.com'
+
 var DOCS = {
 
   getApis: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis',
+      url: adserver + '/api/v1/adms/apis',
       headers: {
         'Accept': 'application/json'
       }
@@ -15,7 +17,7 @@ var DOCS = {
   postApi: function(requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'post',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis',
+      url: adserver + '/api/v1/adms/apis',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -30,7 +32,7 @@ var DOCS = {
   getApi: function(apiId, successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId,
+      url: adserver + '/api/v1/adms/apis/' + apiId,
       headers: {
         'Accept': 'application/json'
       }
@@ -44,7 +46,7 @@ var DOCS = {
     requestData.description = description
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/description',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/description',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -63,7 +65,7 @@ var DOCS = {
     requestData.method = method
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/method',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/method',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -80,7 +82,7 @@ var DOCS = {
     requestData.name = name
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/name',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/name',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -97,7 +99,7 @@ var DOCS = {
     requestData.notes = notes
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/notes',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/notes',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -114,7 +116,7 @@ var DOCS = {
     requestData.path = path
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/path',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/path',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -129,7 +131,7 @@ var DOCS = {
   putApiPathParameters: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/path-parameters',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/path-parameters',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -144,7 +146,7 @@ var DOCS = {
   putApiQueryParameters: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/query-parameters',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/query-parameters',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -161,7 +163,7 @@ var DOCS = {
     requestData.requestData = requestDataIn
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/request-data',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/request-data',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -178,7 +180,7 @@ var DOCS = {
     requestData.requestDescription = requestDescription
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/request-description',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/request-description',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -195,7 +197,7 @@ var DOCS = {
     requestData.responseDescription = responseDescription
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/response-description',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/response-description',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -214,7 +216,7 @@ var DOCS = {
     requestData.service = service
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/service',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/service',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -233,7 +235,7 @@ var DOCS = {
     requestData.status = status
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/status',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/status',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -250,7 +252,7 @@ var DOCS = {
     requestData.customText = customText
     axios({
       method: 'post',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/status-codes/' + statusCode,
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/status-codes/' + statusCode,
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -267,7 +269,7 @@ var DOCS = {
     requestData.customText = customText
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/status-codes/' + statusCode,
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/status-codes/' + statusCode,
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -282,7 +284,7 @@ var DOCS = {
   deleteApiStatusCode: function(apiId, statusCode, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'delete',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/status-codes/' + statusCode,
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/status-codes/' + statusCode,
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json'
@@ -295,7 +297,7 @@ var DOCS = {
   putApiStatusCodes: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/status-codes',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/status-codes',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -310,7 +312,7 @@ var DOCS = {
   putApiTags: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'put',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/apis/' + apiId + '/tags',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/tags',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -325,7 +327,7 @@ var DOCS = {
   getFieldByName: function(name, successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/fields/' + name,
+      url: adserver + '/api/v1/adms/fields/' + name,
       headers: {
         'Accept': 'application/json'
       }
@@ -337,7 +339,7 @@ var DOCS = {
   getMethods: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/methods',
+      url: adserver + '/api/v1/adms/methods',
       headers: {
         'Accept': 'application/json'
       }
@@ -349,7 +351,7 @@ var DOCS = {
   getPaths: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/paths',
+      url: adserver + '/api/v1/adms/paths',
       headers: {
         'Accept': 'application/json'
       }
@@ -361,7 +363,7 @@ var DOCS = {
   getPathParameters: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/path-parameters',
+      url: adserver + '/api/v1/adms/path-parameters',
       headers: {
         'Accept': 'application/json'
       }
@@ -373,7 +375,7 @@ var DOCS = {
   getQueryParameters: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/query-parameters',
+      url: adserver + '/api/v1/adms/query-parameters',
       headers: {
         'Accept': 'application/json'
       }
@@ -385,7 +387,7 @@ var DOCS = {
   getServices: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/services',
+      url: adserver + '/api/v1/adms/services',
       headers: {
         'Accept': 'application/json'
       }
@@ -397,7 +399,7 @@ var DOCS = {
   getStatuses: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/statuses',
+      url: adserver + '/api/v1/adms/statuses',
       headers: {
         'Accept': 'application/json'
       }
@@ -409,7 +411,7 @@ var DOCS = {
   getStatusCodes: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/status-codes',
+      url: adserver + '/api/v1/adms/status-codes',
       headers: {
         'Accept': 'application/json'
       }
@@ -421,7 +423,7 @@ var DOCS = {
   getTags: function(successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: 'https://docs.aylanetworks.com/api/v1/aad/tags',
+      url: adserver + '/api/v1/adms/tags',
       headers: {
         'Accept': 'application/json'
       }

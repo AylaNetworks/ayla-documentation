@@ -1161,7 +1161,7 @@ function buildApi(apiElement, api, collapsed=true) {
   $(apiElement).addClass(api.method.name)
 
   if(!api.tags.length) {
-    console.log('No tags on ' + api.name)
+    console.log('No tags on id=' + api.id + ', name=' + api.name)
   } else {
     for(let i=0; i<api.tags.length; i++) {
       let tagClass = 'tag-' + api.tags[i].id
@@ -1313,15 +1313,44 @@ On Load
 
 $(function() {
   //renderServices()
+  writeRegionUrls()
+
   DOCS.getApis(function(response) {
     for(let i = 0; i < response.data.length; i++) {
       renderApi(response.data[i])
     }
-    writeRegionUrls()
     displayAccounts()
   }, function(error) {
     console.log(error)
   })
+
+  DOCS.getTags(function(response) {
+    let tags = response.data
+    let row = $('#filter-section div.tag-row')
+    let cols = $(row).children('div')
+    let tagsPerCol = Math.floor(tags.length/cols.length)
+    let remainder = tags.length%cols.length
+
+    let t=0
+    for(let i=0; i<cols.length; i++) {
+      let r = 0
+      if(remainder > 0) {
+        r = 1
+        remainder--
+      }
+      for(let j=0; j<tagsPerCol+r; j++) {
+        let input = $('<input class="form-check-input" type="checkbox" value="' + tags[t].id + '" checked>')
+        let label = $('<label class="form-check-label">' + tags[t].name + '</label>')
+        let div = $('<div class="form-check">')
+        div.append(input)
+        div.append(label)
+        cols.eq(i).append(div)
+        t++
+      }
+    }
+
+  }, function(error) {console.log(error)})
+
 })
 
 /*------------------------------------------------------
@@ -1348,7 +1377,36 @@ Tags
 ------------------------------------------------------*/
 
 $(function() {
-  $('#filter-section input:checkbox').bind('change', function() {
+  $('#filter-section input:radio').bind('change', function() {
+    if($(this).val() == 'all') {
+      let checkboxes = $('#filter-section input:checkbox')
+      $(checkboxes).prop('checked', true)
+      for(let i=0; i<checkboxes.length; i++) {
+        let tagClass = 'tag-' + $(checkboxes.eq(i)).val()
+        let tagShowClass = 'tag-show-' + $(checkboxes.eq(i)).val()
+        $('div.api.' + tagClass).addClass(tagShowClass).show()
+      }
+      let apiServiceHeaders = $('h1.api-service')
+      for(let i=0; i<apiServiceHeaders.length; i++) {
+        let apiServiceContent = $(apiServiceHeaders.eq(i)).next('div')
+        let count = $(apiServiceContent).children('div.api:not([style*="display: none"])').length
+        $(apiServiceHeaders.eq(i)).find('input.count').val(count)
+      }
+    } else {
+      $('#filter-section input:checkbox').prop('checked', false)
+      $('div.api').removeClass(function (index, className) {return (className.match (/(^|\s)tag-show-\S+/g) || []).join(' ')})
+      $('div.api').hide()
+      let apiServiceHeaders = $('h1.api-service')
+      for(let i=0; i<apiServiceHeaders.length; i++) {
+        $(apiServiceHeaders.eq(i)).find('input.count').val(0)
+      }
+    }
+  })
+})
+
+$(function() {
+  $('#filter-section div.tag-row').delegate('input:checkbox', 'change', function(event) {
+    $('#filter-section input:radio').prop("checked", false)
     let tagClass = 'tag-' + $(this).val()
     let tagShowClass = 'tag-show-' + $(this).val()
     if($(this).prop('checked')) {
@@ -1363,5 +1421,12 @@ $(function() {
       let count = $(apiServiceContent).children('div.api:not([style*="display: none"])').length
       $(apiServiceHeaders.eq(i)).find('input.count').val(count)
     }
+  })
+})
+
+$(function() {
+  $('div.api-service div.count').click(function(event) {
+    let content = $(this).closest('h1.api-service').next('div')
+    console.log('here')
   })
 })

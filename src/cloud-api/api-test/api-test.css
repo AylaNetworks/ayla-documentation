@@ -34,7 +34,7 @@ div.panel label {
   padding-left:3px;
 }
 
-div.panel input.form-check-input {
+div.panel input.form-check-input[type='checkbox'] {
   margin-top: 6px;
 }
 
@@ -82,7 +82,7 @@ h1.api-service div.name {
   padding: 4px 12px; 
   font-size: .90rem !important;
   font-weight: bold !important;
-  line-height: 26px !important;
+  line-height: 33px !important;
 }
 
 h1.api-service div.count {
@@ -177,7 +177,8 @@ div.api div.content div.query-parameter span.text {font-size: 90%;}
 
 div.api div.content input {margin-bottom: .5rem;}
 
-div.api div.content div.refresh img {cursor: pointer; margin:0 !important; padding:0 !important;}
+div.api-service input[disabled] {pointer-events:none}
+div.api-service div.refresh img {cursor: pointer; margin:0 !important; padding:0 !important;}
 
 div.api div.content pre {margin:0 0 .5rem 0 !important;}
 
