@@ -118,7 +118,7 @@ mysql -u root -s -N -p
 </pre>
 
 <pre>
-mysqldump -u root -p ayla_api_documentation > ayla_api_documentation-`date '+%FT%T'`.sql
+mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 </pre>
 
 [Google JSON Style Guide](https://google.github.io/styleguide/jsoncstyleguide.xml)

@@ -150,10 +150,14 @@ div.api div.content div.service {
   margin-bottom: .5rem;
 }
 
-div.api div.content div.description {
-  font-size: 90%;
-  margin-bottom: .5rem;
-}
+div.api div.content div.description,
+div.api div.content div.request-description,
+div.api div.content div.path-parameters-description,
+div.api div.content div.query-parameters-description,
+div.api div.content div.request-data-description,
+div.api div.content div.response-description,
+div.api div.content div.response-data-description,
+div.api div.content div.status-codes-description {font-size: 90%; margin-bottom: .5rem;}
 
 div.api div.content div.heading {
   font-size: 105%;
@@ -177,20 +181,9 @@ div.api div.content div.query-parameter span.text {font-size: 90%;}
 
 div.api div.content input {margin-bottom: .5rem;}
 
-div.api-service input[disabled] {pointer-events:none}
-div.api-service div.refresh img {cursor: pointer; margin:0 !important; padding:0 !important;}
+div.api div.refresh img {cursor: pointer; margin:0 !important; padding:0 !important;}
 
 div.api div.content pre {margin:0 0 .5rem 0 !important;}
-
-div.api div.content div.request-description {
-  font-size: 90%;
-  margin-bottom: .5rem;
-}
-
-div.api div.content div.response-description {
-  font-size: 90%;
-  margin-bottom: .5rem;
-}
 
 div.api div.content pre.request-data-element {
   background: white;
@@ -302,17 +295,17 @@ div.field {
   display: inline-block;
 }
 
-span.field-text {
+div.field span.field-text {
   visibility: hidden;
   background-color: white;
   color: black;
   text-align: center;
   padding: 12px;
   border-radius: 3px;
- 
-  /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
+  top: -12px;
+  left: 105%; 
 }
 
 div.field:hover span.field-text {

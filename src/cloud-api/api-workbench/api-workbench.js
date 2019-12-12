@@ -9,19 +9,33 @@ $(function () {
     if (apiId) {
       DOCS.getApi(apiId, 
         function (response) {
-          $('#api-create-btn').prop('disabled', true)
-          $('#api-delete-btn').prop('disabled', false)
+          //$('#api-create-btn').prop('disabled', true)
+          //$('#api-delete-btn').prop('disabled', false)
           reset()
 
           let api = response.data
           $('form.api-workbench').data('id', api.id)
+
+          $('#api-description-textarea').val(api.description)
+          $('#api-request-description-textarea').val(api.requestDescription)
+          $('#api-path-parameters-description-textarea').val(api.pathParametersDescription)
+          $('#api-query-parameters-description-textarea').val(api.queryParametersDescription)
+          $('#api-request-data-description-textarea').val(api.requestDataDescription)
+          $('#api-response-data-description-textarea').val(api.responseDataDescription)
+          $('#api-response-description-textarea').val(api.responseDescription)
+          $('#api-status-codes-description-textarea').val(api.statusCodesDescription)
+
           $('#api-method-select').val(api.method.id)
           $('#api-path-input').val(api.path)
           $('#api-name-input').val(api.name)
           $('#api-service-select').val(api.service.id)
           $('#api-status-select').val(api.status.id)
-          $('#api-description-textarea').val(api.description)
-          $('#api-request-description-textarea').val(api.requestDescription)
+          $('#api-notes-textarea').val(api.notes)
+
+          let requestData = api.requestData
+          if(requestData == null) {requestData = ''}
+          else if(requestData.length) {requestData = JSON.stringify(JSON.parse(requestData), null, 2)}
+          $('#api-request-data-textarea').val(requestData)
 
           for (let i = 0; i < api.pathParameters.length; i++) {
             appendPathParameter(
@@ -45,13 +59,6 @@ $(function () {
             )
           }
 
-          let requestData = api.requestData
-          if(requestData == null) {requestData = ''}
-          else if(requestData.length) {requestData = JSON.stringify(JSON.parse(requestData), null, 2)}
-          $('#api-request-data-textarea').val(requestData)
-
-          $('#api-response-description-textarea').val(api.responseDescription)
-
           for (let i = 0; i < api.statusCodes.length; i++) {
             appendStatusCode(api.statusCodes[i].code, api.statusCodes[i].baseText, api.statusCodes[i].customText)
           }
@@ -60,16 +67,14 @@ $(function () {
             appendTag(api.tags[i].id, api.tags[i].name)
           }
 
-          $('#api-notes-textarea').val(api.notes)
-
           $('form.api-workbench div.edit-mode').show()
         }, 
         function(error) {
-          saveErrorCb(btnElement, error)
+          wbErrorCb(btnElement, error)
         }
       )
     } else {
-      console.log('The appId field is empty.')
+      displayMsg('The appId field is empty.')
     }
   })
 })
@@ -80,8 +85,8 @@ Clear
 
 $(function () {
   $('#api-clear-btn').click(function (event) {
-    $('#api-create-btn').prop('disabled', false)
-    $('#api-delete-btn').prop('disabled', true)
+    //$('#api-create-btn').prop('disabled', false)
+    //$('#api-delete-btn').prop('disabled', true)
     reset()
     $('#api-id-input').val('')
     $('form.api-workbench div.edit-mode').hide()
@@ -94,6 +99,7 @@ Create
 
 $(function () {
   $('#api-create-btn').click(function (event) {
+
     let method = {}
     method.id = $('#api-method-select option:selected').val()
     if(method.id.length) {method.name = $('#api-method-select option:selected').text()}
@@ -147,6 +153,15 @@ $(function () {
       statusCodes.push(sc)
     }
 
+    let tags = []
+    let tRows = $('#api-tag-rows div.api-tag-row')
+    for(let i=0; i<tRows.length; i++) {
+      let t = {}
+      t.id = $(tRows).eq(i).data('id')
+      t.name = $(tRows).eq(i).find('input.name').val()
+      tags.push(t)
+    }
+
     let requestData = {}
     requestData.description = $('#api-description-textarea').val()
     requestData.method = method
@@ -154,25 +169,28 @@ $(function () {
     requestData.notes = $('#api-notes-textarea').val()
     requestData.path = $('#api-path-input').val()
     requestData.pathParameters = pathParameters
+    requestData.pathParametersDescription = $('#api-path-parameters-description-textarea').val()
     requestData.queryParameters = queryParameters
+    requestData.queryParametersDescription = $('#api-query-parameters-description-textarea').val()
     requestData.requestData = rd
+    requestData.requestDataDescription = $('#api-request-data-description-textarea').val()
     requestData.requestDescription = $('#api-request-description-textarea').val()
+    requestData.responseDataDescription = $('#api-response-data-description-textarea').val()
     requestData.responseDescription = $('#api-response-description-textarea').val()
     requestData.service = service
     requestData.status = status
     requestData.statusCodes = statusCodes
-    requestData.tags = []
-
-    console.log(JSON.stringify(requestData, null, 2))
+    requestData.statusCodesDescription = $('#api-status-codes-description-textarea').val()
+    requestData.tags = tags
 
     let btnElement = this
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     DOCS.postApi(requestData, accessToken,
       function(response) {
         $('#api-id-input').val(response.data.apiId)
-        saveSuccessCb(btnElement, response)
+        wbSuccessCb(btnElement, response)
       }, 
-      function(error) {saveErrorCb(btnElement, error)}
+      function(error) {wbErrorCb(btnElement, error)}
     )
   })
 })
@@ -180,44 +198,13 @@ $(function () {
 /*------------------------------------------------------
 Delete
 ------------------------------------------------------*/
-
+/*
 $(function () {
   $('#api-delete-btn').click(function (event) {
     console.log('delete')
   })
 })
-
-/*------------------------------------------------------
-createApiForTest
-------------------------------------------------------*/
-
-function createApiForTest() {
-  $('form.api-workbench').data('id', 0)
-  $('#api-id-input').val('')
-  $('#api-method-select').val(1)
-  $('#api-path-input').val('/api/v1/books/{bookId}/chapters')
-  $('#api-name-input').val('getChapters')
-  $('#api-service-select').val(7)
-  $('#api-status-select').val(6)
-  $('#api-description-textarea').val('This API is for API Browser testing. Please do not use.')
-  $('#api-request-description-textarea').val('This is the request description.')
-  resetPathParametersSelect()
-  $('#api-path-parameter-rows').empty()
-  appendPathParameter('3', 'devId', 'integer', 'Unique device identifier. AKA key.', 'My unique device id', 0)
-  appendPathParameter('10', 'propName', 'string', 'Device property name.', '', 1)
-  resetQueryParametersSelect()
-  $('#api-query-parameter-rows').empty()
-  appendQueryParameter('4', 'dsn', 'string', 'Device serial number.', 'My device serial number', 0)
-  $('#api-request-data-textarea').val(JSON.stringify(JSON.parse('{"user":{"access_token":"<span class=\'access-token\'></span>"}}'), null, 2))
-  $('#api-response-description-textarea').val('This is the response description.')
-  resetStatusCodesSelect()
-  $('#api-status-code-rows').empty()
-  appendStatusCode('200', 'OK', 'My 200 custom text')
-  appendStatusCode('401', 'Unauthorized', '')
-  appendStatusCode('404', 'Not Found', '')
-  $('#api-notes-textarea').val('These are notes.')
-}
-
+*/
 /*------------------------------------------------------
 reset
 ------------------------------------------------------*/
@@ -227,6 +214,14 @@ function reset() {
   $('form.api-workbench').data('id', 0)
 
   $('#api-description-textarea').val('')
+  $('#api-request-description-textarea').val('')
+  $('#api-path-parameters-description-textarea').val('')
+  $('#api-query-parameters-description-textarea').val('')
+  $('#api-request-data-description-textarea').val('')
+  $('#api-response-data-description-textarea').val('')
+  $('#api-response-description-textarea').val('')
+  $('#api-status-codes-description-textarea').val('')
+
   $('#api-method-select').val('')
   $('#api-name-input').val('')
   $('#api-notes-textarea').val('')
@@ -236,8 +231,6 @@ function reset() {
   $('#api-query-parameter-rows').empty()
   resetQueryParametersSelect()
   $('#api-request-data-textarea').val('')
-  $('#api-request-description-textarea').val('')
-  $('#api-response-description-textarea').val('')
   $('#api-service-select').val('')
   $('#api-status-select').val('')
   $('#api-status-code-rows').empty()
@@ -258,7 +251,6 @@ $(function () {
     let type = $('#api-path-parameter-ctl-row input.type').val()
     let baseText = $('#api-path-parameter-ctl-row input.description').attr('placeholder')
     let customText = $('#api-path-parameter-ctl-row input.description').val()
-    console.log(id + ' ' + name + ' ' + pos + ' ' + type + ' ' + baseText + ' ' + customText)
     insertPathParameter(id, name, type, baseText, customText, pos)
     resetPathParametersSelect()
   })
@@ -357,7 +349,6 @@ $(function () {
     let type = $('#api-query-parameter-ctl-row input.type').val()
     let baseText = $('#api-query-parameter-ctl-row input.description').attr('placeholder')
     let customText = $('#api-query-parameter-ctl-row input.description').val()
-    console.log(id + ' ' + name + ' ' + pos + ' ' + type + ' ' + baseText + ' ' + customText)
     insertQueryParameter(id, name, type, baseText, customText, pos)
     resetQueryParametersSelect()
   })
@@ -453,7 +444,6 @@ $(function () {
     let code = $('#api-status-code-ctl-row select option:selected').val()
     let baseText = $('#api-status-code-ctl-row input.text').attr('placeholder')
     let customText = $('#api-status-code-ctl-row input.text').val()
-    console.log(code + ' ' + baseText + ' ' + customText)
     insertStatusCode(code, baseText, customText)
     resetStatusCodesSelect()
   })
@@ -621,12 +611,12 @@ $(function () {
   $('#api-description-btn').click(function (event) {
     let btnElement = this
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     if(apiId) {
       let description = $('#api-description-textarea').val()
       DOCS.putApiDescription(apiId, description, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
       )
     }
   })
@@ -640,12 +630,12 @@ $(function () {
   $('#api-method-btn').click(function (event) {
     let btnElement = this
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     if(apiId) {
       let methodId = $('#api-method-select option:selected').val()
       DOCS.putApiMethod(apiId, methodId, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
       )
     }
   })
@@ -659,12 +649,12 @@ $(function () {
   $('#api-name-btn').click(function (event) {
     let btnElement = this
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     if(apiId) {
       let name = $('#api-name-input').val()
       DOCS.putApiName(apiId, name, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
       )
     }
   })
@@ -678,12 +668,12 @@ $(function () {
   $('#api-notes-btn').click(function (event) {
     let btnElement = this
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     if(apiId) {
       let notes = $('#api-notes-textarea').val()
       DOCS.putApiNotes(apiId, notes, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
       )
     }
   })
@@ -697,12 +687,12 @@ $(function () {
   $('#api-path-btn').click(function (event) {
     let btnElement = this
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     if(apiId) {
       let path = $('#api-path-input').val()
       DOCS.putApiPath(apiId, path, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
       )
     }
   })
@@ -729,11 +719,30 @@ $(function () {
     let requestData = {}
     requestData.pathParameters = arr
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     DOCS.putApiPathParameters(apiId, requestData, accessToken,
-      function(response) {saveSuccessCb(btnElement, response)}, 
-      function(error) {saveErrorCb(btnElement, error)}
+      function(response) {wbSuccessCb(btnElement, response)}, 
+      function(error) {wbErrorCb(btnElement, error)}
     )
+  })
+})
+
+/*------------------------------------------------------
+Save Path Parameters Description
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-path-parameters-description-btn').click(function (event) {
+    let btnElement = this
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#adms-access-token').val()
+    if(apiId) {
+      let pathParametersDescription = $('#api-path-parameters-description-textarea').val()
+      DOCS.putApiPathParametersDescription(apiId, pathParametersDescription, accessToken,
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
+      )
+    }
   })
 })
 
@@ -758,11 +767,30 @@ $(function () {
     let requestData = {}
     requestData.queryParameters = arr
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     DOCS.putApiQueryParameters(apiId, requestData, accessToken,
-      function(response) {saveSuccessCb(btnElement, response)}, 
-      function(error) {saveErrorCb(btnElement, error)}
+      function(response) {wbSuccessCb(btnElement, response)}, 
+      function(error) {wbErrorCb(btnElement, error)}
     )
+  })
+})
+
+/*------------------------------------------------------
+Save Query Parameters Description
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-query-parameters-description-btn').click(function (event) {
+    let btnElement = this
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#adms-access-token').val()
+    if(apiId) {
+      let queryParametersDescription = $('#api-query-parameters-description-textarea').val()
+      DOCS.putApiQueryParametersDescription(apiId, queryParametersDescription, accessToken,
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
+      )
+    }
   })
 })
 
@@ -774,14 +802,33 @@ $(function () {
   $('#api-request-data-btn').click(function (event) {
     let btnElement = this
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     if(apiId) {
       let requestData = $('#api-request-data-textarea').val()
       if(requestData == null) {requestData = ''}
       else if(requestData.length) {requestData = JSON.stringify(JSON.parse(requestData))}
       DOCS.putApiRequestData(apiId, requestData, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
+      )
+    }
+  })
+})
+
+/*------------------------------------------------------
+Save Request Data Description
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-request-data-description-btn').click(function (event) {
+    let btnElement = this
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#adms-access-token').val()
+    if(apiId) {
+      let description = $('#api-request-data-description-textarea').val()
+      DOCS.putApiRequestDataDescription(apiId, description, accessToken,
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
       )
     }
   })
@@ -795,12 +842,31 @@ $(function () {
   $('#api-request-description-btn').click(function (event) {
     let btnElement = this
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     if(apiId) {
       let description = $('#api-request-description-textarea').val()
       DOCS.putApiRequestDescription(apiId, description, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
+      )
+    }
+  })
+})
+
+/*------------------------------------------------------
+Save Response Data Description
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-response-data-description-btn').click(function (event) {
+    let btnElement = this
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#adms-access-token').val()
+    if(apiId) {
+      let description = $('#api-response-data-description-textarea').val()
+      DOCS.putApiResponseDataDescription(apiId, description, accessToken,
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
       )
     }
   })
@@ -814,12 +880,12 @@ $(function () {
   $('#api-response-description-btn').click(function (event) {
     let btnElement = this
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     if(apiId) {
       let description = $('#api-response-description-textarea').val()
       DOCS.putApiResponseDescription(apiId, description, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
       )
     }
   })
@@ -833,12 +899,12 @@ $(function () {
   $('#api-service-btn').click(function (event) {
     let btnElement = this
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     if(apiId) {
       let serviceId = $('#api-service-select option:selected').val()
       DOCS.putApiService(apiId, serviceId, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
       )
     }
   })
@@ -852,12 +918,12 @@ $(function () {
   $('#api-status-btn').click(function (event) {
     let btnElement = this
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     if(apiId) {
       let statusId = $('#api-status-select option:selected').val()
       DOCS.putApiStatus(apiId, statusId, accessToken,
-        function(response) {saveSuccessCb(btnElement, response)}, 
-        function(error) {saveErrorCb(btnElement, error)}
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
       )
     }
   })
@@ -882,11 +948,30 @@ $(function () {
     let requestData = {}
     requestData.statusCodes = arr
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     DOCS.putApiStatusCodes(apiId, requestData, accessToken,
-      function(response) {saveSuccessCb(btnElement, response)}, 
-      function(error) {saveErrorCb(btnElement, error)}
+      function(response) {wbSuccessCb(btnElement, response)}, 
+      function(error) {wbErrorCb(btnElement, error)}
     )
+  })
+})
+
+/*------------------------------------------------------
+Save Status Codes Description
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-status-codes-description-btn').click(function (event) {
+    let btnElement = this
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#adms-access-token').val()
+    if(apiId) {
+      let description = $('#api-status-codes-description-textarea').val()
+      DOCS.putApiStatusCodesDescription(apiId, description, accessToken,
+        function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
+      )
+    }
   })
 })
 
@@ -908,10 +993,10 @@ $(function () {
     let requestData = {}
     requestData.tags = arr
     let apiId = $('form.api-workbench').data('id')
-    let accessToken = $('#aca-access-token').val()
+    let accessToken = $('#adms-access-token').val()
     DOCS.putApiTags(apiId, requestData, accessToken,
-      function(response) {saveSuccessCb(btnElement, response)}, 
-      function(error) {saveErrorCb(btnElement, error)}
+      function(response) {wbSuccessCb(btnElement, response)}, 
+      function(error) {wbErrorCb(btnElement, error)}
     )
   })
 })
@@ -920,20 +1005,22 @@ $(function () {
 Error Handling
 ------------------------------------------------------*/
 
-function saveSuccessCb(btnElement, response) {
+function wbSuccessCb(btnElement, response) {
   if($(btnElement).hasClass('save')) {$(btnElement).removeClass('btn-outline-secondary').addClass('btn-secondary')}
-  console.log(JSON.stringify(response.data, null, 2))
 }
 
-function saveErrorCb(btnElement, error) {
+function wbErrorCb(btnElement, error) {
   $(btnElement).removeClass('btn-outline-secondary').addClass('btn-danger')
-  displayMsg(error.status, error.statusText, JSON.stringify(error.data, null, 2))
+  displayMsg(JSON.stringify(error.data, null, 2), error.status, error.statusText)
 }
 
-function displayMsg(code, text, msg) {
-  $('#msg-box pre.status').html(code + ': ' + text)
+function displayMsg(msg, code, text) {
   if(msg.length && msg != '""') {
-    $('#msg-box pre.msg').html(msg)
+    $('#msg-box div.msg pre').html(msg)
+  }
+  if(code) {
+    $('#msg-box div.status pre').html(code + ': ' + text)
+    $('#msg-box div.status').show()
   }
   $('#msg-box').show()
 }
@@ -942,6 +1029,9 @@ $(function () {
   $('#msg-box button').click(function (event) {
     $('form.api-workbench button.save').removeClass('btn-danger').addClass('btn-outline-secondary')
     $('#msg-box').hide()
+    $('#msg-box div.msg pre').html('')
+    $('#msg-box div.status pre').html('')
+    $('#msg-box div.status').hide()
   })
 })
 
@@ -981,7 +1071,7 @@ On Load
 ------------------------------------------------------*/
 
 $(function() {
-  $('#aca-access-token').val(localStorage.getItem('aca-access-token'))
+  $('#adms-access-token').val(localStorage.getItem('adms-access-token'))
 
   DOCS.getMethods(function(response) {
     let selectElement = $('#api-method-select')

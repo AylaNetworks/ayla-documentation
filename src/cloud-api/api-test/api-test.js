@@ -118,13 +118,16 @@ function formatUrl(api) {
     let details = $(qpInputElements.eq(i)).data('details')
     let value = $(qpInputElements.eq(i)).val()
 
-    if(details.type == 'array') {
-      let values = value.split(',')
-      for(let j=0; j<values.length; j++) {
-        url = addQueryParameter(count++, url, details.name, values[j].trim())
+    if(value) {
+      if(details.type == 'array') {
+        let values = value.split(',')
+        for(let j=0; j<values.length; j++) {
+          url = addQueryParameter(count++, url, details.name, values[j].trim())
+        }
+      } else {
+        value = value.replace(/\%/g, '%25')
+        url = addQueryParameter(count++, url, details.name, value)
       }
-    } else {
-      url = addQueryParameter(count++, url, details.name, value)
     }
   }
 
@@ -680,7 +683,7 @@ function setDeviceFields(device=null) {
     for(let i=0; i < devIdInputs.length; i++) { 
       $(devIdInputs.eq(i)).val(device.key)
     }
-    let dsnInputs = $('div.path-parameter input[placeholder = "dsn"]')
+    let dsnInputs = $('div.api input[placeholder = "dsn"]')
     for(let i=0; i < dsnInputs.length; i++) { 
       $(dsnInputs.eq(i)).val(device.dsn)
     }
@@ -1101,6 +1104,7 @@ function buildApi(apiElement, api, collapsed=true) {
 
     if(api.pathParameters.length) {
       content.append('<div class="subheading">Path Parameters</div>')
+      if(api.pathParametersDescription) {content.append('<div class="path-parameters-description">' + api.pathParametersDescription + '</div>')}
       for(let i=0; i < api.pathParameters.length; i++) { 
         content.append(createPathParameter(api.pathParameters[i]))
       }
@@ -1108,6 +1112,7 @@ function buildApi(apiElement, api, collapsed=true) {
 
     if(api.queryParameters.length) {
       content.append('<div class="subheading">Query Parameters</div>')
+      if(api.queryParametersDescription) {content.append('<div class="query-parameters-description">' + api.queryParametersDescription + '</div>')}
       for(let i=0; i < api.queryParameters.length; i++) { 
         content.append(createQueryParameter(api.queryParameters[i]))
       }
@@ -1115,12 +1120,12 @@ function buildApi(apiElement, api, collapsed=true) {
 
     if(api.requestData.length) {
       content.append('<div class="subheading">Request Data</div>')
+      if(api.requestDataDescription) {content.append('<div class="request-data-description">' + api.requestDataDescription + '</div>')}
       content.append(''
         + '<div class="btn-group">'
         + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-request-data-element">Hide</button>'
         + '<button type="button" class="btn btn-outline-secondary btn-sm">Reset</button>'
         + '</div>'
-        //+ '<pre class="request-data-element" contenteditable="true">' + JSON.stringify(api.requestData, null, 2) + '</pre>'
         + '<pre class="request-data-element" contenteditable="true">' + JSON.stringify(JSON.parse(api.requestData), null, 2) + '</pre>'
       )
     }
@@ -1138,6 +1143,7 @@ function buildApi(apiElement, api, collapsed=true) {
   if(api.responseDescription) {content.append('<div class="response-description">' + api.responseDescription + '</div>')}
 
   content.append('<div class="subheading">Response Data</div>')
+  if(api.responseDataDescription) {content.append('<div class="response-data-description">' + api.responseDataDescription + '</div>')}
   content.append(''
     + '<div class="btn-group">'
     + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>'
@@ -1148,6 +1154,7 @@ function buildApi(apiElement, api, collapsed=true) {
 
   if(api.statusCodes) {
     content.append('<div class="subheading">Status Codes</div>')
+    if(api.statusCodesDescription) {content.append('<div class="status-codes-description">' + api.statusCodesDescription + '</div>')}
     let sc = $('<div class="status-codes">')
     for(let i=0; i < api.statusCodes.length; i++) {
       sc.append(createStatusCode(api.statusCodes[i]))
@@ -1235,12 +1242,24 @@ createQueryParameter
 ------------------------------------------------------*/
 
 function createQueryParameter(queryParameter) {
-  let inputEl = $('<input type="text" class="form-control form-control-sm value" placeholder="' + queryParameter.name + '">')
-  inputEl.data('details', queryParameter)
-  let inputElCol = $('<div class="col-12 col-lg-3">')
-  inputElCol.append(inputEl)
+  let element = ''
+  if(queryParameter.choices && queryParameter.choices.length) {
+    element = $('<select class="form-control form-control-sm"></select>')
+    let choices = queryParameter.choices.split(',')
+    for(let i=0; i<choices.length; i++) {
+      let option = $('<option/>')
+      option.text(choices[i])
+      element.append(option)
+    }
+  } else {
+    element = $('<input type="text" class="form-control form-control-sm value" placeholder="' + queryParameter.name + '">')
+  }
+  element.data('details', queryParameter)
+
+  let elementCol = $('<div class="col-12 col-lg-3">')
+  elementCol.append(element)
   let row = $('<div class="form-row query-parameter">')
-  row.append(inputElCol)
+  row.append(elementCol)
   row.append(''
     + '<div class="col-12 col-lg-9">'
     + '<div>'
@@ -1250,21 +1269,6 @@ function createQueryParameter(queryParameter) {
     + '</div>'
   )
   return row
-
-  /*
-  return ''
-  + '<div class="form-row query-parameter">'
-  + '<div class="col-12 col-lg-3">'
-  + '<input type="text" class="form-control form-control-sm value" placeholder="' + queryParameter.name + '">'
-  + '</div>'
-  + '<div class="col-12 col-lg-9">'
-  + '<div>'
-  + '<span class="name">' + queryParameter.name + '</span>. '
-  + '<span  class="text">' + (queryParameter.customText ? queryParameter.customText : queryParameter.baseText) + '</span>'
-  + '</div>'
-  + '</div>'
-  + '</div>'
-  */
 }
 
 /*------------------------------------------------------
@@ -1315,7 +1319,7 @@ $(function() {
   //renderServices()
   writeRegionUrls()
 
-  DOCS.getApis(function(response) {
+  DOCS.getApisWhereStatusId(2, function(response) {
     for(let i = 0; i < response.data.length; i++) {
       renderApi(response.data[i])
     }
@@ -1427,6 +1431,6 @@ $(function() {
 $(function() {
   $('div.api-service div.count').click(function(event) {
     let content = $(this).closest('h1.api-service').next('div')
-    console.log('here')
+    console.log('Clicked on service counter')
   })
 })

@@ -1,5 +1,5 @@
 ---
-title: API Test
+title: API Browser v1.1
 layout: api-test.html
 e: block
 classesFromPage: has-pagebar
@@ -21,7 +21,7 @@ classesFromPage: has-pagebar
     <li><a href="#zigbee-service-header">Zigbee Service</a></li>
   </ul>
 </aside>
-<p style="font-size:90%;">If account tokens expire, click ```Accounts > Account > Details > Return Tokens > Get Tokens```.</p>
+<p style="font-size:90%;">To refresh access tokens, click ```Accounts > Account > Details > Return Tokens > Get Tokens```.</p>
 <div class="btn-group control-btns">
   <button id="directions-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Directions</button>
   <button id="accounts-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Accounts</button>
@@ -262,7 +262,7 @@ classesFromPage: has-pagebar
   </div>
 </div>
 <!--
-<h1 id="api-documentation-service-header" class="api-service">
+<h1 id="adms-service-header" class="api-service">
   <div class="api-service">
     <div class="row">
       <div class="col-sm" data-toggle="collapse" href="#adms-service-content"><div class="name">ADMS</div></div>

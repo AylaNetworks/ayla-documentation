@@ -14,6 +14,30 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
+  getApisWhereServiceIdStatusId: function(serviceId, statusId, successCb=null, errorCb=null) {
+    axios({
+      method: 'get',
+      url: adserver + '/api/v1/adms/apis?service=' + serviceId + '&status=' + statusId,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  getApisWhereStatusId: function(statusId, successCb=null, errorCb=null) {
+    axios({
+      method: 'get',
+      url: adserver + '/api/v1/adms/apis?status=' + statusId,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
   postApi: function(requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'post',
@@ -143,10 +167,44 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
+  putApiPathParametersDescription: function(apiId, pathParametersDescription, accessToken, successCb=null, errorCb=null) {
+    let requestData = {}
+    requestData.pathParametersDescription = pathParametersDescription
+    axios({
+      method: 'put',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/path-parameters-description',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
   putApiQueryParameters: function(apiId, requestData, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'put',
       url: adserver + '/api/v1/adms/apis/' + apiId + '/query-parameters',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  putApiQueryParametersDescription: function(apiId, queryParametersDescription, accessToken, successCb=null, errorCb=null) {
+    let requestData = {}
+    requestData.queryParametersDescription = queryParametersDescription
+    axios({
+      method: 'put',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/query-parameters-description',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -175,12 +233,46 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
+  putApiRequestDataDescription: function(apiId, requestDataDescription, accessToken, successCb=null, errorCb=null) {
+    let requestData = {}
+    requestData.requestDataDescription = requestDataDescription
+    axios({
+      method: 'put',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/request-data-description',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
   putApiRequestDescription: function(apiId, requestDescription, accessToken, successCb=null, errorCb=null) {
     let requestData = {}
     requestData.requestDescription = requestDescription
     axios({
       method: 'put',
       url: adserver + '/api/v1/adms/apis/' + apiId + '/request-description',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  putApiResponseDataDescription: function(apiId, responseDataDescription, accessToken, successCb=null, errorCb=null) {
+    let requestData = {}
+    requestData.responseDataDescription = responseDataDescription
+    axios({
+      method: 'put',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/response-data-description',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
@@ -298,6 +390,23 @@ var DOCS = {
     axios({
       method: 'put',
       url: adserver + '/api/v1/adms/apis/' + apiId + '/status-codes',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  putApiStatusCodesDescription: function(apiId, statusCodesDescription, accessToken, successCb=null, errorCb=null) {
+    let requestData = {}
+    requestData.statusCodesDescription = statusCodesDescription
+    axios({
+      method: 'put',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/status-codes-description',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',
