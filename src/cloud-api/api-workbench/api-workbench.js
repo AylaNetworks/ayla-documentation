@@ -32,6 +32,8 @@ $(function () {
           $('#api-status-select').val(api.status.id)
           $('#api-notes-textarea').val(api.notes)
 
+          $('#api-published-select').val(api.published)
+
           let requestData = api.requestData
           if(requestData == null) {requestData = ''}
           else if(requestData.length) {requestData = JSON.stringify(JSON.parse(requestData), null, 2)}
@@ -170,6 +172,7 @@ $(function () {
     requestData.path = $('#api-path-input').val()
     requestData.pathParameters = pathParameters
     requestData.pathParametersDescription = $('#api-path-parameters-description-textarea').val()
+    requestData.published = $('#api-published-select').val()
     requestData.queryParameters = queryParameters
     requestData.queryParametersDescription = $('#api-query-parameters-description-textarea').val()
     requestData.requestData = rd
@@ -221,6 +224,8 @@ function reset() {
   $('#api-response-data-description-textarea').val('')
   $('#api-response-description-textarea').val('')
   $('#api-status-codes-description-textarea').val('')
+
+  $('#api-published-select').val('')
 
   $('#api-method-select').val('')
   $('#api-name-input').val('')
@@ -740,6 +745,25 @@ $(function () {
       let pathParametersDescription = $('#api-path-parameters-description-textarea').val()
       DOCS.putApiPathParametersDescription(apiId, pathParametersDescription, accessToken,
         function(response) {wbSuccessCb(btnElement, response)}, 
+        function(error) {wbErrorCb(btnElement, error)}
+      )
+    }
+  })
+})
+
+/*------------------------------------------------------
+Save Published
+------------------------------------------------------*/
+
+$(function () {
+  $('#api-published-btn').click(function (event) {
+    let btnElement = this
+    let apiId = $('form.api-workbench').data('id')
+    let accessToken = $('#adms-access-token').val()
+    if(apiId) {
+      let published = $('#api-published-select').val()
+      DOCS.putApiPublished(apiId, published, accessToken,
+        function(response) {wbSuccessCb(btnElement, response)},
         function(error) {wbErrorCb(btnElement, error)}
       )
     }

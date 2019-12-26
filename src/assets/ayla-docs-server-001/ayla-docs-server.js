@@ -14,6 +14,18 @@ var DOCS = {
     .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
   },
 
+  getPublishedApis: function(successCb=null, errorCb=null) {
+    axios({
+      method: 'get',
+      url: adserver + '/api/v1/adms/apis?published=1',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
   getApisWhereServiceIdStatusId: function(serviceId, statusId, successCb=null, errorCb=null) {
     axios({
       method: 'get',
@@ -173,6 +185,23 @@ var DOCS = {
     axios({
       method: 'put',
       url: adserver + '/api/v1/adms/apis/' + apiId + '/path-parameters-description',
+      headers: {
+        'Authorization': accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {DOCS.callSuccessCb(response, successCb)})
+    .catch(function(error) {DOCS.callErrorCb(error.response, errorCb)})
+  },
+
+  putApiPublished: function(apiId, published, accessToken, successCb=null, errorCb=null) {
+    let requestData = {}
+    requestData.published = published
+    axios({
+      method: 'put',
+      url: adserver + '/api/v1/adms/apis/' + apiId + '/published',
       headers: {
         'Authorization': accessToken,
         'Accept': 'application/json',

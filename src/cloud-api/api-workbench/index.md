@@ -43,7 +43,7 @@ e: block
     </div>
   </div>
   <div class="form-row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <div class="form-row">
         <div class="col-sm-12">
           <label>Method&nbsp;&#42;</label>
@@ -58,7 +58,7 @@ e: block
         </div>
       </div>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-7">
       <div class="form-row">
         <div class="col-sm-12">
           <label>Path&nbsp;&#42;</label>
@@ -70,6 +70,24 @@ e: block
         </div>
         <div class="form-group col-auto edit-mode">
           <button id="api-path-btn" type="button" class="btn btn-sm btn-block btn-outline-secondary save">&#x2714;</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-row">
+        <div class="col-sm-12">
+          <label>Published</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <select id="api-published-select" class="form-control form-control-sm">
+            <option value=0>No</option>
+            <option value=1>Yes</option>
+          </select>
+        </div>
+        <div class="form-group col-auto edit-mode">
+          <button id="api-published-btn" type="button" class="btn btn-sm btn-block btn-outline-secondary save">&#x2714;</button>
         </div>
       </div>
     </div>
@@ -223,7 +241,7 @@ e: block
   <div id="api-tag-rows"></div>
   <div class="form-row"><div class="col-12"><label>Notes</label></div></div>
   <div class="form-row">
-    <div class="form-group col"><textarea id="api-notes-textarea" class="form-control form-control-sm" rows="3"></textarea></div>
+    <div class="form-group col"><textarea id="api-notes-textarea" class="form-control form-control-sm" rows="20"></textarea></div>
     <div class="form-group col-auto edit-mode"><button id="api-notes-btn" type="button" class="btn btn-sm btn-block btn-outline-secondary save">&#x2714;</button></div>
   </div>
 </form>

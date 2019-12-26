@@ -60,7 +60,9 @@ boolean,input,Green_LED,user
 integer,input,input,user
 string,output,log,user
 integer,output,output,user
-string,output,version,user</pre>
+string,output,version,user
+file,input,upload_file,user
+file,output,download_file,user</pre>
     Finally, click the new ```version``` property, check ```Host SW Version```, and click ```OK```.
 
 # Build and Run
@@ -255,7 +257,7 @@ This section provides directions for building an Ayla ESP32 Solution v1.5-beta u
 
 ## GCC/Windows
 
-See [Ayla ESP32 Solution v1.3.8](../v1-3-8).
+[See AD-138](https://aylanetworks.atlassian.net/browse/AD-138)
 
 # Register your device
 

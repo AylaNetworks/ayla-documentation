@@ -122,3 +122,15 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 </pre>
 
 [Google JSON Style Guide](https://google.github.io/styleguide/jsoncstyleguide.xml)
+
+### Pseudonymization
+
+|Key|Value|
+|-|-|
+|```action_uuid```|```a1234567-1234-1234-1234-a1234567890a```|
+|```devId```|```12345678```|
+|```DSN```|```AC000W123456789```|
+|```mac```|```00:11:22:aa:bb:cc```|
+|```oemId```|```1234abcd```|
+|```rule_uuid```|```c1234567-1234-1234-1234-a1234567890a```|
+|```user_uuid```|```b1234567-1234-1234-1234-a1234567890a```|

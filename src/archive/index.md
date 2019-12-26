@@ -430,6 +430,18 @@ layout: site.html
     </td>
   </tr>
   <tr>
+    <td><a href="/archive/ayla-platform-technical-overview">Ayla Platform Technical Overview</a></td>
+    <td>PDF</td>
+    <td>
+      <div class="dropdown">
+        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-platform-technical-overview" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
+        <div class="dropdown-menu" aria-labelledby="ayla-platform-technical-overview">
+          <a class="dropdown-item" href="/archive/ayla-platform-technical-overview-2018-06.pdf">v2018-06</a>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
     <td><a href="/archive/ayla-product-development-overview">Ayla Product Development Overview</a></td>
     <td>PDF</td>
     <td>

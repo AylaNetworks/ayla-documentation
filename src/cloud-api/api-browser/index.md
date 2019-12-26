@@ -8,37 +8,42 @@ classesFromPage: has-pagebar
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
     <li><a href="#core-title">API Browser</a></li>
-    <li><a href="#access-rules-header">Access Rules</a></li>
-    <li><a href="#contacts-header">Contacts</a></li>
-    <li><a href="#datapoints-header">Datapoints</a></li>
-    <li><a href="#devices-header">Devices</a></li>
-    <li><a href="#gateways-header">Gateways</a></li>
-    <li><a href="#groups-header">Groups</a></li>
-    <li><a href="#metadata-header">Metadata</a></li>
-    <li><a href="#properties-header">Properties</a></li>
-    <li><a href="#shares-header">Shares</a></li>
-    <li><a href="#schedules-header">Schedules</a></li>
-    <li><a href="#schedule-actions-header">Schedule Actions</a></li>
-    <li><a href="#subscriptions-header">Subscriptions</a></li>
-    <li><a href="#time-zones-header">Time Zones</a></li>
-    <li><a href="#user-accounts-header">User Accounts</a></li>
+    <li><a href="#application-service-header">Application Service</a></li>
+    <li><a href="#datastream-service-header">Datastream Service</a></li>
+    <li><a href="#device-service-header">Device Service</a></li>
+    <li><a href="#factory-proxy-service-header">Factory Proxy Service</a></li>
+    <li><a href="#image-service-header">Image Service</a></li>
+    <li><a href="#iot-command-center-service-header">IoT Command Center</a></li>
+    <li><a href="#log-service-header">Log Service</a></li>
+    <li><a href="#notification-service-header">Notification Service</a></li>
+    <li><a href="#rules-service-header">Rules Service</a></li>
+    <li><a href="#user-service-header">User Service</a></li>
+    <li><a href="#zigbee-service-header">Zigbee Service</a></li>
   </ul>
 </aside>
-
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="accounts-tab" data-toggle="tab" href="#accounts-tab-pane" role="tab" aria-controls="accounts-tab-pane" aria-selected="true">Accounts</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="devices-tab" data-toggle="tab" href="#devices-tab-pane" role="tab" aria-controls="devices-tab-pane" aria-selected="false">Devices</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="directions-tab" data-toggle="tab" href="#directions-tab-pane" role="tab" aria-controls="directions-tab-pane" aria-selected="false">Directions</a>
-  </li>
-</ul>
-<div class="tab-content">
-  <div class="panel tab-pane fade show active" id="accounts-tab-pane" role="tabpanel" aria-labelledby="accounts-tab-pane">
-    <div class="form-row ">
+<p style="font-size:90%;">To refresh access tokens, click ```Accounts > Account > Details > Return Tokens > Get Tokens```.</p>
+<div class="btn-group control-btns">
+  <button id="directions-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Directions</button>
+  <button id="accounts-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Accounts</button>
+  <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
+  <button id="filter-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Filter</button>
+</div>
+<div id="directions-section">
+  <p>The API Browser helps you use Ayla Cloud APIs to explore and manipulate devices, properties, datapoints, schedules, access rules, subscriptions, and many other Ayla data structures. To get started, follow these steps:</p>
+  <ol>
+    <li>Click the Account button.</li>
+    <li>Choose a Region.</li>
+    <li>Click Details.</li>
+    <li>To access an Ayla Public Account, enter your email & password, and click Get Tokens. Otherwise, include an app_id & app_secret.</li>
+    <li>To add additional accounts, click <code>Blank Form</code>, and repeat Step 4.</li>
+    <li>To test access, expand Device Services below, and run the getDevices API which returns a list of your devices.</li>
+  </ol>
+  <p>Please send feedback to **matt&#64;aylanetworks.com**.</p>
+</div>
+<div id="accounts-section">
+  <div class="panel">
+    <h3>Accounts</h3>
+    <div class="form-row">
       <div class="col-12 col-sm-6">
         <div class="form-row">
           <div class="col-12">
@@ -56,7 +61,7 @@ classesFromPage: has-pagebar
             </select>
           </div>
           <div class="col-auto">
-            <button type="button" class="btn btn-sm btn-info btn-block" data-toggle="collapse" data-target="#ayla-region-urls" aria-expanded="false">Details</button>
+            <button type="button" class="btn btn-sm btn-info btn-block" data-toggle="collapse" data-target="#ayla-region-urls" aria-expanded="false">Urls</button>
           </div>
         </div>
       </div>
@@ -128,6 +133,12 @@ classesFromPage: has-pagebar
           <input id="zigbee-service-url" type="text" class="form-control form-control-sm" disabled>
         </div>
       </div>
+      <div class="form-row">
+        <div class="col-12 col-md-6 mb-2">
+          <label>IoT Command Center Service</label>
+          <input id="icc-service-url" type="text" class="form-control form-control-sm" disabled>
+        </div>
+      </div>
     </div>
     <div id="ayla-account-details" class="collapse" style="padding: 6px; background: snow;">
       <div class="title">Account Details</div>
@@ -180,8 +191,11 @@ classesFromPage: has-pagebar
       </div>
     </div>
   </div>
-  <div class="panel tab-pane fade" id="devices-tab-pane" role="tabpanel" aria-labelledby="devices-tab-pane">
-    <div class="form-row ">
+</div>
+<div id="devices-section">
+  <div class="panel">
+    <h3>Devices</h3>
+    <div class="form-row">
       <div class="col-12 col-md-4">
         <div class="form-row">
           <div class="col-12">
@@ -227,136 +241,138 @@ classesFromPage: has-pagebar
     <pre id="dt-device-details" class="collapse"></pre>
     <pre id="dt-property-details" class="collapse"></pre>
   </div>
-  <div class="tab-pane fade" id="directions-tab-pane" role="tabpanel" aria-labelledby="directions-tab-pane">
-    <p>The API Browser enables you to use Ayla Cloud APIs to explore and manipulate devices, properties, datapoints, schedules, access rules, subscriptions, and many other data structures in any Ayla Cloud Account where you have an Ayla User Account.</p>
-    <p>First, you must add user account information to the API Browser (which saves the information in your browser's local storage). To do so, click the Accounts Tab and choose a region.</p>
-    <p>Next, under Accounts, click details. Then, if you are accessing an Ayla Public Account, enter your email & password, and click Get Tokens. If you are accessing an Ayla Customer Account, enter your email, password, app_id, and app_secret, and click Get Tokens. To add additional accounts, click <code>Blank Form</code>, fill in the fields, and click Get Tokens.</p>
-    <p>To test access, expand the Devices category, and run getDevices.</p>
+</div>
+<div id="filter-section">
+  <div class="panel">
+    <div class="form-row mb-2">
+      <div class="col-auto">
+         <h3 style="margin:0 !important;line-height:1.4;">Filter</h3>
+      </div>
+      <div class="col">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlinetags" value="all" checked>
+          <label class="form-check-label">All</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlinetags" value="none">
+          <label class="form-check-label">None</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-row tag-row">
+      <div class="col-4"></div>
+      <div class="col-4"></div>
+      <div class="col-4"></div>
+    </div>
   </div>
 </div>
-<h1 id="access-rules-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#access-rules-content">
+<!--
+<h1 id="adms-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Access Rules</div></div>
-      <div class="col-sm-auto"><div class="service">Datastream Service</div></div>
+      <div class="col-sm" data-toggle="collapse" href="#adms-service-content"><div class="name">ADMS</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="access-rules-content"></div>
-<h1 id="contacts-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#contacts-content">
+<div class="collapse" id="adms-service-content"></div>
+-->
+<h1 id="application-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Contacts</div></div>
-      <div class="col-sm-auto"><div class="service">User Service</div></div>
+      <div class="col" data-toggle="collapse" href="#application-service-content"><div class="name">Application Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="contacts-content"></div>
-<h1 id="datapoints-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#datapoints-content">
+<div class="collapse" id="application-service-content"></div>
+<h1 id="datastream-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Datapoints</div></div>
-      <div class="col-sm-auto"><div class="service">Device Service</div></div>
+      <div class="col" data-toggle="collapse" href="#datastream-service-content"><div class="name">Datastream Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="datapoints-content"></div>
-<h1 id="devices-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#devices-content">
+<div class="collapse" id="datastream-service-content"></div>
+<h1 id="device-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Devices</div></div>
-      <div class="col-sm-auto"><div class="service">Device Service</div></div>
+      <div class="col" data-toggle="collapse" href="#device-service-content"><div class="name">Device Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="devices-content"></div>
-<h1 id="gateways-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#gateways-content">
+<div class="collapse" id="device-service-content"></div>
+<h1 id="factory-proxy-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Gateways</div></div>
-      <div class="col-sm-auto"><div class="service">Device Service</div></div>
+      <div class="col" data-toggle="collapse" href="#factory-proxy-service-content"><div class="name">Factory Proxy Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="gateways-content"></div>
-<h1 id="groups-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#groups-content">
+<div class="collapse" id="factory-proxy-service-content"></div>
+<h1 id="image-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Groups</div></div>
-      <div class="col-sm-auto"><div class="service">Device Service</div></div>
+      <div class="col" data-toggle="collapse" href="#image-service-content"><div class="name">Image Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="groups-content"></div>
-<h1 id="metadata-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#metadata-content">
+<div class="collapse" id="image-service-content"></div>
+<h1 id="iot-command-center-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Metadata</div></div>
-      <div class="col-sm-auto"><div class="service">Device Service</div></div>
+      <div class="col" data-toggle="collapse" href="#iot-command-center-service-content"><div class="name">IoT Command Center</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="metadata-content"></div>
-<h1 id="properties-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#properties-content">
+<div class="collapse" id="iot-command-center-service-content"></div>
+<h1 id="log-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Properties</div></div>
-      <div class="col-sm-auto"><div class="service">Device Service</div></div>
+      <div class="col" data-toggle="collapse" href="#log-service-content"><div class="name">Log Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="properties-content"></div>
-<h1 id="shares-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#shares-content">
+<div class="collapse" id="log-service-content"></div>
+<h1 id="notification-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Shares</div></div>
-      <div class="col-sm-auto"><div class="service">User Service</div></div>
+      <div class="col" data-toggle="collapse" href="#notification-service-content"><div class="name">Notification Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="shares-content"></div>
-<h1 id="schedules-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#schedules-content">
+<div class="collapse" id="notification-service-content"></div>
+<h1 id="rules-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Schedules</div></div>
-      <div class="col-sm-auto"><div class="service">Device Service</div></div>
+      <div class="col" data-toggle="collapse" href="#rules-service-content"><div class="name">Rules Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="schedules-content"></div>
-<h1 id="schedule-actions-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#schedule-actions-content">
+<div class="collapse" id="rules-service-content"></div>
+<h1 id="user-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Schedule Actions</div></div>
-      <div class="col-sm-auto"><div class="service">Device Service</div></div>
+      <div class="col" data-toggle="collapse" href="#user-service-content"><div class="name">User Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="schedule-actions-content"></div>
-<h1 id="subscriptions-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#subscriptions-content">
+<div class="collapse" id="user-service-content"></div>
+<h1 id="zigbee-service-header" class="api-service">
+  <div class="api-service">
     <div class="row">
-      <div class="col-sm"><div class="name">Subscriptions</div></div>
-      <div class="col-sm-auto"><div class="service">Datastream Service</div></div>
+      <div class="col" data-toggle="collapse" href="#zigbee-service-content"><div class="name">Zigbee Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="subscriptions-content"></div>
-<h1 id="time-zones-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#time-zones-content">
-    <div class="row">
-      <div class="col-sm"><div class="name">Time Zones</div></div>
-      <div class="col-sm-auto"><div class="service">Device Service</div></div>
-    </div>
-  </div>
-</h1>
-<div class="collapse" id="time-zones-content"></div>
-<h1 id="user-accounts-header" class="api-category">
-  <div class="api-category" data-toggle="collapse" href="#user-accounts-content">
-    <div class="row">
-      <div class="col-sm"><div class="name">User Accounts</div></div>
-      <div class="col-sm-auto"><div class="service">User Service</div></div>
-    </div>
-  </div>
-</h1>
-<div class="collapse" id="user-accounts-content"></div>
+<div class="collapse" id="zigbee-service-content"></div>

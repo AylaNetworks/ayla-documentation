@@ -16,5 +16,4 @@ The following documents provide information about APIs that have not yet been ad
 <li><a href="/archive/ayla-factory-service-api-specification">Ayla Factory Service API Specification</a></li>
 <li><a href="/archive/ayla-iot-command-center-api">Ayla IoT Command Center API</a></li>
 <li><a href="/archive/ayla-rbac-api-specification">Ayla RBAC API Specification</a></li>
-<li><a href="/archive/ayla-rules-api-specification">Ayla Rules API Specification</a></li>
 </ul>
