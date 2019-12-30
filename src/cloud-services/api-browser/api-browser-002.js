@@ -456,9 +456,11 @@ var serviceUrls = new Array()
 serviceUrls['cndev'] = new Array()
 serviceUrls['cndev']['application'] = "https://application.ayla.com.cn"
 serviceUrls['cndev']['datastream'] = "https://stream.ayla.com.cn"
+serviceUrls['cndev']['datastream-cloud'] = "wss://stream.ayla.com.cn/stream"
+serviceUrls['cndev']['datastream-mobile'] = "wss://mstream-dev.ayla.com.cn/stream"
 serviceUrls['cndev']['device'] = "https://ads-dev.ayla.com.cn"
 serviceUrls['cndev']['factory-proxy'] = "https://api-dev.ayla.com.cn"
-serviceUrls['cndev']['iot-command-center'] = "https://icc.aylanetworks.com"
+serviceUrls['cndev']['iot-command-center'] = ""
 serviceUrls['cndev']['image'] = "https://ais.ayla.com.cn"
 serviceUrls['cndev']['log'] = "https://log.ayla.com.cn"
 serviceUrls['cndev']['notification'] = "https://ans.ayla.com.cn"
@@ -469,9 +471,11 @@ serviceUrls['cndev']['api-documentation'] = "https://docs.aylanetworks.com"
 serviceUrls['cnfield'] = new Array()
 serviceUrls['cnfield']['application'] = "https://app-field.ayla.com.cn"
 serviceUrls['cnfield']['datastream'] = "https://stream-field.ayla.com.cn"
+serviceUrls['cnfield']['datastream-cloud'] = "wss://stream-field.ayla.com.cn/stream"
+serviceUrls['cnfield']['datastream-mobile'] = "wss://mstream-field.ayla.com.cn/stream"
 serviceUrls['cnfield']['device'] = "https://ads-field.ayla.com.cn"
 serviceUrls['cnfield']['factory-proxy'] = "https://api-field.ayla.com.cn"
-serviceUrls['cnfield']['iot-command-center'] = "https://icc.aylanetworks.com"
+serviceUrls['cnfield']['iot-command-center'] = ""
 serviceUrls['cnfield']['image'] = "https://ais-field.ayla.com.cn"
 serviceUrls['cnfield']['log'] = "https://log-field.ayla.com.cn"
 serviceUrls['cnfield']['notification'] = "https://ans-field.ayla.com.cn"
@@ -482,9 +486,11 @@ serviceUrls['cnfield']['api-documentation'] = "https://docs.aylanetworks.com"
 serviceUrls['eufield'] = new Array()
 serviceUrls['eufield']['application'] = "https://app-field-eu.aylanetworks.com"
 serviceUrls['eufield']['datastream'] = "https://stream-field-eu.aylanetworks.com"
+serviceUrls['eufield']['datastream-cloud'] = "wss://stream-field-eu.aylanetworks.com/stream"
+serviceUrls['eufield']['datastream-mobile'] = "wss://mstream-field-eu.aylanetworks.com/stream"
 serviceUrls['eufield']['device'] = "https://ads-field-eu.aylanetworks.com"
 serviceUrls['eufield']['factory-proxy'] = "https://api-field-eu.aylanetworks.com"
-serviceUrls['eufield']['iot-command-center'] = "https://icc.aylanetworks.com"
+serviceUrls['eufield']['iot-command-center'] = ""
 serviceUrls['eufield']['image'] = "https://ais-field-eu.aylanetworks.com"
 serviceUrls['eufield']['log'] = "https://log-field-eu.aylanetworks.com"
 serviceUrls['eufield']['notification'] = "https://ans-field-eu.aylanetworks.com"
@@ -495,6 +501,8 @@ serviceUrls['eufield']['api-documentation'] = "https://docs.aylanetworks.com"
 serviceUrls['usdev'] = new Array()
 serviceUrls['usdev']['application'] = "https://application.aylanetworks.com"
 serviceUrls['usdev']['datastream'] = "https://stream.aylanetworks.com"
+serviceUrls['usdev']['datastream-cloud'] = "wss://stream.aylanetworks.com/stream"
+serviceUrls['usdev']['datastream-mobile'] = "wss://mstream-dev.aylanetworks.com/stream"
 serviceUrls['usdev']['device'] = "https://ads-dev.aylanetworks.com"
 serviceUrls['usdev']['factory-proxy'] = "https://api-dev.aylanetworks.com"
 serviceUrls['usdev']['iot-command-center'] = "https://icc-dev.aylanetworks.com"
@@ -508,6 +516,8 @@ serviceUrls['usdev']['api-documentation'] = "https://docs.aylanetworks.com"
 serviceUrls['usfield'] = new Array()
 serviceUrls['usfield']['application'] = "https://app-field.aylanetworks.com"
 serviceUrls['usfield']['datastream'] = "https://stream-field.aylanetworks.com"
+serviceUrls['usfield']['datastream-cloud'] = "wss://stream-field.aylanetworks.com/stream"
+serviceUrls['usfield']['datastream-mobile'] = "wss://mstream-field.aylanetworks.com/stream"
 serviceUrls['usfield']['device'] = "https://ads-field.aylanetworks.com"
 serviceUrls['usfield']['factory-proxy'] = "https://api-field.aylanetworks.com"
 serviceUrls['usfield']['iot-command-center'] = "https://icc-field.aylanetworks.com"
@@ -536,17 +546,19 @@ writeRegionUrls
 
 function writeRegionUrls() {
   let regionId = $("select.ayla-regions option:selected").val()
-  $('#application-service-url').val(serviceUrls[regionId]['application'])
+  //$('#application-service-url').val(serviceUrls[regionId]['application'])
   $('#datastream-service-url').val(serviceUrls[regionId]['datastream'])
+  $('#datastream-cloud-url').val(serviceUrls[regionId]['datastream-cloud'])
+  $('#datastream-mobile-url').val(serviceUrls[regionId]['datastream-mobile'])
   $('#device-service-url').val(serviceUrls[regionId]['device'])
   $('#factory-proxy-service-url').val(serviceUrls[regionId]['factory-proxy'])
   $('#icc-service-url').val(serviceUrls[regionId]['iot-command-center'])
-  $('#image-service-url').val(serviceUrls[regionId]['image'])
-  $('#log-service-url').val(serviceUrls[regionId]['log'])
-  $('#notification-service-url').val(serviceUrls[regionId]['notification'])
+  //$('#image-service-url').val(serviceUrls[regionId]['image'])
+  //$('#log-service-url').val(serviceUrls[regionId]['log'])
+  //$('#notification-service-url').val(serviceUrls[regionId]['notification'])
   $('#rules-service-url').val(serviceUrls[regionId]['rules'])
   $('#user-service-url').val(serviceUrls[regionId]['user'])
-  $('#zigbee-service-url').val(serviceUrls[regionId]['zigbee'])
+  //$('#zigbee-service-url').val(serviceUrls[regionId]['zigbee'])
 }
 
 /*------------------------------------------------------
@@ -784,12 +796,6 @@ $(function() {
 })
 
 $(function () {
-  $("#directions-button").click(function (event) {
-    $('#directions-section').toggle()
-  })
-})
-
-$(function () {
   $("#accounts-button").click(function (event) {
     $('#accounts-section').toggle()
   })
@@ -798,6 +804,18 @@ $(function () {
 $(function () {
   $("#devices-button").click(function (event) {
     $('#devices-section').toggle()
+  })
+})
+
+$(function () {
+  $("#event-streams-button").click(function (event) {
+    $('#event-streams-section').toggle()
+  })
+})
+
+$(function () {
+  $("#events-button").click(function (event) {
+    $('#events-section').toggle()
   })
 })
 
@@ -1038,7 +1056,7 @@ $(function() {
     let requestData = {}
     requestData.datapoint = datapoint
     AYLA.postApiv1DevicesDevIdPropertiesPropertyNameDatapoints(server, token, devId, propName, requestData, function(response) {
-      console.log(JSON.stringify(response.data, null, 2))
+      //console.log(JSON.stringify(response.data, null, 2))
     }, function(response) {
       console.log(JSON.stringify(response, null, 2))
     })
@@ -1058,7 +1076,7 @@ $(function() {
     let requestData = {}
     requestData.datapoint = datapoint
     AYLA.postApiv1DevicesDevIdPropertiesPropertyNameDatapoints(server, token, devId, propName, requestData, function(response) {
-      console.log(JSON.stringify(response.data, null, 2))
+      //console.log(JSON.stringify(response.data, null, 2))
     }, function(response) {
       console.log(JSON.stringify(response, null, 2))
     })
@@ -1422,5 +1440,98 @@ $(function() {
   $('div.api-service div.count').click(function(event) {
     let content = $(this).closest('h1.api-service').next('div')
     console.log('Clicked on service counter')
+  })
+})
+
+/*------------------------------------------------------
+On Click Stream Btn
+------------------------------------------------------*/
+
+$(function () {
+  $("#stream-btn").click(function (event) {
+
+    let key = $('#stream-key').val()
+    for(var k in streams) {
+      if(k === key) {
+        console.log('This stream key is already in use.')
+        return
+      }
+    }
+
+    let name = $('#stream-name').val()
+    if(!name) {
+      name = $('#stream-name').prop('placeholder')
+    }
+
+    let seqStart = $('#stream-seq-start').val()
+    let seqEnd = $('#stream-seq-end').val()
+
+    let regionId = $("select.ayla-regions option:selected").val()
+    let server = serviceUrls[regionId]['datastream-cloud']
+  
+    streams[key] = new Stream(name, server, key, 'unknown', seqStart, seqEnd)
+    monitorEventStream(streams[key])
+    addEventStream(streams[key])  
+
+    $('#stream-key').val('')
+    $('#stream-name').val('')
+    $('#stream-seq-start').val('')
+    $('#stream-seq-end').val('')
+  })
+})
+
+/*------------------------------------------------------
+addEventStream
+------------------------------------------------------*/
+
+function addEventStream(stream) {
+  let item = ''
+  + '<tr id="ID' + stream.key + '" class="summary">'
+  + '<td class="chk"><input type="checkbox" value="' + stream.key + '"></td>'
+  + '<td>' + stream.id + '</td>'
+  + '<td class="name">' + stream.name + '</td>'
+  + '<td class="numEvents">0</td>'
+  + '<td class="numHBs">0</td>'
+  + '</tr>'
+  + '<tr class="details" style="display:none;">'
+  + '<td>&nbsp;</td>'
+  + '<td colspan=4><pre>s</pre></td>'
+  + '</tr>'
+  $('#streams-table > tbody').append(item)
+}
+
+/*------------------------------------------------------
+Delete Event Streams
+------------------------------------------------------*/
+
+$(function() {
+  $('#delete-streams-btn').click(function(event) {
+    let checkboxes = $('#streams-table tbody tr td input[type=checkbox]:checked')
+    $('#streams-table thead input[type=checkbox]').prop('checked', false)
+    $.each(checkboxes, function(index, checkbox) {
+      let key = $(checkbox).val()
+      streams[key].socket.close()
+      delete streams[key]
+      let tr1 = $(checkbox).closest('tr')
+      let tr2 = $(tr1).next()
+      $(tr1).remove()
+      $(tr2).remove()    
+    })
+  })
+})
+
+/*------------------------------------------------------
+Toggle Event Stream Details 
+------------------------------------------------------*/
+
+$(function() {
+  $("#streams-table").delegate('tr td:not(.chk)', "click", function(e) {
+    let tr1 = $(this).parent()
+    let tr2 = $(tr1).next()
+    let key = $(tr1).find('input').val()
+    let pre = $(tr2).find('pre')
+    $(pre).empty()
+    $(pre).append(JSON.stringify(streams[key], streamPropFilter, 2))
+    $(tr2).toggle()  
   })
 })

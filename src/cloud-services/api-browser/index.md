@@ -8,37 +8,21 @@ classesFromPage: has-pagebar
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
     <li><a href="#core-title">API Browser</a></li>
-    <li><a href="#application-service-header">Application Service</a></li>
     <li><a href="#datastream-service-header">Datastream Service</a></li>
     <li><a href="#device-service-header">Device Service</a></li>
     <li><a href="#factory-proxy-service-header">Factory Proxy Service</a></li>
-    <li><a href="#image-service-header">Image Service</a></li>
     <li><a href="#iot-command-center-service-header">IoT Command Center</a></li>
-    <li><a href="#log-service-header">Log Service</a></li>
-    <li><a href="#notification-service-header">Notification Service</a></li>
     <li><a href="#rules-service-header">Rules Service</a></li>
     <li><a href="#user-service-header">User Service</a></li>
-    <li><a href="#zigbee-service-header">Zigbee Service</a></li>
   </ul>
 </aside>
-<p style="font-size:90%;">To refresh access tokens, click ```Accounts > Account > Details > Return Tokens > Get Tokens```.</p>
-<div class="btn-group control-btns">
-  <button id="directions-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Directions</button>
+<div style="font-size:85%;margin-bottom:6px;">For directions, see the [API Guide](../api-guide).</div>
+<div class="btn-group control-btns special">
   <button id="accounts-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Accounts</button>
   <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
+  <button id="event-streams-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Event Streams</button>
+  <button id="events-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Events</button>
   <button id="filter-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Filter</button>
-</div>
-<div id="directions-section">
-  <p>The API Browser helps you use Ayla Cloud APIs to explore and manipulate devices, properties, datapoints, schedules, access rules, subscriptions, and many other Ayla data structures. To get started, follow these steps:</p>
-  <ol>
-    <li>Click the Account button.</li>
-    <li>Choose a Region.</li>
-    <li>Click Details.</li>
-    <li>To access an Ayla Public Account, enter your email & password, and click Get Tokens. Otherwise, include an app_id & app_secret.</li>
-    <li>To add additional accounts, click <code>Blank Form</code>, and repeat Step 4.</li>
-    <li>To test access, expand Device Services below, and run the getDevices API which returns a list of your devices.</li>
-  </ol>
-  <p>Please send feedback to **matt&#64;aylanetworks.com**.</p>
 </div>
 <div id="accounts-section">
   <div class="panel">
@@ -85,58 +69,36 @@ classesFromPage: has-pagebar
       <div class="title">Regional URLs</div>
       <div class="form-row">
         <div class="col-12 col-md-6 mb-2">
-          <label>Application Service</label>
-          <input id="application-service-url" type="text" class="form-control form-control-sm" disabled>
-        </div>
-        <div class="col-12 col-md-6 mb-2">
-          <label>Log Service</label>
-          <input id="log-service-url" type="text" class="form-control form-control-sm" disabled>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-12 col-md-6 mb-2">
           <label>Datastream Service</label>
           <input id="datastream-service-url" type="text" class="form-control form-control-sm" disabled>
         </div>
         <div class="col-12 col-md-6 mb-2">
-          <label>Notification Service</label>
-          <input id="notification-service-url" type="text" class="form-control form-control-sm" disabled>
+          <label>Datastream WebSockets (Cloud)</label>
+          <input id="datastream-cloud-url" type="text" class="form-control form-control-sm" disabled>
         </div>
-      </div>
-      <div class="form-row">
+        <div class="col-12 col-md-6 mb-2">
+          <label>Datastream WebSockets (Mobile)</label>
+          <input id="datastream-mobile-url" type="text" class="form-control form-control-sm" disabled>
+        </div>
         <div class="col-12 col-md-6 mb-2">
           <label>Device Service</label>
           <input id="device-service-url" type="text" class="form-control form-control-sm" disabled>
         </div>
         <div class="col-12 col-md-6 mb-2">
-          <label>Rules Service</label>
-          <input id="rules-service-url" type="text" class="form-control form-control-sm" disabled>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-12 col-md-6 mb-2">
           <label>Factory Proxy Service</label>
           <input id="factory-proxy-service-url" type="text" class="form-control form-control-sm" disabled>
         </div>
         <div class="col-12 col-md-6 mb-2">
-          <label>User Service</label>
-          <input id="user-service-url" type="text" class="form-control form-control-sm" disabled>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-12 col-md-6 mb-2">
-          <label>Image Service</label>
-          <input id="image-service-url" type="text" class="form-control form-control-sm" disabled>
-        </div>
-        <div class="col-12 col-md-6 mb-2">
-          <label>Zigbee Service</label>
-          <input id="zigbee-service-url" type="text" class="form-control form-control-sm" disabled>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-12 col-md-6 mb-2">
           <label>IoT Command Center Service</label>
           <input id="icc-service-url" type="text" class="form-control form-control-sm" disabled>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+          <label>Rules Service</label>
+          <input id="rules-service-url" type="text" class="form-control form-control-sm" disabled>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+          <label>User Service</label>
+          <input id="user-service-url" type="text" class="form-control form-control-sm" disabled>
         </div>
       </div>
     </div>
@@ -242,6 +204,64 @@ classesFromPage: has-pagebar
     <pre id="dt-property-details" class="collapse"></pre>
   </div>
 </div>
+<div id="event-streams-section">
+  <div class="panel">
+    <h3>Event Streams</h3>
+    <div class="form-row mb-2">
+      <div class="col-md-3">
+        <input id="stream-name" type="text" class="form-control form-control-sm" placeholder="Stream Name">
+      </div>
+      <div class="col-md-3">
+        <input id="stream-key" type="text" class="form-control form-control-sm" placeholder="Stream Key">
+      </div>
+      <div class="col-md-2">
+        <input id="stream-seq-start" type="text" class="form-control form-control-sm" placeholder="start">
+      </div>
+      <div class="col-md-2">
+        <input id="stream-seq-end" type="text" class="form-control form-control-sm" placeholder="end">
+      </div>
+      <div class="col-md-2">
+        <button id="stream-btn" type="button" class="btn btn-sm btn-info btn-block">Create</button>
+      </div>
+    </div>
+    <div class="link-btns">
+      <span id="delete-streams-btn" class="link-btn">Delete</span>
+    </div>
+    <table id="streams-table">
+      <thead>
+        <tr>
+          <th><input type="checkbox"></th>
+          <th class="es">ES</th>
+          <th>Name</th>
+          <th>Events</th>
+          <th>HBs</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<div id="events-section">
+  <div class="panel">
+    <h3>Events</h3>
+    <div class="link-btns">
+      <span id="delete-events-btn" class="link-btn">Delete</span>
+    </div>
+    <table id="events-table">
+      <thead>
+        <tr>
+          <th><input type="checkbox"></th>
+          <th class="es">ES</th>
+          <th>Seq</th>
+          <th>Type</th>
+          <th>DSN</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
 <div id="filter-section">
   <div class="panel">
     <div class="form-row mb-2">
@@ -266,26 +286,6 @@ classesFromPage: has-pagebar
     </div>
   </div>
 </div>
-<!--
-<h1 id="adms-service-header" class="api-service">
-  <div class="api-service">
-    <div class="row">
-      <div class="col-sm" data-toggle="collapse" href="#adms-service-content"><div class="name">ADMS</div></div>
-      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
-    </div>
-  </div>
-</h1>
-<div class="collapse" id="adms-service-content"></div>
--->
-<h1 id="application-service-header" class="api-service">
-  <div class="api-service">
-    <div class="row">
-      <div class="col" data-toggle="collapse" href="#application-service-content"><div class="name">Application Service</div></div>
-      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
-    </div>
-  </div>
-</h1>
-<div class="collapse" id="application-service-content"></div>
 <h1 id="datastream-service-header" class="api-service">
   <div class="api-service">
     <div class="row">
@@ -313,15 +313,6 @@ classesFromPage: has-pagebar
   </div>
 </h1>
 <div class="collapse" id="factory-proxy-service-content"></div>
-<h1 id="image-service-header" class="api-service">
-  <div class="api-service">
-    <div class="row">
-      <div class="col" data-toggle="collapse" href="#image-service-content"><div class="name">Image Service</div></div>
-      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
-    </div>
-  </div>
-</h1>
-<div class="collapse" id="image-service-content"></div>
 <h1 id="iot-command-center-service-header" class="api-service">
   <div class="api-service">
     <div class="row">
@@ -331,24 +322,6 @@ classesFromPage: has-pagebar
   </div>
 </h1>
 <div class="collapse" id="iot-command-center-service-content"></div>
-<h1 id="log-service-header" class="api-service">
-  <div class="api-service">
-    <div class="row">
-      <div class="col" data-toggle="collapse" href="#log-service-content"><div class="name">Log Service</div></div>
-      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
-    </div>
-  </div>
-</h1>
-<div class="collapse" id="log-service-content"></div>
-<h1 id="notification-service-header" class="api-service">
-  <div class="api-service">
-    <div class="row">
-      <div class="col" data-toggle="collapse" href="#notification-service-content"><div class="name">Notification Service</div></div>
-      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
-    </div>
-  </div>
-</h1>
-<div class="collapse" id="notification-service-content"></div>
 <h1 id="rules-service-header" class="api-service">
   <div class="api-service">
     <div class="row">
@@ -367,12 +340,3 @@ classesFromPage: has-pagebar
   </div>
 </h1>
 <div class="collapse" id="user-service-content"></div>
-<h1 id="zigbee-service-header" class="api-service">
-  <div class="api-service">
-    <div class="row">
-      <div class="col" data-toggle="collapse" href="#zigbee-service-content"><div class="name">Zigbee Service</div></div>
-      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
-    </div>
-  </div>
-</h1>
-<div class="collapse" id="zigbee-service-content"></div>

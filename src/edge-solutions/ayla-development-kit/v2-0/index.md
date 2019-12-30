@@ -77,18 +77,7 @@ classesFromPage: has-pagebar
   </div>
 </div>
 
-Ayla Development Kit provides an opportunity (1) to experiment with Ayla IoT Cloud features, and (2) to modify, build, flash, and run the example host application in preparation for connecting your own devices and gateways. The following video by Dev Kit Weekly introduces the kit:
-
-<iframe 
-  width="560" 
-  height="315" 
-  src="https://www.youtube.com/embed/XoRIKYqeLjc" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
-
-The kit is composed of a STM32 Nucleo Board and an Ayla Shield:
+Ayla Development Kit provides an opportunity (1) to experiment with Ayla IoT Cloud features, and (2) to modify, build, flash, and run the example host application in preparation for connecting your own devices and gateways. The kit is composed of a STM32 Nucleo Board and an Ayla Shield:
 
 <img src="ayla-dev-kit.png" width="360" height="243">
 

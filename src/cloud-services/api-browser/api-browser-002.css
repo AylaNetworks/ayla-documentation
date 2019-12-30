@@ -15,13 +15,14 @@ div.panel h3{
   font-weight: bold;
 }
 
-#directions-section {display:none;}
-#directions-section p, 
-#directions-section li {font-size: 90%;}
 #accounts-section {display:none;}
 #accounts-section div.panel {background:#f9ebd2;}
 #devices-section {display:none;}
 #devices-section div.panel {background:#f9ebd2;}
+#event-streams-section {display:none;}
+#event-streams-section div.panel {background:#f9ebd2;}
+#events-section {display:none;}
+#events-section div.panel {background:#f9ebd2;}
 #filter-section {display:none;}
 #filter-section div.panel {background:#f9ebd2;}
 
@@ -316,3 +317,60 @@ div.field span.field-text {
 div.field:hover span.field-text {
   visibility: visible;
 }
+
+/* Adding Event Streams and Events */
+
+div.panel table {width: 100% !important; margin-bottom: 0rem !important; background:white;}
+div.panel table th, div.panel table td {border-collapse: collapse; vertical-align:top;}
+
+div.panel table {border:1px double #dae7f1 !important;}
+div.panel table th {border: 1px double #dae7f1 !important;}
+div.panel table td {border: 1px double #dae7f1 !important;}
+
+div.panel table th, div.panel table td {padding: 3px 4px;}
+div.panel table th {font-size:90%; font-weight: normal; color: black;}
+div.panel table td {font-size:90%; font-weight: normal; color: gray;}
+div.panel table tr.summary td {cursor: pointer;}
+div.panel table tr.details td {border-color: white; padding:0px !important;}
+div.panel table tr.details td pre {
+  background: #333333;
+  padding: 6px;
+  border: none;
+  line-height: 1rem;
+  color: white;
+  font-weight: normal;
+  font-size: 85%;
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+  margin: 0px !important;
+}
+div.panel table tr th:nth-child(1) {width:24px;}
+div.panel table tr th:nth-child(2).es {width:42px;}
+div.panel table tr input[type='checkbox'] {vertical-align:middle;}
+
+#ayla-event-streams th:nth-child(4), 
+#ayla-event-streams th:nth-child(5),
+#ayla-event-streams .numEvents, #ayla-event-streams .numHBs {width:60px; text-align: right;}
+
+.link-btn {
+  color: #4682b4;
+  cursor: pointer;
+  font-size: 85%;
+  margin-right: 12px;
+}
+.link-btn[aria-expanded="true"] {text-decoration: underline;}
+.link-btn:hover {color: #396a93;}
+.link-btns {margin-bottom: .5rem;}
+
+div.panel form.steps {
+  background: white; 
+  padding: 6px 12px 9px 12px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+div.panel form.steps ol {margin-bottom: 0px; list-style-type: lower-alpha;}
+div.panel td img {margin: 0 !important;}
+
+div.btn-group.special {display: flex;}
+div.btn-group.special .btn {flex: 1}
+

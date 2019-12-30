@@ -27,7 +27,6 @@ a: block
             <button id="api-get-btn" type="button" class="btn btn-sm btn-outline-secondary save">Get</button>
             <button id="api-clear-btn" type="button" class="btn btn-sm btn-outline-secondary">Clear</button>
             <button id="api-create-btn" type="button" class="btn btn-sm btn-outline-secondary save">Create</button>
-            <!--<button id="api-delete-btn" type="button" class="btn btn-sm btn-outline-secondary save" disabled>Delete</button>-->
           </div>
         </div>
       </div>
