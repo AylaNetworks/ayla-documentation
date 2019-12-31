@@ -127,10 +127,16 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 
 |Key|Value|
 |-|-|
+|```access_token```|```1234567890abcdef1234567890abcdef```|
 |```action_uuid```|```a1234567-1234-1234-1234-a1234567890a```|
+|```app_id```|```abc-1A-id```|
+|```app_secret```|```abc-a1b2c3d4e5f6a1b2c3d4e5f6XYZ```|
 |```devId```|```12345678```|
 |```DSN```|```AC000W123456789```|
+|```email```|<code>sarah&commat;acme.com</code>|
 |```mac```|```00:11:22:aa:bb:cc```|
 |```oemId```|```1234abcd```|
+|```refresh_token```|```1234512345abcabc1234512345abcabc```|
 |```rule_uuid```|```c1234567-1234-1234-1234-a1234567890a```|
+|```user_id```|```12345678```|
 |```user_uuid```|```b1234567-1234-1234-1234-a1234567890a```|

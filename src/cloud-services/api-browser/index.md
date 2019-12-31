@@ -20,7 +20,7 @@ classesFromPage: has-pagebar
 <div class="btn-group control-btns special">
   <button id="accounts-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Accounts</button>
   <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
-  <button id="event-streams-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Event Streams</button>
+  <button id="streams-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Streams</button>
   <button id="events-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Events</button>
   <button id="filter-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Filter</button>
 </div>
@@ -28,7 +28,22 @@ classesFromPage: has-pagebar
   <div class="panel">
     <h3>Accounts</h3>
     <div class="form-row">
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-md-2">
+        <div class="form-row">
+          <div class="col-12">
+            <label>Persist</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col mb-2">
+            <select class="form-control form-control-sm">
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-5">
         <div class="form-row">
           <div class="col-12">
             <label>Region</label>
@@ -49,7 +64,7 @@ classesFromPage: has-pagebar
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-md-5">
         <div class="form-row">
           <div class="col-12">
             <label>Account</label>
@@ -144,11 +159,11 @@ classesFromPage: has-pagebar
         </div>
         <div class="col-12 col-lg-3 mb-2">
           <label>uuid</label>
-          <input id="ayla-account-uuid" type="text" class="form-control form-control-sm" disabled>
+          <input id="ayla-account-uuid" type="text" class="form-control form-control-sm">
         </div>
         <div class="col-12 col-lg-3 mb-2">
           <label>user_id</label>
-          <input id="ayla-account-user-id" type="text" class="form-control form-control-sm" disabled>
+          <input id="ayla-account-user-id" type="text" class="form-control form-control-sm">
         </div>
       </div>
     </div>
@@ -206,7 +221,7 @@ classesFromPage: has-pagebar
 </div>
 <div id="event-streams-section">
   <div class="panel">
-    <h3>Event Streams</h3>
+    <h3>Streams</h3>
     <div class="form-row mb-2">
       <div class="col-md-3">
         <input id="stream-name" type="text" class="form-control form-control-sm" placeholder="Stream Name">

@@ -808,7 +808,7 @@ $(function () {
 })
 
 $(function () {
-  $("#event-streams-button").click(function (event) {
+  $("#streams-button").click(function (event) {
     $('#event-streams-section').toggle()
   })
 })
