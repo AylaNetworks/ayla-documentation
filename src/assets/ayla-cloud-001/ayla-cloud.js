@@ -1,8 +1,8 @@
 var AYLA = {
-  getApiv1Devices: function(server, accessToken, successCb=null, errorCb=null) {
+  getApiv1Devices: function(server, accessToken, uuid, successCb=null, errorCb=null) {
     axios({
       method: 'get',
-      url: server + '/apiv1/devices',
+      url: server + '/apiv1/devices?paginated=1&page=1&per_page=50&order_by=product_name&order=asc&user_uuid=' + uuid,
       headers: {
         'Authorization': 'auth_token ' + accessToken,
         'Accept': 'application/json'

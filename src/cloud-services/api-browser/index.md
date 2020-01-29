@@ -8,7 +8,7 @@ classesFromPage: has-pagebar
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
     <li><a href="#core-title">API Browser</a></li>
-    <li><a href="#datastream-service-header">Datastream Service</a></li>
+    <li><a href="#datastream-service-header">Datastream Service v1</a></li>
     <li><a href="#device-service-header">Device Service</a></li>
     <li><a href="#factory-proxy-service-header">Factory Proxy Service</a></li>
     <li><a href="#iot-command-center-service-header">IoT Command Center</a></li>
@@ -16,12 +16,12 @@ classesFromPage: has-pagebar
     <li><a href="#user-service-header">User Service</a></li>
   </ul>
 </aside>
-<div style="font-size:85%;margin-bottom:6px;">For directions, see the [API Guide](../api-guide).</div>
+<div style="font-size:85%;margin-bottom:6px;">For directions, see the [API Guide](../api-guide). Send feedback to matt&#64;aylanetworks.com.</div>
 <div class="btn-group control-btns special">
   <button id="accounts-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Accounts</button>
   <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
-  <button id="streams-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Streams</button>
-  <button id="events-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Events</button>
+  <button id="streams-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Streams 1</button>
+  <button id="events-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Events 1</button>
   <button id="filter-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Filter</button>
 </div>
 <div id="accounts-section">
@@ -36,7 +36,7 @@ classesFromPage: has-pagebar
         </div>
         <div class="form-row">
           <div class="col mb-2">
-            <select class="form-control form-control-sm">
+            <select id="persist" class="form-control form-control-sm">
               <option value="0">No</option>
               <option value="1">Yes</option>
             </select>
@@ -221,7 +221,7 @@ classesFromPage: has-pagebar
 </div>
 <div id="event-streams-section">
   <div class="panel">
-    <h3>Streams</h3>
+    <h3>DSS v1 Streams</h3>
     <div class="form-row mb-2">
       <div class="col-md-3">
         <input id="stream-name" type="text" class="form-control form-control-sm" placeholder="Stream Name">
@@ -258,7 +258,7 @@ classesFromPage: has-pagebar
 </div>
 <div id="events-section">
   <div class="panel">
-    <h3>Events</h3>
+    <h3>DSS v1 Events</h3>
     <div class="link-btns">
       <span id="delete-events-btn" class="link-btn">Delete</span>
     </div>
@@ -304,7 +304,7 @@ classesFromPage: has-pagebar
 <h1 id="datastream-service-header" class="api-service">
   <div class="api-service">
     <div class="row">
-      <div class="col" data-toggle="collapse" href="#datastream-service-content"><div class="name">Datastream Service</div></div>
+      <div class="col" data-toggle="collapse" href="#datastream-service-content"><div class="name">Datastream Service v1</div></div>
       <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>

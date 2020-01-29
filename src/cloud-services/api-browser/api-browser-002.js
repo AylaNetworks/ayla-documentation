@@ -1,4 +1,69 @@
 /*------------------------------------------------------
+Regions / Accounts and Local Storage
+------------------------------------------------------*/
+
+var _regions = {}
+_regions.cndev = []
+_regions.cnfield = []
+_regions.eufield = []
+_regions.usdev = []
+_regions.usfield = []
+
+// On Load
+$(function() {
+  let s = localStorage.getItem('regions')
+  if(s) {
+    _regions = JSON.parse(s)
+    $('#persist').val(1)
+  }
+})
+
+// On Click Persist Yes/No
+$(function () {
+  $('#persist').click(function (event) {
+    if($('#persist option:selected').val()==1) {
+      localStorage.setItem('regions', JSON.stringify(_regions))
+    } else {
+      localStorage.removeItem('regions')
+    }
+  })
+})
+
+function getRegions() {
+  return _regions
+}
+
+function setRegions(regions) {
+  if($('#persist option:selected').val()==1) {
+    localStorage.setItem('regions', JSON.stringify(regions))
+  }
+}
+
+function getCurrentAccount(regions) {
+  let regionId = $("select.ayla-regions option:selected").val()
+  let region = regions[regionId]
+  let accountId = $("select.ayla-accounts option:selected").val()
+  if(accountId) {
+    for(let i = 0; i < region.length; i++) { 
+      if(region[i].uuid == accountId) {
+        return region[i]
+      }
+    }
+  }
+  let account = {}
+  account.account_name = ''
+  account.email = ''
+  account.password = ''
+  account.app_id = ''
+  account.app_secret = ''
+  account.access_token = ''
+  account.refresh_token = ''
+  account.uuid = ''
+  account.user_id = ''
+  return account
+}
+
+/*------------------------------------------------------
 On Click button-run
 ------------------------------------------------------*/
 
@@ -85,7 +150,7 @@ function runApi(method, server, url, accessToken, refreshToken, requestData, res
 }
 
 /*------------------------------------------------------
-runApi
+process401
 ------------------------------------------------------*/
 
 function process401() {
@@ -113,8 +178,9 @@ function formatUrl(api) {
     }
   }
 
+  let count=0
   let qpInputElements = $(api).find('div.query-parameter input.value')
-  for(let i = 0, count=0; i < qpInputElements.length; i++) {
+  for(let i = 0; i < qpInputElements.length; i++) {
     let details = $(qpInputElements.eq(i)).data('details')
     let value = $(qpInputElements.eq(i)).val()
 
@@ -128,6 +194,15 @@ function formatUrl(api) {
         value = value.replace(/\%/g, '%25')
         url = addQueryParameter(count++, url, details.name, value)
       }
+    }
+  }
+
+  let qpSelectElements = $(api).find('div.query-parameter select')
+  for(let i = 0; i < qpSelectElements.length; i++) {
+    let details = $(qpSelectElements.eq(i)).data('details')
+    let value = $(qpSelectElements.eq(i)).val()
+    if(value) {
+      url = addQueryParameter(count++, url, details.name, value)
     }
   }
 
@@ -213,53 +288,6 @@ $(function() {
     clearStatus($(content).find('div.status-codes'))
   })
 })
-
-/*------------------------------------------------------
-Local Storage
-------------------------------------------------------*/
-
-function getRegions() {
-  let str = localStorage.getItem('regions')
-  if(str) {
-    return JSON.parse(str)
-  } else {
-    let regions = {}
-    regions.cndev = []
-    regions.cnfield = []
-    regions.eufield = []
-    regions.usdev = []
-    regions.usfield = []
-    return regions
-  }
-}
-
-function setRegions(regions) {localStorage.setItem('regions', JSON.stringify(regions))}
-
-function deleteRegions() {localStorage.removeItem('regions')}
-
-function getCurrentAccount(regions) {
-  let regionId = $("select.ayla-regions option:selected").val()
-  let region = regions[regionId]
-  let accountId = $("select.ayla-accounts option:selected").val()
-  if(accountId) {
-    for(let i = 0; i < region.length; i++) { 
-      if(region[i].uuid == accountId) {
-        return region[i]
-      }
-    }
-  }
-  let account = {}
-  account.account_name = ''
-  account.email = ''
-  account.password = ''
-  account.app_id = ''
-  account.app_secret = ''
-  account.access_token = ''
-  account.refresh_token = ''
-  account.uuid = ''
-  account.user_id = ''
-  return account
-}
 
 /*------------------------------------------------------
 setTokenState
@@ -663,9 +691,17 @@ setAuthUserFields
 
 function setAuthUserFields(account=null) {
   if(account) {
+    let idInputs = $('div.path-parameter input[placeholder = "userId"]')
+    for(let i=0; i < idInputs.length; i++) { 
+      $(idInputs.eq(i)).val(account.user_id)
+    }
     let uuidInputs = $('div.path-parameter input[placeholder = "uuid"]')
     for(let i=0; i < uuidInputs.length; i++) { 
       $(uuidInputs.eq(i)).val(account.uuid)
+    }
+    let userUuidInputs = $('div.query-parameter input[placeholder = "user_uuid"]')
+    for(let i=0; i < userUuidInputs.length; i++) { 
+      $(userUuidInputs.eq(i)).val(account.uuid)
     }
     let accessTokenSpans = $('pre.request-data-element span.access-token')
     for(let i=0; i < accessTokenSpans.length; i++) { 
@@ -676,9 +712,17 @@ function setAuthUserFields(account=null) {
       $(refreshTokenSpans.eq(i)).text(account.refresh_token)
     }
   } else {
+    let idInputs = $('div.path-parameter input[placeholder = "userId"]')
+    for(let i=0; i < idInputs.length; i++) { 
+      $(idInputs.eq(i)).val('')
+    }
     let uuidInputs = $('div.path-parameter input[placeholder = "uuid"]')
     for(let i=0; i < uuidInputs.length; i++) { 
       $(uuidInputs.eq(i)).val('')
+    }
+    let userUuidInputs = $('div.query-parameter input[placeholder = "user_uuid"]')
+    for(let i=0; i < userUuidInputs.length; i++) { 
+      $(userUuidInputs.eq(i)).val('')
     }
     let accessTokenSpans = $('pre.request-data-element span.access-token')
     for(let i=0; i < accessTokenSpans.length; i++) { 
@@ -849,11 +893,12 @@ function populateDevices() {
   let regionId = $("select.ayla-regions option:selected").val()
   let server = serviceUrls[regionId]['device']
   let accessToken = $('#ayla-account-access-token').val()
-  AYLA.getApiv1Devices(server, accessToken, function(response) {
+  let uuid = $('#ayla-account-uuid').val()
+  AYLA.getApiv1Devices(server, accessToken, uuid, function(response) {
     removeDevices()
-    if(response.data.length) {
-      addDevices(response.data)
-      populateDevice(response.data[0].device.key)
+    if(response.data.devices.length) {
+      addDevices(response.data.devices)
+      populateDevice(response.data.devices[0].device.key)
     }
   }, function(response) {
     console.log(JSON.stringify(response, null, 2))

@@ -184,6 +184,7 @@ div.api div.content div.query-parameter span.text {font-size: 90%;}
 div.api div.content div.notes {font-size: 90%;}
 
 div.api div.content input {margin-bottom: .5rem;}
+div.api div.content select {margin-bottom: .5rem;}
 
 div.api div.refresh img {cursor: pointer; margin:0 !important; padding:0 !important;}
 

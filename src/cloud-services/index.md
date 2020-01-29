@@ -11,23 +11,19 @@ classesFromPage: has-pagebar
   </ul>
 </aside>
 
-The Ayla Cloud offers the following services to client applications:
+Welcome, developers and integrators! This video introduces you to Ayla Cloud Services and APIs:
 
-<div class="form-row mb-3">
-<div class="col-md-6">
-<ol style="margin-bottom:0;">
-<li style="margin-top:0;">Datastream Service</li>
-<li>Device Service</li>
-<li>Factory Proxy Service</li>
-</ol>
-</div>
-<div class="col-md-6">
-<ol style="margin-bottom:0;" start="4">
-<li style="margin-top:0;">IoT Command Center</li>
-<li>Rules Service</li>
-<li>User Service</li>
-</ol>
-</div>
-</div>
+<iframe 
+  width="560" 
+  height="320" 
+  src="https://www.youtube.com/embed/w4FYKFVGmfo?rel=0" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
 
-Each service includes a set of REST APIs.
+After watching this video, you can use the following tools to help you explore Ayla Cloud Services and APIs:
+
+The [API Browser](api-browser) enables you to experiment with APIs. 
+
+The [API Guide](api-guide) helps you learn how to use the API Browser, and how to accomplish tasks with sets of APIs.
