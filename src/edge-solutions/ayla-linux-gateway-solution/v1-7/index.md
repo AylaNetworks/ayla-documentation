@@ -131,7 +131,7 @@ Browse to the [Ayla Developer Portal](/system-administration/ayla-developer-port
 ### Simulator Gateway template
 
 <table>
-<tr><td>Visibility:</td><td>oem</td></tr>
+<tr><td>Visibility:</td><td>private</td></tr>
 <tr><td>Name:</td><td>Sim GW</td></tr>
 <tr><td>Description:</td><td>gatewayd</td></tr>
 <tr><td>Registration:</td><td>Same-LAN</td></tr>

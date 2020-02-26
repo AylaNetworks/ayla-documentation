@@ -41,7 +41,7 @@ The Ayla ESP32 Solution includes example host application source code, an Ayla W
 
 1. Browse to the [Ayla Developer Portal](/system-administration/ayla-developer-portal/), and create a template with the following details.
     <table>
-    <tr><td>Visibility:</td><td>oem</td></tr>
+    <tr><td>Visibility:</td><td>private</td></tr>
     <tr><td>Name:</td><td>ADA ESP v1.5 Beta</td></tr>
     <tr><td>Description:</td><td>ADA ESP v1.5 Beta</td></tr>
     <tr><td>Registration:</td><td>Dsn</td></tr>
@@ -257,7 +257,7 @@ This section provides directions for building an Ayla ESP32 Solution v1.5-beta u
 
 ## GCC/Windows
 
-[See AD-138](https://aylanetworks.atlassian.net/browse/AD-138)
+See [Ayla ESP32 Solution v1.3.8](../v1-3-8/#gcc-windows).
 
 # Register your device
 

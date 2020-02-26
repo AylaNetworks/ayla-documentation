@@ -75,7 +75,7 @@ This guide helps you experiment with the Ayla Linux Device Solution on a Raspber
 <iframe 
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/aDdyFeo2A5E?rel=0"
+  src="https://www.youtube.com/embed/p2ka8HW6KYA" 
   frameborder="0" 
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
@@ -90,7 +90,7 @@ You can connect a Raspberry Pi to the Ayla Public Account or, if it exists, to y
 Browse to the [Ayla Developer Portal](/system-administration/ayla-developer-portal/), and create a template with the following details.
 
 <table>
-<tr><td>Visibility:</td><td>oem</td></tr>
+<tr><td>Visibility:</td><td>private</td></tr>
 <tr><td>Name:</td><td>Linux v1.7</td></tr>
 <tr><td>Description:</td><td>Linux v1.7</td></tr>
 <tr><td>Registration:</td><td>Dsn</td></tr>
@@ -1089,7 +1089,7 @@ The 2-second interval means this schedule will wake up every 2 seconds. The 1-se
 <iframe 
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/FbwP8tM3pgg?rel=0"
+  src="https://www.youtube.com/embed/nKrEpwKJGLs" 
   frameborder="0" 
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
@@ -1107,7 +1107,7 @@ The following video demonstrates:
 <iframe 
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/vhugySJ9kXA?rel=0"
+  src="https://www.youtube.com/embed/WBn1NXmfSSs"
   frameborder="0" 
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
@@ -1183,7 +1183,7 @@ void button_isr() {
 <iframe 
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/ejlnBJJxWHg?rel=0"
+  src="https://www.youtube.com/embed/ZHuWo-b10Kc"
   frameborder="0" 
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
@@ -1288,7 +1288,7 @@ Alternately, you can run the program in the background with <code>./rpi-side & d
 <iframe 
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/E8ZBXUGqDhA?rel=0"
+  src="https://www.youtube.com/embed/rK7zOZbv7Ho" 
   frameborder="0" 
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
@@ -1454,7 +1454,7 @@ Your modified <code>appd</code> interacts with the <code>arduino-side</code> ske
 <iframe 
   width="560" 
   height="315" 
-  src="https://www.youtube.com/embed/2pwZxI7TSJQ?rel=0"
+  src="https://www.youtube.com/embed/y-6JXdTpu7k" 
   frameborder="0" 
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>

@@ -319,6 +319,10 @@ div.field:hover span.field-text {
   visibility: visible;
 }
 
+div.field span.field-text:hover {
+  visibility: visible;
+}
+
 /* Adding Event Streams and Events */
 
 div.panel table {width: 100% !important; margin-bottom: 0rem !important; background:white;}

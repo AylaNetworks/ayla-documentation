@@ -7,7 +7,7 @@ classesFromPage: has-pagebar
 
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
-    <li><a href="#core-title">ESP32 v1.5-beta</a></li>
+    <li><a href="#core-title">ESP32 v1.3.8</a></li>
     <li><a href="#first-steps">First steps</a></li>
     <li><a href="#build-and-run">Build and Run</a>
       <ul>

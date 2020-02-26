@@ -79,13 +79,34 @@ $(function() {
     let requestData = ''
     let requestElement = $(api).find('pre.request-data-element')
     if(requestElement.length) {
+      $(requestElement).find('span.field-text').html('')
       requestData = $(requestElement).text()
+      //if(testJson(requestData)) {
+      //  let o = JSON.parse(requestData)
+      //  requestData = JSON.stringify(o)
+      //}
     }
     let responseElement = $(api).find('pre.response-data-element')
     let statusCodes = $(api).find('div.status-codes')
     runApi(method, server, url, accessToken, refreshToken, requestData, responseElement, statusCodes)
   })
 })
+
+/*------------------------------------------------------
+testJson
+------------------------------------------------------*/
+
+function testJson(text) {
+  if (typeof text !== "string") {
+    return false
+  }
+  try {
+    JSON.parse(text)
+    return true
+  } catch (error) {
+    return false
+  }
+}
 
 /*------------------------------------------------------
 runApi
@@ -486,6 +507,7 @@ serviceUrls['cndev']['application'] = "https://application.ayla.com.cn"
 serviceUrls['cndev']['datastream'] = "https://stream.ayla.com.cn"
 serviceUrls['cndev']['datastream-cloud'] = "wss://stream.ayla.com.cn/stream"
 serviceUrls['cndev']['datastream-mobile'] = "wss://mstream-dev.ayla.com.cn/stream"
+serviceUrls['cndev']['datastream2'] = ""
 serviceUrls['cndev']['device'] = "https://ads-dev.ayla.com.cn"
 serviceUrls['cndev']['factory-proxy'] = "https://api-dev.ayla.com.cn"
 serviceUrls['cndev']['iot-command-center'] = ""
@@ -501,6 +523,7 @@ serviceUrls['cnfield']['application'] = "https://app-field.ayla.com.cn"
 serviceUrls['cnfield']['datastream'] = "https://stream-field.ayla.com.cn"
 serviceUrls['cnfield']['datastream-cloud'] = "wss://stream-field.ayla.com.cn/stream"
 serviceUrls['cnfield']['datastream-mobile'] = "wss://mstream-field.ayla.com.cn/stream"
+serviceUrls['cnfield']['datastream2'] = ""
 serviceUrls['cnfield']['device'] = "https://ads-field.ayla.com.cn"
 serviceUrls['cnfield']['factory-proxy'] = "https://api-field.ayla.com.cn"
 serviceUrls['cnfield']['iot-command-center'] = ""
@@ -516,6 +539,7 @@ serviceUrls['eufield']['application'] = "https://app-field-eu.aylanetworks.com"
 serviceUrls['eufield']['datastream'] = "https://stream-field-eu.aylanetworks.com"
 serviceUrls['eufield']['datastream-cloud'] = "wss://stream-field-eu.aylanetworks.com/stream"
 serviceUrls['eufield']['datastream-mobile'] = "wss://mstream-field-eu.aylanetworks.com/stream"
+serviceUrls['eufield']['datastream2'] = ""
 serviceUrls['eufield']['device'] = "https://ads-field-eu.aylanetworks.com"
 serviceUrls['eufield']['factory-proxy'] = "https://api-field-eu.aylanetworks.com"
 serviceUrls['eufield']['iot-command-center'] = ""
@@ -531,6 +555,7 @@ serviceUrls['usdev']['application'] = "https://application.aylanetworks.com"
 serviceUrls['usdev']['datastream'] = "https://stream.aylanetworks.com"
 serviceUrls['usdev']['datastream-cloud'] = "wss://stream.aylanetworks.com/stream"
 serviceUrls['usdev']['datastream-mobile'] = "wss://mstream-dev.aylanetworks.com/stream"
+serviceUrls['usdev']['datastream2'] = "https://ams-usdv.aylanetworks.com"
 serviceUrls['usdev']['device'] = "https://ads-dev.aylanetworks.com"
 serviceUrls['usdev']['factory-proxy'] = "https://api-dev.aylanetworks.com"
 serviceUrls['usdev']['iot-command-center'] = "https://icc-dev.aylanetworks.com"
@@ -546,6 +571,7 @@ serviceUrls['usfield']['application'] = "https://app-field.aylanetworks.com"
 serviceUrls['usfield']['datastream'] = "https://stream-field.aylanetworks.com"
 serviceUrls['usfield']['datastream-cloud'] = "wss://stream-field.aylanetworks.com/stream"
 serviceUrls['usfield']['datastream-mobile'] = "wss://mstream-field.aylanetworks.com/stream"
+serviceUrls['usfield']['datastream2'] = ""
 serviceUrls['usfield']['device'] = "https://ads-field.aylanetworks.com"
 serviceUrls['usfield']['factory-proxy'] = "https://api-field.aylanetworks.com"
 serviceUrls['usfield']['iot-command-center'] = "https://icc-field.aylanetworks.com"
@@ -578,6 +604,7 @@ function writeRegionUrls() {
   $('#datastream-service-url').val(serviceUrls[regionId]['datastream'])
   $('#datastream-cloud-url').val(serviceUrls[regionId]['datastream-cloud'])
   $('#datastream-mobile-url').val(serviceUrls[regionId]['datastream-mobile'])
+  $('#datastream2-service-url').val(serviceUrls[regionId]['datastream2'])
   $('#device-service-url').val(serviceUrls[regionId]['device'])
   $('#factory-proxy-service-url').val(serviceUrls[regionId]['factory-proxy'])
   $('#icc-service-url').val(serviceUrls[regionId]['iot-command-center'])
@@ -1276,10 +1303,10 @@ function renderApi(api) {
   let apiElement = $('<div/>')
   buildApi(apiElement, api)
   let serviceName = api.service.name.toLowerCase().replace(/ /g, "-")
-  let serviceContentElement = $('#' + serviceName + '-service-content')
+  let serviceContentElement = $('#' + serviceName + '-content')
   $(serviceContentElement).append(apiElement)
   let count = $(serviceContentElement).children('div.api').length
-  $('#' + serviceName + '-service-header').find('input.count').val(count)
+  $('#' + serviceName + '-header').find('input.count').val(count)
 }
 
 /*------------------------------------------------------
@@ -1423,6 +1450,7 @@ $(function() {
     }, function(error) {console.log(error)})
   })
 
+  // This does not always remove the text inside the span, so I remove all on click run.
   $('#core-content').delegate('pre div.field', 'mouseout', function(event) {
     let text = $(this).children('span')
     $(text).html('')

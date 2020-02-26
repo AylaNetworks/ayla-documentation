@@ -18,9 +18,9 @@ classesFromPage: has-pagebar
 Welcome, edge developers! This video explains concepts that are common to all <a href="https://www.aylanetworks.com/edge-connectivity" target="_blank">Ayla Edge Solutions</a>:
 
 <iframe 
-  width="563" 
-  height="316" 
-  src="https://www.youtube.com/embed/EqV3je8khFU?rel=0"
+  width="560" 
+  height="315" 
+  src="https://www.youtube.com/embed/LIUmvLBJ0G0"
   frameborder="0" 
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>

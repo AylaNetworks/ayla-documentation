@@ -176,16 +176,16 @@ $(function () {
   });
 });
 
-// Move this function into ayla-proxy-server.js.
-
 function search(searchStr) {
+  searchStr = searchStr.replace(/ /g, '%20AND%20')
+  let searchUrl = 'https://jeffreyhagen.org/solr/ayla-docs/select'
   axios({
     method: 'get',
-    url: domain + '/api/v1/search?q=' + searchStr + '&size=100',
+    url: searchUrl + '?q=' + searchStr,
     headers: { 'Accept': 'application/json' }
   })
     .then(function (response) {
-      // console.log(JSON.stringify(response.data, null, 2))
+      console.log(JSON.stringify(response.data, null, 2))
       displaySearchResults(response.data)
     })
     .catch(function (error) {
@@ -201,13 +201,13 @@ function displaySearchResults(data) {
   $('#core-content').empty()
   $('body').removeClass('has-pagebar')
 
-  if (data.hits.hit.length) {
+  if (data.response.docs.length) {
     var results = $('<ol/>')
-    $.each(data.hits.hit, function (index, data) {
+    $.each(data.response.docs, function (index, doc) {
       $(results).append(''
         + '<li>'
-        + '<a href="' + data.fields.url + '">' + data.fields.title + '</a>. '
-        + data.fields.summary
+        + '<a href="' + doc.url + '">' + doc.title + '</a>. '
+        + doc.description
         + '</li>'
       )
     })

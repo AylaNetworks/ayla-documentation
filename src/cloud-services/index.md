@@ -15,8 +15,8 @@ Welcome, developers and integrators! This video introduces you to Ayla Cloud Ser
 
 <iframe 
   width="560" 
-  height="320" 
-  src="https://www.youtube.com/embed/w4FYKFVGmfo?rel=0" 
+  height="315" 
+  src="https://www.youtube.com/embed/3V5X-NXsIL0" 
   frameborder="0" 
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
   allowfullscreen>
@@ -26,4 +26,4 @@ After watching this video, you can use the following tools to help you explore A
 
 The [API Browser](api-browser) enables you to experiment with APIs. 
 
-The [API Guide](api-guide) helps you learn how to use the API Browser, and how to accomplish tasks with sets of APIs.
+The [API Users Guide](api-users-guide) helps you learn how to use the API Browser, and how to accomplish tasks with sets of APIs.

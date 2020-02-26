@@ -7,7 +7,7 @@ classesFromPage: has-pagebar
 
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
-    <li><a href="#core-title">ESP32 v1.5-beta</a></li>
+    <li><a href="#core-title">ESP32 v1.3.10-beta</a></li>
     <li><a href="#first-steps">First steps</a></li>
     <li><a href="#build-and-run">Build and Run</a>
       <ul>
@@ -255,7 +255,7 @@ This section provides directions for building an Ayla ESP32 Solution v1.5-beta u
 
 ## GCC/Windows
 
-See [Ayla ESP32 Solution v1.3.8](../v1-3-8).
+See [Ayla ESP32 Solution v1.3.8](../v1-3-8/#gcc-windows).
 
 # Register your device
 

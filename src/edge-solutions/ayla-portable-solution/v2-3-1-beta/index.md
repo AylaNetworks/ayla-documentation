@@ -36,7 +36,7 @@ The Ayla Portable Solution consists of software libraries not tied to any specif
 
 1. Browse to the [Ayla Developer Portal](/system-administration/ayla-developer-portal/), and create a template with the following details.
     <table>
-    <tr><td>Visibility:</td><td>oem</td></tr>
+    <tr><td>Visibility:</td><td>private</td></tr>
     <tr><td>Name:</td><td>PDA v2.3.1-beta</td></tr>
     <tr><td>Description:</td><td>PDA v2.3.1-beta</td></tr>
     <tr><td>Registration:</td><td>Dsn</td></tr>

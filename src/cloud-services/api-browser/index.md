@@ -8,15 +8,16 @@ classesFromPage: has-pagebar
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
     <li><a href="#core-title">API Browser</a></li>
-    <li><a href="#datastream-service-header">Datastream Service v1</a></li>
-    <li><a href="#device-service-header">Device Service</a></li>
-    <li><a href="#factory-proxy-service-header">Factory Proxy Service</a></li>
-    <li><a href="#iot-command-center-service-header">IoT Command Center</a></li>
-    <li><a href="#rules-service-header">Rules Service</a></li>
-    <li><a href="#user-service-header">User Service</a></li>
+    <li><a href="#datastream-header">Datastream Service v1</a></li>
+    <li><a href="#datastream2-header">Datastream Service v2</a></li>
+    <li><a href="#device-header">Device Service</a></li>
+    <li><a href="#factory-proxy-header">Factory Proxy Service</a></li>
+    <li><a href="#iot-command-center-header">IoT Command Center</a></li>
+    <li><a href="#rules-header">Rules Service</a></li>
+    <li><a href="#user-header">User Service</a></li>
   </ul>
 </aside>
-<div style="font-size:85%;margin-bottom:6px;">For directions, see the [API Guide](../api-guide). Send feedback to matt&#64;aylanetworks.com.</div>
+<div style="font-size:85%;margin-bottom:6px;">For directions, see the [API Users Guide](../api-users-guide). Send feedback to matt&#64;aylanetworks.com.</div>
 <div class="btn-group control-btns special">
   <button id="accounts-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Accounts</button>
   <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
@@ -84,16 +85,20 @@ classesFromPage: has-pagebar
       <div class="title">Regional URLs</div>
       <div class="form-row">
         <div class="col-12 col-md-6 mb-2">
-          <label>Datastream Service</label>
+          <label>Datastream Service v1</label>
           <input id="datastream-service-url" type="text" class="form-control form-control-sm" disabled>
         </div>
         <div class="col-12 col-md-6 mb-2">
-          <label>Datastream WebSockets (Cloud)</label>
+          <label>Datastream Service v1 WS-Cloud</label>
           <input id="datastream-cloud-url" type="text" class="form-control form-control-sm" disabled>
         </div>
         <div class="col-12 col-md-6 mb-2">
-          <label>Datastream WebSockets (Mobile)</label>
+          <label>Datastream Service v1 WS-Mobile</label>
           <input id="datastream-mobile-url" type="text" class="form-control form-control-sm" disabled>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+          <label>Datastream Service v2</label>
+          <input id="datastream2-service-url" type="text" class="form-control form-control-sm" disabled>
         </div>
         <div class="col-12 col-md-6 mb-2">
           <label>Device Service</label>
@@ -301,57 +306,66 @@ classesFromPage: has-pagebar
     </div>
   </div>
 </div>
-<h1 id="datastream-service-header" class="api-service">
+<h1 id="datastream-header" class="api-service">
   <div class="api-service">
     <div class="row">
-      <div class="col" data-toggle="collapse" href="#datastream-service-content"><div class="name">Datastream Service v1</div></div>
+      <div class="col" data-toggle="collapse" href="#datastream-content"><div class="name">Datastream Service v1</div></div>
       <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="datastream-service-content"></div>
-<h1 id="device-service-header" class="api-service">
+<div class="collapse" id="datastream-content"></div>
+<h1 id="datastream2-header" class="api-service">
   <div class="api-service">
     <div class="row">
-      <div class="col" data-toggle="collapse" href="#device-service-content"><div class="name">Device Service</div></div>
+      <div class="col" data-toggle="collapse" href="#datastream2-content"><div class="name">Datastream Service v2</div></div>
       <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="device-service-content"></div>
-<h1 id="factory-proxy-service-header" class="api-service">
+<div class="collapse" id="datastream2-content"></div>
+<h1 id="device-header" class="api-service">
   <div class="api-service">
     <div class="row">
-      <div class="col" data-toggle="collapse" href="#factory-proxy-service-content"><div class="name">Factory Proxy Service</div></div>
+      <div class="col" data-toggle="collapse" href="#device-content"><div class="name">Device Service</div></div>
       <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="factory-proxy-service-content"></div>
-<h1 id="iot-command-center-service-header" class="api-service">
+<div class="collapse" id="device-content"></div>
+<h1 id="factory-proxy-header" class="api-service">
   <div class="api-service">
     <div class="row">
-      <div class="col" data-toggle="collapse" href="#iot-command-center-service-content"><div class="name">IoT Command Center</div></div>
+      <div class="col" data-toggle="collapse" href="#factory-proxy-content"><div class="name">Factory Proxy Service</div></div>
       <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="iot-command-center-service-content"></div>
-<h1 id="rules-service-header" class="api-service">
+<div class="collapse" id="factory-proxy-content"></div>
+<h1 id="iot-command-center-header" class="api-service">
   <div class="api-service">
     <div class="row">
-      <div class="col" data-toggle="collapse" href="#rules-service-content"><div class="name">Rules Service</div></div>
+      <div class="col" data-toggle="collapse" href="#iot-command-center-content"><div class="name">IoT Command Center</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="iot-command-center-content"></div>
+<h1 id="rules-header" class="api-service">
+  <div class="api-service">
+    <div class="row">
+      <div class="col" data-toggle="collapse" href="#rules-content"><div class="name">Rules Service</div></div>
       <div class="col-auto count"><input type="text" class="count" disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="rules-service-content"></div>
-<h1 id="user-service-header" class="api-service">
+<div class="collapse" id="rules-content"></div>
+<h1 id="user-header" class="api-service">
   <div class="api-service">
     <div class="row">
-      <div class="col" data-toggle="collapse" href="#user-service-content"><div class="name">User Service</div></div>
+      <div class="col" data-toggle="collapse" href="#user-content"><div class="name">User Service</div></div>
       <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
-<div class="collapse" id="user-service-content"></div>
+<div class="collapse" id="user-content"></div>
