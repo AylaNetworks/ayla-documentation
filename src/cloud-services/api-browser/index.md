@@ -44,7 +44,7 @@ classesFromPage: has-pagebar
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-5">
         <div class="form-row">
           <div class="col-12">
             <label>Region</label>
@@ -66,7 +66,7 @@ classesFromPage: has-pagebar
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-5">
         <div class="form-row">
           <div class="col-12">
             <label>Account</label>
