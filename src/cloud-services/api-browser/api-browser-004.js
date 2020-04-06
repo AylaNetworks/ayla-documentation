@@ -6,6 +6,7 @@ var _regions = {}
 _regions.cndev = []
 _regions.cnfield = []
 _regions.eufield = []
+_regions.qaalpha = []
 _regions.usdev = []
 _regions.usfield = []
 
@@ -13,6 +14,13 @@ _regions.usfield = []
 $(function() {
   let s = localStorage.getItem('regions')
   if(s) {
+    let tmp = JSON.parse(s)
+    if(tmp.hasOwnProperty('cndev')) {_regions.cndev = Array.from(tmp.cndev)}
+    if(tmp.hasOwnProperty('cnfield')) {_regions.cnfield = Array.from(tmp.cnfield)}
+    if(tmp.hasOwnProperty('eufield')) {_regions.eufield = Array.from(tmp.eufield)}
+    if(tmp.hasOwnProperty('qaalpha')) {_regions.qaalpha = Array.from(tmp.qaalpha)}
+    if(tmp.hasOwnProperty('usdev')) {_regions.usdev = Array.from(tmp.usdev)}
+    if(tmp.hasOwnProperty('usfield')) {_regions.usfield = Array.from(tmp.usfield)}
     _regions = JSON.parse(s)
     $('#persist').val(1)
   }
@@ -550,6 +558,22 @@ serviceUrls['eufield']['rules'] = "https://rulesservice-field-eu.aylanetworks.co
 serviceUrls['eufield']['user'] = "https://user-field-eu.aylanetworks.com"
 serviceUrls['eufield']['zigbee'] = "https://zigbee-field-eu.aylanetworks.com"
 serviceUrls['eufield']['api-documentation'] = "https://docs.aylanetworks.com"
+serviceUrls['qaalpha'] = new Array()
+serviceUrls['qaalpha']['application'] = ""
+serviceUrls['qaalpha']['datastream'] = "https://stream-qa-alpha.aylanev.com"
+serviceUrls['qaalpha']['datastream-cloud'] = ""
+serviceUrls['qaalpha']['datastream-mobile'] = ""
+serviceUrls['qaalpha']['datastream2'] = ""
+serviceUrls['qaalpha']['device'] = "https://ads-qa-alpha.ayladev.com/apiv1"
+serviceUrls['qaalpha']['factory-proxy'] = ""
+serviceUrls['qaalpha']['iot-command-center'] = "https://icc-qa-alpha.aylanev.com"
+serviceUrls['qaalpha']['image'] = "https://ais-qa-alpha.aylanev.com"
+serviceUrls['qaalpha']['log'] = "https://log-qa-alpha.aylanev.com"
+serviceUrls['qaalpha']['notification'] = ""
+serviceUrls['qaalpha']['rules'] = "https://rules-qa-alpha.aylanev.com"
+serviceUrls['qaalpha']['user'] = "https://user-qa-alpha.ayladev.com"
+serviceUrls['qaalpha']['zigbee'] = ""
+serviceUrls['qaalpha']['api-documentation'] = "https://docs.aylanetworks.com"
 serviceUrls['usdev'] = new Array()
 serviceUrls['usdev']['application'] = "https://application.aylanetworks.com"
 serviceUrls['usdev']['datastream'] = "https://stream.aylanetworks.com"
@@ -1246,16 +1270,6 @@ function buildApi(apiElement, api, collapsed=true) {
   content.append('<div class="heading">Response</div>')
   if(api.responseDescription) {content.append('<div class="response-description">' + api.responseDescription + '</div>')}
 
-  content.append('<div class="subheading">Response Data</div>')
-  if(api.responseDataDescription) {content.append('<div class="response-data-description">' + api.responseDataDescription + '</div>')}
-  content.append(''
-    + '<div class="btn-group">'
-    + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>'
-    + '<button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>'
-    + '</div>'
-    + '<pre class="response-data-element" style="display:none;"></pre>'
-  )
-
   if(api.statusCodes) {
     content.append('<div class="subheading">Status Codes</div>')
     if(api.statusCodesDescription) {content.append('<div class="status-codes-description">' + api.statusCodesDescription + '</div>')}
@@ -1265,6 +1279,17 @@ function buildApi(apiElement, api, collapsed=true) {
     }
     content.append(sc)
   }
+
+  content.append('<div class="subheading">Response Data</div>')
+
+  content.append(''
+    + '<div class="btn-group">'
+    + '<button type="button" class="btn btn-outline-secondary btn-sm toggle-response-data-element">Show</button>'
+    + '<button type="button" class="btn btn-outline-secondary btn-sm clear">Clear</button>'
+    + '</div>'
+    + '<pre class="response-data-element" style="display:none;"></pre>'
+  )
+  if(api.responseDataDescription) {content.append('<div class="response-data-description">' + api.responseDataDescription + '</div>')}
 
   if(api.notes) {
     content.append('<div class="heading">Notes</div>')

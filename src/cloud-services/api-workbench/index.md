@@ -203,11 +203,6 @@ a: block
     <div class="form-group col"><textarea id="api-response-description-textarea" class="form-control form-control-sm" rows="2"></textarea></div>
     <div class="form-group col-auto edit-mode"><button id="api-response-description-btn" type="button" class="btn btn-sm btn-block btn-outline-secondary save">&#x2714;</button></div>
   </div>
-  <div class="form-row"><div class="col-12"><label>Response Data Description</label></div></div>
-  <div class="form-row">
-    <div class="form-group col"><textarea id="api-response-data-description-textarea" class="form-control form-control-sm" rows="2"></textarea></div>
-    <div class="form-group col-auto edit-mode"><button id="api-response-data-description-btn" type="button" class="btn btn-sm btn-block btn-outline-secondary save">&#x2714;</button></div>
-  </div>
   <div class="form-row"><div class="col-12"><label>Status Codes Description</label></div></div>
   <div class="form-row">
     <div class="form-group col"><textarea id="api-status-codes-description-textarea" class="form-control form-control-sm" rows="2"></textarea></div>
@@ -226,6 +221,11 @@ a: block
     </div>
   </div>
   <div id="api-status-code-rows"></div>
+  <div class="form-row"><div class="col-12"><label>Response Data Description</label></div></div>
+  <div class="form-row">
+    <div class="form-group col"><textarea id="api-response-data-description-textarea" class="form-control form-control-sm" rows="2"></textarea></div>
+    <div class="form-group col-auto edit-mode"><button id="api-response-data-description-btn" type="button" class="btn btn-sm btn-block btn-outline-secondary save">&#x2714;</button></div>
+  </div>
   <div class="form-row"><div class="col-12"><label>Tags</label></div></div>
   <div id="api-tag-ctl-row" class="form-row">
     <div class="form-group col-sm-3"><select class="form-control form-control-sm"></select></div>

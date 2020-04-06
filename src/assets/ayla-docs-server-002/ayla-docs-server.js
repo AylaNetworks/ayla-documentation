@@ -1,4 +1,4 @@
-var adserver = 'https://docs.aylanetworks.com'
+var adserver = window.location.origin
 
 var DOCS = {
 

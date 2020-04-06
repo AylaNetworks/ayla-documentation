@@ -44,7 +44,7 @@ classesFromPage: has-pagebar
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-6">
         <div class="form-row">
           <div class="col-12">
             <label>Region</label>
@@ -56,6 +56,7 @@ classesFromPage: has-pagebar
               <option value="cndev">China Development</option>
               <option value="cnfield">China Field</option>
               <option value="eufield">EU Field</option>
+              <option value="qaalpha">QA Alpha</option>
               <option value="usdev" selected>US Development</option>
               <option value="usfield">US Field</option>
             </select>
@@ -65,7 +66,7 @@ classesFromPage: has-pagebar
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-6">
         <div class="form-row">
           <div class="col-12">
             <label>Account</label>

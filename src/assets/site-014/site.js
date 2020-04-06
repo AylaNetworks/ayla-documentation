@@ -21,14 +21,20 @@ On Load: Assign active and focus.
 ------------------------------------------------------*/
 
 $(function () {
+  let selector = ''
   let tokens = ("#" + window.location.pathname.substring(1).slice(0, -1)).split("/");
-  var last = tokens[tokens.length - 1];
-  if (last.length > 1) {
-    if (last[0] === "v" && parseInt(last[1])) {
-      tokens.pop();
+
+  if(tokens.length > 1 && tokens[0] == '#tech-notes') {
+    selector = tokens[0]
+  } else {
+    var last = tokens[tokens.length - 1];
+    if (last.length > 1) {
+      if (last[0] === "v" && parseInt(last[1])) {
+        tokens.pop();
+      }
     }
+    selector = tokens.join("-");
   }
-  let selector = tokens.join("-");
 
   if (selector === "#") {
     //$(".navbar-brand").focus();
@@ -178,7 +184,7 @@ $(function () {
 
 function search(searchStr) {
   searchStr = searchStr.replace(/ /g, '%20AND%20')
-  let searchUrl = 'https://jeffreyhagen.org/solr/ayla-docs/select'
+  let searchUrl = 'https://docs.aylanetworks.com/solr/ayla-docs/select'
   axios({
     method: 'get',
     url: searchUrl + '?q=' + searchStr,
