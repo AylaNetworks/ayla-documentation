@@ -49,6 +49,8 @@ This is a table:
 |-|-|-|
 |Blue|0000FF|0,0,255|
 |DarkSeaGreen|8FBC8F|143,188,143|
+|HotPink|FF69B4|255,105,180|
+|LightSteelBlue|B0C4DE|176,196,222|
 
 This is inline code: `apt install nano screen iputils-ping`. 
 
