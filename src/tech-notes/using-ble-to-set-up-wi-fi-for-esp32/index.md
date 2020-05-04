@@ -26,7 +26,7 @@ This is an ordered list:
 This is a table:
 
 |Name|Hex|RGB|
-|-|
+|-|-|-|
 |Blue|0000FF|0,0,255|
 |DarkSeaGreen|8FBC8F|143,188,143|
 
