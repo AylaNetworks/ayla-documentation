@@ -47,14 +47,14 @@ This is an ordered list with code snippets:
 
 1. Create an ```esp``` directory, and change directory:
     ```
-  # mkdir esp
-  # cd esp
+    # mkdir esp
+    # cd esp
     ```
 1. Download ESP32 toolchain for Linux:
     ```
-  # wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
+    # wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
     ```
 1. Extract the archive file:
     ```
-  # tar -xzf xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
+    # tar -xzf xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
     ```
