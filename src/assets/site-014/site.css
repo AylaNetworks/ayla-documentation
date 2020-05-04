@@ -231,23 +231,23 @@ pagebar
 
 #pagebar ul {
   list-style: none;
-  padding-left: 0px;
+  padding-left: 0px !important;
   margin: 0px !important;
 }
 
 #pagebar li ul {
   list-style: none;
-  padding-left: 12px;
+  padding-left: 12px !important;
 }
 
 #pagebar li a {
   display: block;
-  padding: 2px 0px 2px 6px;
+  padding: 2px 0px 2px 6px !important;
   border-radius: 4px;
 }
 
 #pagebar li {
-  margin: 0px;
+  margin: 0px !important;
 }
 
 #pagebar li a {color: gray; font-size: 85%; cursor: pointer !important;}
@@ -264,11 +264,11 @@ pagebar
   width: 0px !important;
 }
 
-#core ol {padding-inline-start: 26px;}
-#core ol ol {padding-inline-start: 6px;}
+#core ol, #core ul {padding-inline-start: 26px;}
+#core ol ol, #core ul ul {padding-inline-start: 6px;}
 
 @media (min-width: 768px) {
-  #core ol ol {padding-inline-start: 20px;}
+  #core ol ol, #core ul ul {padding-inline-start: 20px;}
 }
 
 /******************************
@@ -378,7 +378,7 @@ pagebar
 
 main li {
   margin-bottom: 4px;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 main ul.list-wrap {
   -moz-column-count: 3;
@@ -668,3 +668,20 @@ table.developer-guides th {
 span.past {color:red;font-weight:bold;}
 span.future {color:green;font-weight:bold;}
 span.different {color:black;font-weight:bold;}
+
+table.byte-table {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+table.byte-table th {
+  background-color: #dee2e6;
+  vertical-align: middle;
+}
+
+table.byte-table th, table.byte-table td {
+  font-size: 92%;
+  text-align: center;
+  white-space: nowrap;
+}

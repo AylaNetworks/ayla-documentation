@@ -76,6 +76,7 @@ layout: site.html
       <div class="dropdown">
         <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-developer-portal-user-guide" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
         <div class="dropdown-menu" aria-labelledby="ayla-developer-portal-user-guide">
+          <a class="dropdown-item" href="/archive/ayla-developer-portal-user-guide-2020-04.pdf">v2020-04</a>
           <a class="dropdown-item" href="/archive/ayla-developer-portal-user-guide-2018-06.pdf">v2018-06</a>
         </div>
       </div>
@@ -281,18 +282,6 @@ layout: site.html
         <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-mobile-sdk-developers-guide" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
         <div class="dropdown-menu" aria-labelledby="ayla-mobile-sdk-developers-guide">
           <a class="dropdown-item" href="/archive/ayla-mobile-sdk-developers-guide-2016-05.pdf">v2016-05</a>
-        </div>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td><a href="/archive/ayla-module-and-mcu-interface-specification">Ayla Module and MCU Interface Specification</a></td>
-    <td>PDF</td>
-    <td>
-      <div class="dropdown">
-        <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-module-and-mcu-interface-specification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
-        <div class="dropdown-menu" aria-labelledby="ayla-module-and-mcu-interface-specification">
-          <a class="dropdown-item" href="/archive/ayla-module-and-mcu-interface-specification-2018-03.pdf">v2018-03</a>
         </div>
       </div>
     </td>
@@ -520,6 +509,7 @@ layout: site.html
       <div class="dropdown">
         <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="ayla-service-api-specification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Versions</button>
         <div class="dropdown-menu" aria-labelledby="ayla-service-api-specification">
+          <a class="dropdown-item" href="/archive/ayla-service-api-specification-2020-02.pdf">v2020-02</a>
           <a class="dropdown-item" href="/archive/ayla-service-api-specification-2018-05.pdf">v2018-05</a>
         </div>
       </div>

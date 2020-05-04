@@ -231,24 +231,28 @@ div.api.get div.header.collapsed {background: #edf3f8; color: #212529}
 div.api.get div.header {background: steelblue; color: white;}
 div.api.get div.header div.method {background: steelblue;}
 div.api.get div.content div.subheading {color: #325d81;}
+div.api.get table.fields, div.api.get table.fields th, div.api.get table.fields td {border-color: steelblue !important;}
 
 div.api.post {background: #e6ffe6;}
 div.api.post div.header.collapsed {background: #e6ffe6; color: #212529}
 div.api.post div.header {background: green; color: white;}
 div.api.post div.header div.method {background: green;}
 div.api.post div.content div.subheading {color: #006600;}
+div.api.post table.fields, div.api.post table.fields th, div.api.post table.fields td {border-color: green !important;}
 
 div.api.put {background: #fff6e6;}
 div.api.put div.header.collapsed {background: #fff6e6; color: #212529}
 div.api.put div.header {background: #e69500; color: white;}
 div.api.put div.header div.method {background: #e69500;}
 div.api.put div.content div.subheading {color: #cc8500;}
+div.api.put table.fields, div.api.put table.fields th, div.api.put table.fields td {border-color: #e69500 !important;}
 
 div.api.delete {background: #fbeaea;}
 div.api.delete div.header.collapsed {background: #fbeaea; color: #212529}
 div.api.delete div.header {background: FireBrick; color: white;}
 div.api.delete div.header div.method {background: FireBrick;}
 div.api.delete div.content div.subheading {color: #961d1d;}
+div.api.delete table.fields, div.api.delete table.fields th, div.api.delete table.fields td {border-color: FireBrick !important;}
 
 /* BEGIN SLIDER */
 .switch {

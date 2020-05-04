@@ -22,6 +22,7 @@ classesFromPage: has-pagebar
 <div class="dropdown mb-3">
   <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a version</button>
   <div class="dropdown-menu" aria-labelledby="versions">
+    <a class="dropdown-item" href="../v1-5-3">v1.5-3</a>
     <a class="dropdown-item" href="../v1-5-beta">v1.5-beta</a>
     <a class="dropdown-item" href="../v1-3-10-beta">v1.3.10-beta</a>
     <a class="dropdown-item" href="../v1-3-9">v1.3.9</a>

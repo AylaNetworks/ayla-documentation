@@ -188,6 +188,24 @@ a: block
     </div>
   </div>
   <div id="api-query-parameter-rows"></div>
+
+  <div class="form-row"><div class="col-12"><label>Request Data Type</label></div></div>
+  <div id="api-request-data-type-ctl-row" class="form-row">
+    <div class="form-group col-sm-3">
+      <select class="form-control form-control-sm">
+        <option value="">None</option>
+        <option value="json">JSON</option>
+        <option value="file">File</option>
+      </select>
+    </div>
+    <div class="col-sm-9">
+      <div class="form-row">
+        <div class="form-group col">&nbsp;</div>
+        <div class="form-group col-auto edit-mode"><button type="button" class="btn btn-sm btn-block btn-outline-secondary save">&#x2714;</button></div>
+      </div>
+    </div>
+  </div>
+
   <div class="form-row"><div class="col-12"><label>Request Data Description</label></div></div>
   <div class="form-row">
     <div class="form-group col"><textarea id="api-request-data-description-textarea" class="form-control form-control-sm" rows="2"></textarea></div>

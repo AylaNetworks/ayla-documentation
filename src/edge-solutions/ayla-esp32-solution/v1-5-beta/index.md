@@ -22,6 +22,7 @@ classesFromPage: has-pagebar
 <div class="dropdown mb-3">
   <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a version</button>
   <div class="dropdown-menu" aria-labelledby="versions">
+    <a class="dropdown-item" href="../v1-5-3">v1.5-3</a>
     <a class="dropdown-item" href="../v1-5-beta">v1.5-beta</a>
     <a class="dropdown-item" href="../v1-3-10-beta">v1.3.10-beta</a>
     <a class="dropdown-item" href="../v1-3-9">v1.3.9</a>
@@ -89,8 +90,14 @@ This section provides directions for building an Ayla ESP32 Solution v1.5-beta u
   $ docker run --net=host --name=esp -w /root -it --device=/dev/ttyUSB0 ubuntu bash
     ```
 
-    You are root, and the current working directory is ```/root```.
+    You are root, and the current working directory is ```/root```. When you want to exit your Docker container, type `exit`. To restart and re-attach to your Docker container, type the following:
 
+    ```
+    $ docker ps -a
+    $ docker start esp
+    $ docker attach esp
+    ```
+    
 1. Prepare your development environment:
 
     1. Update package list:

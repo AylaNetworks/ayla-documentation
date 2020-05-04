@@ -146,8 +146,8 @@ network={
 At boot time, Raspian copies this file to <code>/etc/wpa_supplicant/wpa_supplicant.conf</code>.
 1. Unmount the card, remove it from the reader, insert it into the RPi (upside down), and power on.
 1. Secure Shell to the RPi (or, optionally, <a href="https://learn.adafruit.com/adafruits-raspberry-pi-lesson-5-using-a-console-cable/enabling-serial-console" target="_blank">use a serial/console cable</a>):
-1. Determine the RPi IP address. You can browse to the router manager page, or run <code>arp -a</code> in a shell.
-1. Run <code>ssh pi&#64;192.168.1.9</code>. Normally, you will see a message similar to the following:
+    1. Determine the RPi IP address. You can browse to the router manager page, or run <code>arp -a</code> in a shell.
+    1. Run <code>ssh pi&#64;192.168.1.9</code>. Normally, you will see a message similar to the following:
     <pre>The authenticity of host '192.168.1.9 (192.168.1.9)' can't be established.
 ECDSA key fingerprint is SHA256:CcQtTqvRl5SLlAbCdEfG/UsK0/NN018UKnSRw.
 Are you sure you want to continue connecting (yes/no)?</pre>
@@ -166,7 +166,7 @@ Offending ECDSA key in /Users/matt/.ssh/known_hosts:5
 ECDSA host key for 192.168.1.8 has changed and you have requested strict checking.
 Host key verification failed.</pre>
     To solve this, open <code>&#126;/.ssh/known_hosts</code> on your computer, delete the offending row (e.g. 5), save, and re-run ssh.
-1. Type <code>yes</code>, and enter <code>raspberry</code> for password. (Your username is <code>pi</code>).
+    1. Type <code>yes</code>, and enter <code>raspberry</code> for password. (Your username is <code>pi</code>).
 1. Determine whether ```git``` is installed. If not, install:
 <pre>$ git --version
 $ sudo apt-get update

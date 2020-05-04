@@ -175,6 +175,7 @@ $(function () {
     requestData.published = $('#api-published-select').val()
     requestData.queryParameters = queryParameters
     requestData.queryParametersDescription = $('#api-query-parameters-description-textarea').val()
+    requestData.requestDataType = 'json'
     requestData.requestData = rd
     requestData.requestDataDescription = $('#api-request-data-description-textarea').val()
     requestData.requestDescription = $('#api-request-description-textarea').val()

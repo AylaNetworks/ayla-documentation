@@ -7,378 +7,30 @@ classesFromPage: has-pagebar
 
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
-    <li><a href="#core-title">API Users Guide</a>
-      <ul>
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#panels">Panels</a></li>
-        <li><a href="#tutorials">Tutorials</a></li>
-      </ul>
-    </li>
-    <li><a href="#datastream-service">Datastream Service</a>
-      <ul>
-        <li><a href="#dss-overview">DSS Overview</a></li>
-        <li><a href="#dss-tutorial">DSS Tutorial</a></li>
-      </ul>
-    </li>
-    <li><a href="#device-service">Device Service</a>
-      <ul>
-        <li><a href="#ads-overview">ADS Overview</a></li>
-        <li><a href="#notifications-and-triggers">Notifications & Triggers</a></li>
-      </ul>
-    </li>
-    <li><a href="#iot-command-center">IoT Command Center</a>
-      <ul>
-        <li><a href="#icc-overview">ICC Overview</a></li>
-        <li><a href="#set-property-tutorial">Set Property Tutorial</a></li>
-      </ul>
-    </li>
+    <li><a href="#core-title">API Users Guide</a></li>
+    <li><a href="#receive-dss-v1-events">Receive DSS v1 events</a></li>
+    <li><a href="#perform-ota-update">Perform OTA update</a></li>
+    <li><a href="#update-property-values">Update property values</a></li>
   </ul>
 </aside>
 
-This guide shows you how to use the [API Browser](../api-browser). In preparation, please watch the video on the [Cloud Services](../) page, and open the API Browser in another tab. For instructions about managing account credentials, see the Accounts Panel section under [Panels](#panels).
-
-## Overview
-
-The API Browser is organized into Panel Buttons and Service Buttons:
-<img src="ab-030.png" width="600" height="275">
-Panel buttons, like the Accounts Button, open and close panels:
-<img src="ab-005.png" width="600" height="105">
-Service buttons, like the Datastream Service button, open and close lists of API buttons:
-<img src="ab-031.png" width="600" height="198">
-API buttons, like the getAccessRules button, open and close API cards which enable you to run APIs and show results:
-<img src="ab-032.png" width="600" height="225">
-Each API card contains only the sections required by the API. For example, createDatapointByDevId requires path parameters and a request data object, but no query parameters:
-<img src="ab-033.png" width="600" height="362">
-And, getDevices accepts several optional query parameters, but no path parameters or request data object:
-<img src="ab-034.png" width="600" height="248">
-
-## Panels
-
-The API Browser includes five panels: Accounts, Devices, Streams, Events, and Filter.
-
-### Accounts Panel
-
-The Accounts panel enables you to obtain an access token for each of your Ayla user accounts. Ayla API requests require an Authorization header specifying an Ayla-provided access token. Here is an example:
-
-```
-"Authorization": "auth_token 1234567890abcdef1234567890abcdef"
-```
-
-The API Browser automatically adds this header, including an access token, to each API call once you obtain a valid access token. Here's how to obtain one:
-
-1. Click API Browser > Accounts to open the Accounts panel. Then, choose a region.
-<img src="ab-005.png" width="600" height="105">
-1. Click Details, enter your email and password, and, if you are targeting an Ayla Company Account, enter an app_id and app_secret obtained from the [Ayla Dashboard Portal](/system-administration/ayla-dashboard-portal/):
-<img src="ab-004.png" width="600" height="224">
-1. Click Get Tokens to display your account name, access_token, refresh_token, uuid, and userId.
-<img src="ab-007.png" width="600" height="224">
-<div style="color:red;">The API Browser does not yet use refresh tokens to automatically refresh access tokens. So, you may need to click Return Tokens and then Get Tokens to refresh an access token for a particular account.</div>
-1. Click Blank Form, and repeat these steps to access another account.
-
-By default, the API Browser stores your credentials and tokens in cache memory only which helps to ensure that your information remains safe. Remember to clear browser cache when you finish using a public computer. If you are using your own computer, persisting account credentials to browser local storage is convenient because it eliminates the need to re-enter your credentials every time you access the API Browser. To do so, set Persist to Yes on the Accounts panel. Setting Persist to Yes causes the API Browser to save current and future account information to local storage. Setting it to No causes the API Browser to delete the information from local storage, and stops the API Browser from saving the information to local storage in the future.
-
-### Devices Panel
-
-The Devices panel, which abstracts a handful of Device Service APIs, is a convenient (though non-essential) feature of the API Browser. Follow these steps to explore the Devices panel:
-
-1. Click API Browser > Devices to open the Devices panel.
-<img src="ab-008.png" width="600" height="188">
-<div>The Accounts panel and the Devices panel work together. When, in the Accounts panel, you select a particular region and account, the Devices panel loads, from that account, the first 50 of your devices ordered by product_name.</div>
-1. Select various devices and properties.
-1. Click the Details buttons to see device and property details.
-1. Change the property value of any "To Device" property.
-1. Go to API Browser > Device Service > getPropertyByDsn:
-<img src="ab-009.png" width="600" height="153">
-<div>Note that the dsn and propName path parameters are already populated with values from the currently selected device and property in the Devices panel. Both the Accounts panel and the Devices panel dynamically populate various API fields, all of which can be overwritten as needed.</div>
-
-### Streams Panel
-
-Use the Streams panel to establish a WebSocket connection between the Ayla Datastream Service and your browser. See [Datastream Service](#datastream-service) below for an example.
-
-### Events Panel
-
-Use the Events panel to display DSS events received from the Ayla Datastream Service via a stream. See [Datastream Service](#datastream-service) below for an example.
-
-### Filter Panel
-
-Use the Filter panel to show/hide sets of related APIs.
-
-<img src="ab-035.png" width="600" height="217">
-
-## Tutorials
-
-The turorials on this page refer to the following devices:
+This guide provides examples of how to combine Ayla APIs to complete tasks. Many of the examples refer to the devices in the table below, but the examples are generally applicable to many different types of devices:
 
 |product_name|dsn|model|oem_model|
 |-|-|-|
 |Device 1|AC000W000000001|AY008ESP1|ledevb|
 |Device 2|AC000W000000002|AY008ESP1|ledevb|
 
-Each of these devices includes the properties in the table below. Regarding the ```direction``` column, ```output``` means data flows from the device to the cloud, and ```input``` means data flows from the cloud to the device.
+See [Ayla ESP32 Solution](/edge-solutions/ayla-esp32-solution) to set up an ESP32 development environment, build an application consisting of an Ayla agent and an example host application, flash it to your devices, configure the devices, and connect them to the Ayla Cloud.
 
-|name|base_type|direction|notes|
-|-|-|-|-|-|
-|Blue_button|boolean|output||
-|Blue_LED|boolean|input||
-|Green_LED|boolean|input||
-|cmd|string|input|Sets log = cmd.|
-|log|string|output||
-|input|integer|input|Sets output = input.|
-|output|integer|output||
-|decimal_in|decimal|input|Sets decimal_out = decimal_in.|
-|decimal_out|decimal|output||
-|upload_file|file|input|Upload file to this property|
-|download_file|file|output|Download file from this property|
+# Receive DSS v1 events
 
-You can benefit from the tutorials in several ways including the following:
+The following steps shows you how to listen for datapoint and location events using DSS v1.
 
-**Option 1**: Obtain two ESP32 boards, connect them to the Ayla Cloud following the steps in [Ayla ESP32 Solution](/edge-solutions/ayla-esp32-solution), name them accordingly, and follow the steps in the tutorials exactly.
+### Get started
 
-**Option 2**: Use any two devices, connect them to the Ayla Cloud following the appropriate [Edge Solutions](/edge-solutions) guides, and adjust the tutorials to fit your devices.
-
-**Option 3**: Read the tutorials, and apply the essential concepts to your existing devices.
-
-# Datastream Service
-
-This section shows you how to use Datastream Service APIs in conjunction with a WebSocket to (1) create OEM Access Rules, (2) create DSS subscriptions based on the rules, (3) create DSS event streams based on the subscription keys, and (4) receive events from the Ayla Cloud. 
-
-## DSS Overview
-
-The Ayla Datastream Service (DSS) is a WebSocket server capable of sustained, bidirectional communication over HTTP. It sends device-related event notifications (in near real-time) and heartbeats from the Ayla Cloud to subscribing WebSocket clients which receive the events and acknowledge the heartbeats. See the diagram:
-
-<img src="dss.png" width="600" height="391">
-
-The diagram shows the following:
-
-1. An example device with a green LED, red LED, and black button.
-1. A digital twin in the Ayla Cloud representing the device.
-1. A browser-based WebSocket client receiving/displaying events and sending acknowledgements. 
-1. A server WebSocket client (e.g. Node.js) receiving/persisting events and sending acks.
-
-The DSS WebSocket server sends notifications of the following events to subscribed clients:
-
-|Event|Description|
-|-|-|
-|connectivity|The Ayla Cloud is able/not able to interact with a registered device.|
-|datapoint|A digital twin property value changed.|
-|datapointack|A device-based Ayla Agent confirmed to the Ayla Cloud that a device property value changed.|
-|location|A digital twin latitute/longitude value changed.|
-|registration|The Ayla Cloud registered/unregistered a device.|
-
-Below are the event formats:
-
-### Connectivity Event
-
-<pre>
-{
-  "seq": "1",
-  "metadata": {
-    "oem_id": "1234abcd",
-    "oem_model": "ledevb",
-    "dsn": "AC000W123456789",
-    "resource_tags": [],
-    "event_type": "connectivity"
-  },
-  "connection": {
-    "event_time": "2018-09-24T10:26:37Z",
-    "user_uuid": "b1234567-1234-1234-1234-a1234567890a",
-    "status": "Online"
-  }
-} 
-</pre>
-
-### Datapoint Event
-
-<pre>
-{
-  "seq": "13",
-  "metadata": {
-    "oem_id": "1234abcd",
-    "oem_model": "linuxevb",
-    "dsn": "AC000W123456789",
-    "property_name": "Blue_LED",
-    "display_name": "Blue_LED",
-    "base_type": "boolean",
-    "resource_tags": [],
-    "event_type": "datapoint"
-  },
-  "datapoint": {
-    "id": "f123f123-2abc-12ab-a1b2-1234567abcde",
-    "created_at_from_device": null,
-    "updated_at": "2018-09-24T10:25:14Z",
-    "created_at": "2018-09-24T10:25:14Z",
-    "user_uuid": "b1234567-1234-1234-1234-a1234567890a",
-    "echo": true,
-    "closed": false,
-    "value": 0,
-    "metadata": {}
-  }
-}
-</pre>
-
-### Datapointack Event
-
-<pre>
-{
-  "seq": "2",
-  "metadata": {
-    "oem_id": "1234abcd",
-    "oem_model": "linuxevb",
-    "dsn": "AC000W123456789",
-    "property_name": "Blue_LED",
-    "display_name": "Blue_LED",
-    "base_type": "boolean",
-    "resource_tags": [],
-    "event_type": "datapointack"
-  },
-  "datapoint": {
-    "id": "f123f123-2abc-12ab-a1b2-1234567abcde",
-    "created_at_from_device": null,
-    "updated_at": "2018-09-24T10:24:57Z",
-    "created_at": "2018-09-24T10:24:57Z",
-    "user_uuid": "b1234567-1234-1234-1234-a1234567890a",
-    "echo": false,
-    "closed": false,
-    "value": 1,
-    "ack_message": 0,
-    "ack_status": 200,
-    "ack_id": "f123f123-2abc-12ab-a1b2-1234567abcdf",
-    "acked_at": "2018-09-24T10:24:57Z",
-    "metadata": {}
-  }
-}
-</pre>
-
-### Location Event
-
-<pre>
-{
-  "seq": "1",
-  "metadata": {
-    "oem_id": "1234abcd",
-    "oem_model": "ledevb",
-    "dsn": "AC000W123456789",
-    "resource_tags": [],
-    "event_type": "location"
-  },
-  "location_event": {
-    "dsn": "AC000W123456789",
-    "ip": "67.255.234.73",
-    "lat": " 44.769500",
-    "long": "-69.428300",
-    "provider": "ip-based",
-    "user_uuid": "b1234567-1234-1234-1234-a1234567890a",
-    "created_at": "2018-09-24T11:04:07Z"
-  }
-}
-</pre>
-
-### Registration Event
-
-<pre>
-{
-  "seq": "1",
-  "metadata": {
-    "oem_id": "1234abcd",
-    "oem_model": "ledevb",
-    "dsn": "AC000W123456789",
-    "resource_tags": [],
-    "event_type": "registration"
-  },
-  "registration_event": {
-    "dsn": "AC000W123456789",
-    "user_uuid": null,
-    "registered": false,
-    "registration_type": "AP-Mode",
-    "unregistered_at": "2018-09-24T10:29:50Z"
-  }
-}
-</pre>
-
-### WebSocket Implementation
-
-A Javascript client might instantiate a WebSocket in this manner: 
-
-<pre>
-let socket = new WebSocket(url + '?stream_key=' + key)
-</pre>
-
-The <code>url</code> parameter is region-specific. See API Browser > Accounts. Select a region, and click the URLs button. The <code>key</code> parameter specifies the subscription key. See the [DSS Tutorial](#dss-tutorial) below. Once constructed, a WebSocket client listens for events with a set of callback functions similar to the following:
-
-<pre>
-socket.onopen = function(msg){}
-socket.onerror = function(msg){}
-socket.onmessage = function(msg){}
-socket.onclose = function(msg){}
-</pre>
-
-A WebSocket onmessage function receives MessageEvent objects that encapsulate DSS events or heartbeats. A MessageEvent object might include key/value pairs similar to the following: 
-
-<pre>
-bubbles: false
-cancelBubble: false
-cancelable: false
-composed: false
-currentTarget: WebSocket {}
-data: "1|Z"
-defaultPrevented: false
-eventPhase: 0
-isTrusted: true
-lastEventId: ""
-origin: "wss://stream.aylanetworks.com"
-path: []
-ports: []
-returnValue: true
-source: null
-srcElement: WebSocket {}
-target: WebSocket {}
-timeStamp: 192795.29999988154
-type: "message"
-</pre>
-
-The key/value pair of interest is <code>data:"1&#124;Z"</code>. The key is <code>data</code>. The value, <code>"1&#124;Z"</code>, indicates that this MessageEvent is a DSS heartbeat. If the MessageEvent had been an actual event (connectivity, datapoint, etc.), the value would have been similar to <code>data:"481&#124;{}"</code>. The number <code>481</code> represents the length of the JSON event string within the curly braces. The "&#124;" is useful for splitting the string into length and event. And, the curly braces, <code>{}</code>, encapsulate the actual JSON event string which might look like this:
-
-<pre>{
-  "seq": "13",
-  "metadata": {
-    "oem_id": "1234abcd",
-    "oem_model": "linuxevb",
-    "dsn": "AC000W123456789",
-    "property_name": "Blue_LED",
-    "display_name": "Blue_LED",
-    "base_type": "boolean",
-    "resource_tags": [],
-    "event_type": "datapoint"
-  },
-  "datapoint": {
-    "id": "f123f123-2abc-12ab-a1b2-1234567abcde",
-    "created_at_from_device": null,
-    "updated_at": "2018-09-24T10:25:14Z",
-    "created_at": "2018-09-24T10:25:14Z",
-    "user_uuid": "b1234567-1234-1234-1234-a1234567890a",
-    "echo": true,
-    "closed": false,
-    "value": 0,
-    "metadata": {}
-  }
-}</pre>
-
-A DSS client onmessage function must (1) determine if a MessageEvent is a heartbeat or a DSS event, (2) respond if it's a heartbeat, and (3) process if it's a DSS event: 
-
-<pre>socket.onmessage = function(msg) {
-  if(msg.data.includes('|Z')) {
-    stream.socket.send('Z')
-  }
-  else {
-    var arr = msg.data.split('|')
-    let event = JSON.parse(arr[1])
-    process(event)
-  }
-}</pre>
-
-## DSS Tutorial
-
-The following DSS tutorial shows you how to listen for datapoint and location events.
+1. Open the [API Browser](/cloud-services/api-browser) in a dedicated browser tab. Click the Accounts tab. Select a region. Input your email, password, app_id, app_secret. Click Get Tokens. Click the Accounts tab again to close it.
+1. Open the [Ayla ESP32 Solution](/edge-solutions/ayla-esp32-solution) page in another dedicated tab, and follow the instructions on the page to establish an ESP32 development environment, and to connect one or more devices to the Ayla Cloud.
 
 ### Create access rules
 
@@ -496,48 +148,136 @@ The following DSS tutorial shows you how to listen for datapoint and location ev
 <img src="ab-020.png" width="600" height="147">
 1. Click Delete.
 
-# Device Service
+# Perform OTA update
 
-## ADS Overview
+The following steps show you how (over-the-air) to upgrade the Ayla agent and/or host app running on your devices.
 
-Ayla Device Service (ADS) APIs enable client applications to interact with cloud-based digital twins (or models) that represent real-world devices:
-<img src="ads.png" width="600" height="394">
-In the diagram, the yellow box on the left represents a real-world device with a handful of properties, and the pink box on the right represents the corresponding cloud-based digital twin. Client applications typically interact via ADS with the digital twin, and the Ayla Cloud manages communication between the digital twin and the real-world device.
+1. Open the [API Browser](/cloud-services/api-browser) in a dedicated browser tab. Click the Accounts tab. Select a region. Input your email, password, app_id, app_secret. Click Get Tokens. Click the Accounts tab again to close it.
+1. Open the [Ayla ESP32 Solution](/edge-solutions/ayla-esp32-solution) page in another dedicated tab, and follow the instructions on the page to establish an ESP32 development environment, and connect one or more devices to the Ayla Cloud.
+1. In your Docker shell, `cd /root/esp/esp-idf-v3.2/examples/ayla_demo`.
+1. Open `main/demo_ledevb.c`, and set the following constants to values of your choice like this:
+    ```
+    #define BUILD_PROGNAME "esp32"
+    #define BUILD_VERSION "1.00"
+    ```
+1. Run `make` and `make flash` to update the firmware on your device.
+1. Use the API Browser's Device Tab to verify your device's `version` property value in the cloud. Example:
+    ```
+    esp32 1.00 Mar 26 2020 16:38:39
+    ```
+1. Increment `BUILD_VERSION` in `demo_ledevb.c`. Example:
+    ```
+    #define BUILD_VERSION "1.01"
+    ```
+1. Run `make`, but do not flash the image to the device. Here is the location of the new image file:
+    ```
+    /root/esp/esp-idf-v3.2/examples/ayla_demo/build/ayla_demo.bin
+    ```
+1. **In a host terminal**, copy the image file from the docker container to your host computer:
+    ```
+    $ docker cp esp:/root/esp/esp-idf-v3.2/examples/ayla_demo/build/ayla_demo.bin .
+    ```
+1. Rename the image file to indicate the version:
+    ```
+    $ mv ayla_demo.bin esp32_101.bin
+    ```
+1. In the API Browser, click the IoT Command Center tile to reveal the IoT APIs.
+1. Run `createImageRecord` to create an image record using a request data object similar to the following:
+    ```
+    {
+      "description": "esp32_101",
+      "model": "ledevb",
+      "version": "esp32_101"
+    }
+    ```
+1. Run `uploadImage` to upload your image file, and associate it with the image record.
+1. Run `getImageRecord` to verify your work. The response data object should resemble the one below. Check the `file_size` property. It reflects the size of the uploaded file (e.g. 1004064).
+    ```
+    {
+      "oem": "1234abcd",
+      "checksum": "1edacac70f418aac404d3e026165ed1e",
+      "created_at": "2020/04/13 16:21:29",
+      "description": "esp32_101",
+      "file_location": "/0bbb112e/host/ledevb/ce0e1c025228c274c8851470cef4ea45",
+      "file_size": 1004064,
+      "in_use": true,
+      "model": "ledevb",
+      "updated_at": "2020/04/13 16:35:00",
+      "uploaded_at": "2020/04/13 16:34:49",
+      "user_id": "b1234567-1234-1234-1234-a1234567890a",
+      "version": "esp32_101",
+      "base_mod_img_model": null,
+      "base_mod_img_version": null,
+      "property_name": null
+    }
+    ```
+1. Run `createFilter` to target the ESP32 device(s) you want to upgrade. ICC filters provide various ways of selecting device sets. The following request data object is one example:
+    ```
+    {
+      "name": "My ESP32 Devices",
+      "dsns": {
+        "match": [
+          "AC000W000000001",
+          "AC000W000000002"
+        ]
+      },
+      "oem_model": "ledevb"
+    }
+    ```
+    Note the value of the `id` field (e.g. 6028) in the response data object.
+1. Run `getFilter` to verify that the filter was created. The response data object should resemble the following:
+    ```
+    {
+      "id": 6028,
+      "name": "My ESP32 Devices",
+      "description": null,
+      "attributes": null,
+      "dsns": {
+        "match": [
+          "AC000W000000001",
+          "AC000W000000002"
+        ],
+        "include": null,
+        "exclude": null
+      },
+      "properties": null,
+      "status": null,
+      "oem_model": "ledevb",
+      "device_metadata": null,
+      "created_at": "2020-04-13T17:13:59+0000",
+      "updated_at": "2020-04-13T17:13:59+0000",
+      "filter_metadata": [],
+      "oem_version": null,
+      "match_oem_version": true
+    }
+    ```
+1. Run `createJob` with a request data object similar to the following:
+    ```
+    {
+      "name": "Upgrade ESP32 devices to esp32_101",
+      "type_id": "OTA",
+      "filter_id": 6028,
+      "delivery_option": "SYSTEM_PUSH",
+      "exec_method": "ONE_TIME",
+      "retries": 0,
+      "action_payload": {
+        "type":"host",
+        "version":"esp32_101"
+      }
+    }
+    ```
+    Note the value of the `id` field (e.g. 4944) in the response data object.
+1. Run `getJob` to verify job information. Note that `status = CREATED`.
+1. Run `startJob`.
 
-## Notifications and Triggers
+# Update property values
 
-<iframe 
-  width="560" 
-  height="315" 
-  src="https://www.youtube.com/embed/gAR7yAGBmCE"  
-  frameborder="0" 
-  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
+The following steps show you how to set property values for groups of devices.
 
-# IoT Command Center
+### Get started
 
-## ICC Overview
-
-This section shows you how to use IoT Command Center APIs to perform the actions in the table below:
-
-|ID|Name|Description|
-|-|-|-|
-|1|SET_PROPERTY|Update one or more property values for a set of devices.|
-|4|OTA|Update host application firmware for a set of devices.|
-|5|FILE_TRANSFER|Transfer files to/from file properties for a set of devices.|
-
-In general, client applications use the following pattern to interact with ICC:
-
-1. Create a filter that specifies target devices. Filters use device property values, device attributes, device serial numbers, and other criteria, often in combination.
-1. Create a job that specifies the action, filter, execution method (one-time or continuous), delivery option (system-push or user-consent), and schedule option (immediate or scheduled).
-1. Configure the job according to the action. If setting properties, specify the properties to set and the values to use. If updating firmware, specify the new firmware version, etc. If transferring files, specify the file name, etc.
-1. Add a schedule if needed.
-1. Start the job.
-
-## Set Property Tutorial
-
-The set_property action enables you create a job that sets one or more property values for a set of filtered devices.
+1. Open the [API Browser](/cloud-services/api-browser) in a dedicated browser tab. Click the Accounts tab. Select a region. Input your email, password, app_id, app_secret. Click Get Tokens. Click the Accounts tab again to close it.
+1. Open the [Ayla ESP32 Solution](/edge-solutions/ayla-esp32-solution) page in another dedicated tab, and follow the instructions on the page to establish an ESP32 development environment, and to connect one or more devices to the Ayla Cloud.
 
 ### Initialize devices
 

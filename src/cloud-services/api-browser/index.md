@@ -17,7 +17,7 @@ classesFromPage: has-pagebar
     <li><a href="#user-header">User Service</a></li>
   </ul>
 </aside>
-<div style="font-size:85%;margin-bottom:6px;">For directions, see the [API Users Guide](../api-users-guide). Send feedback to matt&#64;aylanetworks.com.</div>
+<div style="font-size:85%;margin-bottom:6px;">See the [API Users Guide](../api-users-guide). Send feedback to matt&#64;aylanetworks.com.</div>
 <div class="btn-group control-btns special">
   <button id="accounts-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Accounts</button>
   <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
@@ -29,22 +29,7 @@ classesFromPage: has-pagebar
   <div class="panel">
     <h3>Accounts</h3>
     <div class="form-row">
-      <div class="col-12 col-md-2">
-        <div class="form-row">
-          <div class="col-12">
-            <label>Persist</label>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col mb-2">
-            <select id="persist" class="form-control form-control-sm">
-              <option value="0">No</option>
-              <option value="1">Yes</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-6">
         <div class="form-row">
           <div class="col-12">
             <label>Region</label>
@@ -66,7 +51,7 @@ classesFromPage: has-pagebar
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-6">
         <div class="form-row">
           <div class="col-12">
             <label>Account</label>
@@ -77,7 +62,7 @@ classesFromPage: has-pagebar
             <select class="form-control form-control-sm ayla-accounts"></select>
           </div>
           <div class="col-auto">
-            <button type="button" class="btn btn-sm btn-info btn-block" data-toggle="collapse" data-target="#ayla-account-details" aria-expanded="false">Details</button>
+            <button type="button" class="btn btn-sm btn-info btn-block" data-toggle="collapse" data-target="#ayla-account-details" aria-expanded="true">Details</button>
           </div>
         </div>
       </div>
@@ -123,7 +108,7 @@ classesFromPage: has-pagebar
         </div>
       </div>
     </div>
-    <div id="ayla-account-details" class="collapse" style="padding: 6px; background: snow;">
+    <div id="ayla-account-details" class="collapse show" style="padding: 6px; background: snow;">
       <div class="title">Account Details</div>
       <div class="form-row">
         <div class="col-12 col-md-6 col-lg-3 mb-2">
@@ -157,19 +142,19 @@ classesFromPage: has-pagebar
       <div class="form-row">
         <div class="col-12 col-lg-3 mb-2">
           <label>access_token</label>
-          <input id="ayla-account-access-token" type="text" class="form-control form-control-sm">
+          <input id="ayla-account-access-token" type="text" class="form-control form-control-sm" readonly>
         </div>
         <div class="col-12 col-lg-3 mb-2">
           <label>refresh_token</label>
-          <input id="ayla-account-refresh-token" type="text" class="form-control form-control-sm">
+          <input id="ayla-account-refresh-token" type="text" class="form-control form-control-sm" readonly>
         </div>
         <div class="col-12 col-lg-3 mb-2">
           <label>uuid</label>
-          <input id="ayla-account-uuid" type="text" class="form-control form-control-sm">
+          <input id="ayla-account-uuid" type="text" class="form-control form-control-sm" readonly>
         </div>
         <div class="col-12 col-lg-3 mb-2">
           <label>user_id</label>
-          <input id="ayla-account-user-id" type="text" class="form-control form-control-sm">
+          <input id="ayla-account-user-id" type="text" class="form-control form-control-sm" readonly>
         </div>
       </div>
     </div>
