@@ -10,7 +10,7 @@ layout: site.html
 1. Build and download the ayla_demo application
 1. Tap the reset button on the ESP32 board
 1. If you’ve previously provisioned the ESP32 to a Wi-Fi network, factory reset it to clear the Wi-Fi configuration:
-1. At the ESP32 CLI type “reset factory”
+a. At the ESP32 CLI type “reset factory”
 1. Proceed with the steps for iPhone or Android, depending which device you are using
 
 ### Steps for provisioning using Aura on iPhone
@@ -56,7 +56,7 @@ a. Tap “OK” to confirm
 1. Tap “Wifi setup using BLE”
 1. Tap “OK”
 1. Tap “SCAN FOR DEVICES”
-1. Tap on the device you are going to provision. There will normally be on one with a name like “Ayla1234”
+1. Tap on the device you are going to provision. There will normally be only one with a name like “Ayla1234”
 1. Swipe down from the top of the screen to reveal pending notifications
 1. Tap “Pairing request”
 1. Enter “123456”
@@ -74,7 +74,7 @@ a. Tap “OK” to confirm
 1. Tap “EXIT SETUP”
 1. Observe the device you just added is displayed in the Device List
 
-### Steps to understand how to integrating BLE Wi-Fi Config support
+### Steps to understand how to integrate BLE Wi-Fi Config support
 
 1. Locate and open examples/ayla_demo/demo_bt.c, which provides an example of integrating BLE Wi-Fi configuration with an application
 1. Review the C function demo_bt_init. This function performs the initialization to start the BLE service. It does the following:
@@ -93,7 +93,7 @@ a. Starts BLE advertisements
 1. Review other functions in demo_bt.c. Your application will need to implement similar functionality to orchestrate BLE services.
 a. demo_bt_host_task implements the host task thread, which executes nimble_port_run to execute the BLE host statck
 a. demo_bt_advertise configures and (re)starts BLE advertisements
-a. demo_bt_display_passkey displays the code the user must enter when pairing. By default the passkey is 123456 for demo purposes. This should be changed to use a random number or other hard difficult to predict value for greater security in production products.
+a. demo_bt_display_passkey displays the code the user must enter when pairing. By default the passkey is 123456 for demo purposes. This should be changed to use a random number or other hard to predict value for greater security in production products.
 a. demo_bt_gap_event_handler implements handling for BLE GAP events. It orchestrates management of BLE connections. See ESP32 and NimBLE documentation for more information on handling GAP events.
 a. demo_bt_gatt_register_cb handles BLE GATT registration events. See ESP32 and NimBLE documentation for more information on handling GATT registration events.
 1. Review the BLE configuration of the ESP IDF configured by the Ayla demo application.
@@ -109,7 +109,7 @@ a. Browse through all of the Bluetooth configuration, noting option settings, wh
 
 ### BLE Wi-Fi Configuration Implementation
 
-The Ayla agent implements three BLE GATT services that realize the Wi-Fi Configuration Architecture – [Ayla Generic GATT Service](https://docs.aylanetworks.com/archive/ayla-generic-gatt-service-guide-2017-07.pdf), [Ayla Connectivity GATT Service](https://docs.aylanetworks.com/archive/ayla-connectivity-gatt-service-2017-08.pdf) and [Ayla Wi-Fi Configuration GATT Service](https://docs.aylanetworks.com/archive/wi-fi-configuration-gatt-service-2017-09.pdf). The Ayla GATT services are built on top of generic GATT services provided by the ESP32 NimBLE stack.
+The Ayla agent implements three BLE GATT services that realize the Wi-Fi configuration and device registration features – [Ayla Generic GATT Service](https://docs.aylanetworks.com/archive/ayla-generic-gatt-service-guide-2017-07.pdf), [Ayla Connectivity GATT Service](https://docs.aylanetworks.com/archive/ayla-connectivity-gatt-service-2017-08.pdf) and [Ayla Wi-Fi Configuration GATT Service](https://docs.aylanetworks.com/archive/wi-fi-configuration-gatt-service-2017-09.pdf). The Ayla GATT services are built on top of generic GATT services provided by the ESP32 NimBLE stack.
 
 The application implements the code to orchestrate BLE services (see demo_bt.c), initializing and starting the NimBLE host thread, as well as registering each of the Ayla GATT services. The application manages BLE advertisements, which enable the device to be discovered and connected to. The application manages BLE connections, while the Ayla GATT services implement BLE attributes that provide for Wi-Fi provisioning and registering the device to a specific user account. 
 
@@ -119,7 +119,7 @@ A mobile application uses BLE to discover the device, securely connect to it, in
 
 * lib/adb/adb_ayla_svc.* - implements the Ayla generic GATT service
 * lib/adb/adb_conn_svc.* - implements the Ayla connectivity GATT service
-* lib/adb/adb_wifi_cfg_svc.* - implement the Ayla Wi-Fi configuration GATT service
+* lib/adb/adb_wifi_cfg_svc.* - implements the Ayla Wi-Fi configuration GATT service
 * lib/adb/adb.* - implements a framework for Ayla’s GATT services
 * lib/adb/al_bt_esp32.* - implements adaptation layer to ESP32 NimBLE stack
 * examples/ayla_demo/main/demo_bt.c – implements application orchestration of BLE services
