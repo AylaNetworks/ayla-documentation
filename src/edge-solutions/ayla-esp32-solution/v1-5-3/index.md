@@ -106,7 +106,7 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
 
 1. Install a [Docker Engine](https://docs.docker.com/get-started/) on your Windows, Mac, and/or Linux host OS.
 
-1. Create a Docker [ubuntu](https://hub.docker.com/_/ubuntu) container:
+1. Create a Docker [64-bit Ubuntu](https://hub.docker.com/_/ubuntu) container:
 
     ```
   $ docker run --net=host --name=ada153 -w /root -it --device=/dev/ttyUSB0 ubuntu bash
@@ -147,11 +147,13 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
       # cd esp
         ```
 
-    1. Download ESP32 toolchain for Linux:
+    1. Download a ESP32 toolchain for 64-bit Linux:
 
         ```
       # wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
         ```
+
+        For the 32-bit version, see [this Espressif page](https://docs.espressif.com/projects/esp-idf/en/v3.3.1/get-started/linux-setup.html).
 
     1. Extract the archive file:
 
@@ -159,10 +161,11 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
       # tar -xzf xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
         ```
 
-    1. Add to the PATH environment variable:
+    1. Add to the PATH environment variable, and persist the change in `.bashrc`:
 
         ```
       # export PATH=$HOME/esp/xtensa-esp32-elf/bin:$PATH
+      # echo "export PATH=\$HOME/esp/xtensa-esp32-elf/bin:\$PATH" >> ~/.bashrc
         ```
 
     1. Clone the [Espressif IoT Development Framework](https://github.com/espressif/esp-idf):
@@ -171,10 +174,11 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
       # git clone -b v3.3.1 --recursive https://github.com/espressif/esp-idf.git esp-idf-v3.3.1
         ```
 
-    1. Create the ```IDF_PATH``` environment variable:
+    1. Create the ```IDF_PATH``` environment variable, and persist the change in `.bashrc`:
 
         ```
       # export IDF_PATH=$HOME/esp/esp-idf-v3.3.1
+      # echo "export IDF_PATH=\$HOME/esp/esp-idf-v3.3.1" >> ~/.bashrc
         ```
 
 1. Test the development environment with the hello_world example:
