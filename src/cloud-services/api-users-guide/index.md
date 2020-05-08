@@ -8,7 +8,7 @@ classesFromPage: has-pagebar
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
     <li><a href="#core-title">API Users Guide</a></li>
-    <li><a href="#receive-dss-v1-events">Receive DSS v1 events</a></li>
+    <li><a href="#receive-dss-events">Receive DSS events</a></li>
     <li><a href="#perform-ota-update">Perform OTA update</a></li>
     <li><a href="#update-property-values">Update property values</a></li>
   </ul>
@@ -23,9 +23,9 @@ This guide provides examples of how to combine Ayla APIs to complete tasks. Many
 
 See [Ayla ESP32 Solution](/edge-solutions/ayla-esp32-solution) to set up an ESP32 development environment, build an application consisting of an Ayla agent and an example host application, flash it to your devices, configure the devices, and connect them to the Ayla Cloud.
 
-# Receive DSS v1 events
+# Receive DSS events
 
-The following steps shows you how to listen for datapoint and location events using DSS v1.
+The following steps shows you how to listen for datapoint and location events using DSS.
 
 ### Get started
 

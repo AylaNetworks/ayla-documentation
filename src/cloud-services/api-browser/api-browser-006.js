@@ -516,12 +516,12 @@ serviceUrls['cndev']['application'] = "https://application.ayla.com.cn"
 serviceUrls['cndev']['datastream'] = "https://stream.ayla.com.cn"
 serviceUrls['cndev']['datastream-cloud'] = "wss://stream.ayla.com.cn/stream"
 serviceUrls['cndev']['datastream-mobile'] = "wss://mstream-dev.ayla.com.cn/stream"
-serviceUrls['cndev']['datastream2'] = ""
 serviceUrls['cndev']['device'] = "https://ads-dev.ayla.com.cn"
 serviceUrls['cndev']['factory-proxy'] = "https://api-dev.ayla.com.cn"
 serviceUrls['cndev']['iot-command-center'] = ""
 serviceUrls['cndev']['image'] = "https://ais.ayla.com.cn"
 serviceUrls['cndev']['log'] = "https://log.ayla.com.cn"
+serviceUrls['cndev']['message'] = ""
 serviceUrls['cndev']['notification'] = "https://ans.ayla.com.cn"
 serviceUrls['cndev']['rules'] = "https://rulesservice-dev.ayla.com.cn"
 serviceUrls['cndev']['user'] = "https://user-dev.ayla.com.cn"
@@ -532,12 +532,12 @@ serviceUrls['cnfield']['application'] = "https://app-field.ayla.com.cn"
 serviceUrls['cnfield']['datastream'] = "https://stream-field.ayla.com.cn"
 serviceUrls['cnfield']['datastream-cloud'] = "wss://stream-field.ayla.com.cn/stream"
 serviceUrls['cnfield']['datastream-mobile'] = "wss://mstream-field.ayla.com.cn/stream"
-serviceUrls['cnfield']['datastream2'] = ""
 serviceUrls['cnfield']['device'] = "https://ads-field.ayla.com.cn"
 serviceUrls['cnfield']['factory-proxy'] = "https://api-field.ayla.com.cn"
 serviceUrls['cnfield']['iot-command-center'] = ""
 serviceUrls['cnfield']['image'] = "https://ais-field.ayla.com.cn"
 serviceUrls['cnfield']['log'] = "https://log-field.ayla.com.cn"
+serviceUrls['cnfield']['message'] = ""
 serviceUrls['cnfield']['notification'] = "https://ans-field.ayla.com.cn"
 serviceUrls['cnfield']['rules'] = "https://rulesservice-field.ayla.com.cn"
 serviceUrls['cnfield']['user'] = "https://user-field.ayla.com.cn"
@@ -548,12 +548,12 @@ serviceUrls['eufield']['application'] = "https://app-field-eu.aylanetworks.com"
 serviceUrls['eufield']['datastream'] = "https://stream-field-eu.aylanetworks.com"
 serviceUrls['eufield']['datastream-cloud'] = "wss://stream-field-eu.aylanetworks.com/stream"
 serviceUrls['eufield']['datastream-mobile'] = "wss://mstream-field-eu.aylanetworks.com/stream"
-serviceUrls['eufield']['datastream2'] = ""
 serviceUrls['eufield']['device'] = "https://ads-field-eu.aylanetworks.com"
 serviceUrls['eufield']['factory-proxy'] = "https://api-field-eu.aylanetworks.com"
 serviceUrls['eufield']['iot-command-center'] = ""
 serviceUrls['eufield']['image'] = "https://ais-field-eu.aylanetworks.com"
 serviceUrls['eufield']['log'] = "https://log-field-eu.aylanetworks.com"
+serviceUrls['eufield']['message'] = ""
 serviceUrls['eufield']['notification'] = "https://ans-field-eu.aylanetworks.com"
 serviceUrls['eufield']['rules'] = "https://rulesservice-field-eu.aylanetworks.com"
 serviceUrls['eufield']['user'] = "https://user-field-eu.aylanetworks.com"
@@ -564,12 +564,12 @@ serviceUrls['qaalpha']['application'] = ""
 serviceUrls['qaalpha']['datastream'] = "https://stream-qa-alpha.aylanev.com"
 serviceUrls['qaalpha']['datastream-cloud'] = ""
 serviceUrls['qaalpha']['datastream-mobile'] = ""
-serviceUrls['qaalpha']['datastream2'] = ""
 serviceUrls['qaalpha']['device'] = "https://ads-qa-alpha.ayladev.com/apiv1"
 serviceUrls['qaalpha']['factory-proxy'] = ""
 serviceUrls['qaalpha']['iot-command-center'] = "https://icc-qa-alpha.aylanev.com"
 serviceUrls['qaalpha']['image'] = "https://ais-qa-alpha.aylanev.com"
 serviceUrls['qaalpha']['log'] = "https://log-qa-alpha.aylanev.com"
+serviceUrls['qaalpha']['message'] = ""
 serviceUrls['qaalpha']['notification'] = ""
 serviceUrls['qaalpha']['rules'] = "https://rules-qa-alpha.aylanev.com"
 serviceUrls['qaalpha']['user'] = "https://user-qa-alpha.ayladev.com"
@@ -580,12 +580,12 @@ serviceUrls['usdev']['application'] = "https://application.aylanetworks.com"
 serviceUrls['usdev']['datastream'] = "https://stream.aylanetworks.com"
 serviceUrls['usdev']['datastream-cloud'] = "wss://stream.aylanetworks.com/stream"
 serviceUrls['usdev']['datastream-mobile'] = "wss://mstream-dev.aylanetworks.com/stream"
-serviceUrls['usdev']['datastream2'] = "https://ams-usdv.aylanetworks.com"
 serviceUrls['usdev']['device'] = "https://ads-dev.aylanetworks.com"
 serviceUrls['usdev']['factory-proxy'] = "https://api-dev.aylanetworks.com"
 serviceUrls['usdev']['iot-command-center'] = "https://icc-dev.aylanetworks.com"
 serviceUrls['usdev']['image'] = "https://ais.aylanetworks.com"
 serviceUrls['usdev']['log'] = "https://log.aylanetworks.com"
+serviceUrls['usdev']['message'] = "https://ams-usdv.aylanetworks.com"
 serviceUrls['usdev']['notification'] = "https://ans.aylanetworks.com"
 serviceUrls['usdev']['rules'] = "https://rulesservice-dev.aylanetworks.com"
 serviceUrls['usdev']['user'] = "https://user-dev.aylanetworks.com"
@@ -596,12 +596,12 @@ serviceUrls['usfield']['application'] = "https://app-field.aylanetworks.com"
 serviceUrls['usfield']['datastream'] = "https://stream-field.aylanetworks.com"
 serviceUrls['usfield']['datastream-cloud'] = "wss://stream-field.aylanetworks.com/stream"
 serviceUrls['usfield']['datastream-mobile'] = "wss://mstream-field.aylanetworks.com/stream"
-serviceUrls['usfield']['datastream2'] = ""
 serviceUrls['usfield']['device'] = "https://ads-field.aylanetworks.com"
 serviceUrls['usfield']['factory-proxy'] = "https://api-field.aylanetworks.com"
 serviceUrls['usfield']['iot-command-center'] = "https://icc-field.aylanetworks.com"
 serviceUrls['usfield']['image'] = "https://ais-field.aylanetworks.com"
 serviceUrls['usfield']['log'] = "https://log-field.aylanetworks.com"
+serviceUrls['usfield']['message'] = ""
 serviceUrls['usfield']['notification'] = "https://ans-field.aylanetworks.com"
 serviceUrls['usfield']['rules'] = "https://rulesservice-field.aylanetworks.com"
 serviceUrls['usfield']['user'] = "https://user-field.aylanetworks.com"
@@ -629,13 +629,13 @@ function writeRegionUrls() {
   $('#datastream-service-url').val(serviceUrls[regionId]['datastream'])
   $('#datastream-cloud-url').val(serviceUrls[regionId]['datastream-cloud'])
   $('#datastream-mobile-url').val(serviceUrls[regionId]['datastream-mobile'])
-  $('#datastream2-service-url').val(serviceUrls[regionId]['datastream2'])
   $('#device-service-url').val(serviceUrls[regionId]['device'])
   $('#factory-proxy-service-url').val(serviceUrls[regionId]['factory-proxy'])
   $('#icc-service-url').val(serviceUrls[regionId]['iot-command-center'])
   //$('#image-service-url').val(serviceUrls[regionId]['image'])
   //$('#log-service-url').val(serviceUrls[regionId]['log'])
   //$('#notification-service-url').val(serviceUrls[regionId]['notification'])
+  $('#message-service-url').val(serviceUrls[regionId]['message'])
   $('#rules-service-url').val(serviceUrls[regionId]['rules'])
   $('#user-service-url').val(serviceUrls[regionId]['user'])
   //$('#zigbee-service-url').val(serviceUrls[regionId]['zigbee'])
@@ -1251,8 +1251,13 @@ function buildApi(apiElement, api, collapsed=true) {
 
       content.append('<div class="subheading">Request Data</div>')
 
-      if(api.requestDataDescription) {content.append('<div class="request-data-description">' + api.requestDataDescription + '</div>')}
-
+      if(api.requestDataDescription.length) {
+        content.append(''
+          + '<div class="description" style="cursor:pointer;text-decoration:underline;margin-bottom:12px;" data-toggle="collapse" href="' + '#' + collapseId + 'reqdd">Toggle example request data.</div>'
+          + '<div class="request-data-description collapse" id="' + collapseId + 'reqdd">' + api.requestDataDescription + '</div>'
+        )
+      }
+    
       if(api.requestDataType=='file') {
         content.append(''
         + '<div class="form-row">'
@@ -1307,8 +1312,8 @@ function buildApi(apiElement, api, collapsed=true) {
 
   if(api.responseDataDescription) {
     content.append(''
-      + '<div class="description" style="cursor:pointer;text-decoration:underline;" data-toggle="collapse" href="' + '#' + collapseId + 'rdd">Click to view example response data.</div>'
-      + '<div class="response-data-description collapse" id="' + collapseId + 'rdd">' + api.responseDataDescription + '</div>'
+      + '<div class="description" style="cursor:pointer;text-decoration:underline;margin-top:6px;" data-toggle="collapse" href="' + '#' + collapseId + 'rspdd">Toggle example response data.</div>'
+      + '<div class="response-data-description collapse" id="' + collapseId + 'rspdd">' + api.responseDataDescription + '</div>'
     )
   }
 

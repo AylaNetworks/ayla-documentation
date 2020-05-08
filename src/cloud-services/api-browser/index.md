@@ -8,11 +8,11 @@ classesFromPage: has-pagebar
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
     <li><a href="#core-title">API Browser</a></li>
-    <li><a href="#datastream-header">Datastream Service v1</a></li>
-    <li><a href="#datastream2-header">Datastream Service v2</a></li>
+    <li><a href="#datastream-header">Datastream Service</a></li>
     <li><a href="#device-header">Device Service</a></li>
     <li><a href="#factory-proxy-header">Factory Proxy Service</a></li>
     <li><a href="#iot-command-center-header">IoT Command Center</a></li>
+    <li><a href="#message-header">Message Service</a></li>
     <li><a href="#rules-header">Rules Service</a></li>
     <li><a href="#user-header">User Service</a></li>
   </ul>
@@ -21,8 +21,8 @@ classesFromPage: has-pagebar
 <div class="btn-group control-btns special">
   <button id="accounts-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Accounts</button>
   <button id="devices-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Devices</button>
-  <button id="streams-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Streams 1</button>
-  <button id="events-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Events 1</button>
+  <button id="streams-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Streams</button>
+  <button id="events-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Events</button>
   <button id="filter-button" type="button" class="btn btn-sm btn-outline-info" data-toggle="button" aria-pressed="false" autocomplete="off">Filter</button>
 </div>
 <div id="accounts-section">
@@ -71,20 +71,16 @@ classesFromPage: has-pagebar
       <div class="title">Regional URLs</div>
       <div class="form-row">
         <div class="col-12 col-md-6 mb-2">
-          <label>Datastream Service v1</label>
+          <label>Datastream Service</label>
           <input id="datastream-service-url" type="text" class="form-control form-control-sm" disabled>
         </div>
         <div class="col-12 col-md-6 mb-2">
-          <label>Datastream Service v1 WS-Cloud</label>
+          <label>Datastream Service WS-Cloud</label>
           <input id="datastream-cloud-url" type="text" class="form-control form-control-sm" disabled>
         </div>
         <div class="col-12 col-md-6 mb-2">
-          <label>Datastream Service v1 WS-Mobile</label>
+          <label>Datastream Service WS-Mobile</label>
           <input id="datastream-mobile-url" type="text" class="form-control form-control-sm" disabled>
-        </div>
-        <div class="col-12 col-md-6 mb-2">
-          <label>Datastream Service v2</label>
-          <input id="datastream2-service-url" type="text" class="form-control form-control-sm" disabled>
         </div>
         <div class="col-12 col-md-6 mb-2">
           <label>Device Service</label>
@@ -97,6 +93,10 @@ classesFromPage: has-pagebar
         <div class="col-12 col-md-6 mb-2">
           <label>IoT Command Center Service</label>
           <input id="icc-service-url" type="text" class="form-control form-control-sm" disabled>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+          <label>Message Service</label>
+          <input id="message-service-url" type="text" class="form-control form-control-sm" disabled>
         </div>
         <div class="col-12 col-md-6 mb-2">
           <label>Rules Service</label>
@@ -212,7 +212,7 @@ classesFromPage: has-pagebar
 </div>
 <div id="event-streams-section">
   <div class="panel">
-    <h3>DSS v1 Streams</h3>
+    <h3>DSS Streams</h3>
     <div class="form-row mb-2">
       <div class="col-md-3">
         <input id="stream-name" type="text" class="form-control form-control-sm" placeholder="Stream Name">
@@ -249,7 +249,7 @@ classesFromPage: has-pagebar
 </div>
 <div id="events-section">
   <div class="panel">
-    <h3>DSS v1 Events</h3>
+    <h3>DSS Events</h3>
     <div class="link-btns">
       <span id="delete-events-btn" class="link-btn">Delete</span>
     </div>
@@ -295,21 +295,12 @@ classesFromPage: has-pagebar
 <h1 id="datastream-header" class="api-service">
   <div class="api-service">
     <div class="row">
-      <div class="col" data-toggle="collapse" href="#datastream-content"><div class="name">Datastream Service v1</div></div>
+      <div class="col" data-toggle="collapse" href="#datastream-content"><div class="name">Datastream Service</div></div>
       <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>
 </h1>
 <div class="collapse" id="datastream-content"></div>
-<h1 id="datastream2-header" class="api-service">
-  <div class="api-service">
-    <div class="row">
-      <div class="col" data-toggle="collapse" href="#datastream2-content"><div class="name">Datastream Service v2</div></div>
-      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
-    </div>
-  </div>
-</h1>
-<div class="collapse" id="datastream2-content"></div>
 <h1 id="device-header" class="api-service">
   <div class="api-service">
     <div class="row">
@@ -337,6 +328,15 @@ classesFromPage: has-pagebar
   </div>
 </h1>
 <div class="collapse" id="iot-command-center-content"></div>
+<h1 id="message-header" class="api-service">
+  <div class="api-service">
+    <div class="row">
+      <div class="col" data-toggle="collapse" href="#message-content"><div class="name">Message Service</div></div>
+      <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
+    </div>
+  </div>
+</h1>
+<div class="collapse" id="message-content"></div>
 <h1 id="rules-header" class="api-service">
   <div class="api-service">
     <div class="row">

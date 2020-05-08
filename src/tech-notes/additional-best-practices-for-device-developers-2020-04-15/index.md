@@ -24,3 +24,28 @@ As much as possible, try to implement Fixed-SSID for Soft AP connectivity and AP
 ### Flags
 
 Enable the right flag during factory testing so that the device isn't marked `activated`.
+
+___
+
+MARKDOWN TIPS. MATT WILL DELETE THIS BEFORE PUBLISHING.
+
+This is an unordered list:
+
+* Blue
+* Green
+* Red
+
+This is an ordered list:
+
+1. Blue
+1. Green
+1. Red
+
+This is a link to [Github](https://github.com).
+
+This is a table:
+
+|First Name|Last Name|Gender|
+|-|-|-|
+|Anika|Acharya|Female|
+|Adesh|Patel|Male|
