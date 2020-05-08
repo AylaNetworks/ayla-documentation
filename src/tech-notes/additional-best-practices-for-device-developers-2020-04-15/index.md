@@ -41,7 +41,7 @@ This is an ordered list:
 1. Green
 1. Red
 
-This is a link to [Github](https://github.com).
+This is a link to [Github](https://github.com). This is **bold**. This is `inline code`. 
 
 This is a table:
 
@@ -49,3 +49,14 @@ This is a table:
 |-|-|-|
 |Anika|Acharya|Female|
 |Adesh|Patel|Male|
+
+This is a code snippet:
+
+```
+$(function() {
+  $("select.ayla-regions").change(function() {
+    writeRegionUrls()
+    displayAccounts()
+  })
+})
+```
