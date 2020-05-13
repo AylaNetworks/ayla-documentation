@@ -84,5 +84,5 @@ This is an ordered list with a code snippet and an image:
     })
     ```
 1. Do this ...
-    <img src="img-600.png" width="300" height="180">
+    img-600.png
 1. Do this ...
