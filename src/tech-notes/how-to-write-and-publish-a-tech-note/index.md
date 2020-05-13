@@ -22,4 +22,67 @@ Thank you for writing a tech note!
 
 ### Markdown tips
 
+[Browse to this page](https://github.com/AylaNetworks/ayla-documentation/blob/master/src/tech-notes/how-to-write-and-publish-a-tech-note/index.md), and click `Raw`, to see the following tips in markdown.
 
+This is a paragraph:
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+This is **strong**.
+
+This is an unordered list:
+
+* Green
+* Red
+    * Maroon
+    * Brick
+* Blue
+
+This is an ordered list:
+
+1. Green
+1. Red
+    1. Maroon
+    1. Brick
+1. Blue 
+
+This is a link to [Google](https://www.google.com/).
+
+This is inline code: `cd ~/dir1/dir2`.
+
+This is a code snippet:
+
+```
+$(function() {
+  $("select.ayla-regions").change(function() {
+    writeRegionUrls()
+    displayAccounts()
+  })
+})
+```
+
+This is an image:
+
+<img src="img-600.png" width="300" height="180">
+
+This is a table:
+
+|First Name|Last Name|Nationality|
+|-|-|-|
+|Audrey|Tautou|French|
+|山﨑|賢人|Japanese|
+
+This is an ordered list with a code snippet and an image:
+
+1. Do this ...
+    ```
+    $(function() {
+      $("select.ayla-regions").change(function() {
+        writeRegionUrls()
+        displayAccounts()
+      })
+    })
+    ```
+1. Do this ...
+<img src="img-600.png" width="300" height="180">
+1. Do this ...
