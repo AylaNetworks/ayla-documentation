@@ -61,7 +61,7 @@ $(function() {
 })
 ```
 
-This is an image:
+This is an image (indented slightly on purpose):
 
 <img src="img-600.png" width="300" height="180">
 

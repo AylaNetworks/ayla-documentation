@@ -3,6 +3,8 @@ title: Tech Notes
 layout: site.html
 ---
 
+Future authors, see [How to write and publish a tech note](how-to-write-and-publish-a-tech-note).
+
 |Date|Title|Author|
 |-|-|
 |2020-05-05|[Using BLE to set up Wi-Fi for ESP32](using-ble-to-set-up-wi-fi-for-esp32)|Steve Grau|
