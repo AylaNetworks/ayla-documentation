@@ -128,7 +128,7 @@ Next, the top-level Makefile makes the various targets specified, or the default
 
 The relationships between the make files are shown below: 
 
-IMAGE
+<img src="make-hierarchy.png" width="600" height="194">
 
 ### Common Definitions
 
