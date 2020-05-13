@@ -71,7 +71,7 @@ The Makefile works natively on Linux or Mac-OS or under Cygwin on Windows. The u
 1. Install openocd 0.10.0 or later from http://www.freddiechopin.info/en/download into cygwin /usr/share (it should be /usr/share/openocd).  OpenOCD is a tool that gives access to on-chip debugging via JTAG for loading flash and debugging. 
 1. Add the /usr/share/openocd/bin or bin-x64 to $PATH.  Use bin-x64 if you have a 64-bit Windows system. 
     ```
-PATH=$PATH:~/openocd-0.10.0/bin-x64 
+    PATH=$PATH:~/openocd-0.10.0/bin-x64 
     ```
 1. Set TOOLCHAIN_DIR in your environment to <gnuarmtc> or edit <demo>/toolchain/arm-none-eabi.mk to set TOOLCHAIN_DIR to <gnuarmtc> 
     ```
