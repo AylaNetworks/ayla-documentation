@@ -66,30 +66,30 @@ The demo software package is divided into these components:
 The Makefile works natively on Linux or Mac-OS or under Cygwin on Windows. The user must install the GNU ARM toolchain, Python, and OpenOCD as prerequisites. 
 
 1. For Windows, install cygwin, keeping default tools, and adding "make", "python3.7" interpreter, and "gcc". 
-1. Download and extract gnu_arm_eabi_none toolchain inside <gnuarmtc> (e.g. /cygdrive/c/Program Files (x86)/GNU Tools ARM Embedded/8 2018-q4-major). 
+1. Download and extract gnu_arm_eabi_none toolchain inside `<gnuarmtc>` (e.g. `/cygdrive/c/Program Files (x86)/GNU Tools ARM Embedded/8 2018-q4-major`). 
 1. Unzip host library pkg (e.g., Ayla-host-lib-2.0.zip) inside a cygwin user home directory folder. 
 1. Install openocd 0.10.0 or later from http://www.freddiechopin.info/en/download into cygwin /usr/share (it should be /usr/share/openocd).  OpenOCD is a tool that gives access to on-chip debugging via JTAG for loading flash and debugging. 
 1. Add the /usr/share/openocd/bin or bin-x64 to $PATH.  Use bin-x64 if you have a 64-bit Windows system. 
     ```
     PATH=$PATH:~/openocd-0.10.0/bin-x64 
     ```
-1. Set TOOLCHAIN_DIR in your environment to <gnuarmtc> or edit <demo>/toolchain/arm-none-eabi.mk to set TOOLCHAIN_DIR to <gnuarmtc> 
+1. Set TOOLCHAIN_DIR in your environment to `<gnuarmtc>` or edit `<demo>/toolchain/arm-none-eabi.mk` to set TOOLCHAIN_DIR to `<gnuarmtc>`: 
     ```
-export TOOLCHAIN_DIR="/cygdrive/c/Program Files (x86)/GNU Tools ARM Embedded/8 2018-q4-major" 
+    export TOOLCHAIN_DIR="/cygdrive/c/Program Files (x86)/GNU Tools ARM Embedded/8 2018-q4-major" 
     ```
 1. Install Python.  For Windows, you can use https://www.python.org/downloads/windows.  This was tested with Python 3.7.3, but other versions should work. 
 1. Run make.  This will build the host library, libdemo, libcons, libarch, and the demo.  The default target is the Nucleo board in SPI mode, with a debug console.  To select the discovery board, specify BOARD=discovery.  To select UART mode, select USE_UART=1.  To disable the debug console, specify NO_CONSOLE=1.  For example, use just 'make' for the Nucleo board: 
     ```
-make 
-make BOARD=discovery USE_UART=0 
+    make 
+    make BOARD=discovery USE_UART=0 
     ```
 1. Run "make download" with all of the other options you used for your build. This will download the demo to the devkit:
     ```
-make download 
+    make download 
     ```
 1. For a new board that has not been set up before, the bootloader, which boots the app and is used to apply firmware updates, must be built and installed.  To do this run "make download_loader" 
     ```
-make download_loader 
+    make download_loader 
     ```
 
 After these build steps are complete, the board can be reset to start the app running. A gdb debugging session is available with "make debug". 
