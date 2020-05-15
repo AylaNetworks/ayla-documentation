@@ -74,7 +74,22 @@ A property update may include not only the property value, but also **metadata**
 
 ## Batch Updates
 
-Property values can be sent to the cloud one at a time or in a **batch of datapoints** sent with a single API to the cloud service.  This may be more efficient or may save power by allowing the host to sample values over a long period and send them less frequently, but with time stamps showing the actual time of the sample.  Batch updates do not support File properties, Message properties or Metadata. 
+Property values can be sent to the cloud one at a time or in a **batch of datapoints** sent with a single API to the cloud service.  This may be more efficient or may save power by allowing the host to sample values over a long period and send them less frequently, but with time stamps showing the actual time of the sample.  Batch updates do not support File properties, Message properties or Metadata.
+
+## Reference Apps
+
+The example folder contains the following demo applications:
+
+|Name|Description|
+|-|-|
+|`ledevb/demo.c`|This is the application that all Ayla demo kits are shipped with by default. This demo exercises the use of Ayla’s Boolean, integer, and string properties through LEDs and buttons. It also shows how to use message properties and schedules.|
+|`demo_batch/demo.c`|This application demonstrates batch properties by posting timestamped temperature and voltage values periodically in batches.|
+
+The reference host application organization is shown in the following block diagram. 
+
+<img src="reference-app-org.png" width="200" height="213">
+
+The application can use functions in the demo library (`example/libdemo`) and the console library (`example/libcons`). The target library, built from source under `arch/stm32f3`, `arch/stm32`, and `ext`, contains platform-specific functions and definitions to perform low-level I/O for SPI and UART communications and GPIO access, etc. These are the portions specific to a particular MCU and board.
 
 # Host Library
 
@@ -1517,24 +1532,9 @@ The host library header files are divided into internal ones and external APIs. 
 * `spi_proto.h` definitions of the SPI protocol to the module. 
 * `uart_int.h` definitions for uart.c. 
 
-# Reference Host Apps
+# Reference App: ledevb
 
-The example folder contains demo applRequirements forications. Here is an explanation of each demo application: 
-
-* `ledevb/demo.c`:  This is the application that all Ayla demo kits are shipped with by default. This demo exercises the use of Ayla’s Boolean, integer, and string properties through LEDs and buttons. It also shows how to use message properties and schedules. 
-* `demo_batch/demo.c`:  This application demonstrates batch properties by posting timestamped temperature and voltage values periodically in batches. 
-
-## Host App Organization
-
-The reference host application organization is shown in the following block diagram. The application can use functions in the demo library (example/libdemo) and the console library (example/libcons). 
-
-The target library, built from source under arch/stm32f3, arch/stm32, and ext, contains platform-specific functions and definitions to perform low-level I/O, for SPI and UART communications, and GPIO access, etc. These are the portions specific to a particular MCU and board.
-
-<img src="reference-app-org.png" width="200" height="213">
-
-## ledevb application
-
-### Properties
+## Properties
 
 The ledevb example code in `examples/apps/ledevb/demo.c` demonstrates several properties which help in testing the interaction between the module and device service. This section lists the properties and describes the behavior associated with them.
 
@@ -1587,15 +1587,23 @@ The `schedule_in` property can be set by the service. The host library interpret
 
 To demonstrate the three types of message properties supported by Ayla (json, string, and binary) the host app includes three pairs of properties: `json_in`, `json_out`, `string_in`, `string_out`, `binary_in`, and `binary_out`. In each case, when the app receives an `in` property value, it sets `out` to `in`, and sends the `out` property value to ADS. The string property `message_start` operates to send a long pattern on either `json_out`, `binary_out`, or `string_out`. The value received from the cloud in `message_start` should be a length and a property name, for example `10000 binary_out`. When this value is received from the cloud, the ledevb program sends a pattern of 10000 bytes on the message property `binary_out` and sets the `message_start` property to an empty string. The length used in `message_start` can be up to 524288 (512 * 1024).
 
-### Set functions
+## Set functions
 
-These functions are called through the property table to receive new values for the properties from the Ayla Module. The application can associate any action to a new property setting. 
+These functions are called through the property table to receive new values for the properties from the Ayla Module. The application can associate any action to a new property setting.
+
+### set_led
+
+This function turns an LED on/off. 
 
 ```
 void set_led(struct prop *, void *arg, void *valp, size_t len); 
 ```
 
-From the property table, turns LEDs on or off. The arg is a 32-bit value cast to a void * pointer with value used to set the LED I/O pin - bit(pin). The valp points to a one-byte value of 0 to turn the LED off or 1 to turn it on. The property interface verifies that other values are used (the type is boolean). 
+The `arg` is a 32-bit value cast to a void * pointer with value used to set the LED I/O pin - bit(pin). The valp points to a one-byte value of 0 to turn the LED off or 1 to turn it on. The property interface verifies that other values are used (the type is boolean). 
+
+### set_cmd
+
+This function sets the specified property to the new value.
 
 ```
 void set_cmd(struct prop *, void *arg, void *valp, size_t len); 
@@ -1603,11 +1611,19 @@ void set_cmd(struct prop *, void *arg, void *valp, size_t len);
 
 Called from the property module when a new value for the cmd property is received. Value is copied into the cmd_buf. The log_buf is set to point to that buffer. The send_req for the log property is set to 1 so that prop_poll() sends the log property. 
 
+### set_dec_in
+
+This function set the `decimal_in` property to the new value.
+
 ```
 void set_dec_in(struct prop *prop, void *arg, void *valp, size_t len); 
 ```
 
 Called from the property module when a new value for the decimal property `decimal_in` is received. Both decimal_in and decimal_out properties are set to the new value. The send_req for the decimal_out property is set to 1. 
+
+### set_input
+
+This function set the `input` property to the new value.
 
 ```
 void set_input(struct prop *, void *arg, void *valp, size_t len); 
@@ -1615,91 +1631,123 @@ void set_input(struct prop *, void *arg, void *valp, size_t len);
 
 Called from the property module when a new value for `input` property is received. The `output` property is set to the square of the new `input` property value after range checking. If the result overflows, output is set to -1. The send_req for the output property is set to 1 so that prop_poll() sends the output property. 
 
+### set_string_ro
+
+This function set the `version` property to the new value. 
+
 ```
 void set_string_ro(struct prop *, void *arg, void *valp, size_t len); 
 ```
 
 Called from the property module when a new value for the `version` property is received. Since the Ayla module should never change this property, this compares the new value with the old one. If the value differs, sends the correct (compiled-in) value to the service. This keeps the correct service version. Happen only when a new version of the MCU demo software is installed. Same function can be used for another read-only string property. 
 
+### test_patt
+
+This function generates the test pattern to send and receive the `stream_up` and `stream_down` properties. 
+
 ```
 void test_patt(size_t off); 
 ```
 
-Generates the test pattern to send and receive the `stream_up` and `stream_down` properties. The test pattern is a 4-byte counting pattern. It starts at 0x11223344 and increments by one each time it repeats. Returns the one-byte value for a given offset. 
+The test pattern is a 4-byte counting pattern. It starts at 0x11223344 and increments by one each time it repeats. Returns the one-byte value for a given offset. 
+
+### test_patt_get
+
+This function compares the data to the test pattern and keeps track of how much data was received and how much was received before any error occurred. 
 
 ```
 static int test_patt_get(struct prop *prop, void *buf, size_t len, u8 eof); 
 ```
 
-The get function pointer in the prop_dp state structure for the `stream_down` property points to this function. Normally a function accepts a file datapoint and copies the data to some storage area. This compares the data to the test pattern and keeps track of how much data was received - and how much was received before any error occurred. 
+The get function pointer in the prop_dp state structure for the `stream_down` property points to this function. Normally a function accepts a file datapoint and copies the data to some storage area.  
+
+### set_length_up
+
+This function sets the integer `stream_up_len` property. 
 
 ```
 void set_length_up(struct prop *prop, void *arg, void *valp, size_t len); 
 ```
 
-Sets the integer `stream_up_len` property. Sets the length used for the `stream_up` property, and then initiates transfer of `stream_up`. If the length given is less than or equal to zero, the value is ignored. 
+Sets the length used for the `stream_up` property, and then initiates transfer of `stream_up`. If the length given is less than or equal to zero, the value is ignored. 
+
+### demo_stream_init
+
+This function initializes the state for the `stream_up` and `stream_down` properties.
 
 ```
 void demo_stream_init(void); 
 ```
 
-Initializes the state for the `stream_up` and `stream_down` properties.
-
-### Send functions
+## Send functions
 
 These functions are called through the property table to send the value of the property to ADS. The Ayla module requests it or it was changed by the application – and sets the send_req flag in the property table. The first argument is the pointer to the property table entry. The second void pointer argument should be passed to prop_send() as its final argument.
 
+### send_led
+
+This function sends one of the LED values.
+
 ```
 int send_led(struct prop *prop, void *arg); 
-```
+``` 
 
-Sends one of the LED values. 
+### send_cmd
+
+This function sends the command string argument.
 
 ```
 int send_cmd(struct prop *prop, void *arg); 
-```
+``` 
 
-Sends the command string argument. 
+### send_log
+
+This function sends the current value of the log string.
 
 ```
 int send_log(struct prop *prop, void *arg); 
-```
+``` 
 
-Sends the current value of the log string. 
+### send_int
+
+This function sends the current value of the integer, boolean, or decimal property pointed to by `prop->arg` to the service. 
 
 ```
 int send_int(struct prop *prop, void *arg); 
 ```
 
-Sends the current value of the integer, boolean, or decimal property pointed to by prop->arg to the service. Can send several properties, including `input`, `output`, and `Blue_button`. 
+This function can send several properties, including `input`, `output`, and `Blue_button`. 
+
+### send_utf8
+
+This function sends the `version` property (can also be used for any text string, i.e., send_log() and send_cmd().
 
 ```
 int send_utf8(struct prop *, void *arg); 
 ```
 
-Sends the `version` property (can also be used for any text string, i.e., send_log() and send_cmd(). 
+### send_prop_with_meta
+
+This function demos the datapoint metadata feature for Boolean, string, decimal and integer properties.
 
 ```
 int send_prop_with_meta(struct prop *, void *); 
 ```
 
-Demos the datapoint metadata feature for Boolean, string, decimal and integer properties. 
+### send_file_prop_with_meta
+
+This function demos the datapoint metadata feature for file properties. 
 
 ```
 int send_file_prop_with_meta(struct prop *, void *); 
 ```
 
-Demos the datapoint metadata feature for file properties. 
-
-## demo_batch application
+# Reference App: demo_batch
 
 The demo_batch application demonstrates batch datapoint posting. As built, it samples the device’s voltage and temperature every thirty seconds and adds them to a batch. It sends the batch whenever it fills or every five minutes. The size is limited to 4000 bytes for the API. These parameters are defined near the top of the program. The two properties used are `mv`, an integer property for voltage in millivolts, and `tc`, a decimal property for degrees centigrade in hundredths. There is also an `app_active` property which when set to 1 will cause the properties to be sent immediately, rather than batched, for the next 30 seconds. The mobile app could set this to 1 more often than that to get constant updates from the properties. The host firmware version is sent up in the string property `version` and the template version is sent up in `oem_host_version`. Two batches are formed so that the sampled properties can be added to one batch while the other is being sent. 
 
-# Reference Libraries
+# Reference Lib: libdemo
 
-## libdemo library
-
-### Example Over-The-Air Firmware Update 
+## OTA Update example
 
 Over-the-air (OTA) update refers to updating the firmware image on the MCU with a new version. This may include defect fixes or new features. The full development kit contains a sample implementation. The internal flash is split into different regions. It holds a bootloader, two images, and scratch areas, used when swapping images between active and inactive slots. Here's the layout of the STM32F303 flash as it is used:
 
@@ -1712,11 +1760,11 @@ Over-the-air (OTA) update refers to updating the firmware image on the MCU with 
 |0x0803e000|Copy scratch area|
 |0x08040000|End of flash|
 
-*Bootloader*
+### Bootloader
 
 After reset, the MCU enters the bootloader which will eventually boot the actual image. The bootloader determines whether it should boot the image that's currently in the active slot, or if it should swap that with the inactive image. A swap is done if the MCU wants to boot a new image, or if it is falling back to the old image. Fallback happens after a failure to boot to newly uploaded image. In case the MCU is reset before completing a swap of the images, an block of flash is used to keep track of the progress of the operation and the bootloader will continue from where it left off. This block of flash is called the "progress bar". The bootloader starts the active image by jumping to address in reset interrupt vector in the image. 
 
-*Image Download*
+### Image Download
 
 Firmware download and reset of the image management is done while the MCU runs the active image. The download can be interrupted and restarted. During the download, the module may restart the process by sending a new OTA notification message. 
 
@@ -1729,7 +1777,7 @@ Firmware download and reset of the image management is done while the MCU runs t
 1. When the download is complete, the image integrity is checked and the MCU reports successful completion. 
 1. After the Ayla module informs ADS the download was OK, it asks the MCU to boot the new image. 
 
-*OTA Properties*
+### OTA Properties
 
 An image update can include one or more of these changes: 
 
@@ -1739,7 +1787,7 @@ An image update can include one or more of these changes:
 
 The "oem_host_version" is a reserved property that selects the appropriate service template for the MCU firmware. The module may ask for this property at any time, currently after each time the module boots. The successful completion of the OTA is indicated by sending the new MCU firmware version. The "version" property is a string property that contains the MCU firmware version. This property name is not reserved, but the name "version" is used in the ledevb demo. In your product, any string property can be used to hold the firmware version. The "Host SW Version" flag associated with the property in the template indicates it is used for this purpose.
 
-*Image Format*
+### Image Format
 
 For OTA, each product design can use any file format that is convenient, although often it will be a binary image that is stored in flash, possibly with an additional header and checksum or equivalent. MCU firmware images in the demo kit have a specific format. This makes it possible to validate images. For the STM32F2, we use one of two versions.
 
@@ -1765,15 +1813,17 @@ Use these offsets when the image size &ge; 64K (65,536):
 |0x1d8|--|Image Text|Rest of the image.|
 |<Size>|4|CRC32|32-bit CRC such that the overall CRC including this is 0.|
 
-### Factory Reset API
+## Factory Reset API
 
-This API consists of the following function:
+### demo_factory_reset_handle
+
+This function can be called early in the demo to determine whether a factory reset should be performed.
 
 ```
 int demo_factory_reset_handle(void);
 ```
 
-This function can be called early in the demo to determine whether a factory reset should be performed. A platform-specific function, `board_factory_reset_detect()`, is called and if that returns non-zero, the module is sent a command to restore its factory configuration.
+ A platform-specific function, `board_factory_reset_detect()`, is called and if that returns non-zero, the module is sent a command to restore its factory configuration.
 
 ### Demo Library Files
 
@@ -1787,9 +1837,9 @@ The library in `example/libdemo` is a set of routines usable in all applications
 * `include/demo/demo.h` defines the primary interfaces to libdemo. 
 * `include/demo/demo_message.h` defines the interfaces to demo_message.c. 
 
-## libcons library
+# Reference Lib: libcons
 
-### Source Files
+## Source Files
 
 The library in `example/libcons` is provided for use in setting up a debug port and a command line interface for testing the application. It contains these files: 
 
@@ -1801,7 +1851,7 @@ The library in `example/libcons` is provided for use in setting up a debug port 
 * `parse_hex.c`: Utility to convert string to hex. 
 * `printf.c`: Implementations of common print functions including putchar, puts, printf, etc. 
 
-### Header Files
+## Header Files
 
 The header files in `example/libcons/include/ayla` are: 
 
