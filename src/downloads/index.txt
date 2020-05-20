@@ -1,0 +1,212 @@
+# Ayla Device Agent for Espressif ESP32
+# Ayla Host Library and Reference Application
+# Ayla Linux Device Agent
+# Ayla Linux Gateway Agent
+# Ayla Portable Device Agent
+# Ayla Embedded Agent: Ameba SDK
+# Ayla Embedded Agent: Marvell WMSDK
+# Ayla Embedded Agent: Qualcomm QCA4010 SDK
+# Ayla Production Cellular Agent
+# Ayla Android Mobile Libraries
+
+Azureware: AY001MWA CU300 Firmware Downloads
+https://connection.aylanetworks.com/s/article/Azureware-AY001MWA-CU300-Firmware-Downloads
+
+USI: AY001MUX BM30 Firmware Downloads
+https://connection.aylanetworks.com/s/article/USI-AY001MUX-BM30-Firmware-Downloads
+
+USI: AY001MUV BM14 Firmware Downloads
+https://connection.aylanetworks.com/s/article/USI-AY001MUV-BM14-Firmware-Downloads
+
+USI: AY001MUS BM09 Firmware Downloads
+https://connection.aylanetworks.com/s/article/USI-AY001MUS-BM09-Firmware-Downloads
+
+USI: AY001MUP BM22 Firmware Downloads
+https://connection.aylanetworks.com/s/article/USI-AY001MUP-BM22-Firmware-Downloads
+
+Murata: Module AY001MTV Type1VD Firmware Downloads
+https://connection.aylanetworks.com/s/article/Murata-Module-AY001MTV-Type1VD-Firmware-Downloads
+
+Murata: Module AY001MTM Type ABR Firmware Downloads
+https://connection.aylanetworks.com/s/article/2417817
+
+Murata: Module AY001MTL Type 1LD Firmware Downloads
+https://connection.aylanetworks.com/s/article/Murata-Module-AY001MTL-Type-1LD-Firmware-Downloads
+
+Murata: Module AY001MTC Type YD Firmware Downloads
+https://connection.aylanetworks.com/s/article/Murata-Module-AY001MTC-Type-YD-Firmware-Downloads
+
+Inventek: AY001MIV ISM43362 Firmware Downloads
+https://connection.aylanetworks.com/s/article/Inventek-AY001MIV-ISM43362-Firmware-Downloads
+
+Ampak: Module AY001MAB Firmware Downloads
+https://connection.aylanetworks.com/s/article/AY001MAB-Firmware-Downloads
+
+
+# Ayla Device Agent source code for Espressif ESP32
+
+https://connection.aylanetworks.com/s/article/2648919
+
+### ada-esp-idf-src-1.5.3
+
+https://ayla.my.salesforce.com/sfc/p/#F00000005wvT/a/3j000000VAjg/JNzOcAPdv4jvN6AFPPhdS4EXxY5VQpW7VXbjptEXcA0
+https://ayla.my.salesforce.com/sfc/p/#                           F00000005wvT                          /a/3j000000VAjg/JNzOcAPdv4jvN6AFPPhdS4EXxY5VQpW7VXbjptEXcA0
+https://ayla.my.salesforce.com/sfc/dist/version/download/?oid=00DF00000005wvT&ids=0683j00000724Q4AAI&d=/a/3j000000VAjg/JNzOcAPdv4jvN6AFPPhdS4EXxY5VQpW7VXbjptEXcA0
+
+### ada-esp-idf-src-1.5.2.tgz
+
+https://ayla.my.salesforce.com/sfc/p/#F00000005wvT/a/3j000000VAfz/ojJD8LelNAWyO7SDfN8McPu22FDHMqJvGTDdzxi50sg
+https://ayla.my.salesforce.com/sfc/p/#                           F00000005wvT                          /a/3j000000VAfz/ojJD8LelNAWyO7SDfN8McPu22FDHMqJvGTDdzxi50sg
+https://ayla.my.salesforce.com/sfc/dist/version/download/?oid=00DF00000005wvT&ids=0683j0000071sqQAAQ&d=/a/3j000000VAfz/ojJD8LelNAWyO7SDfN8McPu22FDHMqJvGTDdzxi50sg
+
+### ada-esp-idf-src-1.5.1-beta.tgz
+
+https://ayla.my.salesforce.com/sfc/p/#F00000005wvT/a/3j000000VAYd/kgCHF9.gv.jyINd9dPKaPf5LgSzA1yfr.q2zmODJUqQ
+https://ayla.my.salesforce.com/sfc/p/#                           F00000005wvT                          /a/3j000000VAYd/kgCHF9.gv.jyINd9dPKaPf5LgSzA1yfr.q2zmODJUqQ
+https://ayla.my.salesforce.com/sfc/dist/version/download/?oid=00DF00000005wvT&ids=0683j0000071IrQAAU&d=/a/3j000000VAYd/kgCHF9.gv.jyINd9dPKaPf5LgSzA1yfr.q2zmODJUqQ
+
+
+# Ayla Firmware
+
+## Ampak
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2020-05-12`|[2.11]()|&nbsp;|List features here.|
+|`2019-08-05`|[2.10]()|&nbsp;|List features here.|
+|`2019-07-08`|[2.9.8]()|&nbsp;|List features here.|
+|`2018-09-30`|[2.9.4]()|&nbsp;|List features here.|
+|`2018-07-15`|[2.9.2]()|&nbsp;|List features here.|
+|`2017-12-14`|[2.9]()|&nbsp;|List features here.|
+|`2018-02-09`|[2.6.6-beta]()|&nbsp;|List features here.|
+|`2018-01-22`|[2.6.5-beta]()|&nbsp;|List features here.|
+|`2017-09-25`|[2.6.4-beta]()|&nbsp;|List features here.|
+|`2017-08-14`|[2.6.3-beta]()|&nbsp;|List features here.|
+|`2017-01-25`|[2.6-beta]()|&nbsp;|List features here.|
+|`2017-01-03`|[2.5.3-beta]()|&nbsp;|List features here.|
+|`2016-12-01`|[2.5.2-beta]()|&nbsp;|List features here.|
+|`2016-11-18`|[2.5.1-beta]()|&nbsp;|List features here.|
+|`2016-09-17`|[2.5-beta]()|&nbsp;|List features here.|
+|&nbsp;|[2.4.9-beta]()|&nbsp;|List features here.|
+|&nbsp;|[2.4.7-beta]()|&nbsp;|List features here.|
+|&nbsp;|[2.4.6-beta]()|&nbsp;|List features here.|
+|&nbsp;|[2.4.5-beta]()|&nbsp;|List features here.|
+|&nbsp;|[2.4.3-beta]()|&nbsp;|List features here.|
+|&nbsp;|[2.4.2-beta]()|&nbsp;|List features here.|
+|&nbsp;|[2.4.1-beta]()|&nbsp;|List features here.|
+|&nbsp;|[2.3-beta]()|&nbsp;|List features here.|
+|&nbsp;|[1.15-beta]()|&nbsp;|List features here.|
+
+[buy](https://ampac.net/wp-content/uploads/2018/06/MAN3121-Ampac-Loop-Tester-Manual-reduced.pdf)
+
+[connection](https://connection.aylanetworks.com/s/article/AY001MAB-Firmware-Downloads)
+
+## Azurewave CU300
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+
+[buy](https://www.arrow.com/en/products/aw-cu300/azurewave)
+
+[connection](https://connection.aylanetworks.com/s/article/Azureware-AY001MWA-CU300-Firmware-Downloads)
+
+## Inventek ISM43362
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+
+[buy]()
+
+[connection](https://connection.aylanetworks.com/s/article/Inventek-AY001MIV-ISM43362-Firmware-Downloads)
+
+## Murata Type 1VD
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+
+[buy](https://wireless.murata.com/type1vd.html)
+
+[connection](https://connection.aylanetworks.com/s/article/Murata-Module-AY001MTV-Type1VD-Firmware-Downloads)
+
+## Murata Type ABR
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+
+[buy](https://wireless.murata.com/type-abr.html)
+
+[connection](https://connection.aylanetworks.com/s/article/2417817)
+
+## Murata Type 1LD
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+
+[buy](https://wireless.murata.com/type1ld.html)
+
+[connection](https://connection.aylanetworks.com/s/article/Murata-Module-AY001MTL-Type-1LD-Firmware-Downloads)
+
+## Murata Type YD
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+
+[buy]()
+
+[connection](https://connection.aylanetworks.com/s/article/Murata-Module-AY001MTC-Type-YD-Firmware-Downloads)
+
+## USI BM09
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+
+[buy]()
+
+[connection](https://connection.aylanetworks.com/s/article/USI-AY001MUS-BM09-Firmware-Downloads)
+
+## USI BM14
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+
+[buy]()
+
+[connection](https://connection.aylanetworks.com/s/article/USI-AY001MUV-BM14-Firmware-Downloads)
+
+## USI BM22
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+
+[buy]()
+
+[connection](https://connection.aylanetworks.com/s/article/USI-AY001MUP-BM22-Firmware-Downloads)
+
+## USI BM30
+
+|Date|Download|Docs|Features|
+|-|-|-|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+|`2000-00-00`|[sss]()|&nbsp;|sss|
+
+[buy](https://www.embeddedworks.net/wlan648/)
+
+[connection](https://connection.aylanetworks.com/s/article/USI-AY001MUX-BM30-Firmware-Downloads)

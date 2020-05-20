@@ -222,3 +222,14 @@ function displaySearchResults(data) {
     $('#core-content').append('<p>No search results</p>')
   }
 }
+
+/*------------------------------------------------------
+download
+------------------------------------------------------*/
+
+$(function () {
+  $('a.download').click(function (event) {
+    event.preventDefault()
+    console.log('This is a download')
+  })
+})

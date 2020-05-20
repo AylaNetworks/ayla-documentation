@@ -950,7 +950,7 @@ function populateDevices() {
     removeDevices()
     if(response.data.devices.length) {
       addDevices(response.data.devices)
-      populateDevice(response.data.devices[0].device.key)
+      populateDevice(response.data.devices[0].device.dsn)
     }
   }, function(response) {
     console.log(JSON.stringify(response, null, 2))
@@ -974,7 +974,7 @@ addDevice
 function addDevice(device) {
   var option = $('<option/>')
   option.text(device.product_name)
-  option.val(device.key)
+  option.val(device.dsn)
   $('#dt-device-selector').append(option)
 }
 
@@ -994,8 +994,8 @@ On Change Device
 
 $(function() {
   $( "#dt-device-selector" ).change(function() {
-    let devId = $('#dt-device-selector option:selected').val()
-    populateDevice(devId)
+    let dsn = $('#dt-device-selector option:selected').val()
+    populateDevice(dsn)
   })
 })
 
@@ -1003,6 +1003,22 @@ $(function() {
 populateDevice
 ------------------------------------------------------*/
 
+function populateDevice(dsn) {
+  let regionId = $("select.ayla-regions option:selected").val()
+  let server = serviceUrls[regionId]['device']
+  let token = getCurrentAccount(getRegions()).access_token
+  AYLA.getApiv1DsnsDsn(server, token, dsn, function(response) {
+    let option = $('#dt-device-selector option:selected')
+    $(option).text(response.data.device.product_name)
+    $(option).data('details', response.data.device)
+    $('#dt-device-details').text(JSON.stringify(response.data.device, null, 2))
+    setDeviceFields(response.data.device)
+  }, function(response) {
+    console.log(JSON.stringify(response, null, 2))
+  })
+  populateProperties(dsn)
+}
+/*
 function populateDevice(devId) {
   let regionId = $("select.ayla-regions option:selected").val()
   let server = serviceUrls[regionId]['device']
@@ -1018,11 +1034,28 @@ function populateDevice(devId) {
   })
   populateProperties(devId)
 }
+*/
 
 /*------------------------------------------------------
 populateProperties
 ------------------------------------------------------*/
 
+function populateProperties(dsn) {
+  let regionId = $("select.ayla-regions option:selected").val()
+  let server = serviceUrls[regionId]['device']
+  let token = getCurrentAccount(getRegions()).access_token
+  AYLA.getApiv1DsnsDsnProperties(server, token, dsn, function(response) {
+    removeProperties()
+    if(response.data.length) {
+      addProperties(response.data)
+      populateProperty(dsn, response.data[0].property.name)
+    }
+  }, function(response) {
+    console.log(JSON.stringify(response, null, 2))
+  })
+}
+
+/*
 function populateProperties(devId) {
   let regionId = $("select.ayla-regions option:selected").val()
   let server = serviceUrls[regionId]['device']
@@ -1037,6 +1070,7 @@ function populateProperties(devId) {
     console.log(JSON.stringify(response, null, 2))
   })
 }
+*/
 
 /*------------------------------------------------------
 addProperties
@@ -1075,9 +1109,9 @@ On Change Property
 
 $(function() {
   $( "#dt-property-selector" ).change(function() {
-    let devId = $('#dt-device-selector option:selected').val()
+    let dsn = $('#dt-device-selector option:selected').val()
     let propName = $('#dt-property-selector option:selected').val()
-    populateProperty(devId, propName)
+    populateProperty(dsn, propName)
   })
 })
 
@@ -1085,6 +1119,26 @@ $(function() {
 populateProperty
 ------------------------------------------------------*/
 
+function populateProperty(dsn, propName) {
+  let regionId = $("select.ayla-regions option:selected").val()
+  let server = serviceUrls[regionId]['device']
+  let token = getCurrentAccount(getRegions()).access_token
+  AYLA.getApiv1DsnsDsnPropertiesPropName(server, token, dsn, propName, function(response) {
+    let option = $('#dt-property-selector option:selected')
+    $(option).text(response.data.property.name)
+    $(option).data('details', response.data.property)
+    $('#dt-property-details').text(JSON.stringify(response.data.property, null, 2))
+    displayPropertyValue(
+      response.data.property.base_type, 
+      response.data.property.value, 
+      response.data.property.direction)
+      setPropertyFields(response.data.property)
+    }, function(response) {
+    console.log(JSON.stringify(response, null, 2))
+  })
+}
+
+/*
 function populateProperty(devId, propName) {
   let regionId = $("select.ayla-regions option:selected").val()
   let server = serviceUrls[regionId]['device']
@@ -1103,6 +1157,7 @@ function populateProperty(devId, propName) {
     console.log(JSON.stringify(response, null, 2))
   })
 }
+*/
 
 /*------------------------------------------------------
 displayPropertyValue
@@ -1145,6 +1200,45 @@ $(function() {
     let regionId = $("select.ayla-regions option:selected").val()
     let server = serviceUrls[regionId]['device']
     let token = getCurrentAccount(getRegions()).access_token
+    let dsn = $('#dt-device-selector option:selected').val()
+    let propName = $('#dt-property-selector option:selected').val()
+    let value = $(this).prop('checked') + 0
+    let datapoint = {}
+    datapoint.value = value
+    let requestData = {}
+    requestData.datapoint = datapoint
+    AYLA.postApiv1DsnsDsnPropertiesPropertyNameDatapoints(server, token, dsn, propName, requestData, function(response) {
+    }, function(response) {
+      console.log(JSON.stringify(response, null, 2))
+    })
+  })
+})
+
+$(function() {
+  $('#dt-save-value-btn').click(function(event) {
+    let regionId = $("select.ayla-regions option:selected").val()
+    let server = serviceUrls[regionId]['device']
+    let token = getCurrentAccount(getRegions()).access_token
+    let dsn = $('#dt-device-selector option:selected').val()
+    let propName = $('#dt-property-selector option:selected').val()
+    let value = $('#dt-value-wrapper input').val()
+    let datapoint = {}
+    datapoint.value = value
+    let requestData = {}
+    requestData.datapoint = datapoint
+    AYLA.postApiv1DsnsDsnPropertiesPropertyNameDatapoints(server, token, dsn, propName, requestData, function(response) {
+    }, function(response) {
+      console.log(JSON.stringify(response, null, 2))
+    })
+  })
+})
+
+/*
+$(function() {
+  $('#dt-value-wrapper').delegate('input:checkbox', "change", function(event) {
+    let regionId = $("select.ayla-regions option:selected").val()
+    let server = serviceUrls[regionId]['device']
+    let token = getCurrentAccount(getRegions()).access_token
     let devId = $('#dt-device-selector option:selected').val()
     let propName = $('#dt-property-selector option:selected').val()
     let value = $(this).prop('checked') + 0
@@ -1179,7 +1273,7 @@ $(function() {
     })
   })
 })
-
+*/
 /*------------------------------------------------------
 removeValue
 ------------------------------------------------------*/

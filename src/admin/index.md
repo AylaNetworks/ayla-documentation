@@ -141,3 +141,19 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 |```rule_uuid```|```c1234567-1234-1234-1234-a1234567890a```|
 |```user_id```|```12345678```|
 |```user_uuid```|```b1234567-1234-1234-1234-a1234567890a```|
+
+### Connections
+
+* [Ayla Host Library and Reference Application](https://connection.aylanetworks.com/s/article/Ayla-Host-Library-and-Reference-Application)
+* [Module Firmware Release Notes (AYOO6RFW3)](https://connection.aylanetworks.com/s/article/Module-Firmware-Release-Notes-AYOO6RFW0)
+* [Azureware: AY001MWA CU300 Firmware Downloads](https://connection.aylanetworks.com/s/article/Azureware-AY001MWA-CU300-Firmware-Downloads)
+* [USI: AY001MUX BM30 Firmware Downloads](https://connection.aylanetworks.com/s/article/USI-AY001MUX-BM30-Firmware-Downloads)
+* [USI: AY001MUV BM14 Firmware Downloads](https://connection.aylanetworks.com/s/article/USI-AY001MUV-BM14-Firmware-Downloads)
+* [USI: AY001MUS BM09 Firmware Downloads](https://connection.aylanetworks.com/s/article/USI-AY001MUS-BM09-Firmware-Downloads)
+* [USI: AY001MUP BM22 Firmware Downloads](https://connection.aylanetworks.com/s/article/USI-AY001MUP-BM22-Firmware-Downloads)
+* [Murata: Module AY001MTV Type1VD Firmware Downloads](https://connection.aylanetworks.com/s/article/Murata-Module-AY001MTV-Type1VD-Firmware-Downloads)
+* [Murata: Module AY001MTM Type ABR Firmware Downloads](https://connection.aylanetworks.com/s/article/2417817)
+* [Murata: Module AY001MTL Type 1LD Firmware Downloads](https://connection.aylanetworks.com/s/article/Murata-Module-AY001MTL-Type-1LD-Firmware-Downloads)
+* [Murata: Module AY001MTC Type YD Firmware Downloads](https://connection.aylanetworks.com/s/article/Murata-Module-AY001MTC-Type-YD-Firmware-Downloads)
+* [ArticlesInventek: AY001MIV ISM43362 Firmware Downloads](https://connection.aylanetworks.com/s/article/Inventek-AY001MIV-ISM43362-Firmware-Downloads)
+* [Ampak: Module AY001MAB Firmware Downloads](https://connection.aylanetworks.com/s/article/AY001MAB-Firmware-Downloads)

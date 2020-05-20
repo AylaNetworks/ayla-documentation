@@ -79,6 +79,47 @@ var AYLA = {
     .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
   },
 
+  getApiv1DsnsDsnProperties: function(server, accessToken, dsn, successCb=null, errorCb=null) {
+    axios({
+      method: 'get',
+      url: server + '/apiv1/dsns/' + dsn + '/properties',
+      headers: {
+        'Authorization': 'auth_token ' + accessToken,
+        'Accept': 'application/json'
+      }
+    })
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
+  },
+
+  getApiv1DsnsDsnPropertiesPropName: function(server, accessToken, dsn, propName, successCb=null, errorCb=null) {
+    axios({
+      method: 'get',
+      url: server + '/apiv1/dsns/' + dsn + '/properties/' + propName,
+      headers: {
+        'Authorization': 'auth_token ' + accessToken,
+        'Accept': 'application/json'
+      }
+    })
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
+  },
+
+  postApiv1DsnsDsnPropertiesPropertyNameDatapoints: function(server, accessToken, dsn, propName, requestData, successCb=null, errorCb=null) {
+    axios({
+      method: 'post',
+      url: server + '/apiv1/dsns/' + dsn + '/properties/' + propName + '/datapoints',
+      headers: {
+        'Authorization': 'auth_token ' + accessToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(requestData)
+    })
+    .then(function(response) {AYLA.callSuccessCb(response, successCb)})
+    .catch(function(error) {AYLA.callErrorCb(error.response, errorCb)})
+  },
+
   getUsersGetUserProfile: function(server, accessToken, successCb=null, errorCb=null) {
     axios({
       method: 'get',

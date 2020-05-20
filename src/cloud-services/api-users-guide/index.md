@@ -154,7 +154,7 @@ The following steps show you how (over-the-air) to upgrade the Ayla agent and/or
 
 1. Open the [API Browser](/cloud-services/api-browser) in a dedicated browser tab. Click the Accounts tab. Select a region. Input your email, password, app_id, app_secret. Click Get Tokens. Click the Accounts tab again to close it.
 1. Open the [Ayla ESP32 Solution](/edge-solutions/ayla-esp32-solution) page in another dedicated tab, and follow the instructions on the page to establish an ESP32 development environment, and connect one or more devices to the Ayla Cloud.
-1. In your Docker shell, `cd /root/esp/esp-idf-v3.2/examples/ayla_demo`.
+1. In your Docker shell, `cd /root/esp/esp-idf-v3.3.1/examples/ayla_demo/`.
 1. Open `main/demo_ledevb.c`, and set the following constants to values of your choice like this:
     ```
     #define BUILD_PROGNAME "esp32"
