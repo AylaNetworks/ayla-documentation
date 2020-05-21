@@ -91,7 +91,7 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
     1.  Install miscellaneous packages:
 
         ```
-      # apt install nano screen iputils-ping 
+        # apt install nano screen iputils-ping 
         ```
 
     1. Install prerequisites for [Espressif Standard Setup of Toolchain v3.3.1 for Linux](https://docs.espressif.com/projects/esp-idf/en/v3.3.1/get-started/linux-setup.html).
@@ -103,14 +103,14 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
     1. Create an ```esp``` directory, and change directory:
 
         ```
-      # mkdir esp
-      # cd esp
+        # mkdir esp
+        # cd esp
         ```
 
     1. Download a ESP32 toolchain for 64-bit Linux:
 
         ```
-      # wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
+        # wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
         ```
 
         For the 32-bit version, see [this Espressif page](https://docs.espressif.com/projects/esp-idf/en/v3.3.1/get-started/linux-setup.html).
@@ -118,27 +118,27 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
     1. Extract the archive file:
 
         ```
-      # tar -xzf xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
+        # tar -xzf xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
         ```
 
     1. Add to the PATH environment variable, and persist the change in `.bashrc`:
 
         ```
-      # export PATH=$HOME/esp/xtensa-esp32-elf/bin:$PATH
-      # echo "export PATH=\$HOME/esp/xtensa-esp32-elf/bin:\$PATH" >> ~/.bashrc
+        # export PATH=$HOME/esp/xtensa-esp32-elf/bin:$PATH
+        # echo "export PATH=\$HOME/esp/xtensa-esp32-elf/bin:\$PATH" >> ~/.bashrc
         ```
 
     1. Clone the [Espressif IoT Development Framework](https://github.com/espressif/esp-idf):
 
         ```
-      # git clone -b v3.3.1 --recursive https://github.com/espressif/esp-idf.git esp-idf-v3.3.1
+        # git clone -b v3.3.1 --recursive https://github.com/espressif/esp-idf.git esp-idf-v3.3.1
         ```
 
     1. Create the ```IDF_PATH``` environment variable, and persist the change in `.bashrc`:
 
         ```
-      # export IDF_PATH=$HOME/esp/esp-idf-v3.3.1
-      # echo "export IDF_PATH=\$HOME/esp/esp-idf-v3.3.1" >> ~/.bashrc
+        # export IDF_PATH=$HOME/esp/esp-idf-v3.3.1
+        # echo "export IDF_PATH=\$HOME/esp/esp-idf-v3.3.1" >> ~/.bashrc
         ```
 
 1. Test the development environment with the hello_world example:
@@ -146,37 +146,37 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
     1. Change directory:
     
         ```
-      # cd $IDF_PATH/examples/get-started/hello_world
+        # cd $IDF_PATH/examples/get-started/hello_world
         ```
 
     1. Customize configuration. (Defaults should be fine.)
     
         ```
-      # make menuconfig
+        # make menuconfig
         ```
 
     1. Build, flash, and monitor:
 
         ```
-      # make
-      # make flash
-      # make monitor
+        # make
+        # make flash
+        # make monitor
         ```
 
         Output appears similar to this:
 
         ```
-      Toolchain path: /root/esp/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
-      Toolchain version: crosstool-ng-1.22.0-80-g6c4433a
-      Compiler version: 5.2.0
-      ...
-      ...
-      Hello world!
-      This is ESP32 chip with 2 CPU cores, WiFi/BT/BLE, silicon revision 1, 4MB external flash
-      Restarting in 10 seconds...
-      Restarting in 9 seconds...
-      ...
-      ...
+        Toolchain path: /root/esp/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
+        Toolchain version: crosstool-ng-1.22.0-80-g6c4433a
+        Compiler version: 5.2.0
+        ...
+        ...
+        Hello world!
+        This is ESP32 chip with 2 CPU cores, WiFi/BT/BLE, silicon revision 1, 4MB external flash
+        Restarting in 10 seconds...
+        Restarting in 9 seconds...
+        ...
+        ...
         ```
 
         Press ```Ctl``` + ```]``` to exit the monitor.
@@ -186,20 +186,20 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
     1. <span style="color:red;">In a host terminal</span>, copy ```ada-esp-idf-src-1.5.3.tgz``` to your Docker container:
 
         ```
-      $ docker cp /home/matt/Downloads/ada-esp-idf-src-1.5.3.tgz ada153:/root/esp
+        $ docker cp /home/matt/Downloads/ada-esp-idf-src-1.5.3.tgz ada153:/root/esp
         ```
 
     1. <span style="color:red;">In your Docker terminal</span>, extract the archive file:
 
         ```
-      # cd /root/esp
-      # tar zxvf ada-esp-idf-src-1.5.3.tgz
+        # cd /root/esp
+        # tar zxvf ada-esp-idf-src-1.5.3.tgz
         ```
 
     1. Copy the ```ada-esp-idf-src-1.5.3``` directory on top of the ```esp-idf-v3.3.1``` directory:
 
         ```
-      # cp -R ada-esp-idf-src-1.5.3/* ./esp-idf-v3.3.1
+        # cp -R ada-esp-idf-src-1.5.3/* ./esp-idf-v3.3.1
         ```
 
 1. Configure and build the Ayla agent and host application:
@@ -207,40 +207,40 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
     1. Change directory:
 
         ```
-      # cd $IDF_PATH/examples/ayla_demo
+        # cd $IDF_PATH/examples/ayla_demo
         ```
 
     1. Edit ```./main/conf.h```. Set the following:
 
         ```
-      #define DEMO_OEM_ID           "00000000" /* replace with your Ayla OEM ID */
-      #define DEMO_TEMPLATE_VERSION "ada-esp-idf-src-1.5.3"
+        #define DEMO_OEM_ID           "00000000" /* replace with your Ayla OEM ID */
+        #define DEMO_TEMPLATE_VERSION "ada-esp-idf-src-1.5.3"
         ```
 
     1. Build, flash, and monitor:
 
         ```
-      # make
-      # make erase_flash
-      # make flash
-      # make monitor
+        # make
+        # make erase_flash
+        # make flash
+        # make monitor
         ```
 
     1. Configure networking and security (use ```log debug all``` for maximum visibility):
 
         ```
-      # nvs-set ada.f.wifi/profile/0/ssid <ssid>
-      # nvs-set ada.f.wifi/profile/0/security <security_type> # 0=none, 3=wpa, 4=wpa2
-      # nvs-set ada.f.wifi/profile/0/key <passphrase>
-      # nvs-set ada.f.wifi/profile/0/enable 1
-      # nvs-set "ada.f.id/dev_id" AC000W000000001
-      # nvs-set "ada.f.id/key" MIIB... (long number)
-      # nvs-set ada.f.client/server/default 1
-      # esp-reboot
+        # nvs-set ada.f.wifi/profile/0/ssid <ssid>
+        # nvs-set ada.f.wifi/profile/0/security <security_type> # 0=none, 3=wpa, 4=wpa2
+        # nvs-set ada.f.wifi/profile/0/key <passphrase>
+        # nvs-set ada.f.wifi/profile/0/enable 1
+        # nvs-set "ada.f.id/dev_id" AC000W000000001
+        # nvs-set "ada.f.id/key" MIIB... (long number)
+        # nvs-set ada.f.client/server/default 1
+        # esp-reboot
         ```
         ```
-      # oem key 0123456789abcdef0123456789abcdef ledevb
-      # save
+        # oem key 0123456789abcdef0123456789abcdef ledevb
+        # save
         ```
 
 ## GCC/Windows
