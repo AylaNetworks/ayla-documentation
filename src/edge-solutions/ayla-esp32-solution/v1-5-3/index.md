@@ -97,7 +97,7 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
     1. Install prerequisites for [Espressif Standard Setup of Toolchain v3.3.1 for Linux](https://docs.espressif.com/projects/esp-idf/en/v3.3.1/get-started/linux-setup.html).
 
         ```
-      # apt install gcc git wget make libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing
+        # apt install gcc git wget make libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing
         ```
 
     1. Create an ```esp``` directory, and change directory:
