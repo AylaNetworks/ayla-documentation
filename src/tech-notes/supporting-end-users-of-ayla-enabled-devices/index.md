@@ -5,19 +5,50 @@ classesFromPage: has-pagebar
 ---
 
 <aside id="pagebar" class="d-xl-block collapse">
-  <ul>
-    <li><a href="#core-title">Supporting end users</a></li>
-    <li><a href="#using-the-ayla-dashboard">Using the Ayla Dashboard</a></li>
-    <li><a href="#fixing-wi-fi-issues">Fixing Wi-Fi issues</a></li>
-    <li><a href="#escalating-issues">Escalating issues</a></li>
-  </ul>
+<ul>
+<li><a href="#core-title">On this page</a>
+<ul>
+<li><a href="#migrating-templates">Migrating templates</a></li>
+<li><a href="#fixing-wi-fi-issues">Fixing Wi-Fi issues</a></li>
+<li><a href="#escalating-issues">Escalating issues</a></li>
+</ul>
+</li>
+</ul>
 </aside>
 
-This page provides guidance for teams tasked with supporting end users of devices that connect to the Ayla IoT Cloud. The guidance is limited, for the most part, to Ayla-related topics such as how to use the Ayla Dashboard, how to fix common connectivity issues, how to determine which issues to escalate to Ayla Support, and how to escalate those issues. This page does not explain how to troubleshoot any particular device. 
+This page provides guidance for teams tasked with supporting end users of devices that connect to the Ayla IoT Cloud. The guidance is limited, for the most part, to Ayla-related topics such as how to use the Ayla Dashboard, how to fix common connectivity issues, how to determine which issues to escalate to Ayla Support, and how to escalate those issues. This page does not explain how to troubleshoot any particular device.
 
-# Using the Ayla Dashboard
+## Migrating templates
 
-# Fixing Wi-Fi issues
+This section describes how to migrate templates from development services to field services.
+
+1. Sign into the Ayla Dashboard of the destination (field) service, using an `OEM:Admin` user account.
+<img src="login.png" width="400" height="271">
+1. Click `OEM Migration` in the left column.
+<img src="oem-migrate.png" width="120" height="337">
+1. Select the service (e.g. `US Dev`) where the template currently resides, enter the credentials of your source admin account, and click `Start Migration`.
+<img src="select-src-env.png" width="300" height="348">
+1. Click `New Migration`.
+<img src="select-oem.png" width="600" height="236">
+1. Check `Templates`, and click `Continue`.
+<img src="select-object-types.png" width="300" height="209">
+1. Check the template you want to migrate, and select `Next Object Type`.
+<img src="next-object-type.png" width="300" height="357">
+1. Click `Validate`.
+<img src="validate.png" width="300" height="376">
+1. Enter the credentials of your destination admin account, and click `LOG IN`.
+<img src="log-into-src-env.png" width="300" height="186">
+1. Once Validation completes, select `GO TO MIGRATION`.
+<img src="validation-completed.png" width="300" height="380">
+1. Select `MIGRATE`.
+<img src="migrate.png" width="300" height="382">
+1. Enter the credentials of your destination admin account, and click `LOG IN`.
+<img src="log-into-dst-env.png" width="300" height="186">
+1. Once Migration completes, Select `DONE`.
+<img src="migration-completed.png" width="300" height="384">
+    The template should appear in the Ayla Dashboard of the field service with a new ID.
+
+## Fixing Wi-Fi issues
 
 This section provides steps for troubleshooting IoT device connectivity issues.
 
@@ -44,4 +75,4 @@ This section provides steps for troubleshooting IoT device connectivity issues.
 1. Check for other 2.4 GHz consumer devices that might be interfering with the Wi-Fi signal. These might include Bluetooth devices, baby monitors, cordless phones, walkie talkies, remote control toys, wireless video and audio equipment, microwaves, and wireless keyboard and mice.
 1. Reset the IoT device to factory settings as described in the device manufacturer user manual.
 
-# Escalating issues
+## Escalating issues
