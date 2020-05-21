@@ -383,34 +383,24 @@ The example application links with the following Ayla libraries residing in `com
 
 Below are summaries of the files in this library to help you with ESP32 development. For a full description of this library, see [Ayla Embedded Agent for Embedded Systems](https://docs.aylanetworks.com/archive/ayla-embedded-agent-for-embedded-systems).
 
-### `al/esp32/ada_lock.c`
+* `al/esp32/ada_lock.c`. This file implements an interface to the thread mutexes.
+* `al/esp32/client_task.c`. This file contains code for the client thread and its initialization, timers, locking, and work queue. The function ada_init() does the following:
+    * Initializes the logging subsystem, including setting severity levels to be logged for each subsystem.
+    * Initializes the timers and the mutex, which protects most of the client data structures.
+    * Calls init functions for various subsystems.
+    * Calls ada_conf_load() to read configuration settings.
+    * Creates the client_task_queue and the client thread.
+    The client thread runs in the function client_idle(). This function initializes the TLS library, and the client_redir_client_htlm() handler (described below) takes the client lock and then enters the idle loop.
 
-This file implements an interface to the thread mutexes.
+    The idle loop handles any pending timers that need to be handled in the client thread while still holding the client lock. Then, the idle loop waits for callbacks on the client_task_queue. This client_task_queue waits until the next scheduled timer or until an event occurs. If a callback is found, its handler is called and the loop repeats.
 
-### `al/esp32/client_task.c`
+    The al/esp32/client_task.c file contains code in the function client_redir_client_html() that redirects HTTP requests for “/client” to “/client.html”. This is necessary for same-LAN web-based device registration.
 
-This file contains code for the client thread and its initialization, timers, locking, and work queue.
-
-The function ada_init() does the following:
-
-* Initializes the logging subsystem, including setting severity levels to be logged for each subsystem.
-* Initializes the timers and the mutex, which protects most of the client data structures.
-* Calls init functions for various subsystems.
-* Calls ada_conf_load() to read configuration settings.
-* Creates the client_task_queue and the client thread.
-
-The client thread runs in the function client_idle(). This function initializes the TLS library, and the client_redir_client_htlm() handler (described below) takes the client lock and then enters the idle loop.
-
-The idle loop handles any pending timers that need to be handled in the client thread while still holding the client lock. Then, the idle loop waits for callbacks on the client_task_queue. This client_task_queue waits until the next scheduled timer or until an event occurs. If a callback is found, its handler is called and the loop repeats.
-
-The al/esp32/client_task.c file contains code in the function client_redir_client_html() that redirects HTTP requests for “/client” to “/client.html”. This is necessary for same-LAN web-based device registration.
-
-The remainder of the code in the al/esp32/client_task.c file implements the client timers and synchronization needed with the server thread:
-
-* The functions client_lock_int() and client_unlock_int() implement the locking around the client structures. These functions keep some debugging information that can be useful if there is trouble in this area.
-* The global string pointer client_mutex_func holds the name of the function that last successfully locked the client_lock.
-* The global integer client_mutex_line gives the line number in that function.
-* The global pointer client_mutex_owner is a pointer to the OS task that holds the mutex and is used to detect recursive attempts on the lock.
+    The remainder of the code in the al/esp32/client_task.c file implements the client timers and synchronization needed with the server thread:
+    * The functions client_lock_int() and client_unlock_int() implement the locking around the client structures. These functions keep some debugging information that can be useful if there is trouble in this area.
+    * The global string pointer client_mutex_func holds the name of the function that last successfully locked the client_lock.
+    * The global integer client_mutex_line gives the line number in that function.
+    * The global pointer client_mutex_owner is a pointer to the OS task that holds the mutex and is used to detect recursive attempts on the lock.
 
 ### `al/esp32/http_client.c`
 
