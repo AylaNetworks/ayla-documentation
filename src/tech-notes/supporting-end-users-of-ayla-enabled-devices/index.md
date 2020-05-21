@@ -4,18 +4,6 @@ layout: site.html
 classesFromPage: has-pagebar
 ---
 
-<aside id="pagebar" class="d-xl-block collapse">
-<ul>
-<li><a href="#core-title">On this page</a>
-<ul>
-<li><a href="#migrate-templates">Migrate templates</a></li>
-<li><a href="#fix-wi-fi-issues">Fix Wi-Fi issues</a></li>
-<li><a href="#escalate-issues">Escalate issues</a></li>
-</ul>
-</li>
-</ul>
-</aside>
-
 This page provides guidance for teams tasked with supporting end users of devices that connect to the Ayla IoT Cloud. The guidance is limited, for the most part, to Ayla-related topics such as how to use the Ayla Dashboard, how to fix common connectivity issues, how to determine which issues to escalate to Ayla Support, and how to escalate those issues. This page does not explain how to troubleshoot any particular device.
 
 ## Migrate templates
