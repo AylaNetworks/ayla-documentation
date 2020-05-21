@@ -403,22 +403,12 @@ Below are summaries of the files in this library to help you with ESP32 developm
     * The global integer `client_mutex_line` gives the line number in that function.
     * The global pointer `client_mutex_owner` is a pointer to the OS task that holds the mutex and is used to detect recursive attempts on the lock.
 
-* `al/esp32/http_client.c`
+* `al/esp32/http_client.c`. This file implements the interface between the HTTP client of ADA and the httpc functionality of the ESP32.
 
-This file implements the interface between the HTTP client of ADA and the httpc functionality of the ESP32.
+* `al/esp32/log.c`. The file loads the configuration of the logging system in ADA. 
 
-* `al/esp32/log.c`
+* `al/esp32/notify_task.c`. The file implements timers for the notification subsystem, which interacts with ANS.
 
-The file loads the configuration of the logging system in ADA. 
+* `al/esp32/stubs.c`. This file contains miscellaneous required routines - some for features that are not functional in this architecture, and some that are simple interfaces between ADA and ESP32.
 
-* `al/esp32/notify_task.c`
-
-The file implements timers for the notification subsystem, which interacts with ANS.
-
-* `al/esp32/stubs.c`
-
-This file contains miscellaneous required routines - some for features that are not functional in this architecture, and some that are simple interfaces between ADA and ESP32.
-
-* `al/net/server.c`
-
-Thi file implements an HTTP server that binds to TCP port 80. This is used for Wi-Fi setup and LAN mode. The httpc functionality in ESP32 is not usable while this server is running.
+* `al/net/server.c`. Thi file implements an HTTP server that binds to TCP port 80. This is used for Wi-Fi setup and LAN mode. The httpc functionality in ESP32 is not usable while this server is running.
