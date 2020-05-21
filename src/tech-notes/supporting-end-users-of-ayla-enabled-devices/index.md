@@ -8,9 +8,9 @@ classesFromPage: has-pagebar
 <ul>
 <li><a href="#core-title">On this page</a>
 <ul>
-<li><a href="#migrating-templates">Migrating templates</a></li>
-<li><a href="#fixing-wi-fi-issues">Fixing Wi-Fi issues</a></li>
-<li><a href="#escalating-issues">Escalating issues</a></li>
+<li><a href="#migrate-templates">Migrate templates</a></li>
+<li><a href="#fix-wi-fi-issues">Fix Wi-Fi issues</a></li>
+<li><a href="#escalate-issues">Escalate issues</a></li>
 </ul>
 </li>
 </ul>
@@ -18,7 +18,7 @@ classesFromPage: has-pagebar
 
 This page provides guidance for teams tasked with supporting end users of devices that connect to the Ayla IoT Cloud. The guidance is limited, for the most part, to Ayla-related topics such as how to use the Ayla Dashboard, how to fix common connectivity issues, how to determine which issues to escalate to Ayla Support, and how to escalate those issues. This page does not explain how to troubleshoot any particular device.
 
-## Migrating templates
+## Migrate templates
 
 This section describes how to migrate templates from development services to field services.
 
@@ -48,7 +48,7 @@ This section describes how to migrate templates from development services to fie
 <img src="migration-completed.png" width="300" height="384">
     The template should appear in the Ayla Dashboard of the field service with a new ID.
 
-## Fixing Wi-Fi issues
+## Fix Wi-Fi issues
 
 This section provides steps for troubleshooting IoT device connectivity issues.
 
@@ -75,4 +75,4 @@ This section provides steps for troubleshooting IoT device connectivity issues.
 1. Check for other 2.4 GHz consumer devices that might be interfering with the Wi-Fi signal. These might include Bluetooth devices, baby monitors, cordless phones, walkie talkies, remote control toys, wireless video and audio equipment, microwaves, and wireless keyboard and mice.
 1. Reset the IoT device to factory settings as described in the device manufacturer user manual.
 
-## Escalating issues
+## Escalate issues
