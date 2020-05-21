@@ -85,7 +85,7 @@ This section provides directions for building an Ayla ESP32 Solution v1.5.3 usin
     1. Update the package list in your Ubuntu Docker instance:
 
         ```
-      # apt update
+        # apt update
         ```
 
     1.  Install miscellaneous packages:
