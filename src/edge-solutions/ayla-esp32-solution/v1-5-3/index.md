@@ -384,7 +384,8 @@ The example application links with the following Ayla libraries residing in `com
 Below are summaries of the files in this library to help you with ESP32 development. For a full description of this library, see [Ayla Embedded Agent for Embedded Systems](https://docs.aylanetworks.com/archive/ayla-embedded-agent-for-embedded-systems).
 
 * `al/esp32/ada_lock.c`. This file implements an interface to the thread mutexes.
-* `al/esp32/client_task.c`. This file contains code for the client thread and its initialization, timers, locking, and work queue. The function ada_init() does the following:
+
+* `al/esp32/client_task.c`. This file contains code for the client thread and its initialization, timers, locking, and work queue. The function `ada_init` does the following:
     * Initializes the logging subsystem, including setting severity levels to be logged for each subsystem.
     * Initializes the timers and the mutex, which protects most of the client data structures.
     * Calls init functions for various subsystems.
@@ -394,30 +395,30 @@ Below are summaries of the files in this library to help you with ESP32 developm
 
     The idle loop handles any pending timers that need to be handled in the client thread while still holding the client lock. Then, the idle loop waits for callbacks on the client_task_queue. This client_task_queue waits until the next scheduled timer or until an event occurs. If a callback is found, its handler is called and the loop repeats.
 
-    The al/esp32/client_task.c file contains code in the function client_redir_client_html() that redirects HTTP requests for “/client” to “/client.html”. This is necessary for same-LAN web-based device registration.
+    The al/esp32/client_task.c file contains code in the function client_redir_client_html() that redirects HTTP requests for `/client` to `/client.html`. This is necessary for same-LAN web-based device registration.
 
     The remainder of the code in the al/esp32/client_task.c file implements the client timers and synchronization needed with the server thread:
-    * The functions client_lock_int() and client_unlock_int() implement the locking around the client structures. These functions keep some debugging information that can be useful if there is trouble in this area.
+    * The functions `client_lock_int` and `client_unlock_int` implement the locking around the client structures. These functions keep some debugging information that can be useful if there is trouble in this area.
     * The global string pointer client_mutex_func holds the name of the function that last successfully locked the client_lock.
-    * The global integer client_mutex_line gives the line number in that function.
-    * The global pointer client_mutex_owner is a pointer to the OS task that holds the mutex and is used to detect recursive attempts on the lock.
+    * The global integer `client_mutex_line` gives the line number in that function.
+    * The global pointer `client_mutex_owner` is a pointer to the OS task that holds the mutex and is used to detect recursive attempts on the lock.
 
-### `al/esp32/http_client.c`
+* `al/esp32/http_client.c`
 
-The al/esp32/http_client.c file implements the interface between the HTTP client of ADA and the httpc functionality of the ESP32.
+This file implements the interface between the HTTP client of ADA and the httpc functionality of the ESP32.
 
-### `al/esp32/log.c`
+* `al/esp32/log.c`
 
-The al/esp32/log.c file loads the configuration of the logging system in ADA. 
+The file loads the configuration of the logging system in ADA. 
 
-### `al/esp32/notify_task.c`
+* `al/esp32/notify_task.c`
 
-The al/esp32/notify_task.c implements timers for the notification subsystem, which interacts with ANS.
+The file implements timers for the notification subsystem, which interacts with ANS.
 
-### `al/esp32/stubs.c`
+* `al/esp32/stubs.c`
 
-The al/esp32/stubs.c file contains miscellaneous required routines - some for features that are not functional in this architecture, and some that are simple interfaces between ADA and ESP32.
+This file contains miscellaneous required routines - some for features that are not functional in this architecture, and some that are simple interfaces between ADA and ESP32.
 
-### `al/net/server.c`
+* `al/net/server.c`
 
-The al/net/server.c file implements an HTTP server that binds to TCP port 80. This is used for Wi-Fi setup and LAN mode. The httpc functionality in ESP32 is not usable while this server is running.
+Thi file implements an HTTP server that binds to TCP port 80. This is used for Wi-Fi setup and LAN mode. The httpc functionality in ESP32 is not usable while this server is running.
