@@ -395,7 +395,7 @@ Below are summaries of the files in this library to help you with ESP32 developm
 
     The idle loop handles any pending timers that need to be handled in the client thread while still holding the client lock. Then, the idle loop waits for callbacks on the client_task_queue. This client_task_queue waits until the next scheduled timer or until an event occurs. If a callback is found, its handler is called and the loop repeats.
 
-    The al/esp32/client_task.c file contains code in the function client_redir_client_html() that redirects HTTP requests for `/client` to `/client.html`. This is necessary for same-LAN web-based device registration.
+    The file contains code in the function `client_redir_client_html` that redirects HTTP requests for `/client` to `/client.html`. This is necessary for same-LAN web-based device registration.
 
     The remainder of the code in the al/esp32/client_task.c file implements the client timers and synchronization needed with the server thread:
     * The functions `client_lock_int` and `client_unlock_int` implement the locking around the client structures. These functions keep some debugging information that can be useful if there is trouble in this area.
