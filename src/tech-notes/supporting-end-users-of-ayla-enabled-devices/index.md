@@ -11,7 +11,7 @@ This page provides guidance for teams tasked with supporting end users of device
 This section describes how to migrate templates from development services to field services.
 
 1. Sign into the Ayla Dashboard of the destination (field) service, using an `OEM:Admin` user account.
-<img src="login.png" width="400" height="271">
+    <img src="login.png" width="400" height="271">
 1. Click `OEM Migration` in the left column.
 <img src="oem-migrate.png" width="120" height="337">
 1. Select the service (e.g. `US Dev`) where the template currently resides, enter the credentials of your source admin account, and click `Start Migration`.
