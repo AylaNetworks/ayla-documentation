@@ -13,7 +13,7 @@ This section describes how to migrate templates from development services to fie
 1. Sign into the Ayla Dashboard of the destination (field) service, using an `OEM:Admin` user account.
     <img src="login.png" width="400" height="271">
 1. Click `OEM Migration` in the left column.
-    <img src="oem-migrate.png" width="120" height="337">
+    <div><img src="oem-migrate.png" width="120" height="337"></div>
 1. Select the service (e.g. `US Dev`) where the template currently resides, enter the credentials of your source admin account, and click `Start Migration`.
     <img src="select-src-env.png" width="300" height="348">
 1. Click `New Migration`.
