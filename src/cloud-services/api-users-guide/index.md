@@ -171,11 +171,11 @@ The following steps show you how (over-the-air) to upgrade the Ayla agent and/or
     ```
 1. Run `make`, but do not flash the image to the device. Here is the location of the new image file:
     ```
-    /root/esp/esp-idf-v3.2/examples/ayla_demo/build/ayla_demo.bin
+    /root/esp/esp-idf-v3.3.1/examples/ayla_demo/build/ayla_demo.bin
     ```
 1. **In a host terminal**, copy the image file from the docker container to your host computer:
     ```
-    $ docker cp esp:/root/esp/esp-idf-v3.2/examples/ayla_demo/build/ayla_demo.bin .
+    $ docker cp ada16:/root/esp/esp-idf-v3.3.1/examples/ayla_demo/build/ayla_demo.bin .
     ```
 1. Rename the image file to indicate the version:
     ```
@@ -190,25 +190,24 @@ The following steps show you how (over-the-air) to upgrade the Ayla agent and/or
       "version": "esp32_101"
     }
     ```
-1. Run `uploadImage` to upload your image file, and associate it with the image record.
-1. Run `getImageRecord` to verify your work. The response data object should resemble the one below. Check the `file_size` property. It reflects the size of the uploaded file (e.g. 1004064).
+    Note the `model` and `version` values in the response data:
     ```
     {
-      "oem": "1234abcd",
-      "checksum": "1edacac70f418aac404d3e026165ed1e",
-      "created_at": "2020/04/13 16:21:29",
-      "description": "esp32_101",
-      "file_location": "/0bbb112e/host/ledevb/ce0e1c025228c274c8851470cef4ea45",
-      "file_size": 1004064,
-      "in_use": true,
+      ...
       "model": "ledevb",
-      "updated_at": "2020/04/13 16:35:00",
-      "uploaded_at": "2020/04/13 16:34:49",
-      "user_id": "b1234567-1234-1234-1234-a1234567890a",
       "version": "esp32_101",
-      "base_mod_img_model": null,
-      "base_mod_img_version": null,
-      "property_name": null
+      ...
+    }
+    ```
+1. Run `uploadImage` to upload your image file, and associate it with the image record.
+1. Run `getImageRecord` to verify your work. The response data object reflects the size of the uploaded file.
+    ```
+    {
+      ...
+      "file_size": 1205232,
+      "model": "ledevb",
+      "version": "esp32_101",
+      ...
     }
     ```
 1. Run `createFilter` to target the ESP32 device(s) you want to upgrade. ICC filters provide various ways of selecting device sets. The following request data object is one example:
@@ -224,50 +223,28 @@ The following steps show you how (over-the-air) to upgrade the Ayla agent and/or
       "oem_model": "ledevb"
     }
     ```
-    Note the value of the `id` field (e.g. 6028) in the response data object.
-1. Run `getFilter` to verify that the filter was created. The response data object should resemble the following:
-    ```
-    {
-      "id": 6028,
-      "name": "My ESP32 Devices",
-      "description": null,
-      "attributes": null,
-      "dsns": {
-        "match": [
-          "AC000W000000001",
-          "AC000W000000002"
-        ],
-        "include": null,
-        "exclude": null
-      },
-      "properties": null,
-      "status": null,
-      "oem_model": "ledevb",
-      "device_metadata": null,
-      "created_at": "2020-04-13T17:13:59+0000",
-      "updated_at": "2020-04-13T17:13:59+0000",
-      "filter_metadata": [],
-      "oem_version": null,
-      "match_oem_version": true
-    }
-    ```
+    Note the value of the filter `id` field (e.g. 6899) in the response data object.
+1. Run `getFilter` to verify that the filter was created.
 1. Run `createJob` with a request data object similar to the following:
     ```
     {
       "name": "Upgrade ESP32 devices to esp32_101",
       "type_id": "OTA",
-      "filter_id": 6028,
-      "delivery_option": "SYSTEM_PUSH",
+      "filter_id": 6899,
       "exec_method": "ONE_TIME",
-      "retries": 0,
-      "action_payload": {
-        "type":"host",
-        "version":"esp32_101"
-      }
+      "retries": 0
     }
     ```
-    Note the value of the `id` field (e.g. 4944) in the response data object.
-1. Run `getJob` to verify job information. Note that `status = CREATED`.
+    Note the value of the job `id` field (e.g. 5416) in the response data object.
+1. Run `getJob` to verify job information. Note `status = CREATED`.
+1. Run `setOtaAction` with a request data object similar to the following to associate an OTA action with the job:
+    ```
+    {
+      "type": "host",
+      "ayla_model": "ledevb",
+      "version": "esp32_101"
+    }
+    ```
 1. Run `startJob`.
 
 # Update property values
