@@ -37,19 +37,19 @@ Connecting your dev kit to the Ayla Cloud takes only a few steps:
 1. To create a user account with EndUser access rights in the Ayla Public Account, tap <code>Sign Up</code>, fill in the form, receive the verification email on your mobile device, and confirm. If you already have a user account in an Ayla <u>Customer</u> Account, then you can use that account. To configure Aura to communicate with this account, see [these directions](/system-administration/aura-mobile-app/#configuration).
     <div><img src="aura-001.png" height="340"></div>
 1. Tap "+" to add a device:
-<img src="add-device.png" width="192">
+    <div><img src="add-device.png" width="192"></div>
 1. Tap Ayla Dev Kit:
-<img src="ayla-dev-kit-tap.png" width="192">
+    <div><img src="ayla-dev-kit-tap.png" width="192"></div>
 1. Enter the same Wi-Fi credentials as those used by your mobile device, and tap Continue:
-<img src="wi-fi-credentials.png" width="192">
-<img src="continue.png" width="192">
+    <div><img src="wi-fi-credentials.png" width="192"></div>
+    <div><img src="continue.png" width="192"></div>
 1. Take your Ayla Dev Kit out of the box.
 1. Plug the small end of the cable into the STM32 Nucleo board:
-<img src="kit-and-cable.png" width="450">
+    <div><img src="kit-and-cable.png" width="450"></div>
 1. Plug the large end into a USB outlet, tap continue, and then tap Join:
-<img src="plug-in.png" height="340">
+    <div><img src="plug-in.png" height="340"></div>
 1. Tap Done to see your new device on the Devices screen. Then, tap *Ayla Dev Kit* to see the Details screen:
-<img src="aura-003.png" height="340">
+    <div><img src="aura-003.png" height="340"></div>
 
 # Explore properties
 
