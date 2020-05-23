@@ -66,7 +66,7 @@ Some of these properties (e.g. Blue_LED) do, indeed, represent device landmarks.
 ## Boolean properties
 
 1. Tap the Blue_LED property slider:
-<img src="aura-blue-led.png" width="200">
+    <div><img src="aura-blue-led.png" width="200"></div>
 The Blue LED on the dev kit illuminates. Tapping the slider sends an update *to the device*.
 <img src="kit-blue-led.png" width="300">
 1. Tap the Blue_LED slider On/Off several times to generate a history of values.
