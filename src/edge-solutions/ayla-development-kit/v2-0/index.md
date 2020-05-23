@@ -93,7 +93,7 @@ Some of these properties (e.g. Blue_LED) do, indeed, represent device landmarks.
 1. View the log property:
     <div><img src="aura-log.png" width="200"></div>
     The host app (on the device) sets <code>log = cmd</code>, and sends the string *from the device*.
-1. Tap the version property name:
+1. Tap the `version` property name:
     <div><img src="aura-version.png" width="200"></div>
     The Property Details screen displays three property attributes:
     <div><img src="aura-version-value.png" width="240"></div>
