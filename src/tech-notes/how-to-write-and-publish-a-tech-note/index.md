@@ -72,7 +72,7 @@ This is a table:
 |Audrey|Tautou|French|
 |山﨑|賢人|Japanese|
 
-This is an ordered list with a code snippet:
+This is an ordered list with a code snippet and image:
 
 1. Do this ...
     ```
@@ -83,4 +83,6 @@ This is an ordered list with a code snippet:
       })
     })
     ```
+    The following screen appears ...
+    <div><img src="img-600.png" width="300" height="180"></div>
 1. Do this ...
