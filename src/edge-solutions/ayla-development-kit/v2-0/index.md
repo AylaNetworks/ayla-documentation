@@ -95,9 +95,8 @@ Some of these properties (e.g. Blue_LED) do, indeed, represent device landmarks.
     The host app (on the device) sets <code>log = cmd</code>, and sends the string *from the device*.
 1. Tap the `version` property name:
     <div><img src="aura-version.png" width="200"></div>
-    The Property Details screen displays three property attributes:
+    The Property Details screen displays three property attributes. The *Current Value* attribute represents the host (application) software version because another attribute (not seen on this screen), <code>host_sw_version</code>, is set to `true`.
     <div><img src="aura-version-value.png" width="240"></div>
-    The *Current Value* attribute represents the host (application) software version because another attribute (not seen on this screen), <code>host_sw_version</code>, is set to `true`. The name <code>version</code> is non-essential.
 
 ## Integer properties
 
