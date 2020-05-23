@@ -68,19 +68,19 @@ Some of these properties (e.g. Blue_LED) do, indeed, represent device landmarks.
 1. Tap the Blue_LED property slider:
     <div><img src="aura-blue-led.png" width="200"></div>
     The Blue LED on the dev kit illuminates. Tapping the slider sends an update *to the device*.
-    <div><img src="kit-blue-led.png" width="300">
+    <div><img src="kit-blue-led.png" width="300"></div>
 1. Tap the Blue_LED slider On/Off several times to generate a history of values.
 1. Tap the Blue_LED name. The Property details screen appears. Pull down on the screen momentarily. The Datapoints list appears:
-    <div><img src="aura-blue-led-details.png" width="200">
+    <div><img src="aura-blue-led-details.png" width="200"></div>
     A datapoint is a time-stamped property value.
 1. Tap the Green_LED property slider:
-    <div><img src="aura-green-led.png" width="200">
+    <div><img src="aura-green-led.png" width="200"></div>
     The Green LED on the dev kit illuminates. Tapping this slider also sends an update *to the device*.
-    <div><img src="kit-green-led.png" width="300">
+    <div><img src="kit-green-led.png" width="300"></div>
 1. Press the light-blue button on the Ayla Shield of the dev kit:
-    <div><img src="kit-blue-button.png" width="300">
+    <div><img src="kit-blue-button.png" width="300"></div>
     The Blue_button property slider slides on.
-    <div><img src="aura-blue-button.png" width="200">
+    <div><img src="aura-blue-button.png" width="200"></div>
     So, pressing the button on the kit sends an update *from the device*.
 
 ## String properties
