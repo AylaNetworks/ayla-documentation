@@ -33,7 +33,7 @@ Connecting your dev kit to the Ayla Cloud takes only a few steps:
 
 1. Connect your mobile device to a <span style="color:red;">2.4GHz Wi-Fi LAN</span>.
 1. On your mobile device, get and install the "Ayla Aura Mobile App" from [App Store](https://itunes.apple.com/us/app/ayla-aura/id1104515028?mt=8) or [Google Play](https://play.google.com/store/apps/details?id=com.aylanetworks.aura). You can also use the following QR Code to find the app:
-<img src="aura_qrcode.png" width="100">
+    <div><img src="aura_qrcode.png" width="100"></div>
 1. To create a user account with EndUser access rights in the Ayla Public Account, tap <code>Sign Up</code>, fill in the form, receive the verification email on your mobile device, and confirm. If you already have a user account in an Ayla <u>Customer</u> Account, then you can use that account. To configure Aura to communicate with this account, see [these directions](/system-administration/aura-mobile-app/#configuration).
     <div><img src="aura-001.png" height="340"></div>
 1. Tap "+" to add a device:
