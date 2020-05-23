@@ -5,24 +5,6 @@ c: block
 classesFromPage: has-pagebar
 ---
 
-<aside id="pagebar" class="d-xl-block collapse">
-  <ul>
-    <li><a href="#core-title">Cellular v2.2.5</a></li>
-    <li><a href="#at-commands">AT Commands</a>
-      <ul>
-        <li><a href="#configuration-command">Configuration Command</a></li>
-        <li><a href="#listen-command">Listen Command</a></li>
-        <li><a href="#send-property-command">Send Property Command</a></li>
-        <li><a href="#agent-control-commands">Agent Control Commands</a></li>
-        <li><a href="#configuration-commands">Configuration Commands</a></li>
-        <li><a href="#ota-commands">OTA Commands</a></li>
-        <li><a href="#update-factory-file">Update Factory File</a></li>
-        <li><a href="#power-on-off">Power On/Off</a></li>
-      </ul>
-    </li>
-  </ul>
-</aside>
-
 [Serial Programming/Modems and AT Commands](https://en.wikibooks.org/wiki/Serial_Programming/Modems_and_AT_Commands)
 
 [Quectel BG96-GG Starter Kit](https://www.top-electronicsusa.com/quectel-bg96-gg-starter-kit-complete-initial-evaluation-kit-for-bg96-gg-ltem1-module-p-17741.html)
@@ -79,9 +61,6 @@ Applications use the Ayla-proprietary AT commands in the table below to communic
 ## Notify OTA
 
 # Old Stuff
-
-
-
 
 ## Configuration Command
 
