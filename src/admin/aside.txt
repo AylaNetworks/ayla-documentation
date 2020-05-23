@@ -1,0 +1,5 @@
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li><a href="#core-title">Short Title</a></li>
+  </ul>
+</aside>
