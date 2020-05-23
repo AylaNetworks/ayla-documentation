@@ -86,18 +86,18 @@ Some of these properties (e.g. Blue_LED) do, indeed, represent device landmarks.
 ## String properties
 
 1. Tap the white space to the right of the cmd property:
-<img src="aura-cmd.png" width="200">
+    <div><img src="aura-cmd.png" width="200"></div>
 1. Enter a string like <code>community</code>, and tap Update Value.
-<img src="aura-cmd-dialog.png" width="200">
-Setting the cmd property sends a string value *to the device*.
+    <div><img src="aura-cmd-dialog.png" width="200"></div>
+    Setting the cmd property sends a string value *to the device*.
 1. View the log property:
-<img src="aura-log.png" width="200">
-The host app (on the device) sets <code>log = cmd</code>, and sends the string *from the device*.
+    <div><img src="aura-log.png" width="200"></div>
+    The host app (on the device) sets <code>log = cmd</code>, and sends the string *from the device*.
 1. Tap the version property name:
-<img src="aura-version.png" width="200">
-The Property Details screen displays three property attributes:
-<img src="aura-version-value.png" width="240">
-The *Current Value* attribute represents the host (application) software version because another attribute (not seen on this screen), <code>host_sw_version</code>, is set to <code>true</code>. The name <code>version</code> is non-essential.
+    <div><img src="aura-version.png" width="200"></div>
+    The Property Details screen displays three property attributes:
+    <div><img src="aura-version-value.png" width="240"></div>
+    The *Current Value* attribute represents the host (application) software version because another attribute (not seen on this screen), <code>host_sw_version</code>, is set to `true`. The name <code>version</code> is non-essential.
 
 ## Integer properties
 
