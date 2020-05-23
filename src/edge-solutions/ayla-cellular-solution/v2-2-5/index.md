@@ -5,8 +5,6 @@ c: block
 classesFromPage: has-pagebar
 ---
 
-<span style="color:red;">DRAFT</span>
-
 [Serial Programming/Modems and AT Commands](https://en.wikibooks.org/wiki/Serial_Programming/Modems_and_AT_Commands)
 
 [Quectel BG96-GG Starter Kit](https://www.top-electronicsusa.com/quectel-bg96-gg-starter-kit-complete-initial-evaluation-kit-for-bg96-gg-ltem1-module-p-17741.html)
