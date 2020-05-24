@@ -469,7 +469,7 @@ main ul.glossary li {
 #edit-icon img {
   display: inline !important;
   padding: 0 !important;
-  margin: 0 0 4px 18px !important;
+  margin: 0 0 4px 8px !important;
 }
 
 .tagline {font-size: 140%;}

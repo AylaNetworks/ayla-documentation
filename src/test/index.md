@@ -1,5 +1,6 @@
 ---
 title: Test
-layout: site.html
+layout: test.html
+editIcon: inline
 ---
 

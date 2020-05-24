@@ -21,6 +21,14 @@ On Load: Assign active and focus.
 ------------------------------------------------------*/
 
 $(function () {
+
+  //console.log('https://github.com/AylaNetworks/ayla-documentation/tree/master/src' + window.location.pathname)
+
+  if($('#edit-icon').css('display') == 'inline') {
+    console.log('Has edit-icon')
+    $('#edit-icon a').attr('href', 'https://github.com/AylaNetworks/ayla-documentation/tree/master/src' + window.location.pathname)
+  }
+
   let selector = ''
   let tokens = ("#" + window.location.pathname.substring(1).slice(0, -1)).split("/");
 
