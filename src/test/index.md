@@ -1,7 +1,6 @@
 ---
 title: Test
-layout: test.html
-editIcon: inline
+layout: site.html
 ---
 
 Adding this sentence to Github.
