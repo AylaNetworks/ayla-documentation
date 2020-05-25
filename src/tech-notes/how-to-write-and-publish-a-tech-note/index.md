@@ -3,7 +3,7 @@ title: How to write and publish a tech note
 layout: site.html
 ---
 
-Thank you for writing a tech note!
+Need to introduce, update, or clarify Ayla-related information to a prospective customer, existing customer, partner, or colleague? Write and publish a Tech Note, and send the link! The process is quick and easy. And, the Ayla Docs Team can integrate the information into other documents over time.
 
 ### Process
 
