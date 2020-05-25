@@ -2,7 +2,7 @@
 title: Tech Notes
 ---
 
-Future authors, see [How to write and publish a tech note](how-to-write-and-publish-a-tech-note).
+See [How to write and publish a tech note](how-to-write-and-publish-a-tech-note).
 
 |Date|Title|Author|
 |-|-|-|
