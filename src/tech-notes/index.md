@@ -1,6 +1,5 @@
 ---
 title: Tech Notes
-layout: site.html
 ---
 
 Future authors, see [How to write and publish a tech note](how-to-write-and-publish-a-tech-note).
