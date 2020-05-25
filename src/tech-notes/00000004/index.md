@@ -1,6 +1,5 @@
 ---
 title: Migrating a template from development to field
-layout: site.html
 ---
 
 <span style="font-size:90%;">By Trinh Phan on May 19, 2020</span>

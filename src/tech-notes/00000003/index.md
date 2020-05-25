@@ -1,6 +1,5 @@
 ---
 title: Additional Best Practices for Device Developers
-layout: site.html
 ---
 
 <span style="font-size:90%;">By Sahir Sahit on April 15, 2020</span>

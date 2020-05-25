@@ -1,6 +1,5 @@
 ---
 title: New Template Architecture
-layout: site.html
 ---
 
 <span style="font-size:90%;">By Yew Yin Ng on February 4, 2020</span>
