@@ -1,8 +1,9 @@
 ---
 title: New Template Architecture
+layout: technote.html
+author: Yew Yin Ng
+creationDate: February 4, 2020
 ---
-
-<span style="font-size:90%;">By Yew Yin Ng on February 4, 2020</span>
 
 With the new Ayla template architecture rollout, any changes made to a specific template will automatically be reflected on the devices linked to that template without requiring a template re-association. To ensure template version compatibility, the following functionality will no longer be available on the Ayla Dashboard and Developer Portal:
 
