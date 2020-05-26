@@ -40,16 +40,16 @@ The following steps shows you how to listen for datapoint and location events us
     ```
     {
       "OemAccessRule": {
-      "id": 123,
-      "role": "OEM::Admin",
-      "oem": "1234abcd",
-      "property_name": "&#42;",
-      "oem_model": "&#42;",
-      "client_type": "cloud",
-      "subscription_type": "datapoint",
-      "access_grant": true,
-      "created_at": "2020-01-01T17:09:13Z",
-      "updated_at": "2020-01-01T17:09:13Z"
+        "id": 123,
+        "role": "OEM::Admin",
+        "oem": "1234abcd",
+        "property_name": "&#42;",
+        "oem_model": "&#42;",
+        "client_type": "cloud",
+        "subscription_type": "datapoint",
+        "access_grant": true,
+        "created_at": "2020-01-01T17:09:13Z",
+        "updated_at": "2020-01-01T17:09:13Z"
       }
     }
     ```
@@ -59,40 +59,44 @@ The following steps shows you how to listen for datapoint and location events us
 ### Create subscriptions
 
 1. Go to API Browser > Datastream Service > createSubscription.
-<img src="ab-023.png" width="600" height="45">
+    <div><img src="ab-023.png" width="600" height="45"></div>
 1. Copy the following object into the Request Data box:
-<pre>{
-     "name": "Datapoint Subscription",
-     "description": "This subscription allows reception of datapoint events.",
-     "dsn": "&#42;",
-     "oem_model": "ledevb",
-     "property_name": "&#42;",
-     "client_type": "cloud",
-     "subscription_type": "datapoint"
-}</pre>
+    ```
+    {
+      "name": "Datapoint Subscription",
+      "description": "This subscription allows reception of datapoint events.",
+      "dsn": "&#42;",
+      "oem_model": "ledevb",
+      "property_name": "&#42;",
+      "client_type": "cloud",
+      "subscription_type": "datapoint"
+    }
+    ```
 1. Click Run, and then click Show. The response data provides the new subscription key:
-<pre>{
-     "subscription": {
-     "id": 12345,
-     "oem": "1234abcd",
-     "dsn": "&#42;",
-     "name": "Datapoint Subscription",
-     "description": "This subscription allows reception of datapoint events.",
-     "property_name": "&#42;",
-     "connection_status": "Offline",
-     "batch_size": 1,
-     "is_suspended": false,
-     "created_at": "2020-01-01T17:50:55Z",
-     "updated_at": "2020-01-01T17:50:55Z",
-     "date_suspended": null,
-     "user_uuid": "b1234567-1234-1234-1234-a1234567890a",
-     "oem_model": "ledevb",
-     "stream_key": "ab12cd34ef56ab12cd34ef56ab12cd01",
-     "client_type": "cloud",
-     "subscription_type": "datapoint"
-     }
-}</pre>
-<div>This subscription allows the reception of datapoint events.</div>
+    ```
+    {
+      "subscription": {
+        "id": 12345,
+        "oem": "1234abcd",
+        "dsn": "&#42;",
+        "name": "Datapoint Subscription",
+        "description": "This subscription allows reception of datapoint events.",
+        "property_name": "&#42;",
+        "connection_status": "Offline",
+        "batch_size": 1,
+        "is_suspended": false,
+        "created_at": "2020-01-01T17:50:55Z",
+        "updated_at": "2020-01-01T17:50:55Z",
+        "date_suspended": null,
+        "user_uuid": "b1234567-1234-1234-1234-a1234567890a",
+        "oem_model": "ledevb",
+        "stream_key": "ab12cd34ef56ab12cd34ef56ab12cd01",
+        "client_type": "cloud",
+        "subscription_type": "datapoint"
+      }
+    }
+    ```
+    This subscription allows the reception of datapoint events.
 1. Create another subscription allowing the reception of location events. Be sure to modify the name, description, and subscription_type of the request data.
 
 ### Create events streams
