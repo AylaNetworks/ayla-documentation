@@ -102,46 +102,48 @@ The following steps shows you how to listen for datapoint and location events us
 ### Create events streams
 
 1. Click API Browser > Streams to open the Streams panel.
-<img src="ab-012.png" width="600" height="133">
+    <div><img src="ab-012.png" width="600" height="133"></div>
 1. Enter a stream name and a stream key (from the appropriate subscription). Leave start and end blank:
-<img src="ab-013.png" width="600" height="102">
+    <div><img src="ab-013.png" width="600" height="102"></div>
 1. Click Create:
-<img src="ab-014.png" width="600" height="123">
-<div>ES stands for Event Stream. The API Browser automatically numbers event streams. The Events column represents the number of events received by the stream. HBs stands for heartbeats. The Ayla Datastream Service sends heartbeats to listening WebSockets every 30 seconds. The HBs column represents the number of heartbeats received.</div>
+    <div><img src="ab-014.png" width="600" height="123"></div>
+    <div>ES stands for Event Stream. The API Browser automatically numbers event streams. The Events column represents the number of events received by the stream. HBs stands for heartbeats. The Ayla Datastream Service sends heartbeats to listening WebSockets every 30 seconds. The HBs column represents the number of heartbeats received.</div>
 1. Create a Location Stream:
-<img src="ab-015.png" width="600" height="145">
+    <div><img src="ab-015.png" width="600" height="145"></div>
 1. Close the Streams panel.
 
 ### Monitor datapoint events
 
 1. Open the Devices and Events panels, and select Device 1 and Green_LED:
-<img src="ab-016.png" width="600" height="193">
+    <div><img src="ab-016.png" width="600" height="193"></div>
 1. Toggle the Green_LED property value several times to generate and receive several datapoint events:
-<img src="ab-017.png" width="600" height="121">
+    <div><img src="ab-017.png" width="600" height="121"></div>
 1. Click a datapoint row to see details:
-<img src="ab-018.png" width="600" height="389">
+    <div><img src="ab-018.png" width="600" height="389"></div>
 1. Change the values of other properties, and receive additional datapoint events.
 
 ### Monitor location events
 
 1. Go to API Browser > Device Service > updateDeviceLocation.
-<img src="ab-021.png" width="600" height="45">
+    <div><img src="ab-021.png" width="600" height="45"></div>
 1. Enter an appropriate devId path parameter.
 1. Copy coordinates (e.g. Paris, France) into the Request Data box:
-<pre>{
-     "location": {
-     "lat": "48.864716",
-     "long": "2.349014"
-     }
-}</pre>
+    ```
+    {
+      "location": {
+        "lat": "48.864716",
+        "long": "2.349014"
+      }
+    }
+    ```
 1. Click Run.
 1. Check the Events panel:
-<img src="ab-019.png" width="600" height="143">
+    <div><img src="ab-019.png" width="600" height="143"></div>
 
 ### Delete event streams
 
 1. Open the Streams panel, and select both streams:
-<img src="ab-020.png" width="600" height="147">
+    <div><img src="ab-020.png" width="600" height="147"></div>
 1. Click Delete.
 
 # Perform OTA update
