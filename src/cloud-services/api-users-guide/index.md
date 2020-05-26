@@ -1,6 +1,5 @@
 ---
 title: API Users Guide
-layout: site.html
 a: block
 classesFromPage: has-pagebar
 ---
