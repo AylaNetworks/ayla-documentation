@@ -25,7 +25,7 @@ The following steps shows you how to listen for datapoint and location events us
 ### Create access rules
 
 1. Go to API Browser > Datastream Service > createAccessRule.
-<img src="ab-022.png" width="600" height="45">
+    <div><img src="ab-022.png" width="600" height="45"></div>
 1. Copy the following object into the Request Data box:
     ```
     {
