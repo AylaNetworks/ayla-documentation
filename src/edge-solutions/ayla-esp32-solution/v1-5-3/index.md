@@ -5,6 +5,50 @@ c: block
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li><a href="#core-title">ESP32 v1.5.3</a></li>
+    <li><a href="#first-steps">First steps</a></li>
+    <li><a href="#build-and-run">Build and Run</a>
+      <ul>
+        <li><a href="#gccubuntudocker">GCC/Ubuntu/Docker</a></li>
+        <li><a href="#gccwindows">GCC/Windows</a></li>
+      </ul>
+    </li>
+    <li><a href="#register-your-device">Register your device</a></li>
+    <li><a href="#perform-an-ota-update">Perform an OTA update</a></li>
+    <li><a href="#sample-application-code">Sample Application Code</a>
+      <ul>
+        <li><a href="#properties">Properties</a></li>
+        <li><a href="#demo_ledevbc">demo_ledevb.c</a></li>
+        <li><a href="#demo_commonc">demo_common.c</a></li>
+        <li><a href="#confc">conf.c</a></li>
+        <li><a href="#commandc">command.c</a></li>
+        <li><a href="#otac">ota.c</a></li>
+        <li><a href="#sched_confc">sched_conf.c</a></li>
+        <li><a href="#demo_stubc">demo_stub.c</a></li>
+        <li><a href="#demo_wific">demo_wifi.c</a></li>
+      </ul>
+    </li>
+    <li><a href="#library-code">Library Code</a>
+      <ul>
+        <li><a href="#library-ada">Library ada</a></li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+
+<div class="dropdown mb-3">
+  <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a version</button>
+  <div class="dropdown-menu" aria-labelledby="versions">
+    <a class="dropdown-item" href="../v1-5-3">v1.5-3</a>
+    <a class="dropdown-item" href="../v1-5-beta">v1.5-beta</a>
+    <a class="dropdown-item" href="../v1-3-10-beta">v1.3.10-beta</a>
+    <a class="dropdown-item" href="../v1-3-9">v1.3.9</a>
+    <a class="dropdown-item" href="../v1-3-8">v1.3.8</a>
+  </div>
+</div>
+
 The Ayla ESP32 Solution includes example host application source code, an Ayla Wi-Fi Integrated Agent, and Ayla extensions to the Espressif IoT Development Framework (IDF). These pieces link together to provide an Ayla edge solution for the ESP32 board. <a href="https://www.aylanetworks.com/edge-connectivity" target="_blank">Learn more about Ayla Integrated Agents</a>.
 
 # First steps
