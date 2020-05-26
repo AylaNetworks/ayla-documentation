@@ -21,13 +21,13 @@ This tech note helps Ayla Network OEMs migrate templates from development servic
     <div><img src="next-object-type.png" width="300" height="357"></div>
 1. Click `Validate`.
     <div><img src="validate.png" width="300" height="376"></div>
-1. Enter the credentials of your destination admin account, and click `LOG IN`.
+1. Enter the credentials of your destination admin account, and click `LOG IN`. (The Dialog box is incorrectly labeled.)
     <div><img src="log-into-src-env.png" width="300" height="186"></div>
 1. Once Validation completes, select `GO TO MIGRATION`.
     <div><img src="validation-completed.png" width="300" height="380"></div>
 1. Select `MIGRATE`.
     <div><img src="migrate.png" width="300" height="382"></div>
-1. Enter the credentials of your destination admin account, and click `LOG IN`.
+1. Enter the credentials of your destination admin account, and click `LOG IN`. (The Dialog box is incorrectly labeled.)
     <div><img src="log-into-dst-env.png" width="300" height="186"></div>
 1. Once Migration completes, Select `DONE`.
     <div><img src="migration-completed.png" width="300" height="384"></div>
