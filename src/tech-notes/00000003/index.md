@@ -1,8 +1,9 @@
 ---
 title: Additional Best Practices for Device Developers
+layout: technote.html
+author: Sahir Sahit
+creationDate: April 15, 2020
 ---
-
-<span style="font-size:90%;">By Sahir Sahit on April 15, 2020</span>
 
 ### User Transfer
 

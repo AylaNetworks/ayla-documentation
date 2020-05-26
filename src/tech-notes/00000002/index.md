@@ -1,6 +1,7 @@
 ---
 title: About ack-enabled properties
+layout: technote.html
+author: Joe Eykholt
+creationDate: Month 00, 0000
 ---
-
-<span style="font-size:90%;">By Joe Eykholt on Month 00, 0000</span>
 

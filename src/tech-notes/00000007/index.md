@@ -1,9 +1,10 @@
 ---
 title: Supporting end users of Ayla-enabled devices
+layout: technote.html
+author: Trinh Phan
+creationDate: Month, 00, 0000
 classesFromPage: has-pagebar
 ---
-
-<span style="font-size:90%;">By Trinh Phan on Month, 00, 0000</span>
 
 This page provides guidance for teams tasked with supporting end users of devices that connect to the Ayla IoT Cloud. The guidance is limited, for the most part, to Ayla-related topics such as how to use the Ayla Dashboard, how to fix common connectivity issues, how to determine which issues to escalate to Ayla Support, and how to escalate those issues. This page does not explain how to troubleshoot any particular device.
 

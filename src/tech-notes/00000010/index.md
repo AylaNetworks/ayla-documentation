@@ -1,9 +1,9 @@
 ---
 title: QA Alpha
-layout: site.html
+layout: technote.html
+author: Matt Hagen
+creationDate: March 10, 2020
 ---
-
-<span style="font-size:90%;">By Matt Hagen on March 10, 2020</span>
 
 https://developer-qa-alpha.ayladev.com
 
