@@ -258,182 +258,194 @@ The following steps show you how to set property values for groups of devices.
 
 1. Go to API Browser > Devices.
 1. Select Device = Device 1, Property = Green_LED, and set to "on" (i.e. 1).
-<img src="ab-006.png" width="600" height="74">
+    <div><img src="ab-006.png" width="600" height="74"></div>
 1. Select Device = Device 2, Property = Green_LED, and set to "on" (i.e. 1).
 
 ### Create a filter
 
 1. Go to API Browser > IoT Command Center > previewFilter.
-<img src="ab-024.png" width="600" height="45">
+    <div><img src="ab-024.png" width="600" height="45"></div>
 1. Copy the following filter request object into the Request Data box:
-<pre>{
-     "name": "AY008ESP1 devices where Green_LED = 1",
-     "description": "This filter uses an attribute array and a property array.",
-     "attributes": [
-       {
-         "key": "model",
-         "value": "AY008ESP1",
-         "op": "="
-       }
-     ],
-     "properties":[
-       {
-         "key": "Green_LED",
-         "op": "=", 
-         "value":"1"
-       }
-     ],
-     "oem_model": "ledevb"
-}</pre>
+    ```
+    {
+      "name": "AY008ESP1 devices where Green_LED = 1",
+      "description": "This filter uses an attribute array and a property array.",
+      "attributes": [
+        {
+          "key": "model",
+          "value": "AY008ESP1",
+          "op": "="
+        }
+      ],
+      "properties": [
+        {
+          "key": "Green_LED",
+          "op": "=",
+          "value": "1"
+        }
+      ],
+      "oem_model": "ledevb"
+    }
+    ```
 1. Click Run, and then click Show. The response data is an array of filtered devices:
-<pre>{
-     "total": 2,
-     "oem_model": "ledevb",
-     "devices": [
-       {
-         "lifecycle": "registered",
-         "connection_status": "Online",
-         "connected_at": "2019-12-23 00:00:00",
-         "dsn": "AC000W000000001"
-       },
-       {
-         "lifecycle": "registered",
-         "connection_status": "Online",
-         "connected_at": "2019-12-23 00:00:00",
-         "dsn": "AC000W000000002"
-       }
-     ]
-}</pre>
+    ```
+    {
+      "total": 2,
+      "oem_model": "ledevb",
+      "devices": [
+        {
+          "lifecycle": "registered",
+          "connection_status": "Online",
+          "connected_at": "2019-12-23 00:00:00",
+          "dsn": "AC000W000000001"
+        },
+        {
+          "lifecycle": "registered",
+          "connection_status": "Online",
+          "connected_at": "2019-12-23 00:00:00",
+          "dsn": "AC000W000000002"
+        }
+      ]
+    }
+    ```
 1. Go to API Browser > IoT Command Center > createFilter.
-<img src="ab-025.png" width="600" height="45">
+    <div><img src="ab-025.png" width="600" height="45"></div>
 1. Copy the same filter request object into the Request Data box:
 1. Click Run, and then click Show. The response data is a Filter Object. It should resemble the following:
-<pre>{
-     "id": 2250,
-     "name": "AY008ESP1 devices where Green_LED = 1",
-     "description": "This filter uses an attribute array and a property array.",
-     "attributes": [
-       {
-         "key": "model",
-         "value": "AY008ESP1",
-         "op": "="
-       }
-     ],
-     "dsns": null,
-     "properties": [
-       {
-         "key": "Green_LED",
-         "value": "1",
-         "metadata": null,
-         "op": "="
-       }
-     ],
-     "status": null,
-     "oem_model": "ledevb",
-     "device_metadata": null,
-     "created_at": "2019-12-24T10:03:28+0000",
-     "updated_at": "2019-12-24T10:03:28+0000",
-     "filter_metadata": [],
-     "oem_version": null,
-     "match_oem_version": true
-}</pre>
+    ```
+    {
+      "id": 2250,
+      "name": "AY008ESP1 devices where Green_LED = 1",
+      "description": "This filter uses an attribute array and a property array.",
+      "attributes": [
+        {
+          "key": "model",
+          "value": "AY008ESP1",
+          "op": "="
+        }
+      ],
+      "dsns": null,
+      "properties": [
+        {
+          "key": "Green_LED",
+          "value": "1",
+          "metadata": null,
+          "op": "="
+        }
+      ],
+      "status": null,
+      "oem_model": "ledevb",
+      "device_metadata": null,
+      "created_at": "2019-12-24T10:03:28+0000",
+      "updated_at": "2019-12-24T10:03:28+0000",
+      "filter_metadata": [],
+      "oem_version": null,
+      "match_oem_version": true
+    }
+    ```
 
 ### Create a job
 
 1. Go to API Browser > IoT Command Center > createJob.
-<img src="ab-026.png" width="600" height="45">
+    <div><img src="ab-026.png" width="600" height="45"></div>
 1. Copy the following object into the Request Data box:
-<pre>{
-     "name": "Set cmd and input",
-     "description": "Set cmd and input for AY008ESP1 devices if Green_LED = 1",
-     "type_id": "SET_PROPERTY",
-     "filter_id": 2250,
-     "exec_method": "ONE_TIME",
-     "delivery_option": "SYSTEM_PUSH",
-     "retries": 0
-}</pre>
+    ```
+    {
+      "name": "Set cmd and input",
+      "description": "Set cmd and input for AY008ESP1 devices if Green_LED = 1",
+      "type_id": "SET_PROPERTY",
+      "filter_id": 2250,
+      "exec_method": "ONE_TIME",
+      "delivery_option": "SYSTEM_PUSH",
+      "retries": 0
+    }
+    ```
 1. Click Run, and then click Show. The response data is a Job Object. It should resemble the following:
-<pre>{
-     "id": 2444,
-     "name": "Set cmd and input",
-     "description": "Set cmd and input for AY008ESP1 devices if Green_LED = 1",
-     "status": "CREATED",
-     "payload": null,
-     "type_id": 1,
-     "filter": {
-       "id": 2250,
-       "name": "AY008ESP1 devices where Green_LED = 1",
-       "description": "This filter uses an attribute array and a property array.",
-       "attributes": [
-         {
-           "key": "model",
-           "value": "AY008ESP1",
-           "op": "="
-         }
-       ],
-       "dsns": null,
-       "properties": [
-         {
-           "key": "Green_LED",
-           "value": "1",
-           "metadata": null,
-           "op": "="
-         }
-       ],
-       "status": null,
-       "oem_model": "ledevb",
-       "device_metadata": null,
-       "created_at": "2019-12-24T10:03:28+0000",
-       "updated_at": "2019-12-24T10:03:28+0000",
-       "filter_metadata": [],
-       "oem_version": null,
-       "match_oem_version": true
-     },
-     "filter_name": "AY008ESP1 devices where Green_LED = 1",
-     "schedule_type": "IMMEDIATE",
-     "started_at": null,
-     "stopped_at": null,
-     "created_at": "2019-12-24T10:16:12+0000",
-     "updated_at": "2019-12-24T10:16:12+0000",
-     "device_total": 0,
-     "devices_processing": 0,
-     "devices_succeed": 0,
-     "devices_failed": 0,
-     "job_metadata": [],
-     "exec_method": "ONE_TIME",
-     "delivery_option": "SYSTEM_PUSH",
-     "job_type": "Set property"
-}</pre>
+    ```
+    {
+      "id": 2444,
+      "name": "Set cmd and input",
+      "description": "Set cmd and input for AY008ESP1 devices if Green_LED = 1",
+      "status": "CREATED",
+      "payload": null,
+      "type_id": 1,
+      "filter": {
+        "id": 2250,
+        "name": "AY008ESP1 devices where Green_LED = 1",
+        "description": "This filter uses an attribute array and a property array.",
+        "attributes": [
+          {
+            "key": "model",
+            "value": "AY008ESP1",
+            "op": "="
+          }
+        ],
+        "dsns": null,
+        "properties": [
+          {
+            "key": "Green_LED",
+            "value": "1",
+            "metadata": null,
+            "op": "="
+          }
+        ],
+        "status": null,
+        "oem_model": "ledevb",
+        "device_metadata": null,
+        "created_at": "2019-12-24T10:03:28+0000",
+        "updated_at": "2019-12-24T10:03:28+0000",
+        "filter_metadata": [],
+        "oem_version": null,
+        "match_oem_version": true
+      },
+      "filter_name": "AY008ESP1 devices where Green_LED = 1",
+      "schedule_type": "IMMEDIATE",
+      "started_at": null,
+      "stopped_at": null,
+      "created_at": "2019-12-24T10:16:12+0000",
+      "updated_at": "2019-12-24T10:16:12+0000",
+      "device_total": 0,
+      "devices_processing": 0,
+      "devices_succeed": 0,
+      "devices_failed": 0,
+      "job_metadata": [],
+      "exec_method": "ONE_TIME",
+      "delivery_option": "SYSTEM_PUSH",
+      "job_type": "Set property"
+    }
+    ```
 
 ### Configure the job
 
 1. Go to API Browser > IoT Command Center > setPropertiesForJob.
-<img src="ab-027.png" width="600" height="45">
+    <div><img src="ab-027.png" width="600" height="45"></div>
 1. For Path Parameters > jobId, enter your jobId.
 1. Copy the following object into the Request Data box:
-<pre>{
-     "properties": [
-       {
-         "key": "cmd",
-         "value": "CMD_1"
-       },
-       {
-         "key": "input",
-         "value": "1"
-       }
-     ]
-}</pre>
+    ```
+    {
+      "properties": [
+        {
+          "key": "cmd",
+          "value": "CMD_1"
+        },
+        {
+          "key": "input",
+          "value": "1"
+        }
+      ]
+    }
+    ```
 1. Click Run, and then click Show. The response data should be the same as the request data.
 
 ### Run the job
 
 1. Go to API Browser > IoT Command Center > startJob.
-<img src="ab-028.png" width="600" height="45">
+    <div><img src="ab-028.png" width="600" height="45"></div>
 1. For Path Parameters > jobId, enter your jobId.
 1. Click Run, and verify that the returned status code = 200.
 1. Go to API Browser > Devices.
 1. Select Device = Device 1, Property = cmd, and verify that value = ```CMD_1```.
-<img src="ab-010.png" width="600" height="74">
+    <div><img src="ab-010.png" width="600" height="74"></div>
 1. Select Device = Device 1, Property = input, and verify that value = ```1```.
 1. Select Device = Device 2, and repeat for both properties.
 1. The ```log``` and ```output``` properties for both devices should be ```CMD_1``` and ```1```, respectively, too.
@@ -442,7 +454,7 @@ The following steps show you how to set property values for groups of devices.
 
 1. Go to API Browser > Devices.
 1. Select Device = Device 2, Property = Green_LED, and set to "off" (i.e. 0).
-<img src="ab-011.png" width="600" height="74">
+    <div><img src="ab-011.png" width="600" height="74"></div>
 1. Go to API Browser > IoT Command Center > setPropertiesForJob.
 1. Configure the job to set cmd = CMD_2 and input = 2.
 1. Go to API Browser > IoT Command Center > startJob, and run the job.
@@ -452,50 +464,54 @@ The following steps show you how to set property values for groups of devices.
 ### Inspect job devices
 
 1. Go to API Browser > IoT Command Center > getDevicesSnapshot.
-<img src="ab-029.png" width="600" height="45">
+    <div><img src="ab-029.png" width="600" height="45"></div>
 1. For Path Parameters > jobId, enter your jobId.
 1. Click Run, and then click Show. The response data is an array of devices affected by the most recent job execution:
-<pre>{
-     "total": 1,
-     "oem_model": "ledevb",
-     "devices": [
-       {
-         "lifecycle": "registered",
-         "connection_status": "Online",
-         "connected_at": "2019-12-23 00:00:00",
-         "dsn": "AC000W000000001"
-       }
-     ],
-     "previous_page": null,
-     "next_page": null,
-     "current_page_number": 1,
-     "start_count_on_page": 1,
-     "end_count_on_page": 1
-}</pre>
+    ```
+    {
+      "total": 1,
+      "oem_model": "ledevb",
+      "devices": [
+        {
+          "lifecycle": "registered",
+          "connection_status": "Online",
+          "connected_at": "2019-12-23 00:00:00",
+          "dsn": "AC000W000000001"
+        }
+      ],
+      "previous_page": null,
+      "next_page": null,
+      "current_page_number": 1,
+      "start_count_on_page": 1,
+      "end_count_on_page": 1
+    }
+    ```
 1. Go to API Browser > IoT Command Center > setPropertiesForJob.
 1. Configure the job to set cmd = CMD_3 and input = 3.
 1. Go to API Browser > IoT Command Center > startJob, and run the job.
 1. Run getDevicesSnapshot again. The response data should resemble the following:
-<pre>{
-     "total": 2,
-     "oem_model": "ledevb",
-     "devices": [
-       {
-         "lifecycle": "registered",
-         "connection_status": "Online",
-         "connected_at": "2019-12-23 00:00:00",
-         "dsn": "AC000W000000001"
-       },
-       {
-         "lifecycle": "registered",
-         "connection_status": "Online",
-         "connected_at": "2019-12-23 00:00:00",
-         "dsn": "AC000W000000002"
-       }
-     ],
-     "previous_page": null,
-     "next_page": null,
-     "current_page_number": 1,
-     "start_count_on_page": 1,
-     "end_count_on_page": 2
-}</pre>
+    ```
+    {
+      "total": 2,
+      "oem_model": "ledevb",
+      "devices": [
+        {
+          "lifecycle": "registered",
+          "connection_status": "Online",
+          "connected_at": "2019-12-23 00:00:00",
+          "dsn": "AC000W000000001"
+        },
+        {
+          "lifecycle": "registered",
+          "connection_status": "Online",
+          "connected_at": "2019-12-23 00:00:00",
+          "dsn": "AC000W000000002"
+        }
+      ],
+      "previous_page": null,
+      "next_page": null,
+      "current_page_number": 1,
+      "start_count_on_page": 1,
+      "end_count_on_page": 2
+    }
+    ```
