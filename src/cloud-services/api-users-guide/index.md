@@ -7,7 +7,7 @@ classesFromPage: has-pagebar
 This guide provides examples of how to combine Ayla APIs to complete tasks. Many of the examples refer to the devices in the table below, but the examples are generally applicable to many different types of devices:
 
 |product_name|dsn|model|oem_model|
-|-|-|-|
+|-|-|-|-|
 |Device 1|AC000W000000001|AY008ESP1|ledevb|
 |Device 2|AC000W000000002|AY008ESP1|ledevb|
 
@@ -27,31 +27,33 @@ The following steps shows you how to listen for datapoint and location events us
 1. Go to API Browser > Datastream Service > createAccessRule.
 <img src="ab-022.png" width="600" height="45">
 1. Copy the following object into the Request Data box:
-<pre>{
-     "role": "OEM::Admin",
-     "oem_model": "&#42;",
-     "property_name": "&#42;",
-     "client_type": "cloud",
-     "subscription_type": "datapoint"
-}</pre>
+    ```
+    {
+      "role": "OEM::Admin",
+      "oem_model": "&#42;",
+      "property_name": "&#42;",
+      "client_type": "cloud",
+      "subscription_type": "datapoint"
+    }
+    ```
 1. Click Run, and then click Show. The response data provides the new access rule id:
-<pre>
-{
-     "OemAccessRule": {
-     &nbsp;&nbsp;"id": 123,
-     &nbsp;&nbsp;"role": "OEM::Admin",
-     &nbsp;&nbsp;"oem": "1234abcd",
-     &nbsp;&nbsp;"property_name": "&#42;",
-     &nbsp;&nbsp;"oem_model": "&#42;",
-     &nbsp;&nbsp;"client_type": "cloud",
-     &nbsp;&nbsp;"subscription_type": "datapoint",
-     &nbsp;&nbsp;"access_grant": true,
-     &nbsp;&nbsp;"created_at": "2020-01-01T17:09:13Z",
-     &nbsp;&nbsp;"updated_at": "2020-01-01T17:09:13Z"
-     }
-}
-</pre>
-<div>This access rule allows OEM admins to subscribe to datapoint events.</div>
+    ```
+    {
+      "OemAccessRule": {
+      "id": 123,
+      "role": "OEM::Admin",
+      "oem": "1234abcd",
+      "property_name": "&#42;",
+      "oem_model": "&#42;",
+      "client_type": "cloud",
+      "subscription_type": "datapoint",
+      "access_grant": true,
+      "created_at": "2020-01-01T17:09:13Z",
+      "updated_at": "2020-01-01T17:09:13Z"
+      }
+    }
+    ```
+    This access rule allows OEM admins to subscribe to datapoint events.
 1. Create another rule allowing OEM admins to subscribe to location events.
 
 ### Create subscriptions
@@ -71,23 +73,23 @@ The following steps shows you how to listen for datapoint and location events us
 1. Click Run, and then click Show. The response data provides the new subscription key:
 <pre>{
      "subscription": {
-     &nbsp;&nbsp;"id": 12345,
-     &nbsp;&nbsp;"oem": "1234abcd",
-     &nbsp;&nbsp;"dsn": "&#42;",
-     &nbsp;&nbsp;"name": "Datapoint Subscription",
-     &nbsp;&nbsp;"description": "This subscription allows reception of datapoint events.",
-     &nbsp;&nbsp;"property_name": "&#42;",
-     &nbsp;&nbsp;"connection_status": "Offline",
-     &nbsp;&nbsp;"batch_size": 1,
-     &nbsp;&nbsp;"is_suspended": false,
-     &nbsp;&nbsp;"created_at": "2020-01-01T17:50:55Z",
-     &nbsp;&nbsp;"updated_at": "2020-01-01T17:50:55Z",
-     &nbsp;&nbsp;"date_suspended": null,
-     &nbsp;&nbsp;"user_uuid": "b1234567-1234-1234-1234-a1234567890a",
-     &nbsp;&nbsp;"oem_model": "ledevb",
-     &nbsp;&nbsp;"stream_key": "ab12cd34ef56ab12cd34ef56ab12cd01",
-     &nbsp;&nbsp;"client_type": "cloud",
-     &nbsp;&nbsp;"subscription_type": "datapoint"
+     "id": 12345,
+     "oem": "1234abcd",
+     "dsn": "&#42;",
+     "name": "Datapoint Subscription",
+     "description": "This subscription allows reception of datapoint events.",
+     "property_name": "&#42;",
+     "connection_status": "Offline",
+     "batch_size": 1,
+     "is_suspended": false,
+     "created_at": "2020-01-01T17:50:55Z",
+     "updated_at": "2020-01-01T17:50:55Z",
+     "date_suspended": null,
+     "user_uuid": "b1234567-1234-1234-1234-a1234567890a",
+     "oem_model": "ledevb",
+     "stream_key": "ab12cd34ef56ab12cd34ef56ab12cd01",
+     "client_type": "cloud",
+     "subscription_type": "datapoint"
      }
 }</pre>
 <div>This subscription allows the reception of datapoint events.</div>
@@ -124,8 +126,8 @@ The following steps shows you how to listen for datapoint and location events us
 1. Copy coordinates (e.g. Paris, France) into the Request Data box:
 <pre>{
      "location": {
-     &nbsp;&nbsp;"lat": "48.864716",
-     &nbsp;&nbsp;"long": "2.349014"
+     "lat": "48.864716",
+     "long": "2.349014"
      }
 }</pre>
 1. Click Run.
