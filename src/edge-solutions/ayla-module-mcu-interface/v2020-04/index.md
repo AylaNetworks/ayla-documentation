@@ -211,7 +211,7 @@ The following tables provide descriptions of TLV type codes, schedule-related TL
 ## Type Codes
 
 |Type Code|Name|Description|
-|-|
+|-|-|-|
 |0x01|Name|Property name, without NUL termination.|
 |0x02|Integer|1-, 2-, 4-, or 8-byte signed integer value, in network byte order.|
 |0x03|Unsigned Integer|1-, 2-, 4-, or 8-byte unsigned integer value in network byte order. Note that this type is never used in the protocol, only internally on the MCU. Unsigned integers greater than 231-1 are sent as 8-byte signed integers.|
@@ -278,7 +278,7 @@ Following is an example of a TLV representation:
 ## Wi-Fi Event Status Codes
 
 |Status Code|Name|Description|
-|-|
+|-|-|-|
 |0x00|Success|Module joined Wi-Fi network identified by SSID|
 |0x01|Resource Unavailable|Resource unavailable to complete join operation (may be temporary).|
 |0x02|Connection Timed Out|Connection to AP timed out. May indicate a few underlying causes – for example, inconsistent visibility of the AP due to range or noise; too many other APs in the vicinity; incorrect Wi-Fi password.|
@@ -307,7 +307,7 @@ Following is an example of a TLV representation:
 The most common packet format for all protocols include messages in either direction that start with a one-byte protocol number: 
 
 |Bit|Description|
-|-|
+|-|-|
 |0x00|Reserved for Ayla Configuration and Control Operations.|
 |0x01|Used for Ayla Data Operations.|
 |0x02|Used for SPI Ping test.|
@@ -334,7 +334,7 @@ Following are descriptions of data operations opcodes, examples of data messages
 This section provides a description of each data operations.
 
 |Opcode|Direction|Description|
-|-|
+|-|-|-|
 |0x01||Replaced by Opcode 0x09|
 |0x02|**MCU** &#10230; Module|**Send me a property value**. The message can include a Name TLV to specify a particular property, or no Name TLV to specify all to-device properties. The module responds with Opcode 0x03.|
 |0x03|MCU &#10229; **Module**|**Here is the property value**. The message contains a property value. If the message contains an Ack_ID TLV, the MCU must acknowledge receipt. A Nodes TLV in the message indicates the property value source. No Nodes TLV indicates the property value came from ADS. An EOF packet ends the message.|
@@ -645,7 +645,7 @@ Control operations are messages between the MCU and module that perform actions 
 The control operations use protocol number 0 and the opcodes described in this section.
 
 |Opcode|Direction|Description|
-|-|
+|-|-|-|
 |0x01|MCU &#10229; **Module**|**Here is configuration**. The message contains Conf TLV + Value TLV pairs. This is a response to 0x02.|
 |0x02|**MCU** &#10230; Module|**Send me configuration**.|
 |0x03|**MCU** &#10230; Module|**Modify configuration items**. The message contains Conf TLV + Value TLV pairs.|
@@ -679,7 +679,7 @@ File conf_token.h defines an enum conf_token with values for each token. For exa
 The table below lists configuration token codes:
 
 |Code|Token Name|
-|-|
+|-|-|
 |0x01|enable|
 |0x02|ready|
 |0x03|sys|
@@ -819,7 +819,7 @@ The configuration tree has the following components:
 The following table describes the top-level configuration sub-trees.
 
 |Sub-tree|Description|
-|-|
+|-|-|
 |client|Connection to the Ayla Device Service (ADS)|
 |eth|Ethernet device|
 |gpio|module I/O configuration|
@@ -839,7 +839,7 @@ The following table describes the top-level configuration sub-trees.
 The following table describes the client configuration settings:
 
 |Variable|Type|Access|Meaning|
-|-|
+|-|-|
 |/client/enable|Boolean|r/w|Enable client subsystem|
 |/client/poll_interval|Integer|r|Time (seconds) between polls if ANS not used|
 |/client/hostname|UTF-8|r|Hostname of ADS server|
@@ -867,7 +867,7 @@ To register a module with the ADS, use a mobile application or the ADS web inter
 The following table describes the Ethernet configuration settings:
 
 |Variable|Type|Access|Meaning|
-|-|
+|-|-|-|-|
 |/eth/enable|Boolean|r/w|Enable client subsystem |
 |/eth/mac_addr|Binary|r/w|The MAC address for Ethernet device.|
 
@@ -878,7 +878,7 @@ Note: The variables are not writeable until the module firmware version 1.7.
 The following table describes the IP configuration settings:
 
 |Variable|Type|Access|Meaning|
-|-|
+|-|-|-|-|
 |/ip/n/&lt;n&gt;/addr|Integer|r/w|IP address|
 |/ip/n/&lt;n&gt;/mask|Integer|r/w|Netmask|
 |/ip/dhcp/enable|Boolean|r/w|Use DHCP|
@@ -892,7 +892,7 @@ Note: DHCP must be disabled to write IP address, netmask, DNS addresses, and def
 The following table describes the log configuration settings:
 
 |Variable|Type|Access|Meaning|
-|-|
+|-|-|-|-|
 |/log/mod/&lt;n&gt;/mask|Integer|r/w|Mask of enabled log severities|
 |/log/snapshot/&lt;n&gt;/time|Integer|r|Time (UTC) of snapshot &lt;n&gt; where 1=Default, 2=Client, 3=Conf, 4=Dns, 5=Netsim, 6=Notify, 7=Server, 8=Wi-Fi, 9=SSL, 10 - Log-client, 12=Sched|
 
@@ -901,7 +901,7 @@ The following table describes the log configuration settings:
 OEM configuration settings are accessed only in setup mode to allow product manufacturer to add the OEM name and model. This information is used by ADS. The key verifies to ADS that the OEM and model belong to the specified OEM. The key is used to encrypt or sign a string that includes the OEM and model. The key is not stored by the module and if read returns undefined results. Whenever the OEM or model are set, the key must be re-written with a base-64 UTF-8 string. Ayla recommends that the key not be stored in the host MCU as shipped to customers. After setup, erase the key. The following table describes the OEM configuration settings:
 
 |Variable|Type|Access|Meaning|
-|-|
+|-|-|-|-|
 |/oem/oem|UTF-8|r/w|Device manufacturer name|
 |/oem/model|UTF-8|r/w|Device model name|
 |/oem/key|File/UTF-8|w|OEM validation string|
@@ -911,7 +911,7 @@ OEM configuration settings are accessed only in setup mode to allow product manu
 The following table describes the power configuration settings:
 
 |Variable|Type|Access|Meaning|
-|-|
+|-|-|-|-|
 |/power/mode|Integer|r/w|Power management mode values are:<ul><li>CT_default</li><li>CT_min</li><li>CT_max_perf</li><li>CT_standby</li></ul>|
 |/power/current|Integer|r/w|Active power management mode.|
 |/power/awake_time|Integer|r/w|Time in seconds that the module should stay awake after activity.|
@@ -923,7 +923,7 @@ The following table describes the power configuration settings:
 The following table describes the HTTP server configuration settings for the module:
 
 |Variable|Type|Access|Meaning|
-|-|
+|-|-|-|-|
 |/server/prop/time_limit|Integer|r/w|HTTP Server access to properties enable/disable. This variable enables a local HTTP client to access MCU properties (for a limited time) via the Wi-Fi module’s HTTP server. To take effect, Wi-Fi module must be in AP mode and not registered with a user. (Generally, this is used for device testing during manufacturing).|
 |/server/security/enable|Boolean|r/w|HTTP clear-text access in AP mode. This variable enhances AP mode server security on module. (Supported version 2.6+):<ul><li>0 = disables feature - module allows wifi setup through clear-text server requests and wifi javascript page.</li><li>1 = enables feature - clear-text access is blocked, wifi javacript page not accessible.</li></ul>|
 
@@ -934,7 +934,7 @@ Note: Wi-Fi setup can be done only using an encrypted session via the mobile app
 The following table describes the System Configuration and Status settings:
 
 |Variable|Type|Access|Meaning|
-|-|
+|-|-|-|-|
 |/hw/rtc_src|Integer|r/w|RTC clock source selection: <ul><li>512 for LSI (low-speed internal oscillator).</li><li>256 for LSE (external oscillator). Only exists for certain module types and is writable in setup mode only.</li>|
 |/sys/dev_id|UTF-8|r|Ayla DSN|
 |/sys/mac_addr|Binary|r|MAC address|
@@ -960,7 +960,7 @@ Note: The MCU can set module time with sys/time or sys/time/pri. The only differ
 The following table describes the different values of sys/time/source translation:
 
 |Value|Meaning|
-|-|
+|-|-|
 |0x0000|Clock has never been set|
 |0x1130|Clock set to an arbitrary default|
 |0x1140|Clock set by internal web server|
@@ -974,7 +974,7 @@ The following table describes the different values of sys/time/source translatio
 The following table describes the Wi-Fi configuration settings:
 
 |Variable|Type|Access|Meaning|
-|-|
+|-|-|-|-|
 |/wifi/power|Integer|r/w|Maximum TX power (db)|
 |/wifi/profile/start|Integer|w|Profile to activate|
 |/wifi/profile/&lt;n&gt;/ssid|UTF-8|r/w|SSID|
@@ -1038,7 +1038,7 @@ Additional details on the Wi-Fi configuration settings in the table above:
 The following table describes the Wi-Fi connection history variables:
 
 |Variable|Type|Access|Meaning|
-|-|
+|-|-|-|-|
 |/wifi/power|Binary|r|First and last bytes of the SSID. Non-zero if the history entry exists.|
 |/wifi/hist/n/&lt;n&gt;/bssid|Binary|r|BSSID|
 |/wifi/hist/n/&lt;n&gt;/dns/n/&lt;n&gt;|Integer|r|DNS server IP address|
@@ -1051,7 +1051,7 @@ The following table describes the Wi-Fi connection history variables:
 The Connection History saves the last three connection attempts. History index 0 is the latest entry. Connection error codes are:
 
 |Code|Description|
-|-|
+|-|-|
 |0|No error.|
 |1|Resource problem, out of memory or buffers, perhaps temporary.|
 |2|Connection timed out.|
@@ -1079,7 +1079,7 @@ The Connection History saves the last three connection attempts. History index 0
 The log control operations (control opcode 0x0c) message includes an Integer TLV with the function number followed by optional argument TLVs. The following table describes the log control functions:
 
 |Function|Name|Meaning|
-|-|
+|-|-|-|
 |1|Append|Append message to the log. MCU appends messages to module’s log, and (f enabled) writes to the module’s serial port. Log level is specified by the message’s first character. Message is a UTF8 TLV and contains only printable ASCII characters 0x20 thru 0x7e. Message source is set to "mcu."|
 |2|Save Snapshot|Saves the current log. The module saves the current log messages to the flash ROM for further diagnosis. Up to 8 log snapshots may be saved. If the save area is full, this command receives a NAK.|
 |3|Clear Snapshot|Clear all saved snapshots. The module erases the saved snapshots.|
