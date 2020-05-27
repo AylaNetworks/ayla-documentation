@@ -2,6 +2,7 @@
 title: API Browser
 layout: api-browser.html
 a: block
+editIcon: none
 classesFromPage: has-pagebar
 ---
 

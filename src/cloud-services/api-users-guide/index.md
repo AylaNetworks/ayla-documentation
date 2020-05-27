@@ -4,6 +4,15 @@ a: block
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li><a href="#core-title">API Users Guide</a></li>
+    <li><a href="#receive-dss-events">Receive DSS events</a></li>
+    <li><a href="#perform-ota-update">Perform OTA update</a></li>
+    <li><a href="#update-property-values">Update property values</a></li>
+  </ul>
+</aside>
+
 This guide provides examples of how to combine Ayla APIs to complete tasks. Many of the examples refer to the devices in the table below, but the examples are generally applicable to many different types of devices:
 
 |product_name|dsn|model|oem_model|

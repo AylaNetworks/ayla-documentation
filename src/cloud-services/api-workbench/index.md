@@ -2,6 +2,7 @@
 title: API Workbench
 layout: api-workbench.html
 a: block
+editIcon: none
 ---
 
 <div id="msg-box" style="display:none;">
