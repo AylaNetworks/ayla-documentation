@@ -6,12 +6,15 @@ Need to create, update, or clarify Ayla-related content for a contact, customer,
 
 ### Process
 
-1. Create a ticket in the [Ayla Docs Jira Project](https://aylanetworks.atlassian.net/jira/software/projects/AD/boards/135). Include the phrase `Tech Note` in the title of your ticket. The Ayla Docs Team will add to your ticket a link to a new [Github folder](https://github.com/AylaNetworks/ayla-documentation/tree/master/src/tech-notes/00000001) dedicated to your tech note. The folder will contain `index.md`. The `.md` stands for [markdown](https://guides.github.com/features/mastering-markdown). 
-1. In your new folder, click `index.md`.
+1. Create an issue in the [Ayla Docs Jira Project](https://aylanetworks.atlassian.net/jira/software/projects/AD/boards/135).
+1. Start the title with `Tech Note: ` (e.g. `Tech Note: ESP32 factory resets.`).
+1. Submit the issue. The Ayla Docs Team will add (to your issue) a link to a new [Github folder](https://github.com/AylaNetworks/ayla-documentation/tree/master/src/tech-notes/00000001) dedicated to your tech note. The folder will contain a `index.md` file. The `.md` stands for [markdown](https://guides.github.com/features/mastering-markdown).
+1. Click your Github Tech Note link in the Jira issue.
+1. Click `index.md`.
 1. Click on the pencil icon.
-1. Change the `title`, `author`, and `creationDate`.
-1. Write your tech note. 
-1. Use the Jira ticket to ask questions and/or request publication from your [Github folder](https://github.com/AylaNetworks/ayla-documentation/tree/master/src/tech-notes/00000001) to [Ayla Docs](https://docs.aylanetworks.com/tech-notes/00000001/).
+1. Modify the `title`, `author`, and `creationDate` fields at the top of the file.
+1. Write your tech note. Use your Jira issue to ask questions.
+1. Add a comment like `Please edit and publish` to your Jira issue. The Ayla Docs Team will work with you to edit your [Github index.md file](https://github.com/AylaNetworks/ayla-documentation/blob/master/src/tech-notes/00000001/index.md), generate an HTML version, push the HTML version to [Ayla Docs](https://docs.aylanetworks.com/tech-notes/00000001/), and add a link to the [Tech Notes](https://docs.aylanetworks.com/tech-notes/) page.
 
 ### Writing tips
 
