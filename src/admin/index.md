@@ -1,5 +1,6 @@
 ---
 title: Admin
+editIcon: none
 ---
 
 ### Certificates
@@ -157,3 +158,59 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 * [Murata: Module AY001MTC Type YD Firmware Downloads](https://connection.aylanetworks.com/s/article/Murata-Module-AY001MTC-Type-YD-Firmware-Downloads)
 * [ArticlesInventek: AY001MIV ISM43362 Firmware Downloads](https://connection.aylanetworks.com/s/article/Inventek-AY001MIV-ISM43362-Firmware-Downloads)
 * [Ampak: Module AY001MAB Firmware Downloads](https://connection.aylanetworks.com/s/article/AY001MAB-Firmware-Downloads)
+
+## Pages
+
+|Title|ID|Owner|Editable|Level|
+|-|-|-|-|-|
+|[**Getting Started**](https://docs.aylanetworks.com/)||Matt Hagen|<span style="color:red;">No</span>|<span style="color:blue;">002</span>|
+|[**Edge Solutions**](/edge-solutions)||Matt Hagen|<span style="color:red;">No</span>|<span style="color:blue;">002</span>|
+|[Ayla Host Library and Reference Application v2.1](https://docs.aylanetworks.com/edge-solutions/ayla-host-library-and-reference-application/v2-1/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:blue;">002</span>|
+|[Ayla Embedded Agent](https://docs.aylanetworks.com/edge-solutions/ayla-embedded-agent/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:blue;">002</span>|
+|[Ayla Development Kit v2.0](https://docs.aylanetworks.com/edge-solutions/ayla-development-kit/v2-0/)||Matt Hagen|<span style="color:red;">No</span>|<span style="color:blue;">002</span>|
+|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.6</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-6/)||Matt Hagen|&nbsp;|001|
+|[Ayla ESP32 Solution v1.5.3](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-5-3/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.5-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-5-beta/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.10-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-10-beta/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.9</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-9/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.8</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-8/)||Matt Hagen|&nbsp;|001|
+|[Ayla Portable Solution v2.3.1-beta](https://docs.aylanetworks.com/edge-solutions/ayla-portable-solution/v2-3-1-beta/)||Matt Hagen|&nbsp;|001|
+|[Ayla Linux Device Solution v1.7](https://docs.aylanetworks.com/edge-solutions/ayla-linux-device-solution/v1-7/)||Matt Hagen|&nbsp;|001|
+|[Ayla Linux Gateway Solution v1.7](https://docs.aylanetworks.com/edge-solutions/ayla-linux-gateway-solution/v1-7/)||Matt Hagen|&nbsp;|001|
+|[Ayla Module / MCU Interface](https://docs.aylanetworks.com/edge-solutions/ayla-module-mcu-interface/v2020-04/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:blue;">002</span>|
+|[Ethernet for Murata Modules](https://docs.aylanetworks.com/edge-solutions/ethernet-for-murata-modules/)||Matt Hagen|&nbsp;|001|
+|[Firmware, Pin Mappings, GATT](https://docs.aylanetworks.com/edge-solutions/firmware-pin-mappings-gatt/)||Matt Hagen|&nbsp;|001|
+|[**Cloud Services**](https://docs.aylanetworks.com/cloud-services/)||Matt Hagen|&nbsp;|001|
+|[API Browser](https://docs.aylanetworks.com/cloud-services/api-browser)||Matt Hagen|<span style="color:red;">No</span>|001|
+|[API Users Guide](https://docs.aylanetworks.com/cloud-services/api-users-guide)||Matt Hagen|<span style="color:green;">Yes</span>|001|
+|[API Workbench](https://docs.aylanetworks.com/cloud-services/api-workbench)||Matt Hagen|<span style="color:red;">No</span>|001|
+|[**Mobile and Web Apps**](https://docs.aylanetworks.com/mobile-and-web-apps/)||Matt Hagen|&nbsp;|001|
+|[**System Administration**](https://docs.aylanetworks.com/system-administration/)||Matt Hagen|&nbsp;|001|
+|[Aura Mobile App](https://docs.aylanetworks.com/system-administration//aura-mobile-app/)||Matt Hagen|&nbsp;|001|
+|[Ayla Dashboard Portal](https://docs.aylanetworks.com/system-administration/ayla-dashboard-portal/)||Matt Hagen|&nbsp;|001|
+|[Ayla Developer Portal](https://docs.aylanetworks.com/system-administration/ayla-developer-portal/)||Matt Hagen|&nbsp;|001|
+|[**Tech Notes**](https://docs.aylanetworks.com/tech-notes/)||Matt Hagen|&nbsp;|001|
+|[How to write and publish a tech note](https://docs.aylanetworks.com/tech-notes/how-to-write-and-publish-a-tech-note/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|My New Tech Note|[00000001](https://docs.aylanetworks.com/tech-notes/00000001/)|Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|About ack-enabled properties|[<span style="color:red;">00000002</span>](https://docs.aylanetworks.com/tech-notes/00000002/)|Joe Eykholt|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|Additional Best Practices for Device Developers|[<span style="color:red;">00000003</span>](https://docs.aylanetworks.com/tech-notes/00000003/)|Sahir Sahit|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|Migrating a template from development to field|[00000004](https://docs.aylanetworks.com/tech-notes/00000004/)|Trinh Phan|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|New Template Architecture|[00000005](https://docs.aylanetworks.com/tech-notes/00000005/)|Yew Yin Ng|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|Setting up and performing a factory reset for ESP32|[<span style="color:red;">00000006</span>](https://docs.aylanetworks.com/tech-notes/00000006/)|Jeff Calabro|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|Supporting end users of Ayla-enabled devices|[<span style="color:red;">00000007</span>](https://docs.aylanetworks.com/tech-notes/00000007/)|Trinh Phan|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|Using BLE to set up Wi-Fi for ESP32|[00000008](https://docs.aylanetworks.com/tech-notes/00000008/)|Steve Grau|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|Ayla Mobile Apps and Cross-platform App Frameworks|[<span style="color:red;">00000009</span>](https://docs.aylanetworks.com/tech-notes/00000009/)|Dan Myers|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|QA Alpha|[<span style="color:red;">00000010</span>](https://docs.aylanetworks.com/tech-notes/00000010/)|Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
+|[**Archive**](https://docs.aylanetworks.com/archive/)||Matt Hagen|<span style="color:red;">No</span>|001|
+
+### <span style="color:blue;">Level 002</span>
+
+1. Set Editable state.
+1. Remove toc in source file.
+1. Tech Notes:
+    1. Give number-based slug so authors can modify title.
+    1. Add `author` and `date` to top table.
+
+### <span style="color:green;">Level 003</span>
+
+1. Modify markdown so that it renders acceptably in Github.
