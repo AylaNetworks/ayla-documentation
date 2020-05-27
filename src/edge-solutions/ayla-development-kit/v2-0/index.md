@@ -2,6 +2,7 @@
 title: Ayla Development Kit v2.0
 layout: site.html
 c: block
+editIcon: none
 classesFromPage: has-pagebar
 ---
 
