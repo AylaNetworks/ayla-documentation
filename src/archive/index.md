@@ -1,6 +1,6 @@
 ---
 title: Archive
-layout: site.html
+editIcon: none
 ---
 
 <table class="version-table">
