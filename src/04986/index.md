@@ -8,7 +8,13 @@ editIcon: none
   <ul>
     <li><a href="#core-title">04986</a></li>
     <li><a href="#platform-notes">Platform Notes</a></li>
-    <li><a href="#content-notes">Content Notes</a></li>
+    <li><a href="#content-notes">Content Notes</a>
+    <ul>
+    <li><a href="#page-status">Page Status</a></li>
+    <li><a href="#tech-notes-status">Tech Notes Status</a></li>
+    <li><a href="#pseudonymization">Pseudonymization</a></li>
+    </ul>
+    </li>
     <li><a href="#procedure-notes">Procedure Notes</a></li>
   </ul>
 </aside>
@@ -138,26 +144,7 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 
 # Content Notes
 
-### Pseudonymization
-
-|Key|Value|
-|-|-|
-|```access_token```|```1234567890abcdef1234567890abcdef```|
-|```action_uuid```|```a1234567-1234-1234-1234-a1234567890a```|
-|```app_id```|```abc-1A-id```|
-|```app_secret```|```abc-a1b2c3d4e5f6a1b2c3d4e5f6XYZ```|
-|```devId```|```12345678```|
-|```DSN```|```AC000W123456789```|
-|```email```|<code>sarah&commat;acme.com</code>|
-|```mac```|```00:11:22:aa:bb:cc```|
-|```oemId```|```1234abcd```|
-|```refresh_token```|```1234512345abcabc1234512345abcabc```|
-|```stream_key```|```ab12cd34ef56ab12cd34ef56ab12cd01```|
-|```rule_uuid```|```c1234567-1234-1234-1234-a1234567890a```|
-|```user_id```|```12345678```|
-|```user_uuid```|```b1234567-1234-1234-1234-a1234567890a```|
-
-## Pages
+## Page Status
 
 |Title|ID|Owner|Editable|Level|
 |-|-|-|-|-|
@@ -166,12 +153,12 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 |[Ayla Host Library and Reference Application v2.1](https://docs.aylanetworks.com/edge-solutions/ayla-host-library-and-reference-application/v2-1/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:blue;">002</span>|
 |[Ayla Embedded Agent](https://docs.aylanetworks.com/edge-solutions/ayla-embedded-agent/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:blue;">002</span>|
 |[Ayla Development Kit v2.0](https://docs.aylanetworks.com/edge-solutions/ayla-development-kit/v2-0/)||Matt Hagen|<span style="color:red;">No</span>|<span style="color:blue;">002</span>|
-|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.6</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-6/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:indigo;">Ayla ESP32 Solution v1.6</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-6/)||Matt Hagen|&nbsp;|001|
 |[Ayla ESP32 Solution v1.5.3](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-5-3/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.5-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-5-beta/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.10-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-10-beta/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.9</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-9/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.8</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-8/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:indigo;">Ayla ESP32 Solution v1.5-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-5-beta/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:indigo;">Ayla ESP32 Solution v1.3.10-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-10-beta/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:indigo;">Ayla ESP32 Solution v1.3.9</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-9/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:indigo;">Ayla ESP32 Solution v1.3.8</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-8/)||Matt Hagen|&nbsp;|001|
 |[Ayla Portable Solution v2.3.1-beta](https://docs.aylanetworks.com/edge-solutions/ayla-portable-solution/v2-3-1-beta/)||Matt Hagen|&nbsp;|001|
 |[Ayla Linux Device Solution v1.7](https://docs.aylanetworks.com/edge-solutions/ayla-linux-device-solution/v1-7/)||Matt Hagen|&nbsp;|001|
 |[Ayla Linux Gateway Solution v1.7](https://docs.aylanetworks.com/edge-solutions/ayla-linux-gateway-solution/v1-7/)||Matt Hagen|&nbsp;|001|
@@ -189,28 +176,80 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 |[Ayla Developer Portal](https://docs.aylanetworks.com/system-administration/ayla-developer-portal/)||Matt Hagen|&nbsp;|001|
 |[**Tech Notes**](https://docs.aylanetworks.com/tech-notes/)||Matt Hagen|&nbsp;|001|
 |[How to write and publish a tech note](https://docs.aylanetworks.com/tech-notes/how-to-write-and-publish-a-tech-note/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|My New Tech Note|[00000001](https://docs.aylanetworks.com/tech-notes/00000001/)|Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|About ack-enabled properties|[<span style="color:red;">00000002</span>](https://docs.aylanetworks.com/tech-notes/00000002/)|Joe Eykholt|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|Additional Best Practices for Device Developers|[<span style="color:red;">00000003</span>](https://docs.aylanetworks.com/tech-notes/00000003/)|Sahir Sahit|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|Migrating a template from development to field|[00000004](https://docs.aylanetworks.com/tech-notes/00000004/)|Trinh Phan|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|New Template Architecture|[00000005](https://docs.aylanetworks.com/tech-notes/00000005/)|Yew Yin Ng|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|Setting up and performing a factory reset for ESP32|[<span style="color:red;">00000006</span>](https://docs.aylanetworks.com/tech-notes/00000006/)|Jeff Calabro|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|Supporting end users of Ayla-enabled devices|[<span style="color:red;">00000007</span>](https://docs.aylanetworks.com/tech-notes/00000007/)|Trinh Phan|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|Using BLE to set up Wi-Fi for ESP32|[00000008](https://docs.aylanetworks.com/tech-notes/00000008/)|Steve Grau|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|Ayla Mobile Apps and Cross-platform App Frameworks|[<span style="color:red;">00000009</span>](https://docs.aylanetworks.com/tech-notes/00000009/)|Dan Myers|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|QA Alpha|[<span style="color:red;">00000010</span>](https://docs.aylanetworks.com/tech-notes/00000010/)|Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
 |[**Archive**](https://docs.aylanetworks.com/archive/)||Matt Hagen|<span style="color:red;">No</span>|001|
 
-### <span style="color:blue;">Level 002</span>
+* Level 002
+    1. Set Editable state.
+    1. Remove toc in source file.
+* Level 003
+    1. Modify markdown so that it renders acceptably in Github.
 
-1. Set Editable state.
-1. Remove toc in source file.
-1. Tech Notes:
-    1. Give number-based slug so authors can modify title.
-    1. Add `author` and `date` to top table.
+## Tech Notes Status
 
-### <span style="color:green;">Level 003</span>
+|Status|Meaning|
+|-|-|
+|<span style="color:green">Green</span>|Published.|
+|<span style="color:red">Red</span>|Assigned.|
+|<span style="color:orange">Orange</span>|Under consideration.|
+|<span style="color:indigo">Indigo</span>|Available.|
 
-1. Modify markdown so that it renders acceptably in Github.
+### [<span style="color:green">00000001</span>](https://docs.aylanetworks.com/tech-notes/00000001/): My New Tech Note
+
+### [<span style="color:red">00000002</span>](https://docs.aylanetworks.com/tech-notes/00000002/): About ack-enabled properties
+
+### [<span style="color:red">00000003</span>](https://docs.aylanetworks.com/tech-notes/00000003/): Additional Best Practices for Device Developers
+
+### [<span style="color:green">00000004</span>](https://docs.aylanetworks.com/tech-notes/00000004/): Migrating a template from development to field
+
+### [<span style="color:green">00000005</span>](https://docs.aylanetworks.com/tech-notes/00000005/): New Template Architecture
+
+### [<span style="color:red">00000006</span>](https://docs.aylanetworks.com/tech-notes/00000006/): Setting up and performing a factory reset for ESP32
+
+### [<span style="color:green">00000007</span>](https://docs.aylanetworks.com/tech-notes/00000007/): Supporting end users of Ayla-enabled devices
+
+### [<span style="color:green">00000008</span>](https://docs.aylanetworks.com/tech-notes/00000008/): Using BLE to set up Wi-Fi for ESP32
+
+### [<span style="color:orange">00000009</span>](https://docs.aylanetworks.com/tech-notes/00000009/): Ayla Mobile Apps and Cross-platform App Frameworks
+
+### [<span style="color:orange">00000010</span>](https://docs.aylanetworks.com/tech-notes/00000010/): QA Alpha
+
+### [<span style="color:orange">00000011</span>](https://docs.aylanetworks.com/tech-notes/00000011/): Device self-offline status
+
+Phil Hsu on 2020-05-28: We have a requirement from our product to introduce a new connection status to distinguish between Offline (determined by cloud) and SelfOffline (device sends DISCONNECT). 
+The flow is descibed in [this page](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/927760392/DNC+devices+connection+status+flow). 
+This concept is similar to Online and PollingOnline. Currently only MQTT devices will send DISCONNECT to cloud(MQTT Broker).
+We will need to add a new status in CSS and ADS. The new status name is open for discussion. Please give any feedback or concerns.
+If no further inquiries by the end of this week, I will start the implementation design next week. 
+
+### [<span style="color:indigo">00000012</span>](https://docs.aylanetworks.com/tech-notes/00000012/): Available
+
+### [<span style="color:indigo">00000013</span>](https://docs.aylanetworks.com/tech-notes/00000013/): Available
+
+### [<span style="color:indigo">00000014</span>](https://docs.aylanetworks.com/tech-notes/00000014/): Available
+
+### [<span style="color:indigo">00000015</span>](https://docs.aylanetworks.com/tech-notes/00000015/): Available
+
+### [<span style="color:indigo">00000016</span>](https://docs.aylanetworks.com/tech-notes/00000016/): Available
+
+### [<span style="color:orange">99999999</span>](https://docs.aylanetworks.com/tech-notes/99999999/): Tech Note Draft
+
+## Pseudonymization
+
+|Key|Value|
+|-|-|
+|```access_token```|```1234567890abcdef1234567890abcdef```|
+|```action_uuid```|```a1234567-1234-1234-1234-a1234567890a```|
+|```app_id```|```abc-1A-id```|
+|```app_secret```|```abc-a1b2c3d4e5f6a1b2c3d4e5f6XYZ```|
+|```devId```|```12345678```|
+|```DSN```|```AC000W123456789```|
+|```email```|<code>sarah&commat;acme.com</code>|
+|```mac```|```00:11:22:aa:bb:cc```|
+|```oemId```|```1234abcd```|
+|```refresh_token```|```1234512345abcabc1234512345abcabc```|
+|```stream_key```|```ab12cd34ef56ab12cd34ef56ab12cd01```|
+|```rule_uuid```|```c1234567-1234-1234-1234-a1234567890a```|
+|```user_id```|```12345678```|
+|```user_uuid```|```b1234567-1234-1234-1234-a1234567890a```|
 
 # Procedure Notes
