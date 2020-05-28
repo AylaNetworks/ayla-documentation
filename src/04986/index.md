@@ -4,21 +4,6 @@ classesFromPage: has-pagebar
 editIcon: none
 ---
 
-<aside id="pagebar" class="d-xl-block collapse">
-  <ul>
-    <li><a href="#core-title">04986</a></li>
-    <li><a href="#platform-notes">Platform Notes</a></li>
-    <li><a href="#content-notes">Content Notes</a>
-    <ul>
-    <li><a href="#page-status">Page Status</a></li>
-    <li><a href="#tech-notes-status">Tech Notes Status</a></li>
-    <li><a href="#pseudonymization">Pseudonymization</a></li>
-    </ul>
-    </li>
-    <li><a href="#procedure-notes">Procedure Notes</a></li>
-  </ul>
-</aside>
-
 # Platform Notes
 
 ### Certificates
@@ -153,12 +138,12 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 |[Ayla Host Library and Reference Application v2.1](https://docs.aylanetworks.com/edge-solutions/ayla-host-library-and-reference-application/v2-1/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:blue;">002</span>|
 |[Ayla Embedded Agent](https://docs.aylanetworks.com/edge-solutions/ayla-embedded-agent/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:blue;">002</span>|
 |[Ayla Development Kit v2.0](https://docs.aylanetworks.com/edge-solutions/ayla-development-kit/v2-0/)||Matt Hagen|<span style="color:red;">No</span>|<span style="color:blue;">002</span>|
-|&nbsp;&nbsp;&nbsp;[<span style="color:indigo;">Ayla ESP32 Solution v1.6</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-6/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.6</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-6/)||Matt Hagen|&nbsp;|001|
 |[Ayla ESP32 Solution v1.5.3](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-5-3/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:indigo;">Ayla ESP32 Solution v1.5-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-5-beta/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:indigo;">Ayla ESP32 Solution v1.3.10-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-10-beta/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:indigo;">Ayla ESP32 Solution v1.3.9</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-9/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:indigo;">Ayla ESP32 Solution v1.3.8</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-8/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.5-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-5-beta/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.10-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-10-beta/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.9</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-9/)||Matt Hagen|&nbsp;|001|
+|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.8</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-8/)||Matt Hagen|&nbsp;|001|
 |[Ayla Portable Solution v2.3.1-beta](https://docs.aylanetworks.com/edge-solutions/ayla-portable-solution/v2-3-1-beta/)||Matt Hagen|&nbsp;|001|
 |[Ayla Linux Device Solution v1.7](https://docs.aylanetworks.com/edge-solutions/ayla-linux-device-solution/v1-7/)||Matt Hagen|&nbsp;|001|
 |[Ayla Linux Gateway Solution v1.7](https://docs.aylanetworks.com/edge-solutions/ayla-linux-gateway-solution/v1-7/)||Matt Hagen|&nbsp;|001|
@@ -191,7 +176,7 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 |<span style="color:green">Green</span>|Published.|
 |<span style="color:red">Red</span>|Assigned.|
 |<span style="color:orange">Orange</span>|Under consideration.|
-|<span style="color:indigo">Indigo</span>|Available.|
+|<span style="color:gray">Gray</span>|Available.|
 
 ### [<span style="color:green">00000001</span>](https://docs.aylanetworks.com/tech-notes/00000001/): My New Tech Note
 
@@ -221,15 +206,18 @@ This concept is similar to Online and PollingOnline. Currently only MQTT devices
 We will need to add a new status in CSS and ADS. The new status name is open for discussion. Please give any feedback or concerns.
 If no further inquiries by the end of this week, I will start the implementation design next week. 
 
-### [<span style="color:indigo">00000012</span>](https://docs.aylanetworks.com/tech-notes/00000012/): Available
+### [<span style="color:orange">00000012</span>](https://docs.aylanetworks.com/tech-notes/00000012/): Message properties
 
-### [<span style="color:indigo">00000013</span>](https://docs.aylanetworks.com/tech-notes/00000013/): Available
+### [<span style="color:orange">00000013</span>](https://docs.aylanetworks.com/tech-notes/00000013/): Advanced Rules Engine
 
-### [<span style="color:indigo">00000014</span>](https://docs.aylanetworks.com/tech-notes/00000014/): Available
+* See [ARE API 2.0](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/469958682/ARE+API+2.0)
+* See also [Cloud Service Team Home](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/6521524).
 
-### [<span style="color:indigo">00000015</span>](https://docs.aylanetworks.com/tech-notes/00000015/): Available
+### [<span style="color:gray">00000014</span>](https://docs.aylanetworks.com/tech-notes/00000014/): Available
 
-### [<span style="color:indigo">00000016</span>](https://docs.aylanetworks.com/tech-notes/00000016/): Available
+### [<span style="color:gray">00000015</span>](https://docs.aylanetworks.com/tech-notes/00000015/): Available
+
+### [<span style="color:gray">00000016</span>](https://docs.aylanetworks.com/tech-notes/00000016/): Available
 
 ### [<span style="color:orange">99999999</span>](https://docs.aylanetworks.com/tech-notes/99999999/): Tech Note Draft
 
