@@ -2,7 +2,7 @@
 title: Supporting end users of Ayla-enabled devices
 layout: technote.html
 author: Trinh Phan
-creationDate: Month 00, 0000
+creationDate: May 28, 2020
 classesFromPage: has-pagebar
 ---
 
@@ -66,3 +66,13 @@ This section provides steps for troubleshooting IoT device connectivity issues.
 1. Reset the IoT device to factory settings as described in the device manufacturer user manual.
 
 ## Escalate issues
+
+This section provides the list of needed information when escalating to Support, support@aylanetworks.com.
+
+1. Please provide the Business Priority (Severity (from High to Low): 1, 2, 3 or 4)
+1. Description of the issue.
+1. Ayla DSN (Device Serial Number) and or Consumer information (when relevant and in compliance with regional privacy act).
+1. Troubleshooting and or reproduction performed. (if applicable)
+    1. Steps to reproduce the issue if available (include the expected vs observed behavior)
+    1. Troubleshooting performed (work around).
+1. Logs (device side/mobile), screen captures and any information that will help aid investigation.
