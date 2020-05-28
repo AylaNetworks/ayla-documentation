@@ -12,7 +12,7 @@ Need to create, update, or clarify Ayla-related content for a contact, customer,
 1. Click `Create`. The Ayla Docs Team will add (to your Jira ticket) a link to your new, unpublished Tech Note, and notify you by email. This may take only a few minutes or up to 12 hours depending on the time and your time zone.
 1. When you receive the email, open it, and click the link to your Jira ticket.
 1. In the Jira ticket, click the link to your new, unpublished Ayla Docs Tech Note ([example](https://docs.aylanetworks.com/tech-notes/00000001/)). 
-1. Click the pencil icon next to the title. The Github version of your Tech Note appears in a new tab ([example](https://github.com/AylaNetworks/ayla-documentation/blob/master/src/tech-notes/00000001/index.md)).
+1. Click the pencil icon next to the title. The Github version of your Tech Note appears in a new tab.
 1. Click the pencil icon to `Edit this file`.
 1. Modify the `title`, `author`, and `creationDate` fields at the top of the file.
 1. Write your tech note. If you have questions, ask them in your Jira ticket.
