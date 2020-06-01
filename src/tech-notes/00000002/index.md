@@ -6,26 +6,6 @@ creationDate: May 31, 2020
 classesFromPage: has-pagebar
 ---
 
-<aside id="pagebar" class="d-xl-block collapse">
-  <ul>
-    <li><a href="#core-title">On this page</a>
-      <ul>
-        <li><a href="#why-property-acks">Why property acks?</a></li>
-        <li><a href="#requirements">Requirements</a></li>
-        <li><a href="#asynchronous-updates">Asynchronous updates</a></li>
-      </ul>
-    </li>
-    <li><a href="#implementation">Implementation</a>
-      <ul>
-        <li><a href="#setting-ack_enabled">Setting ack_enabled</a></li>
-        <li><a href="#modifying-a-host-app">Modifying a host app</a></li>
-        <li><a href="#modifying-a-mobile-app">Modifying a mobile app</a></li>
-        <li><a href="#modifying-a-web-app">Modifying a web app</a></li>
-      </ul>
-    </li>
-  </ul>
-</aside>
-
 ## Why property acks?
 
 The Ayla Cloud represents a device as a *Digital Twin* which includes a set of properties and values. For example, the cloud might use three property-value pairs (`on=true`, `set_pt=72`, and `temp=75`) to represent a thermostat:
