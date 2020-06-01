@@ -67,7 +67,7 @@ This section provides steps for troubleshooting IoT device connectivity issues.
 
 ## Escalate issues
 
-This section provides the list of needed information when escalating to Support, support@aylanetworks.com.
+This section provides the list of information requested when escalating to Support, support@aylanetworks.com.
 
 1. Please provide the Business Priority (Severity (from High to Low): 1, 2, 3 or 4)
 1. Description of the issue. Please include the following:
