@@ -12,7 +12,7 @@ The Ayla Cloud represents a device as a *Digital Twin* which includes a set of p
 
 <img src="digital-twin.png" width="500" height="205">
 
-When a mobile app sets a property value (e.g. `set_pt=72`), the cloud attempts to updates two values: (1) the digital-twin value, and, if the device is online, and if the value is acceptable (e.g. in range), (2) the edge-device value:
+When a mobile app sets a property value (e.g. `set_pt=72`), the cloud attempts to update two values: (1) the digital-twin value, and, if the device is online, and if the value is acceptable (e.g. in range), (2) the edge-device value:
 
 <img src="two-step-no-ack.png" width="450" height="133">
 
@@ -23,9 +23,9 @@ However, by default, as indicated by the checkboxes in the diagram above, the cl
 There are four requirements to ensuring that mobile or web applications can receive acknowledgments about edge-device property-value updates:
 
 1. The `ack_enabled` attribute of the property must be set to `true`.
-1. The edge-device host application must be ack-aware.
-1. The edge-device Ayla agent must be ack-aware. Currently, the [Production Agent](/edge-solutions/ayla-host-library-and-reference-application) and the [Linux agent](/edge-solutions/ayla-linux-device-solution) can handle these types of acknowledgments, and they use different implementations.
-1. The mobile or web application must ask the cloud for the acknowledgment.
+1. The host application must be ack-aware.
+1. The Ayla agent must be ack-aware. Currently, the [Production Agent](/edge-solutions/ayla-host-library-and-reference-application) and the [Linux agent](/edge-solutions/ayla-linux-device-solution) can handle these types of acknowledgments, and they use different implementations.
+1. The mobile or web application must ask the cloud for the acknowledgment. (The [Ayla Mobile SDK](https://docs.aylanetworks.com/mobile-and-web-apps/ayla-mobile-sdk-api-reference/) does this automatically for the mobile app.)
 
 When `ack_enabled=true`, the host application provides `status` and `message` information to the agent; the agent returns the information to the cloud; and the mobile or web app retrieves the information from the cloud. `ack_enabled` is a property attribute. The Ayla Cloud represents a property as a set of attributes and values. Here is an example:
 
