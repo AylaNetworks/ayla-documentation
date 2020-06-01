@@ -1,0 +1,129 @@
+* The Host Library supports ack-enabled properties.
+* The Linux agent does, too, but differently. 
+* The embedded agent does not.
+* I don't see much about ack-enabled properties in the Host Lib doc.
+
+
+Hi Matt,
+
+On a non-ack-enabled property, the diagram shows that the device responds to the cloud, but it really doesn’t.  The device does a GET /commands from ADS which returns commands and properties.  If the result includes properties, the cloud assumes the device got them.   There’s no feedback to the cloud whether it worked or not.  The app is supposed to know what properties and values are allowed by the device.
+
+On Ack-enabled properties, the GET /commands works the same.  There’s no response to the command.  However, the device (MCU) can later send an ACK.  So your diagram/explanation should not call this a response to the cloud … it’s a separate transaction.
+
+The ack-enabled property write-up should refer to the host library API doc for details … this shouldn’t re-document things that should be documented there.
+
+One thing is we don’t have a nice API for the host app to know that the property update will be acked.  That’s the prop->send_ack field currently.  If non-zero, when the set function is called, it means an ACK is requested and pended to be sent back.  Otherwise, the ack information is not used.  This could be used to change behavior … that is, if no ACK is expected but the value is out of range, the set function could decide to set the property after limiting the value, and echo it back, but if the property is ACK enabled, it could decide just send back the error without setting the property.
+
+> Do you see a way to further genericize anything in the existing tech note without making it vague?
+
+To apply this to all agents is a major task.  This is for production agents using our host library.  The protocol spec between the host and the production agent module should be where the details are documented for production agent MCUs not using our host library.   The cellular production agent I don’t remember whether the AT protocol we designed supports ack-enabled properties … probably not.  I don’t think embedded agents support this.  Linux agents do support ack-enabled properties, but the appd would probably be different.
+
+> Shall we have Dan add a few sentences about how to handle ack-enabled properties in a mobile app? We would need to change the title of the tech note, but it would make the picture more complete. 
+
+It’s up to you whether to include mobile content.
+
+> Importantly, can the cloud push an ack to a client? Is it recommended/reliable? 
+
+When you say “client”,  I hear ADS client … the device.  But I think you mean mobile client.  So, I don’t know … please ask the mobile or cloud team.
+
+Regards, Joe
+
+From Dan:
+
+Thanks Matt. The great thing is that from the mobile application developers perspective, there is no difference at all between an ACK and un-ACK property. Typically, an application will extend the time-out for the call, but that is optional and a standard option for every GET request.
+
+Here is some code from the  mobile SDK Example Test branch. You'll see the only difference is the timeout is extended to 10 seconds from 3 seconds... but 3 seconds would work, too.
+ 
+
+
+private void profileCloudCommand(TestSuite suite, AylaProperty prop, Object value) {
+    RequestFuture<AylaDatapoint<Integer>> future = RequestFuture.newFuture();
+    AylaAPIRequest<AylaDatapoint> request = prop.createDatapointCloud(value, null, future, future);
+    AylaDatapoint dp;
+    _cloudRequestCount++;
+    long startTime = System.currentTimeMillis();
+    try {
+        dp = future.get(prop.isAckEnabled() ? 10 * 1000 : 3000, TimeUnit.MILLISECONDS);
+    } catch (InterruptedException e) {
+        fail();
+        suite.logMessage(LogEntry.LogType.Error, "Interrupted");
+        return;
+    } catch (ExecutionException e) {
+        fail();
+        suite.logMessage(LogEntry.LogType.Error, "Error " + e.getMessage());
+        return;
+    } catch (TimeoutException e) {
+        fail();
+        suite.logMessage(LogEntry.LogType.Error, "Timed out waiting for response");
+        return;
+    }
+    long duration = System.currentTimeMillis() - startTime;
+    suite.logMessage(LogEntry.LogType.Info, "Changing "+ prop.getName() + " to " +
+            ""+value + " via Cloud" );
+    if (!dp.getValue().equals(value)) {
+        suite.logMessage(LogEntry.LogType.Warning, "Returned datapoint value is " + dp.getValue());
+    }
+    if (prop.isAckEnabled()) {
+        Date ackedAt = prop.getAckedAt();
+        if (ackedAt != null) {
+            long diff = ackedAt.getTime() - request.getNetworkResponseTimestamp();
+            suite.logMessage(LogEntry.LogType.Info, "Property ack'd by device " +
+                    Math.abs(diff) + "ms " +
+                    (diff <= 0 ? "before" : "after") + " the server response");
+        }
+    }
+    long networkTime = request.getNetworkTimeMs();;
+    _cloudNetworkTime += networkTime;
+    if(_cloudMinTime > networkTime){
+        _cloudMinTime = networkTime;
+    }
+    if(_cloudMaxTime < networkTime){
+        _cloudMaxTime = networkTime;
+    }
+    _cloudRequestPassCount++;
+    _cloudTotalTime += duration;
+    suite.logMessage(LogEntry.LogType.Info, "Cloud Operation Time: " + duration + "ms; Network: " +
+            networkTime+ "ms");
+}
+
+So the line that reads: 
+
+A mobile app leverages the Ayla Mobile SDK to poll the cloud for the acknowledgement.
+
+should read
+
+Because the mobile SDK will automatically handle properties marked as acknowledge in the device template, there are no code changes required by application developer. Typically the default time-out is extended to handle events with longer durations, but this is arbitrary and depends on the needs of the application.
+
+https://github.com/AylaNetworks/JS_AylaSDK/blob/develop/src/device/AylaProperty.ts
+
+The JavaScript client code also seamlessly supports ackEnabled properties.
+
+From Steve:
+
+I agree “client” has a lot of different meanings depending on context. I like using “mobile app”, “device” and “cloud” in discussion since those names are pretty unambiguous.
+
+Regarding property updates to the device, to make it a little clearer, here’s what happens:
+
+Mobile app posts a datapoint to the cloud to update a property
+Cloud sends an “ANS check” event (notification) to the device – this tells the device agent to check for updates from the cloud
+Device agent does a “get commands” to get any waiting commands and property updates from the cloud (handled by device agent on the module, not host app)
+Device agent sends the property update to the host app
+Host app applies the property update, or not, and optionally indicates to the host library the ack information
+--- if acking property ---
+
+Host library forwards the ack information to the device agent
+Device agent posts the ack information to the cloud
+….ack data is obtained by the mobile app somehow…
+ 
+
+Steve
+
+From Peter:
+
+I think we need to be a bit careful about providing too much detail in the document. We are not describing the protocol between the module and the cloud; we are describing the high-level interactions between the mobile device, cloud, and Device, and the specific interactions between the host library and the host app.
+
+I think the key thing to show from Joe’s description is that when the ack is sent from the device to the cloud, that counts as a separate transaction. It is not part of the transaction that sent the original property update to the device. That may have billing implications to the customer.
+
+I think Joe is correct that this needs to be a production agent specific document for now. Acknowledgments are supported on Linux but the API is quite different. Acknowledgments are not yet supported on embedded white box.
+
+Peter
