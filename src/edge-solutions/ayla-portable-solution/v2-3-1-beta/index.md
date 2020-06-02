@@ -6,27 +6,6 @@ editIcon: none
 classesFromPage: has-pagebar
 ---
 
-<aside id="pagebar" class="d-xl-block collapse">
-  <ul>
-    <li><a href="#core-title">Portable v2.3.1-beta</a></li>
-    <li><a href="#first-steps">First steps</a></li>
-    <li><a href="#build-and-run">Build and Run</a>
-      <ul>
-        <li><a href="#gcc-ubuntu-docker">GCC/Ubuntu/Docker</a>
-        <li><a href="#gcc-windows">GCC/Windows</a>
-      </ul>
-    </li>
-    <li><a href="#register-your-device">Register your device</a></li>
-  </ul>
-</aside>
-
-<div class="dropdown mb-3">
-  <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a version</button>
-  <div class="dropdown-menu" aria-labelledby="versions">
-    <a class="dropdown-item" href="../v2-3-1-beta">v2.3.1-beta</a>
-  </div>
-</div>
-
 The Ayla Portable Solution consists of software libraries not tied to any specific communication module SDK or chipset. It enables OEMs to extend Ayla connectivity to communication modules not supported by Ayla Integrated Agents, and to pick and choose features to incorporate or omit (e.g. OTA, LAN mode, Wi-Fi setup). <a href="https://www.aylanetworks.com/edge-connectivity" target="_blank">Learn more about the Ayla Portable Agent</a>
 
 # First steps

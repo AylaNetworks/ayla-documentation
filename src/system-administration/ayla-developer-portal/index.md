@@ -5,18 +5,6 @@ b: block
 classesFromPage: has-pagebar
 ---
 
-<aside id="pagebar" class="d-xl-block collapse">
-  <ul>
-    <li><a href="#core-title">Ayla DevKit v2.0</a></li>
-    <li><a href="#supplements">Supplements</a>
-      <ul>
-        <li><a href="#notification-terms">Notification terms</a></li>
-        <li><a href="#triggers">Triggers</a></li>
-        <li><a href="#notifications">Notifications</a></li>
-      </ul>
-    </li>
-</aside>
-
 See [Ayla Developer Portal User Guide](/archive/ayla-developer-portal-user-guide).
 
 To access the portal, use the link for your region:

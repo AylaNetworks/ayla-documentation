@@ -6,46 +6,6 @@ editIcon: none
 classesFromPage: has-pagebar
 ---
 
-<aside id="pagebar" class="d-xl-block collapse">
-  <ul>
-    <li><a href="#core-title">Linux Gateway v1.7</a>
-      <ul>
-        <li><a href="#generic-setup">Generic setup</a>
-      </ul>
-    </li>
-    <li><a href="#simulator-gateway">Simulator Gateway</a>
-      <ul>
-        <li><a href="#create-simulator-templates">Create templates</a>
-        <li><a href="#install-the-ayla-simulator-gateway">Install Ayla gateway</a>
-        <li><a href="#add-simulator-nodes">Add nodes</a>
-      </ul>
-    </li>
-    <li><a href="#bluetooth-gateway">Bluetooth Gateway</a>
-      <ul>
-        <li><a href="#create-bluetooth-templates">Create templates</a>
-        <li><a href="#install-the-ayla-bluetooth-gateway">Install Ayla gateway</a>
-        <li><a href="#add-grillright-node">Add Grillright node</a>
-        <li><a href="#add-magic-blue-node">Add Magic Blue node</a>
-      </ul>
-    </li>
-    <li><a href="#zigbee-gateway">Zigbee Gateway</a>
-      <ul>
-        <li><a href="#install-zigbee-stack">Install stack</a>
-        <li><a href="#create-zigbee-templates">Create templates</a>
-        <li><a href="#install-the-ayla-zigbee-gateway">Install Ayla gateway</a>
-        <li><a href="#add-zigbee-nodes">Add nodes</a>
-      </ul>
-    </li>
-  </ul>
-</aside>
-
-<div class="dropdown mb-3">
-  <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a version</button>
-  <div class="dropdown-menu" aria-labelledby="versions">
-    <a class="dropdown-item" href="../v1-7">v1.7</a>
-  </div>
-</div>
-
 This guide helps you experiment with the Ayla Linux Gateway Solution on a Raspberry Pi:
 
 <img src="gateway-generic.png" width="600" height="365">

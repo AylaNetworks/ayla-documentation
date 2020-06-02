@@ -129,17 +129,17 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 
 # Content Notes
 
-## Page Status
+## Page information
 
-|Title|Owner|Editable|Level|
+|Title|Owner|Editable|Status|
 |-|-|-|-|-|
 |[**Getting Started**](/)|Matt Hagen|x|1|
 |[**Edge Solutions**](/edge-solutions)|Matt Hagen|x|1|
-|[Ayla Host Library and Reference Application v2.1](/edge-solutions/ayla-host-library-and-reference-application/v2-1/)|Joe Eykhold|Yes|2|
-|[Ayla Embedded Agent](/edge-solutions/ayla-embedded-agent/)|Matt Hagen|Yes|2|
+|[Ayla Host Library and Reference Application v2.1](/edge-solutions/ayla-host-library-and-reference-application/v2-1/)|Joe Eykhold|&#10004;|2|
+|[Ayla Embedded Agent](/edge-solutions/ayla-embedded-agent/)|Matt Hagen|&#10004;|2|
 |[Ayla Development Kit v2.0](/edge-solutions/ayla-development-kit/v2-0/)|Matt Hagen|x|1|
 |[Ayla ESP32 Solution v1.6](/edge-solutions/ayla-esp32-solution/v1-6/)|Matt Hagen|x|1|
-|[Ayla ESP32 Solution v1.5.3](/edge-solutions/ayla-esp32-solution/v1-5-3/)|Matt Hagen|Yes|2|
+|[Ayla ESP32 Solution v1.5.3](/edge-solutions/ayla-esp32-solution/v1-5-3/)|Matt Hagen|&#10004;|2|
 |[Ayla ESP32 Solution v1.5-beta](/edge-solutions/ayla-esp32-solution/v1-5-beta/)|Matt Hagen|x|1|
 |[Ayla ESP32 Solution v1.3.10-beta](/edge-solutions/ayla-esp32-solution/v1-3-10-beta/)|Matt Hagen|x|1|
 |[Ayla ESP32 Solution v1.3.9](/edge-solutions/ayla-esp32-solution/v1-3-9/)|Matt Hagen|x|1|
@@ -147,27 +147,28 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 |[Ayla Portable Solution v2.3.1-beta](/edge-solutions/ayla-portable-solution/v2-3-1-beta/)|Matt Hagen|x|1|
 |[Ayla Linux Device Solution v1.7](/edge-solutions/ayla-linux-device-solution/v1-7/)|Matt Hagen|x|1|
 |[Ayla Linux Gateway Solution v1.7](/edge-solutions/ayla-linux-gateway-solution/v1-7/)|Matt Hagen|x|1|
-|[Ayla Module / MCU Interface](/edge-solutions/ayla-module-mcu-interface/v2020-04/)|Matt Hagen|Yes|2|
-|[Ethernet for Murata Modules](/edge-solutions/ethernet-for-murata-modules/)|Matt Hagen|Yes|2|
-|[Firmware, Pin Mappings, GATT](/edge-solutions/firmware-pin-mappings-gatt/)|Matt Hagen|Yes|2|
+|[Ayla Module / MCU Interface](/edge-solutions/ayla-module-mcu-interface/v2020-04/)|Matt Hagen|&#10004;|2|
+|[Ethernet for Murata Modules](/edge-solutions/ethernet-for-murata-modules/)|Matt Hagen|&#10004;|2|
+|[Firmware, Pin Mappings, GATT](/edge-solutions/firmware-pin-mappings-gatt/)|Matt Hagen|&#10004;|2|
 |[**Cloud Services**](/cloud-services/)|Matt Hagen|x|1|
-|[API Browser](/cloud-services/api-browser)|Matt Hagen|x||
-|[API Users Guide](/cloud-services/api-users-guide)|Matt Hagen|Yes||
-|[API Workbench](/cloud-services/api-workbench)|Matt Hagen|x||
-|[**Mobile and Web Apps**](/mobile-and-web-apps/)|Matt Hagen|Yes|2|
-|[**System Administration**](/system-administration/)|Matt Hagen|Yes|2|
-|[Aura Mobile App](/system-administration//aura-mobile-app/)|Matt Hagen|Yes|2|
-|[Ayla Dashboard Portal](/system-administration/ayla-dashboard-portal/)|Matt Hagen|Yes|2|
-|[Ayla Developer Portal](/system-administration/ayla-developer-portal/)|Matt Hagen|||
-|[**Tech Notes**](/tech-notes/)|Matt Hagen|||
-|[How to write and publish a tech note](/tech-notes/how-to-write-and-publish-a-tech-note/)|Matt Hagen||1|
-|[**Archive**](/archive/)|Matt Hagen|No|1|
+|[API Browser](/cloud-services/api-browser)|Matt Hagen|x|1|
+|[API Users Guide](/cloud-services/api-users-guide)|Matt Hagen|&#10004;|2|
+|[API Workbench](/cloud-services/api-workbench)|Matt Hagen|x|1|
+|[**Mobile and Web Apps**](/mobile-and-web-apps/)|Matt Hagen|&#10004;|2|
+|[**System Administration**](/system-administration/)|Matt Hagen|&#10004;|2|
+|[Aura Mobile App](/system-administration//aura-mobile-app/)|Matt Hagen|&#10004;|2|
+|[Ayla Dashboard Portal](/system-administration/ayla-dashboard-portal/)|Matt Hagen|&#10004;|2|
+|[Ayla Developer Portal](/system-administration/ayla-developer-portal/)|Matt Hagen|&#10004;|2|
+|[**Tech Notes**](/tech-notes/)|Matt Hagen|&#10004;|2|
+|[How to write and publish a tech note](/tech-notes/how-to-write-and-publish-a-tech-note/)|Matt Hagen|&#10004;|2|
+|[**Archive**](/archive/)|Matt Hagen|x|1|
 
-* Level 1
-    1. Set Editable state.
-    1. Remove toc and version dropdown in source file.
-* Level 2
-    1. Modify markdown so that it renders acceptably in Github.
+## Status Descriptions
+
+|Status|Descriptions|
+|-|-|
+|1|- Establish initial editable state. `Yes` is default. `No` must be explicit.<br/>- Remove toc and version dropdown in source file where applicable.|
+|2|- Modify markdown so that it renders acceptably in Github.|
 
 ## Pseudonymization
 

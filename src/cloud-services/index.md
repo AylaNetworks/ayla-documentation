@@ -6,12 +6,6 @@ editIcon: none
 classesFromPage: has-pagebar
 ---
 
-<aside id="pagebar" class="d-xl-block collapse">
-  <ul>
-    <li><a href="#core-title">Cloud Services</a></li>
-  </ul>
-</aside>
-
 Welcome, developers and integrators! This video introduces you to Ayla Cloud Services and APIs:
 
 <iframe 
