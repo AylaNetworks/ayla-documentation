@@ -14,7 +14,7 @@ Need to create, update, or clarify Ayla-related content for a contact, customer,
 1. In the Jira ticket, click the link to your new, unpublished Ayla Docs Tech Note ([example](https://docs.aylanetworks.com/tech-notes/00000001/)). 
 1. Click the pencil icon next to the title. The Github version of your Tech Note appears in a new tab.
 1. Click the pencil icon to `Edit this file`.
-1. Modify the `title`, `author`, and `creationDate` fields at the top of the file.
+1. Modify the `title` and `author` fields at the top of the file if necessary.
 1. Write your tech note. If you have questions, ask them in your Jira ticket.
 1. To save, scroll down to `Commit changes`, write a short summary, and click the `Commit changes` button.
 1. Repeat the Edit and Commit steps as needed.
