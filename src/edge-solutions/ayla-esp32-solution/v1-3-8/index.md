@@ -2,6 +2,7 @@
 title: Ayla ESP32 Solution v1.3.8
 layout: site.html
 c: block
+editIcon: none
 classesFromPage: has-pagebar
 ---
 

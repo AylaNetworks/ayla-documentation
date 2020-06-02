@@ -2,6 +2,7 @@
 title: Ayla Portable Solution v2.3.1-beta
 layout: site.html
 c: block
+editIcon: none
 classesFromPage: has-pagebar
 ---
 

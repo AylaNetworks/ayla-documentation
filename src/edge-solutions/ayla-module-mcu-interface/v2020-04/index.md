@@ -158,7 +158,7 @@ Each packet is encapsulated with a packet type with a sequence number before the
 The encapsulation between flag bytes is shown in the following table:
 
 |Byte(s)|Name|Meaning|
-|-|
+|-|-|-|
 |0|Type|Packet type code|
 |1|Seq|Sequence number|
 |2 to n+1|Payload|Data or control packet|

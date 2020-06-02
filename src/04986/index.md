@@ -135,19 +135,19 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 |-|-|-|-|-|
 |[**Getting Started**](/)|Matt Hagen|x|1|
 |[**Edge Solutions**](/edge-solutions)|Matt Hagen|x|1|
-|[Ayla Host Library and Reference Application v2.1](/edge-solutions/ayla-host-library-and-reference-application/v2-1/)|Joe Eykhold|Yes|1|
-|[Ayla Embedded Agent](/edge-solutions/ayla-embedded-agent/)|Matt Hagen|Yes|1|
+|[Ayla Host Library and Reference Application v2.1](/edge-solutions/ayla-host-library-and-reference-application/v2-1/)|Joe Eykhold|Yes|2|
+|[Ayla Embedded Agent](/edge-solutions/ayla-embedded-agent/)|Matt Hagen|Yes|2|
 |[Ayla Development Kit v2.0](/edge-solutions/ayla-development-kit/v2-0/)|Matt Hagen|x|1|
 |[Ayla ESP32 Solution v1.6](/edge-solutions/ayla-esp32-solution/v1-6/)|Matt Hagen|x|1|
-|[Ayla ESP32 Solution v1.5.3](/edge-solutions/ayla-esp32-solution/v1-5-3/)|Matt Hagen|||
-|[Ayla ESP32 Solution v1.5-beta](/edge-solutions/ayla-esp32-solution/v1-5-beta/)|Matt Hagen|||
-|[Ayla ESP32 Solution v1.3.10-beta](/edge-solutions/ayla-esp32-solution/v1-3-10-beta/)|Matt Hagen|||
-|[Ayla ESP32 Solution v1.3.9](/edge-solutions/ayla-esp32-solution/v1-3-9/)|Matt Hagen|||
-|[Ayla ESP32 Solution v1.3.8](/edge-solutions/ayla-esp32-solution/v1-3-8/)|Matt Hagen|||
-|[Ayla Portable Solution v2.3.1-beta](/edge-solutions/ayla-portable-solution/v2-3-1-beta/)|Matt Hagen|||
-|[Ayla Linux Device Solution v1.7](/edge-solutions/ayla-linux-device-solution/v1-7/)|Matt Hagen|||
-|[Ayla Linux Gateway Solution v1.7](/edge-solutions/ayla-linux-gateway-solution/v1-7/)|Matt Hagen|||
-|[Ayla Module / MCU Interface](/edge-solutions/ayla-module-mcu-interface/v2020-04/)|Matt Hagen||1|
+|[Ayla ESP32 Solution v1.5.3](/edge-solutions/ayla-esp32-solution/v1-5-3/)|Matt Hagen|Yes|2|
+|[Ayla ESP32 Solution v1.5-beta](/edge-solutions/ayla-esp32-solution/v1-5-beta/)|Matt Hagen|x|1|
+|[Ayla ESP32 Solution v1.3.10-beta](/edge-solutions/ayla-esp32-solution/v1-3-10-beta/)|Matt Hagen|x|1|
+|[Ayla ESP32 Solution v1.3.9](/edge-solutions/ayla-esp32-solution/v1-3-9/)|Matt Hagen|x|1|
+|[Ayla ESP32 Solution v1.3.8](/edge-solutions/ayla-esp32-solution/v1-3-8/)|Matt Hagen|x|1|
+|[Ayla Portable Solution v2.3.1-beta](/edge-solutions/ayla-portable-solution/v2-3-1-beta/)|Matt Hagen|x|1|
+|[Ayla Linux Device Solution v1.7](/edge-solutions/ayla-linux-device-solution/v1-7/)|Matt Hagen|x|1|
+|[Ayla Linux Gateway Solution v1.7](/edge-solutions/ayla-linux-gateway-solution/v1-7/)|Matt Hagen|x|1|
+|[Ayla Module / MCU Interface](/edge-solutions/ayla-module-mcu-interface/v2020-04/)|Matt Hagen|Yes|2|
 |[Ethernet for Murata Modules](/edge-solutions/ethernet-for-murata-modules/)|Matt Hagen|||
 |[Firmware, Pin Mappings, GATT](/edge-solutions/firmware-pin-mappings-gatt/)|Matt Hagen|||
 |[**Cloud Services**](/cloud-services/)|Matt Hagen|||

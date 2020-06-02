@@ -2,6 +2,7 @@
 title: Ayla Linux Gateway Solution v1.7
 layout: site.html
 c: block
+editIcon: none
 classesFromPage: has-pagebar
 ---
 
