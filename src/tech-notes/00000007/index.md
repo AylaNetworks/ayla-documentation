@@ -2,7 +2,8 @@
 title: Supporting end users of Ayla-enabled devices
 layout: technote.html
 author: Trinh Phan
-creationDate: June 1, 2020
+creationDate: May 28, 2020
+lastModifiedDate: June 1, 2020
 classesFromPage: has-pagebar
 ---
 
