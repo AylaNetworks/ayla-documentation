@@ -131,42 +131,43 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 
 ## Page Status
 
-|Title|ID|Owner|Editable|Level|
+|Title|Owner|Editable|Level|
 |-|-|-|-|-|
-|[**Getting Started**](https://docs.aylanetworks.com/)||Matt Hagen|<span style="color:red;">No</span>|<span style="color:blue;">002</span>|
-|[**Edge Solutions**](/edge-solutions)||Matt Hagen|<span style="color:red;">No</span>|<span style="color:blue;">002</span>|
-|[Ayla Host Library and Reference Application v2.1](https://docs.aylanetworks.com/edge-solutions/ayla-host-library-and-reference-application/v2-1/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:blue;">002</span>|
-|[Ayla Embedded Agent](https://docs.aylanetworks.com/edge-solutions/ayla-embedded-agent/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:blue;">002</span>|
-|[Ayla Development Kit v2.0](https://docs.aylanetworks.com/edge-solutions/ayla-development-kit/v2-0/)||Matt Hagen|<span style="color:red;">No</span>|<span style="color:blue;">002</span>|
-|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.6</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-6/)||Matt Hagen|&nbsp;|001|
-|[Ayla ESP32 Solution v1.5.3](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-5-3/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.5-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-5-beta/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.10-beta</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-10-beta/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.9</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-9/)||Matt Hagen|&nbsp;|001|
-|&nbsp;&nbsp;&nbsp;[<span style="color:gray;">Ayla ESP32 Solution v1.3.8</span>](https://docs.aylanetworks.com/edge-solutions/ayla-esp32-solution/v1-3-8/)||Matt Hagen|&nbsp;|001|
-|[Ayla Portable Solution v2.3.1-beta](https://docs.aylanetworks.com/edge-solutions/ayla-portable-solution/v2-3-1-beta/)||Matt Hagen|&nbsp;|001|
-|[Ayla Linux Device Solution v1.7](https://docs.aylanetworks.com/edge-solutions/ayla-linux-device-solution/v1-7/)||Matt Hagen|&nbsp;|001|
-|[Ayla Linux Gateway Solution v1.7](https://docs.aylanetworks.com/edge-solutions/ayla-linux-gateway-solution/v1-7/)||Matt Hagen|&nbsp;|001|
-|[Ayla Module / MCU Interface](https://docs.aylanetworks.com/edge-solutions/ayla-module-mcu-interface/v2020-04/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:blue;">002</span>|
-|[Ethernet for Murata Modules](https://docs.aylanetworks.com/edge-solutions/ethernet-for-murata-modules/)||Matt Hagen|&nbsp;|001|
-|[Firmware, Pin Mappings, GATT](https://docs.aylanetworks.com/edge-solutions/firmware-pin-mappings-gatt/)||Matt Hagen|&nbsp;|001|
-|[**Cloud Services**](https://docs.aylanetworks.com/cloud-services/)||Matt Hagen|&nbsp;|001|
-|[API Browser](https://docs.aylanetworks.com/cloud-services/api-browser)||Matt Hagen|<span style="color:red;">No</span>|001|
-|[API Users Guide](https://docs.aylanetworks.com/cloud-services/api-users-guide)||Matt Hagen|<span style="color:green;">Yes</span>|001|
-|[API Workbench](https://docs.aylanetworks.com/cloud-services/api-workbench)||Matt Hagen|<span style="color:red;">No</span>|001|
-|[**Mobile and Web Apps**](https://docs.aylanetworks.com/mobile-and-web-apps/)||Matt Hagen|&nbsp;|001|
-|[**System Administration**](https://docs.aylanetworks.com/system-administration/)||Matt Hagen|&nbsp;|001|
-|[Aura Mobile App](https://docs.aylanetworks.com/system-administration//aura-mobile-app/)||Matt Hagen|&nbsp;|001|
-|[Ayla Dashboard Portal](https://docs.aylanetworks.com/system-administration/ayla-dashboard-portal/)||Matt Hagen|&nbsp;|001|
-|[Ayla Developer Portal](https://docs.aylanetworks.com/system-administration/ayla-developer-portal/)||Matt Hagen|&nbsp;|001|
-|[**Tech Notes**](https://docs.aylanetworks.com/tech-notes/)||Matt Hagen|&nbsp;|001|
-|[How to write and publish a tech note](https://docs.aylanetworks.com/tech-notes/how-to-write-and-publish-a-tech-note/)||Matt Hagen|<span style="color:green;">Yes</span>|<span style="color:green;">003</span>|
-|[**Archive**](https://docs.aylanetworks.com/archive/)||Matt Hagen|<span style="color:red;">No</span>|001|
+|[**Getting Started**](/)|Matt Hagen|x|1|
+|[**Edge Solutions**](/edge-solutions)|Matt Hagen|x|2|
+|[Ayla Host Library and Reference Application v2.1](/edge-solutions/ayla-host-library-and-reference-application/v2-1/)|Joe Eykhold|Yes|2|
+|[Ayla Embedded Agent](/edge-solutions/ayla-embedded-agent/)|Matt Hagen|Yes|2|
+|[Ayla Development Kit v2.0](/edge-solutions/ayla-development-kit/v2-0/)|Matt Hagen|x|2|
+|[Ayla ESP32 Solution v1.6](/edge-solutions/ayla-esp32-solution/v1-6/)|Matt Hagen|x|2|
+|[Ayla ESP32 Solution v1.5.3](/edge-solutions/ayla-esp32-solution/v1-5-3/)|Matt Hagen|&nbsp;||
+|[Ayla ESP32 Solution v1.5-beta](/edge-solutions/ayla-esp32-solution/v1-5-beta/)|Matt Hagen|&nbsp;||
+|[Ayla ESP32 Solution v1.3.10-beta](/edge-solutions/ayla-esp32-solution/v1-3-10-beta/)|Matt Hagen|&nbsp;||
+|[Ayla ESP32 Solution v1.3.9](/edge-solutions/ayla-esp32-solution/v1-3-9/)|Matt Hagen|&nbsp;||
+|[Ayla ESP32 Solution v1.3.8](/edge-solutions/ayla-esp32-solution/v1-3-8/)|Matt Hagen|&nbsp;||
+|[Ayla Portable Solution v2.3.1-beta](/edge-solutions/ayla-portable-solution/v2-3-1-beta/)|Matt Hagen|&nbsp;||
+|[Ayla Linux Device Solution v1.7](/edge-solutions/ayla-linux-device-solution/v1-7/)|Matt Hagen|&nbsp;||
+|[Ayla Linux Gateway Solution v1.7](/edge-solutions/ayla-linux-gateway-solution/v1-7/)|Matt Hagen|&nbsp;||
+|[Ayla Module / MCU Interface](/edge-solutions/ayla-module-mcu-interface/v2020-04/)|Matt Hagen||2|
+|[Ethernet for Murata Modules](/edge-solutions/ethernet-for-murata-modules/)|Matt Hagen|&nbsp;||
+|[Firmware, Pin Mappings, GATT](/edge-solutions/firmware-pin-mappings-gatt/)|Matt Hagen|&nbsp;||
+|[**Cloud Services**](/cloud-services/)|Matt Hagen|&nbsp;||
+|[API Browser](/cloud-services/api-browser)|Matt Hagen|No||
+|[API Users Guide](/cloud-services/api-users-guide)|Matt Hagen|||
+|[API Workbench](/cloud-services/api-workbench)|Matt Hagen|No||
+|[**Mobile and Web Apps**](/mobile-and-web-apps/)|Matt Hagen|&nbsp;||
+|[**System Administration**](/system-administration/)|Matt Hagen|&nbsp;||
+|[Aura Mobile App](/system-administration//aura-mobile-app/)|Matt Hagen|&nbsp;||
+|[Ayla Dashboard Portal](/system-administration/ayla-dashboard-portal/)|Matt Hagen|&nbsp;||
+|[Ayla Developer Portal](/system-administration/ayla-developer-portal/)|Matt Hagen|&nbsp;||
+|[**Tech Notes**](/tech-notes/)|Matt Hagen|&nbsp;||
+|[How to write and publish a tech note](/tech-notes/how-to-write-and-publish-a-tech-note/)|Matt Hagen||3|
+|[**Archive**](/archive/)|Matt Hagen|No|&nbsp;|
 
-* Level 002
+* Level 1
     1. Set Editable state.
+* Level 2
     1. Remove toc in source file.
-* Level 003
+* Level 3
     1. Modify markdown so that it renders acceptably in Github.
 
 ## Pseudonymization

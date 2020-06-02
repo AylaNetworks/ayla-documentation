@@ -2,37 +2,9 @@
 title: Ayla ESP32 Solution v1.6
 layout: site.html
 c: block
+editIcon: none
 classesFromPage: has-pagebar
 ---
-
-<aside id="pagebar" class="d-xl-block collapse">
-  <ul>
-    <li><a href="#core-title">ESP32 v1.6</a></li>
-    <li><a href="#first-steps">First steps</a></li>
-    <li><a href="#build-and-run">Build and Run</a>
-      <ul>
-        <li><a href="#gcc-ubuntu-docker">GCC/Ubuntu/Docker</a>
-        <li><a href="#gcc-windows">GCC/Windows</a>
-      </ul>
-    </li>
-    <li><a href="#register-your-device">Register your device</a></li>
-    <li><a href="#perform-an-ota-update">Perform an OTA update</a></li>
-    <li><a href="#sample-application-code">Sample Application Code</a>
-      <ul>
-        <li><a href="#properties">Properties</a></li>
-        <li><a href="#demo_ledevb-c">demo_ledevb.c</a></li>
-        <li><a href="#demo_common-c">demo_common.c</a></li>
-        <li><a href="#conf-c">conf.c</a></li>
-        <li><a href="#command-c">command.c</a></li>
-        <li><a href="#ota-c">ota.c</a></li>
-        <li><a href="#sched_conf-c">sched_conf.c</a></li>
-        <li><a href="#demo_stub-c">demo_stub.c</a></li>
-        <li><a href="#demo_wifi-c">demo_wifi.c</a></li>
-      </ul>
-    </li>
-    <li><a href="#library-code">Library Code</a></li>
-  </ul>
-</aside>
 
 <div class="dropdown mb-3">
   <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose a version</button>
