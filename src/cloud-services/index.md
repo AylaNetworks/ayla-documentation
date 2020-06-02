@@ -2,6 +2,7 @@
 title: Cloud Services
 layout: site.html
 a: block
+editIcon: none
 classesFromPage: has-pagebar
 ---
 

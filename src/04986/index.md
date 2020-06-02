@@ -148,14 +148,14 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 |[Ayla Linux Device Solution v1.7](/edge-solutions/ayla-linux-device-solution/v1-7/)|Matt Hagen|x|1|
 |[Ayla Linux Gateway Solution v1.7](/edge-solutions/ayla-linux-gateway-solution/v1-7/)|Matt Hagen|x|1|
 |[Ayla Module / MCU Interface](/edge-solutions/ayla-module-mcu-interface/v2020-04/)|Matt Hagen|Yes|2|
-|[Ethernet for Murata Modules](/edge-solutions/ethernet-for-murata-modules/)|Matt Hagen|||
-|[Firmware, Pin Mappings, GATT](/edge-solutions/firmware-pin-mappings-gatt/)|Matt Hagen|||
-|[**Cloud Services**](/cloud-services/)|Matt Hagen|||
-|[API Browser](/cloud-services/api-browser)|Matt Hagen|No||
-|[API Users Guide](/cloud-services/api-users-guide)|Matt Hagen|||
-|[API Workbench](/cloud-services/api-workbench)|Matt Hagen|No||
-|[**Mobile and Web Apps**](/mobile-and-web-apps/)|Matt Hagen|||
-|[**System Administration**](/system-administration/)|Matt Hagen|||
+|[Ethernet for Murata Modules](/edge-solutions/ethernet-for-murata-modules/)|Matt Hagen|Yes|2|
+|[Firmware, Pin Mappings, GATT](/edge-solutions/firmware-pin-mappings-gatt/)|Matt Hagen|Yes|2|
+|[**Cloud Services**](/cloud-services/)|Matt Hagen|x|1|
+|[API Browser](/cloud-services/api-browser)|Matt Hagen|x||
+|[API Users Guide](/cloud-services/api-users-guide)|Matt Hagen|Yes||
+|[API Workbench](/cloud-services/api-workbench)|Matt Hagen|x||
+|[**Mobile and Web Apps**](/mobile-and-web-apps/)|Matt Hagen|Yes|2|
+|[**System Administration**](/system-administration/)|Matt Hagen|Yes|2|
 |[Aura Mobile App](/system-administration//aura-mobile-app/)|Matt Hagen|||
 |[Ayla Dashboard Portal](/system-administration/ayla-dashboard-portal/)|Matt Hagen|||
 |[Ayla Developer Portal](/system-administration/ayla-developer-portal/)|Matt Hagen|||
