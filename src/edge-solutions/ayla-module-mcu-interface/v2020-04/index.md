@@ -75,7 +75,7 @@ Following are descriptions of single-byte commands, packet transfers, and error 
 Single-byte commands have the following format:
 
 |Bit 7 (MSB)|6|5-0|
-|-|
+|-|-|-|
 |Transfer|Direction|Payload Length|
 
 * Bit 7: Transfer is set when command is a data transfer.
@@ -184,7 +184,7 @@ Following is an example packet:
 The table below lists the currently-defined packet types. All other packet types are reserved and should be ignored if received by the MCU.
 
 |Ptype|Name|Meaning|
-|-|
+|-|-|-|
 |0x01|Data|The packet is a data, control, or ping packet.|
 |0x02|Ack|Acknowledges packet receipt as indicated by the sequence ID.|
 
