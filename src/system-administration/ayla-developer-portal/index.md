@@ -57,37 +57,39 @@ To access the portal, use the link for your region:
 ## Notification terms
 
 Navigate to a device properties tab, and note the Triggers and Notifications tabs:
-<img src="notifications.png" width="740">
+
+<div><img src="notifications.png" width="740"></div>
+
 Triggers = Aura Property Notifications. Notifications = Aura Device Notifications.
 
 ## Triggers
 
 1. Click the Triggers tab for the Green_LED property. A triggers list appears with (probably) one trigger:
-<img src="green-led-triggers.png" width="700">
+    <div><img src="green-led-triggers.png" width="700"></div>
 1. Click Green_LED on the Triggers list. An applications list appears with (probably) one application:
-<img src="green-led-trigger.png" width="700">
+    <div><img src="green-led-trigger.png" width="700"></div>
 1. Click push_ios. An Edit Application window appears representing the Aura <u>property</u> notification.
-<img src="edit-property-app.png" width="300">
+    <div><img src="edit-property-app.png" width="300"></div>
 1. Click Cancel. Then, click Add, create an email application similar to the following (substitute an email), and click OK.
-<img src="add-property-notification-app.png" width="300">
-The new application appears on the list:
-<img src="new-property-app-on-list.png" width="700">
+    <div><img src="add-property-notification-app.png" width="300"></div>
+    The new application appears on the list:
+    <div><img src="new-property-app-on-list.png" width="700"></div>
 1. Toggle the Green_LED property value.
 1. Check your email. You should receive one similar to the following:
-<img src="trigger-email.png" width="320">
+    <div><img src="trigger-email.png" width="320"></div>
 
 ## Notifications
 
 1. Click the Notifications tab. The notifications list appears with (probably) one notification:
-<img src="notifications-list.png" width="700">
+    <div><img src="notifications-list.png" width="700"></div>
 1. Click on_connection_lost on the list. An application list appears with (probably) one application:
-<img src="on-connection-lost-apps.png" width="700">
+    <div><img src="on-connection-lost-apps.png" width="700"></div>
 1. Click push_ios. An Edit Application window appears representing the Aura <u>device</u> notification.
-<img src="edit-device-app.png" width="300">
+    <div><img src="edit-device-app.png" width="300"></div>
 1. Click Cancel. Then, click Add, create an email application similar to the following (substitute an email), and click OK.
-<img src="add-device-notification-app.png" width="300">
-The new application appears on the list:
-<img src="new-device-app-on-list.png" width="700">
+    <div><img src="add-device-notification-app.png" width="300"></div>
+    The new application appears on the list:
+    <div><img src="new-device-app-on-list.png" width="700"></div>
 1. Power-off your dev kit, and wait for a few minutes.
 1. Check your email. You should receive one similar to the following:
-<img src="notification-email.png" width="320">
+    <div><img src="notification-email.png" width="320"></div>

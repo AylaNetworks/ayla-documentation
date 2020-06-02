@@ -156,12 +156,12 @@ mysqldump -u root -p adms_ayla > adms_ayla-`date '+%FT%T'`.sql
 |[API Workbench](/cloud-services/api-workbench)|Matt Hagen|x||
 |[**Mobile and Web Apps**](/mobile-and-web-apps/)|Matt Hagen|Yes|2|
 |[**System Administration**](/system-administration/)|Matt Hagen|Yes|2|
-|[Aura Mobile App](/system-administration//aura-mobile-app/)|Matt Hagen|||
-|[Ayla Dashboard Portal](/system-administration/ayla-dashboard-portal/)|Matt Hagen|||
+|[Aura Mobile App](/system-administration//aura-mobile-app/)|Matt Hagen|Yes|2|
+|[Ayla Dashboard Portal](/system-administration/ayla-dashboard-portal/)|Matt Hagen|Yes|2|
 |[Ayla Developer Portal](/system-administration/ayla-developer-portal/)|Matt Hagen|||
 |[**Tech Notes**](/tech-notes/)|Matt Hagen|||
 |[How to write and publish a tech note](/tech-notes/how-to-write-and-publish-a-tech-note/)|Matt Hagen||1|
-|[**Archive**](/archive/)|Matt Hagen|No|&nbsp;|
+|[**Archive**](/archive/)|Matt Hagen|No|1|
 
 * Level 1
     1. Set Editable state.
