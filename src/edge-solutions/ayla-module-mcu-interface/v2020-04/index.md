@@ -60,7 +60,7 @@ With SPI, the MCU initiates all communications. When the module is initialized, 
 After initialization, every time the MCU sends a single-byte command to the module, the module returns a one-byte status in this format:
 
 |Bit 7 (MSB)|6|5|4|3|2|1|0 (LSB)|
-|-|
+|-|-|-|-|-|-|-|-|
 |Invalid||||ADS Busy|Error|Attention|Busy|
 
 * Bit 7: Invalid (must be zero) - status values from message start byte. MCU checks this bit. If set, ignores the rest of the status. Helps detect bugs (for example, module sends all ones or MISO line is floating).
