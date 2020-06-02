@@ -3,6 +3,7 @@ title: Handling ack-enabled properties
 layout: technote.html
 author: Matt Hagen
 creationDate: May 31, 2020
+lastModifiedDate: June 1, 2020
 classesFromPage: has-pagebar
 ---
 
