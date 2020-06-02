@@ -41,7 +41,7 @@ The Type-1LD module uses an SPI bus to connect to the Ethernet chip. This is sep
 The following table provides the Type-1LD module signals for Ethernet. By default, none of the module GPIOs listed in the table below are used for other purposes, so be sure not to configure them. They should be shown as "not used" or "in use (eth)" by the "gpio" CLI command, which shows the status of various configurable I/Os.
 
 |Signal Name|Module GPIO Pin|Module Pin Name|Module Pin|Daughtercard Hirose Connector Pin|AX88796C Pin|ASIX SMDK2440 V1.0 Demo board Pin|
-|-|
+|-|-|-|-|-|-|-|
 |RESET_N|sss|nRESET|32|18|17|J11-30|
 |IRQ|PB4|PB4/JTRST|19|39|23|J11-18|
 |MOSI|PB15|PB15/SPI2_MOSI|28|1|42|J13-2|
@@ -56,7 +56,7 @@ The Type-YD module uses a SPI bus to connect to the Ethernet chip. This is separ
 The following table provides the Type-YD module signals for Ethernet. By default, none of the module GPIOs listed in the table below are used for other purposes, so be sure not to configure them. They should be shown as "not used" or "in use (eth)" by the "gpio" CLI command, which shows the status of various configurable I/Os.
 
 |Signal Name|Module GPIO Pin|Module Pin Name|Module Pin|Daughtercard Hirose Connector Pin|AX88796C Pin|ASIX SMDK2440 V1.0 Demo board Pin|
-|-|
+|-|-|-|-|-|-|-|
 |RSTN|sss|NRST|2|2|17|J11-30|
 |IRQ|PA3|PA3/UART2_RX|43|37|23|J11-18|
 |MOSI|PB15|USBDP|33|8|42|J13-2|
