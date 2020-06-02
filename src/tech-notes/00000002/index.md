@@ -86,7 +86,7 @@ The agent passes the information to the host application which completes the edg
 
 <img src="agent-to-host-lib-to-app.png" width="720" height="136">
 
-In this scenario above, no status information about the edge-device update flows back to the cloud, so the mobile app cannot ask the cloud whether the property value was actually updated on the edge device. But, when `ack_enabled=true`, and when the mobile app, agent, and host app are *ack-aware*, the edge-device update status flows back to the mobile app. The following shows a positive acknowledgment where `ack_status=0` means `success`, and the `ack_message` integer `123` is user-defined:
+In the scenario above, no status information about the edge-device update flows back to the cloud, so the mobile app cannot ask the cloud whether the property value was actually updated on the edge device. But, when `ack_enabled=true`, and when the mobile app, agent, and host app are *ack-aware*, the edge-device update status flows back to the mobile app. The following shows a positive acknowledgment where `ack_status=0` means `success`, and the `ack_message` integer `123` is user-defined:
 
 <img src="ack-enabled-success.png" width="720" height="270">
 
