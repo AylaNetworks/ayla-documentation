@@ -3,6 +3,7 @@ title: Using BLE to set up Wi-Fi for ESP32
 layout: technote.html
 author: Steve Grau
 creationDate: May 5, 2020
+lastModifiedDate: May 5, 2020
 ---
 
 ### Becoming familiar with BLE Wi-Fi Config support

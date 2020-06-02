@@ -1,8 +1,7 @@
 ---
-title: Temp
+title: Available
 layout: technote.html
-author: Matt Hagen
-creationDate: May 31, 2020
-classesFromPage: has-pagebar
+author: My Name
+creationDate: Month 00, 0000
+lastModifiedDate: Month 00, 0000
 ---
-

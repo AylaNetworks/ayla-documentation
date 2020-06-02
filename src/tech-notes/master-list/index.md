@@ -12,7 +12,7 @@ title: Master List
 
 ### [<span style="color:green">00000001</span>](/tech-notes/00000001/): My New Tech Note
 
-### [<span style="color:red">00000002</span>](/tech-notes/00000002/): Handling ack-enabled properties
+### [<span style="color:green">00000002</span>](/tech-notes/00000002/): Handling ack-enabled properties
 
 ### [<span style="color:red">00000003</span>](/tech-notes/00000003/): Additional Best Practices for Device Developers
 
@@ -51,4 +51,6 @@ If no further inquiries by the end of this week, I will start the implementation
 
 ### [<span style="color:gray">00000016</span>](/tech-notes/00000016/): Available
 
-### [<span style="color:black">99999999</span>](/tech-notes/99999999/): Tech Note Draft
+### [<span style="color:gray">99999998</span>](/tech-notes/99999998/): Available
+
+### [<span style="color:gray">99999999</span>](/tech-notes/99999999/): Available

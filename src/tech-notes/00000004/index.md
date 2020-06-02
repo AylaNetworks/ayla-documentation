@@ -3,6 +3,7 @@ title: Migrating a template from development to field
 layout: technote.html
 author: Trinh Phan
 creationDate: May 19, 2020
+lastModifiedDate: May 19, 2020
 ---
 
 This tech note helps Ayla Network OEMs migrate templates from development services to field services.
