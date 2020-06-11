@@ -3,18 +3,6 @@ title: How to write and publish a tech note
 classesFromPage: has-pagebar
 ---
 
-<aside id="pagebar" class="d-xl-block collapse">
-  <ul>
-    <li><a href="#core-title">How to write</a>
-      <ul>
-        <li><a href="#workflow">Workflow</a></li>
-        <li><a href="#writing-tips">Writing tips</a></li>
-        <li><a href="#markdown-tips">Markdown tips</a></li>
-      </ul>
-    </li>
-  </ul>
-</aside>
-
 A Tech Note is an Ayla Docs page focused on a technical topic of current interest to a prospect, customer, or partner. Tech Notes are published on the [Tech Notes](/tech-notes) page. Any Ayla employee can write a Tech Note. From the author's perspective, a Tech Note consists of a Jira Ticket, a Docs File, and a Source File:
 
 <img src="tech-note-files.png" width="800" height="164">
