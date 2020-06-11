@@ -9,11 +9,11 @@ Need to create, update, or clarify Ayla-related content for a contact, customer,
 1. Browse to the [Ayla Docs Jira Project](https://aylanetworks.atlassian.net/jira/software/projects/AD/boards/135).
 1. Click the blue `create` button.
 1. Write a `Summary` (e.g. `Tech Note: ESP32 factory resets.`).
-1. Click `Create`. The Ayla Docs Team will add (to your Jira ticket) a link to your new, unpublished Tech Note, and notify you by email. This may take only a few minutes or up to 12 hours depending on the time and your time zone.
+1. Click `Create` to create and submit the ticket. The Ayla Docs Team will add (to your Jira ticket) a link to your new, unpublished Tech Note, and notify you by email. This may take only a few minutes or up to 12 hours.
 1. When you receive the email, open it, and click the link to your Jira ticket.
-1. In the Jira ticket, click the link to your new, unpublished Ayla Docs Tech Note ([example](https://docs.aylanetworks.com/tech-notes/00000001/)). 
-1. Click the pencil icon next to the title. The Github version of your Tech Note appears in a new tab.
-1. Click the pencil icon to `Edit this file`.
+1. In the Jira ticket, click the link to your new, unpublished Tech Note ([example](https://docs.aylanetworks.com/tech-notes/00000001/)). 
+1. In the Ayla Docs version of your Tech Note, click the pencil icon next to the title. The Github version appears in a new tab.
+1. In the Github version of your Tech Note, click the pencil icon to `Edit this file`.
 1. Modify the `title` and `author` fields at the top of the file if necessary.
 1. Write your tech note. If you have questions, ask them in your Jira ticket.
 1. To save, scroll down to `Commit changes`, write a short summary, and click the `Commit changes` button.
@@ -67,7 +67,7 @@ $(function() {
 
 This is an image (automatically indented slightly on purpose):
 
-<img src="img-600.png" width="300" height="180">
+<img src="/assets/images/img-600.png" width="300" height="180">
 
 This is a table:
 
@@ -88,5 +88,5 @@ This is an ordered list with a code snippet and image:
     })
     ```
     The following screen appears ...
-    <div><img src="img-600.png" width="300" height="180"></div>
+    <div><img src="/assets/images/img-600.png" width="300" height="180"></div>
 1. Do this ...

@@ -42,6 +42,9 @@ https://connection.aylanetworks.com/s/article/Inventek-AY001MIV-ISM43362-Firmwar
 Ampak: Module AY001MAB Firmware Downloads
 https://connection.aylanetworks.com/s/article/AY001MAB-Firmware-Downloads
 
+https://ayla.my.salesforce.com/sfc/p/#F00000005wvT/a/3j000000VAne/xzhFJ1U7ZSgseHIQraOGo3HkMa8Uih6ls6TQSqXKFy4
+https://ayla.my.salesforce.com/sfc/p/#F00000000000/a/3j000000VAne/xzhFJ1U7ZSgseHIQraOGo3HkMa8Uih6ls6TQSqXKFy4
+
 
 # Ayla Device Agent source code for Espressif ESP32
 

@@ -26,24 +26,15 @@ title: Master List
 
 ### [<span style="color:green">00000008</span>](/tech-notes/00000008/): Using BLE to set up Wi-Fi for ESP32
 
-### [<span style="color:orange">00000009</span>](/tech-notes/00000009/): Ayla Mobile Apps and Cross-platform App Frameworks
+### [<span style="color:gray">00000009</span>](/tech-notes/00000009/): Available
 
-### [<span style="color:orange">00000010</span>](/tech-notes/00000010/): QA Alpha
+### [<span style="color:gray">00000010</span>](/tech-notes/00000010/): QA Alpha
 
-### [<span style="color:orange">00000011</span>](/tech-notes/00000011/): Device self-offline status
+### [<span style="color:gray">00000011</span>](/tech-notes/00000011/): Available 
 
-Phil Hsu on 2020-05-28: We have a requirement from our product to introduce a new connection status to distinguish between Offline (determined by cloud) and SelfOffline (device sends DISCONNECT). 
-The flow is descibed in [this page](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/927760392/DNC+devices+connection+status+flow). 
-This concept is similar to Online and PollingOnline. Currently only MQTT devices will send DISCONNECT to cloud(MQTT Broker).
-We will need to add a new status in CSS and ADS. The new status name is open for discussion. Please give any feedback or concerns.
-If no further inquiries by the end of this week, I will start the implementation design next week. 
+### [<span style="color:gray">00000012</span>](/tech-notes/00000012/): Available
 
-### [<span style="color:orange">00000012</span>](/tech-notes/00000012/): Message properties
-
-### [<span style="color:orange">00000013</span>](/tech-notes/00000013/): Advanced Rules Engine
-
-* See [ARE API 2.0](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/469958682/ARE+API+2.0)
-* See also [Cloud Service Team Home](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/6521524).
+### [<span style="color:gray">00000013</span>](/tech-notes/00000013/): Available
 
 ### [<span style="color:gray">00000014</span>](/tech-notes/00000014/): Available
 
@@ -54,3 +45,21 @@ If no further inquiries by the end of this week, I will start the implementation
 ### [<span style="color:gray">99999998</span>](/tech-notes/99999998/): Available
 
 ### [<span style="color:gray">99999999</span>](/tech-notes/99999999/): Available
+
+## Ideas for Tech Notes
+
+### Advanced Rules Engine
+
+* See [ARE API 2.0](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/469958682/ARE+API+2.0)
+* See also [Cloud Service Team Home](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/6521524).
+
+### Message properties
+
+### Device self-offline status
+
+Phil Hsu on 2020-05-28: We have a requirement from our product to introduce a new connection status to distinguish between Offline (determined by cloud) and SelfOffline (device sends DISCONNECT). 
+The flow is descibed in [this page](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/927760392/DNC+devices+connection+status+flow). This concept is similar to Online and PollingOnline. Currently only MQTT devices will send DISCONNECT to cloud(MQTT Broker). We will need to add a new status in CSS and ADS. The new status name is open for discussion. Please give any feedback or concerns. If no further inquiries by the end of this week, I will start the implementation design next week.
+
+### ADS notify DNC proposal
+
+* See [ADS notify DNC proposal](https://aylanetworks.atlassian.net/wiki/spaces/EN/pages/879658130).
