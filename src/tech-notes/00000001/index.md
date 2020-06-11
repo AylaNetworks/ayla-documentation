@@ -1,7 +1,7 @@
 ---
 title: Example Tech Note
 layout: technote.html
-author: Sarah Smiles
+author: 賢人山﨑
 creationDate: January 1, 2020
 lastModifiedDate: January 2, 2020
 ---
