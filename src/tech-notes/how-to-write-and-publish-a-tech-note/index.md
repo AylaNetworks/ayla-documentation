@@ -38,11 +38,11 @@ Authoring consists of the following steps:
 1. Write concise, accurate content.
 1. Minimize or avoid text decorations such as italics, bold, quotation marks, and underlines.
 1. Use Level 3 headings (`### Level 3`) to group content. In many cases, this will suffice.
-    <img src="headings-3.png" width="350" height="239"> 
+    <div><img src="headings-3.png" width="350" height="239"></div>
 1. If necessary, use Level 2 headings (`## Level 2`) to group Level 3 headings and content. This will produce a Page TOC. 
-    <img src="headings-2-3.png" width="350" height="239"> 
+    <div><img src="headings-2-3.png" width="350" height="239"></div>
 1. If necessary, use Level 1 headings (`# Level 1`) to group Level 2 headings and content. This will also produce a Page TOC.
-    <img src="headings-1-2-3.png" width="350" height="239"> 
+    <div><img src="headings-1-2-3.png" width="350" height="239"></div>
 
 ## Markdown tips
 
@@ -67,7 +67,7 @@ Here is a markdown example:
 
 Here is the example rendered in html. The site intentionally indents images slightly.
 
-<img src="/assets/images/img-600.png" width="300" height="180">
+<img src="img-600.png" width="300" height="180">
 
 ### Complex lists
 
@@ -85,7 +85,7 @@ Below is a markdown example. Code snippets and images are indented with four spa
     })
     ```
     Temporibus autem quibusdam et ...
-    &lt;div&gt;&lt;img src="/assets/images/img-600.png" width="300" height="180"&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;img src="img-600.png" width="300" height="180"&gt;&lt;/div&gt;
 1. Excepteur sint occaecat cupidatat ...
 1. Lorem ipsum dolor sit amet ...
 </code></pre>
@@ -102,6 +102,6 @@ Here is the example rendered in html.
     })
     ```
     Temporibus autem quibusdam et ...
-    <div><img src="/assets/images/img-600.png" width="300" height="180"></div>
+    <div><img src="img-600.png" width="300" height="180"></div>
 1. Excepteur sint occaecat cupidatat ...
 1. Lorem ipsum dolor sit amet ...
