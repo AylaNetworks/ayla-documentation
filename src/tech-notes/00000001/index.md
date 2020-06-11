@@ -1,9 +1,10 @@
 ---
 title: Example Tech Note
 layout: technote.html
-author: 賢人山﨑
+author: Sarah Lee
 creationDate: January 1, 2020
 lastModifiedDate: January 2, 2020
 ---
 
-This is an example Tech Note. Click the pencil icon to see the source file on Github.
+A Tech Note consists of a published file ([index.html](/tech-notes/00000001)) and a source file ([index.md](https://github.com/AylaNetworks/ayla-documentation/blob/master/src/tech-notes/00000001/index.md)).
+

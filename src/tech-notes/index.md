@@ -11,4 +11,4 @@ See [How to write and publish a tech note](how-to-write-and-publish-a-tech-note)
 |`2020-05-19`|`2020-05-19`|[Migrating a template from development to field](00000004)|Trinh Phan|
 |`2020-05-05`|`2020-05-05`|[Using BLE to set up Wi-Fi for ESP32](00000008)|Steve Grau|
 |`2020-02-04`|`2020-02-04`|[New Template Architecture](00000005)|Yew Yin Ng|
-|`2020-01-01`|`2020-01-02`|[Example Tech Note](00000001)|賢人山﨑|
+|`2020-01-01`|`2020-01-02`|[Example Tech Note](00000001)|Sarah Lee|
