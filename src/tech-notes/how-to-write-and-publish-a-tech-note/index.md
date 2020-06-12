@@ -9,8 +9,6 @@ A Tech Note is an Ayla Docs page focused on a technical topic of current interes
 
 ## Workflow
 
-Authoring consists of the following steps:
-
 1. The author creates a [Jira Ticket](https://aylanetworks.atlassian.net/jira/software/projects/AD/boards/135) requesting a new, blank Tech Note.
 1. The Ayla Docs team creates a Docs File and a Source File, links the Jira Ticket to the Docs File, and emails the author.
 1. The author navigates from the email to the Jira Ticket to the Docs File to the Source File.
