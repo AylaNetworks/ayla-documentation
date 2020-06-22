@@ -1,7 +1,9 @@
 ---
 title: Available
 layout: technote.html
-author: My Name
+author: Matt Hagen
 creationDate: Month 00, 0000
 lastModifiedDate: Month 00, 0000
 ---
+
+This is information.
