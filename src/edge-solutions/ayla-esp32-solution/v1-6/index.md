@@ -139,72 +139,51 @@ This section provides directions for building an Ayla ESP32 Solution v1.6 using 
         ```
         Press ```Ctl``` + ```]``` to exit the monitor.
 1. Install Ayla source code:
-
     1. <span style="color:red;">In a host terminal</span>, copy ```ada-esp-idf-src-1.6.tgz``` to your Docker container:
-
         ```
-      $ docker cp /home/matt/Downloads/ada-esp-idf-src-1.6.tgz ada16:/root/esp
+        $ docker cp /home/matt/Downloads/ada-esp-idf-src-1.6.tgz ada16:/root/esp
         ```
-
     1. <span style="color:red;">In your Docker terminal</span>, extract the archive file:
-
         ```
-      # cd /root/esp
-      # tar zxvf ada-esp-idf-src-1.6.tgz
+        # cd /root/esp
+        # tar zxvf ada-esp-idf-src-1.6.tgz
         ```
-
     1. Copy the ```ada-esp-idf-src-1.6``` directory on top of the ```esp-idf-v3.3.1``` directory:
-
         ```
-      # cp -R ada-esp-idf-src-1.6/* ./esp-idf-v3.3.1
+        # cp -R ada-esp-idf-src-1.6/* ./esp-idf-v3.3.1
         ```
-
 1. Configure and build the Ayla agent and host application:
-
     1. Change directory:
-
         ```
-      # cd $IDF_PATH/examples/ayla_demo
+        # cd $IDF_PATH/examples/ayla_demo
         ```
-
     1. Rename the following files:
-
         ```
-      # mv ./main/conf_wifi.h ./main/conf_wifi_orig.h
-      # mv ./main/demo_wifi.c ./main/demo_wifi_orig.c
+        # mv ./main/conf_wifi.h ./main/conf_wifi_orig.h
+        # mv ./main/demo_wifi.c ./main/demo_wifi_orig.c
         ```
-
     1. Replace with [conf_wifi.h](demo_wifi.c) and [demo_wifi.c](demo_wifi.c).
-
     1. Edit ```./main/conf.h```. Set the following:
-
         ```
-      #define DEMO_OEM_ID           "00000000" /* replace with your Ayla OEM ID */
-      #define DEMO_TEMPLATE_VERSION "ada-esp-idf-src-1.6"
+        #define DEMO_OEM_ID           "00000000" /* replace with your Ayla OEM ID */
+        #define DEMO_TEMPLATE_VERSION "ada-esp-idf-src-1.6"
         ```
-
     1. Build, flash, and monitor:
-
         ```
-      # make
-      # make erase_flash
-      # make flash
-      # make monitor
+        # make
+        # make erase_flash
+        # make flash
+        # make monitor
         ```
-
     1. Configure security:
-
         ```
-      # nvs-set "ada.f.id/dev_id" AC000W000000001
-      # nvs-set "ada.f.id/key" MIIB... (long number)
-      # nvs-set ada.f.client/server/default 1
-      # esp-reboot
+        # nvs-set "ada.f.id/dev_id" AC000W000000001
+        # nvs-set "ada.f.id/key" MIIB... (long number)
+        # nvs-set ada.f.client/server/default 1
+        # esp-reboot
+        # oem key 0123456789abcdef0123456789abcdef ledevb
+        # save
         ```
-        ```
-      # oem key 0123456789abcdef0123456789abcdef ledevb
-      # save
-        ```
-
 ## GCC/Windows
 
 See [Ayla ESP32 Solution v1.3.8](../v1-3-8/#gcc-windows).
