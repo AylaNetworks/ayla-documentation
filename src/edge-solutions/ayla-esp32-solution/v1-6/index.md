@@ -2,7 +2,6 @@
 title: Ayla ESP32 Solution v1.6
 layout: site.html
 c: block
-editIcon: none
 classesFromPage: has-pagebar
 ---
 
@@ -11,11 +10,8 @@ The Ayla ESP32 Solution includes example host application source code, an Ayla W
 # First steps
 
 1. Obtain an Espressif [ESP32-DevKitC](https://www.espressif.com/en/products/hardware/esp32-devkitc/overview) board.
-
 1. Create an Ayla user account. You will probably need to have your Ayla Customer Account admin or Ayla support create a user account for you with admin or developer access rights. 
-
 1. Reserve a DSN. Browse to [Ayla Dashboard Portal](/system-administration/ayla-dashboard-portal). On the sidebar, navigate to Factory Actions. Click the Reserve DSN button. For Model, select AY008ESP1. Click Submit, and then download the associated XML file. You will need the DSN value and key from the file.
-
 1. Browse to the [Ayla Developer Portal](/system-administration/ayla-developer-portal/), and create a template with the following details.
     <table>
     <tr><td>Visibility:</td><td>private</td></tr>
