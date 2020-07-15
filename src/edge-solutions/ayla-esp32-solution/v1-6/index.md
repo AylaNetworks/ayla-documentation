@@ -21,7 +21,7 @@ The Ayla ESP32 Solution includes example host application source code, an Ayla W
     <tr><td>Visibility:</td><td>private</td></tr>
     <tr><td>Name:</td><td>ADA ESP v1.6</td></tr>
     <tr><td>Description:</td><td>ADA ESP v1.6</td></tr>
-    <tr><td>Registration:</td><td>Dsn</td></tr>
+    <tr><td>Registration:</td><td>AP-Mode</td></tr>
     <tr><td>Model:</td><td>ledevb</td></tr>
     <tr><td>Version:</td><td>ada-esp-idf-src-1.6</td></tr>
     <tr><td>Type:</td><td>Wifi</td></tr>
@@ -211,6 +211,15 @@ This section provides directions for building an Ayla ESP32 Solution v1.6 using 
       # cd $IDF_PATH/examples/ayla_demo
         ```
 
+    1. Rename the following files:
+
+        ```
+      # mv ./main/conf_wifi.h ./main/conf_wifi_orig.h
+      # mv ./main/demo_wifi.c ./main/demo_wifi_orig.c
+        ```
+
+    1. Replace with [conf_wifi.h](demo_wifi.c) and [demo_wifi.c](demo_wifi.c).
+
     1. Edit ```./main/conf.h```. Set the following:
 
         ```
@@ -227,13 +236,9 @@ This section provides directions for building an Ayla ESP32 Solution v1.6 using 
       # make monitor
         ```
 
-    1. Configure networking and security (use ```log debug all``` for maximum visibility):
+    1. Configure security:
 
         ```
-      # nvs-set ada.f.wifi/profile/0/ssid <ssid>
-      # nvs-set ada.f.wifi/profile/0/security <security_type> # 0=none, 3=wpa, 4=wpa2
-      # nvs-set ada.f.wifi/profile/0/key <passphrase>
-      # nvs-set ada.f.wifi/profile/0/enable 1
       # nvs-set "ada.f.id/dev_id" AC000W000000001
       # nvs-set "ada.f.id/key" MIIB... (long number)
       # nvs-set ada.f.client/server/default 1
@@ -250,21 +255,7 @@ See [Ayla ESP32 Solution v1.3.8](../v1-3-8/#gcc-windows).
 
 # Register your device
 
-1. Browse to the [Ayla Dashboard Portal](/system-administration/ayla-dashboard-portal), click OEM Users in the sidebar, click your account, and copy your UUID (e.g. ```a0000000-0000-0000-0000-000000000000```). 
-
-1. Click Devices in the sidebar, and find the new device on the list:
-
-    <img src="new-device.png" width="800" height="88">
-
-1. Click the device row. Then, in the Device > Settings table, paste your UUID, and click Register:
-
-    <img src="register.png" width="600" height="41">
-
-1. View the device on the Devices list again. Note that the device is registered to you.
-
-    <img src="registered.png" width="800" height="88">
-
-# Perform an OTA update
+The Aura Mobile App running on iOS or Android communicates with your ESP32 device (via Bluetooth) to add the device to your local network, and then register the device to your Ayla user account. For instructions, see [Using BLE to set up Wi-Fi for ESP32](/tech-notes/00000008/).
 
 # Sample Application Code
 
