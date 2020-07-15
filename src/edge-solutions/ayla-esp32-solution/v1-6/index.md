@@ -109,45 +109,35 @@ This section provides directions for building an Ayla ESP32 Solution v1.6 using 
         # echo "export IDF_PATH=\$HOME/esp/esp-idf-v3.3.1" >> ~/.bashrc
         ```
 1. Test the development environment with the hello_world example:
-
     1. Change directory:
-    
         ```
-      # cd $IDF_PATH/examples/get-started/hello_world
+        # cd $IDF_PATH/examples/get-started/hello_world
         ```
-
-    1. Customize configuration. (Defaults should be fine.)
-    
+    1. Customize configuration. (Defaults should be fine.)    
         ```
-      # make menuconfig
+        # make menuconfig
         ```
-
     1. Build, flash, and monitor:
-
         ```
-      # make
-      # make flash
-      # make monitor
+        # make
+        # make flash
+        # make monitor
         ```
-
         Output appears similar to this:
-
         ```
-      Toolchain path: /root/esp/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
-      Toolchain version: crosstool-ng-1.22.0-80-g6c4433a
-      Compiler version: 5.2.0
-      ...
-      ...
-      Hello world!
-      This is ESP32 chip with 2 CPU cores, WiFi/BT/BLE, silicon revision 1, 4MB external flash
-      Restarting in 10 seconds...
-      Restarting in 9 seconds...
-      ...
-      ...
+        Toolchain path: /root/esp/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
+        Toolchain version: crosstool-ng-1.22.0-80-g6c4433a
+        Compiler version: 5.2.0
+        ...
+        ...
+        Hello world!
+        This is ESP32 chip with 2 CPU cores, WiFi/BT/BLE, silicon revision 1, 4MB external flash
+        Restarting in 10 seconds...
+        Restarting in 9 seconds...
+        ...
+        ...
         ```
-
         Press ```Ctl``` + ```]``` to exit the monitor.
-
 1. Install Ayla source code:
 
     1. <span style="color:red;">In a host terminal</span>, copy ```ada-esp-idf-src-1.6.tgz``` to your Docker container:
