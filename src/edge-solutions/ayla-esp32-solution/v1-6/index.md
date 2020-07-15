@@ -25,23 +25,23 @@ The Ayla ESP32 Solution includes example host application source code, an Ayla W
 1. Select the new template, click the Properties tab, and note the Import button.
 1. Copy & paste the following properties into a text file (e.g. `properties.csv`), and import the file.
     ```
-  base_type,direction,name,scope
-  boolean,output,Blue_button,user
-  boolean,input,Blue_LED,user
-  string,input,cmd,user
-  decimal,input,decimal_in,user
-  decimal,output,decimal_out,user
-  boolean,input,Green_LED,user
-  integer,input,input,user
-  boolean,input,node_batch_hold,user
-  string,output,log,user
-  integer,output,output,user
-  file,input,stream_down,user
-  integer,output,stream_down_len,user
-  integer,output,stream_down_match_len,user
-  file,output,stream_up,user
-  integer,input,stream_up_len,user
-  string,output,version,user
+    base_type,direction,name,scope
+    boolean,output,Blue_button,user
+    boolean,input,Blue_LED,user
+    string,input,cmd,user
+    decimal,input,decimal_in,user
+    decimal,output,decimal_out,user
+    boolean,input,Green_LED,user
+    integer,input,input,user
+    boolean,input,node_batch_hold,user
+    string,output,log,user
+    integer,output,output,user
+    file,input,stream_down,user
+    integer,output,stream_down_len,user
+    integer,output,stream_down_match_len,user
+    file,output,stream_up,user
+    integer,input,stream_up_len,user
+    string,output,version,user
     ```
 1. Click the new ```version``` property, check ```Host SW Version```, and click ```OK```.
 
