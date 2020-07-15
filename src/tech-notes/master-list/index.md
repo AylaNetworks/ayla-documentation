@@ -10,8 +10,8 @@ title: Master List
 * [<span style="color:red">00000006</span>](/tech-notes/00000006/): Setting up and performing a factory reset for ESP32
 * [<span style="color:green">00000007</span>](/tech-notes/00000007/): Supporting end users of Ayla-enabled devices
 * [<span style="color:green">00000008</span>](/tech-notes/00000008/): Using BLE to set up Wi-Fi for ESP32
-* [<span style="color:gray">00000009</span>](/tech-notes/00000009/): Available
-* [<span style="color:gray">00000010</span>](/tech-notes/00000010/): Available
+* [<span style="color:red">00000009</span>](/tech-notes/00000009/): [AD-217](https://aylanetworks.atlassian.net/browse/AD-217): Data Exports
+* [<span style="color:gray">00000010</span>](/tech-notes/00000010/): [AD-160](https://aylanetworks.atlassian.net/browse/AD-160): GCM to FCM
 * [<span style="color:gray">00000011</span>](/tech-notes/00000011/): Available 
 * [<span style="color:gray">00000012</span>](/tech-notes/00000012/): Available
 * [<span style="color:gray">00000013</span>](/tech-notes/00000013/): Available
