@@ -52,92 +52,62 @@ The Ayla ESP32 Solution includes example host application source code, an Ayla W
 This section provides directions for building an Ayla ESP32 Solution v1.6 using a GCC/Ubuntu/Docker development environment.
 
 1. Download [Ayla source code](https://connection.aylanetworks.com/s/article/2648919) (ada-esp-idf-src-1.6.tgz). `ada` stands for Ayla Device Agent.
-
 1. Determine the computer-to-ESP32 serial port:
-
     1. List the serial ports on your computer (e.g. ```ls /dev/tty*```).
-
     1. Connect an ESP32 board to your computer using a serial cable.
-
     1. List the serial ports again. The new serial port on the list is the one to use (e.g. ```/dev/ttyUSB0```).
-
 1. Install a [Docker Engine](https://docs.docker.com/get-started/) on your Windows, Mac, and/or Linux host OS.
-
 1. Create a Docker [64-bit Ubuntu](https://hub.docker.com/_/ubuntu) container:
-
     ```
-  $ docker run --net=host --name=ada16 -w /root -it --device=/dev/ttyUSB0 ubuntu bash
+    $ docker run --net=host --name=ada16 -w /root -it --device=/dev/ttyUSB0 ubuntu bash
     ```
-
     You are user `root`, and the current working directory is ```/root```. Later, when you want to exit your Docker container, type `exit`. Then, to restart and re-attach to your Docker container, type the following:
-
     ```
     $ docker ps -a
     $ docker start ada16
     $ docker attach ada16
-    ```
-    
+    ```    
 1. Prepare your development environment:
-
     1. Update the package list in your Ubuntu Docker instance:
-
         ```
-      # apt update
+        # apt update
         ```
-
     1.  Install miscellaneous packages:
-
         ```
-      # apt install nano screen iputils-ping 
+        # apt install nano screen iputils-ping 
         ```
-
     1. Install prerequisites for [Espressif Standard Setup of Toolchain v3.3.1 for Linux](https://docs.espressif.com/projects/esp-idf/en/v3.3.1/get-started/linux-setup.html).
-
         ```
-      # apt install gcc git wget make libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing
+        # apt install gcc git wget make libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing
         ```
-
     1. Create an ```esp``` directory, and change directory:
-
         ```
-      # mkdir esp
-      # cd esp
+        # mkdir esp
+        # cd esp
         ```
-
     1. Download a ESP32 toolchain for 64-bit Linux:
-
         ```
-      # wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
+        # wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
         ```
-
         For the 32-bit version, see [this Espressif page](https://docs.espressif.com/projects/esp-idf/en/v3.3.1/get-started/linux-setup.html).
-
     1. Extract the archive file:
-
         ```
-      # tar -xzf xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
+        # tar -xzf xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
         ```
-
     1. Add to the PATH environment variable, and persist the change in `.bashrc`:
-
         ```
-      # export PATH=$HOME/esp/xtensa-esp32-elf/bin:$PATH
-      # echo "export PATH=\$HOME/esp/xtensa-esp32-elf/bin:\$PATH" >> ~/.bashrc
+        # export PATH=$HOME/esp/xtensa-esp32-elf/bin:$PATH
+        # echo "export PATH=\$HOME/esp/xtensa-esp32-elf/bin:\$PATH" >> ~/.bashrc
         ```
-
     1. Clone the [Espressif IoT Development Framework](https://github.com/espressif/esp-idf):
-
         ```
-      # git clone -b v3.3.1 --recursive https://github.com/espressif/esp-idf.git esp-idf-v3.3.1
+        # git clone -b v3.3.1 --recursive https://github.com/espressif/esp-idf.git esp-idf-v3.3.1
         ```
-
     1. Create the ```IDF_PATH``` environment variable, and persist the change in `.bashrc`:
-
         ```
-      # export IDF_PATH=$HOME/esp/esp-idf-v3.3.1
-      # echo "export IDF_PATH=\$HOME/esp/esp-idf-v3.3.1" >> ~/.bashrc
+        # export IDF_PATH=$HOME/esp/esp-idf-v3.3.1
+        # echo "export IDF_PATH=\$HOME/esp/esp-idf-v3.3.1" >> ~/.bashrc
         ```
-
 1. Test the development environment with the hello_world example:
 
     1. Change directory:
