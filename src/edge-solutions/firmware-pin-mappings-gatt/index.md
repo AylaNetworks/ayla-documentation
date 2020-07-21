@@ -5,6 +5,15 @@ c: block
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li><a href="#core-title">Firmware, Pin Mappings, GATT</a></li>
+    <li><a href="#firmware">Firmware</a></li>
+    <li><a href="#pin-mappings">Pin Mappings</a></li>
+    <li><a href="#gatt-service">GATT Service</a></li>
+  </ul>
+</aside>
+
 # Firmware
 
 * [Ampak: Module AY001MAB Firmware Download](https://connection.aylanetworks.com/s/article/AY001MAB-Firmware-Downloads)

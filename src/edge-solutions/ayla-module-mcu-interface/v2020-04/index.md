@@ -5,6 +5,70 @@ c: block
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Module / MCU Interface</a>
+      <ul>
+        <li><a href="#properties-and-datapoints">Properties and Datapoints</a></li>
+        <li><a href="#protocols">Protocols</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#spi-protocol">SPI Protocol</a>
+      <ul>
+        <li><a href="#single-byte-commands">Single-Byte Commands</a></li>
+        <li><a href="#packet-transfers">Packet Transfers</a></li>
+        <li><a href="#error-casesrecovery">Error Cases/Recovery</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#uart-protocol">UART Protocol</a>
+      <ul>
+        <li><a href="#framing">Framing</a></li>
+        <li><a href="#encapsulation">Encapsulation</a></li>
+        <li><a href="#packet-types">Packet Types</a></li>
+        <li><a href="#error-handling">Error Handling</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#tlv-format">TLV Format</a>
+      <ul>
+        <li><a href="#type-codes">Type Codes</a></li>
+        <li><a href="#wi-fi-event-status-codes">Wi-Fi Event Status Codes</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#packets">Packets</a>
+    </li>
+    <li>
+      <a href="#spi-ping-protocol">SPI Ping Protocol</a>
+    </li>
+    <li>
+      <a href="#data-operations">Data Operations</a>
+      <ul>
+        <li><a href="#data-opcodes">Data Opcodes</a></li>
+        <li><a href="#example-messages">Example Messages</a></li>
+        <li><a href="#file-datapoints">File Datapoints</a></li>
+        <li><a href="#message-datapoints">Message Datapoints</a></li>
+        <li><a href="#batch-datapoints">Batch Datapoints</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#control-operations">Control Operations</a>
+      <ul>
+        <li><a href="#control-opcodes">Control Opcodes</a></li>
+        <li><a href="#configuration-tokens">Configuration Tokens</a></li>
+        <li><a href="#configuration-tree">Configuration Tree</a></li>
+        <li><a href="#control-operations-log">Control Operations Log</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#hardware-interface">Hardware Interface</a>
+    </li>
+  </ul>
+</aside>
+
 The Microcontroller Unit (MCU) connects to the Ayla Module using SPI (serial peripheral interface) or UART (universal asynchronous receiver/transmitter). Following provides overviews on the properties, datapoints, and protocols involved in the connection process.
 
 ## Properties and Datapoints

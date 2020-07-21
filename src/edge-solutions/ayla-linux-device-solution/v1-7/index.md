@@ -6,6 +6,72 @@ editIcon: none
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Linux Device v1.7</a>
+    </li>
+    <li>
+      <a href="#connect-the-device">Connect the device</a>
+      <ul>
+        <li><a href="#create-a-template">Create a template</a></li>
+        <li><a href="#set-up-a-raspberry-pi">Set up a Raspberry Pi</a></li>
+        <li><a href="#install-ayla">Install Ayla</a></li>
+        <li><a href="#configure-your-device">Configure your device</a></li>
+        <li><a href="#connect--register">Connect &amp; Register</a></li>
+        <li><a href="#test-the-device">Test the device</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#explore-the-example-app">Explore the example app</a>
+      <ul>
+        <li><a href="#about-ayla-daemons">About Ayla daemons</a></li>
+        <li><a href="#modify-make-and-run">Modify, make, and run</a></li>
+        <li><a href="#what-does-appd-do">What does appd do?</a></li>
+        <li><a href="#where-are-appd-files">Where are appd files?</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#tutorials">Tutorials</a>
+      <ul>
+        <li><a href="#implement-green_led">Implement Green_LED</a></li>
+        <li><a href="#implement-blue_button">Implement Blue_button</a></li>
+        <li><a href="#add-metadata">Add Metadata</a></li>
+        <li><a href="#add-red_button">Add Red_button</a></li>
+        <li><a href="#add-a-trigger">Add a Trigger</a></li>
+        <li><a href="#implement-blue_led">Implement Blue_LED</a></li>
+        <li><a href="#add-a-schedule">Add a Schedule</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#explore-serial-io">Explore Serial I/O</a>
+      <ul>
+        <li><a href="#arduino-only">Arduino Only</a></li>
+        <li><a href="#arduino-and-rpi">Arduino and RPi</a></li>
+        <li><a href="#arduino-rpi-and-ayla">Arduino, RPi, and Ayla</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#perform-ota-updates">Perform OTA Updates</a>
+      <ul>
+        <li><a href="#how-ota-updates-work">How OTA updates work</a></li>
+        <li><a href="#ota-implementation">OTA implementation</a></li>
+        <li><a href="#perform-an-ota-update">Perform an OTA update</a></li>
+        <li><a href="#check-results">Check results</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#debugging">Debugging</a>
+      <ul>
+        <li><a href="#decouple-appd">Decouple appd</a></li>
+        <li><a href="#background-mode">Background mode</a></li>
+        <li><a href="#foreground-mode">Foreground mode</a></li>
+        <li><a href="#debug-mode">Debug mode</a></li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+
 This guide helps you experiment with the Ayla Linux Device Solution on a Raspberry Pi. In this particular edge solution, the Ayla Agent is named ```devd``` and the Ayla Example App is named ```appd```. Both are implemented as background processes. The video explains more:
 
 <iframe 
@@ -37,7 +103,8 @@ Browse to the [Ayla Developer Portal](/system-administration/ayla-developer-port
 
 After creating the template, copy & paste the following properties into a text file, and import the file.
 
-<pre>base_type,direction,name,scope
+```
+base_type,direction,name,scope
 boolean,output,Blue_button,user
 boolean,input,Blue_LED,user
 string,input,cmd,user
@@ -55,7 +122,7 @@ boolean,input,batch_hold,user
 message,input,large_message_down,user
 message,output,large_message_up,user
 string,input,large_message_up_test,user
-</pre>
+```
 
 Finally, click the new ```version``` property, check ```Host SW Version```, and click ```OK```.
 
@@ -71,45 +138,55 @@ Finally, click the new ```version``` property, check ```Host SW Version```, and 
 1. Enable serial communication by appending <code>enable_uart=1</code> to config.txt.
 1. Enable Secure Shell by creating an empty ssh text file with <code>touch ssh</code>.
 1. Enable Wi-Fi by creating a <code>wpa_supplicant.conf</code> file with content similar to the following:
-<pre>ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-country=US
-network={
-     ssid="network"
-     psk="password"
-     key_mgmt=WPA-PSK
-}</pre>
-At boot time, Raspian copies this file to <code>/etc/wpa_supplicant/wpa_supplicant.conf</code>.
+    ```
+    ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+    update_config=1
+    country=US
+    network={
+        ssid="network"
+        psk="password"
+        key_mgmt=WPA-PSK
+    }
+    ```
+    At boot time, Raspian copies this file to <code>/etc/wpa_supplicant/wpa_supplicant.conf</code>.
 1. Unmount the card, remove it from the reader, insert it into the RPi (upside down), and power on.
 1. Secure Shell to the RPi (or, optionally, <a href="https://learn.adafruit.com/adafruits-raspberry-pi-lesson-5-using-a-console-cable/enabling-serial-console" target="_blank">use a serial/console cable</a>):
     1. Determine the RPi IP address. You can browse to the router manager page, or run <code>arp -a</code> in a shell.
     1. Run <code>ssh pi&#64;192.168.1.9</code>. Normally, you will see a message similar to the following:
-    <pre>The authenticity of host '192.168.1.9 (192.168.1.9)' can't be established.
-ECDSA key fingerprint is SHA256:CcQtTqvRl5SLlAbCdEfG/UsK0/NN018UKnSRw.
-Are you sure you want to continue connecting (yes/no)?</pre>
-    Sometimes, however, you will see this message:
-    <pre>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
-Someone could be eavesdropping on you right now (man-in-the-middle attack)!
-It is also possible that a host key has just been changed.
-The fingerprint for the ECDSA key sent by the remote host is
-SHA256:r4Y+vxKp5N6tEsMJtc6za1v/Rujms4wfjMY51jH8wsw.
-Please contact your system administrator.
-Add correct host key in /Users/matt/.ssh/known_hosts to get rid of this message.
-Offending ECDSA key in /Users/matt/.ssh/known_hosts:5
-ECDSA host key for 192.168.1.8 has changed and you have requested strict checking.
-Host key verification failed.</pre>
-    To solve this, open <code>&#126;/.ssh/known_hosts</code> on your computer, delete the offending row (e.g. 5), save, and re-run ssh.
+        ```
+        The authenticity of host '192.168.1.9 (192.168.1.9)' can't be established.
+        ECDSA key fingerprint is SHA256:CcQtTqvRl5SLlAbCdEfG/UsK0/NN018UKnSRw.
+        Are you sure you want to continue connecting (yes/no)?
+        ```
+        Sometimes, however, you will see this message:
+        ```
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+        Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+        It is also possible that a host key has just been changed.
+        The fingerprint for the ECDSA key sent by the remote host is
+        SHA256:r4Y+vxKp5N6tEsMJtc6za1v/Rujms4wfjMY51jH8wsw.
+        Please contact your system administrator.
+        Add correct host key in /Users/matt/.ssh/known_hosts to get rid of this message.
+        Offending ECDSA key in /Users/matt/.ssh/known_hosts:5
+        ECDSA host key for 192.168.1.8 has changed and you have requested strict checking.
+        Host key verification failed.
+        ```
+        To solve this, open <code>&#126;/.ssh/known_hosts</code> on your computer, delete the offending row (e.g. 5), save, and re-run ssh.
     1. Type <code>yes</code>, and enter <code>raspberry</code> for password. (Your username is <code>pi</code>).
 1. Determine whether ```git``` is installed. If not, install:
-<pre>$ git --version
-$ sudo apt-get update
-$ sudo apt-get install git -y</pre>
+    ```
+    $ git --version
+    $ sudo apt-get update
+    $ sudo apt-get install git -y
+    ```
 1. Determine whether ```wiringpi``` is installed. If not, install:
-<pre>$ gpio -v
-$ sudo apt-get install wiringpi</pre>
+    ```
+    $ gpio -v
+    $ sudo apt-get install wiringpi
+    ```
 
 ## Install Ayla
 
@@ -117,15 +194,15 @@ $ sudo apt-get install wiringpi</pre>
 
 1. In the secure shell, ensure that you are in your home directory (e.g. <code>/home/pi</code>).
 1. Clone the Ayla [device-linux-public](https://github.com/AylaNetworks/device_linux_public) repository. You will be asked for your Github username and password.
-<pre>
-$ git clone https&#58;//github.com/AylaNetworks/device_linux_public.git
-</pre>
+    ```
+    $ git clone https&#58;//github.com/AylaNetworks/device_linux_public.git
+    ```
 1. View the release history, and, if the latest release is not ```adc-1.7```, get ```adc-1.7```:
-<pre>
-$ cd device_linux_public
-$ git log
-$ git checkout 5a4c0760b379a4c3cbbc698252d24e2b1286b51b
-</pre>
+    ```
+    $ cd device_linux_public
+    $ git log
+    $ git checkout 5a4c0760b379a4c3cbbc698252d24e2b1286b51b
+    ```
 
 ### Edit ayla_install.sh
 
@@ -139,15 +216,15 @@ $ cp &#126;/device_linux_public/dev_kit/raspberry_pi/ayla_install.sh .
 ayla_src_dir="/home/pi/device_linux_public"
 </pre>
 1. Search for <code>install_ayla_modules</code>, comment out the following code in the function, and save.
-<pre>
-# if echo "$ayla_package" | grep -q "\.tar$" || echo "$ayla_package" | grep -q "\.tar.gz$" || echo "$ayla_package" | grep -q "\.tgz$"; then
-# &nbsp;&nbsp;install_tar "$ayla_package_path" "$ayla_src_dir"
-# elif echo "$ayla_package" | grep -q "\.git$"; then
-# &nbsp;&nbsp;git_clone_repo "$ayla_package" "$ayla_src_dir"
-# else
-# &nbsp;&nbsp;error_exit "unsupported package type: $ayla_package_path"
-# fi
-</pre>
+    ```
+  # if echo "$ayla_package" | grep -q "\.tar$" || echo "$ayla_package" | grep -q "\.tar.gz$" || echo "$ayla_package" | grep -q "\.tgz$"; then
+  # &nbsp;&nbsp;install_tar "$ayla_package_path" "$ayla_src_dir"
+  # elif echo "$ayla_package" | grep -q "\.git$"; then
+  # &nbsp;&nbsp;git_clone_repo "$ayla_package" "$ayla_src_dir"
+  # else
+  # &nbsp;&nbsp;error_exit "unsupported package type: $ayla_package_path"
+  # fi
+    ```
 
 ### Edit appd.c
 

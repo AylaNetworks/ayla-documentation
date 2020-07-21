@@ -5,6 +5,22 @@ b: block
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Aura Mobile App</a>
+    </li>
+    <li>
+      <a href="#configuration">Configuration</a>
+      <ul>
+        <li><a href="#login-screen">Login Screen</a></li>
+        <li><a href="#main-menu">Main Menu</a></li>
+        <li><a href="#device-screen">Device Screen</a></li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+
 Available for iOS and Android, the Aura Mobile App is designed to help developers interact with any device deployed in either development or field accounts in any Ayla Cloud region. Firmware developers can use Aura to connect, register, and test edge solutions. Integrators can use Aura to test integrations between the Ayla Cloud and business systems. And, front-end developers can use Aura to envision the features and functionality they might need in a customized mobile app. 
 
 # Configuration

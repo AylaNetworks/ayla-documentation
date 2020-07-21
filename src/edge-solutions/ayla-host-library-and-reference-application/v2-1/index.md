@@ -5,6 +5,91 @@ c: block
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Ayla Host Lib and App</a>
+    </li>
+    <li>
+      <a href="#host-applications">Host Applications</a>
+      <ul>
+        <li><a href="#properties">Properties</a></li>
+        <li><a href="#metadata">Metadata</a></li>
+        <li><a href="#batch-updates">Batch Updates</a></li>
+        <li><a href="#reference-apps">Reference Apps</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#host-library">Host Library</a>
+      <ul>
+        <li><a href="#polling-model">Polling Model</a></li>
+        <li><a href="#initialization-apis">Initialization APIs</a></li>
+        <li><a href="#clock-apis">Clock APIs</a></li>
+        <li><a href="#polling-apis">Polling APIs</a></li>
+        <li><a href="#logging-apis">Logging APIs</a></li>
+        <li><a href="#event-apis">Event APIs</a></li>
+        <li><a href="#properties-and-datapoints">Properties and Datapoints</a></li>
+        <li><a href="#property-table-apis">Property Table APIs</a></li>
+        <li><a href="#property-apis">Property APIs</a></li>
+        <li><a href="#batch-datapoint-apis">Batch Datapoint APIs</a></li>
+        <li><a href="#file-property-apis">File Property APIs</a></li>
+        <li><a href="#message-property-apis">Message Property APIs</a></li>
+        <li><a href="#schedule-apis">Schedule APIs</a></li>
+        <li><a href="#configuration-access-apis">Configuration Access APIs</a></li>
+        <li><a href="#wi-fi-configuration-apis">Wi-Fi Configuration APIs</a></li>
+        <li><a href="#module-command-apis">Module Command APIs</a></li>
+        <li><a href="#module-ota-update-apis">Module OTA Update APIs</a></li>
+        <li><a href="#host-ota-update-apis">Host OTA Update APIs</a></li>
+        <li><a href="#spi-ping-test-api">SPI Ping Test API</a></li>
+        <li><a href="#required-platform-apis">Required Platform APIs</a></li>
+        <li><a href="#source-files">Source Files</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#reference-app-ledevb">Reference App: ledevb</a>
+      <ul>
+        <li><a href="#properties-1">Properties</a></li>
+        <li><a href="#set-functions">Set functions</a></li>
+        <li><a href="#send-functions">Send functions</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#reference-app-demo_batch">Reference App: demo_batch</a>
+    </li>
+    <li>
+      <a href="#reference-lib-libdemo">Reference Lib: libdemo</a>
+      <ul>
+        <li><a href="#ota-update-example">OTA Update example</a></li>
+        <li><a href="#factory-reset-api">Factory Reset API</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#reference-lib-libcons">Reference Lib: libcons</a>
+      <ul>
+        <li><a href="#source-files-1">Source Files</a></li>
+        <li><a href="#header-files-1">Header Files</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#reference-eval-boards">Reference Eval Boards</a>
+    </li>
+    <li>
+      <a href="#reference-platform-code">Reference Platform Code</a>
+    </li>
+    <li>
+      <a href="#building-host-code">Building Host Code</a>
+      <ul>
+        <li><a href="#demo-components">Demo Components</a></li>
+        <li><a href="#building-the-app">Building the App</a></li>
+        <li><a href="#make-files">Make Files</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#porting-host-code">Porting Host Code</a>
+    </li>
+  </ul>
+</aside>
+
 This document, intended for those familiar with embedded C programming, describes the following: 
 
 * Host applications which connect to an Ayla module containing an Ayla Production Agent. 

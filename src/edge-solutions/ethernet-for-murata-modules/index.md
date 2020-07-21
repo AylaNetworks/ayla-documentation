@@ -5,6 +5,24 @@ c: block
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Ethernet for Murata</a>
+    </li>
+    <li>
+      <a href="#ethernet-chip-signals">Ethernet Chip Signals</a>
+      <ul>
+        <li><a href="#type-1ld-module">Type-1LD Module</a></li>
+        <li><a href="#type-yd-module">Type-YD Module</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#ethernet-configuration">Ethernet Configuration</a>
+    </li>
+  </ul>
+</aside>
+
 Ethernet support can be useful where a reliable Wi-Fi network is not available or not convenient. With Ethernet, the IP address is obtained via DHCP, and the link speed and duplex are configured automatically, so there’s no user setup needed. In terms of operation, only one network interface is used at a time by the Ayla module. If Ethernet support is provided, enabled, and correctly configured, the Wi-Fi interface will be disabled whenever a link is detected on the Ethernet interface. This is true even if there is no DHCP-provided IP address on the Ethernet interface.
 
 # Ethernet Chip Signals

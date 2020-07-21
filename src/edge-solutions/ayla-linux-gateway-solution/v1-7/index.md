@@ -6,6 +6,43 @@ editIcon: none
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Linux Gateway v1.7</a>
+      <ul>
+        <li><a href="#generic-setup">Generic setup</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#simulator-gateway">Simulator Gateway</a>
+      <ul>
+        <li><a href="#create-simulator-templates">Create Simulator templates</a></li>
+        <li><a href="#install-the-ayla-simulator-gateway">Install the Ayla Simulator Gateway</a></li>
+        <li><a href="#add-simulator-nodes">Add Simulator nodes</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#bluetooth-gateway">Bluetooth Gateway</a>
+      <ul>
+        <li><a href="#create-bluetooth-templates">Create Bluetooth templates</a></li>
+        <li><a href="#install-the-ayla-bluetooth-gateway">Install the Ayla Bluetooth Gateway</a></li>
+        <li><a href="#add-grillright-node">Add Grillright node</a></li>
+        <li><a href="#add-magic-blue-node">Add Magic Blue node</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#zigbee-gateway">Zigbee Gateway</a>
+      <ul>
+        <li><a href="#install-zigbee-stack">Install Zigbee stack</a></li>
+        <li><a href="#create-zigbee-templates">Create Zigbee templates</a></li>
+        <li><a href="#install-the-ayla-zigbee-gateway">Install the Ayla Zigbee Gateway</a></li>
+        <li><a href="#add-zigbee-nodes">Add Zigbee nodes</a></li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+
 This guide helps you experiment with the Ayla Linux Gateway Solution on a Raspberry Pi:
 
 <img src="gateway-generic.png" width="600" height="365">
@@ -69,9 +106,9 @@ ayla_package="https&#58;//github.com/AylaNetworks/device_linux_public.git"
 ayla_package="https&#58;//github.com/AylaNetworks/device_linux_gw_public.git"
 </pre>
 1. Search for "OS is not the raspberrypi", and comment out the line:
-<pre>
-# error_exit "OS is not the raspberrypi"
-</pre>
+    ```
+    # error_exit "OS is not the raspberrypi"
+    ```
 
 # Simulator Gateway
 
@@ -502,54 +539,54 @@ $ sudo ./ayla_install.sh -z -a bt_gatewayd
 ### Test RPi-to-device communication
 
 1. In your RPi Secure Shell, run the following:
-<pre>
-$ sudo bluetoothctl
-# help
-Menu main:
-Available commands:
-advertise                                         Advertise Options Submenu
-scan                                              Scan Options Submenu
-gatt                                              Generic Attribute Submenu
-list                                              List available controllers
-show [ctrl]                                       Controller information
-select &lt;ctrl&gt;                                     Select default controller
-devices                                           List available devices
-paired-devices                                    List paired devices
-system-alias &lt;name&gt;                               Set controller alias
-reset-alias                                       Reset controller alias
-power &lt;on/off&gt;                                    Set controller power
-pairable &lt;on/off&gt;                                 Set controller pairable mode
-discoverable &lt;on/off&gt;                             Set controller discoverable mode
-agent &lt;on/off/capability&gt;                         Enable/disable agent with given capability
-default-agent                                     Set agent as the default one
-advertise &lt;on/off/type&gt;                           Enable/disable advertising with given type
-set-alias &lt;alias&gt;                                 Set device alias
-scan &lt;on/off&gt;                                     Scan for devices
-info [dev]                                        Device information
-pair [dev]                                        Pair with device
-trust [dev]                                       Trust device
-untrust [dev]                                     Untrust device
-block [dev]                                       Block device
-unblock [dev]                                     Unblock device
-remove &lt;dev&gt;                                      Remove device
-connect &lt;dev&gt;                                     Connect device
-disconnect [dev]                                  Disconnect device
-menu &lt;name&gt;                                       Select submenu
-version                                           Display version
-quit                                              Quit program
-exit                                              Quit program
-help                                              Display help about this program
-</pre>
+    ```
+    $ sudo bluetoothctl
+    # help
+    Menu main:
+    Available commands:
+    advertise                                         Advertise Options Submenu
+    scan                                              Scan Options Submenu
+    gatt                                              Generic Attribute Submenu
+    list                                              List available controllers
+    show [ctrl]                                       Controller information
+    select &lt;ctrl&gt;                               Select default controller
+    devices                                           List available devices
+    paired-devices                                    List paired devices
+    system-alias &lt;name&gt;                         Set controller alias
+    reset-alias                                       Reset controller alias
+    power &lt;on/off&gt;                              Set controller power
+    pairable &lt;on/off&gt;                           Set controller pairable mode
+    discoverable &lt;on/off&gt;                       Set controller discoverable mode
+    agent &lt;on/off/capability&gt;                   Enable/disable agent with given capability
+    default-agent                                     Set agent as the default one
+    advertise &lt;on/off/type&gt;                     Enable/disable advertising with given type
+    set-alias &lt;alias&gt;                           Set device alias
+    scan &lt;on/off&gt;                               Scan for devices
+    info [dev]                                        Device information
+    pair [dev]                                        Pair with device
+    trust [dev]                                       Trust device
+    untrust [dev]                                     Untrust device
+    block [dev]                                       Block device
+    unblock [dev]                                     Unblock device
+    remove &lt;dev&gt;                                Remove device
+    connect &lt;dev&gt;                               Connect device
+    disconnect [dev]                                  Disconnect device
+    menu &lt;name&gt;                                 Select submenu
+    version                                           Display version
+    quit                                              Quit program
+    exit                                              Quit program
+    help                                              Display help about this program
+    ```
 1. Scan for nearby Bluetooth devices, and verify that the MAC address of your Grillright device is returned.
-<pre>
-&#x23; agent on
-&#x23; default-agent
-&#x23; scan on
-Discovery started
-[CHG] Controller B8:27:EB:80:7B:CC Discovering: yes
-[CHG] Device E6:E5:C0:FA:A0:ED RSSI: -49
-&#x23; scan off
-</pre>
+    ```
+    &#x23; agent on
+    &#x23; default-agent
+    &#x23; scan on
+    Discovery started
+    [CHG] Controller B8:27:EB:80:7B:CC Discovering: yes
+    [CHG] Device E6:E5:C0:FA:A0:ED RSSI: -49
+    &#x23; scan off
+    ```
 <p>In this case, <code>E6:E5:C0:FA:A0:ED</code> is a Grillright Mac address.</p>
 1. Exit the utility.
 
@@ -606,7 +643,7 @@ The <node>device ~ node ~ subdevice ~ template ~ property</node> hierarchy expla
 
 To inspect the origin of <code>grillrt</code> property names, browse to [bt_gatt.c](https://github.com/AylaNetworks/device_linux_gw_public/blob/master/app/bt_gatewayd/bt_gatt.c), and search for the <code>bt_gatt_init_grillright</code> function:
 
-<pre>
+```
 static int bt_gatt_init_grillright(void)
 {
   int rc = 0;
@@ -631,7 +668,7 @@ static int bt_gatt_init_grillright(void)
   rc |= bt_gatt_add_prop_table("28998e11-c277-48a8-91cb-b29ab0f01ac4", "01", sensor_props, ARRAY_LEN(sensor_props));
   return rc;
 }
-</pre>
+```
 
 ## Add Magic Blue node
 
@@ -642,44 +679,44 @@ Verify that the bulb is screwed into a lamp socket, and that the lamp is turned 
 ### Test RPi-to-device communication
 
 1. In your RPi Secure Shell, run the following:
-<pre>
-$ sudo bluetoothctl
-# help
-Menu main:
-Available commands:
-advertise                                         Advertise Options Submenu
-scan                                              Scan Options Submenu
-gatt                                              Generic Attribute Submenu
-list                                              List available controllers
-show [ctrl]                                       Controller information
-select &lt;ctrl&gt;                                     Select default controller
-devices                                           List available devices
-paired-devices                                    List paired devices
-system-alias &lt;name&gt;                               Set controller alias
-reset-alias                                       Reset controller alias
-power &lt;on/off&gt;                                    Set controller power
-pairable &lt;on/off&gt;                                 Set controller pairable mode
-discoverable &lt;on/off&gt;                             Set controller discoverable mode
-agent &lt;on/off/capability&gt;                         Enable/disable agent with given capability
-default-agent                                     Set agent as the default one
-advertise &lt;on/off/type&gt;                           Enable/disable advertising with given type
-set-alias &lt;alias&gt;                                 Set device alias
-scan &lt;on/off&gt;                                     Scan for devices
-info [dev]                                        Device information
-pair [dev]                                        Pair with device
-trust [dev]                                       Trust device
-untrust [dev]                                     Untrust device
-block [dev]                                       Block device
-unblock [dev]                                     Unblock device
-remove &lt;dev&gt;                                      Remove device
-connect &lt;dev&gt;                                     Connect device
-disconnect [dev]                                  Disconnect device
-menu &lt;name&gt;                                       Select submenu
-version                                           Display version
-quit                                              Quit program
-exit                                              Quit program
-help                                              Display help about this program
-</pre>
+    ```
+    $ sudo bluetoothctl
+    # help
+    Menu main:
+    Available commands:
+    advertise                                         Advertise Options Submenu
+    scan                                              Scan Options Submenu
+    gatt                                              Generic Attribute Submenu
+    list                                              List available controllers
+    show [ctrl]                                       Controller information
+    select &lt;ctrl&gt;                                     Select default controller
+    devices                                           List available devices
+    paired-devices                                    List paired devices
+    system-alias &lt;name&gt;                               Set controller alias
+    reset-alias                                       Reset controller alias
+    power &lt;on/off&gt;                                    Set controller power
+    pairable &lt;on/off&gt;                                 Set controller pairable mode
+    discoverable &lt;on/off&gt;                             Set controller discoverable mode
+    agent &lt;on/off/capability&gt;                         Enable/disable agent with given capability
+    default-agent                                     Set agent as the default one
+    advertise &lt;on/off/type&gt;                           Enable/disable advertising with given type
+    set-alias &lt;alias&gt;                                 Set device alias
+    scan &lt;on/off&gt;                                     Scan for devices
+    info [dev]                                        Device information
+    pair [dev]                                        Pair with device
+    trust [dev]                                       Trust device
+    untrust [dev]                                     Untrust device
+    block [dev]                                       Block device
+    unblock [dev]                                     Unblock device
+    remove &lt;dev&gt;                                      Remove device
+    connect &lt;dev&gt;                                     Connect device
+    disconnect [dev]                                  Disconnect device
+    menu &lt;name&gt;                                       Select submenu
+    version                                           Display version
+    quit                                              Quit program
+    exit                                              Quit program
+    help                                              Display help about this program
+    ```
 1. Scan for nearby Bluetooth devices, and verify that the MAC address of your Magic Blue device is returned.
 <pre>
 &#x23; agent on

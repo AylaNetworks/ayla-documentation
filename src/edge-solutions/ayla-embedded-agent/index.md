@@ -5,6 +5,96 @@ c: block
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Ayla Embedded Agent</a>
+      <ul>
+        <li><a href="#features-and-benefits">Features and Benefits</a></li>
+        <li><a href="#oem-requirements">OEM Requirements</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#dependencies">Dependencies</a></li>
+        <li><a href="#multithreading">Multithreading</a></li>
+        <li><a href="#memory-requirements">Memory Requirements</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#ada-client">ADA Client</a>
+    </li>
+    <li>
+      <a href="#property-subsystem">Property Subsystem</a>
+      <ul>
+        <li><a href="#data-types">Data Types</a></li>
+        <li><a href="#destination-mask">Destination Mask</a></li>
+        <li><a href="#error-codes">Error Codes</a></li>
+        <li><a href="#property-interfaces">Property Interfaces</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#simple-table-interface">Simple Table Interface</a>
+      <ul>
+        <li><a href="#simple-property-structure">Simple property structure</a></li>
+        <li><a href="#library-provided-handlers">Library-provided Handlers</a></li>
+        <li><a href="#simple-table-functions">Simple table functions</a></li>
+        <li><a href="#manage-file-properties">Manage file properties</a></li>
+        <li><a href="#available-destinations">Available destinations</a></li>
+        <li><a href="#simple-table-example">Simple table example</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#primitive-interface">Primitive Interface</a>
+      <ul>
+        <li><a href="#property-structure">Property structure</a></li>
+        <li><a href="#property-mgr-structure">Property mgr structure</a></li>
+        <li><a href="#primitive-functions">Primitive functions</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#batch-datapoints">Batch Datapoints</a>
+      <ul>
+        <li><a href="#batch-functions">Batch functions</a></li>
+        <li><a href="#batch-best-practices">Batch best practices</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#schedules">Schedules</a>
+      <ul>
+        <li><a href="#schedule-functions">Schedule functions</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#logging">Logging</a>
+      <ul>
+        <li><a href="#logging-functions">Logging functions</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#ota-updates">OTA Updates</a>
+      <ul>
+        <li><a href="#patch_state">patch_state</a></li>
+        <li><a href="#ada_ota_ops">ada_ota_ops</a></li>
+        <li><a href="#ota-functions">OTA functions</a></li>
+        <li><a href="#ota-best-practices">OTA best practices</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#command-line-interfaces">Command Line Interfaces</a>
+      <ul>
+        <li><a href="#cli-functions">CLI functions</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#required-app-interfaces">Required App Interfaces</a>
+    </li>
+    <li>
+      <a href="#configuration-subsystem">Configuration subsystem</a>
+    </li>
+    <li>
+      <a href="#wi-fi-subsystem">Wi-Fi subsystem</a>
+    </li>
+  </ul>
+</aside>
+
 Ayla Networks has four different device agents that run on IoT devices or gateways and incorporate a fully optimized networking stack, along with the additional protocols needed to connect devices to the Ayla Cloud. Developers using almost any microcontroller or operating system can use Ayla-enabled connectivity modules to enable cloud capabilities over any type of networking protocol. The four device agents are:
 
 * Production Agent. See [Ayla Development Kit](/edge-solutions/ayla-development-kit).

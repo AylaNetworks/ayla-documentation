@@ -5,6 +5,19 @@ editIcon: none
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Getting Started</a>
+      <ul>
+        <li><a href="#set-up-your-account">Set up your account</a></li>
+        <li><a href="#access-online-tools">Access online tools</a></li>
+        <li><a href="#find-content">Find content</a></li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+
 Welcome to Ayla Docs! This video provides an introduction to the Ayla IoT Cloud: 
 
 <iframe 

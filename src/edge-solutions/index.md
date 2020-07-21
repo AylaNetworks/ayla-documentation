@@ -4,6 +4,17 @@ c: block
 editIcon: none
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Edge Solutions</a>
+      <ul>
+        <li><a href="#choose-a-guide">Choose a guide</a></li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+
 Welcome, edge developers! This video explains concepts that are common to all <a href="https://www.aylanetworks.com/edge-connectivity" target="_blank">Ayla Edge Solutions</a>:
 
 <iframe 

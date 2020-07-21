@@ -6,6 +6,88 @@ editIcon: none
 classesFromPage: has-pagebar
 ---
 
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Ayla Dev Kit v2.0</a>
+    </li>
+    <li>
+      <a href="#about-this-guide">About this guide</a>
+    </li>
+    <li>
+      <a href="#connect-your-kit">Connect your kit</a>
+    </li>
+    <li>
+      <a href="#explore-properties">Explore properties</a>
+      <ul>
+        <li><a href="#boolean-properties">Boolean properties</a></li>
+        <li><a href="#string-properties">String properties</a></li>
+        <li><a href="#integer-properties">Integer properties</a></li>
+        <li><a href="#decimal-properties">Decimal properties</a></li>
+        <li><a href="#file-properties">File properties</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#explore-schedules">Explore schedules</a>
+    </li>
+    <li>
+      <a href="#explore-notifications">Explore notifications</a>
+      <ul>
+        <li><a href="#property-notifications">Property notifications</a></li>
+        <li><a href="#device-notifications">Device notifications</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#explore-device-sharing">Explore device sharing</a>
+      <ul>
+        <li><a href="#granting-access">Granting access</a></li>
+        <li><a href="#receiving-access">Receiving access</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#explore-factory-resets">Explore factory resets</a>
+      <ul>
+        <li><a href="#aura-factory-reset">Aura factory reset</a></li>
+        <li><a href="#physical-factory-reset">Physical factory reset</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#build-environment">Build environment</a>
+      <ul>
+        <li><a href="#host-application">Host Application</a></li>
+        <li><a href="#ayla-host-library">Ayla Host Library</a></li>
+        <li><a href="#set-up-an-environment">Set up an environment</a></li>
+        <li><a href="#add-arm-and-ayla">Add ARM and Ayla</a></li>
+        <li><a href="#test-the-environment">Test the environment</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#tutorials">Tutorials</a>
+      <ul>
+        <li><a href="#baseline-application">Baseline application</a></li>
+        <li><a href="#run-the-example">Run the example</a></li>
+        <li><a href="#analyze-the-example">Analyze the example</a></li>
+        <li><a href="#console-example">Console example</a></li>
+        <li><a href="#ack-example">Ack example</a></li>
+        <li><a href="#metadata-example">Metadata example</a></li>
+        <li><a href="#schedule-example">Schedule example</a></li>
+        <li><a href="#config-example">Config example</a></li>
+        <li><a href="#event-register-example">Event register example</a></li>
+        <li><a href="#event-notify-example">Event notify example</a></li>
+        <li><a href="#new-property-example">New property example</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#appendix">Appendix</a>
+      <ul>
+        <li><a href="#serial-mode">Serial mode</a></li>
+        <li><a href="#ayla-shield-schematic">Ayla Shield Schematic</a></li>
+        <li><a href="#configuration">Configuration</a></li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+
 Ayla Development Kit provides an opportunity (1) to experiment with Ayla IoT Cloud features, and (2) to modify, build, flash, and run the example host application in preparation for connecting your own devices and gateways. The kit is composed of a STM32 Nucleo Board and an Ayla Shield:
 
 <img src="ayla-dev-kit.png" width="360" height="243">
