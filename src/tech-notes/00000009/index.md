@@ -88,9 +88,12 @@ Following is an example of the event subfolders within the main folder for each 
 Every subfolder in the event type folders has one CSV event data file. You therefore need an application (such as Microsoft Excel) to view the saved .csv data files. The example below shows the contents of an CSV file opened in Microsoft Excel. Notice that each individual property of the datapoint event displays as a single line entry in the .csv file. This data entry pattern is the same in the .csv files across all event types.
 
 (INSERT IMAGE HERE)
+
 **NOTE:** String values are base64 encoded.
 
 ## Ayla Device Event Data Export Files by Event Type
+
+**NOTE:** The display_name value is base64 encoded.
 
 **Datapoint**            | **Datapoin ACK**        | **Connection** | **Location** | **Registration**
 -------------            | ----------------        | -------------- | ------------ | -----------------
