@@ -120,5 +120,4 @@ Every subfolder in the event type folders has one CSV event data file. You there
 |                        |  ack_id                  |                |              ||
 |                        |  acked_at                |                |              ||
 
-
 In credentials:
