@@ -43,25 +43,24 @@ To use this feature, complete the following three major steps, which are describ
 1. Log in to the [Ayla Customer Dashboard](https://dashboard.aylanetworks.com).
 2. Click **OEM Profile** in the navigation panel, and then click the **Data Export** tab to view the OEM access credentials. Refer to the following example:
 
-   (INSERT IMAGE HERE)
+   <div><img src="Dashboard_DataExport2.png"></div>
 
    The access credentials remain valid indefinitely unless an OEM Admin requests new credentials.
 
 3. To request new access credentials, click the **REFRESH CREDENTIALS** button, and then click **ACCEPT** in the confirmation message. Refer to the following example:
 
-   (INSERT IMAGE HERE)
+   <div><img src="Dashboard_DataExp_RefreshCreds.png"></div>
 
 ### Step 2: Use an Amazon S3 Compatible Client to Access the Data Files
 
 The Ayla Cloud Service regularly implements processes to aggregate new device events that are packaged into data files. These files are stored on Amazon S3 and organized by date, timestamp, and event type. The data files may contain duplicate events or out-of-sequence events data. These files are maintained for 12 months. You may use any client compatible with Amazon S3 to access the Ayla data files. Following are two examples of these clients:
 
 * CyberDuck
-  * Mac/Windows Grapical User Interface (GUI)
-  * [http://cyberduck.io](http://cyberduck.io)
-  
- * s3Cmd
-   * Mac/Windows Command Line Interface (CLI)
-   * [http://s3tools.org/s3cmd](http://s3tools.org/s3cmd)
+  + Mac/Windows Grapical User Interface (GUI)
+  + [http://cyberduck.io](http://cyberduck.io)
+* s3Cmd
+  + Mac/Windows Command Line Interface (CLI)
+  + [http://s3tools.org/s3cmd](http://s3tools.org/s3cmd)
    
 Please note that Ayla Networks does not endorse any particular client, including the two examples above. The example in this tech note uses the CyberDuck client. Therefore, the fields may be different if you are using another client. Use the client as follows to access the Ayla data files on Amazon S3:
 
@@ -69,59 +68,56 @@ Please note that Ayla Networks does not endorse any particular client, including
  
 2. Select the Amazon S3 option in the fields for the protocal and server, and then enter the OEM access credentials in the corresponding fields, also shown in the example below these three steps. Note that if you are a developer working across multiple OEMs, make sure that you enter the correct OEM access credentials for the data files you wish to view.
 
-3. Enter any additional parameters in the other fields, and then click Connect.
-
-(INSERT IMAGE HERE)
+3. Enter any additional parameters in the other fields, and then click Connect. <div><img src="DataExp_MapCredsToS3CyberDuck.png"></div>
 
 Once you successfully connect to Amazon S3, you gain access to the device event data files associated with the OEM access credentials that were entered.
 
 Following is an example of the folders for the 5 event types on Amazon S3. As mentioned earlier, the Ayla device event data files are grouped into these 5 event types.
 
-(INSERT IMAGE HERE)
+<img src="DataExp_EventFileFoldersOnS3.png">
 
 Following is an example of the event subfolders within the main folder for each of the 5 event types. Each subfolder is tagged with a timestamp formatted as YYYY-MM-DD-HH:MM:SS in UTC. The frequency in which the subfolders and data files are created in the event type folders varies depending on amount of data generated for the event type. Some event types typically generate more data than others. You may therefore see some gaps between the timestamped subfolders (also shown in the example below). For instance, the Datapoint or Datapoint Ack event folders typically have more subfolders and data files compared to Registration or Location event folders. 
 
-(INSERT IMAGE HERE)
+<img src="DataExp_TimeGaps_EventFileFoldersOnS3.png">
 
 ### Step 3: View and Consume the Event Data Files
 
 Every subfolder in the event type folders has one CSV event data file. You therefore need an application (such as Microsoft Excel) to view the saved .csv data files. The example below shows the contents of an CSV file opened in Microsoft Excel. Notice that each individual property of the datapoint event displays as a single line entry in the .csv file. This data entry pattern is the same in the .csv files across all event types.
 
-(INSERT IMAGE HERE)
+<img src="DataExp_ViewCSVfiles_Excel.png">
 
 **NOTE:** String values are base64 encoded.
 
 ## Ayla Device Event Data Export Files by Event Type
 
-**NOTE:** The display_name value is base64 encoded.
+**NOTE:** The display_name, val_string, and metadata values are base64 encoded.
 
-**Datapoint**            | **Datapoin ACK**        | **Connection** | **Location** | **Registration**
--------------            | ----------------        | -------------- | ------------ | -----------------
-oem_id                   |  oem_model              |  oem_id        |  oem_id      |  oem_id  
-oem_model                |  dsn                    |  oem_model     |  oem_model   |  oem_model  
-dsn                      |  property_name          |  dsn           |  dsn         |  dsn
-property_name            |  display_name           | event_time     |  ip          |  user_uuid
-display_name             |  base_type              | user_uuid      |  lat         |  registered  
-base_type                |  time_uuid              | status         |  long        |  registration_type
-time_uuid                |  created_at_from_device |                |  provider    |  registered at
-created_at_from_device   |  updated_at             |                |  user_uuid   |  unregistered at
-updated_at               |  created_at             |                |  created_at  |
-created_at               |  user_uuid              |                |              |
-user_uuid                |  echo                   |                |              |
-echo                     |  closed                 |                |              |
-closed                   |  discarded              |                |              |
-discarded                |  scope                  |                |              |
-scope                    |  val_int                |                |              |
-val_int                  |  val_decimal            |                |              |
-val_decimal              |  val_float              |                |              |
-val_float                |  val_boolean            |                |              |
-val_boolean              |  val_string             |                |              |
-val_string               |  metadata               |                |              |
-metadata                 |  ack_message            |                |              |
-direction (input/output) |  ack_status             |                |              |
-|                        |  ack_id                 |                |              |
-|                        |  ack_id                 |                |              |
-|                        |  acked_at               |                |              |
-
+|**Datapoint**            | **Datapoin ACK**        | **Connection** | **Location** | **Registration**|
+|-------------            | ----------------        | -------------- | ------------ | -----------------|
+|oem_id                   |  oem_model              |  oem_id        |  oem_id      |  oem_id  |
+|oem_model                |  dsn                    |  oem_model     |  oem_model   |  oem_model  |
+|dsn                      |  property_name          |  dsn           |  dsn         |  dsn|
+|property_name            |  display_name           | event_time     |  ip          |  user_uuid|
+|display_name             |  base_type              | user_uuid      |  lat         |  registered  |
+|base_type                |  time_uuid              | status         |  long        |  registration_type |
+|time_uuid                |  created_at_from_device |                |  provider    |  registered at|
+|created_at_from_device   |  updated_at             |                |  user_uuid   |  unregistered at|
+|updated_at               |  created_at             |                |  created_at  ||
+|created_at               |  user_uuid              |                |              ||
+|user_uuid                |  echo                   |                |              ||
+|echo                     |  closed                 |                |              ||
+|closed                   |  discarded              |                |              ||
+|discarded                |  scope                  |                |              ||
+|scope                    |  val_int                |                |              ||
+|val_int                  |  val_decimal            |                |              ||
+|val_decimal              |  val_float              |                |              ||
+|val_float                |  val_boolean            |                |              ||
+|val_boolean              |  val_string             |                |              ||
+|val_string               |  metadata               |                |              ||
+|metadata                 |  ack_message            |                |              ||
+|direction (input/output) |  ack_status             |                |              ||
+|                        |  ack_id                  |                |              ||
+|                        |  ack_id                  |                |              ||
+|                        |  acked_at                |                |              ||
 
 In credentials:
