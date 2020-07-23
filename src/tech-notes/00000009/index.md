@@ -92,8 +92,8 @@ Every subfolder in the event type folders has one CSV event data file. You there
 
 **NOTE:** The display_name, val_string, and metadata values are base64 encoded.
 
-|**Datapoint**            | **Datapoin ACK**        | **Connection** | **Location** | **Registration**|
-|-------------            | ----------------        | -------------- | ------------ | -----------------|
+|Datapoint            |Datapoint ACK        | Connection |Location | Registration|
+|-            | -        | - | - | -|
 |oem_id                   |  oem_model              |  oem_id        |  oem_id      |  oem_id  |
 |oem_model                |  dsn                    |  oem_model     |  oem_model   |  oem_model  |
 |dsn                      |  property_name          |  dsn           |  dsn         |  dsn|
