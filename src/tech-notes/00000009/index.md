@@ -43,13 +43,13 @@ To use this feature, complete the following three major steps, which are describ
 1. Log in to the [Ayla Customer Dashboard](https://dashboard.aylanetworks.com).
 2. Click **OEM Profile** in the navigation panel, and then click the **Data Export** tab to view the OEM access credentials. Refer to the following example:
 
-   <div><img src="Dashboard_DataExport2.png width="800" height="200"></div>
+   <div><img src="Dashboard_DataExport2.png" width="800" height="200"></div>
 
    The access credentials remain valid indefinitely unless an OEM Admin requests new credentials.
 
 3. To request new access credentials, click the **REFRESH CREDENTIALS** button, and then click **ACCEPT** in the confirmation message. Refer to the following example:
 
-   <div><img src="Dashboard_DataExp_RefreshCreds.png width="800" height="195"></div>
+   <div><img src="Dashboard_DataExp_RefreshCreds.png" width="800" height="195"></div>
 
 ### Step 2: Use an Amazon S3 Compatible Client to Access the Data Files
 
