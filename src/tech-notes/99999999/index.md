@@ -4,11 +4,26 @@ layout: technote.html
 author: name
 creationDate: Month 00, 0000
 lastModifiedDate: Month 00, 0000
+classesFromPage: has-pagebar
 ---
+
+<aside id="pagebar" class="d-xl-block collapse">
+  <ul>
+    <li>
+      <a href="#core-title">Data Exports</a>
+      <ul>
+        <li><a href="#purpose">Purpose</a></li>
+        <li><a href="#storage">Storage</a></li>
+        <li><a href="#how-to-export">How to export</a></li>
+        <li><a href="#columns-by-event-type">Columns by Event Type</a></li>
+      </ul>
+    </li>
+  </ul>
+</aside>
 
 The Ayla Data Export feature provides OEM developers and data analysts with greater flexibility for retrieving and consuming historic device event data from the Ayla Cloud Service.
 
-## Why Use Ayla's Data Export Feature
+## Purpose
 
 This feature can assist in the analysis and debugging of the following use cases:
 
@@ -18,7 +33,7 @@ This feature can assist in the analysis and debugging of the following use cases
 
 Customers who do not need access to real-time data or who do not wish to build external systems to maintain an active Data Stream Services (DSS) subscription can use this feature to export their historic data for analysis or archiving. This feature also allows customers to access and retrieve data beyond the current standard data retention policy on the Ayla Customer Dashboard, which currently is 90 days from the date of capture.
 
-## Where the Data Files Are Stored 
+## Storage 
 
 The following 5 device event types are stored on Amazon S3 (Simple Storage Service):
 
@@ -30,7 +45,7 @@ The following 5 device event types are stored on Amazon S3 (Simple Storage Servi
 
 Amazon S3 creates a folder for each event type to compile its data files. When new event data is available after the most recent save, the event data files are posted to Amazon S3 in their respective event type folders. You may notice more time-stamped subfolders being added under specific event type folders if the volume of data being generated for that event type is high. Each event type folder can have multiple subfolders that are timestamped based on when the data within the folder was created. Each subfolder contains only one CSV event data file.
 
-## How to Use Ayla's Data Export Feature
+## How to export
 
 To use this feature, complete the following three major steps, which are described in this section:
 
@@ -85,98 +100,24 @@ Following is an example of the event subfolders within the main folder for each 
 
 Every subfolder in the event type folders has one CSV event data file. You therefore need an application (such as Microsoft Excel) to view the saved .csv data files. The example below shows the contents of an CSV file opened in Microsoft Excel. Notice that each individual property of the datapoint event displays as a single line entry in the .csv file. This data entry pattern is the same in the .csv files across all event types. String values are base64 encoded.
 
-<img src="DataExp_ViewCSVfiles_Excel.png" width="800" height="57">
+<img src="spreadsheet.png" width="700" height="95">
 
-## Ayla Device Event Data Export Files by Event Type
+## Columns by Event Type
 
 ### connectivity
 
-|Key|Example Value|
-|-|-|
-|oem_id|1234abcd|
-|oem_model|ledevb|
-|dsn|AC000W000123456|
-|resource_tags||
-|event_type|connectivity|
-|event_time|2018-09-24T10:26:37Z|
-|user_uuid|00000000-0000-0000-0000-000000000000|
-|status|Online|
-
 ### datapoint
 
-|Key|Example Value|
+|Column Name|Example Value|
 |-|-|
-|oem_id|1234abcd|
-|oem_model|linuxevb|
-|dsn|AC000W005606115|
-|property_name|Blue_LED|
-|display_name|Blue_LED|
-|base_type|boolean|
-|resource_tags||
-|event_type|datapoint|
-|id|1ff9b91c-bfe4-11e8-1261-67d251d3ec96|
-|created_at_from_device|null|
-|updated_at|2018-09-24T10:25:14Z|
-|created_at|2018-09-24T10:25:14Z|
-|user_uuid|00000000-0000-0000-0000-000000000000|
-|echo|true|
-|closed|false|
-|value|0|
-|metadata|&nbsp;|
+|base_type|decimal|
+|time_uuid|string|
+|...|...|
+|...|...|
 
 ### datapointack
 
-|Key|Example Value|
-|-|-|
-|ack_id|160c8c90-bfe4-11e8-87f4-8d732085e587|
-|ack_message|0|
-|ack_status|200|
-|acked_at|2018-09-24T10:24:57Z|
-|base_type|boolean|
-|closed|false|
-|created_at_from_device|null|
-|created_at|2018-09-24T10:24:57Z|
-|display_name|Blue_LED|
-|dsn|AC000W005606115|
-|echo|false|
-|event_type|datapointack|
-|id|15af3cfc-bfe4-11e8-f2f0-9aab1d61f636|
-|metadata|&nbsp;|
-|oem_id|1234abcd|
-|oem_model|linuxevb|
-|property_name|Blue_LED|
-|resource_tags||
-|updated_at|2018-09-24T10:24:57Z|
-|user_uuid|00000000-0000-0000-0000-000000000000|
-|value|1|
-
 ### location
 
-|Key|Example Value|
-|-|-|
-|created_at|2018-09-24T11:04:07Z|
-|dsn|AC000W000340779|
-|event_type|location|
-|ip|67.255.234.73|
-|lat| 44.769500|
-|long|-69.428300|
-|oem_id|1234abcd|
-|oem_model|ledevb|
-|provider|ip-based|
-|resource_tags||
-|user_uuid|00000000-0000-0000-0000-000000000000|
-
 ### registration
-
-|Key|Example Value|
-|-|-|
-|dsn|AC000W000123456|
-|event_type|registration|
-|oem_id|1234abcd|
-|oem_model|ledevb|
-|registered|false|
-|registration_type|AP-Mode|
-|resource_tags||
-|unregistered_at|2018-09-24T10:29:50Z|
-|user_uuid|null|
 

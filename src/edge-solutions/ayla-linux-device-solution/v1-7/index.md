@@ -105,23 +105,23 @@ After creating the template, copy & paste the following properties into a text f
 
 ```
 base_type,direction,name,scope
+boolean,input,batch_hold,user
 boolean,output,Blue_button,user
 boolean,input,Blue_LED,user
 string,input,cmd,user
 decimal,input,decimal_in,user
 decimal,output,decimal_out,user
-boolean,input,Green_LED,user
-integer,input,input,user
-string,output,log,user
-integer,output,output,user
-string,output,version,user
 file,input,file_down,user
 file,output,file_up,user
 boolean,input,file_up_test,user
-boolean,input,batch_hold,user
-message,input,large_message_down,user
-message,output,large_message_up,user
-string,input,large_message_up_test,user
+boolean,input,Green_LED,user
+integer,input,input,user
+message,input,large_msg_down,user
+message,output,large_msg_up,user
+string,input,large_msg_up_test,user
+string,output,log,user
+integer,output,output,user
+string,output,version,user
 ```
 
 Finally, click the new ```version``` property, check ```Host SW Version```, and click ```OK```.
@@ -195,7 +195,7 @@ Finally, click the new ```version``` property, check ```Host SW Version```, and 
 1. In the secure shell, ensure that you are in your home directory (e.g. <code>/home/pi</code>).
 1. Clone the Ayla [device-linux-public](https://github.com/AylaNetworks/device_linux_public) repository. You will be asked for your Github username and password.
     ```
-    $ git clone https&#58;//github.com/AylaNetworks/device_linux_public.git
+    $ git clone https://github.com/AylaNetworks/device_linux_public.git
     ```
 1. View the release history, and, if the latest release is not ```adc-1.7```, get ```adc-1.7```:
     ```
@@ -330,7 +330,7 @@ $ mv AC000W123456789.conf devd.conf
 
 <ol>
 <li>Open <code>devd.conf</code> for editing.</li>
-<li>Add <code>,"server": {"default": 1}</code> to the <code>client</code> section as indicated in yellow below, and save. Don't forget the initial comma. This addition is important for initial prototyping, but must be removed when the device is deployed on your production platform.
+<li>Add <code>,"server": {"default": 1}</code> to the <code>client</code> section as indicated in black below, and save. Don't forget the initial comma. This addition is important for initial prototyping, but must be removed when the device is deployed on your production platform.
 <pre>
 {
   "config": {
@@ -342,7 +342,7 @@ $ mv AC000W123456789.conf devd.conf
       "rsa_pub_key": "-----BEGIN RSA PUBLIC KEY-----\nMIIB...
     },
     "client": {
-      "region": "US"<span style="color:yellow;">,
+      "region": "US"<span style="color:black;">,
       "server": {
           "default": 1
       }</span>
