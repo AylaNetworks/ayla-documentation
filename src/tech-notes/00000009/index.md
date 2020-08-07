@@ -57,7 +57,7 @@ To use this feature, complete the following three major steps, which are describ
 
 ### Step 2: Use an Amazon S3 Compatible Client to Access the Data Files
 
-The Ayla Cloud Service regularly implements processes to aggregate new device events that are packaged into data files. The example in this tech note uses the Cyberduck client. Therefore, the fields may be different if you are using another client. Using the Cyberduck client, access the Ayla data files on Amazon S3 as follows:
+The Ayla Cloud Service regularly implements processes to aggregate new device events that are packaged into data files. These files are stored on Amazon S3 and organized by date, timestamp, and event type. The data files may contain duplicate events or out-of-sequence event data. These files are maintained for 12 months. You may use any client compatible with Amazon S3 to access the Ayla data files. Following are two examples of these clients:
 
 * Cyberduck
   + This client uses a Mac/Windows GUI.
