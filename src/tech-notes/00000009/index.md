@@ -10,7 +10,7 @@ The Ayla Data Export feature provides OEM developers and data analysts with grea
 
 You can also access near real-time data on asynchronous device events in the Ayla Cloud using Ayla’s DataStream Service (DSS). DSS enables OEMs to use a REST API or the Ayla Customer Dashboard to create, update, or delete subscriptions for data that occurs in the Ayla Platform. Ayla's DSS is a robust event-based data publishing system that guarantees delivery of data and events with the least amount of latency to the cloud endpoint of choice. Supported Cloud end points include AWS Kinesis and Azure Event Hubs.
 
-For more information on Ayla DSS, refer to [Ayla’s Dashboard Help](https://connection.aylanetworks.com/s/welcome-to-dashboard-help) and Ayla Docs (specifically [Cloud Services](https://docs.aylanetworks.com/cloud-services/) and [the API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/)).
+For more information on Ayla's DSS, refer to [Ayla’s Dashboard Help](https://connection.aylanetworks.com/s/welcome-to-dashboard-help) and Ayla Docs (specifically [Cloud Services](https://docs.aylanetworks.com/cloud-services/) and [the API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/)).
 
 ## Why Use Ayla's Data Export Feature
 
@@ -47,7 +47,7 @@ To use this feature, complete the following three major steps, which are describ
 1. Log in to the [Ayla Customer Dashboard](https://dashboard.aylanetworks.com).
 2. Click **OEM Profile** in the navigation panel, and then click the **Data Export** tab to view the OEM access credentials. Refer to the following example:
 
-   <div><img src="Dashboard_DataExport2.png" width="800" height="340"></div>
+   <div><img src="Dashboard_DataExport2.png" width="800" height="204"></div>
 
    The access credentials remain valid indefinitely unless an OEM Admin requests new credentials.
 
@@ -60,10 +60,10 @@ To use this feature, complete the following three major steps, which are describ
 The Ayla Cloud Service regularly implements processes to aggregate new device events that are packaged into data files. The example in this tech note uses the Cyberduck client. Therefore, the fields may be different if you are using another client. Using the Cyberduck client, access the Ayla data files on Amazon S3 as follows:
 
 * Cyberduck
-  + This client uses a Mac/Windows GUI
+  + This client uses a Mac/Windows GUI.
   + Navigate to [http://cyberduck.io](http://cyberduck.io) for more information.
 * s3Cmd
-  + This client uses a Mac/Windows CLI
+  + This client uses a Mac/Windows CLI.
   + Navigate to [http://s3tools.org/s3cmd](http://s3tools.org/s3cmd) for more information.
    
 Please note that Ayla Networks does not endorse any particular client, including the two examples above. The example in this tech note uses the Cyberduck client. Therefore, the fields may be different if you are using another client. Using the Cyberduck client, access the Ayla data files on Amazon S3 as follows:
@@ -72,7 +72,7 @@ Please note that Ayla Networks does not endorse any particular client, including
  
 2. Select the Amazon S3 option in the fields for the protocol and server, and then enter the OEM access credentials in the corresponding fields. (This is also shown in the example below these three steps.) If you are working across multiple OEMs, make sure that you enter the correct OEM access credentials for the data files you wish to view.
 
-3. Enter any additional parameters in the other fields, and then click **Connect**. <div><img src="DataExp_MapCredsToS3CyberDuck.png" width="800" height="662"></div>
+3. Enter any additional parameters in the other fields, and then click **Connect**. <div><img src="DataExp_MapCredsToS3CyberDuck.png" width="600" height="497"></div>
 
 Once you successfully connect to Amazon S3, you gain access to the device event data files associated with the OEM access credentials that were entered.
 
@@ -80,7 +80,7 @@ Following is an example of the folders for the 5 event types on Amazon S3. As me
 
 <img src="DataExp_EventFileFoldersOnS3.png" width="204" height="188">
 
-Following is an example of the event subfolders within the main folder for each of the 5 event types. Each subfolder is tagged with a timestamp formatted as YYYY-MM-DD-HH:MM:SS in UTC. The frequency in which the subfolders and data files are created in the event type folders varies depending on amount of data generated for the event type. Some event types typically generate more data than others. You may therefore see some gaps between the timestamped subfolders (also shown in the example below). For instance, the Datapoint or Datapoint Ack event folders typically have more subfolders and data files compared to Registration or Location event folders. 
+Following is an example of the event subfolders within the main folder for each of the 5 event types. Each subfolder is tagged with a timestamp formatted as YYYY-MM-DD-HH:MM:SS in UTC. The frequency in which the subfolders and data files are created in the event type folders varies depending on the amount of data generated for the event type. Some event types typically generate more data than others. You may therefore see some gaps between the timestamped subfolders (also shown in the example below). For instance, the Datapoint or Datapoint Ack event folders typically have more subfolders and data files compared to Registration or Location event folders. 
 
 <img src="DataExp_TimeGaps_EventFileFoldersOnS3.png" width="800" height="193">
 
@@ -90,7 +90,7 @@ Every subfolder in the event type folders has one CSV event data file. You there
 
 <img src="spreadsheet.png" width="800" height="101">
 
-## Ayla Device Event Data Export Files by Event Type
+## The Parameters Associated with the Ayla Device Event Types
 
 The following table shows the parameters used by each Ayla Device Event Type. The display_name, val_string, and metadata values are base64 encoded.
 
