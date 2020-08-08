@@ -1,5 +1,5 @@
 ---
-title: New Template Architecture
+title: New template architecture
 layout: technote.html
 author: Yew Yin Ng
 creationDate: February 4, 2020

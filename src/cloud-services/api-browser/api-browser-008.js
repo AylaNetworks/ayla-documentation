@@ -1412,8 +1412,10 @@ function buildApi(apiElement, api, collapsed=true) {
   }
 
   if(api.notes) {
-    content.append('<div class="heading">Notes</div>')
-    content.append('<div class="notes">' + api.notes + '</div>')
+    content.append(''
+      + '<div class="description" style="cursor:pointer;text-decoration:underline;margin-top:6px;" data-toggle="collapse" href="' + '#' + collapseId + 'notes">Toggle notes.</div>'
+      + '<div class="notes collapse" id="' + collapseId + 'notes">' + api.notes + '</div>'
+    )
   }
 
   $(apiElement).empty()
