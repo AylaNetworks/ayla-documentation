@@ -7,7 +7,7 @@ lastModifiedDate: August 10, 2020
 classesFromPage: has-pagebar
 ---
 
-<span style="color:orange;">Under Construction</span>
+**Under Construction**
 
 This Tech Note introduces the Ayla Rule Engine (ARE) which, once populated with user-defined rules and actions, evaluates device events in light of rules, and, when rule conditions warrant, performs the associated actions. Consider the following diagram:
 
