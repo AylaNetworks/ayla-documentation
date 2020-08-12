@@ -463,7 +463,7 @@ main ul.glossary li {
 }
 
 @media (min-width: 768px) {
-  /*#core img {margin-left: 20px;}*/
+  #core img {margin-left: 20px;}
 }
 
 #edit-icon img {

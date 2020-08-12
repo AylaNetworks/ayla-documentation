@@ -2,8 +2,8 @@
 title: Ayla Rule Engine (ARE)
 layout: technote.html
 author: Matt Hagen
-creationDate: August 4, 2020
-lastModifiedDate: August 6, 2020
+creationDate: August 8, 2020
+lastModifiedDate: August 10, 2020
 classesFromPage: has-pagebar
 ---
 
@@ -15,165 +15,379 @@ classesFromPage: has-pagebar
     <li>
       <a href="#example">Example</a>
       <ul>
-        <li><a href="#user-level-perspective">User-level perspective</a></li>
-        <li><a href="#api-level-perspective">API-level perspective</a></li>
+        <li><a href="#creating-actions">Creating actions</a></li>
+        <li><a href="#creating-rules">Creating rules</a></li>
+        <li><a href="#testing">Testing</a></li>
       </ul>
     </li>
     <li>
-      <a href="#terminology">Terminology</a>
+      <a href="#events">Events</a>
+    </li>
+    <li>
+      <a href="#expressions">Expressions</a>
       <ul>
-        <li><a href="#abstract-rule">Abstract Rule</a></li>
-        <li><a href="#action">Action</a></li>
-        <li><a href="#action-type">Action Type</a></li>
-        <li><a href="#ayla-rule-engine-are">Ayla Rule Engine (ARE)</a></li>
-        <li><a href="#ayla-rule-expression-syntax-ares">Ayla Rule Expression Syntax (ARES)</a></li>
-        <li><a href="#concrete-rule">Concrete Rule</a></li>
-        <li><a href="#event">Event</a></li>
-        <li><a href="#function">Function</a></li>
-        <li><a href="#group-notation-syntax">Group Notation Syntax</a></li>
-        <li><a href="#rule">Rule</a></li>
-        <li><a href="#rule-evaluation">Rule Evaluation</a></li>
-        <li><a href="#rule-expression">Rule Expression</a></li>
-        <li><a href="#rule-service-api">Rule Service API</a></li>
-        <li><a href="#rule-subject">Rule Subject</a></li>
+        <li><a href="#rule-subjects">Rule Subjects</a></li>
+        <li><a href="#functions">Functions</a></li>
       </ul>
+    </li>
+    <li>
+      <a href="#actions">Actions</a>
+      <ul>
+        <li><a href="#action-types">Action Types</a></li>
+        <li><a href="#concrete-actions">Concrete actions</a></li>
+        <li><a href="#abstract-actions">Abstract actions</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#action-examples">Action examples</a>
+      <ul>
+        <li><a href="#ams_apns-actions">AMS_APNS actions</a></li>
+        <li><a href="#ams_email-actions">AMS_EMAIL actions</a></li>
+        <li><a href="#ams_fcm-actions">AMS_FCM actions</a></li>
+        <li><a href="#ams_kafka-actions">AMS_KAFKA actions</a></li>
+        <li><a href="#ams_push-actions">AMS_PUSH actions</a></li>
+        <li><a href="#ams_sms-actions">AMS_SMS actions</a></li>
+        <li><a href="#datapoint-actions">DATAPOINT actions</a></li>
+        <li><a href="#datastream-actions">DATASTREAM actions</a></li>
+        <li><a href="#datastream_eventhub-actions">DATASTREAM_EVENTHUB actions</a></li>
+        <li><a href="#diagnostic-actions">DIAGNOSTIC actions</a></li>
+        <li><a href="#email-actions">EMAIL actions</a></li>
+        <li><a href="#sms-actions">SMS actions</a></li>
+        <li><a href="#url-actions">URL actions</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#rules">Rules</a>
+      <ul>
+        <li><a href="#concrete-rules">Concrete Rules</a></li>
+        <li><a href="#abstract-rules">Abstract Rules</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#about-the-apis">About the APIs</a>
     </li>
   </ul>
 </aside>
 
-This Tech Note explores the Ayla Rule Engine (ARE) which employs user-defined rules and actions to process various types of events. Consider the following diagram:
+<span style="color:orange;">Under Construction: Words and images may change often. If images seem weird, clear cached images and files in your browser.</span>
 
-<img src="ayla-rule-engine.png" width="700" height="367">
+This Tech Note introduces the Ayla Rule Engine (ARE) which, once populated with user-defined rules and actions, evaluates device events in light of rules, and, when rule conditions warrant, performs the associated actions. Consider the following diagram:
 
-As illustrated in the diagram, devices provide the rule engine with a steady supply of events indicating various device-related state changes. Ayla Cloud subsystems like the OTA Service also supply the rule engine with events derived from device events. The `version` event, for example, indicates that a device's firmware needs to be updated. The rule engine leverages user-defined rules to make sense of these events. Rules always evaluate to true or false. If a rule evaluates to true, the rule engine performs the action(s) associated with the rule. The rule engine in the diagram, for example, sends an email to Sarah and posts data to an endpoint when a particular device becomes active. Rules use Ayla Rule Expression Syntax (ARES) to encode conditional expressions. Actions also use ARES to define parameters. OEM users create and manage rules and actions via the Rules tab in the Ayla Developer Portal. Developers use Rules Services APIs as described in the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/) to do the same.
+<img src="ayla-rule-engine.png" width="700" height="368">
+
+As illustrated in the diagram, devices provide ARE with a steady supply of events indicating various device-related state changes. Ayla Cloud subsystems like the OTA Service also supply ARE with events derived from device events. The `version` event, for example, indicates that a device's firmware needs to be updated. ARE leverages user-defined rules to make sense of these events. Rules always evaluate to true or false. If a rule evaluates to true, ARE performs the action(s) associated with the rule. In the diagram, for example, ARE sends an email to Sarah and posts data to an endpoint when a particular device becomes active. Rules use Ayla Rule Expression Syntax (ARES) to encode conditional expressions. Actions also use ARES to define parameters. Developers can work with rules and actions via the Rules Service APIs described in the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/). OEM users can also work with rules and actions, to a limited extent, via the Ayla Developer Portal.
 
 # Example
 
-Suppose, for example, as part of home security, you want to turn on a webcam when a door opens.
+To introduce basic concepts related to rules and actions, this section provides an example using the Rules Service APIs, accessible in the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser), and the device, rules, and actions represented in the diagram below:
 
-## User-level perspective
+<img src="example.png" width="800" height="295">
 
-## API-level perspective
+The device in the diagram includes two properties, `Blue_button` and `Blue_LED`, that interact with the cloud as follows:
 
-# Terminology
+1. A person presses the blue button on the device.
+1. The host app running on the device sets its local copy of `Blue_button` to 1.
+1. The host app and the Ayla agent send the new value to the cloud as a datapoint event.
+1. The cloud submits the datapoint event to the Ayla Rule Engine (ARE).
+1. ARE searches its list of rules, and finds two that are relevant to the originating device and property.
+1. ARE provides the new value to both rules.
+1. The first rule's condition is met, so it performs its two associated actions.
+1. The second rule's condition is not met, so it does not perform its associated actions. 
 
-## Abstract Rule
+## Creating actions
 
-* Also known as oem-level rule or event filter.
-* example: `DATAPOINT(${oem_model=foo, property_name = bar, value > 1})`
-* they are abstract in the sense that they are NOT about a concrete device or property;
-* they are NOT about concrete subjects; instead, they are rather about events, because as a rule of thumb, they do not specify any concrete device or user inside them. Because of that, one can think of an abstract rule as a filter; each abstract rule forces ARE to check if an incoming event fits the conditions defined inside the filter construct ${ }; The filter can define any number of conditions inside the construct ${}; in the example above, there are three comma separated conditions (shown in bold). Any data (JSON's field plus value, e.g. "oem_model": "foo1") found in the event can be chosen to be evaluated in a separate condition; An abstract rule fires only if all conditions inside the construct ${} are met;
-* they are used in the OEM context. One can say that an OEM owns all event related to its fleet; Only OEM Admins (and sometimes OEM stuff members) can create abstract rules; Primary current use of abstract rules is DSSv2 - used for streaming particular kind of events to a specific destination chosen by an OEM;
-* at evaluation time, each concrete rule created for an OEM is used to evaluate each incoming event for that OEM;
-* because we restrict each OEM to be able to create only 100 or fewer abstract rules, we can keep all abstract rules (for all OEMs) in the memory of an Evaluation Service instance; thus concrete rules do not require Rule Evaluation Service to make calls to the database, which makes their evaluation mush faster than that for the concrete rules;
-* An event filter is a comma separated list of filter terms surrounded by curly brackets.
-* Each event filter term consists of three parts: name, symbol, value.
+An **action** defines a task like `set Blue_LED to true`. ARE supports several types of actions. The type required to set the values of device properties like `Blue_LED` and `Green_LED` is called a `DATAPOINT` action. Other examples include `URL`, `EMAIL`, and `SMS`. To create the actions for the example, follow these steps:
+
+1. Open the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/) in another tab.
+1. Click Accounts, choose a Region, enter email, password, app_id, and app_secret, click Get Tokens, and close the tab.
+1. Click Devices, select a device, and ensure that the list of properties includes `cmd`, `log`, `Blue_LED`, and `Green_LED`.
+1. Click Rules Service, and expand `createAction`.
+1. Copy and paste the following into the Request Data textbox, and replace the DSN. You can use `true` or `1` interchangeably.
     ```
-    {oem_model <= foo, oem_model_version < 'abc efg'}
-    VERSION(${oem_model <= foo, oem_model_version < bar})
+    {
+      "action": {
+        "name": "Set Blue_LED true",
+        "type": "DATAPOINT",
+        "parameters": {
+          "datapoint": "DATAPOINT(AC000W000000001, Blue_LED) = 1"
+        }
+      }
+    }
     ```
-* Allowed event filter name tags:
-    * oem_model
-    * oem_model_version
-    * status
-    * dsn
-    * property_name
-    * ayla_model
-    * ayla_model_version
-    * base_mod_img_model
-    * base_mod_img_version
-    * from_mod_img_version
-    * from_host_img_version
-
-## Action
-
-## Action Type
-
-## Ayla Rule Engine (ARE)
-
-## Ayla Rule Expression Syntax (ARES)
-
-## Concrete Rule
-
-* example: DATAPOINT(dsn1, property_name1) > 2;
-* they are concrete in the sense that they are expression about concrete names or ids (such as DSN, property name, user UUID, etc);
-* the are 'about' subjects, i.e. DATAPONT(dsn1, property_name1)
-* they can be expressions about concrete subjects, where subjects can be arguments of functions, for example, for a string property: str_contains(DATAPOINT(dsn1, str_prop1), 'foo' );  here subject DATAPOINT(dsn1, str_prop1) is the first argument of function str_contains();
-* they are used in END User context (users can create them 'about' the devices they own); We can say that users own only events that are related to their own devices;
-* at evaluation time, Rule Evaluation service takes an incoming event, uses that event to build a concrete subject from it and then queries database to see if there are any rules that need to be evaluated for this concrete subject.
-* they are not cached in the memory of the Evaluation Service instance; thus for each event ARE has to make a query to the database;
-
-## Event
-
-* Device events and derived events.
-
-## Function
-
-## Group Notation Syntax
-
-## Rule
-
-## Rule Evaluation
-
-* Process of replacing a rule expression with the equivalent boolean value.
-* Evaluation becomes possible upon substitution of every rule subject with its corresponding value.
-
-## Rule Expression
-
-* Abstract and concrete.
-* Concrete subject arguments are used like literals in a typical programming language (i.e. without quotes).
-* Space characters are optional in rule expressions.
-* Single-subject expressions
-* Multiple-subject expressions
+    Action parameters define the task. The key, `datapoint`, indicates the type, and the value specifies the task itself:
     ```
-    (DATAPOINT(dsn_1,prop_name_1) > DATAPOINT(dsn_2,prop_name_2)) && DATAPOINT(dsn_1,prop_name_3)
+    DATAPOINT(AC000W000000001, Blue_LED) = 1
+    ```
+    This ARES expression means "set the `Blue_LED` property on devive `AC000W000000001` to 1.
+1. Click Run. The Status Code should indicate 201.
+1. Under Response Data, click `show` to see results.
+1. Repeat to create the other three actions.
+1. Expand `getActions`, click Run, click Show, and find the `action_uuid` for each action. You will need these to create rules below. You might copy and paste the ids into a text file like this:
+    ```
+    Set Blue_LED  true   a1000000-0000-0000-0000-00000000001a
+    Set Blue_LED  false  a0000000-0000-0000-0000-00000000000a
+    Set Green_LED true   b1000000-0000-0000-0000-00000000001b
+    Set Green_LED false  b0000000-0000-0000-0000-00000000000b
     ```
 
-## Rule Service API
+## Creating rules
 
-### Errors
+A **rule** associates a rule expression (that evaluates to `true` or `false`, like `log == 'off'`) with a list of actions to perform if the expression evaluates to `true`. To create the rules for the example, follow these steps:
 
-APIs return 403, 404, and 422 with `data.errors[]`.
-
-|Code|Description|
-|-|-|
-|ARE-403|You are not authorized to access specified data|
-|ARE-404|Action not found|
-|ARE-404|Device property of rule subject not found|
-|ARE-404|Rule not found|
-|ARE-443|Action with given name already exists|
-|ARE-488|Action subject property is oem scope or read only, hence cannot be modified|
-|ARE-491|Action subject property direction is output, hence cannot be modified|
-
-## Rule Subject
-
-* Entities in a rule expression are called rule subjects.
+1. Expand `createRule`. 
+1. Copy and paste the following into the Request Data textbox, and replace the DSN and action_ids:
     ```
-    DATAPOINT(dsn_1, prop_name_1)
-    LOCATION(uuid_1)
+    {
+      "rule": {
+        "name": "log == on",
+        "description": "",
+        "expression": "str_equals(DATAPOINT(AC000W000000001,log),'on')",
+        "action_ids": [
+          "a1000000-0000-0000-0000-00000000001a",
+          "b1000000-0000-0000-0000-00000000001b"
+        ]
+      }
+    }
     ```
-* Rule subject names are always uppercase.
-* Rule subject arguments can be dsn, property name, user uuid.
-* Rule subjects can be standalone terms or function arguments.
-    ```
-    distance_miles(LOCATION(uuid_1), LOCATION(dsn_1))
-    ```
-* Each rule subject corresponds to a particular Ayla Data Pipeline (DPL) event. 
-* Each rule subject has a type and value at the time of rule evaluation.
+    A rule expression specifies a condition. Expressions that evaluate strings often contain functions like `str_equals` or `str_contains`. Other expressions may not contain functions.
+1. Click Run. The Status Code should indicate 201.
+1. Under Response Data, click `show` to see results.
+1. Repeat to create the other rule.
+1. Expand `getRules`, click Run, click Show, and view each rule object which includes a `rule_uuid` and an array of `action_ids`.
 
-Events map to rule subjects:
+## Testing
 
-|Event|Subject|Type|
-|-|-|-|
-|activation|<code>ACTIVATION(dsn, activated&#124;deactivated)</code>|boolean|
-|connection|<code>CONNECTION(dsn, online&#124;offline&#124;all)</code>|boolean|
-|datapoint|`DATAPOINT(dsn, propName)`|Same as property type|
-|datapoint|`VERSION()`|boolean?|
-|datapointack|`DATAPOINTACK(dsn, propName)`|boolean|
-|location|`LOCATION(dsn)`|(lat, long) pair of decimals|
-|location|`LOCATION(uuid)`|(lat, long) pair of decimals|
-|registration|<code>REGISTRATION(dsn, true&#124;false&#124;all)</code>|boolean|
-|???|`VIRTEVENT(eventType, dsn)`|boolean|
-|???|`VIRTEVENT(event_type, uuid)`|boolean|
+To test the rules and actions, follow these steps:
 
-VERSION is a special kind of event that is generated by the OTA service. OTA Service can generate such event based on incoming datapoint, or device connectivity event, or device registration event. Current primary used of version events is so called smart OTA  when OEM can specify an OTA job that will be performed only on certain conditions - for example when device comes online and has a particular oem model. VERSION rules can only be abstract.
+1. On your mobile device, open the Aura Mobile App.
+1. Tap a device.
+1. Tap the gear at the top, and tap Fetch All Properties.
+1. Toggle `Blue_LED` and `Green_LED` to `off`. 
+1. Set `cmd` to `on`. After a second or two, both LEDs indicate `on`.
+1. Set `cmd` to `off`. After a second or two, both LEDs indicate `off`.
+
+# Events
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# Expressions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Rule Subjects
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Functions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# Actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Action Types
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Concrete actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Abstract actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# Action examples
+
+## AMS_APNS actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## AMS_EMAIL actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## AMS_FCM actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## AMS_KAFKA actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## AMS_PUSH actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## AMS_SMS actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## DATAPOINT actions
+
+### Boolean
+
+```
+{
+  "action": {
+    "name": "Set Blue_LED true",
+    "type": "DATAPOINT",
+    "parameters": {
+      "datapoint": "DATAPOINT(AC000W000000001, Blue_LED) = 1"
+    }
+  }
+}
+```
+
+### Decimal
+
+### Integer
+
+```
+{
+  "action": {
+    "name": "Set input 5",
+    "type": "DATAPOINT",
+    "parameters": {
+      "datapoint": "DATAPOINT(AC000W000000001, input) = 5"
+    }
+  }
+}
+```
+
+### String
+
+```
+{
+  "action": {
+    "name": "Set cmd on",
+    "type": "DATAPOINT",
+    "parameters": {
+      "datapoint": "DATAPOINT(AC000W000000001,cmd) = 'on'"
+    }
+  }
+}
+```
+
+## DATASTREAM actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## DATASTREAM_EVENTHUB actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## DIAGNOSTIC actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## EMAIL actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## SMS actions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## URL actions
+
+* How do you receive notification of errors?
+
+### dpl_event placeholder
+
+This action sends an entire `dpl_event` object to the endpoint.
+
+```
+{
+  "action": {
+    "name": "URL Action Test",
+    "type": "URL",
+    "parameters": {
+      "body": "{{{dpl_event}}}",
+      "endpoint": "https://docs.aylanetworks.com/api/v1/tests"
+    }
+  }
+}
+```
+
+The `{{{dpl_event}}}` placeholder expands to this:
+
+```
+{
+  "dpl_event": {
+    "metadata": {
+      "oem_id": "1234abcd",
+      "oem_model": "ledevb",
+      "dsn": "AC000W000000001",
+      "property_name": "decimal_out",
+      "display_name": "decimal_out",
+      "base_type": "decimal",
+      "event_type": "datapoint"
+    },
+    "datapoint": {
+      "id": "10000001-abcd-abcd-abcd-100000000001",
+      "updated_at": "2020-08-11T12:31:21Z",
+      "created_at": "2020-08-11T12:31:21Z",
+      "echo": false,
+      "closed": false,
+      "value": "1.0",
+      "metadata": {},
+      "user_uuid": "20000002-abcd-abcd-abcd-200000000002",
+      "discarded": false,
+      "scope": "user",
+      "direction": "output"
+    },
+    "timestamp": "2020-08-11T12:31:21.000+0000"
+  }
+}
+```
+
+### Other placeholders
+
+This action sends rule and event information to the endpoint:
+
+```
+{
+  "action": {
+    "name": "URL Action Test",
+    "type": "URL",
+    "parameters": {
+      "body": "{\"rule_id\":\"{{rule.id}}\",\"rule_uuid\":\"{{rule.uuid}}\",\"rule_name\":\"{{rule.name}}\",\"rule_expression\":\"{{rule.expression}}\",\"event_metadata_dsn\":\"{{event.metadata.dsn}}\",\"event_user_uuid\":\"{{event.user_uuid}}\",\"event_timestamp_UNIX\":\"{{event_timestamp_UNIX}}\",\"event_timestamp_ISO8601\":\"{{event_timestamp_ISO8601}}\",\"action_uuid\":\"{{action.uuid}}\"}",
+      "endpoint": "https://docs.aylanetworks.com/api/v1/tests"
+    }
+  }
+}
+```
+
+The various placeholders expand to these:
+
+```
+{
+  "rule_id": "141765",
+  "rule_uuid": "30000003-abcd-abcd-abcd-300000000003",
+  "rule_name": "",
+  "rule_expression": "",
+  "event_metadata_dsn": "AC000W000000001",
+  "event_user_uuid": "20000002-abcd-abcd-abcd-200000000002",
+  "event_timestamp_UNIX": "1597148678708",
+  "event_timestamp_ISO8601": "2020-08-11T12:24Z",
+  "action_uuid": "40000004-abcd-abcd-abcd-400000000004"
+}
+```
+
+# Rules
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Concrete Rules
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Abstract Rules
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# About the APIs
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

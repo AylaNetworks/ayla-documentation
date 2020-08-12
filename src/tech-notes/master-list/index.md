@@ -15,6 +15,6 @@ title: Master List
 * [<span style="color:green">00000011</span>](/tech-notes/00000011/): [AD-219](https://aylanetworks.atlassian.net/browse/AD-219): Message properties
 * [<span style="color:red">00000012</span>](/tech-notes/00000012/): [AD-224](https://aylanetworks.atlassian.net/browse/AD-224): Node connectivity
 * [<span style="color:red">00000013</span>](/tech-notes/00000013/): [AD-209](https://aylanetworks.atlassian.net/browse/AD-209): Ayla Rule Engine
-* [<span style="color:gray">00000014</span>](/tech-notes/00000014/): Available
+* [<span style="color:red">00000014</span>](/tech-notes/00000014/): [AD-226](https://aylanetworks.atlassian.net/browse/AD-226) Using role and device labels
 * [<span style="color:gray">00000015</span>](/tech-notes/00000015/): Available
 * [<span style="color:gray">00000016</span>](/tech-notes/00000016/): Available
