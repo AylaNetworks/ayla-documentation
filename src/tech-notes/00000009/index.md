@@ -1,5 +1,5 @@
 ---
-title: Ayla Data Export for Device Events
+title: Ayla's Data Export Feature
 layout: technote.html
 author: Sherri Sotnick
 creationDate: July, 2020
