@@ -19,7 +19,7 @@ As illustrated in the diagram, devices provide ARE with a steady supply of event
 
 To introduce basic concepts related to rules and actions, this section provides an example using the Rules Service APIs, accessible in the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser), and the device, rules, and actions represented in the diagram below:
 
-<img src="example.png" width="800" height="303">
+<img src="example.png" width="750" height="288">
 
 The device in the diagram includes two properties, `Blue_button` and `Blue_LED`, that interact with the cloud as follows:
 
@@ -34,7 +34,7 @@ The device in the diagram includes two properties, `Blue_button` and `Blue_LED`,
 
 ## Creating actions
 
-An **action** defines a task like `set Blue_LED to true`. ARE supports several types of actions. The type required to set the values of device properties like `Blue_LED` and `Green_LED` is called a `DATAPOINT` action. Other examples include `URL`, `EMAIL`, and `SMS`. To create the actions for the example, follow these steps:
+An **action** defines a task like `set Blue_LED to 1`. ARE supports several types of actions including `DATAPOINT` and `AMS_EMAIL`. `AMS` stands for Ayla Message Service. To create the actions for the example, follow these steps:
 
 1. Open the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/) in another tab.
 1. Click Accounts, choose a Region, enter email, password, app_id, and app_secret, click Get Tokens, and close the tab.
