@@ -19,7 +19,7 @@ As illustrated in the diagram, devices provide ARE with a steady supply of event
 
 To introduce basic concepts related to rules and actions, this section provides an example using the Rules Service APIs, accessible in the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser), and the device, rules, and actions represented in the diagram below:
 
-<img src="example.png" width="800" height="295">
+<img src="example.png" width="800" height="303">
 
 The device in the diagram includes two properties, `Blue_button` and `Blue_LED`, that interact with the cloud as follows:
 
