@@ -6,11 +6,9 @@ creationDate: July, 2020
 lastModifiedDate: Month 00, 0000
 ---
 
-The Ayla Data Export feature provides OEM developers and data analysts with great flexibility for retrieving and consuming historic device event data from the Ayla Cloud Service.
+Ayla Networks provides two methods for extracting data on device events in the Ayla Cloud. The Ayla Data Export feature is one method, which is for historic data. This feature provides developers and data analysts with great flexibility for retrieving and consuming historic device event data.
 
-You can also access near real-time data on asynchronous device events in the Ayla Cloud using Ayla’s DataStream Service (DSS). DSS enables OEMs to use a REST API or the Ayla Customer Dashboard to create, update, or delete subscriptions for data that occurs in the Ayla Platform. Ayla's DSS is a robust event-based data publishing system that guarantees delivery of data and events with the least amount of latency to the cloud endpoint of choice. Supported Cloud end points include AWS Kinesis and Azure Event Hubs.
-
-For more information on Ayla's DSS, refer to [Ayla’s Dashboard Help](https://connection.aylanetworks.com/s/welcome-to-dashboard-help) and Ayla Docs (specifically [Cloud Services](https://docs.aylanetworks.com/cloud-services/) and [the API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/)).
+Ayla's DataStream Service (DSS) is the other method, which enables customers to use Cloud-scale event ingestion services (AWS Kinesis and Azure Event Hub) to retrieve near real-time data from the Ayla platform.
 
 ## Why Use Ayla's Data Export Feature
 
@@ -72,7 +70,7 @@ Please note that Ayla Networks does not endorse any particular client, including
  
 2. Select the Amazon S3 option in the fields for the protocol and server, and then enter the OEM access credentials in the corresponding fields. (This is also shown in the example below these three steps.) If you are working across multiple OEMs, make sure that you enter the correct OEM access credentials for the data files you wish to view.
 
-3. Enter any additional parameters in the other fields, and then click **Connect**. <div><img src="DataExp_MapCredsToS3CyberDuck.png" width="600" height="497"></div>
+3. Enter any additional parameters in the other fields, and then click **Connect**. <div><img src="DataExp_MapCredsToS3CyberDuck.png" width="500" height="414"></div>
 
 Once you successfully connect to Amazon S3, you gain access to the device event data files associated with the OEM access credentials that were entered.
 
@@ -82,7 +80,7 @@ Following is an example of the folders for the 5 event types on Amazon S3. As me
 
 Following is an example of the event subfolders within the main folder for each of the 5 event types. Each subfolder is tagged with a timestamp formatted as YYYY-MM-DD-HH:MM:SS in UTC. The frequency in which the subfolders and data files are created in the event type folders varies depending on the amount of data generated for the event type. Some event types typically generate more data than others. You may therefore see some gaps between the timestamped subfolders (also shown in the example below). For instance, the Datapoint or Datapoint Ack event folders typically have more subfolders and data files compared to Registration or Location event folders. 
 
-<img src="DataExp_TimeGaps_EventFileFoldersOnS3.png" width="800" height="193">
+<img src="DataExp_TimeGaps_EventFileFoldersOnS3.png" width="750" height="180">
 
 ### Step 3: View and Consume the Event Data Files
 
