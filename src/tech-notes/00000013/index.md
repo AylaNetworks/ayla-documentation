@@ -29,7 +29,7 @@ The device in the diagram includes two properties, `Blue_button` and `Blue_LED`,
 1. The cloud creates a datapoint event, and submits it to the Ayla Rule Engine (ARE).
 1. ARE searches its list of rules, and finds two that are relevant to the event.
 1. ARE provides the new value to both rules.
-1. The first rule's condition is **not** met, so it does not perform its associated actions. 
+1. The first rule's condition is **not** met, so it does not perform its two associated actions. 
 1. The second rule's condition **is** met, so it performs its two associated actions.
 
 ## Creating actions
