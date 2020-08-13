@@ -296,7 +296,7 @@ classesFromPage: has-pagebar
 <h1 id="datastream-header" class="api-service">
   <div class="api-service">
     <div class="row">
-      <div class="col" data-toggle="collapse" href="#datastream-content"><div class="name">Datastream Service</div></div>
+      <div class="col" data-toggle="collapse" href="#datastream-content"><div class="name">Datastream Service<span style="font-size:90%"> (deprecated)</span></div></div>
       <div class="col-auto count"><input type="text" class="count" value=0 disabled></div>
     </div>
   </div>

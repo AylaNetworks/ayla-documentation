@@ -4,7 +4,7 @@ title: Master List
 
 * [<span style="color:green">00000001</span>](/tech-notes/00000001/): My New Tech Note
 * [<span style="color:green">00000002</span>](/tech-notes/00000002/): Handling ack-enabled properties
-* [<span style="color:red">00000003</span>](/tech-notes/00000003/): Additional Best Practices for Device Developers
+* [<span style="color:red">00000003</span>](/tech-notes/00000003/): [AD-211](https://aylanetworks.atlassian.net/browse/AD-211): Message Service
 * [<span style="color:green">00000004</span>](/tech-notes/00000004/): Migrating a template from development to field
 * [<span style="color:green">00000005</span>](/tech-notes/00000005/): New Template Architecture
 * [<span style="color:red">00000006</span>](/tech-notes/00000006/): Setting up and performing a factory reset for ESP32
