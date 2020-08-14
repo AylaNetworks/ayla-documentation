@@ -7,11 +7,9 @@ lastModifiedDate: August 10, 2020
 classesFromPage: has-pagebar
 ---
 
-**Under Construction**
-
 This Tech Note introduces the Ayla Rule Engine (ARE) which, once populated with user-defined rules and actions, evaluates device events in light of rules, and, when rule conditions warrant, performs the associated actions. Consider the following diagram:
 
-<img src="ayla-rule-engine.png" width="750" height="363">
+<img src="ayla-rule-engine.png" width="800" height="338">
 
 As illustrated in the diagram, the Ayla Cloud defines device state changes as device events. Subsystems like the OTA Service may transform these primary events into derived events. The `version` event, for example, indicates that a device's firmware needs to be updated. Ayla passes these events to ARE which leverages user-defined rules to make sense of them. Rules always evaluate to true or false. If a rule evaluates to true, ARE performs the action(s) associated with the rule. In the diagram, for example, ARE sends an email to Sarah and posts data to an endpoint when a particular device becomes active. Rules use Ayla Rule Expression Syntax (ARES) to encode conditional expressions. Actions also use ARES to define parameters. Developers can work with rules and actions via the Rules Service APIs described in the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/). OEM users can also work with rules and actions, to a limited extent, via the Ayla Developer Portal.
 
@@ -32,66 +30,124 @@ The device in the diagram includes two properties, `Blue_button` and `Blue_LED`,
 1. The first rule's condition is **not** met, so it does not perform its two associated actions. 
 1. The second rule's condition **is** met, so it performs its two associated actions, sending an email to Yan, and setting `Blue_LED` to 1.
 
-## Creating actions
+## Create actions
 
-An **action** defines a task like `set Blue_LED to 1`. ARE supports several types of actions including `DATAPOINT` and `AMS_EMAIL`. `AMS` stands for Ayla Message Service. To create the actions for the example, follow these steps:
+An **action** defines a task like `set Blue_LED to 0`. ARE supports several types of actions including `DATAPOINT` and `AMS_EMAIL`. (`AMS` stands for Ayla Message Service.) To create the actions for the example, start with these steps:
 
 1. Open the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/) in another tab.
 1. Click Accounts, choose a Region, enter email, password, app_id, and app_secret, click Get Tokens, and close the tab.
-1. Click Devices, select a device, and ensure that the list of properties includes `cmd`, `log`, `Blue_LED`, and `Green_LED`.
+1. Click Devices, select a device, and ensure that the list of properties includes `Blue_button`, and `Blue_LED`.
 1. Click Rules Service, and expand `createAction`.
-1. Copy and paste the following into the Request Data textbox, and replace the DSN. You can use `true` or `1` interchangeably.
+
+### Create DATAPOINT actions
+
+1. Copy and paste the following into the Request Data textbox, and replace the DSN. You can use `false` or `0`.
     ```
     {
       "action": {
-        "name": "Set Blue_LED true",
+        "name": "Set Blue_LED 0",
         "type": "DATAPOINT",
         "parameters": {
-          "datapoint": "DATAPOINT(AC000W000000001, Blue_LED) = 1"
+          "datapoint": "DATAPOINT(AC000W006512709, Blue_LED) = 0"
         }
       }
     }
     ```
-    Action parameters define the task. The key, `datapoint`, indicates the type, and the value specifies the task itself:
+    Action `parameters` key, `datapoint`, indicates the type, and the value specifies the task:
     ```
-    DATAPOINT(AC000W000000001, Blue_LED) = 1
+    DATAPOINT(AC000W000000001, Blue_LED) = 0
     ```
-    This ARES expression means "set the `Blue_LED` property on devive `AC000W000000001` to 1.
+    This ARES expression means "set the `Blue_LED` property on devive `AC000W000000001` to 0.
 1. Click Run. The Status Code should indicate 201.
-1. Under Response Data, click `show` to see results.
-1. Repeat to create the other three actions.
-1. Expand `getActions`, click Run, click Show, and find the `action_uuid` for each action. You will need these to create rules below. You might copy and paste the ids into a text file like this:
-    ```
-    Set Blue_LED  true   a1000000-0000-0000-0000-00000000001a
-    Set Blue_LED  false  a0000000-0000-0000-0000-00000000000a
-    Set Green_LED true   b1000000-0000-0000-0000-00000000001b
-    Set Green_LED false  b0000000-0000-0000-0000-00000000000b
-    ```
-
-## Creating rules
-
-A **rule** associates a rule expression (that evaluates to `true` or `false`, like `log == 'off'`) with a list of actions to perform if the expression evaluates to `true`. To create the rules for the example, follow these steps:
-
-1. Expand `createRule`. 
-1. Copy and paste the following into the Request Data textbox, and replace the DSN and action_ids:
+1. Create another action that sets `Blue_LED` to 1:
     ```
     {
-      "rule": {
-        "name": "log == on",
-        "description": "",
-        "expression": "str_equals(DATAPOINT(AC000W000000001,log),'on')",
-        "action_ids": [
-          "a1000000-0000-0000-0000-00000000001a",
-          "b1000000-0000-0000-0000-00000000001b"
-        ]
+      "action": {
+        "name": "Set Blue_LED 1",
+        "type": "DATAPOINT",
+        "parameters": {
+          "datapoint": "DATAPOINT(AC000W006512709, Blue_LED) = 1"
+        }
       }
     }
     ```
-    A rule expression specifies a condition. Expressions that evaluate strings often contain functions like `str_equals` or `str_contains`. Other expressions may not contain functions.
-1. Click Run. The Status Code should indicate 201.
-1. Under Response Data, click `show` to see results.
-1. Repeat to create the other rule.
-1. Expand `getRules`, click Run, click Show, and view each rule object which includes a `rule_uuid` and an array of `action_ids`.
+
+### Create destination
+
+```
+{
+  "destination": {
+    "type": "email",
+    "body": "Destination Body",
+    "deliver_to": "anonz3000@gmail.com",
+    "title": "Destination Title",
+    "provider": "smtp",
+    "user_message": "Desintation User Message",
+    "user_name": "My Name"
+  }
+}
+```
+
+### Create AMS_EMAIL action
+
+```
+{
+  "action": {
+    "name": "Email to Self",
+    "type": "AMS_SMS",
+    "is_abstract": false,
+    "parameters": {
+      "max_actions_per_minute": "5",
+      "foo": "bar",
+      "body": "foo"
+    },
+    "destination_ids": ["a9077ad5-9675-4758-965e-fd49deb70a12"]
+  }
+}
+```
+
+### View actions
+
+Expand `getActions`, click Run, click Show, and find the `action_uuid` for each action. You will need these to create rules below. You might copy and paste the ids into a text file like this:
+
+```
+Name             action_uuid
+Set Blue_LED 0   a1000000-0000-0000-0000-0000000000a1
+Set Blue_LED 1   b2000000-0000-0000-0000-0000000000b2
+Send email       c3000000-0000-0000-0000-0000000000c3
+```
+
+## Creating rules
+
+A **rule** associates a rule expression (that evaluates to `true` or `false`, like `Blue_button == 'off'`) with a list of actions to perform if the expression evaluates to `true`. To create the rules for the example, follow these steps:
+
+```
+{
+  "rule": {
+    "name": "Blue_button == 0",
+    "description": "",
+    "expression": "DATAPOINT(AC000W000000001,Blue_button) == 0",
+    "action_ids": [
+      "a1000000-0000-0000-0000-0000000000a1",
+      "c3000000-0000-0000-0000-0000000000c3"
+    ]
+  }
+}
+```
+
+```
+{
+  "rule": {
+    "name": "Blue_button == 0",
+    "description": "",
+    "expression": "DATAPOINT(AC000W000000001,Blue_button) == 0",
+    "action_ids": [
+      "b2000000-0000-0000-0000-0000000000b2",
+      "c3000000-0000-0000-0000-0000000000c3"
+    ]
+  }
+}
+```
 
 ## Testing
 
