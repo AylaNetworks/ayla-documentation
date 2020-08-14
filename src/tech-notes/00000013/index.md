@@ -15,7 +15,7 @@ As illustrated in the diagram, mobile/web apps and devices cause state changes t
 
 # Example
 
-To introduce basic concepts related to rules and actions, this section provides an example using the Rules Service APIs, accessible in the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser), and the device, rules, and actions represented in the diagram below:
+To introduce basic concepts, this section provides an example represented in the diagram below:
 
 <img src="example.png" width="800" height="272">
 
@@ -24,24 +24,50 @@ The device in the diagram includes two properties, `Blue_button` and `Blue_LED`,
 1. A person presses the blue button on the device.
 1. The host app running on the device sets its local copy of `Blue_button` to 1.
 1. The host app and the Ayla agent send the new value to the Ayla Cloud.
-1. The cloud creates a datapoint event, and submits it to the Ayla Rule Engine (ARE).
-1. ARE searches its list of rules, and finds two that are relevant to the event.
-1. ARE provides the new value to both rules.
-1. The first rule's condition is **not** met, so it does not perform its two associated actions. 
-1. The second rule's condition **is** met, so it performs its two associated actions, sending an email to Yan, and setting `Blue_LED` to 1.
+1. The cloud updates the digital twin with the new value.
+1. The cloud creates a datapoint event representing the new `Blue_button` value, and submits it to ARE.
+1. ARE searches its array of rules, finds two that are relevant, and uses them to evaluate the event.
+1. The first rule's condition is **not** met, so ARE does not perform the two associated actions. 
+1. The second rule's condition **is** met, so ARE performs the two associated actions:
+    1. ARE sends an email to Veer (via AMS).
+    1. ARE sets `Blue_LED` to 1.
 
-## Create actions
-
-An **action** defines a task like `set Blue_LED to 0`. ARE supports several types of actions including `DATAPOINT` and `AMS_EMAIL`. (`AMS` stands for Ayla Message Service.) To create the actions for the example, start with these steps:
+The following steps how you how to create one destination, three actions, and two rules:
 
 1. Open the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/) in another tab.
 1. Click Accounts, choose a Region, enter email, password, app_id, and app_secret, click Get Tokens, and close the tab.
-1. Click Devices, select a device, and ensure that the list of properties includes `Blue_button`, and `Blue_LED`.
+1. Click Devices, select a device, and ensure that it includes `Blue_button`, and `Blue_LED` properties.
+1. Click Message Service, expand `createDestination`, and create a destination.
+    ```
+    {
+      "destination": {
+        "type": "email",
+        "body": "body",
+        "deliver_to": "veer@acme.com",
+        "title": "title",
+        "provider": "smtp",
+        "user_message": "User Message",
+        "user_name": "Veer Patel"
+      }
+    }
+    ```
 1. Click Rules Service, and expand `createAction`.
-
-### Create DATAPOINT actions
-
-1. Copy and paste the following into the Request Data textbox, and replace the DSN. You can use `false` or `0`.
+1. Create an AMS_EMAIL action for sending an email to Veer:
+    ```
+    {
+      "action": {
+        "name": "Email to Veer",
+        "type": "AMS_EMAIL",
+        "is_abstract": false,
+        "parameters": {
+        },
+        "destination_ids": [
+          "00000000-0000-0000-0000-000000000000"
+        ]
+      }
+    }
+    ```
+1. Create a DATAPOINT action for setting Blue_LED to 0:
     ```
     {
       "action": {
@@ -53,13 +79,7 @@ An **action** defines a task like `set Blue_LED to 0`. ARE supports several type
       }
     }
     ```
-    Action `parameters` key, `datapoint`, indicates the type, and the value specifies the task:
-    ```
-    DATAPOINT(AC000W000000001, Blue_LED) = 0
-    ```
-    This ARES expression means "set the `Blue_LED` property on devive `AC000W000000001` to 0.
-1. Click Run. The Status Code should indicate 201.
-1. Create another action that sets `Blue_LED` to 1:
+1. Create a DATAPOINT action for setting Blue_LED to 1:
     ```
     {
       "action": {
@@ -71,94 +91,39 @@ An **action** defines a task like `set Blue_LED to 0`. ARE supports several type
       }
     }
     ```
-
-### Create destination
-
-```
-{
-  "destination": {
-    "type": "email",
-    "body": "Destination Body",
-    "deliver_to": "anonz3000@gmail.com",
-    "title": "Destination Title",
-    "provider": "smtp",
-    "user_message": "Desintation User Message",
-    "user_name": "My Name"
-  }
-}
-```
-
-### Create AMS_EMAIL action
-
-```
-{
-  "action": {
-    "name": "Email to Self",
-    "type": "AMS_SMS",
-    "is_abstract": false,
-    "parameters": {
-      "max_actions_per_minute": "5",
-      "foo": "bar",
-      "body": "foo"
-    },
-    "destination_ids": ["a9077ad5-9675-4758-965e-fd49deb70a12"]
-  }
-}
-```
-
-### View actions
-
-Expand `getActions`, click Run, click Show, and find the `action_uuid` for each action. You will need these to create rules below. You might copy and paste the ids into a text file like this:
-
-```
-Name             action_uuid
-Set Blue_LED 0   a1000000-0000-0000-0000-0000000000a1
-Set Blue_LED 1   b2000000-0000-0000-0000-0000000000b2
-Send email       c3000000-0000-0000-0000-0000000000c3
-```
-
-## Creating rules
-
-A **rule** associates a rule expression (that evaluates to `true` or `false`, like `Blue_button == 'off'`) with a list of actions to perform if the expression evaluates to `true`. To create the rules for the example, follow these steps:
-
-```
-{
-  "rule": {
-    "name": "Blue_button == 0",
-    "description": "",
-    "expression": "DATAPOINT(AC000W000000001,Blue_button) == 0",
-    "action_ids": [
-      "a1000000-0000-0000-0000-0000000000a1",
-      "c3000000-0000-0000-0000-0000000000c3"
-    ]
-  }
-}
-```
-
-```
-{
-  "rule": {
-    "name": "Blue_button == 0",
-    "description": "",
-    "expression": "DATAPOINT(AC000W000000001,Blue_button) == 0",
-    "action_ids": [
-      "b2000000-0000-0000-0000-0000000000b2",
-      "c3000000-0000-0000-0000-0000000000c3"
-    ]
-  }
-}
-```
-
-## Testing
-
-To test the rules and actions, follow these steps:
-
+1. Click Rules Service, and expand `createRule`.
+1. Create a rule for when Blue_button equals 0:
+    ```
+    {
+      "rule": {
+        "name": "Blue_button == 0",
+        "description": "",
+        "expression": "DATAPOINT(AC000W000000001,Blue_button) == 0",
+        "action_ids": [
+          "00000000-0000-0000-0000-000000000000",
+          "00000000-0000-0000-0000-000000000000"
+        ]
+      }
+    }
+    ```
+1. Create a rule for when Blue_button equals 1:
+    ```
+    {
+      "rule": {
+        "name": "Blue_button == 1",
+        "description": "",
+        "expression": "DATAPOINT(AC000W000000001,Blue_button) == 1",
+        "action_ids": [
+          "00000000-0000-0000-0000-000000000000",
+          "00000000-0000-0000-0000-000000000000"
+        ]
+      }
+    }
+    ```
 1. On your mobile device, open the Aura Mobile App.
 1. Tap a device.
 1. Tap the gear at the top, and tap Fetch All Properties.
-1. Toggle `Blue_LED` and `Green_LED` to `off`. 
-1. Set `cmd` to `on`. After a second or two, both LEDs indicate `on`.
-1. Set `cmd` to `off`. After a second or two, both LEDs indicate `off`.
+1. Set `Blue_button` to 1. The Blue_LED property value changes to 1, and your receive an email.
 
 # Events
 
