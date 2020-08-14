@@ -2,8 +2,8 @@
 title: Ayla Rule Engine (ARE)
 layout: technote.html
 author: Matt Hagen
-creationDate: August 8, 2020
-lastModifiedDate: August 10, 2020
+creationDate: Month 00, 0000
+lastModifiedDate: Month 00, 0000
 classesFromPage: has-pagebar
 ---
 
