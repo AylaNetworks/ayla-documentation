@@ -9,9 +9,12 @@ classesFromPage: has-pagebar
 
 This Tech Note introduces the Ayla Rule Engine (ARE) which evaluates device events in light of user-defined rules, and, when rule conditions warrant, performs the associated user-defined actions. Consider the following diagram:
 
-<img src="ayla-rule-engine.png" width="800" height="338">
+<img src="ayla-rule-engine.png" width="800" height="327">
 
-As illustrated in the diagram, the Ayla Cloud defines device state changes as device events. Subsystems like the OTA Service may transform these primary events into derived events. The `version` event, for example, indicates that a device's firmware needs to be updated. Ayla passes these events to ARE which leverages user-defined rules to make sense of them. Rules always evaluate to true or false. If a rule evaluates to true, ARE performs the action(s) associated with the rule. In the diagram, for example, ARE sends an email to Sarah and posts data to an endpoint when a particular device becomes active. Rules use Ayla Rule Expression Syntax (ARES) to encode conditional expressions. Actions also use ARES to define parameters. Developers can work with rules and actions via the Rules Service APIs described in the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/). OEM users can also work with rules and actions, to a limited extent, via the Ayla Developer Portal.
+As illustrated in the diagram, the Ayla Cloud converts device state changes to device events. Subsystems like the OTA Service may transform these primary events into derived events. The `version` event, for example, indicates that a device's firmware needs to be updated. Ayla passes these events to ARE which leverages user-defined rules to make sense of them. Rules always evaluate to true or false. If a rule evaluates to true, ARE performs the action(s) associated with the rule. Some actions leverage AMS destinations and publications. 
+
+
+In the diagram, for example, ARE sends an email to Sarah and posts data to an endpoint when a particular device becomes active. Rules use Ayla Rule Expression Syntax (ARES) to encode conditional expressions. Actions also use ARES to define parameters. Developers can work with rules and actions via the Rules Service APIs described in the [API Browser](https://docs.aylanetworks.com/cloud-services/api-browser/). OEM users can also work with rules and actions, to a limited extent, via the Ayla Developer Portal.
 
 # Example
 
