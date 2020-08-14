@@ -7,7 +7,7 @@ lastModifiedDate: August 10, 2020
 classesFromPage: has-pagebar
 ---
 
-This Tech Note introduces the Ayla Rule Engine (ARE) which, once populated with user-defined rules and actions, evaluates device events in light of rules, and, when rule conditions warrant, performs the associated actions. Consider the following diagram:
+This Tech Note introduces the Ayla Rule Engine (ARE) which evaluates device events in light of user-defined rules, and, when rule conditions warrant, performs the associated user-defined actions. Consider the following diagram:
 
 <img src="ayla-rule-engine.png" width="800" height="338">
 
