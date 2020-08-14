@@ -19,6 +19,8 @@ To introduce basic concepts, this section provides an example represented in the
 
 <img src="example.png" width="800" height="272">
 
+### Examining the example
+
 The device in the diagram includes two properties, `Blue_button` and `Blue_LED`, that interact with the cloud as follows:
 
 1. A person presses the blue button on the device.
@@ -31,6 +33,8 @@ The device in the diagram includes two properties, `Blue_button` and `Blue_LED`,
 1. The second rule's condition **is** met, so ARE performs the two associated actions:
     1. ARE sends an email to Veer (via AMS).
     1. ARE sets `Blue_LED` to 1.
+
+### Implementing the example
 
 The following steps how you how to create one destination, three actions, and two rules:
 
