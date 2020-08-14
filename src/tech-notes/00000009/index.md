@@ -18,7 +18,7 @@ This feature can assist in the analysis and debugging of the following use cases
 * Identifying usage patterns and scope for improvement
 * Maintaining an archive of device events data for product lifecycle management
 
-Customers who do not need access to real-time data or who do not wish to build external systems to maintain an active DataStream Services (DSS) subscription can use this feature to export their historic data for analysis or archiving. This feature also allows our customers to access and retrieve data beyond the current standard data retention policy on the Ayla Customer Dashboard, which is 90 days from the date of capture.
+This feature also enables customers to access and retrieve data beyond the current standard data retention policy on the Ayla Customer Dashboard, which is 90 days from the date of capture. The Data Export feature is not, however, intended for accessing real-time data. For near real-time use cases, you can use the DataStream Service (DSS) feature.
 
 ## Where the Data Files Are Stored 
 
