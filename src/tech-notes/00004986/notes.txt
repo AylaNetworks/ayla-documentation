@@ -1,0 +1,41 @@
+
+## Device events
+
+All devices.
+
+See data export creds.
+
+In template, every property 30, 60, 90 days. 
+
+Casandra non-sql. Live data. 
+
+Terms and conditions. Write up on . 
+
+Should be APIs to get to all this. 
+
+
+
+S3 is a year.
+
+
+
+Cloud access usage policy
+
+SLA document
+
+
+
+2. Near real time.
+
+3. Kinesis
+
+4. Long-term will look like S3. 
+
+
+1. Real-time 
+
+2. S3 hourly 3
+
+3. streaming
+
+Managed datapoint and streaming only. DSSv2. Kenmore.
