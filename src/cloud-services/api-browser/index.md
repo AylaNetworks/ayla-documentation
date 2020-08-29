@@ -341,7 +341,7 @@ classesFromPage: has-pagebar
 <h1 id="rules-header" class="api-service">
   <div class="api-service">
     <div class="row">
-      <div class="col" data-toggle="collapse" href="#rules-content"><div class="name">Rules Service</div></div>
+      <div class="col" data-toggle="collapse" href="#rules-content"><div class="name">Rule Service</div></div>
       <div class="col-auto count"><input type="text" class="count" disabled></div>
     </div>
   </div>
