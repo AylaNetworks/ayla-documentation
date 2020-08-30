@@ -14,7 +14,7 @@ classesFromPage: has-pagebar
     <li><a href="#factory-proxy-header">Factory Proxy Service</a></li>
     <li><a href="#iot-command-center-header">IoT Command Center</a></li>
     <li><a href="#message-header">Message Service</a></li>
-    <li><a href="#rules-header">Rules Service</a></li>
+    <li><a href="#rules-header">Rule Service</a></li>
     <li><a href="#user-header">User Service</a></li>
   </ul>
 </aside>

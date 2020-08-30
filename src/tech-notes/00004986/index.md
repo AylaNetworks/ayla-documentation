@@ -1,137 +1,19 @@
 ---
-title: Ayla Device Events and Associated Data
+title: Leveraging device event data
 layout: technote.html
 author: Matt Hagen
-creationDate: August 18, 2020
-lastModifiedDate: August 18, 2020
+creationDate: August 27, 2020
+lastModifiedDate: August 27, 2020
 classesFromPage: has-pagebar
 ---
 
-Device events help initiate Ayla Cloud activity such as the evaluation of rules which, conditionally, trigger actions. When streamed to Amazon Kinesis or Azure Event Hub, device events can also initiate activity in integrated system. And, device event data, automatically stored by Ayla in Amazon S3 for three months, serves as the basis for the analysis of cloud activity. This Tech Note explores device events, and explains why they are important to you.
+This tech note explains the origin and purpose of Ayla Cloud device events, and how to leverage them in near real-time integrated systems and historical analytic systems. Consider the following diagram:
 
-## Digital twin as state machine
+<img src="overview6.png" width="800" height="265">
 
-The Ayla Cloud represents real-world devices as digital twins. Each digital twin reflects the essential attributes and properties of the device. Consider the following diagram:
-
-<img src="digital-twins.png" width="600" height="297">
-
-In the diagram, the Ayla Cloud includes three digital twins, one each for a thermostat, washing machine, and coffee maker. Device attributes are key-value pairs. Below are examples:
-
-```
-{
-  "id": 123,
-  "product_name": "Living Room Thermostat",
-  "dsn": "AC000W000000001",
-  "oem": "1234abcd",
-  "oem_model": "ledevb",
-  "user_uuid": "00000000-0000-0000-0000-000000000000",
-  "template_id": 150021,
-  "mac": "abcdef123456",
-  "ip": "000.000.000.000",
-  "registered": true,
-  "connection_status": "Online",
-  "lat": "44.7871",
-  "lng": "-69.4022",
-  "activated_at": "2019-03-05T17:46:47Z",
-  ...
-  ...
-}
-```
-
-Device properties are objects with their own set of key-value attributes. Below are the attributes of an example device property:
-
-```
-{
-  "key": 456,
-  "type": "Property",
-  "name": "temp",
-  "display_name": "Temperature",
-  "base_type": "decimal",
-  "read_only": false,
-  "direction": "output",
-  "device_key": 123,
-  "value": 72,
-  "ack_enabled": null,
-  ...
-  ...
-}
-```
-
-Device and property attribute values constitute the state of a digital twin.
-
-## What is a device event?
-
-Various actors can change the state of a digital twin. A Human being, for example, can use a mobile or web app to change the value of a device attribute like `device_name`.  And, a temperature sensor on a device can prompt the device to send (to its digital twin) a new property value. Both these modifications cause changes to the relevant digital twin. In a broad sense, a device event is any change in the state of a digital twin. Here are the event types that most interest the Ayla Cloud:
-
-<table>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>activation</td>
-<td>The cloud creates a digital twin for a particular device, and sets the `activated_at` device attribute to a date/time.</td>
-</tr>
-<tr>
-<td>connectivity</td>
-<td>The value of the `connection_status` device attribute has changed.</td>
-</tr>
-<tr>
-<td>datapoint</td>
-<td>The value of a device property has changed.</td>
-</tr>
-<tr>
-<td>datapointack</td>
-<td>The cloud has received an ack from a device indicating that the device has changed the value of a to-device property on the device. See [Handling ack-enabled properties](https://docs.aylanetworks.com/tech-notes/00000002).</td>
-</tr>
-<tr>
-<td>location</td>
-<td>The value the `lat` or the `lng` device attribute has changed.</td>
-</tr>
-<tr>
-<td>registration</td>
-<td>The value of the `registered` device attribute has changed.</td>
-</tr>
-</table>
-
-Data associated with device events are known as device event data. The Ayla Cloud represents each event as an object. The term *device event* can also refer to one of these objects. Below is an example of a stringified event object of type `datapoint`:
-
-```
-{
-  "seq": "1",
-  "metadata": {
-    "oem_id": "1234abcd",
-    "oem_model": "ledevb",
-    "dsn": "AC000W000000001",
-    "property_name": "Blue_LED",
-    "display_name": "Blue_LED",
-    "base_type": "boolean",
-    "event_type": "datapoint"
-  },
-  "datapoint": {
-    "id": "00000000-0000-0000-0000-000000000000",
-    "updated_at": "2020-08-19T12:59:02Z",
-    "created_at": "2020-08-19T12:59:02Z",
-    "echo": "false",
-    "closed": "false",
-    "value": 1,
-    "metadata": {},
-    "ack_message": 0,
-    "ack_status": 0,
-    "user_uuid": "00000000-0000-0000-0000-000000000000"
-  }
-}
-```
-
-Fields differ slightly depending on `event_type`.
-
-## What do device events do?
-
-Device events help drive Ayla Cloud activity. For example, device events provide the impetus for rule evaluation and the performance of subsequent actions. Consider the following diagram:
-
-<img src="device-events-drive-activity.png" width="650" height="416">
-
-In the diagram, the Ayla Cloud sends device events to the Ayla Rule Engine which, in turn, evaluates each event in light of the conditions specified in the user-defined rules on its list. A rule consists of a conditional expression (that evaluates to true or false), and a list of user-defined actions to perform when the expression evaluates to true (e.g. Does `Blue_LED` equal `1` for Device A?). 
+A digital twin is a cloud-based state machine that reflects the attributes, properties, and schedules of a real-world thing like a thermostat. A device event is a change in the state of a digital twin caused by an edge device, mobile app, RSS feed, schedule, or some other actor. The term *device event* refers to both (a) the occurence and (b) the record of the occurence created by the Ayla Cloud. 
 
 
-uses its list of user-defined rules to determine whether each event 
+---
+
+[My S3 Browser](https://chrome.google.com/webstore/detail/my-s3-browser/lgkbddebikceepncgppakonioaopmbkk?hl=en) Chrome extension.

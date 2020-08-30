@@ -2,7 +2,7 @@
 title: Ayla Rule Service (ARS) preview
 layout: technote.html
 author: Matt Hagen
-creationDate: August 26, 2020
+creationDate: August 28, 2020
 lastModifiedDate: August 28, 2020
 classesFromPage: has-pagebar
 ---
@@ -567,7 +567,7 @@ The following list describes concrete rule expressions:
 1. They are limited to the `user` scope. An EndUser can create concrete rules for owned entities. 
 1. Evaluation causes a database query.
 
-**Concrete rules** evaluate the following event types with the following rule subjects. Strikethrough indicates not supported.
+**Concrete rules** evaluate the following event types with the following rule subjects. Strikethroughs indicate not implemented.
 
 |Event Type|Subject|Type|
 |-|-|-|
@@ -594,11 +594,11 @@ The following list describes abstract rule expressions:
 1. Tags refer to field names within the Event JSON object.
 1. All terms with the `${ }` construct must evaluate to `true` in order for the rule to evaluate to `true`.
 
-**Abstract rules** evaluate the following event types with the following rule subjects. All rule subjects evaluate to `true` or `false`.
+**Abstract rules** evaluate the following event types with the following rule subjects. All rule subjects evaluate to `true` or `false`. Strikethroughs indicate not implemented.
 
 |Event Type|Subject|Tags|
 |-|-|-|
-|activation|`ACTIVATION(${})`|`dsn, oem_model, status`|
+|~~activation~~|`ACTIVATION(${})`|`dsn, oem_model, status`|
 |connectivity|`CONNECTION(${})`|`dsn, oem_model, status`|
 |datapoint|`DATAPOINT(${})`|`dsn, oem_model, property_name, value`|
 |location|`LOCATION(${})`|`TBD`|
