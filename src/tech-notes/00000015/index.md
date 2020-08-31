@@ -10,7 +10,7 @@ classesFromPage: has-pagebar
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
     <li>
-      <a href="#core-title">Leveraging events</a>
+      <a href="#core-title">Leveraging device events</a>
     </li>
     <li>
       <a href="#device-event-table">Device event table</a>
