@@ -1,5 +1,5 @@
 ---
-title: Leveraging device events
+title: Ayla data export and streaming features
 layout: technote.html
 author: Matt Hagen
 creationDate: August 27, 2020
@@ -10,7 +10,7 @@ classesFromPage: has-pagebar
 <aside id="pagebar" class="d-xl-block collapse">
   <ul>
     <li>
-      <a href="#core-title">Leveraging device events</a>
+      <a href="#core-title">Stream/download events</a>
     </li>
     <li>
       <a href="#device-event-table">Device event table</a>
@@ -18,6 +18,7 @@ classesFromPage: has-pagebar
     <li>
       <a href="#device-event-records">Device event records</a>
       <ul>
+        <li><a href="#activation">activation</a></li>
         <li><a href="#connectivity">connectivity</a></li>
         <li><a href="#datapoint">datapoint</a></li>
         <li><a href="#datapointack">datapointack</a></li>
@@ -39,16 +40,17 @@ classesFromPage: has-pagebar
 
 This tech note describes the origin and purpose of Ayla Cloud device events. It also explains how to stream device events in near real-time to Amazon Kinesis or Microsoft Event Hub, and how to download device event data (CSV files) for historical analysis. Consider the following diagram:
 
-<img src="overview7.png" width="700" height="383">
+<img src="overview8.png" width="700" height="383">
 
 The steps below explain the diagram:
 
 1. A digital twin is a cloud-based state machine that reflects the attributes, properties, and schedules of a real-world thing like a thermostat.
-1. A device event (represented by the pink star) is a change in the state of a digital twin caused by an edge device, mobile app, RSS feed, schedule, or some other actor. See [Device events](#device-events).
-1. A device event also refers to the record (created by the Ayla Cloud) that describes the state change. See [Device events](#device-events).
+1. A device event (represented by the pink star) is a change in the state of a digital twin caused by an edge device, mobile app, RSS feed, schedule, or some other actor.
+1. A device event also refers to the record (created by the Ayla Cloud) that describes the state change.
 1. The Ayla Cloud propagates events to listening services via the Data Pipeline (DPL), driving cloud activity. For an example, see [Ayla Rule Service (ARS)](/tech-notes/00000013/).
 1. Customers stream device events to Amazon Kinesis or Microsoft Event Hub where they host integrated systems that, by analyzing data in near real-time, and taking action, participate in the event-driven activity of the Ayla Cloud.
-1. The Ayla Cloud stores device event records locally in Cassandra, and offloads them hourly as CSV files to Amazon S3 where they are stored in folders categorized by event type and date.
+1. The Ayla Cloud stores device event records locally in Cassandra.
+1. It offloads the records hourly to Amazon S3 as CSV files, storing them in folders categorized by event type and date.
 1. Customers download the CSV files for historical analysis.
 
 # Device event table
@@ -89,6 +91,27 @@ The Ayla Cloud generates the device events described in the following table:
 # Device event records
 
 Below are examples of device event records. DPL stands for Data Pipeline.
+
+## activation
+
+```
+{
+  "dpl_event": {
+    "metadata": {
+      "oem_id": "1234abcd",
+      "oem_model": "generic",
+      "dsn": "AC000W000000001",
+      "event_type": "activation"
+    },
+    "activation": {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "device_type": "Wifi",
+      "status": "Activated",
+      "event_time": "0000-00-0T00:00:00Z"
+    }
+  }
+}
+```
 
 ## connectivity
 
