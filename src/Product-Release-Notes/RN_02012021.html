@@ -1,0 +1,1054 @@
+<style> 
+/* Known Issues: https://files.readme.io/e64f281-Issue.png */
+/* Enhanced: https://files.readme.io/f32022d-Enhanced.png */
+/* Fixed: https://files.readme.io/ea493ad-Fixed.png */
+/* New Feature: https://files.readme.io/6b6fccb-Feature.png */
+  
+html {
+	scroll-behavior: smooth;
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 175px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #E9E9E9;
+  overflow-x: hidden;
+  padding-top: 133px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a{
+  padding: 5px 7px 5px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #505050;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #A8A8A8;
+}
+
+/* Main content */
+.main {
+  margin-right: 125px; /* Same as the width of the sidenav */
+  font-size: 15px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  line-height: 1.6;
+  }
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+  
+table{
+  /*border: 0.5px solid #D7D7D7;*/
+  border-right: solid 1px #E9E9E9; 
+  border-left: solid 1px #E9E9E9;
+  border-collapse: collapse;
+  padding: 7px;
+  font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+  
+th, td{
+  border-collapse: collapse;
+  padding: 7px;
+  font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  vertical-align: top;
+  padding-top: 1em;
+}
+  
+tr{border-bottom: 1pt solid #E9E9E9;}
+  
+ul li {
+    font-size: 15px;
+    list-style-type: disc;
+    display:inline;
+  	display: list-item;
+  	font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  	list-style-position: outside;
+  	margin-left: 2em;
+}
+  
+ul li::marker {
+  font-size: 1.2em;
+}
+  
+h3{
+    margin-top: 2em;
+  	line-height: 0px;
+}
+
+h2{
+    margin-top: 2.5em;
+}
+  
+.table-header{
+	 margin-top: 2em;
+   margin-bottom: 1.5em;
+}  
+</style>
+
+<div class="sidenav">
+  <p style="font-size:13px;padding:0px 0px 0px 16px"><strong>TABLE OF CONTENTS</strong></p> 
+  <a href="#February 1, 2021" style="font-size:13px">February 1, 2021</a> 
+  <a href="#January 25, 2021" style="font-size:13px">January 25, 2021</a> 
+  <a href="#January 18, 2021" style="font-size:13px">January 18, 2021</a>  
+  <a href="#January 11, 2021" style="font-size:13px">January 11, 2021</a>  
+  <a href="#January 4, 2021" style="font-size:13px">January 4, 2021</a>  
+  <a href="#December 14, 2020" style="font-size:13px">December 14, 2020</a>
+  <a href="#December 7, 2020" style="font-size:13px">December 7, 2020</a> 
+  <a href="#November 30, 2020" style="font-size:13px">November 30, 2020</a>
+  <a href="#November 16, 2020" style="font-size:13px">November 16, 2020</a>
+  <a href="#November 2, 2020" style="font-size:13px">November 2, 2020</a>
+  <a href="#October 26, 2020" style="font-size:13px">October 26, 2020</a>
+  <a href="#October 19, 2020" style="font-size:13px">October 19, 2020</a>
+  <a href="#October 5, 2020" style="font-size:13px">October 5, 2020</a>
+</div>
+
+<div class="main">
+  <h1 style="font-size:30px;color:#394248">Weekly Product Release Notes</h1>
+  <p style="border-bottom:1px solid #E9E9E9;margin-top:20px;margin-bottom:30px">   </p>
+<p>Welcome to Ayla's weekly release notes for the Cloud, Edge, and Mobile platforms. Release Notes are published every Monday so that you can stay abreast of the following (for the previous week):</p>
+  <table style="width:80%;margin-left:1px;border-right:none;border-left:none;border:none">
+  <tbody>
+   <tr style="border-bottom:none">
+      	<td style="width:70%;text-align:left"><ul><li>New features whether a major release or new functionality added to an existing feature.</li></ul></td>
+       	<td style="width:30%">
+           <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+        </td>
+    </tr>
+    <tr style="border-bottom:none">
+      	<td style="width:70%;text-align:left"><ul><li>Improvements to existing features or platform performance.</li></ul></td>
+       	<td style="width:30%">
+           <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+        </td>
+    </tr>
+    <tr style="border-bottom:none">
+      	<td style="width:70%;text-align:left"><ul><li>Resolved issues with features or functionality.</li></ul></td>
+       	<td style="width:30%">
+           <div style="text-align:center"><img src="https://files.readme.io/ea493ad-Fixed.png" width="100" height="30" /></div>
+        </td>
+    </tr>
+		<tr style="border-bottom:none">
+      	<td style="width:70%;text-align:left"><ul><li>Known issues that are being worked on, along with workarounds when applicable.</li></ul></td>
+       	<td style="width:30%">
+           <div style="text-align:center"><img src="https://files.readme.io/e64f281-Issue.png" width="100" height="30" /></div>
+        </td>
+    </tr>
+    </tbody>
+  </table>
+  
+  
+<section id="February 1, 2021">
+<strong><h2 style="font-size:22px">February 1, 2021</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Rules<br /></td>
+            <td style="width:50%;padding-top:0">
+	<ul style="margin-top:1em">We added the following connectivity events to Ayla Rules to provide you with a precise connection status of your device:</ul>
+	<ul><li>Online (which replaces on_connect.)</li></ul>
+	<ul><li>Offline</li></ul>
+        <ul><li>IpChange (which is the original ip_change event and is triggered when a device calls <a style="font-size:15px;font-family:'Courier New';background-color:#f5f5f5">GET /dsns</a> and the ip was changed.)</li></ul>
+        <ul><li>OnConnectionLost</li></ul>
+        <ul><li>OnConnectionRestore</li></ul>
+        <ul><li>Initializing</li></ul>
+        <ul><li>PollingOnline</li></ul>
+</td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Rules<br /></td>
+            <td style="width:50%">We added the ability to create a trigger in Rules with ams_email and ams_sms. Previously, triggers could only be created with contact_id.<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 style="font-size:18px">Mobile Platform</h3></strong>
+ <p>No release notes added this week.</p>
+
+
+
+
+
+<section id="January 25, 2021">
+<strong><h2 style="font-size:22px">January 25, 2021</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Message Service APIs<br /></td>
+            <td style="width:50%">We resolved the issue with slow responses and timeouts when issuing calls to the message service, e.g. <a style="font-size:15px;font-family:'Courier New';background-color:#f5f5f5">GET /messageservice/v1/destinations</a>.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Template Migration<br /></td>
+            <td style="width:50%">We resolved the issue in which migrating templates from the US Development to US Field environment were failing with a 422 error code. Click <a href="https://dash-help.aylanetworks.com/Content/Ayla%20OEM%20Dashboard/13.0%20OEM%20Migration.htm?Highlight=Template%20Migration">here for more information on Template Migration in the Ayla Customer Dashboard</a>.<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 style="font-size:18px">Mobile Platform</h3></strong>
+ <p>No release notes added this week.</p>
+
+
+
+
+
+<section id="January 18, 2021">
+<strong><h2 style="font-size:22px">January 18, 2021</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Trigger Notifications<br /></td>
+            <td style="width:50%;padding-top:0">
+	<ul style="margin-top:1em">We resolved the following trigger notification issues:</ul>
+	<ul><li>Trigger notifications configured for email and SMS (Short Message Service) using contact_id were missing rules from the configuration. This was occurring because the contact_id was referenced instead of the email or SMS.</li></ul>
+	<ul><li>Trigger notifications configured to be sent to 2 or more destinations (i.e. email or SMS) were only sent to one of the destinations.</li></ul>
+</td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Template Properties<br /></td>
+            <td style="width:50%">We resolved a template property issue in which a mime_type error occurred while configuring a property in the Ayla Developer Portal when the base type was set to <strong>message</strong>, and either of the first two MIME types were selected: <strong>application/json</strong> or <strong>application/octet-stream</strong>.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">User Service APIs<br /></td>
+            <td style="width:50%">We resolved the latency issues with database queries when issuing User Service API calls (particularly <a style="font-size:15px;font-family:'Courier New';background-color:#f5f5f5">/api/v1/users/index_by_oem.json</a> and <a style="font-size:15px;font-family:'Courier New';background-color:#f5f5f5">/oems/293/end_user</a> ).<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 class="table-header" style="font-size:18px">Mobile Platform</h3></strong>
+  <table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Version</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-top:0;padding-left:6em"><p>iOS 6.6.3 and Android 6.6.04</p>
+<br /></td>
+ 	<td style="width:50%;padding-top:0">
+	<ul style="margin-top:1em">For the Ayla Software Development Kit (SDK), a first phase release of device Groups and Scenes is available for US Development. Groups enable the user to view and control (perform a single action on) a collection of similar devices (i.e. lights) as a single entity. Scenes enable the user to activate different types of actions to a group of different devices at the same time (e.g. the action might be “morning” and when activated the coffee machine starts, the thermostat is set to a different temperature, and the window shades are raised.) This first phase includes:</ul>
+	<ul><li>CRUD (Create, Read, Update, Delete) APIs</li></ul>
+	<ul><li>Triggering API for Groups</li></ul>
+        <ul><li>Unit tests for Groups and Scenes</li></ul>
+        <ul><li>AppleDoc generated from inline comments</li></ul>
+</td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-top:0;padding-left:6em"><p>iOS 6.6.3</p>
+<br /></td>
+            <td style="width:50%;padding-top:0">
+	<ul style="margin-top:1em">For the Ayla Software Development Kit (SDK):</ul>
+	   <ul><li>We improved unhappy path flows to enhance the device onboarding experience.</li></ul>
+	   <ul><li>We updated rules-based notifications and inline documentation to address onboarding errors.</li></ul>
+           <ul><li>We optimized property retrieval in LAN Mode.</li></ul>
+        <ul>For Aura, we improved the error handling of unhappy paths on BLE (Bluetooth Low Energy) and Wi-Fi.</ul>
+</td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">iOS 6.6.2<br /></td>
+            <td style="width:50%">In this release, Ayla Mobile Foundry also includes user interface improvements, such as the ability to add and remove the social login using Foundry.json.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">4</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">iOS 6.6.2</td>
+            <td style="width:50%">We fixed the issue causing Ayla Mobile Foundry to crash when launching the advance setup on the iPad.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">5</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-top:0;padding-left:6em"><p>iOS 6.6.03</p>
+						<br /></td>
+            <td style="width:50%">In this release, we added rules-based notifications for email, SMS (Short Message Service), and push.<br /></td>
+        </tr>
+<tr>
+            <td style="width:5%;text-align:center">6</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.03</td>
+            <td style="width:50%">In this release of the Ayla Software Development Kit (SDK) and Ayla Aura, we deprecated trigger-based notifications for email, SMS (Short Message Service), and push.<br /></td>
+        </tr>
+<tr>
+            <td style="width:5%;text-align:center">7</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.03</td>
+            <td style="width:50%">This release provides improvements to the user interface, user experience, and Wi-Fi setup for Ayla Aura, such as a larger tap region for advanced set-up flows and the ability to cancel and close BLE (Bluetooth Low Energy) and Wi-Fi set-up processes.<br /></td>
+        </tr>
+<tr>
+            <td style="width:5%;text-align:center">8</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.03</td>
+            <td style="width:50%">We fixed the issue in which the set-up token for Wi-Fi and BLE (Bluetooth Low Energy) was not sent and returned an error.<br /></td>
+        </tr>
+<tr>
+            <td style="width:5%;text-align:center">9</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/e64f281-Issue.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.03</td>
+            <td style="width:50%;padding-top:0">
+	<ul style="margin-top:1em">AMAP has the following issues:</ul>
+	<ul><li>The legacy DevKit fails when using the Same LAN registration method.</li></ul>
+	<ul><li>The Play Store release is still in review.</li></ul>
+</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+<section id="January 11, 2021">
+<strong><h2 style="font-size:22px">January 11, 2021</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Schedules, OTA Jobs<br /></td>
+            <td style="width:50%">We fixed the issue in which there were duplicate scheduled actions appearing in Over-the-Air (OTA) jobs. This occurred after associating a new template, which was then used for OTA jobs created and started on the Ayla Customer Dashboard.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">OTA<br /></td>
+            <td style="width:50%">Based on an intermittent issue in which the success or failed status_update call was not propagated in the Over-the-Air (OTA) services, we changed to an asynchronous process making status updates more robust and stable.<br /></td>
+        </tr>
+	<tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Schedule API, Sunrise/Sunset<br /></td>
+            <td style="width:50%">We improved the Schedule API to use a JSON metadata object to confirm that the device supports the Sunrise/Sunset feature. This feature enables you to configure local sunrise and sunset times in Ayla schedules if your device and its firmware version support the ability to execute schedules based on sunrise and sunset settings. The new metadata object (<a style="font-size:13px;font-family:'Courier New';background-color:#f5f5f5">"metadata":{ "sunrise_sunset":true}</a>) can be returned via GET APIs or set by the client application. If your device does not support sunrise/sunset settings, the sunrise_sunset key value pair is omitted; it is not necessary to use a sunrise_sunset:false key value pair.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">4</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Device Property Triggers<br /></td>
+            <td style="width:50%">We fixed an issue in which device property triggers were not completely removed from the platform when deleting the trigger notification.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">5</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Device API<br /></td>
+            <td style="width:50%">We fixed an issue in which the getRules endpoint ignored the input parameters for specific DSNs (Device Serial Numbers) or UUIDs (Universally Unique Identifiers) and instead returned all rules for devices/users mapped to the DSN or UUID specified.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">6</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Trigger Notifications<br /></td>
+            <td style="width:50%">We fixed the issue in which changing notification preferences caused the trigger notification to fail.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">7</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Command Center, OTA<br /></td>
+            <td style="width:50%">We increased the OTA image size limitation to 512 MB in Ayla’s IoT Command Center.<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 style="font-size:18px">Mobile Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+  
+
+
+
+
+
+<section id="January 4, 2021">
+<strong><h2 style="font-size:22px">January 4, 2021</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">User Service API, Sign_In<br /></td>
+            <td style="width:50%">We resolved an issue with signing in to a newly created account when the primary contact is set to email. The email and username were not syncing and did not update properly.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Schedules<br /></td>
+            <td style="width:50%">We resolved the issue in which all of the schedule settings except the scheduled actions were lost when associating a new template to a device.<br /></td>
+        </tr>
+	<tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">DSS API<br /></td>
+            <td style="width:50%">Datapoint Acknowledgement Events (datapoint_ack) are now supported in Ayla’s Datastream Services (DSS). When the device sends a datapoint acknowledgement message, this event is also sent to the DSS streams.<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 style="font-size:18px">Mobile Platform</h3></strong>
+ <p>No release notes added this week.</p>
+
+
+
+
+<section id="December 14, 2020">
+<strong><h2 style="font-size:22px">December 14, 2020</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">File Properties<br /></td>
+            <td style="width:50%">We resolved a file property delivery issue in which the file property was marked as fetched before the file property datapoint was marked complete, and the error logs showed 500 status codes. This was seen when delivering the set_zone property, and when the device was cycling (switching) between two template versions. Click here for more information on File Properties.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">DSS<br /></td>
+            <td style="width:50%">We resolved an issue in which all datastreams that the user created in Ayla’s DataStream Service (DSS) were removed after deleting the OEM user. Only personally identifiable information should be removed upon deleting an OEM user; all of the OEM user’s configurations that affect other users should not be removed.<br /></td>
+        </tr>
+	<tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Devices<br /></td>
+            <td style="width:50%">We resolved an issue in which the devices Search | By Property feature in the Ayla Customer Dashboard was failing with a 401 response. To use this feature, in the dashboard, click <strong>Devices</strong> in the left navigational panel, click <strong>SEARCH DEVICES</strong> on the <strong>All Devices</strong> tab, click the <strong>By Properties</strong> tab.<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 style="font-size:18px">Mobile Platform</h3></strong>
+ <p>No release notes added this week.</p>
+
+
+
+  
+<section id="December 7, 2020">
+<strong><h2 style="font-size:22px">December 7, 2020</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Command Center, OTA Jobs<br /></td>
+            <td style="width:50%">We resolved an API issue when using the OTA Job Details feature (Icc_JobDetails) in Ayla’s IoT Command Center. When creating an OTA job with host_ota for a single or multi-component image, after updating the host_ota action, the property_name either no longer showed as null, or displayed the previous property name instead of the new one.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Apple Sign-in<br /></td>
+            <td style="width:50%">We added a datastream option for datapoint acknowledgements to Ayla’s Datastream Services (DSS). This enables you to stream data on acknowledgments that confirm whether or not property values were updated. Click <a href="https://dash-help.aylanetworks.com/Content/Ayla%20OEM%20Dashboard/10.1.1%20CreateStreamDB_Kinesis_ACT_PROP.htm?Highlight=dss">here for the user documentation on this feature</a>.<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 style="font-size:18px">Mobile Platform</h3></strong>
+ <p>No release notes added this week.</p>  
+  
+<section id="November 30, 2020">
+<strong><h2 style="font-size:22px">November 30, 2020</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Device Onboarding<br /></td>
+            <td style="width:50%">We resolved the issue in which the local time was not updating properly on some devices after doing a factory reset or when the initial provisioning process failed. With regard to the factory reset, the device did not sync the timezone after 36 hours.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Schedules<br /></td>
+            <td style="width:50%">We resolved the issue in which schedule actions kept duplicating when you cloned a private device template more than two times and then re-associated the second (or subsequent) cloned template to a device. This issue was also occurring on Over-the-Air (OTA) jobs that were using cloned private templates.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Weather Feed Properties<br /></td>
+            <td style="width:50%">We changed the SQS (Simple Queue Service) configuration to fix the issue in which weather feed properties (e.g. outdoor temperature) were not being updated per their configured data feed update intervals (e.g. 1 hour).<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">4</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Weather Feed Properties</td>
+            <td style="width:50%">We fixed an incorrect queue name in the SQS (Simple Queue Service) configuration  to resolve the issue in which inconsistent datapoint values were posted for weather feed properties.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">5</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Air Quality Properties<br /></td>
+            <td style="width:50%">We found and updated an incorrect mapping in the feed-processor code to resolve the issue with missing data for air quality properties (such as Ozone-O3).<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 class="table-header" style="font-size:18px">Mobile Platform</h3></strong>
+  <table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Version</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-top:0;padding-left:6em"><p>iOS 6.6.2</p>
+<br /></td>
+ 	<td style="width:50%;padding-top:0">
+	<ul style="margin-top:1em">This release included the following:</ul>
+	<ul><li>Support for both trigger and rules-based notifications</li></ul>
+	<ul><li><a href="https://support.apple.com/en-us/HT211808/">iOS 14.2 support</a>
+</li></ul>
+</td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/e64f281-Issue.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-top:0;padding-left:6em"><p>iOS 6.6.2</p>
+<br /></td>
+            <td style="width:50%">In this release, local network privacy does not have an API to check for allowed or denied, which may cause the on-boarding process to fail. Refer to the iOS 14 Privacy Changes document for details.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">iOS 6.6.2<br /></td>
+            <td style="width:50%">In this release, Ayla Mobile Foundry also includes user interface improvements, such as the ability to add and remove the social login using Foundry.json.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">4</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">iOS 6.6.2</td>
+            <td style="width:50%">We fixed the issue causing Ayla Mobile Foundry to crash when launching the advance setup on the iPad.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">5</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-top:0;padding-left:6em"><p>iOS 6.6.03</p>
+						<br /></td>
+            <td style="width:50%">In this release, we added rules-based notifications for email, SMS (Short Message Service), and push.<br /></td>
+        </tr>
+<tr>
+            <td style="width:5%;text-align:center">6</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.03</td>
+            <td style="width:50%">In this release of the Ayla Software Development Kit (SDK) and Ayla Aura, we deprecated trigger-based notifications for email, SMS (Short Message Service), and push.<br /></td>
+        </tr>
+<tr>
+            <td style="width:5%;text-align:center">7</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.03</td>
+            <td style="width:50%">This release provides improvements to the user interface, user experience, and Wi-Fi setup for Ayla Aura, such as a larger tap region for advanced set-up flows and the ability to cancel and close BLE (Bluetooth Low Energy) and Wi-Fi set-up processes.<br /></td>
+        </tr>
+<tr>
+            <td style="width:5%;text-align:center">8</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.03</td>
+            <td style="width:50%">We fixed the issue in which the set-up token for Wi-Fi and BLE (Bluetooth Low Energy) was not sent and returned an error.<br /></td>
+        </tr>
+<tr>
+            <td style="width:5%;text-align:center">9</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/e64f281-Issue.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.03</td>
+            <td style="width:50%;padding-top:0">
+	<ul style="margin-top:1em">AMAP has the following issues:</ul>
+	<ul><li>The legacy DevKit fails when using the Same LAN registration method.</li></ul>
+	<ul><li>The Play Store release is still in review.</li></ul>
+  </td>
+        </tr>
+    </tbody>
+</table>
+  
+  
+  
+<section id="November 16, 2020">
+<strong><h2 style="font-size:22px">November 16, 2020</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">DSS<br /></td>
+            <td style="width:50%">We resolved the issue in which an error occurred when attempting to edit or view an existing datastream in the Ayla Customer Dashboard and when sending a GET request on an existing datastream.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Notifications<br /></td>
+            <td style="width:50%">We resolved the issue in which multiple device notifications (SMS, push, and email) were sent for a single datapoint event.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Gateway Device<br /></td>
+            <td style="width:50%">We resolved the issue in which the connectivity status of the nodes were incorrectly reported when a gateway device went offline and online. This was occurring when the event_time was the same for both the offline and online status.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">4</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Device Properties</td>
+            <td style="width:50%">We resolved the issue in which multiple property values were sent when only changing one device property. When a device property was changed (in the to-device direction), the GET command (<a style="font-size:15px;font-family:'Courier New';background-color:#f5f5f5">GET /devices//commands.xml</a>) showed multiple property datapoints were received.<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+  <p>No release notes added this week.</p>
+<strong><h3 class="table-header" style="font-size:18px">Mobile Platform</h3></strong>
+  <table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Version</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-top:0;padding-left:6em"><p>iOS 6.6.1</p>
+<p>Android 6.6.02</p>
+<br /></td>
+            <td style="width:50%">For customers who want to obtain Wi-Fi certification for their devices, we added WPA3 Support and updated Wi-Fi Security type strings to the Ayla Software Development Kit (SDK) and Ayla applications.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/e64f281-Issue.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-top:0;padding-left:6em"><p>iOS 6.6.1</p>
+<br /></td>
+            <td style="width:50%">In this release, local network privacy does not have an API to check for allowed or denied, which may cause the on-boarding process to fail. Refer to the iOS 14 Privacy Changes document for details.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">iOS 6.6.1<br /></td>
+            <td style="width:50%;padding-top:0"><ul style="margin-top:1em">In this release, Ayla Mobile Foundry also includes the following enhancements:</ul>
+	<ul><li>User interface support for <a href="https://www.aylanetworks.com/ayla-fast-track/">Ayla FastTrack.</a>
+</li></ul>
+	<ul><li>Improved Sepia themes support. Sepia is a cross-platform framework for Android and iOS that allows developers to quickly create Ayla IoT mobile applications with very little effort. Sepia themes are used, for example, in configuring colors and fonts for multi-color mode). For more information, click here.</li></ul>
+<ul><li>Build improvements for fastlane, a tool for iOS and Android developers to automate simple tasks like generating screenshots, dealing with provisioning profiles, and releasing your application.</li></ul>
+</td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">4</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.02</td>
+            <td style="width:50%">In this release of Ayla Aura on Android devices, we improved the user experience for advanced device on-boarding.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">5</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.02<br /></td>
+            <td style="width:50%">In this release of the Ayla Software Development Kit (SDK) and Ayla Mobile Foundry, we improved unhappy path errors reported during the onboarding process.<br /></td>
+        </tr>
+<tr>
+            <td style="width:5%;text-align:center">6</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/e64f281-Issue.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:left;padding-left:6em">Android 6.6.02<br /></td>
+            <td style="width:50%;padding-top:0"><ul style="margin-top:1em">AMAP has the following issues:</ul>
+	<ul><li>The legacy DevKit fails when using the Same LAN registration method.</li></ul>
+	<ul><li>The Play Store release is still in review.</li></ul>
+  </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<section id="November 2, 2020">
+<strong><h2 style="font-size:22px">November 2, 2020</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Batch Properties<br /></td>
+            <td style="width:50%">We improved the processing of batch properties (batch_datapoints API) to drive better platform scalability and performance.<br /></td>
+        </tr>      
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 style="font-size:18px">Mobile Platform</h3></strong>
+ <p>No release notes added this week.</p>
+
+
+
+<section id="October 26, 2020">
+<strong><h2 style="font-size:22px">October 26, 2020</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">DSS<br /></td>
+            <td style="width:50%;padding-top:0"><p>In a recent update, we implemented a deactivated status to be sent to the DataStream Service (DSS) to fix the issue in which nodes were not deactivated or removed after issuing the following:</p>
+	<p><a style="font-size:12px;font-family:'Courier New';background-color:#f5f5f5">DELETE /dev/v1/dsns/&lt;gateway_device_dsn&gt;/nodes/&lt;node_dsn&gt;.json</a></p>
+	<p><a style="font-size:12px;font-family:'Courier New';background-color:#f5f5f5">PUT /apiv1/devices/{devId}/cmds/factory_reset</a></p>
+<br /></td>
+        </tr>      
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 style="font-size:18px">Mobile Platform</h3></strong>
+ <p>No release notes added this week.</p>
+
+
+
+<section id="October 19, 2020">
+<strong><h2 style="font-size:22px">October 19, 2020</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">OTA API<br /></td>
+            <td style="width:50%">The POST datapoint to oem_host_version API (<a style="font-size:13px;font-family:'Courier New';background-color:#f5f5f5">/dev/v1/dsns/:dsn /properties/oem_host_version/datapoints</a>) is no longer returning a 500 error to gateway devices when you attempt to update a template with new properties (for new features) after OTA (Over-the-Air) updates.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">OTA API<br /></td>
+            <td style="width:50%">A recent update resolves the issue in which software version events (host_sw_version) and OTA reporting events (for host version updates) were not triggered/updated.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/f32022d-Enhanced.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Rules Service<br /></td>
+            <td style="width:50%">Recent enhancements to Ayla’s Rule Service have greatly reduced latencies and improved delivery speeds of events, for example, when using Ayla DataStream Services. This enables you to react to your fleet’s events quicker than before.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">4</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Dealers</td>
+            <td style="width:50%">We resolved the issue in which users were receiving a 406 error after clicking the link in the confirmation email for a new dealer account that was created in the dashboard.<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 style="font-size:18px">Mobile Platform</h3></strong>
+ <p>No release notes added this week.</p>
+
+
+<section id="October 5, 2020">
+<strong><h2 style="font-size:22px">October 5, 2020</h2></strong>
+</section>
+<strong><h3 class="table-header" style="font-size:18px">Cloud Platform</h3></strong>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td style="width:5%;text-align:center;background-color:#E9E9E9;padding:none"><br /></td>
+            <td style="width:20%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Release Type</strong><br /></td>
+            <td style="width:25%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Feature</strong><br /></td>
+            <td style="width:50%;text-align:center;background-color:#E9E9E9;padding:none"><strong>Summary</strong><br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">1</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Message Properties<br /></td>
+            <td style="width:50%">When implementing to-device message properties for the Ayla Portable Agent, the Ayla Cloud apiv1 API no longer returns a 422 error when the size of the message property is larger than 1024 bytes. The maximum size of a message property is 512 KB.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">2</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/6b6fccb-Feature.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Apple Sign-in<br /></td>
+            <td style="width:50%">End users can sign in to Ayla mobile and web applications using their Apple credentials. This includes the ability to create, update, delete, and manage Apple log-in accounts for your Ayla applications using the Ayla Customer Dashboard. Click <a href="https://dash-help.aylanetworks.com/Content/Ayla%20OEM%20Dashboard/2.5.2%20OEM%20Profile_Third-Party_EditThirdPartyLogin.htm?Highlight=Apple%20log-in">here for the user documentation on this new feature</a>.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">3</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Devices<br /></td>
+            <td style="width:50%">We fixed the issue in which the Ayla Customer Dashboard was not showing devices shared with the end user.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">4</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">Maps</td>
+            <td style="width:50%">We fixed the issue with users not being able to see maps in their application after sending the HTTP GET request.<br /></td>
+        </tr>
+        <tr>
+            <td style="width:5%;text-align:center">5</td>
+            <td style="width:20%">
+                <div style="text-align:center"><img src="https://files.readme.io/3d64839-Fixed.png" width="100" height="30" /></div>
+            </td>
+            <td style="width:25%;text-align:center">OEM Profile, Apps<br /></td>
+            <td style="width:50%">When creating or editing an application in the Ayla Customer Dashboard, you will no longer experience spinning issues while uploading a PEM (Privacy Enhanced Mail) file for the Apple Push Notification Service (APNS). Click <a href="https://dash-help.aylanetworks.com/Content/Ayla%20OEM%20Dashboard/2.5%20OEM%20Profile_Third-PartyCredentialsTab.htm?Highlight=third-party%20login">here for the steps to create or edit applications in the dashboard</a>.<br /></td>
+        </tr>
+    </tbody>
+</table>
+<strong><h3 style="font-size:18px">Edge Platform</h3></strong>
+ <p>No release notes added this week.</p> 
+<strong><h3 style="font-size:18px">Mobile Platform</h3></strong>
+ <p>No release notes added this week.</p>
+
+</div>
